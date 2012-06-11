@@ -7,12 +7,15 @@
 	ui:generateLocales='default'>
 
 	<g:HTMLPanel>
-		<g:AbsolutePanel height="118px">
+		<g:AbsolutePanel height="200px" ui:field="dndpanel">
 			<g:at left="65" top="29">
 				<g:Hyperlink text="go to back to login page" targetHistoryToken="login" />
 			</g:at>
 			<g:at left="187" top="69">
 				<g:Label ui:field="mainLabel" width="126px" height="24px"/>
+			</g:at>
+			<g:at left="35" top="90">
+				<g:Image width="100px" height="100px" url="logo-185x175.png" ui:field="dndImage"/>
 			</g:at>
 		</g:AbsolutePanel>
 			

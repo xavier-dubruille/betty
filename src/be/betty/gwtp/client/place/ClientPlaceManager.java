@@ -1,10 +1,9 @@
 package be.betty.gwtp.client.place;
 
+import com.google.gwt.event.shared.EventBus;
+import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.proxy.PlaceManagerImpl;
 import com.gwtplatform.mvp.client.proxy.PlaceRequest;
-import be.betty.gwtp.client.place.DefaultPlace;
-import com.google.inject.Inject;
-import com.google.gwt.event.shared.EventBus;
 import com.gwtplatform.mvp.client.proxy.TokenFormatter;
 
 public class ClientPlaceManager extends PlaceManagerImpl {

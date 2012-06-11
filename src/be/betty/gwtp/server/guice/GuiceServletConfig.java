@@ -1,10 +1,8 @@
 package be.betty.gwtp.server.guice;
 
-import com.google.inject.servlet.GuiceServletContextListener;
-import com.google.inject.Injector;
 import com.google.inject.Guice;
-import be.betty.gwtp.server.guice.ServerModule;
-import be.betty.gwtp.server.guice.DispatchServletModule;
+import com.google.inject.Injector;
+import com.google.inject.servlet.GuiceServletContextListener;
 
 public class GuiceServletConfig extends GuiceServletContextListener {
 

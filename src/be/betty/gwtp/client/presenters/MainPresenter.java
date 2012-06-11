@@ -1,16 +1,20 @@
 package be.betty.gwtp.client.presenters;
 
-import com.gwtplatform.mvp.client.Presenter;
-import com.gwtplatform.mvp.client.View;
-import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
-import com.gwtplatform.mvp.client.annotations.NameToken;
 import be.betty.gwtp.client.place.NameTokens;
 
+import com.allen_sauer.gwt.dnd.client.PickupDragController;
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RootPanel;
+import com.google.inject.Inject;
+import com.gwtplatform.mvp.client.Presenter;
+import com.gwtplatform.mvp.client.View;
+import com.gwtplatform.mvp.client.annotations.NameToken;
+import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.PlaceRequest;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
-import com.google.inject.Inject;
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.ui.Label;
 import com.gwtplatform.mvp.client.proxy.RevealRootContentEvent;
 
 public class MainPresenter extends
@@ -18,6 +22,8 @@ public class MainPresenter extends
 
 	public interface MyView extends View {
 		public Label getMainLabel();
+		public AbsolutePanel getDndPanel();
+		public Image getDndImage();
 	}
 
 	@ProxyCodeSplit
@@ -48,6 +54,18 @@ public class MainPresenter extends
 	@Override
 	protected void onBind() {
 		super.onBind();
+		set_dnd();
+	}
+
+	private void set_dnd() {
+		  // create a DragController to manage drag-n-drop actions
+	    // note: This creates an implicit DropController for the boundary panel
+	    PickupDragController dragController = new PickupDragController(getView().getDndPanel(), true);
+
+	    // add a new image to the boundary panel and make it draggable
+	    
+	    dragController.makeDraggable(getView().getDndImage());
+		
 	}
 
 	@Override
