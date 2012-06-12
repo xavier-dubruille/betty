@@ -24,7 +24,7 @@
 	 		<g:Label text="Password"/>
 	 	</g:at>
 	 	<g:at left="243" top="121">
-	 		<g:Hyperlink text="Login forgot ?" targetHistoryToken="newHistoryToken"/>
+	 		<g:Hyperlink text="Subscribe ?" targetHistoryToken="subscribe"/>
 	 	</g:at>
 	 </g:AbsolutePanel>
 	 </g:HTMLPanel>
