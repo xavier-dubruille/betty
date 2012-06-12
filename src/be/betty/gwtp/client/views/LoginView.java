@@ -16,7 +16,9 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 	private final Widget widget;
 
 	@UiField Label login_label;
+	@UiField Label wrong_pwd;
 	@UiField TextBox login_textbox;
+	@UiField TextBox pwd_textbox;
 	@UiField Button login_send;
 	
 	public interface Binder extends UiBinder<Widget, LoginView> {
@@ -42,6 +44,16 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 
 	public Button getLogin_send() {
 		return login_send;
+	}
+
+	public TextBox getPwd_textbox() {
+		return pwd_textbox;
+	}
+
+	@Override
+	public Label getWrongPwd_label() {
+		return wrong_pwd;
+		
 	}
 	
 	
