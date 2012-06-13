@@ -115,5 +115,28 @@ public class SQLHandler {
 		return rs;
 	}
 
+	public boolean exexuteUpdate(String req) {
+		Statement stmt = null;
+		try {
+			stmt = c.createStatement();
+			stmt.executeUpdate(req);
+
+		}
+		catch (SQLException ex){
+			return false;
+		}
+		finally {
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqlEx) { } // ignore
+
+				stmt = null;
+			}
+		}
+
+		return true;
+	}
+
 
 }

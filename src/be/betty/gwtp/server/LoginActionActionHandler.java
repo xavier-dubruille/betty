@@ -24,22 +24,32 @@ public class LoginActionActionHandler implements
 			throws ActionException {
 		System.out.println("execute server");
 		
-		int user_id = checkLogin(action.getLogin(), action.getPwd());
+		int session_id = checkLogin(action.getLogin(), action.getPwd());
 		//sqlHandler.exexute("insert into test values (6669)");
-		return new LoginActionResult(user_id);
+		return new LoginActionResult(session_id);
 	}
 
 	private int checkLogin(String login, String pwd) {
-		int id=-1;
+		int session_id=-1;
+		int user_id = -1;
 		ResultSet stm = sqlHandler.executeQuery("select id from users where login = \""+login + "\" and pwd = \"" +pwd+"\"");
 		try {
 			if (stm.next())
-				id = stm.getInt("id");
+				user_id = stm.getInt("id");
 		} catch (SQLException e) {
-			id = -2;
 			//e.printStackTrace();
+			return -2;
 		}
-		return id;
+		
+		// on supprime les sessions id plus valide ? ou tous --> mais pas de double loggin alors..
+		
+		session_id = (int) (Math.random() * 1000000);
+		System.out.println("sess: "+session_id);
+		if (sqlHandler.exexuteUpdate("insert into session_ids( session_id, user_id ) " +
+				"values ('"+session_id +"', '"+user_id +"')"))
+			return session_id;
+		else 
+			return -1;
 	}
 
 	@Override

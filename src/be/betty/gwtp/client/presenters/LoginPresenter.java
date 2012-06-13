@@ -1,5 +1,6 @@
 package be.betty.gwtp.client.presenters;
 
+import be.betty.gwtp.client.Betty_gwtp;
 import be.betty.gwtp.client.action.LoginAction;
 import be.betty.gwtp.client.action.LoginActionResult;
 import be.betty.gwtp.client.place.NameTokens;
@@ -91,8 +92,10 @@ public class LoginPresenter extends
 
 		@Override
 		public void onSuccess(LoginActionResult result) {
-			System.out.println("client: id= "+result.getUser_id());
-			if (result.getUser_id() > 0) {
+			int session_id = result.getSession_id();
+			
+			if (session_id > 0) {
+				Betty_gwtp.session_id = session_id;
 				PlaceRequest request = new PlaceRequest(NameTokens.main).with("name", user);
 				placeManager.revealPlace(request);
 			}

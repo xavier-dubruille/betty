@@ -1,5 +1,6 @@
 package be.betty.gwtp.client.presenters;
 
+import be.betty.gwtp.client.Betty_gwtp;
 import be.betty.gwtp.client.place.NameTokens;
 
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
@@ -71,7 +72,7 @@ public class MainPresenter extends
 	@Override
 	protected void onReset() {
 		super.onReset();
-		getView().getMainLabel().setText("Welcome "+namex);
+		getView().getMainLabel().setText("Welcome "+namex +" (session_id = "+Betty_gwtp.session_id +")");
 		
 		
 	}

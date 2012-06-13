@@ -11,6 +11,7 @@ import com.gwtplatform.mvp.client.DelayedBindRegistry;
 
 public class Betty_gwtp implements EntryPoint {
 
+	public static int session_id;
 	private final ClientGinjector ginjector = GWT.create(ClientGinjector.class);
 
 	@Override
