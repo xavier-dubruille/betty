@@ -22,7 +22,7 @@ public class LoginActionActionHandler implements
 	@Override
 	public LoginActionResult execute(LoginAction action, ExecutionContext context)
 			throws ActionException {
-		System.out.println("execute server");
+		//System.out.println("execute server call");
 		
 		int session_id = checkLogin(action.getLogin(), action.getPwd());
 		//sqlHandler.exexute("insert into test values (6669)");
@@ -36,6 +36,9 @@ public class LoginActionActionHandler implements
 		try {
 			if (stm.next())
 				user_id = stm.getInt("id");
+				//System.out.println("user id = .. "+user_id);
+				if (user_id < 1)
+					return -3;
 		} catch (SQLException e) {
 			//e.printStackTrace();
 			return -2;
@@ -44,8 +47,8 @@ public class LoginActionActionHandler implements
 		// on supprime les sessions id plus valide ? ou tous --> mais pas de double loggin alors..
 		
 		session_id = (int) (Math.random() * 1000000);
-		System.out.println("sess: "+session_id);
-		if (sqlHandler.exexuteUpdate("insert into session_ids( session_id, user_id ) " +
+		//System.out.println("sess: "+session_id);
+		if (sqlHandler.exexuteUpdate("insert into session_ids( id, user_id ) " +
 				"values ('"+session_id +"', '"+user_id +"')"))
 			return session_id;
 		else 

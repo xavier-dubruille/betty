@@ -7,7 +7,7 @@
 	ui:generateLocales='default'>
 
 	<g:HTMLPanel>
-		<g:AbsolutePanel height="200px" ui:field="dndpanel">
+		<g:AbsolutePanel height="403px" ui:field="dndpanel">
 			<g:at left="65" top="29">
 				<g:Hyperlink text="go to back to login page" targetHistoryToken="login" />
 			</g:at>

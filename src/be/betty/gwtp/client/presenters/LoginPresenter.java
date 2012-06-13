@@ -58,13 +58,12 @@ public class LoginPresenter extends
 	}
 
 	
-	private String user;
-	
 	@Override
 	protected void onReset() {
 		super.onReset();
 		
 		getView().getLogin_textbox().setText("Admin");
+		getView().getWrongPwd_label().setText("");
 		getView().getLogin_send().addClickHandler(new ClickHandler() {
 
 			@Override
@@ -72,7 +71,7 @@ public class LoginPresenter extends
 				getView().getWrongPwd_label().setText(".. Be patient, I'm checkin' ..");
 				
 				String login = getView().getLogin_textbox().getText();
-				user=login;
+				Betty_gwtp.user_name = login;
 				String pwd = getView().getPwd_textbox().getText();
 				LoginAction action = new LoginAction(login, pwd);
 				dispatch.execute(action, loginCallback);
@@ -94,9 +93,11 @@ public class LoginPresenter extends
 		public void onSuccess(LoginActionResult result) {
 			int session_id = result.getSession_id();
 			
+			//System.out.println("client side: sessid= "+session_id);
 			if (session_id > 0) {
 				Betty_gwtp.session_id = session_id;
-				PlaceRequest request = new PlaceRequest(NameTokens.main).with("name", user);
+				// PlaceRequest request = new PlaceRequest(NameTokens.main).with("name", user);
+				PlaceRequest request = new PlaceRequest(NameTokens.projects);
 				placeManager.revealPlace(request);
 			}
 			else {

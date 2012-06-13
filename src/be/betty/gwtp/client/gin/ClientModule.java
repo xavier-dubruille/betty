@@ -7,11 +7,13 @@ import be.betty.gwtp.client.presenters.LoginPresenter;
 import be.betty.gwtp.client.presenters.MainPresenter;
 import be.betty.gwtp.client.views.LoginView;
 import be.betty.gwtp.client.views.MainView;
+import be.betty.gwtp.client.views.ProjectsView;
 import be.betty.gwtp.client.views.SubscribeView;
 
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import com.gwtplatform.mvp.client.gin.DefaultModule;
 import be.betty.gwtp.client.presenters.SubscribePresenter;
+import be.betty.gwtp.client.presenters.ProjectsPresenter;
 
 public class ClientModule extends AbstractPresenterModule {
 
@@ -30,5 +32,8 @@ public class ClientModule extends AbstractPresenterModule {
 		bindPresenter(SubscribePresenter.class,
 				SubscribePresenter.MyView.class, SubscribeView.class,
 				SubscribePresenter.MyProxy.class);
+
+		bindPresenter(ProjectsPresenter.class, ProjectsPresenter.MyView.class,
+				ProjectsView.class, ProjectsPresenter.MyProxy.class);
 	}
 }

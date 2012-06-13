@@ -31,6 +31,9 @@
 
 				<g:Label styleName="wrong_pwd" ui:field="wrong_pwd" />
 			</g:at>
+			<g:at left="10" top="210">
+				<g:Hyperlink text="Check Dnd sample" targetHistoryToken="main"/>
+			</g:at>
 		</g:AbsolutePanel>
 	</g:HTMLPanel>
 </ui:UiBinder>
