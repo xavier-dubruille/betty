@@ -7,10 +7,10 @@
 	ui:generateLocales='default'>
 
 	<g:HTMLPanel>
-		<g:VerticalPanel width="308px" height="167px">
-			<g:Label text="no existing projects" ui:field="project_field"/>
-			<g:Button>Create New Poject</g:Button>
-			<g:Hyperlink text="Go to sample dnd" targetHistoryToken="main"/>
-		</g:VerticalPanel>
+	<h1>Betty Header</h1>
+	<hr/>
+	<g:HTMLPanel ui:field="contentPanel" />
 	</g:HTMLPanel>
+	
+	
 </ui:UiBinder>

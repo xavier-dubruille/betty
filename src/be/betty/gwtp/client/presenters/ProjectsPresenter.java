@@ -11,6 +11,7 @@ import be.betty.gwtp.client.action.GetProjectsAction;
 import be.betty.gwtp.client.action.GetProjectsActionResult;
 import be.betty.gwtp.client.place.NameTokens;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
+import com.gwtplatform.mvp.client.proxy.RevealContentEvent;
 import com.google.inject.Inject;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -38,7 +39,8 @@ public class ProjectsPresenter extends
 
 	@Override
 	protected void revealInParent() {
-		RevealRootContentEvent.fire(this, this);
+		//RevealRootContentEvent.fire(this, this);
+		RevealContentEvent.fire(this, HeaderPresenter.SLOT_CONTENT, this);
 	}
 
 	@Override
