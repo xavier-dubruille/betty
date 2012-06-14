@@ -1,7 +1,9 @@
 package be.betty.gwtp.server;
 
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.gwtplatform.dispatch.server.actionhandler.ActionHandler;
 
@@ -23,19 +25,21 @@ public class GetProjectsActionActionHandler implements
 	public GetProjectsActionResult execute(GetProjectsAction action,
 			ExecutionContext context) throws ActionException {
 		int session_id = action.getSession_id();
-		String projects = "  Vos projects sont: ";
+		ArrayList <String> projects = new ArrayList<String>();
 		String name = "";
-		ResultSet stm = sqlHandler.executeQuery("select project.name from project, users, user_project, session_ids " +
+		ResultSet rs = sqlHandler.executeQuery("select project.name from project, users, user_project, session_ids " +
 				"where session_ids.user_id = users.id and user_project.user_id = users.id " +
 				"and project.id = user_project.project_id and session_ids.id = '"+session_id+"'");
+		
+
 		try {
-			while (stm.next()){
-				name = stm.getString("name");
+			while (rs.next()){
+				name = rs.getString("name");
 				
-				System.out.println(" project name =  "+name);
+				//System.out.println(" project name =  "+name);
 				if (name == null)
 					break;
-				projects += name+" / ";
+				projects.add(name);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
