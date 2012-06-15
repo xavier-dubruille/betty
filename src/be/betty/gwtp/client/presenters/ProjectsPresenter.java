@@ -13,6 +13,8 @@ import com.gwtplatform.mvp.client.annotations.NameToken;
 import be.betty.gwtp.client.Betty_gwtp;
 import be.betty.gwtp.client.action.GetProjectsAction;
 import be.betty.gwtp.client.action.GetProjectsActionResult;
+import be.betty.gwtp.client.event.ProjectListModifyEvent;
+import be.betty.gwtp.client.event.ProjectListModifyEvent.ProjectListModifyHandler;
 import be.betty.gwtp.client.model.Project;
 import be.betty.gwtp.client.place.NameTokens;
 
@@ -34,6 +36,15 @@ public class ProjectsPresenter extends
 		Presenter<ProjectsPresenter.MyView, ProjectsPresenter.MyProxy> {
 
 	public static final Object SLOT_project = new Object();
+	
+	private final ProjectListModifyHandler modifyHandler = new ProjectListModifyHandler() {
+		
+		@Override
+		public void onProjectListModify(ProjectListModifyEvent event) {
+			ProjectsPresenter.this.onReset();
+			
+		}
+	};
 	
 	public interface MyView extends View {
 
@@ -72,6 +83,10 @@ public class ProjectsPresenter extends
 		getView().getNew_project().addClickHandler(new ClickHandler() {
 			@Override public void onClick(ClickEvent event) {
 				addToPopupSlot(newProjectPopup); }});
+		
+		
+		registerHandler(getEventBus().addHandler(ProjectListModifyEvent.getType(), modifyHandler));
+		
 	
 	}
 

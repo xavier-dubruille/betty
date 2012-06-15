@@ -46,7 +46,7 @@ public class LoginActionActionHandler implements
 		
 		// on supprime les sessions id plus valide ? ou tous --> mais pas de double loggin alors..
 		
-		session_id = (int) (Math.random() * 1000000);
+		session_id = (int) (System.currentTimeMillis()); //TODO: ca doit être alleatoire !
 		//System.out.println("sess: "+session_id);
 		if (sqlHandler.exexuteUpdate("insert into session_ids( id, user_id ) " +
 				"values ('"+session_id +"', '"+user_id +"')"))

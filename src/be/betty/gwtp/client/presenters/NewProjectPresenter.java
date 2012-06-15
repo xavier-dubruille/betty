@@ -1,5 +1,7 @@
 package be.betty.gwtp.client.presenters;
 
+import be.betty.gwtp.client.event.ProjectListModifyEvent;
+
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.PopupView;
 import com.google.inject.Inject;
@@ -29,9 +31,12 @@ PresenterWidget<NewProjectPresenter.MyView> {
 		FormPanel getFormPanel();
 	}
 
+	private EventBus myEventBus;
+
 	@Inject
 	public NewProjectPresenter(final EventBus eventBus, final MyView view) {
 		super(eventBus, view);
+		myEventBus = eventBus;
 	}
 
 	@Override
@@ -51,7 +56,9 @@ PresenterWidget<NewProjectPresenter.MyView> {
 		getView().getFormPanel().addSubmitCompleteHandler(new SubmitCompleteHandler() {
 			@Override public void onSubmitComplete(SubmitCompleteEvent event) {
 				//Window.alert(event.getResults());
-				getView().hide();	}});
+				getView().hide();	
+				myEventBus.fireEvent(new ProjectListModifyEvent());  //TODO: add the project in parameter
+			}});
 		
 	}
 

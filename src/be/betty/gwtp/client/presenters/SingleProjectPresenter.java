@@ -2,6 +2,7 @@ package be.betty.gwtp.client.presenters;
 
 import be.betty.gwtp.client.action.DeleteProjectAction;
 import be.betty.gwtp.client.action.DeleteProjectActionResult;
+import be.betty.gwtp.client.event.ProjectListModifyEvent;
 import be.betty.gwtp.client.model.Project;
 import be.betty.gwtp.client.place.NameTokens;
 
@@ -71,7 +72,7 @@ public class SingleProjectPresenter extends
 						
 					}
 				});
-				
+				getEventBus().fireEvent(new ProjectListModifyEvent());  //TODO: add the project in parameter
 			}
 		});
 	}
