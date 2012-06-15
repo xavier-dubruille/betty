@@ -18,8 +18,11 @@ import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.client.proxy.RevealContentEvent;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.gwtplatform.mvp.client.proxy.RevealRootContentEvent;
@@ -33,6 +36,7 @@ public class ProjectsPresenter extends
 
 		public HTMLPanel getProjectField();
 		public Label getInfo_label();
+		Button getNew_project();
 	}
 
 	@ProxyCodeSplit
@@ -40,6 +44,7 @@ public class ProjectsPresenter extends
 	public interface MyProxy extends ProxyPlace<ProjectsPresenter> {
 	}
 
+	@Inject NewProjectPresenter newProjectPopup;
 	private IndirectProvider<SingleProjectPresenter> projectFactory;
 	
 	@Inject
@@ -58,13 +63,30 @@ public class ProjectsPresenter extends
 	@Override
 	protected void onBind() {
 		super.onBind();
+		
+		getView().getNew_project().addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				addToPopupSlot(newProjectPopup);
+				System.out.println("finished popup?");
+				
+			}
+		});
 	}
 
+	@Override
+	protected void onReveal() {
+		// TODO Auto-generated method stub
+		super.onReveal();
+		System.out.println("ON Reveal !");
+	}
 	@Inject DispatchAsync dispatcher;
 	@Override
 	protected void onReset() {
 		super.onReset();
 		
+		System.out.println("On reset");
 		setInSlot(SLOT_project, null);
 			
 		getView().getInfo_label().setText("Fetching info ..");

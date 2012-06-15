@@ -138,5 +138,18 @@ public class SQLHandler {
 		return true;
 	}
 
+	public String executeSingleQuery(String req, String col) {
+		ResultSet stm =executeQuery(req);
+		String ret = null;
+		try {
+			if (stm.next())
+				ret = stm.getString(col);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return ret;
+	}
+
 
 }

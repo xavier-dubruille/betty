@@ -5,6 +5,7 @@ import be.betty.gwtp.client.presenters.ProjectsPresenter.MyView;
 
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
@@ -29,6 +30,7 @@ public class ProjectsView extends ViewImpl implements ProjectsPresenter.MyView {
 	}
 	@UiField HTMLPanel project_field;
 	@UiField Label info_label;
+	@UiField Button new_project;
 	
 	@Override
 	public HTMLPanel getProjectField() {
@@ -61,5 +63,12 @@ public class ProjectsView extends ViewImpl implements ProjectsPresenter.MyView {
 	public Label getInfo_label() {
 		return info_label;
 	}
+
+	@Override
+	public Button getNew_project() {
+		return new_project;
+	}
+	
+	
 	
 }

@@ -10,7 +10,7 @@
 		<g:VerticalPanel width="308px" height="167px">
 			<g:Label ui:field="info_label" />
 			<g:HTMLPanel ui:field="project_field" />
-			<g:Button>Create New Poject</g:Button>
+			<g:Button ui:field="new_project">Create New Poject</g:Button>
 		</g:VerticalPanel>
 	</g:HTMLPanel>
 </ui:UiBinder>

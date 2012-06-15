@@ -8,6 +8,7 @@ import be.betty.gwtp.client.presenters.MainPresenter;
 import be.betty.gwtp.client.views.HeaderView;
 import be.betty.gwtp.client.views.LoginView;
 import be.betty.gwtp.client.views.MainView;
+import be.betty.gwtp.client.views.NewProjectView;
 import be.betty.gwtp.client.views.ProjectsView;
 import be.betty.gwtp.client.views.SingleProjectView;
 import be.betty.gwtp.client.views.SubscribeView;
@@ -18,6 +19,7 @@ import be.betty.gwtp.client.presenters.SubscribePresenter;
 import be.betty.gwtp.client.presenters.ProjectsPresenter;
 import be.betty.gwtp.client.presenters.HeaderPresenter;
 import be.betty.gwtp.client.presenters.SingleProjectPresenter;
+import be.betty.gwtp.client.presenters.NewProjectPresenter;
 
 public class ClientModule extends AbstractPresenterModule {
 
@@ -45,5 +47,8 @@ public class ClientModule extends AbstractPresenterModule {
 
 		bindPresenterWidget(SingleProjectPresenter.class,
 				SingleProjectPresenter.MyView.class, SingleProjectView.class);
+
+		bindPresenterWidget(NewProjectPresenter.class,
+				NewProjectPresenter.MyView.class, NewProjectView.class);
 	}
 }
