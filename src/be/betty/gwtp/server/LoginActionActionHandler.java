@@ -2,6 +2,7 @@ package be.betty.gwtp.server;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.UUID;
 
 import com.gwtplatform.dispatch.server.actionhandler.ActionHandler;
 import be.betty.gwtp.client.action.LoginAction;
@@ -22,37 +23,37 @@ public class LoginActionActionHandler implements
 	@Override
 	public LoginActionResult execute(LoginAction action, ExecutionContext context)
 			throws ActionException {
-		//System.out.println("execute server call");
+		//System.out.println("DEBUG: execute server call");  //DEBUG: 
 		
-		int session_id = checkLogin(action.getLogin(), action.getPwd());
+		String session_id = checkLogin(action.getLogin(), action.getPwd());
 		//sqlHandler.exexute("insert into test values (6669)");
 		return new LoginActionResult(session_id);
 	}
 
-	private int checkLogin(String login, String pwd) {
-		int session_id=-1;
+	private String checkLogin(String login, String pwd) {
+		String session_id=null;
 		int user_id = -1;
 		ResultSet stm = sqlHandler.executeQuery("select id from users where login = \""+login + "\" and pwd = \"" +pwd+"\"");
 		try {
 			if (stm.next())
 				user_id = stm.getInt("id");
-				//System.out.println("user id = .. "+user_id);
+				System.out.println("DEBUG: user id = .. "+user_id); //DEBUG
 				if (user_id < 1)
-					return -3;
+					return null;
 		} catch (SQLException e) {
-			//e.printStackTrace();
-			return -2;
+			e.printStackTrace();
+			return null;
 		}
 		
 		// on supprime les sessions id plus valide ? ou tous --> mais pas de double loggin alors..
 		
-		session_id = (int) (System.currentTimeMillis()); //TODO: ca doit être alleatoire !
-		//System.out.println("sess: "+session_id);
+		session_id = UUID.randomUUID().toString();
+		System.out.println("sess: "+session_id);
 		if (sqlHandler.exexuteUpdate("insert into session_ids( id, user_id ) " +
 				"values ('"+session_id +"', '"+user_id +"')"))
 			return session_id;
 		else 
-			return -1;
+			return null;
 	}
 
 	@Override

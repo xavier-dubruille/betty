@@ -99,11 +99,11 @@ public class LoginPresenter extends
 
 		@Override
 		public void onSuccess(LoginActionResult result) {
-			int session_id = result.getSession_id();
+			String session_id = result.getSession_id();
 			
 			//System.out.println("client side: sessid= "+session_id);
-			if (session_id > 0) {
-				if (stockStore != null) { stockStore.setItem("session_id", ""+session_id);}
+			if (session_id != null) {
+				if (stockStore != null) { stockStore.setItem("session_id", session_id);}
 				// PlaceRequest request = new PlaceRequest(NameTokens.main).with("name", user);
 				PlaceRequest request = new PlaceRequest(NameTokens.projects);
 				placeManager.revealPlace(request);

@@ -5,18 +5,18 @@ import java.lang.String;
 
 public class LoginActionResult implements Result {
 
-	private int session_id;
+	private String session_id;
 
 	@SuppressWarnings("unused")
 	private LoginActionResult() {
 		// For serialization only
 	}
 
-	public LoginActionResult(int session_id) {
-		this.session_id = session_id;
+	public LoginActionResult(String session_id2) {
+		this.session_id = session_id2;
 	}
 
-	public int getSession_id() {
+	public String getSession_id() {
 		return session_id;
 	}
 

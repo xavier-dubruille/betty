@@ -26,6 +26,8 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 
+import be.betty.gwtp.client.model.Project;
+
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
@@ -38,10 +40,10 @@ public class FileUpServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final String UPLOAD_DIRECTORY = "/tmp/";
-	private HashMap<String, String> project_attributes;
+
 	
 	@Inject FileUpServlet() {
-		project_attributes = new HashMap<String, String>(8, (float) 0.5);
+		
 	}
 	
 	 @Override public void doGet(
@@ -53,15 +55,18 @@ public class FileUpServlet extends HttpServlet {
 	 @Override public void doPost(
 	          HttpServletRequest req,  HttpServletResponse resp)
 	        throws ServletException, IOException {
+		 	HashMap<String, String>  project_attributes = new HashMap<String, String>(8, (float) 0.5);
+		 	//TODO : We should definity use model.project instead of this hashMap !!
 		 		
 	             System.out.println("Do POST ");
 	            
-	             //TODO: check user credentials !!
-	             
+	             //TODO: check user credentials !! (avec un cookie ou avec un champ caché de le formulaire ?)
+	             //TODO: que faire si ce n'est pas une multipart requests ?  ca pourrait arriver ?
 	          // process only multipart requests
 	     		if (ServletFileUpload.isMultipartContent(req)) {
 	     			//System.out.println("is multipart");
 	     		
+	     			Project projectToBeSaved = new Project();
 	     			// Create a factory for disk-based file items
 	     			FileItemFactory factory = new DiskFileItemFactory();
 
@@ -77,7 +82,7 @@ public class FileUpServlet extends HttpServlet {
 	     					if (fileItem.isFormField())
 	     						project_attributes.put(fileItem.getFieldName(), fileItem.getString());
 	     					
-	     					else processFile(fileItem, resp);
+	     					else processFile(fileItem, resp, project_attributes);
 	     					
 	     				}
 	     			} catch (Exception e) {
@@ -90,15 +95,16 @@ public class FileUpServlet extends HttpServlet {
 	     							"Request contents type is not supported by the servlet.");
 	     		}
 	     		
-	     		saveProjectInBdd();
+	     		saveProjectInBdd(project_attributes);
 	       }
 
 
-	private void saveProjectInBdd() {
+	private void saveProjectInBdd(HashMap<String, String>  project_attributes) {
 
 		//TODO: meilleur moyen de retrouver le lastId (sans avoir des problem de concurence)--> Hibernate ?
+		long timeMilli =  System.currentTimeMillis();
 		if (!project_attributes.containsKey("file_courses"))
-			project_attributes.put("file_courses", "empty_file"+System.currentTimeMillis());
+			project_attributes.put("file_courses", "empty_"+ timeMilli);
 		// TODO: gestion d'ereurs !!
 		SQLHandler sqlHandler = new SQLHandler();
 		if (!sqlHandler.exexuteUpdate("insert into project (name, file_activities) " +
@@ -113,12 +119,14 @@ public class FileUpServlet extends HttpServlet {
 		
 	}
 
-	private void processFile(FileItem fileItem, HttpServletResponse resp) throws IOException, Exception {
+	private void processFile(FileItem fileItem, HttpServletResponse resp, HashMap<String, String>  project_attributes ) throws IOException, Exception {
+		
+		//TODO: est ce que le fileName peut être null, et que faire dans ce cas ?
 			String fileName = fileItem.getName()+System.currentTimeMillis();
 			// get only the file name not whole path
-			if (fileName != null) {
-		        fileName = FilenameUtils. getName(fileName);
-		    }
+//			if (fileName != null) {
+//		        fileName = FilenameUtils.getName(fileName);
+//		    }
 
 			File uploadedFile = new File(UPLOAD_DIRECTORY, fileName);
 			if (uploadedFile.createNewFile()) {
