@@ -13,7 +13,9 @@ import com.gwtplatform.mvp.client.annotations.NameToken;
 import be.betty.gwtp.client.Betty_gwtp;
 import be.betty.gwtp.client.action.GetProjectsAction;
 import be.betty.gwtp.client.action.GetProjectsActionResult;
+import be.betty.gwtp.client.model.Project;
 import be.betty.gwtp.client.place.NameTokens;
+
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.client.proxy.RevealContentEvent;
 import com.google.inject.Inject;
@@ -68,22 +70,12 @@ public class ProjectsPresenter extends
 		super.onBind();
 		
 		getView().getNew_project().addClickHandler(new ClickHandler() {
-			
-			@Override
-			public void onClick(ClickEvent event) {
-				addToPopupSlot(newProjectPopup);
-				System.out.println("finished popup?");
-				
-			}
-		});
+			@Override public void onClick(ClickEvent event) {
+				addToPopupSlot(newProjectPopup); }});
+	
 	}
 
-	@Override
-	protected void onReveal() {
-		// TODO Auto-generated method stub
-		super.onReveal();
-		System.out.println("ON Reveal !");
-	}
+
 	@Inject DispatchAsync dispatcher;
 	@Override
 	protected void onReset() {
@@ -124,7 +116,7 @@ public class ProjectsPresenter extends
 		}
 	};
 	
-	private void writeProjectWidgets(final ArrayList<String> projects) {
+	private void writeProjectWidgets(final ArrayList<Project> projects) {
 		
 		for (int i=0; i<projects.size(); i++) {
 			final int myI = i;

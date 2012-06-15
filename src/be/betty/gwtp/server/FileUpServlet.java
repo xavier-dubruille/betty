@@ -54,9 +54,9 @@ public class FileUpServlet extends HttpServlet {
 	          HttpServletRequest req,  HttpServletResponse resp)
 	        throws ServletException, IOException {
 		 		
-	             System.out.println("Do POST !! !!!!");
+	             System.out.println("Do POST ");
 	            
-	             //TODO: check user credentials !
+	             //TODO: check user credentials !!
 	             
 	          // process only multipart requests
 	     		if (ServletFileUpload.isMultipartContent(req)) {
@@ -98,7 +98,7 @@ public class FileUpServlet extends HttpServlet {
 
 		//TODO: meilleur moyen de retrouver le lastId (sans avoir des problem de concurence)--> Hibernate ?
 		if (!project_attributes.containsKey("file_courses"))
-			project_attributes.put("file_courses", "empty_file"+(int)(Math.random()*1000));
+			project_attributes.put("file_courses", "empty_file"+System.currentTimeMillis());
 		// TODO: gestion d'ereurs !!
 		SQLHandler sqlHandler = new SQLHandler();
 		if (!sqlHandler.exexuteUpdate("insert into project (name, file_activities) " +
