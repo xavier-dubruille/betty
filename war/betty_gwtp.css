@@ -1,0 +1,13 @@
+/* Add css rules here for your application. */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font: 11px "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans",
+		sans-serif !important;
+		background-color: #f9f9f9 !important;
+}
+
+
