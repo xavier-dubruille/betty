@@ -21,6 +21,7 @@ import com.google.inject.Provider;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTMLPanel;
@@ -46,12 +47,14 @@ public class ProjectsPresenter extends
 
 	@Inject NewProjectPresenter newProjectPopup;
 	private IndirectProvider<SingleProjectPresenter> projectFactory;
+	private Storage stockStore;
 	
 	@Inject
 	public ProjectsPresenter(final EventBus eventBus, final MyView view,
 			final MyProxy proxy, final Provider<SingleProjectPresenter> provider) {
 		super(eventBus, view, proxy);
 		projectFactory = new StandardProvider<SingleProjectPresenter>(provider);
+		stockStore = Storage.getLocalStorageIfSupported();
 	}
 
 	@Override
@@ -90,8 +93,15 @@ public class ProjectsPresenter extends
 		setInSlot(SLOT_project, null);
 			
 		getView().getInfo_label().setText("Fetching info ..");
-		GetProjectsAction action = new GetProjectsAction(Betty_gwtp.session_id);
-		dispatcher.execute(action, projectCallback);
+		String sess = null;
+		if (stockStore != null ) 
+			sess = stockStore.getItem("session_id");
+		if (sess == null)
+			getView().getInfo_label().setText("Please (re)log first");
+		else {
+			GetProjectsAction action = new GetProjectsAction(sess);
+			dispatcher.execute(action, projectCallback);
+		}
 		
 	}
 	

@@ -5,7 +5,7 @@ import com.gwtplatform.dispatch.shared.ActionImpl;
 
 public class GetProjectsAction extends ActionImpl<GetProjectsActionResult> {
 
-	private int session_id;
+	private String session_id;
 
 	@SuppressWarnings("unused")
 	private GetProjectsAction() {
@@ -16,11 +16,11 @@ public class GetProjectsAction extends ActionImpl<GetProjectsActionResult> {
 	public boolean isSecured() {
 		return false;
 	}
-	public GetProjectsAction(int session_id) {
-		this.session_id = session_id;
+	public GetProjectsAction(String sess) {
+		this.session_id = sess;
 	}
 
-	public int getSession_id() {
+	public String getSession_id() {
 		return session_id;
 	}
 }

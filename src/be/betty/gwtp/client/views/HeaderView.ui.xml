@@ -7,9 +7,19 @@
 	ui:generateLocales='default'>
 
 	<g:HTMLPanel>
-	<h1>Betty Header</h1>
-	<hr/>
-	<g:HTMLPanel ui:field="contentPanel" />
+		<g:AbsolutePanel height="47px">
+			<g:at left="251" top="10">
+				<g:Button ui:field="deco" text="Deconnection"/>
+			</g:at>
+			<g:at left="57" top="10">
+				<g:HTMLPanel width="164px" height="26px">
+					<h1> Betty Header</h1>
+				</g:HTMLPanel>
+			</g:at>
+		</g:AbsolutePanel>
+		<hr/>
+	
+		<g:HTMLPanel ui:field="contentPanel" />
 	</g:HTMLPanel>
 	
 	

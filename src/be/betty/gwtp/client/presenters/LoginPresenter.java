@@ -7,6 +7,7 @@ import be.betty.gwtp.client.place.NameTokens;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
@@ -38,10 +39,14 @@ public class LoginPresenter extends
 	public interface MyProxy extends ProxyPlace<LoginPresenter> {
 	}
 
+	private Storage stockStore;
+
 	@Inject
 	public LoginPresenter(final EventBus eventBus, final MyView view,
 			final MyProxy proxy) {
 		super(eventBus, view, proxy);
+		stockStore = Storage.getLocalStorageIfSupported();
+		
 	}
 
 	@Override
@@ -62,6 +67,9 @@ public class LoginPresenter extends
 	protected void onReset() {
 		super.onReset();
 		
+		if (stockStore != null && stockStore.getItem("session_id") != null) 
+			placeManager.revealPlace(new PlaceRequest(NameTokens.projects));
+		
 		getView().getLogin_textbox().setText("Admin");
 		getView().getWrongPwd_label().setText("");
 		getView().getLogin_send().addClickHandler(new ClickHandler() {
@@ -71,7 +79,7 @@ public class LoginPresenter extends
 				getView().getWrongPwd_label().setText(".. Be patient, I'm checkin' ..");
 				
 				String login = getView().getLogin_textbox().getText();
-				Betty_gwtp.user_name = login;
+				if (stockStore != null) { stockStore.setItem("login", login);}
 				String pwd = getView().getPwd_textbox().getText();
 				LoginAction action = new LoginAction(login, pwd);
 				dispatch.execute(action, loginCallback);
@@ -95,7 +103,7 @@ public class LoginPresenter extends
 			
 			//System.out.println("client side: sessid= "+session_id);
 			if (session_id > 0) {
-				Betty_gwtp.session_id = session_id;
+				if (stockStore != null) { stockStore.setItem("session_id", ""+session_id);}
 				// PlaceRequest request = new PlaceRequest(NameTokens.main).with("name", user);
 				PlaceRequest request = new PlaceRequest(NameTokens.projects);
 				placeManager.revealPlace(request);

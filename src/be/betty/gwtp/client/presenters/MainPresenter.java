@@ -5,6 +5,7 @@ import be.betty.gwtp.client.place.NameTokens;
 
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
@@ -33,10 +34,13 @@ public class MainPresenter extends
 	public interface MyProxy extends ProxyPlace<MainPresenter> {
 	}
 
+	private Storage stockStore;
+
 	@Inject
 	public MainPresenter(final EventBus eventBus, final MyView view,
 			final MyProxy proxy) {
 		super(eventBus, view, proxy);
+		stockStore = Storage.getLocalStorageIfSupported();
 	}
 
 	@Override
@@ -74,7 +78,16 @@ public class MainPresenter extends
 	@Override
 	protected void onReset() {
 		super.onReset();
-		getView().getMainLabel().setText("Welcome "+namex +" (session_id = "+Betty_gwtp.session_id +")");
+		String login = "";
+		String sess = "";
+		if (stockStore != null ) {
+			sess = stockStore.getItem("session_id");
+			login = stockStore.getItem("login");
+		}
+		if (sess == null)
+			getView().getMainLabel().setText("Please (re)log first");
+		else
+			getView().getMainLabel().setText("Welcome "+login +" (session_id = "+sess +")");
 		
 		
 	}

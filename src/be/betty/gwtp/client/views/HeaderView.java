@@ -9,11 +9,13 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
+import com.google.gwt.user.client.ui.Button;
 
 public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 
 	private final Widget widget;
 	@UiField HTMLPanel contentPanel;
+	@UiField Button deco;
 
 	public interface Binder extends UiBinder<Widget, HeaderView> {
 	}
@@ -39,5 +41,10 @@ public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 			super.setInSlot(slot, content);
 	
 		}
+	}
+
+	@Override
+	public Button getDeco() {
+		return deco;
 	}
 }

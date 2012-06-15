@@ -24,7 +24,7 @@ public class GetProjectsActionActionHandler implements
 	@Override
 	public GetProjectsActionResult execute(GetProjectsAction action,
 			ExecutionContext context) throws ActionException {
-		int session_id = action.getSession_id();
+		String session_id = action.getSession_id();
 		ArrayList <String> projects = new ArrayList<String>();
 		String name = "";
 		ResultSet rs = sqlHandler.executeQuery("select project.name from project, users, user_project, session_ids " +
