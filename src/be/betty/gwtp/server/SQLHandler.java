@@ -8,10 +8,15 @@ import java.util.Properties;
 import java.sql.Statement;
 import java.sql.ResultSet;
 
+import org.apache.log4j.Logger;
+
+import be.betty.gwtp.Just_test_stuff;
+
 
 public class SQLHandler {
 
 	private Connection c;
+	private static final Logger logger = Logger.getLogger(SQLHandler.class);
 
 	public SQLHandler() {
 
@@ -73,6 +78,7 @@ public class SQLHandler {
 
 
 	public ResultSet executeQuery(String req){
+		logger.info("About to execute request :" + req);
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {

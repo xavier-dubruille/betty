@@ -25,6 +25,7 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.log4j.Logger;
 
 import be.betty.gwtp.client.model.Project;
 
@@ -40,6 +41,7 @@ public class FileUpServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static final String UPLOAD_DIRECTORY = "/tmp/";
+	private static final Logger logger = Logger.getLogger(FileUpServlet.class);
 
 	
 	@Inject FileUpServlet() {
@@ -49,12 +51,14 @@ public class FileUpServlet extends HttpServlet {
 	 @Override public void doGet(
 	          HttpServletRequest req,  HttpServletResponse resp)
 	        throws ServletException, IOException {
+		 		logger.trace("A post request have been made");
 	             System.out.println("Do get !!!!");
 	       }
 	 
 	 @Override public void doPost(
 	          HttpServletRequest req,  HttpServletResponse resp)
 	        throws ServletException, IOException {
+		 logger.trace("A post request have been made");
 		 	HashMap<String, String>  project_attributes = new HashMap<String, String>(8, (float) 0.5);
 		 	//TODO : We should definity use model.project instead of this hashMap !!
 		 		
@@ -78,6 +82,7 @@ public class FileUpServlet extends HttpServlet {
 	     				List<FileItem> items = upload.parseRequest(req);
 	     			
 	     				for (FileItem fileItem : items) {
+	     					logger.trace("precess item: "+fileItem.getFieldName());
 	     					
 	     					if (fileItem.isFormField())
 	     						project_attributes.put(fileItem.getFieldName(), fileItem.getString());
@@ -101,6 +106,7 @@ public class FileUpServlet extends HttpServlet {
 
 	private void saveProjectInBdd(HashMap<String, String>  project_attributes) {
 
+		//logger.trace("");
 		//TODO: meilleur moyen de retrouver le lastId (sans avoir des problem de concurence)--> Hibernate ?
 		long timeMilli =  System.currentTimeMillis();
 		if (!project_attributes.containsKey("file_courses"))
@@ -127,7 +133,8 @@ public class FileUpServlet extends HttpServlet {
 //			if (fileName != null) {
 //		        fileName = FilenameUtils.getName(fileName);
 //		    }
-
+			
+			logger.trace("about to save file named "+fileName);
 			File uploadedFile = new File(UPLOAD_DIRECTORY, fileName);
 			if (uploadedFile.createNewFile()) {
 				fileItem.write(uploadedFile);
@@ -136,7 +143,11 @@ public class FileUpServlet extends HttpServlet {
 //				resp.flushBuffer();
 				project_attributes.put(fileItem.getFieldName(), fileName);
 			} else
+			{
+				logger.error("io excetion when creating the file");
 				throw new IOException("The file already exists in repository.");
+			
+			}
 		
 	}
 
