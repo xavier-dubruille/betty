@@ -7,6 +7,7 @@ import com.gwtplatform.mvp.client.PopupViewImpl;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 import com.google.gwt.uibinder.client.UiField;
@@ -30,9 +31,13 @@ public class NewProjectView extends PopupViewImpl implements
 		super(eventBus);
 		widget = binder.createAndBindUi(this);
 		
-		formPanel.setAction("/upload");
+		//TODO: the first "setAction()" is not working on tomcat (but does on eclipse), 
+		// and but the second one is ugly!! but works ..
+		//formPanel.setAction(GWT.getModuleBaseURL()+"upload");
+		formPanel.setAction("http://betty.sytes.net/betty/upload");
 		formPanel.setEncoding(FormPanel.ENCODING_MULTIPART);
 		formPanel.setMethod(FormPanel.METHOD_POST);
+
 		
 	}
 
