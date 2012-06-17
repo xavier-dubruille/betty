@@ -68,11 +68,11 @@ public class SingleProjectPresenter extends
 
 					@Override
 					public void onSuccess(DeleteProjectActionResult result) {
-						// TODO Auto-generated method stub
+						getEventBus().fireEvent(new ProjectListModifyEvent());  //TODO: add the project in parameter
 						
 					}
 				});
-				getEventBus().fireEvent(new ProjectListModifyEvent());  //TODO: add the project in parameter
+				
 			}
 		});
 	}
