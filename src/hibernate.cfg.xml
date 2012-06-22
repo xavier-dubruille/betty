@@ -21,6 +21,7 @@
 		<property name="hbm2ddl.auto">update</property>
 
 		<mapping class="be.betty.gwtp.shared.dto.Teacher" />
+		<mapping class="be.betty.gwtp.shared.dto.Project" />
 	
 	</session-factory>
 </hibernate-configuration>
