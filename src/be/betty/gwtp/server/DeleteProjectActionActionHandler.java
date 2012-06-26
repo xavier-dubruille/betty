@@ -6,7 +6,7 @@ import org.hibernate.Transaction;
 import com.gwtplatform.dispatch.server.actionhandler.ActionHandler;
 import be.betty.gwtp.client.action.DeleteProjectAction;
 import be.betty.gwtp.client.action.DeleteProjectActionResult;
-import be.betty.gwtp.shared.dto.Teacher;
+import be.betty.gwtp.server.bdd.Teacher;
 
 import com.google.inject.Inject;
 import com.gwtplatform.dispatch.server.ExecutionContext;

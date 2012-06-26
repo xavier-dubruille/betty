@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -28,6 +29,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
 
 import be.betty.gwtp.client.model.Project;
+import be.betty.gwtp.server.bdd.Project_entity;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -40,7 +42,7 @@ public class FileUpServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final String UPLOAD_DIRECTORY = "/tmp/";
+	private static final String UPLOAD_DIRECTORY = "/tmp/"; //TODO: est-ce une bonne idée de le mettre ds le tmp ?
 	private static final Logger logger = Logger.getLogger(FileUpServlet.class);
 
 	
@@ -51,13 +53,14 @@ public class FileUpServlet extends HttpServlet {
 	 @Override public void doGet(
 	          HttpServletRequest req,  HttpServletResponse resp)
 	        throws ServletException, IOException {
-		 		logger.trace("A post request have been made");
+		 		logger.trace("A GET request have been made");
 	             System.out.println("Do get !!!!");
 	       }
 	 
 	 @Override public void doPost(
 	          HttpServletRequest req,  HttpServletResponse resp)
 	        throws ServletException, IOException {
+		 System.out.println("do POST!");
 		 logger.trace("A post request have been made");
 		 	HashMap<String, String>  project_attributes = new HashMap<String, String>(8, (float) 0.5);
 		 	//TODO : We should definity use model.project instead of this hashMap !!
@@ -70,7 +73,7 @@ public class FileUpServlet extends HttpServlet {
 	     		if (ServletFileUpload.isMultipartContent(req)) {
 	     			//System.out.println("is multipart");
 	     		
-	     			Project projectToBeSaved = new Project();
+	     			
 	     			// Create a factory for disk-based file items
 	     			FileItemFactory factory = new DiskFileItemFactory();
 
@@ -106,29 +109,41 @@ public class FileUpServlet extends HttpServlet {
 
 	private void saveProjectInBdd(HashMap<String, String>  project_attributes) {
 
-		//logger.trace("");
-		//TODO: meilleur moyen de retrouver le lastId (sans avoir des problem de concurence)--> Hibernate ?
-		long timeMilli =  System.currentTimeMillis();
-		if (!project_attributes.containsKey("file_courses"))
-			project_attributes.put("file_courses", "empty_"+ timeMilli);
-		// TODO: gestion d'ereurs !!
-		SQLHandler sqlHandler = new SQLHandler();
-		if (!sqlHandler.exexuteUpdate("insert into project (name, file_activities) " +
-				"values ('"+project_attributes.get("project_name")+"', '"+project_attributes.get("file_courses")+"' )"))
-			System.out.println("creation d'un nouvo projet echoue.. Il faut absolument gerer cette erreur autrement");
+		logger.trace("savin' project in bdd. projectName=" + project_attributes.get("name") + ", and projectFile="+ project_attributes.get("file_courses"));
 		
-		String id = sqlHandler.executeSingleQuery("SELECT id from project " +
-				"where file_activities = '"+project_attributes.get("file_courses")+"'","id");
-		System.out.println("last id = " +id);
-		if (!sqlHandler.exexuteUpdate("insert into user_project (user_id, project_id) values ('1', '"+id+"') "))
-			System.out.println("creation d'un nouvo projet echoue.. Il faut absolument gerer cette erreur autrement");
+
+        Project_entity projectToBeSaved = new Project_entity();
+        
+		
+		projectToBeSaved.setCourse_file(UPLOAD_DIRECTORY+project_attributes.get("file_courses"));
+		projectToBeSaved.setName(project_attributes.get("project_name"));
+		// etc
+		
+		Object user = null; // la grande question: est-ce un id, est-ce un obj hibernate, mais transistant, persistant, détaché ?
+		CreateUserProject create = new CreateUserProject(projectToBeSaved, user);
+		try {
+			create.createStateFromCardFile();
+		} catch (NoFileException e) {
+			logger.error("problems with files, project can't be created 1 ->"+e.getMessage());
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			logger.error("problems with files, project can't be created 2 ->"+e.getMessage());
+			e.printStackTrace();
+		} catch (IOException e) {
+			logger.error("problems with files, project can't be created 3 ->"+e.getMessage());
+			e.printStackTrace();
+		}
+		// TODO: gestion d'ereurs..  (et prevenir l'utilisateur de l'erreure..)
+
 		
 	}
 
 	private void processFile(FileItem fileItem, HttpServletResponse resp, HashMap<String, String>  project_attributes ) throws IOException, Exception {
 		
+		logger.trace("about to process file named: "+fileItem.getName());
 		//TODO: est ce que le fileName peut être null, et que faire dans ce cas ?
-			String fileName = fileItem.getName()+System.currentTimeMillis();
+		// faudrait aussi prendre que les x premier char pour eviter des exeption de longueur 
+			String fileName = "A_"+System.currentTimeMillis()+fileItem.getName();
 			// get only the file name not whole path
 //			if (fileName != null) {
 //		        fileName = FilenameUtils.getName(fileName);

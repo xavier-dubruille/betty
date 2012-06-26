@@ -6,9 +6,9 @@
 <hibernate-configuration>
 	<session-factory>
 		<!-- Affiche les logs SQL -->
-<!--		<property name="show_sql">true</property>-->
-<!--		<property name="hibernate.format_sql">true</property>-->
-<!--		<property name="use_sql_comments">true</property>-->
+		<property name="show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<property name="use_sql_comments">true</property>
 
 
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
@@ -20,8 +20,12 @@
 		<!-- Comportement pour la conservation des tables -->
 		<property name="hbm2ddl.auto">update</property>
 
-		<mapping class="be.betty.gwtp.shared.dto.Teacher" />
-		<mapping class="be.betty.gwtp.shared.dto.Project" />
+		<mapping class="be.betty.gwtp.server.bdd.Teacher" />
+		<mapping class="be.betty.gwtp.server.bdd.Project_entity" />
+		<mapping class="be.betty.gwtp.server.bdd.Group_entity" />
+		<mapping class="be.betty.gwtp.server.bdd.Course" />
+		<mapping class="be.betty.gwtp.server.bdd.Activity" />
+		<mapping class="be.betty.gwtp.server.bdd.UserDetail" />
 	
 	</session-factory>
 </hibernate-configuration>

@@ -33,8 +33,8 @@ public class NewProjectView extends PopupViewImpl implements
 		
 		//TODO: the first "setAction()" is not working on tomcat (but does on eclipse), 
 		// and but the second one is ugly!! but works ..
-		//formPanel.setAction(GWT.getModuleBaseURL()+"upload");
-		formPanel.setAction("http://betty.sytes.net/betty/upload");
+		formPanel.setAction("upload");
+		//formPanel.setAction("http://betty.sytes.net/betty/upload");
 		formPanel.setEncoding(FormPanel.ENCODING_MULTIPART);
 		formPanel.setMethod(FormPanel.METHOD_POST);
 
