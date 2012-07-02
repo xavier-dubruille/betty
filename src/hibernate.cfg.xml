@@ -25,7 +25,8 @@
 		<mapping class="be.betty.gwtp.server.bdd.Group_entity" />
 		<mapping class="be.betty.gwtp.server.bdd.Course" />
 		<mapping class="be.betty.gwtp.server.bdd.Activity" />
-		<mapping class="be.betty.gwtp.server.bdd.UserDetail" />
+		<mapping class="be.betty.gwtp.server.bdd.User" />
+		<mapping class="be.betty.gwtp.server.bdd.Session_id" />
 	
 	</session-factory>
 </hibernate-configuration>

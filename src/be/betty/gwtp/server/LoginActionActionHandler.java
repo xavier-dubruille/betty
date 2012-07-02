@@ -2,11 +2,18 @@ package be.betty.gwtp.server;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.UUID;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.gwtplatform.dispatch.server.actionhandler.ActionHandler;
 import be.betty.gwtp.client.action.LoginAction;
 import be.betty.gwtp.client.action.LoginActionResult;
+import be.betty.gwtp.server.bdd.Project_entity;
+import be.betty.gwtp.server.bdd.User;
+
 import com.google.inject.Inject;
 import com.gwtplatform.dispatch.server.ExecutionContext;
 import com.gwtplatform.dispatch.shared.ActionException;
@@ -26,25 +33,28 @@ public class LoginActionActionHandler implements
 		//System.out.println("DEBUG: execute server call");  //DEBUG: 
 		
 		String session_id = checkLogin(action.getLogin(), action.getPwd());
-		//sqlHandler.exexute("insert into test values (6669)");
 		return new LoginActionResult(session_id);
 	}
 
 	private String checkLogin(String login, String pwd) {
+		System.out.println("Check login method");
 		String session_id=null;
 		int user_id = -1;
-		ResultSet stm = sqlHandler.executeQuery("select id from users where login = \""+login + "\" and pwd = \"" +pwd+"\"");
-		try {
-			if (stm.next())
-				user_id = stm.getInt("id");
-				System.out.println("DEBUG: user id = .. "+user_id); //DEBUG
-				if (user_id < 1)
-					return null;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
-		
+
+		Session s = HibernateUtils.getSession();
+		Transaction t = s.beginTransaction();
+		System.out.println("just aprs ouvertur");
+//		List q = s.createQuery("from User where name = :name, pwd= :pwd")
+//				.setString("name", login).setString("pwd", pwd).list();
+//		System.out.println("just aprs query");
+//		
+//		User user = null;
+//		if ( q != null)
+//			user=(User) q.get(0);
+//		System.out.println("user is:"+user);
+//		
+		t.commit();
+		s.close();
 		// on supprime les sessions id plus valide ? ou tous --> mais pas de double loggin alors..
 		
 		session_id = UUID.randomUUID().toString();

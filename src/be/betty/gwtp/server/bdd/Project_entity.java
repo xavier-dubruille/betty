@@ -21,7 +21,7 @@ public class Project_entity {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id")
 	private Integer id;
-	@Column(name="name", nullable=false)
+	@Column(name="name")
 	private String name;
 	@Column(name="file_course")
 	private String course_file;
@@ -29,7 +29,7 @@ public class Project_entity {
 	private String room_file;
 	
 	@ManyToMany
-	private Collection<UserDetail> users = new ArrayList<UserDetail>();
+	private Collection<User> users = new ArrayList<User>();
 	
 	@OneToMany
 	private Collection<Activity> activities = new ArrayList<Activity>();
@@ -67,10 +67,10 @@ public class Project_entity {
 	public void setRoom_file(String room_file) {
 		this.room_file = room_file;
 	}
-	public Collection<UserDetail> getUsers() {
+	public Collection<User> getUsers() {
 		return users;
 	}
-	public void setUsers(Collection<UserDetail> users) {
+	public void setUsers(Collection<User> users) {
 		this.users = users;
 	}
 	public Collection<Activity> getActivities() {

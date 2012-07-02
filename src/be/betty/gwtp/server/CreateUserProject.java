@@ -47,7 +47,7 @@ public class CreateUserProject {
 		this.constraints_file = constraints_file;
 	}
 
-	public CreateUserProject(Project_entity projectToBeSaved, Object user) {
+	public CreateUserProject(Project_entity projectToBeSaved) {
 		index = new Index();
 		this.activities_file = projectToBeSaved.getCourse_file();
 		this.current_project = projectToBeSaved;
@@ -148,7 +148,7 @@ public class CreateUserProject {
 
 		
 		//TODO: jpense pas que sauvegarder le (meme) projet à chaque ligne soit une bonne idée.. loin de là !
-		sess.save(current_project);
+		sess.update(current_project);
 
 		List l;
 
@@ -202,7 +202,7 @@ public class CreateUserProject {
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
-	public void readCardFromXLS(String filePath) throws FileNotFoundException,
+	private void readCardFromXLS(String filePath) throws FileNotFoundException,
 			IOException {
 		String[] line;
 

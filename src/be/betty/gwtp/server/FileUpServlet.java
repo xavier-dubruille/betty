@@ -27,9 +27,12 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import be.betty.gwtp.client.model.Project;
 import be.betty.gwtp.server.bdd.Project_entity;
+import be.betty.gwtp.server.bdd.User;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -44,83 +47,106 @@ public class FileUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String UPLOAD_DIRECTORY = "/tmp/"; //TODO: est-ce une bonne idée de le mettre ds le tmp ?
 	private static final Logger logger = Logger.getLogger(FileUpServlet.class);
+	private Project_entity projectToBeSaved;
 
-	
+
 	@Inject FileUpServlet() {
-		
+
 	}
-	
-	 @Override public void doGet(
-	          HttpServletRequest req,  HttpServletResponse resp)
-	        throws ServletException, IOException {
-		 		logger.trace("A GET request have been made");
-	             System.out.println("Do get !!!!");
-	       }
-	 
-	 @Override public void doPost(
-	          HttpServletRequest req,  HttpServletResponse resp)
-	        throws ServletException, IOException {
-		 System.out.println("do POST!");
-		 logger.trace("A post request have been made");
-		 	HashMap<String, String>  project_attributes = new HashMap<String, String>(8, (float) 0.5);
-		 	//TODO : We should definity use model.project instead of this hashMap !!
-		 		
-	             System.out.println("Do POST ");
-	            
-	             //TODO: check user credentials !! (avec un cookie ou avec un champ caché de le formulaire ?)
-	             //TODO: que faire si ce n'est pas une multipart requests ?  ca pourrait arriver ?
-	          // process only multipart requests
-	     		if (ServletFileUpload.isMultipartContent(req)) {
-	     			//System.out.println("is multipart");
-	     		
-	     			
-	     			// Create a factory for disk-based file items
-	     			FileItemFactory factory = new DiskFileItemFactory();
 
-	     			// Create a new file upload handler
-	     			ServletFileUpload upload = new ServletFileUpload(factory);
+	@Override public void doGet(
+			HttpServletRequest req,  HttpServletResponse resp)
+					throws ServletException, IOException {
+		logger.trace("A GET request have been made");
+		System.out.println("Do get !!!!");
+	}
 
-	     			// Parse the request
-	     			try {
-	     				List<FileItem> items = upload.parseRequest(req);
-	     			
-	     				for (FileItem fileItem : items) {
-	     					logger.trace("precess item: "+fileItem.getFieldName());
-	     					
-	     					if (fileItem.isFormField())
-	     						project_attributes.put(fileItem.getFieldName(), fileItem.getString());
-	     					
-	     					else processFile(fileItem, resp, project_attributes);
-	     					
-	     				}
-	     			} catch (Exception e) {
-	     				resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-	     						"An error occurred while creating the file : " + e.getMessage());
-	     			}
+	@Override public void doPost(
+			HttpServletRequest req,  HttpServletResponse resp)
+					throws ServletException, IOException {
+		System.out.println("do POST!");
+		logger.trace("A post request have been made");
+		HashMap<String, String>  project_attributes = new HashMap<String, String>(8, (float) 0.5);
+		//TODO : We should definity use model.project instead of this hashMap !! (or index.java ?)
 
-	     		} else {
-	     			resp.sendError(HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE,
-	     							"Request contents type is not supported by the servlet.");
-	     		}
-	     		
-	     		saveProjectInBdd(project_attributes);
-	       }
+		Session s = HibernateUtils.getSession();
+		Transaction t = s.beginTransaction();
+		User user = (User) s.get(User.class, 1);  
+		//faudra pluto mettre une querry avec le session id, pr retrouver l'utilisateur
+		//List l = s.createQuery("from Course where code=?").setString(0, "D111C02").list();
+
+		projectToBeSaved = new Project_entity();
+		projectToBeSaved.setName("defaultName");
+		//s.update(user);
+		System.out.println("****zero****");
+		s.save(projectToBeSaved);
+		System.out.println("****un****");
+		projectToBeSaved.getUsers().add(user);
+		System.out.println("****deux****");
+		user.getProjects().add(projectToBeSaved);
+		
+		t.commit();
+		s.close();
+
+		//TODO: check user credentials !! (avec un cookie ou avec un champ caché de le formulaire ?)
+		//TODO: que faire si ce n'est pas une multipart requests ?  ca pourrait arriver ?
+		// process only multipart requests
+		if (ServletFileUpload.isMultipartContent(req)) {
+			//System.out.println("is multipart");
 
 
+			// Create a factory for disk-based file items
+			FileItemFactory factory = new DiskFileItemFactory();
+
+			// Create a new file upload handler
+			ServletFileUpload upload = new ServletFileUpload(factory);
+
+			// Parse the request
+			try {
+				List<FileItem> items = upload.parseRequest(req);
+
+				for (FileItem fileItem : items) {
+					logger.trace("precess item: "+fileItem.getFieldName());
+
+					if (fileItem.isFormField())
+						project_attributes.put(fileItem.getFieldName(), fileItem.getString());
+
+					else processFile(fileItem, resp, project_attributes);
+
+				}
+			} catch (Exception e) {
+				resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+						"An error occurred while creating the file : " + e.getMessage());
+			}
+
+		} else {
+			logger.error("The post request is not multipart !!");
+			resp.sendError(HttpServletResponse.SC_UNSUPPORTED_MEDIA_TYPE,
+					"Request contents type is not supported by the servlet.");
+		}
+
+		saveProjectInBdd(project_attributes);
+	}
+
+
+	/**
+	 * 
+	 */
 	private void saveProjectInBdd(HashMap<String, String>  project_attributes) {
 
 		logger.trace("savin' project in bdd. projectName=" + project_attributes.get("name") + ", and projectFile="+ project_attributes.get("file_courses"));
-		
 
-        Project_entity projectToBeSaved = new Project_entity();
-        
-		
+
+
+
 		projectToBeSaved.setCourse_file(UPLOAD_DIRECTORY+project_attributes.get("file_courses"));
 		projectToBeSaved.setName(project_attributes.get("project_name"));
+
 		// etc
-		
-		Object user = null; // la grande question: est-ce un id, est-ce un obj hibernate, mais transistant, persistant, détaché ?
-		CreateUserProject create = new CreateUserProject(projectToBeSaved, user);
+
+
+		CreateUserProject create = new CreateUserProject(projectToBeSaved);
+
 		try {
 			create.createStateFromCardFile();
 		} catch (NoFileException e) {
@@ -135,35 +161,38 @@ public class FileUpServlet extends HttpServlet {
 		}
 		// TODO: gestion d'ereurs..  (et prevenir l'utilisateur de l'erreure..)
 
-		
+
 	}
 
+	/*
+	 * This method is just supposed to write the file on the disk
+	 */
 	private void processFile(FileItem fileItem, HttpServletResponse resp, HashMap<String, String>  project_attributes ) throws IOException, Exception {
-		
+
 		logger.trace("about to process file named: "+fileItem.getName());
 		//TODO: est ce que le fileName peut être null, et que faire dans ce cas ?
 		// faudrait aussi prendre que les x premier char pour eviter des exeption de longueur 
-			String fileName = "A_"+System.currentTimeMillis()+fileItem.getName();
-			// get only the file name not whole path
-//			if (fileName != null) {
-//		        fileName = FilenameUtils.getName(fileName);
-//		    }
-			
-			logger.trace("about to save file named "+fileName);
-			File uploadedFile = new File(UPLOAD_DIRECTORY, fileName);
-			if (uploadedFile.createNewFile()) {
-				fileItem.write(uploadedFile);
-//				resp.setStatus(HttpServletResponse.SC_CREATED);
-//				resp.getWriter().print("The file was created successfully.");
-//				resp.flushBuffer();
-				project_attributes.put(fileItem.getFieldName(), fileName);
-			} else
-			{
-				logger.error("io excetion when creating the file");
-				throw new IOException("The file already exists in repository.");
-			
-			}
-		
+		String fileName = "A_"+System.currentTimeMillis()+fileItem.getName();
+		// get only the file name not whole path
+		//			if (fileName != null) {
+		//		        fileName = Filename Utils.getName(fileName);
+		//		    }
+
+		logger.trace("about to save file named "+fileName);
+		File uploadedFile = new File(UPLOAD_DIRECTORY, fileName);
+		if (uploadedFile.createNewFile()) {
+			fileItem.write(uploadedFile);
+			//				resp.setStatus(HttpServletResponse.SC_CREATED);
+			//				resp.getWriter().print("The file was created successfully.");
+			//				resp.flushBuffer();
+			project_attributes.put(fileItem.getFieldName(), fileName);
+		} else
+		{
+			logger.error("io excetion when creating the file");
+			throw new IOException("The file already exists in repository.");
+
+		}
+
 	}
 
 
