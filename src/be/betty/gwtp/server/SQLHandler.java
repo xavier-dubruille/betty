@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 
 import org.apache.log4j.Logger;
 
-import be.betty.gwtp.Just_test_stuff;
 
 
 public class SQLHandler {
