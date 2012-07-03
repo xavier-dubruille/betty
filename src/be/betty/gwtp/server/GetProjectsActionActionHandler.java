@@ -15,6 +15,7 @@ import be.betty.gwtp.client.action.GetProjectsAction;
 import be.betty.gwtp.client.action.GetProjectsActionResult;
 import be.betty.gwtp.client.model.Project;
 import be.betty.gwtp.server.bdd.Project_entity;
+import be.betty.gwtp.server.bdd.Session_id;
 import be.betty.gwtp.server.bdd.User;
 
 import com.google.inject.Inject;
@@ -37,11 +38,12 @@ public class GetProjectsActionActionHandler implements
 		
 		Session s = HibernateUtils.getSession();
 		Transaction t = s.beginTransaction();
-		User user = (User) s.get(User.class, 1);  
-		//faudra pluto mettre une querry avec le session id, pr retrouver l'utilisateur
-		//List l = s.createQuery("from Course where code=?").setString(0, "D111C02").list();
+		
+		//TODO: il y a p-e moyen de faire ca plus proprement et plus court (avec des joins ?)
+		Session_id sess_id = (Session_id) s.get(Session_id.class, session_id);
+		User user = (User) sess_id.getUser_id();
 
-		System.out.println("user = "+user.getName());
+		System.out.println("**** user = "+user.getName());
 		Collection<Project_entity> list = user.getProjects();
 		System.out.println("number of user project = "+list.size());
 		

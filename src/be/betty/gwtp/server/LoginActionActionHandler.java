@@ -52,7 +52,7 @@ public class LoginActionActionHandler implements
 		if ( q.size() == 0)
 			return null;
 		
-		User user=(User) q.get(0);
+		User user = (User) q.get(0);
 
 		sess_uuid = UUID.randomUUID().toString();
 		

@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Session_id {
 		@Id
-		@GeneratedValue(strategy=GenerationType.AUTO)
 		@Column(name="sess_id")
 		private String sess_id;
 
