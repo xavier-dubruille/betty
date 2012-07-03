@@ -79,7 +79,7 @@ public class LoginPresenter extends
 				getView().getWrongPwd_label().setText(".. Be patient, I'm checkin' ..");
 				
 				String login = getView().getLogin_textbox().getText();
-				if (stockStore != null) { stockStore.setItem("login", login);}
+				if (stockStore != null) {stockStore.setItem("login", login);} //pk j'ai fais ca ?
 				String pwd = getView().getPwd_textbox().getText();
 				LoginAction action = new LoginAction(login, pwd);
 				dispatch.execute(action, loginCallback);

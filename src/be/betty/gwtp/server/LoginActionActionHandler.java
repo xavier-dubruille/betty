@@ -12,6 +12,7 @@ import com.gwtplatform.dispatch.server.actionhandler.ActionHandler;
 import be.betty.gwtp.client.action.LoginAction;
 import be.betty.gwtp.client.action.LoginActionResult;
 import be.betty.gwtp.server.bdd.Project_entity;
+import be.betty.gwtp.server.bdd.Session_id;
 import be.betty.gwtp.server.bdd.User;
 
 import com.google.inject.Inject;
@@ -38,32 +39,33 @@ public class LoginActionActionHandler implements
 
 	private String checkLogin(String login, String pwd) {
 		System.out.println("Check login method");
-		String session_id=null;
-		int user_id = -1;
+		String sess_uuid = null;
 
 		Session s = HibernateUtils.getSession();
 		Transaction t = s.beginTransaction();
 		System.out.println("just aprs ouvertur");
-//		List q = s.createQuery("from User where name = :name, pwd= :pwd")
-//				.setString("name", login).setString("pwd", pwd).list();
-//		System.out.println("just aprs query");
-//		
-//		User user = null;
-//		if ( q != null)
-//			user=(User) q.get(0);
-//		System.out.println("user is:"+user);
-//		
+		List q = s.createQuery("from User where name = :name and pwd= :pwd")
+				.setString("name", login).setString("pwd", pwd).list();
+		System.out.println("just aprs query");
+		
+		
+		if ( q.size() == 0)
+			return null;
+		
+		User user=(User) q.get(0);
+
+		sess_uuid = UUID.randomUUID().toString();
+		
+		Session_id sess = new Session_id();
+		sess.setSess_id(sess_uuid);
+		sess.setUser_id(user);
+		s.save(sess);
+		
 		t.commit();
 		s.close();
-		// on supprime les sessions id plus valide ? ou tous --> mais pas de double loggin alors..
+		//TODO: on supprime les sessions id plus valide ? ou tous --> mais pas de double loggin alors..
 		
-		session_id = UUID.randomUUID().toString();
-		System.out.println("sess: "+session_id);
-		if (sqlHandler.exexuteUpdate("insert into session_ids( id, user_id ) " +
-				"values ('"+session_id +"', '"+user_id +"')"))
-			return session_id;
-		else 
-			return null;
+		return sess_uuid;
 	}
 
 	@Override
