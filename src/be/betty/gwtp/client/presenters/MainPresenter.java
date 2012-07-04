@@ -6,6 +6,9 @@ import be.betty.gwtp.client.action.GetSpecificProjectResult;
 import be.betty.gwtp.client.place.NameTokens;
 
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
+import com.allen_sauer.gwt.dnd.client.drop.AbsolutePositionDropController;
+import com.allen_sauer.gwt.dnd.client.drop.IndexedDropController;
+import com.allen_sauer.gwt.dnd.client.drop.SimpleDropController;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -31,6 +34,7 @@ public class MainPresenter extends
 	public interface MyView extends View {
 		public Label getMainLabel();
 		public AbsolutePanel getDndPanel();
+		public AbsolutePanel getDropPanel();
 		public Image getDndImage();
 		void setHtml_panel(HTMLPanel html_panel);
 		HTMLPanel getHtml_panel();
@@ -77,12 +81,19 @@ public class MainPresenter extends
 	private void set_dnd() {
 		  // create a DragController to manage drag-n-drop actions
 	    // note: This creates an implicit DropController for the boundary panel
-	    PickupDragController dragController = new PickupDragController(getView().getDndPanel(), true);
+	    PickupDragController dragController = new PickupDragController(getView().getDndPanel(), false);
 
 	    // add a new image to the boundary panel and make it draggable
 	    
+	    //dragController.makeDraggable(getView().getDndImage());
+	    
+	    AbsolutePositionDropController sp = new AbsolutePositionDropController(getView().getDropPanel());
+	    //IndexedDropController dropController = new IndexedDropController(getView().getDropPanel());
+	    
+	    dragController.registerDropController(sp);
 	    dragController.makeDraggable(getView().getDndImage());
-		
+
+	    
 	}
 	
 	@Inject DispatchAsync dispatcher;

@@ -18,6 +18,7 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 
 	@UiField Label mainLabel;
 	@UiField AbsolutePanel dndpanel;
+	@UiField AbsolutePanel dropPanel;
 	@UiField Image dndImage;
 	@UiField HTMLPanel html_panel;
 	@UiField Label content;
@@ -43,6 +44,10 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	
 	public AbsolutePanel getDndPanel(){
 		return dndpanel;
+	}
+	
+	public AbsolutePanel getDropPanel(){
+		return dropPanel;
 	}
 
 	@Override

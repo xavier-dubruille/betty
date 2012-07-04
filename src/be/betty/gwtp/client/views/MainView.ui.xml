@@ -7,7 +7,8 @@
 	ui:generateLocales='default'>
 
 	<g:HTMLPanel>
-		<g:AbsolutePanel height="403px" ui:field="dndpanel">
+		<g:AbsolutePanel height="195px" ui:field="dndpanel" width="620px">
+			<g:Label ui:field="dragLabel" text="drag panel"/>
 			<g:at left="65" top="29">
 				<g:Hyperlink text="go to back to login page" targetHistoryToken="login" />
 			</g:at>
@@ -20,9 +21,12 @@
 			<g:at left="35" top="90">
 				<g:Image width="100px" height="100px" url="logo-185x175.png" ui:field="dndImage"/>
 			</g:at>
-			<g:at left="221" top="153">
-				<g:Label width="219px" height="331px" ui:field="content"/>
+			<g:at left="104" top="90">
+				<g:Label width="155px" height="148px" ui:field="content"/>
 			</g:at>
+		</g:AbsolutePanel>
+		<g:AbsolutePanel ui:field="dropPanel" height="215px" width="620px">
+			<g:Label ui:field="dropLabel" text="drop panel"/>
 		</g:AbsolutePanel>
 			
 	</g:HTMLPanel>
