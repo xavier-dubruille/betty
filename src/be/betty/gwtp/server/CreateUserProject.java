@@ -158,7 +158,7 @@ public class CreateUserProject {
         		.setString(1, ""+current_project.getId())
         		.list();
         
-		System.out.println("list = "+l);
+		//System.out.println("list = "+l);
 		Teacher t;
 		if (l.size() == 0) {
 			t = new Teacher(index.getTeacherId(), index.getTeacherFirstname(),

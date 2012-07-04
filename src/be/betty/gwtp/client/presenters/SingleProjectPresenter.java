@@ -80,6 +80,7 @@ public class SingleProjectPresenter extends
 	public void init(Project project) {
 		this.projectModel = project;
 		getView().getProject().setText(project.getName());
+		getView().getProject().setTargetHistoryToken("main;p="+project.getId());
 		
 		
 	}

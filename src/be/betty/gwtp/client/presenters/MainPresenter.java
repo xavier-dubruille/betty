@@ -1,16 +1,21 @@
 package be.betty.gwtp.client.presenters;
 
 import be.betty.gwtp.client.Betty_gwtp;
+import be.betty.gwtp.client.action.GetSpecificProject;
+import be.betty.gwtp.client.action.GetSpecificProjectResult;
 import be.betty.gwtp.client.place.NameTokens;
 
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.storage.client.Storage;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.inject.Inject;
+import com.gwtplatform.dispatch.shared.DispatchAsync;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
@@ -27,6 +32,10 @@ public class MainPresenter extends
 		public Label getMainLabel();
 		public AbsolutePanel getDndPanel();
 		public Image getDndImage();
+		void setHtml_panel(HTMLPanel html_panel);
+		HTMLPanel getHtml_panel();
+		Label getContent();
+		void setContent(Label content);
 	}
 
 	@ProxyCodeSplit
@@ -49,12 +58,13 @@ public class MainPresenter extends
 		RevealContentEvent.fire(this, HeaderPresenter.SLOT_CONTENT, this);
 	}
 	
-	private String namex = "";
+
+	private String project_num;
 	
 	@Override
 	public void prepareFromRequest(PlaceRequest request){
 		super.prepareFromRequest(request);
-		namex = request.getParameter("name", "Default_Value");
+		project_num = request.getParameter("p", "-1");
 		//	System.out.println("prepare from request: "+name);
 	}
 
@@ -74,20 +84,45 @@ public class MainPresenter extends
 	    dragController.makeDraggable(getView().getDndImage());
 		
 	}
+	
+	@Inject DispatchAsync dispatcher;
 
 	@Override
 	protected void onReset() {
 		super.onReset();
+		
+		
+		
+		
 		String login = "";
 		String sess = "";
 		if (stockStore != null ) {
 			sess = stockStore.getItem("session_id");
 			login = stockStore.getItem("login");
 		}
-		if (sess == null)
+		if (sess == null) {
 			getView().getMainLabel().setText("Please (re)log first");
-		else
-			getView().getMainLabel().setText("Welcome "+login +" (session_id = "+sess +")");
+			return;
+		}
+		
+		getView().getMainLabel().setText("Welcome "+login+ " *****  Projet num "+ project_num);
+		
+		GetSpecificProject info = new GetSpecificProject(project_num);
+		dispatcher.execute(info, new AsyncCallback<GetSpecificProjectResult>() {
+
+			@Override
+			public void onFailure(Throwable arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onSuccess(GetSpecificProjectResult result) {
+				getView().getContent().setText(result.getActivities().toString());
+				
+			}
+		});
+		
 		
 		
 	}
