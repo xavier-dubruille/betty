@@ -6,6 +6,8 @@ import org.hibernate.Transaction;
 import com.gwtplatform.dispatch.server.actionhandler.ActionHandler;
 import be.betty.gwtp.client.action.DeleteProjectAction;
 import be.betty.gwtp.client.action.DeleteProjectActionResult;
+import be.betty.gwtp.server.bdd.Project_entity;
+import be.betty.gwtp.server.bdd.Session_id;
 import be.betty.gwtp.server.bdd.Teacher;
 
 import com.google.inject.Inject;
@@ -15,7 +17,7 @@ import com.gwtplatform.dispatch.shared.ActionException;
 public class DeleteProjectActionActionHandler implements
 		ActionHandler<DeleteProjectAction, DeleteProjectActionResult> {
 
-	SQLHandler sqlHandler = new SQLHandler();
+
 	
 	@Inject
 	public DeleteProjectActionActionHandler() {
@@ -27,21 +29,24 @@ public class DeleteProjectActionActionHandler implements
 		
 		
 		Session s = HibernateUtils.getSession();
-		
 		Transaction t = s.beginTransaction();
 		
-		Teacher te = new Teacher();
-		te.setName("badaboum");
-
-		s.save(te);
+		//System.out.println("server: deleting project id "+action.getProject_id());
+				//TODO: Verifier si l'utilisateur essaye bien de supprimer l'un de ses propres projets !!!
+		//Session_id sess_id = (Session_id) s.get(Session_id.class, action.getSession_id());
+		
+		Project_entity p = (Project_entity) s.get(Project_entity.class, action.getProject_id());
+		s.delete(p);
+		//TODO: il faut égalment supprimer tout les autres données de se projets !!
+		
+		
 		t.commit();
 		s.close();
 		
-		//System.out.println("server: deleting project id "+action.getProject_id());
-		//TODO: Verifier si l'utilisateur essaye bien de supprimer l'un de ses propres projets !!!
 		
-		sqlHandler.exexute("delete from project where id ='"+action.getProject_id()+"'");
-		sqlHandler.exexute("delete from user_project where project_id ='"+action.getProject_id()+"'");
+		
+		//sqlHandler.exexute("delete from project where id ='"+action.getProject_id()+"'");
+		//sqlHandler.exexute("delete from user_project where project_id ='"+action.getProject_id()+"'");
 		return null;
 	}
 

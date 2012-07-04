@@ -14,9 +14,11 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
+import com.google.gwt.user.client.ui.Hidden;
 
 public class NewProjectView extends PopupViewImpl implements
 		NewProjectPresenter.MyView {
@@ -32,9 +34,11 @@ public class NewProjectView extends PopupViewImpl implements
 		widget = binder.createAndBindUi(this);
 		
 		//TODO: the first "setAction()" is not working on tomcat (but does on eclipse), 
-		// and but the second one is ugly!! but works ..
+		// and but the second one is ugly!! but works on Tomcat (only ?)ç 
 		formPanel.setAction("upload");
 		//formPanel.setAction("http://betty.sytes.net/betty/upload");
+		
+		
 		formPanel.setEncoding(FormPanel.ENCODING_MULTIPART);
 		formPanel.setMethod(FormPanel.METHOD_POST);
 
@@ -56,6 +60,7 @@ public class NewProjectView extends PopupViewImpl implements
 	@UiField TextBox project_name;
 	@UiField Button send_button;
 	@UiField FormPanel formPanel;
+	@UiField Hidden sess_id;
 	
 	@Override
 	public TextBox getProject_name() {
@@ -70,6 +75,12 @@ public class NewProjectView extends PopupViewImpl implements
 	@Override
 	public FormPanel getFormPanel() {
 		return formPanel;
+	}
+
+	@Override
+	public Hidden get_idSess_field() {
+		return sess_id;
+		
 	}
 
 }

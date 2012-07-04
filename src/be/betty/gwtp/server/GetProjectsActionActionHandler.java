@@ -25,7 +25,7 @@ import com.gwtplatform.dispatch.shared.ActionException;
 public class GetProjectsActionActionHandler implements
 		ActionHandler<GetProjectsAction, GetProjectsActionResult> {
 
-	SQLHandler sqlHandler = new SQLHandler();
+
 	@Inject
 	public GetProjectsActionActionHandler() {
 	}

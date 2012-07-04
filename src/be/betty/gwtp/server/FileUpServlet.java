@@ -32,6 +32,7 @@ import org.hibernate.Transaction;
 
 import be.betty.gwtp.client.model.Project;
 import be.betty.gwtp.server.bdd.Project_entity;
+import be.betty.gwtp.server.bdd.Session_id;
 import be.betty.gwtp.server.bdd.User;
 
 import com.google.inject.Inject;
@@ -47,7 +48,7 @@ public class FileUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String UPLOAD_DIRECTORY = "/tmp/"; //TODO: est-ce une bonne idée de le mettre ds le tmp ?
 	private static final Logger logger = Logger.getLogger(FileUpServlet.class);
-	private Project_entity projectToBeSaved;
+
 
 
 	@Inject FileUpServlet() {
@@ -69,25 +70,7 @@ public class FileUpServlet extends HttpServlet {
 		HashMap<String, String>  project_attributes = new HashMap<String, String>(8, (float) 0.5);
 		//TODO : We should definity use model.project instead of this hashMap !! (or index.java ?)
 
-		Session s = HibernateUtils.getSession();
-		Transaction t = s.beginTransaction();
-		User user = (User) s.get(User.class, 1);  
-		//faudra pluto mettre une querry avec le session id, pr retrouver l'utilisateur
-		//List l = s.createQuery("from Course where code=?").setString(0, "D111C02").list();
-
-		projectToBeSaved = new Project_entity();
-		projectToBeSaved.setName("defaultName");
-		//s.update(user);
-		System.out.println("****zero****");
-		s.save(projectToBeSaved);
-		System.out.println("****un****");
-		projectToBeSaved.getUsers().add(user);
-		System.out.println("****deux****");
-		user.getProjects().add(projectToBeSaved);
-		
-		t.commit();
-		s.close();
-
+	
 		//TODO: check user credentials !! (avec un cookie ou avec un champ caché de le formulaire ?)
 		//TODO: que faire si ce n'est pas une multipart requests ?  ca pourrait arriver ?
 		// process only multipart requests
@@ -130,6 +113,7 @@ public class FileUpServlet extends HttpServlet {
 
 
 	/**
+	 * @param projectToBeSaved 
 	 * 
 	 */
 	private void saveProjectInBdd(HashMap<String, String>  project_attributes) {
@@ -137,12 +121,42 @@ public class FileUpServlet extends HttpServlet {
 		logger.trace("savin' project in bdd. projectName=" + project_attributes.get("name") + ", and projectFile="+ project_attributes.get("file_courses"));
 
 
+		
 
 
-		projectToBeSaved.setCourse_file(UPLOAD_DIRECTORY+project_attributes.get("file_courses"));
-		projectToBeSaved.setName(project_attributes.get("project_name"));
 
 		// etc
+		
+		Session s = HibernateUtils.getSession();
+		Transaction t = s.beginTransaction();
+		//System.out.println("sess_id = "+project_attributes.get("sess_id"));
+		
+		
+		Session_id sess_id = (Session_id) s.get(Session_id.class, project_attributes.get("sess_id"));
+		
+		if (sess_id == null) return; //TODO: Faut une gestion d'erreur !  Mauvais Sess_id !
+		//TODO: Faut verifier ici si le sess_id est tjs valide!
+		
+		User user = sess_id.getUser_id();
+		//System.out.println("user======> "+user.getName());
+		
+		Project_entity projectToBeSaved = new Project_entity();
+		projectToBeSaved.setCourse_file(UPLOAD_DIRECTORY+project_attributes.get("file_courses"));
+		projectToBeSaved.setName(project_attributes.get("project_name"));
+		
+		//s.update(user);
+		System.out.println("****zero****");
+		s.save(projectToBeSaved);
+		System.out.println("****un****");
+		projectToBeSaved.getUsers().add(user);
+		System.out.println("****deux****");
+		user.getProjects().add(projectToBeSaved);
+		
+		s.save(projectToBeSaved);
+		s.save(user);
+		
+		t.commit();
+		s.close();
 
 
 		CreateUserProject create = new CreateUserProject(projectToBeSaved);

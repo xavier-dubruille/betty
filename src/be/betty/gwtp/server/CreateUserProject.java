@@ -150,49 +150,62 @@ public class CreateUserProject {
 		//TODO: jpense pas que sauvegarder le (meme) projet à chaque ligne soit une bonne idée.. loin de là !
 		sess.update(current_project);
 
-		List l;
+		List l = null;
 
-		l = sess.createQuery("from Teacher where code=?")
-				.setString(0, index.getTeacherId()).list();
+		//System.out.println("teacher id= "+index.getTeacherId());
+        l = sess.createQuery("from Teacher where code=? and project_id=?")
+        		.setString(0, index.getTeacherId())
+        		.setString(1, ""+current_project.getId())
+        		.list();
+        
+		System.out.println("list = "+l);
 		Teacher t;
 		if (l.size() == 0) {
 			t = new Teacher(index.getTeacherId(), index.getTeacherFirstname(),
 					index.getTeacherLastname(), current_project);
 			sess.save(t);
+			current_project.getTeachers().add(t);
 		} else
 			t = (Teacher) l.get(0);
 
 		String group_code = "" + index.getYear() + index.getSection()
 				+ index.getGroup();
 		Group_entity g;
-		l = sess.createQuery("from Group_entity where code=?")
-				.setString(0, group_code).list();
+		l = sess.createQuery("from Group_entity where code=? and project_id=?")
+				.setString(0, group_code)
+				.setString(1, ""+current_project.getId())
+				.list();
 		if (l.size() == 0) {
 			g = new Group_entity(group_code, current_project);
 			sess.save(g);
+			current_project.getGroups().add(g);
 		} else
 			g = (Group_entity) l.get(0);
 
 		Course c;
-		l = sess.createQuery("from Course where code=?")
-				.setString(0, index.getCoursesId()).list();
+		l = sess.createQuery("from Course where code=? and project_id=?")
+				.setString(0, index.getCoursesId())
+				.setString(1, ""+current_project.getId())
+				.list();
 		if (l.size() == 0) {
 			c = new Course(index.getCoursesId(), index.getCourseName(),
 					index.getMod(), periods, current_project);
 			sess.save(c);
+			current_project.getCourses().add(c);
 		} else
 			c = (Course) l.get(0);
 
 		Activity a = new Activity(t, g, c, current_project);
 		sess.save(a);
+		current_project.getActivities().add(a);
 		tran.commit();
-
-		// System.out.println(index.getCourseName());
-		// System.out.println(Arrays.asList(line));
-
-		// faut pas oublier ca..
-		// if(teacher_lastName.equalsIgnoreCase("{N}"))
-		// teacher_lastName="Indefini";
+//
+//		// System.out.println(index.getCourseName());
+//		// System.out.println(Arrays.asList(line));
+//
+//		// faut pas oublier ca..
+//		// if(teacher_lastName.equalsIgnoreCase("{N}"))
+//		// teacher_lastName="Indefini";
 
 	}
 
@@ -208,7 +221,6 @@ public class CreateUserProject {
 
 		InputStream inp = new FileInputStream(filePath);
 		HSSFWorkbook wb = new HSSFWorkbook(new POIFSFileSystem(inp));
-
 		Sheet sheet1 = wb.getSheetAt(0);
 		line = new String[sheet1.getRow(0).getPhysicalNumberOfCells()];
 
@@ -238,7 +250,7 @@ public class CreateUserProject {
 					line[cell.getColumnIndex()] = "";
 				}
 			}
-
+			//System.out.println(Arrays.asList(line));
 			if (row.getRowNum() == 0)
 				index.putRightIndex(line, this.choice_sem);
 			else

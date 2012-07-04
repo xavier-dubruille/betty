@@ -8,12 +8,15 @@ import com.google.inject.Inject;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteHandler;
 import com.google.gwt.user.client.ui.FormPanel.SubmitEvent;
 import com.google.gwt.user.client.ui.FormPanel.SubmitHandler;
+import com.google.gwt.user.client.ui.Hidden;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
 
@@ -29,6 +32,8 @@ PresenterWidget<NewProjectPresenter.MyView> {
 		Button getSend_button();
 
 		FormPanel getFormPanel();
+
+		Hidden get_idSess_field();
 	}
 
 	private EventBus myEventBus;
@@ -50,6 +55,9 @@ PresenterWidget<NewProjectPresenter.MyView> {
 		//send_button handler
 		getView().getSend_button().addClickHandler(new ClickHandler() {
 			@Override public void onClick(ClickEvent event) {
+				Storage stockStore = Storage.getLocalStorageIfSupported();
+				if (stockStore != null) 
+					getView().get_idSess_field().setValue(stockStore.getItem("session_id"));
 				getView().getFormPanel().submit(); }});
 
 		//form handler

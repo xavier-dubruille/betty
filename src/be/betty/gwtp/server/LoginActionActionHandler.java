@@ -22,10 +22,9 @@ import com.gwtplatform.dispatch.shared.ActionException;
 public class LoginActionActionHandler implements
 		ActionHandler<LoginAction, LoginActionResult> {
 
-	public static SQLHandler sqlHandler;
+
 	@Inject
 	public LoginActionActionHandler() {
-		sqlHandler = new SQLHandler();
 	}
 
 	@Override

@@ -25,9 +25,13 @@
 				<g:at left="103" top="42">
 					<g:FileUpload name="file_courses"/>
 				</g:at>
+				<g:at left="0" top="0">
+					<g:Hidden name="sess_id" ui:field="sess_id"/>
+				</g:at>
 				<g:at left="15" top="47">
 					<g:Label text="Courses File"/>
 				</g:at>
+				
 			</g:AbsolutePanel>
 			
 		</g:FormPanel>

@@ -105,6 +105,7 @@ public class LoginPresenter extends
 			if (session_id != null) {
 				if (stockStore != null) { stockStore.setItem("session_id", session_id);}
 				// PlaceRequest request = new PlaceRequest(NameTokens.main).with("name", user);
+				if (stockStore != null) {}
 				PlaceRequest request = new PlaceRequest(NameTokens.projects);
 				placeManager.revealPlace(request);
 			}
