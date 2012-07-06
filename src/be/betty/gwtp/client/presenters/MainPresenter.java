@@ -1,8 +1,11 @@
 package be.betty.gwtp.client.presenters;
 
+import java.util.ArrayList;
+
 import be.betty.gwtp.client.Betty_gwtp;
 import be.betty.gwtp.client.action.GetSpecificProject;
 import be.betty.gwtp.client.action.GetSpecificProjectResult;
+import be.betty.gwtp.client.model.Project;
 import be.betty.gwtp.client.place.NameTokens;
 
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
@@ -18,6 +21,9 @@ import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.inject.Inject;
+import com.google.inject.Provider;
+import com.gwtplatform.common.client.IndirectProvider;
+import com.gwtplatform.common.client.StandardProvider;
 import com.gwtplatform.dispatch.shared.DispatchAsync;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
@@ -41,6 +47,9 @@ public class MainPresenter extends
 		Label getContent();
 		void setContent(Label content);
 	}
+	
+	public static final Object SLOT_Card = new Object();
+	private IndirectProvider<CardPresenter> cardFactory;
 
 	@ProxyCodeSplit
 	@NameToken(NameTokens.main)
@@ -51,8 +60,9 @@ public class MainPresenter extends
 
 	@Inject
 	public MainPresenter(final EventBus eventBus, final MyView view,
-			final MyProxy proxy) {
+			final MyProxy proxy, final Provider<CardPresenter> provider) {
 		super(eventBus, view, proxy);
+		cardFactory = new StandardProvider<CardPresenter>(provider);
 		stockStore = Storage.getLocalStorageIfSupported();
 	}
 
@@ -116,6 +126,7 @@ public class MainPresenter extends
 			return;
 		}
 		
+		
 		getView().getMainLabel().setText("Welcome "+login+ " *****  Projet num "+ project_num);
 		
 		GetSpecificProject info = new GetSpecificProject(project_num);
@@ -129,12 +140,37 @@ public class MainPresenter extends
 
 			@Override
 			public void onSuccess(GetSpecificProjectResult result) {
-				getView().getContent().setText(result.getActivities().toString());
+				//getView().getContent().setText(result.getActivities().toString());
 				
 			}
 		});
+
+		writeCardWidgets(null);
 		
 		
 		
+	}
+	
+	private void writeCardWidgets(final ArrayList<Project> projects) {
+
+		setInSlot(SLOT_Card, null);
+		for (int i = 0; i < 5; i++) {
+			final int myI = i;
+			cardFactory.get(new AsyncCallback<CardPresenter>() {
+
+				@Override
+				public void onSuccess(CardPresenter result) {
+					addToSlot(SLOT_Card, result);
+					//result.init(projects.get(myI));
+				}
+
+				@Override
+				public void onFailure(Throwable caught) {
+					// TODO Auto-generated method stub
+
+				}
+			});
+		}
+
 	}
 }

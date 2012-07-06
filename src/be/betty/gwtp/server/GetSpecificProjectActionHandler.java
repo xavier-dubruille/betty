@@ -29,21 +29,23 @@ public class GetSpecificProjectActionHandler implements
 	public GetSpecificProjectResult execute(GetSpecificProject action,
 			ExecutionContext context) throws ActionException {
 		
-		GetSpecificProjectResult result = new GetSpecificProjectResult();
-		
-		Session s = HibernateUtils.getSession();
-		Transaction t = s.beginTransaction();
-
-		Project_entity p = (Project_entity) s.get(Project_entity.class, Integer.parseInt(action.getProject_id()));
-		result.setName(p.getName());
-		for (Activity a: p.getActivities()){
-			System.out.println("***  Teacher:"+a.getTeacher().getName()+" Course:"+a.getCourse().getName()+" Group:"+a.getGroup().getCode());
-			result.getActivities().add("Teacher:"+a.getTeacher().getName()+" Course:"+a.getCourse().getName()+" Group:"+a.getGroup().getCode());
-		}
-	
-		t.commit();
-		s.close();
-		return result;
+//		GetSpecificProjectResult result = new GetSpecificProjectResult();
+//		
+//		Session s = HibernateUtils.getSession();
+//		Transaction t = s.beginTransaction();
+//
+//		
+//		Project_entity p = (Project_entity) s.get(Project_entity.class, Integer.parseInt(action.getProject_id()));
+//		result.setName(p.getName());
+//		for (Activity a: p.getActivities()){
+//			//System.out.println("***  Teacher:"+a.getTeacher().getName()+" Course:"+a.getCourse().getName()+" Group:"+a.getGroup().getCode());
+//			result.getActivities().add("Teacher:"+a.getTeacher().getName()+" Course:"+a.getCourse().getName()+" Group:"+a.getGroup().getCode());
+//		}
+//	
+//		t.commit();
+//		s.close();
+//		return result;
+		return null;
 	}
 
 	@Override

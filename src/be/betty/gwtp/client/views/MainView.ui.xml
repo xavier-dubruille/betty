@@ -8,12 +8,12 @@
 
 	<g:HTMLPanel>
 		<g:AbsolutePanel height="195px" ui:field="dndpanel" width="620px">
+			<g:at left="259" top="99">
+				<g:HTMLPanel width="191px" height="281px" ui:field="html_panel"/>
+			</g:at>
 			<g:Label ui:field="dragLabel" text="drag panel"/>
 			<g:at left="65" top="29">
 				<g:Hyperlink text="go to back to login page" targetHistoryToken="login" />
-			</g:at>
-			<g:at left="259" top="99">
-				<g:HTMLPanel width="191px" height="281px" ui:field="html_panel"/>
 			</g:at>
 			<g:at left="187" top="69">
 				<g:Label ui:field="mainLabel" width="126px" height="24px"/>

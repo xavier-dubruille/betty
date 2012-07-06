@@ -18,14 +18,13 @@ public class GetSpecificProjectResult implements Result {
 
 	public void setName(String name) {
 		this.name = name;
-		
+
 	}
-	
+
 	public String getName() {
 		return name;
 	}
 
-	
 	public ArrayList<String> getActivities() {
 		return this.activities;
 	}

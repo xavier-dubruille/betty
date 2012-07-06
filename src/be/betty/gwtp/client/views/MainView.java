@@ -1,6 +1,7 @@
 package be.betty.gwtp.client.views;
 
 import be.betty.gwtp.client.presenters.MainPresenter;
+import be.betty.gwtp.client.presenters.ProjectsPresenter;
 
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -29,6 +30,27 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 		widget = binder.createAndBindUi(this);
 	}
 
+	@Override
+	public void setInSlot(Object slot, Widget content) {
+		if (slot == MainPresenter.SLOT_Card) {
+			html_panel.clear();
+			if (content != null)
+				html_panel.add(content);
+		}
+		else {
+			super.setInSlot(slot, content);
+		}
+	}
+	
+	@Override
+	public void addToSlot(Object slot, Widget content) {
+		if (slot == MainPresenter.SLOT_Card)
+			if (content != null)
+				html_panel.add(content);
+		else 
+			super.addToSlot(slot, content);
+		
+	}
 	@Override
 	public Widget asWidget() {
 		return widget;
