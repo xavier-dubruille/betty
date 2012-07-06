@@ -7,6 +7,6 @@
 	ui:generateLocales='default'>
 
 	<g:HTMLPanel>
-		<g:Label text="1, 2 ,3 Soleil !"/>
+		<g:Label text="1, 2 ,3 Soleil !" ui:field="mainLabel"/>
 	</g:HTMLPanel>
 </ui:UiBinder>

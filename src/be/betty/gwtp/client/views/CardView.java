@@ -7,6 +7,8 @@ import com.gwtplatform.mvp.client.ViewImpl;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.Label;
 
 public class CardView extends ViewImpl implements CardPresenter.MyView {
 
@@ -24,4 +26,17 @@ public class CardView extends ViewImpl implements CardPresenter.MyView {
 	public Widget asWidget() {
 		return widget;
 	}
+	@UiField Label mainLabel;
+	
+	@Override
+	public Label getMainLabel() {
+		return mainLabel;
+	}
+
+	@Override
+	public void setMainLabel(Label mainLabel) {
+		this.mainLabel = mainLabel;
+	}
+	
+	
 }

@@ -3,8 +3,9 @@ package be.betty.gwtp.client.presenters;
 import java.util.ArrayList;
 
 import be.betty.gwtp.client.Betty_gwtp;
-import be.betty.gwtp.client.action.GetSpecificProject;
-import be.betty.gwtp.client.action.GetSpecificProjectResult;
+import be.betty.gwtp.client.Storage_access;
+import be.betty.gwtp.client.action.GetCards;
+import be.betty.gwtp.client.action.GetCardsResult;
 import be.betty.gwtp.client.model.Project;
 import be.betty.gwtp.client.place.NameTokens;
 
@@ -39,15 +40,22 @@ public class MainPresenter extends
 
 	public interface MyView extends View {
 		public Label getMainLabel();
+
 		public AbsolutePanel getDndPanel();
+
 		public AbsolutePanel getDropPanel();
+
 		public Image getDndImage();
+
 		void setHtml_panel(HTMLPanel html_panel);
+
 		HTMLPanel getHtml_panel();
+
 		Label getContent();
+
 		void setContent(Label content);
 	}
-	
+
 	public static final Object SLOT_Card = new Object();
 	private IndirectProvider<CardPresenter> cardFactory;
 
@@ -68,18 +76,17 @@ public class MainPresenter extends
 
 	@Override
 	protected void revealInParent() {
-		//RevealRootContentEvent.fire(this, this);
+		// RevealRootContentEvent.fire(this, this);
 		RevealContentEvent.fire(this, HeaderPresenter.SLOT_CONTENT, this);
 	}
-	
 
 	private String project_num;
-	
+
 	@Override
-	public void prepareFromRequest(PlaceRequest request){
+	public void prepareFromRequest(PlaceRequest request) {
 		super.prepareFromRequest(request);
 		project_num = request.getParameter("p", "-1");
-		//	System.out.println("prepare from request: "+name);
+		// System.out.println("prepare from request: "+name);
 	}
 
 	@Override
@@ -89,35 +96,35 @@ public class MainPresenter extends
 	}
 
 	private void set_dnd() {
-		  // create a DragController to manage drag-n-drop actions
-	    // note: This creates an implicit DropController for the boundary panel
-	    PickupDragController dragController = new PickupDragController(getView().getDndPanel(), false);
+		// create a DragController to manage drag-n-drop actions
+		// note: This creates an implicit DropController for the boundary panel
+		PickupDragController dragController = new PickupDragController(
+				getView().getDndPanel(), false);
 
-	    // add a new image to the boundary panel and make it draggable
-	    
-	    //dragController.makeDraggable(getView().getDndImage());
-	    
-	    AbsolutePositionDropController sp = new AbsolutePositionDropController(getView().getDropPanel());
-	    //IndexedDropController dropController = new IndexedDropController(getView().getDropPanel());
-	    
-	    dragController.registerDropController(sp);
-	    dragController.makeDraggable(getView().getDndImage());
+		// add a new image to the boundary panel and make it draggable
 
-	    
+		// dragController.makeDraggable(getView().getDndImage());
+
+		AbsolutePositionDropController sp = new AbsolutePositionDropController(
+				getView().getDropPanel());
+		// IndexedDropController dropController = new
+		// IndexedDropController(getView().getDropPanel());
+
+		dragController.registerDropController(sp);
+		dragController.makeDraggable(getView().getDndImage());
+
 	}
-	
-	@Inject DispatchAsync dispatcher;
+
+	@Inject
+	DispatchAsync dispatcher;
 
 	@Override
 	protected void onReset() {
 		super.onReset();
-		
-		
-		
-		
+
 		String login = "";
 		String sess = "";
-		if (stockStore != null ) {
+		if (stockStore != null) {
 			sess = stockStore.getItem("session_id");
 			login = stockStore.getItem("login");
 		}
@@ -125,43 +132,54 @@ public class MainPresenter extends
 			getView().getMainLabel().setText("Please (re)log first");
 			return;
 		}
-		
-		
-		getView().getMainLabel().setText("Welcome "+login+ " *****  Projet num "+ project_num);
-		
-		GetSpecificProject info = new GetSpecificProject(project_num);
-		dispatcher.execute(info, new AsyncCallback<GetSpecificProjectResult>() {
+
+		getView().getMainLabel().setText(
+				"Welcome " + login + " *****  Projet num " + project_num);
+
+		GetCards action = new GetCards(project_num);
+		dispatcher.execute(action, new AsyncCallback<GetCardsResult>() {
 
 			@Override
 			public void onFailure(Throwable arg0) {
 				// TODO Auto-generated method stub
-				
+				// arg0.printStackTrace();
+				System.err.println("***failure:" + arg0);
+
 			}
 
 			@Override
-			public void onSuccess(GetSpecificProjectResult result) {
-				//getView().getContent().setText(result.getActivities().toString());
-				
+			public void onSuccess(GetCardsResult result) {
+
+				Storage_access.setCards(project_num, result.getCards());
+				print_da_page();
+				// getView().getContent().setText(result.getActivities().toString());
+
 			}
+
 		});
 
-		writeCardWidgets(null);
-		
-		
+	}
+
+	/**
+	 * Print the cards, the board, with the information in the local storage
+	 */
+	private void print_da_page() {
+		System.out.println("**** Hell yeah, print da page");
+		writeCardWidgets();
 		
 	}
-	
-	private void writeCardWidgets(final ArrayList<Project> projects) {
+
+	private void writeCardWidgets() {
 
 		setInSlot(SLOT_Card, null);
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < Storage_access.getNumberOfCard(); i++) {
 			final int myI = i;
 			cardFactory.get(new AsyncCallback<CardPresenter>() {
 
 				@Override
 				public void onSuccess(CardPresenter result) {
 					addToSlot(SLOT_Card, result);
-					//result.init(projects.get(myI));
+				    result.init(myI);
 				}
 
 				@Override
