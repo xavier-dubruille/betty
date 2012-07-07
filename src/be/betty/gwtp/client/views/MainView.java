@@ -23,6 +23,7 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	@UiField Image dndImage;
 	@UiField Label content;
 	@UiField VerticalPanel cards_panel;
+	@UiField VerticalPanel drop_cards_panel;
 	public interface Binder extends UiBinder<Widget, MainView> {}
 
 	@Inject
@@ -87,4 +88,14 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	public void setCards_panel(VerticalPanel cards_panel) {
 		this.cards_panel = cards_panel;
 	}
+
+	public VerticalPanel getDrop_cards_panel() {
+		return drop_cards_panel;
+	}
+
+	public void setDrop_cards_panel(VerticalPanel drop_cards_panel) {
+		this.drop_cards_panel = drop_cards_panel;
+	}
+	
+	
 }

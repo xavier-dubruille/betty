@@ -11,8 +11,10 @@ import be.betty.gwtp.client.place.NameTokens;
 
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
 import com.allen_sauer.gwt.dnd.client.drop.AbsolutePositionDropController;
+import com.allen_sauer.gwt.dnd.client.drop.HorizontalPanelDropController;
 import com.allen_sauer.gwt.dnd.client.drop.IndexedDropController;
 import com.allen_sauer.gwt.dnd.client.drop.SimpleDropController;
+import com.allen_sauer.gwt.dnd.client.drop.VerticalPanelDropController;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.uibinder.client.UiField;
@@ -53,6 +55,8 @@ public class MainPresenter extends
 		void setContent(Label content);
 
 		VerticalPanel getCards_panel();
+		
+		public VerticalPanel getDrop_cards_panel();
 	}
 
 	public static final Object SLOT_Card = new Object();
@@ -102,7 +106,7 @@ public class MainPresenter extends
 		// create a DragController to manage drag-n-drop actions
 		// note: This creates an implicit DropController for the boundary panel
 		cardDragController = new PickupDragController(
-				RootPanel.get(), true);
+				RootPanel.get(), false);
 
 
 		// dragController.makeDraggable(getView().getDndImage());
@@ -191,6 +195,12 @@ public class MainPresenter extends
 					widget.addStyleName("card");
 					getView().getCards_panel().add(widget);
 					cardDragController.makeDraggable(widget);
+					
+					//TODO vérifier si il y a des lag en utilisant l'application sur le serveur
+					//mettre en commentaire ces deux lignes
+					VerticalPanelDropController dropController = new VerticalPanelDropController(getView().getDrop_cards_panel());
+					cardDragController.registerDropController(dropController);
+					
 				}
 
 				@Override

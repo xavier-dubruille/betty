@@ -22,6 +22,11 @@
 					<g:VerticalPanel width="100%" height="100%" spacing="10" ui:field="cards_panel"/>
 				</g:ScrollPanel>
 			</g:at>
+			<g:at left="248" top="122">
+				<g:ScrollPanel width="152px" height="207px">
+					<g:VerticalPanel width="100%" height="42px" ui:field="drop_cards_panel"/>
+				</g:ScrollPanel>
+			</g:at>
 		</g:AbsolutePanel>
 		
 			
