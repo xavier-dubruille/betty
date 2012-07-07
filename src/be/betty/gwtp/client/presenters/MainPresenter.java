@@ -108,6 +108,11 @@ public class MainPresenter extends
 		cardDragController = new PickupDragController(
 				RootPanel.get(), false);
 
+		
+		//TODO vérifier si il y a des lag en utilisant l'application sur le serveur
+		//mettre en commentaire ces deux lignes
+		VerticalPanelDropController dropController = new VerticalPanelDropController(getView().getDrop_cards_panel());
+		cardDragController.registerDropController(dropController);
 
 		// dragController.makeDraggable(getView().getDndImage());
 
@@ -196,10 +201,7 @@ public class MainPresenter extends
 					getView().getCards_panel().add(widget);
 					cardDragController.makeDraggable(widget);
 					
-					//TODO vérifier si il y a des lag en utilisant l'application sur le serveur
-					//mettre en commentaire ces deux lignes
-					VerticalPanelDropController dropController = new VerticalPanelDropController(getView().getDrop_cards_panel());
-					cardDragController.registerDropController(dropController);
+
 					
 				}
 
