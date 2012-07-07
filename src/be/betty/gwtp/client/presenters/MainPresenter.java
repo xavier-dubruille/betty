@@ -15,12 +15,15 @@ import com.allen_sauer.gwt.dnd.client.drop.IndexedDropController;
 import com.allen_sauer.gwt.dnd.client.drop.SimpleDropController;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.storage.client.Storage;
+import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.gwtplatform.common.client.IndirectProvider;
@@ -45,17 +48,17 @@ public class MainPresenter extends
 
 		public Image getDndImage();
 
-		void setHtml_panel(HTMLPanel html_panel);
-
-		HTMLPanel getHtml_panel();
-
 		Label getContent();
 
 		void setContent(Label content);
+
+		VerticalPanel getCards_panel();
 	}
 
 	public static final Object SLOT_Card = new Object();
 	private IndirectProvider<CardPresenter> cardFactory;
+	@Inject DispatchAsync dispatcher;
+	protected ArrayList<CardPresenter> allCards = new ArrayList<CardPresenter>();
 
 	@ProxyCodeSplit
 	@NameToken(NameTokens.main)
@@ -79,6 +82,7 @@ public class MainPresenter extends
 	}
 
 	private String project_num;
+	private PickupDragController cardDragController;
 
 	@Override
 	public void prepareFromRequest(PlaceRequest request) {
@@ -94,29 +98,29 @@ public class MainPresenter extends
 	}
 
 	private void set_dnd() {
-		/*
+		
 		// create a DragController to manage drag-n-drop actions
 		// note: This creates an implicit DropController for the boundary panel
-		PickupDragController dragController = new PickupDragController(
-				getView().getDndPanel(), false);
+		cardDragController = new PickupDragController(
+				RootPanel.get(), true);
 
-		// add a new image to the boundary panel and make it draggable
 
 		// dragController.makeDraggable(getView().getDndImage());
 
-		AbsolutePositionDropController sp = new AbsolutePositionDropController(
-				getView().getDropPanel());
+		//AbsolutePositionDropController sp = new AbsolutePositionDropController(
+			//	getView().getDropPanel());
 		// IndexedDropController dropController = new
 		// IndexedDropController(getView().getDropPanel());
 
-		dragController.registerDropController(sp);
-		dragController.makeDraggable(getView().getDndImage());
-		*/
+//		dragController.registerDropController(sp);
+	//	dragController.makeDraggable(getView().getMainLabel());
+		//dragController.makeDraggable(getView().getHtml_panel());
+		//for (CardPresenter c : allCards)
+			//dragController.makeDraggable(c.getView().getWholePanel());
+		
 
 	}
 
-	@Inject
-	DispatchAsync dispatcher;
 
 	@Override
 	protected void onReset() {
@@ -178,8 +182,15 @@ public class MainPresenter extends
 
 				@Override
 				public void onSuccess(CardPresenter result) {
-					addToSlot(SLOT_Card, result);
-				    result.init(myI);
+					//addToSlot(SLOT_Card, result);
+				    //result.init(myI);
+				    //cardDragController.makeDraggable(result.getView().asWidget());
+				    //allCards.add(result);
+					
+					HTML widget = new HTML(Storage_access.getCard(myI));
+					widget.addStyleName("card");
+					getView().getCards_panel().add(widget);
+					cardDragController.makeDraggable(widget);
 				}
 
 				@Override

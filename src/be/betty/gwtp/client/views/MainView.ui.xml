@@ -8,10 +8,6 @@
 
 	<g:HTMLPanel>
 		<g:AbsolutePanel height="525px" ui:field="dndpanel" width="620px">
-			
-			<g:at left="65" top="29">
-				<g:Hyperlink text="go to back to login page" targetHistoryToken="login" />
-			</g:at>
 			<g:at left="187" top="69">
 				<g:Label ui:field="mainLabel" width="126px" height="24px"/>
 			</g:at>
@@ -23,7 +19,7 @@
 			</g:at>
 			<g:at left="29" top="122">
 				<g:ScrollPanel width="155px" height="207px">
-					<g:HTMLPanel width="100%" height="100%" ui:field="html_panel"/>
+					<g:VerticalPanel width="100%" height="100%" spacing="10" ui:field="cards_panel"/>
 				</g:ScrollPanel>
 			</g:at>
 		</g:AbsolutePanel>

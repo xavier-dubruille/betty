@@ -6,7 +6,7 @@
 	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
 	ui:generateLocales='default'>
 
-	<g:HTMLPanel>
+	<g:HTMLPanel ui:field="wholePanel">
 		<g:Label text="1, 2 ,3 Soleil !" ui:field="mainLabel" styleName="card"/>
 	</g:HTMLPanel>
 </ui:UiBinder>

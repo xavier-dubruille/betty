@@ -9,10 +9,13 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.HTMLPanel;
 
 public class CardView extends ViewImpl implements CardPresenter.MyView {
 
 	private final Widget widget;
+	@UiField Label mainLabel;
+	@UiField HTMLPanel wholePanel;
 
 	public interface Binder extends UiBinder<Widget, CardView> {
 	}
@@ -26,7 +29,6 @@ public class CardView extends ViewImpl implements CardPresenter.MyView {
 	public Widget asWidget() {
 		return widget;
 	}
-	@UiField Label mainLabel;
 	
 	@Override
 	public Label getMainLabel() {
@@ -36,6 +38,14 @@ public class CardView extends ViewImpl implements CardPresenter.MyView {
 	@Override
 	public void setMainLabel(Label mainLabel) {
 		this.mainLabel = mainLabel;
+	}
+	@Override
+	public HTMLPanel getWholePanel() {
+		return wholePanel;
+	}
+
+	public void setWholePanel(HTMLPanel wholePanel) {
+		this.wholePanel = wholePanel;
 	}
 	
 	

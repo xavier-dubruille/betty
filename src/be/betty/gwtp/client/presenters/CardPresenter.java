@@ -6,6 +6,7 @@ import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 import com.google.inject.Inject;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
 
 public class CardPresenter extends PresenterWidget<CardPresenter.MyView> {
@@ -15,6 +16,8 @@ public class CardPresenter extends PresenterWidget<CardPresenter.MyView> {
 		Label getMainLabel();
 
 		void setMainLabel(Label mainLabel);
+
+		HTMLPanel getWholePanel();
 	}
 
 	@Inject
@@ -31,6 +34,8 @@ public class CardPresenter extends PresenterWidget<CardPresenter.MyView> {
 	protected void onReset() {
 		super.onReset();
 	}
+	
+	
 
 	public void init(int myI) {
 		getView().getMainLabel().setText(Storage_access.getCard(myI));
