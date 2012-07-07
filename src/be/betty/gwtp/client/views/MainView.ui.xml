@@ -7,27 +7,27 @@
 	ui:generateLocales='default'>
 
 	<g:HTMLPanel>
-		<g:AbsolutePanel height="195px" ui:field="dndpanel" width="620px">
-			<g:at left="259" top="99">
-				<g:HTMLPanel width="191px" height="281px" ui:field="html_panel"/>
-			</g:at>
-			<g:Label ui:field="dragLabel" text="drag panel"/>
+		<g:AbsolutePanel height="525px" ui:field="dndpanel" width="620px">
+			
 			<g:at left="65" top="29">
 				<g:Hyperlink text="go to back to login page" targetHistoryToken="login" />
 			</g:at>
 			<g:at left="187" top="69">
 				<g:Label ui:field="mainLabel" width="126px" height="24px"/>
 			</g:at>
-			<g:at left="35" top="90">
+			<g:at left="422" top="-7">
 				<g:Image width="100px" height="100px" url="logo-185x175.png" ui:field="dndImage"/>
 			</g:at>
-			<g:at left="104" top="90">
+			<g:at left="248" top="29">
 				<g:Label width="155px" height="148px" ui:field="content"/>
 			</g:at>
+			<g:at left="29" top="122">
+				<g:ScrollPanel width="155px" height="207px">
+					<g:HTMLPanel width="100%" height="100%" ui:field="html_panel"/>
+				</g:ScrollPanel>
+			</g:at>
 		</g:AbsolutePanel>
-		<g:AbsolutePanel ui:field="dropPanel" height="215px" width="620px">
-			<g:Label ui:field="dropLabel" text="drop panel"/>
-		</g:AbsolutePanel>
+		
 			
 	</g:HTMLPanel>
 </ui:UiBinder>

@@ -43,8 +43,6 @@ public class MainPresenter extends
 
 		public AbsolutePanel getDndPanel();
 
-		public AbsolutePanel getDropPanel();
-
 		public Image getDndImage();
 
 		void setHtml_panel(HTMLPanel html_panel);
@@ -96,6 +94,7 @@ public class MainPresenter extends
 	}
 
 	private void set_dnd() {
+		/*
 		// create a DragController to manage drag-n-drop actions
 		// note: This creates an implicit DropController for the boundary panel
 		PickupDragController dragController = new PickupDragController(
@@ -112,6 +111,7 @@ public class MainPresenter extends
 
 		dragController.registerDropController(sp);
 		dragController.makeDraggable(getView().getDndImage());
+		*/
 
 	}
 
