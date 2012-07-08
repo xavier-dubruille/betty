@@ -13,6 +13,7 @@ import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 
 public class MainView extends ViewImpl implements MainPresenter.MyView {
 
@@ -24,6 +25,9 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	@UiField Label content;
 	@UiField VerticalPanel cards_panel;
 	@UiField VerticalPanel drop_cards_panel;
+	@UiField SimplePanel case11;
+	@UiField SimplePanel case12;
+	@UiField SimplePanel case13;
 	public interface Binder extends UiBinder<Widget, MainView> {}
 
 	@Inject
@@ -95,6 +99,21 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 
 	public void setDrop_cards_panel(VerticalPanel drop_cards_panel) {
 		this.drop_cards_panel = drop_cards_panel;
+	}
+
+	@Override
+	public SimplePanel getCase11() {
+		return case11;
+	}
+
+	@Override
+	public SimplePanel getCase12() {
+		return case12;
+	}
+
+	@Override
+	public SimplePanel getCase13() {
+		return case13;
 	}
 	
 	

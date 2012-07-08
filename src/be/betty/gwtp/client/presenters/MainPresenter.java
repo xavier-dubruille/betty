@@ -3,6 +3,8 @@ package be.betty.gwtp.client.presenters;
 import java.util.ArrayList;
 
 import be.betty.gwtp.client.Betty_gwtp;
+import be.betty.gwtp.client.CardHandler;
+import be.betty.gwtp.client.CellDropControler;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.action.GetCards;
 import be.betty.gwtp.client.action.GetCardsResult;
@@ -25,6 +27,7 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -57,6 +60,12 @@ public class MainPresenter extends
 		VerticalPanel getCards_panel();
 		
 		public VerticalPanel getDrop_cards_panel();
+
+		SimplePanel getCase11();
+
+		SimplePanel getCase12();
+
+		SimplePanel getCase13();
 	}
 
 	public static final Object SLOT_Card = new Object();
@@ -107,13 +116,22 @@ public class MainPresenter extends
 		// note: This creates an implicit DropController for the boundary panel
 		cardDragController = new PickupDragController(
 				RootPanel.get(), false);
+		cardDragController.addDragHandler(new CardHandler());
+		CellDropControler dropControler = new CellDropControler(getView().getCase11());
+		CellDropControler dropControler2 = new CellDropControler(getView().getCase12());
+		CellDropControler dropControler3 = new CellDropControler(getView().getCase13());
+		cardDragController.registerDropController(dropControler);
+		cardDragController.registerDropController(dropControler2);
+		cardDragController.registerDropController(dropControler3);
 
 		
 		//TODO vérifier si il y a des lag en utilisant l'application sur le serveur
 		//mettre en commentaire ces deux lignes
-		VerticalPanelDropController dropController = new VerticalPanelDropController(getView().getDrop_cards_panel());
-		cardDragController.registerDropController(dropController);
+		//VerticalPanelDropController dropController = new VerticalPanelDropController(getView().getDrop_cards_panel());
+		//cardDragController.registerDropController(dropController);
 
+		
+		
 		// dragController.makeDraggable(getView().getDndImage());
 
 		//AbsolutePositionDropController sp = new AbsolutePositionDropController(
