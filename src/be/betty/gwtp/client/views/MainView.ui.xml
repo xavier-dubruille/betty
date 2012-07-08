@@ -1,34 +1,40 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-	xmlns:g='urn:import:com.google.gwt.user.client.ui'
-	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui' ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
 	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
 	ui:generateLocales='default'>
 
 	<g:HTMLPanel>
-		<g:AbsolutePanel height="525px" ui:field="dndpanel" width="620px">
+		<g:AbsolutePanel height="525px" ui:field="dndpanel"
+			width="620px">
 			<g:at left="187" top="69">
-				<g:Label ui:field="mainLabel" width="126px" height="24px"/>
+				<g:Label ui:field="mainLabel" width="126px" height="24px" />
 			</g:at>
 			<g:at left="422" top="-7">
-				<g:Image width="100px" height="100px" url="logo-185x175.png" ui:field="dndImage"/>
+				<g:Image width="100px" height="100px" url="logo-185x175.png"
+					ui:field="dndImage" />
 			</g:at>
 			<g:at left="248" top="29">
-				<g:Label width="155px" height="148px" ui:field="content"/>
+				<g:Label width="155px" height="148px" ui:field="content" />
 			</g:at>
 			<g:at left="29" top="122">
 				<g:ScrollPanel width="155px" height="207px">
-					<g:VerticalPanel width="100%" height="100%" spacing="10" ui:field="cards_panel"/>
+					<g:VerticalPanel width="100%" height="100%"
+						spacing="10" ui:field="cards_panel" />
 				</g:ScrollPanel>
 			</g:at>
-			<g:at left="248" top="122">
-				<g:ScrollPanel width="152px" height="207px">
-					<g:VerticalPanel width="100%" height="42px" ui:field="drop_cards_panel"/>
-				</g:ScrollPanel>
+			<g:at left="352" top="122">
+				<g:ScrollPanel width="152px" height="207px" />
+			</g:at>
+			<g:at left="212" top="122">
+				<g:VerticalPanel ui:field="drop_cards_panel" width="119px"
+					height="207px">
+					<g:Label text=" " />
+				</g:VerticalPanel>
 			</g:at>
 		</g:AbsolutePanel>
-		
-			
+
+
 	</g:HTMLPanel>
 </ui:UiBinder>
