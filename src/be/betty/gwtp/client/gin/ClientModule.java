@@ -5,12 +5,12 @@ import be.betty.gwtp.client.place.DefaultPlace;
 import be.betty.gwtp.client.place.NameTokens;
 import be.betty.gwtp.client.presenters.LoginPresenter;
 import be.betty.gwtp.client.presenters.MainPresenter;
-import be.betty.gwtp.client.views.CardView;
 import be.betty.gwtp.client.views.HeaderView;
 import be.betty.gwtp.client.views.LoginView;
 import be.betty.gwtp.client.views.MainView;
 import be.betty.gwtp.client.views.NewProjectView;
 import be.betty.gwtp.client.views.ProjectsView;
+import be.betty.gwtp.client.views.SingleCardView;
 import be.betty.gwtp.client.views.SingleProjectView;
 import be.betty.gwtp.client.views.SubscribeView;
 
@@ -21,7 +21,7 @@ import be.betty.gwtp.client.presenters.ProjectsPresenter;
 import be.betty.gwtp.client.presenters.HeaderPresenter;
 import be.betty.gwtp.client.presenters.SingleProjectPresenter;
 import be.betty.gwtp.client.presenters.NewProjectPresenter;
-import be.betty.gwtp.client.presenters.CardPresenter;
+import be.betty.gwtp.client.presenters.SingleCardPresenter;
 
 public class ClientModule extends AbstractPresenterModule {
 
@@ -53,7 +53,7 @@ public class ClientModule extends AbstractPresenterModule {
 		bindPresenterWidget(NewProjectPresenter.class,
 				NewProjectPresenter.MyView.class, NewProjectView.class);
 
-		bindPresenterWidget(CardPresenter.class, CardPresenter.MyView.class,
-				CardView.class);
+		bindPresenterWidget(SingleCardPresenter.class,
+				SingleCardPresenter.MyView.class, SingleCardView.class);
 	}
 }

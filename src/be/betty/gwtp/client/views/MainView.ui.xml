@@ -19,12 +19,12 @@
 				<g:Label width="155px" height="148px" ui:field="content" />
 			</g:at>
 			<g:at left="29" top="122">
-				<g:ScrollPanel width="155px" height="207px">
+				<g:ScrollPanel width="202px" height="321px">
 					<g:VerticalPanel width="100%" height="100%"
 						spacing="10" ui:field="cards_panel" />
 				</g:ScrollPanel>
 			</g:at>
-			<g:at left="41" top="58">
+			<g:at left="61" top="69">
 				<g:VerticalPanel ui:field="drop_cards_panel" width="119px"
 					height="36px">
 					<g:Label text=" " />

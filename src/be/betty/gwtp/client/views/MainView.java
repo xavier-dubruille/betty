@@ -115,6 +115,8 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	public SimplePanel getCase13() {
 		return case13;
 	}
+
+
 	
 	
 }

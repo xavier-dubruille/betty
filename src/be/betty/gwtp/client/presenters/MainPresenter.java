@@ -2,28 +2,18 @@ package be.betty.gwtp.client.presenters;
 
 import java.util.ArrayList;
 
-import be.betty.gwtp.client.Betty_gwtp;
 import be.betty.gwtp.client.CardHandler;
 import be.betty.gwtp.client.CellDropControler;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.action.GetCards;
 import be.betty.gwtp.client.action.GetCardsResult;
-import be.betty.gwtp.client.model.Project;
 import be.betty.gwtp.client.place.NameTokens;
 
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
-import com.allen_sauer.gwt.dnd.client.drop.AbsolutePositionDropController;
-import com.allen_sauer.gwt.dnd.client.drop.HorizontalPanelDropController;
-import com.allen_sauer.gwt.dnd.client.drop.IndexedDropController;
-import com.allen_sauer.gwt.dnd.client.drop.SimpleDropController;
-import com.allen_sauer.gwt.dnd.client.drop.VerticalPanelDropController;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.storage.client.Storage;
-import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbsolutePanel;
-import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -41,7 +31,6 @@ import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.PlaceRequest;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.client.proxy.RevealContentEvent;
-import com.gwtplatform.mvp.client.proxy.RevealRootContentEvent;
 
 public class MainPresenter extends
 		Presenter<MainPresenter.MyView, MainPresenter.MyProxy> {
@@ -58,7 +47,7 @@ public class MainPresenter extends
 		void setContent(Label content);
 
 		VerticalPanel getCards_panel();
-		
+
 		public VerticalPanel getDrop_cards_panel();
 
 		SimplePanel getCase11();
@@ -66,12 +55,14 @@ public class MainPresenter extends
 		SimplePanel getCase12();
 
 		SimplePanel getCase13();
+
 	}
 
 	public static final Object SLOT_Card = new Object();
-	private IndirectProvider<CardPresenter> cardFactory;
-	@Inject DispatchAsync dispatcher;
-	protected ArrayList<CardPresenter> allCards = new ArrayList<CardPresenter>();
+	private IndirectProvider<SingleCardPresenter> cardFactory;
+	@Inject
+	DispatchAsync dispatcher;
+	//protected ArrayList<SingleCardPresenter> allCards = new ArrayList<SingleCardPresenter>();
 
 	@ProxyCodeSplit
 	@NameToken(NameTokens.main)
@@ -82,9 +73,9 @@ public class MainPresenter extends
 
 	@Inject
 	public MainPresenter(final EventBus eventBus, final MyView view,
-			final MyProxy proxy, final Provider<CardPresenter> provider) {
+			final MyProxy proxy, final Provider<SingleCardPresenter> provider) {
 		super(eventBus, view, proxy);
-		cardFactory = new StandardProvider<CardPresenter>(provider);
+		cardFactory = new StandardProvider<SingleCardPresenter>(provider);
 		stockStore = Storage.getLocalStorageIfSupported();
 	}
 
@@ -111,43 +102,44 @@ public class MainPresenter extends
 	}
 
 	private void set_dnd() {
-		
+
 		// create a DragController to manage drag-n-drop actions
 		// note: This creates an implicit DropController for the boundary panel
-		cardDragController = new PickupDragController(
-				RootPanel.get(), false);
+		cardDragController = new PickupDragController(RootPanel.get(), false);
 		cardDragController.addDragHandler(new CardHandler());
-		CellDropControler dropControler = new CellDropControler(getView().getCase11());
-		CellDropControler dropControler2 = new CellDropControler(getView().getCase12());
-		CellDropControler dropControler3 = new CellDropControler(getView().getCase13());
+		CellDropControler dropControler = new CellDropControler(getView()
+				.getCase11());
+		CellDropControler dropControler2 = new CellDropControler(getView()
+				.getCase12());
+		CellDropControler dropControler3 = new CellDropControler(getView()
+				.getCase13());
 		cardDragController.registerDropController(dropControler);
 		cardDragController.registerDropController(dropControler2);
 		cardDragController.registerDropController(dropControler3);
 
+		// TODO vérifier si il y a des lag en utilisant l'application sur le
+		// serveur
+		// mettre en commentaire ces deux lignes
 		
-		//TODO vérifier si il y a des lag en utilisant l'application sur le serveur
-		//mettre en commentaire ces deux lignes
-		//VerticalPanelDropController dropController = new VerticalPanelDropController(getView().getDrop_cards_panel());
-		//cardDragController.registerDropController(dropController);
+		// VerticalPanelDropController dropController = new
+		// VerticalPanelDropController(getView().getDrop_cards_panel());
+		// cardDragController.registerDropController(dropController);
 
-		
-		
 		// dragController.makeDraggable(getView().getDndImage());
 
-		//AbsolutePositionDropController sp = new AbsolutePositionDropController(
-			//	getView().getDropPanel());
+		// AbsolutePositionDropController sp = new
+		// AbsolutePositionDropController(
+		// getView().getDropPanel());
 		// IndexedDropController dropController = new
 		// IndexedDropController(getView().getDropPanel());
 
-//		dragController.registerDropController(sp);
-	//	dragController.makeDraggable(getView().getMainLabel());
-		//dragController.makeDraggable(getView().getHtml_panel());
-		//for (CardPresenter c : allCards)
-			//dragController.makeDraggable(c.getView().getWholePanel());
-		
+		// dragController.registerDropController(sp);
+		// dragController.makeDraggable(getView().getMainLabel());
+		// dragController.makeDraggable(getView().getHtml_panel());
+		// for (CardPresenter c : allCards)
+		// dragController.makeDraggable(c.getView().getWholePanel());
 
 	}
-
 
 	@Override
 	protected void onReset() {
@@ -197,7 +189,7 @@ public class MainPresenter extends
 	private void print_da_page() {
 		System.out.println("**** Hell yeah, print da page");
 		writeCardWidgets();
-		
+
 	}
 
 	private void writeCardWidgets() {
@@ -205,22 +197,16 @@ public class MainPresenter extends
 		setInSlot(SLOT_Card, null);
 		for (int i = 0; i < Storage_access.getNumberOfCard(); i++) {
 			final int myI = i;
-			cardFactory.get(new AsyncCallback<CardPresenter>() {
+			cardFactory.get(new AsyncCallback<SingleCardPresenter>() {
 
 				@Override
-				public void onSuccess(CardPresenter result) {
-					//addToSlot(SLOT_Card, result);
-				    //result.init(myI);
-				    //cardDragController.makeDraggable(result.getView().asWidget());
-				    //allCards.add(result);
-					
-					HTML widget = new HTML(Storage_access.getCard(myI));
-					widget.addStyleName("card");
-					getView().getCards_panel().add(widget);
-					cardDragController.makeDraggable(widget);
-					
+				public void onSuccess(SingleCardPresenter result) {
+					addToSlot(SLOT_Card, result);
+					result.init(myI);
+					cardDragController.makeDraggable(result.getWidget(), result
+							.getView().getHeader());
+					// allCards.add(result);
 
-					
 				}
 
 				@Override
