@@ -7,7 +7,7 @@
 
 	<g:HTMLPanel>
 		<g:AbsolutePanel height="525px" ui:field="dndpanel"
-			width="620px">
+			width="665px">
 			<g:at left="187" top="69">
 				<g:Label ui:field="mainLabel" width="126px" height="24px" />
 			</g:at>
@@ -30,131 +30,10 @@
 					<g:Label text=" " />
 				</g:VerticalPanel>
 			</g:at>
-			<g:at left="237" top="122">
-				<g:Grid width="350px" height="254px">
-					<g:row>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case11" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case12" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case13" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case14" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case15" styleName="panelCell"/>
-						</g:customCell>
-					</g:row>
-					<g:row>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case21" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case22" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case23" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case24" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case25" styleName="panelCell"/>
-						</g:customCell>
-					</g:row>
-						<g:row>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case31" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case32" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case33" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case34" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case35" styleName="panelCell"/>
-						</g:customCell>
-					</g:row>
-						<g:row>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case41" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case42" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case43" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case44" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case45" styleName="panelCell"/>
-						</g:customCell>
-					</g:row>
-						<g:row>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case51" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case52" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case53" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case54" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case55" styleName="panelCell"/>
-						</g:customCell>
-					</g:row>
-						<g:row>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case61" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case62" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case63" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case64" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case65" styleName="panelCell"/>
-						</g:customCell>
-					</g:row>
-						<g:row>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case71" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case72" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case73" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case74" styleName="panelCell"/>
-						</g:customCell>
-						<g:customCell>
-							<g:SimplePanel width="100%" height="100%" ui:field="case75" styleName="panelCell"/>
-						</g:customCell>
-					</g:row>
-					
-					
-				</g:Grid>
+			<g:at left="303" top="122">
+				<g:FlexTable width="352px" height="247px" borderWidth="3" ui:field="flexTable" cellPadding="2" cellSpacing="2"/>
 			</g:at>
+			
 		</g:AbsolutePanel>
 
 

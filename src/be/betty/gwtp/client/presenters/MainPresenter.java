@@ -50,11 +50,8 @@ public class MainPresenter extends
 
 		public VerticalPanel getDrop_cards_panel();
 
-		SimplePanel getCase11();
+		void constructFlex(PickupDragController cardDragController);
 
-		SimplePanel getCase12();
-
-		SimplePanel getCase13();
 
 	}
 
@@ -99,6 +96,7 @@ public class MainPresenter extends
 	protected void onBind() {
 		super.onBind();
 		set_dnd();
+		getView().constructFlex(cardDragController);
 	}
 
 	private void set_dnd() {
@@ -107,15 +105,6 @@ public class MainPresenter extends
 		// note: This creates an implicit DropController for the boundary panel
 		cardDragController = new PickupDragController(RootPanel.get(), false);
 		cardDragController.addDragHandler(new CardHandler());
-		CellDropControler dropControler = new CellDropControler(getView()
-				.getCase11());
-		CellDropControler dropControler2 = new CellDropControler(getView()
-				.getCase12());
-		CellDropControler dropControler3 = new CellDropControler(getView()
-				.getCase13());
-		cardDragController.registerDropController(dropControler);
-		cardDragController.registerDropController(dropControler2);
-		cardDragController.registerDropController(dropControler3);
 
 		// TODO vérifier si il y a des lag en utilisant l'application sur le
 		// serveur

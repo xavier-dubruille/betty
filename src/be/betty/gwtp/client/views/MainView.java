@@ -1,8 +1,10 @@
 package be.betty.gwtp.client.views;
 
+import be.betty.gwtp.client.CellDropControler;
 import be.betty.gwtp.client.presenters.MainPresenter;
 import be.betty.gwtp.client.presenters.ProjectsPresenter;
 
+import com.allen_sauer.gwt.dnd.client.PickupDragController;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.AbsolutePanel;
@@ -14,6 +16,7 @@ import com.gwtplatform.mvp.client.ViewImpl;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.FlexTable;
 
 public class MainView extends ViewImpl implements MainPresenter.MyView {
 
@@ -25,9 +28,7 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	@UiField Label content;
 	@UiField VerticalPanel cards_panel;
 	@UiField VerticalPanel drop_cards_panel;
-	@UiField SimplePanel case11;
-	@UiField SimplePanel case12;
-	@UiField SimplePanel case13;
+	@UiField FlexTable flexTable;
 	public interface Binder extends UiBinder<Widget, MainView> {}
 
 	@Inject
@@ -101,19 +102,26 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 		this.drop_cards_panel = drop_cards_panel;
 	}
 
-	@Override
-	public SimplePanel getCase11() {
-		return case11;
-	}
 
 	@Override
-	public SimplePanel getCase12() {
-		return case12;
-	}
+	public void constructFlex(PickupDragController cardDragController) {
+		   int COLUMNS = 5;
+		   int ROWS = 7;
+		for (int i = 0; i < COLUMNS; i++) {
+			     
+				for (int j = 0; j < ROWS; j++) {
+			        // create a simple panel drop target for the current cell
+			        SimplePanel simplePanel = new SimplePanel();
+			        simplePanel.setPixelSize(30, 50);
+			        flexTable.setWidget(i, j, simplePanel);
+			       // flexTable.getCellFormatter().setStyleName(i, j, CSS_DEMO_PUZZLE_CELL);
 
-	@Override
-	public SimplePanel getCase13() {
-		return case13;
+
+			        // instantiate a drop controller of the panel in the current cell
+			        CellDropControler dropController = new CellDropControler(simplePanel);
+			        cardDragController.registerDropController(dropController);
+			      }
+			    }
 	}
 
 
