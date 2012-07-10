@@ -17,3 +17,13 @@ body {
 .panelCell {
 	border: medium solid;
 }
+.small_title {
+	font-size: medium;
+	font-style: normal;
+	font-family: MS PMincho;
+}
+.panel_filter_options {
+	background-color: cornflowerblue;
+}
+. {
+}

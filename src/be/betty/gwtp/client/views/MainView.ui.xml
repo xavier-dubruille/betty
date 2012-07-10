@@ -8,30 +8,27 @@
 	<g:HTMLPanel>
 		<g:AbsolutePanel height="525px" ui:field="dndpanel"
 			width="977px">
-			<g:at left="187" top="69">
+			<g:at left="578" top="42">
 				<g:Label ui:field="mainLabel" width="126px" height="24px" />
 			</g:at>
-			<g:at left="422" top="-7">
+			<g:at left="346" top="-7">
 				<g:Image width="100px" height="100px" url="logo-185x175.png"
 					ui:field="dndImage" />
 			</g:at>
-			<g:at left="248" top="29">
-				<g:Label width="155px" height="148px" ui:field="content" />
+			<g:at left="478" top="10">
+				<g:Label width="177px" height="100px" ui:field="content" />
 			</g:at>
-			<g:at left="29" top="122">
-				<g:ScrollPanel width="202px" height="321px">
+			<g:at left="40" top="225">
+				<g:ScrollPanel width="202px" height="300px">
 					<g:VerticalPanel width="100%" height="100%"
 						spacing="10" ui:field="cards_panel" />
 				</g:ScrollPanel>
 			</g:at>
-			<g:at left="61" top="69">
-				<g:VerticalPanel ui:field="drop_cards_panel" width="119px"
-					height="36px">
-					<g:Label text=" " />
-				</g:VerticalPanel>
-			</g:at>
 			<g:at left="303" top="122">
 				<g:FlexTable width="352px" height="247px" borderWidth="3" ui:field="flexTable" cellPadding="2" cellSpacing="2"/>
+			</g:at>
+			<g:at left="40" top="47">
+				<g:SimplePanel width="248px" height="93px" ui:field="CardSelectionOption"/>
 			</g:at>
 			
 		</g:AbsolutePanel>

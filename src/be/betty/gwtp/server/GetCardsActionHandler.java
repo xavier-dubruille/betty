@@ -7,6 +7,7 @@ import be.betty.gwtp.client.action.GetCards;
 import be.betty.gwtp.client.action.GetCardsResult;
 import be.betty.gwtp.server.bdd.Activity;
 import be.betty.gwtp.server.bdd.Project_entity;
+import be.betty.gwtp.server.bdd.Teacher;
 
 import com.google.inject.Inject;
 import com.gwtplatform.dispatch.server.ExecutionContext;
@@ -41,6 +42,11 @@ ActionHandler<GetCards, GetCardsResult> {
 			result.addCard("T:" + a.getTeacher().getName() + " C:"
 					+ a.getCourse().getName() + " G:" + a.getGroup().getCode());
 		}
+		
+		for (Teacher te : p.getTeachers()) {
+			result.addTeacher(te.getFirstName()+" "+te.getName());
+		}
+			
 
 		t.commit();
 		s.close();

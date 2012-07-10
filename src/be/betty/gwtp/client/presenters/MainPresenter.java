@@ -4,6 +4,9 @@ import be.betty.gwtp.client.CardHandler;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.action.GetCards;
 import be.betty.gwtp.client.action.GetCardsResult;
+import be.betty.gwtp.client.event.CardFilterEvent;
+import be.betty.gwtp.client.event.CardFilterEvent.CardFilterHandler;
+import be.betty.gwtp.client.event.ProjectListModifyEvent;
 import be.betty.gwtp.client.place.NameTokens;
 
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
@@ -17,6 +20,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
+import com.google.inject.Singleton;
 import com.gwtplatform.common.client.IndirectProvider;
 import com.gwtplatform.common.client.StandardProvider;
 import com.gwtplatform.dispatch.shared.DispatchAsync;
@@ -27,6 +31,7 @@ import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.proxy.PlaceRequest;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.client.proxy.RevealContentEvent;
+
 
 public class MainPresenter extends
 		Presenter<MainPresenter.MyView, MainPresenter.MyProxy> {
@@ -44,13 +49,13 @@ public class MainPresenter extends
 
 		VerticalPanel getCards_panel();
 
-		public VerticalPanel getDrop_cards_panel();
-
 		void constructFlex(PickupDragController cardDragController);
 
 	}
 
 	public static final Object SLOT_Card = new Object();
+	public static final Object SLOT_OPTION_SELECION = new Object();
+	@Inject CardSelectionOptionPresenter cardSelectionOptionPresenter;
 	private IndirectProvider<SingleCardPresenter> cardFactory;
 	@Inject
 	DispatchAsync dispatcher;
@@ -81,6 +86,15 @@ public class MainPresenter extends
 
 	private String project_num;
 	private PickupDragController cardDragController;
+	private CardFilterHandler filterHandler = new CardFilterHandler() {
+		
+		@Override
+		public void onCardFilter(CardFilterEvent event) {
+			System.out.println("Teacher from bus_event : "+Storage_access.getTeacher(event.getTeacher_id()));
+			//writeCardWidgets(event.getTeacher_id());
+			
+		}
+	};
 
 	@Override
 	public void prepareFromRequest(PlaceRequest request) {
@@ -93,6 +107,8 @@ public class MainPresenter extends
 	protected void onBind() {
 		super.onBind();
 		set_dnd();
+		registerHandler(getEventBus().addHandler(
+				CardFilterEvent.getType(), filterHandler));
 
 	}
 
@@ -160,6 +176,7 @@ public class MainPresenter extends
 			public void onSuccess(GetCardsResult result) {
 
 				Storage_access.setCards(project_num, result.getCards());
+				Storage_access.setTeachers(project_num, result.getTeachers());
 				print_da_page();
 				// getView().getContent().setText(result.getActivities().toString());
 
@@ -170,10 +187,18 @@ public class MainPresenter extends
 	}
 
 	/**
+	 * PRE:  local storage Must (already) be filled with the right info
+	 * POST: The page is drawed on screen
+	 *  
 	 * Print the cards, the board, with the information in the local storage
 	 */
 	private void print_da_page() {
 		System.out.println("**** Hell yeah, print da page");
+		// des Assert ici pour verifier qq truc sur le local storage serait p-e bien..
+		
+		setInSlot(SLOT_OPTION_SELECION, cardSelectionOptionPresenter);
+		cardSelectionOptionPresenter.init();
+		
 		writeCardWidgets();
 		getView().constructFlex(cardDragController);
 

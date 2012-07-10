@@ -11,9 +11,11 @@ public class Storage_access {
 	public static Storage stockStore;
 
 	// Constants
-	private static final String PROJECT_ON = "PO";
+	private static final String PROJECT_ON = "O";
 	private static final String NUMBER_OF_CARD = "n";
 	private static final String CARD_PREFIX = "C";
+	private static final String TEACHER_PREFIX = "T";
+	private static final String NUMBER_OF_TEACHER = "t";
 
 	static {
 		stockStore = Storage.getLocalStorageIfSupported();
@@ -51,4 +53,31 @@ public class Storage_access {
 	public static int getNumberOfCard() {
 		return Integer.parseInt(stockStore.getItem(NUMBER_OF_CARD));
 	}
+	
+	public static void setTeachers(String projectID, ArrayList<String> t) {
+		setTeachers(projectID, t, false);
+	}
+
+	public static void setTeachers(String projectID, ArrayList<String> t,
+			boolean force) {
+		// TODO Check le contenu du local storage ?
+		if (!force && projectID.equals(stockStore.getItem(PROJECT_ON)))
+			return; // no need to update, not here
+
+		int i = 0;
+		for (String s : t) {
+			stockStore.setItem(TEACHER_PREFIX  + i, s);
+			i++;
+		}
+		stockStore.setItem(NUMBER_OF_TEACHER, "" + i);
+	}
+	
+	public static String getTeacher(int i) {
+		return stockStore.getItem(TEACHER_PREFIX+i);
+	}
+	
+	public static int getNumberOfTeacher() {
+		return Integer.parseInt(stockStore.getItem(NUMBER_OF_TEACHER));
+	}
+	
 }

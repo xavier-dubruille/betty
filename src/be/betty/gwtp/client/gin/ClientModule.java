@@ -16,12 +16,15 @@ import be.betty.gwtp.client.views.SubscribeView;
 
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import com.gwtplatform.mvp.client.gin.DefaultModule;
+
+import be.betty.gwtp.client.presenters.CardSelectionOptionPresenter;
 import be.betty.gwtp.client.presenters.SubscribePresenter;
 import be.betty.gwtp.client.presenters.ProjectsPresenter;
 import be.betty.gwtp.client.presenters.HeaderPresenter;
 import be.betty.gwtp.client.presenters.SingleProjectPresenter;
 import be.betty.gwtp.client.presenters.NewProjectPresenter;
 import be.betty.gwtp.client.presenters.SingleCardPresenter;
+import be.betty.gwtp.client.views.CardSelectionOptionView;
 
 public class ClientModule extends AbstractPresenterModule {
 
@@ -55,5 +58,9 @@ public class ClientModule extends AbstractPresenterModule {
 
 		bindPresenterWidget(SingleCardPresenter.class,
 				SingleCardPresenter.MyView.class, SingleCardView.class);
+
+		bindPresenterWidget(CardSelectionOptionPresenter.class,
+				CardSelectionOptionPresenter.MyView.class,
+				CardSelectionOptionView.class);
 	}
 }

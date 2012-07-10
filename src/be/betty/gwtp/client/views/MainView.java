@@ -20,20 +20,13 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 
 	private final Widget widget;
 
-	@UiField
-	Label mainLabel;
-	@UiField
-	AbsolutePanel dndpanel;
-	@UiField
-	Image dndImage;
-	@UiField
-	Label content;
-	@UiField
-	VerticalPanel cards_panel;
-	@UiField
-	VerticalPanel drop_cards_panel;
-	@UiField
-	FlexTable flexTable;
+	@UiField Label mainLabel;
+	@UiField AbsolutePanel dndpanel;
+	@UiField Image dndImage;
+	@UiField Label content;
+	@UiField VerticalPanel cards_panel;
+	@UiField FlexTable flexTable;
+	@UiField SimplePanel CardSelectionOption;
 
 	public interface Binder extends UiBinder<Widget, MainView> {
 	}
@@ -49,10 +42,17 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 			cards_panel.clear();
 			if (content != null)
 				cards_panel.add(content);
-		} else {
-			super.setInSlot(slot, content);
+		} 
+		else if (slot == MainPresenter.SLOT_OPTION_SELECION) {
+			 CardSelectionOption.clear();
+			 if (content != null)
+				 CardSelectionOption.add(content);
 		}
+		else {
+		}
+		super.setInSlot(slot, content);
 	}
+
 
 	@Override
 	public void addToSlot(Object slot, Widget content) {
@@ -98,14 +98,6 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 
 	public void setCards_panel(VerticalPanel cards_panel) {
 		this.cards_panel = cards_panel;
-	}
-
-	public VerticalPanel getDrop_cards_panel() {
-		return drop_cards_panel;
-	}
-
-	public void setDrop_cards_panel(VerticalPanel drop_cards_panel) {
-		this.drop_cards_panel = drop_cards_panel;
 	}
 
 	@Override
