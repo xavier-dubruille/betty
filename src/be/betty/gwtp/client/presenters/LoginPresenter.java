@@ -9,7 +9,10 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DockPanel;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.inject.Inject;
@@ -36,6 +39,12 @@ public class LoginPresenter extends
 		public TextBox getPwd_textbox();
 
 		public Label getWrongPwd_label();
+		
+		public HTMLPanel getHtml_panel();
+		
+		public AbsolutePanel getAbsolute_panel();
+		
+		public DockPanel getDock_panel();
 	}
 
 	@ProxyCodeSplit
@@ -68,10 +77,17 @@ public class LoginPresenter extends
 		super.onBind();
 	}
 
+	String width= "720px";
+	String height = "300px";
+	
 	@Override
 	protected void onReset() {
 		super.onReset();
-
+		
+		
+		//getView().getDock_panel().setWidth(width);
+		//getView().getDock_panel().setHeight(height);
+		
 		if (stockStore != null && stockStore.getItem("session_id") != null)
 			placeManager.revealPlace(new PlaceRequest(NameTokens.projects));
 

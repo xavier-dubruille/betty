@@ -6,20 +6,31 @@
 	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
 	ui:generateLocales='default'>
 
-	<g:HTMLPanel>
-		<g:AbsolutePanel height="47px">
-			<g:at left="251" top="10">
+	<g:HTMLPanel styleName="HtmlPanel">
+		<g:AbsolutePanel height="47px" styleName="Header">
+			<g:at left="345" top="10">
 				<g:Button ui:field="deco" text="Deconnection"/>
 			</g:at>
 			<g:at left="57" top="10">
-				<g:HTMLPanel width="164px" height="26px">
-					<h1> Betty Header</h1>
+				<g:HTMLPanel width="230px" height="26px">
+					<h1> Welcome to Betty</h1>
 				</g:HTMLPanel>
 			</g:at>
 		</g:AbsolutePanel>
 		<hr/>
+		<g:MenuBar>
+				<g:MenuItem text="File">
+					<g:MenuBar vertical="true"/>
+				</g:MenuItem>
+				<g:MenuItemSeparator/>
+				<g:MenuItem text="Help">
+					<g:MenuBar vertical="true">
+						<g:MenuItem text="About us"/>
+					</g:MenuBar>
+				</g:MenuItem>
+			</g:MenuBar>
 	
-		<g:HTMLPanel ui:field="contentPanel" />
+		<g:HTMLPanel ui:field="contentPanel" height="50px" />
 	</g:HTMLPanel>
 	
 	

@@ -7,8 +7,13 @@
 
 
 
-	<g:HTMLPanel>
-		<g:AbsolutePanel height="233px">
+	<g:HTMLPanel ui:field="Html_panel" height="" width="" styleName="Header">
+		
+		<g:DockPanel ui:field="Dock_panel" width="1360px" height="400px" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE" styleName="Header">
+			
+			<g:Dock direction="CENTER" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE">
+				
+				<g:AbsolutePanel ui:field="Absolute_panel" height="250px" styleName="Header" width="450px">
 			<g:at left="232" top="166">
 				<g:Button text="Enter" ui:field="login_send" />
 			</g:at>
@@ -21,7 +26,7 @@
 			<g:at left="195" top="93">
 				<g:PasswordTextBox ui:field="pwd_textbox" />
 			</g:at>
-			<g:at left="129" top="100">
+			<g:at left="131" top="104">
 				<g:Label text="Password" />
 			</g:at>
 			<g:at left="262" top="135">
@@ -29,11 +34,13 @@
 			</g:at>
 			<g:at left="195" top="120">
 
-				<g:Label styleName="wrong_pwd" ui:field="wrong_pwd" />
+				<g:Label styleName="wrong_pwd" ui:field="wrong_pwd" width="720" />
 			</g:at>
 			<g:at left="10" top="210">
 				<g:Hyperlink text="Check Dnd sample" targetHistoryToken="main"/>
 			</g:at>
 		</g:AbsolutePanel>
+			</g:Dock>
+		</g:DockPanel>
 	</g:HTMLPanel>
 </ui:UiBinder>

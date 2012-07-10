@@ -4,7 +4,10 @@ import be.betty.gwtp.client.presenters.LoginPresenter;
 
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DockPanel;
+import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -20,6 +23,9 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 	@UiField TextBox login_textbox;
 	@UiField TextBox pwd_textbox;
 	@UiField Button login_send;
+	@UiField HTMLPanel Html_panel;
+	@UiField AbsolutePanel Absolute_panel;
+	@UiField DockPanel Dock_panel;
 	
 	public interface Binder extends UiBinder<Widget, LoginView> {
 	}
@@ -55,6 +61,21 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 		return wrong_pwd;
 		
 	}
+
+	public HTMLPanel getHtml_panel() {
+		return Html_panel;
+	}
+
+	public AbsolutePanel getAbsolute_panel() {
+		return Absolute_panel;
+	}
+
+	public DockPanel getDock_panel() {
+		return Dock_panel;
+	}
+	
+	
+	
 	
 	
 }

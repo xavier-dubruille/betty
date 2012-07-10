@@ -27,3 +27,15 @@ body {
 }
 . {
 }
+.Header {
+	background: #258;
+	color: #FF4901;
+	//text-align: center;
+	font-weight: bold;
+}
+.ConnexionButton {
+	text-align: center;
+}
+.HtmlPanel {
+text-align: center;
+}
