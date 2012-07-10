@@ -7,7 +7,6 @@ import java.io.IOException;
  * This Exception is use when a empty Path name have been send
  * 
  * @author Dubruille Xavier
- * @author Delange Jonas
  * 
  */
 public class NoFileException extends IOException {

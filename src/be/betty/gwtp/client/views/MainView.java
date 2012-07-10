@@ -2,21 +2,19 @@ package be.betty.gwtp.client.views;
 
 import be.betty.gwtp.client.CellDropControler;
 import be.betty.gwtp.client.presenters.MainPresenter;
-import be.betty.gwtp.client.presenters.ProjectsPresenter;
 
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
-import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.FlexTable;
 
 public class MainView extends ViewImpl implements MainPresenter.MyView {
 
@@ -128,7 +126,7 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 				// cell
 				CellDropControler dropController = new CellDropControler(
 						simplePanel);
-				//cardDragController.registerDropController(dropController);
+				// cardDragController.registerDropController(dropController);
 			}
 		}
 	}

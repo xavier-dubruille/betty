@@ -9,26 +9,29 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Activity {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Integer id;
-	
+
 	@ManyToOne
 	private Project_entity project;
-	
+
 	@ManyToOne
 	private Teacher teacher;
-	
+
 	@ManyToOne
 	private Course course;
-	
+
 	@ManyToOne
 	private Group_entity group;
 
-	public Activity() {}
-	public Activity(Teacher t, Group_entity g, Course c, Project_entity current_project) {
+	public Activity() {
+	}
+
+	public Activity(Teacher t, Group_entity g, Course c,
+			Project_entity current_project) {
 		this.teacher = t;
 		this.group = g;
 		this.course = c;
@@ -74,6 +77,5 @@ public class Activity {
 	public void setGroup(Group_entity group) {
 		this.group = group;
 	}
-	
 
 }

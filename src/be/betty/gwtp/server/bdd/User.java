@@ -13,19 +13,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="site_user")
+@Table(name = "site_user")
 public class User {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Integer id;
 	private String name;
 	private String pwd;
-	
+
 	@ManyToMany
 	private Collection<Project_entity> projects = new ArrayList<Project_entity>();
-	
+
 	@OneToMany
 	private Collection<Session_id> sess_id = new ArrayList<Session_id>();
 
@@ -60,10 +60,10 @@ public class User {
 	public void setProjects(Collection<Project_entity> projects) {
 		this.projects = projects;
 	}
-	
+
 	@Override
-	public String toString(){
-		return "name = "+this.name;
+	public String toString() {
+		return "name = " + this.name;
 	}
 
 	public Collection<Session_id> getSess_id() {
@@ -73,7 +73,5 @@ public class User {
 	public void setSess_id(Collection<Session_id> sess_id) {
 		this.sess_id = sess_id;
 	}
-	
-	
 
 }

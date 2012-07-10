@@ -12,14 +12,14 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class UserDetail {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Integer id;
 	private String name;
 	private String pwd;
-	
+
 	@ManyToMany
 	private Collection<Project_entity> projects = new ArrayList<Project_entity>();
 
@@ -54,8 +54,5 @@ public class UserDetail {
 	public void setProjects(Collection<Project_entity> projects) {
 		this.projects = projects;
 	}
-	
-	
-	
 
 }

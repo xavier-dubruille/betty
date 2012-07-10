@@ -1,7 +1,6 @@
 package be.betty.gwtp.client.action;
 
 import com.gwtplatform.dispatch.shared.ActionImpl;
-import be.betty.gwtp.client.action.DeleteProjectActionResult;
 
 public class DeleteProjectAction extends ActionImpl<DeleteProjectActionResult> {
 
@@ -17,7 +16,7 @@ public class DeleteProjectAction extends ActionImpl<DeleteProjectActionResult> {
 		this.project_id = project_id;
 		this.session_id = sess;
 	}
-	
+
 	@Override
 	public boolean isSecured() {
 		return false;

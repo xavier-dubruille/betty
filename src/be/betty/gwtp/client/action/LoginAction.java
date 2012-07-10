@@ -1,8 +1,6 @@
 package be.betty.gwtp.client.action;
 
 import com.gwtplatform.dispatch.shared.ActionImpl;
-import be.betty.gwtp.client.action.LoginActionResult;
-import java.lang.String;
 
 public class LoginAction extends ActionImpl<LoginActionResult> {
 

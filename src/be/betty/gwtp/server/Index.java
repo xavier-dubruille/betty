@@ -3,6 +3,7 @@ package be.betty.gwtp.server;
 import java.util.HashMap;
 import java.util.Map;
 
+// TODO: met-t-on des assert ˆ toutes les methodes ?
 public class Index {
 
 	public final static String group = "group";
@@ -17,10 +18,10 @@ public class Index {
 	public final static String mod = "mod";
 	public final static String section_name = "section_name";
 
-	private Map<String, Integer> indexLine ;
+	private Map<String, Integer> indexLine;
 	private String[] singleLine;
 
-	public Index(){
+	public Index() {
 		indexLine = new HashMap<String, Integer>();
 	}
 
@@ -33,11 +34,15 @@ public class Index {
 	}
 
 	public String getGroup() {
-		return singleLine[indexLine.get(group)];
+		String gr = singleLine[indexLine.get(group)];
+		assert gr != null;
+		return gr;
 	}
 
 	public String getSection() {
-		return generic_get(section);
+		String sec = generic_get(section);
+		assert sec != null;
+		return sec;
 	}
 
 	public String getYear() {
@@ -84,72 +89,64 @@ public class Index {
 		this.singleLine = singleLine;
 	}
 
-	private String generic_get(String arg){
+	private String generic_get(String arg) {
 		return singleLine[indexLine.get(arg)];
 	}
 
-
 	/**
 	 * Construct the index place
+	 * 
 	 * @param line
-	 * @param choice_sem 
+	 * @param choice_sem
 	 */
-	public void putRightIndex(String[] line, int choice_sem){
+	public void putRightIndex(String[] line, int choice_sem) {
 
+		String sem = ("ORCO_NombrePeriodeSemaineSemestre" + choice_sem);
+		// System.out.println("choice sem: "+choice_sem+" "+sem);
 
-		String sem = ("ORCO_NombrePeriodeSemaineSemestre" + choice_sem); 
-		//System.out.println("choice sem: "+choice_sem+" "+sem);
+		for (int i = 0; i < line.length; i++) {
 
-		for (int i=0; i<line.length; i++){
-
-			if(line[i].equalsIgnoreCase("annŽe"))
+			if (line[i].equalsIgnoreCase("annŽe"))
 				indexLine.put("year", i);
 
-			else if(line[i].equalsIgnoreCase("IntitulŽ cours"))
+			else if (line[i].equalsIgnoreCase("IntitulŽ cours"))
 				indexLine.put("course_name", i);
 
-			else if(line[i].equalsIgnoreCase("PrŽnom"))
+			else if (line[i].equalsIgnoreCase("PrŽnom"))
 				indexLine.put("teacher_firstName", i);
 
-			else if(line[i].equalsIgnoreCase("nom"))
+			else if (line[i].equalsIgnoreCase("nom"))
 				indexLine.put("teacher_lastName", i);
 
-			else if(line[i].equalsIgnoreCase(sem)){
+			else if (line[i].equalsIgnoreCase(sem)) {
 				indexLine.put("period", i);
-				//System.out.println("on a fixŽ l'index des periodes ˆ: "+i);
+				// System.out.println("on a fixŽ l'index des periodes ˆ: "+i);
 			}
 
-			else if(line[i].equalsIgnoreCase("CodeCours"))
+			else if (line[i].equalsIgnoreCase("CodeCours"))
 				indexLine.put("courses_id", i);
 
-			else if(line[i].equalsIgnoreCase("PERS_Id"))
+			else if (line[i].equalsIgnoreCase("PERS_Id"))
 				indexLine.put("teacher_id", i);
 
-
-			else if(line[i].equalsIgnoreCase("groupe"))
+			else if (line[i].equalsIgnoreCase("groupe"))
 				indexLine.put("group", i);
 
-
-			else if(line[i].equalsIgnoreCase("IntitulŽ Section"))
+			else if (line[i].equalsIgnoreCase("IntitulŽ Section"))
 				indexLine.put("section_name", i);
 
-			else if(line[i].equalsIgnoreCase("Section"))
+			else if (line[i].equalsIgnoreCase("Section"))
 				indexLine.put("section", i);
 
-			else if(line[i].equalsIgnoreCase("Mode"))
+			else if (line[i].equalsIgnoreCase("Mode"))
 				indexLine.put("mod", i);
 
-			else if(line[i].equalsIgnoreCase("ORCO_SalleInformatique"))
+			else if (line[i].equalsIgnoreCase("ORCO_SalleInformatique"))
 				indexLine.put("info", i);
 
-
-
 		}
-		//System.out.println("indexline :"+indexLine);
-		//System.out.println("line      :"+Arrays.toString(line));
+		// System.out.println("indexline :"+indexLine);
+		// System.out.println("line      :"+Arrays.toString(line));
 	}
 
 }
-
-
-

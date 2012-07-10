@@ -22,21 +22,22 @@ import com.gwtplatform.dispatch.shared.ActionException;
 public class LoginActionActionHandler implements
 		ActionHandler<LoginAction, LoginActionResult> {
 
-
 	@Inject
 	public LoginActionActionHandler() {
 	}
 
 	@Override
-	public LoginActionResult execute(LoginAction action, ExecutionContext context)
-			throws ActionException {
-		//System.out.println("DEBUG: execute server call");  //DEBUG: 
-		
+	public LoginActionResult execute(LoginAction action,
+			ExecutionContext context) throws ActionException {
+		// System.out.println("DEBUG: execute server call"); //DEBUG:
+
 		String session_id = checkLogin(action.getLogin(), action.getPwd());
 		return new LoginActionResult(session_id);
 	}
 
 	private String checkLogin(String login, String pwd) {
+		assert login.length() > 0 && pwd.length() > 0;
+
 		System.out.println("Check login method");
 		String sess_uuid = null;
 
@@ -46,24 +47,24 @@ public class LoginActionActionHandler implements
 		List q = s.createQuery("from User where name = :name and pwd= :pwd")
 				.setString("name", login).setString("pwd", pwd).list();
 		System.out.println("just aprs query");
-		
-		
-		if ( q.size() == 0)
+
+		if (q.size() == 0)
 			return null;
-		
+
 		User user = (User) q.get(0);
 
 		sess_uuid = UUID.randomUUID().toString();
-		
+
 		Session_id sess = new Session_id();
 		sess.setSess_id(sess_uuid);
 		sess.setUser_id(user);
 		s.save(sess);
-		
+
 		t.commit();
 		s.close();
-		//TODO: on supprime les sessions id plus valide ? ou tous --> mais pas de double loggin alors..
-		
+		// TODO: on supprime les sessions id plus valide ? ou tous --> mais pas
+		// de double loggin alors..
+
 		return sess_uuid;
 	}
 

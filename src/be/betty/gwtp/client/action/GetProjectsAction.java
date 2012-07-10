@@ -2,7 +2,6 @@ package be.betty.gwtp.client.action;
 
 import com.gwtplatform.dispatch.shared.ActionImpl;
 
-
 public class GetProjectsAction extends ActionImpl<GetProjectsActionResult> {
 
 	private String session_id;
@@ -16,6 +15,7 @@ public class GetProjectsAction extends ActionImpl<GetProjectsActionResult> {
 	public boolean isSecured() {
 		return false;
 	}
+
 	public GetProjectsAction(String sess) {
 		this.session_id = sess;
 	}

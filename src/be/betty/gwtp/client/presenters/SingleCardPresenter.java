@@ -31,6 +31,6 @@ public class SingleCardPresenter extends
 
 	public void init(int myI) {
 		getView().getHeader().setText(Storage_access.getCard(myI));
-		
+
 	}
 }

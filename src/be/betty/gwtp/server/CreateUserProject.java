@@ -5,11 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -18,11 +14,14 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import be.betty.gwtp.server.bdd.*;
+import be.betty.gwtp.server.bdd.Activity;
+import be.betty.gwtp.server.bdd.Course;
+import be.betty.gwtp.server.bdd.Group_entity;
+import be.betty.gwtp.server.bdd.Project_entity;
+import be.betty.gwtp.server.bdd.Teacher;
 
 public class CreateUserProject {
 
@@ -62,7 +61,7 @@ public class CreateUserProject {
 	 * @throws IOException
 	 */
 	public void createStateFromCardFile() throws NoFileException,
-			FileNotFoundException, IOException {
+	FileNotFoundException, IOException {
 
 		String filePath = this.activities_file;
 		if (filePath == null || filePath.equals(""))
@@ -88,6 +87,9 @@ public class CreateUserProject {
 	 * @throws FileNotFoundException
 	 */
 	private void readCardFromCSV(String filePath) throws FileNotFoundException {
+
+		assert filePath != null : "filePath can't be null !";
+		assert filePath.length() > 0 : "filePath can't be empty";
 
 		String[] line;
 
@@ -115,6 +117,7 @@ public class CreateUserProject {
 	 *            a line of the file
 	 */
 	private void setDelemiter(String line) {
+		assert line != null && line.length() > 0 : "You must provide a valid string delimitor";
 		if (line.split(";").length > 2)
 			this.csvDelemiter = ";";
 		else if (line.split(",").length > 2)
@@ -134,9 +137,14 @@ public class CreateUserProject {
 	 */
 	private void constructCardStateFromLine(String[] line) {
 
+		assert line != null && line.length > 0 : "You must provide a valid tab representing the line";
+
 		index.setSingleLine(line);
 
 		int periods = Integer.parseInt(index.getPeriod());
+		assert periods >= 0 && periods < 50 : "You probably have a problem with your periods value ("
+				+ periods + ")";
+
 		// System.out.println("construct card state from line "+Arrays.toString(line));
 		if (periods == 0) {
 			// System.out.println(line[indexLine.get("course_name")]+" "+line[indexLine.get("period")]);
@@ -146,19 +154,18 @@ public class CreateUserProject {
 
 		Transaction tran = sess.beginTransaction();
 
-		
-		//TODO: jpense pas que sauvegarder le (meme) projet ˆ chaque ligne soit une bonne idŽe.. loin de lˆ !
+		// TODO: jpense pas que sauvegarder le (meme) projet ˆ chaque ligne soit
+		// une bonne idŽe.. loin de lˆ !
 		sess.update(current_project);
 
 		List l = null;
 
-		//System.out.println("teacher id= "+index.getTeacherId());
-        l = sess.createQuery("from Teacher where code=? and project_id=?")
-        		.setString(0, index.getTeacherId())
-        		.setString(1, ""+current_project.getId())
-        		.list();
-        
-		//System.out.println("list = "+l);
+		// System.out.println("teacher id= "+index.getTeacherId());
+		l = sess.createQuery("from Teacher where code=? and project_id=?")
+				.setString(0, index.getTeacherId())
+				.setString(1, "" + current_project.getId()).list();
+
+		// System.out.println("list = "+l);
 		Teacher t;
 		if (l.size() == 0) {
 			t = new Teacher(index.getTeacherId(), index.getTeacherFirstname(),
@@ -173,8 +180,7 @@ public class CreateUserProject {
 		Group_entity g;
 		l = sess.createQuery("from Group_entity where code=? and project_id=?")
 				.setString(0, group_code)
-				.setString(1, ""+current_project.getId())
-				.list();
+				.setString(1, "" + current_project.getId()).list();
 		if (l.size() == 0) {
 			g = new Group_entity(group_code, current_project);
 			sess.save(g);
@@ -185,8 +191,7 @@ public class CreateUserProject {
 		Course c;
 		l = sess.createQuery("from Course where code=? and project_id=?")
 				.setString(0, index.getCoursesId())
-				.setString(1, ""+current_project.getId())
-				.list();
+				.setString(1, "" + current_project.getId()).list();
 		if (l.size() == 0) {
 			c = new Course(index.getCoursesId(), index.getCourseName(),
 					index.getMod(), periods, current_project);
@@ -199,13 +204,13 @@ public class CreateUserProject {
 		sess.save(a);
 		current_project.getActivities().add(a);
 		tran.commit();
-//
-//		// System.out.println(index.getCourseName());
-//		// System.out.println(Arrays.asList(line));
-//
-//		// faut pas oublier ca..
-//		// if(teacher_lastName.equalsIgnoreCase("{N}"))
-//		// teacher_lastName="Indefini";
+		//
+		// // System.out.println(index.getCourseName());
+		// // System.out.println(Arrays.asList(line));
+		//
+		// // faut pas oublier ca..
+		// // if(teacher_lastName.equalsIgnoreCase("{N}"))
+		// // teacher_lastName="Indefini";
 
 	}
 
@@ -216,7 +221,11 @@ public class CreateUserProject {
 	 * @throws IOException
 	 */
 	private void readCardFromXLS(String filePath) throws FileNotFoundException,
-			IOException {
+	IOException {
+
+		assert filePath != null : "filePath can't be null !";
+		assert filePath.length() > 0 : "filePath can't be empty";
+
 		String[] line;
 
 		InputStream inp = new FileInputStream(filePath);
@@ -230,7 +239,7 @@ public class CreateUserProject {
 				switch (cell.getCellType()) {
 				case Cell.CELL_TYPE_STRING:
 					line[cell.getColumnIndex()] = cell.getRichStringCellValue()
-							.getString();
+					.getString();
 					break;
 				case Cell.CELL_TYPE_NUMERIC:
 					if (DateUtil.isCellDateFormatted(cell)) {
@@ -250,7 +259,7 @@ public class CreateUserProject {
 					line[cell.getColumnIndex()] = "";
 				}
 			}
-			//System.out.println(Arrays.asList(line));
+			// System.out.println(Arrays.asList(line));
 			if (row.getRowNum() == 0)
 				index.putRightIndex(line, this.choice_sem);
 			else

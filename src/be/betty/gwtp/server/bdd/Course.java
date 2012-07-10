@@ -10,32 +10,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 public class Course {
-	
 
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id")
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private int id;
-	
+
 	private String name;
 	private String code;
-	private String mode; //i.e class or group
-	private String type; //i.e. does it require a special room
-	private int nbPeriod; //per week
+	private String mode; // i.e class or group
+	private String type; // i.e. does it require a special room
+	private int nbPeriod; // per week
 	// section?
-	
+
 	@ManyToOne
 	private Project_entity project;
-	
+
 	@OneToMany
 	private Collection<Activity> activities = new ArrayList<Activity>();
 
-	public Course(){}
-	
-	public Course(String coursesId, String courseName, String mod, int periods, Project_entity current_project) {
+	public Course() {
+	}
+
+	public Course(String coursesId, String courseName, String mod, int periods,
+			Project_entity current_project) {
 		this.project = current_project;
 		this.code = coursesId;
 		this.name = courseName;
@@ -106,8 +107,5 @@ public class Course {
 	public void setActivities(Collection<Activity> activities) {
 		this.activities = activities;
 	}
-	
-	
-	
 
 }

@@ -1,9 +1,6 @@
 package be.betty.gwtp.client.presenters;
 
-import java.util.ArrayList;
-
 import be.betty.gwtp.client.CardHandler;
-import be.betty.gwtp.client.CellDropControler;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.action.GetCards;
 import be.betty.gwtp.client.action.GetCardsResult;
@@ -17,7 +14,6 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -52,14 +48,15 @@ public class MainPresenter extends
 
 		void constructFlex(PickupDragController cardDragController);
 
-
 	}
 
 	public static final Object SLOT_Card = new Object();
 	private IndirectProvider<SingleCardPresenter> cardFactory;
 	@Inject
 	DispatchAsync dispatcher;
-	//protected ArrayList<SingleCardPresenter> allCards = new ArrayList<SingleCardPresenter>();
+
+	// protected ArrayList<SingleCardPresenter> allCards = new
+	// ArrayList<SingleCardPresenter>();
 
 	@ProxyCodeSplit
 	@NameToken(NameTokens.main)
@@ -96,7 +93,7 @@ public class MainPresenter extends
 	protected void onBind() {
 		super.onBind();
 		set_dnd();
-		
+
 	}
 
 	private void set_dnd() {
@@ -109,7 +106,7 @@ public class MainPresenter extends
 		// TODO vérifier si il y a des lag en utilisant l'application sur le
 		// serveur
 		// mettre en commentaire ces deux lignes
-		
+
 		// VerticalPanelDropController dropController = new
 		// VerticalPanelDropController(getView().getDrop_cards_panel());
 		// cardDragController.registerDropController(dropController);

@@ -1,10 +1,10 @@
 package be.betty.gwtp.client.action;
 
+import java.util.ArrayList;
+
 import be.betty.gwtp.client.model.Project;
 
 import com.gwtplatform.dispatch.shared.Result;
-import java.lang.String;
-import java.util.ArrayList;
 
 public class GetProjectsActionResult implements Result {
 
