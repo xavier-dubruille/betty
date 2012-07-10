@@ -7,7 +7,7 @@
 
 	<g:HTMLPanel>
 		<g:AbsolutePanel height="525px" ui:field="dndpanel"
-			width="665px">
+			width="977px">
 			<g:at left="187" top="69">
 				<g:Label ui:field="mainLabel" width="126px" height="24px" />
 			</g:at>

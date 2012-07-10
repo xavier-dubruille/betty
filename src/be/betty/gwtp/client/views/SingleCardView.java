@@ -20,7 +20,7 @@ public class SingleCardView extends ViewImpl implements
 	public SingleCardView() {
 		// use the boundary panel as this composite's widget
 		final AbsolutePanel boundaryPanel = new AbsolutePanel();
-		boundaryPanel.setPixelSize(150, 80);
+		boundaryPanel.setPixelSize(100, 60);
 		boundaryPanel.addStyleName("card");
 		widget = boundaryPanel;
 

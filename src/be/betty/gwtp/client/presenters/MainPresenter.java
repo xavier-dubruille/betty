@@ -96,7 +96,7 @@ public class MainPresenter extends
 	protected void onBind() {
 		super.onBind();
 		set_dnd();
-		getView().constructFlex(cardDragController);
+		
 	}
 
 	private void set_dnd() {
@@ -178,6 +178,7 @@ public class MainPresenter extends
 	private void print_da_page() {
 		System.out.println("**** Hell yeah, print da page");
 		writeCardWidgets();
+		getView().constructFlex(cardDragController);
 
 	}
 
