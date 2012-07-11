@@ -123,11 +123,11 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 						getView().getEmailSubErrorLabel().getText().isEmpty() &&
 						getView().getEmailVerSubErrorLabel().getText().isEmpty()
 						){
-					System.out.println("plus d'erreur");				
+					//System.out.println("plus d'erreur");				
 					
-				}else
-					System.out.println("encore des erreurs");
-				
+				}else{
+					//System.out.println("encore des erreurs");
+				}
 			}
 		});
 	}
