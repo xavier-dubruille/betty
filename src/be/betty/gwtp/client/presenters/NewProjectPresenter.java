@@ -1,12 +1,14 @@
 package be.betty.gwtp.client.presenters;
 
 import be.betty.gwtp.client.event.ProjectListModifyEvent;
+import be.betty.gwtp.shared.Constants;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteHandler;
@@ -30,6 +32,10 @@ public class NewProjectPresenter extends
 		FormPanel getFormPanel();
 
 		Hidden get_idSess_field();
+
+		FileUpload getCourseFile_field();
+
+		FileUpload getRoomFile_field();
 	}
 
 	private EventBus myEventBus;
@@ -43,6 +49,13 @@ public class NewProjectPresenter extends
 	@Override
 	protected void onBind() {
 		super.onBind();
+		
+		//Let's put the right names for the form fields
+		getView().get_idSess_field().setName(Constants.SESS_ID);
+		getView().getProject_name().setName(Constants.PROJECT_NAME);
+		getView().getCourseFile_field().setName(Constants.FILE_COURSE);
+		getView().getRoomFile_field().setName(Constants.FILE_ROOM);
+		
 		// cancel_button handler
 		getView().getCancel_button().addClickHandler(new ClickHandler() {
 			@Override
@@ -70,12 +83,8 @@ public class NewProjectPresenter extends
 					public void onSubmitComplete(SubmitCompleteEvent event) {
 						// Window.alert(event.getResults());
 						getView().hide();
-						myEventBus.fireEvent(new ProjectListModifyEvent()); // TODO:
-																			// add
-																			// the
-																			// project
-																			// in
-																			// parameter
+						// TODO maybe, we should add  the project in parameter
+						myEventBus.fireEvent(new ProjectListModifyEvent()); 
 					}
 				});
 
