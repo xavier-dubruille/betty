@@ -10,6 +10,8 @@ import be.betty.gwtp.server.GetProjectsActionActionHandler;
 import be.betty.gwtp.client.action.DeleteProjectAction;
 import be.betty.gwtp.server.DeleteProjectActionActionHandler;
 import be.betty.gwtp.server.GetCardsActionHandler;
+import be.betty.gwtp.client.action.SubscribeAction;
+import be.betty.gwtp.server.SubscribeActionActionHandler;
 
 public class ServerModule extends HandlerModule {
 
@@ -25,5 +27,7 @@ public class ServerModule extends HandlerModule {
 				DeleteProjectActionActionHandler.class);
 
 		bindHandler(GetCards.class, GetCardsActionHandler.class);
-	}
+	
+		bindHandler(SubscribeAction.class, SubscribeActionActionHandler.class);
+}
 }

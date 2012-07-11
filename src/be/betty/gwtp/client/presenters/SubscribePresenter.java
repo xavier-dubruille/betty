@@ -1,10 +1,16 @@
 package be.betty.gwtp.client.presenters;
 
+import com.gwtplatform.dispatch.shared.DispatchAsync;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.annotations.NameToken;
+
+import be.betty.gwtp.client.action.LoginAction;
+import be.betty.gwtp.client.action.SubscribeAction;
 import be.betty.gwtp.client.place.NameTokens;
+
+import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.google.inject.Inject;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -90,6 +96,7 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 		}
 		
 	}
+	
 
 	@Override
 	protected void onReset() {
@@ -110,14 +117,13 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 				errorSameStr(getView().getEmailSubTextbox().getText(), getView().getEmailVerSubTextbox().getText(), getView().getEmailVerSubErrorLabel());
 				
 				if(
-						getView().getUserSubErrorLabel().getText().isEmpty() ||
-						getView().getPassSubErrorLabel().getText().isEmpty() ||
-						getView().getPassVerSubErrorLabel().getText().isEmpty() ||
-						getView().getEmailSubErrorLabel().getText().isEmpty() ||
+						getView().getUserSubErrorLabel().getText().isEmpty() &&
+						getView().getPassSubErrorLabel().getText().isEmpty() &&
+						getView().getPassVerSubErrorLabel().getText().isEmpty() &&
+						getView().getEmailSubErrorLabel().getText().isEmpty() &&
 						getView().getEmailVerSubErrorLabel().getText().isEmpty()
 						){
-					System.out.println("plus d'erreur");
-					
+					System.out.println("plus d'erreur");				
 					
 				}else
 					System.out.println("encore des erreurs");

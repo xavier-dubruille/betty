@@ -91,7 +91,7 @@ public class LoginPresenter extends
 		if (stockStore != null && stockStore.getItem("session_id") != null)
 			placeManager.revealPlace(new PlaceRequest(NameTokens.projects));
 
-		getView().getLogin_textbox().setText("Admin");
+		getView().getLogin_textbox().setText("Jack");
 		getView().getWrongPwd_label().setText("");
 		getView().getLogin_send().addClickHandler(new ClickHandler() {
 
