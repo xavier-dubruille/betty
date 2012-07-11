@@ -6,42 +6,60 @@
 	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
 	ui:generateLocales='default'>
 
-	<g:HTMLPanel>
-		<g:Label text="Betty - Subscribe" horizontalAlignment="ALIGN_CENTER" height="40px"/>
-		<g:FormPanel height="80%" width="100%" >
-			<g:AbsolutePanel width="100%" height="196px">
+	<g:HTMLPanel width="" height="">
+		<g:DockPanel width="100%" height="80%" ui:field="DockSubscribePanel" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_BOTTOM">
+			<g:Dock direction="CENTER">
+				<g:AbsolutePanel styleName="subscribe" height="250px" width="500px" ui:field="absoluteSubscribePanel">
 				<g:at left="101" top="42">
-					<g:Label text="username" horizontalAlignment="ALIGN_RIGHT" width="" height=""/>
+					<g:Label ui:field="userSubLabel" text="Username" horizontalAlignment="ALIGN_RIGHT" width="" height=""/>
 				</g:at>
-				<g:at left="104" top="88">
-					<g:Label text="Password" horizontalAlignment="ALIGN_RIGHT"/>
+				<g:at left="101" top="72">
+					<g:Label ui:field="passSubLabel " text="Password"/>
 				</g:at>
-				<g:at left="104" top="116">
-					<g:Label text="Password" horizontalAlignment="ALIGN_RIGHT"/>
+				<g:at left="101" top="102">
+					<g:Label ui:field="passVerSubLabel" text="Password"/>
 				</g:at>
-				<g:at left="127" top="147">
-					<g:Label text="Email" horizontalAlignment="ALIGN_RIGHT"/>
+				<g:at left="125" top="132">
+					<g:Label text="Email" ui:field="emailSubLabel"/>
 				</g:at>
-				<g:at left="127" top="173">
-					<g:Label text="Email" horizontalAlignment="ALIGN_RIGHT"/>
+				<g:at left="125" top="162">
+					<g:Label text="Email" ui:field="emailVerSubLabel"/>
 				</g:at>
-				<g:at left="164" top="31">
-					<g:TextBox/>
+				<g:at left="180" top="36">
+					<g:TextBox ui:field="userSubTextbox"/>
 				</g:at>
-				<g:at left="164" top="77">
-					<g:PasswordTextBox/>
+				<g:at left="180" top="66">
+					<g:PasswordTextBox ui:field="passSubTextbox"/>
 				</g:at>
-				<g:at left="164" top="105">
-					<g:PasswordTextBox/>
+				<g:at left="180" top="96">
+					<g:PasswordTextBox ui:field="passVerSubTextbox"/>
 				</g:at>
-				<g:at left="164" top="136">
-					<g:TextBox/>
+				<g:at left="180" top="126">
+					<g:TextBox ui:field="emailSubTextbox"/>
 				</g:at>
-				<g:at left="164" top="162">
-					<g:TextBox/>
+				<g:at left="180" top="156">
+					<g:TextBox ui:field="emailVerSubTextbox"/>
+				</g:at>
+				<g:at left="224" top="197">
+					<g:Button text="Subscribe" ui:field="subscibeButton" width="" height=""/>
+				</g:at>
+				<g:at left="337" top="42">
+					<g:Label ui:field="userSubErrorLabel" styleName="errorLabel"/>
+				</g:at>
+				<g:at left="337" top="72">
+					<g:Label ui:field="passSubErrorLabel" styleName="errorLabel"/>
+				</g:at>
+				<g:at left="337" top="102">
+					<g:Label ui:field="passVerSubErrorLabel" styleName="errorLabel"/>
+				</g:at>
+				<g:at left="337" top="132">
+					<g:Label ui:field="emailSubErrorLabel" styleName="errorLabel"/>
+				</g:at>
+				<g:at left="337" top="162">
+					<g:Label ui:field="emailVerSubErrorLabel" styleName="errorLabel"/>
 				</g:at>
 			</g:AbsolutePanel>
-		</g:FormPanel>
-		<g:Button text="Register" />
+			</g:Dock>
+		</g:DockPanel>
 	</g:HTMLPanel>
 </ui:UiBinder>

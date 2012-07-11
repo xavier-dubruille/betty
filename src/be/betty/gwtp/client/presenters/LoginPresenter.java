@@ -77,8 +77,8 @@ public class LoginPresenter extends
 		super.onBind();
 	}
 
-	String width= "720px";
-	String height = "300px";
+	//String width= "720px";
+	//String height = "300px";
 	
 	@Override
 	protected void onReset() {
@@ -98,7 +98,7 @@ public class LoginPresenter extends
 			@Override
 			public void onClick(ClickEvent event) {
 				getView().getWrongPwd_label().setText(
-						".. Be patient, I'm checkin' ..");
+						"Connexion..");
 
 				String login = getView().getLogin_textbox().getText();
 				if (stockStore != null) {
