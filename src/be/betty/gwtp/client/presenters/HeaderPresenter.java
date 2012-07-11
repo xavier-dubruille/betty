@@ -28,6 +28,7 @@ public class HeaderPresenter extends
 	public interface MyView extends View {
 
 		Button getDeco();
+		
 	}
 
 	@ProxyCodeSplit
