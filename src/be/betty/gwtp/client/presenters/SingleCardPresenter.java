@@ -1,5 +1,6 @@
 package be.betty.gwtp.client.presenters;
 
+import be.betty.gwtp.client.Filter_kind;
 import be.betty.gwtp.client.Storage_access;
 
 import com.gwtplatform.mvp.client.PresenterWidget;
@@ -10,7 +11,7 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class SingleCardPresenter extends
-		PresenterWidget<SingleCardPresenter.MyView> {
+PresenterWidget<SingleCardPresenter.MyView> {
 
 	public interface MyView extends View {
 
@@ -18,6 +19,9 @@ public class SingleCardPresenter extends
 
 		HTML getHeader();
 	}
+
+	private int teacherId;
+	private int groupId;
 
 	@Inject
 	public SingleCardPresenter(final EventBus eventBus, final MyView view) {
@@ -32,5 +36,13 @@ public class SingleCardPresenter extends
 	public void init(int myI) {
 		getView().getHeader().setText(Storage_access.getCard(myI));
 
+	}
+
+	public int getKindId(Filter_kind filter_kind) {
+		switch (filter_kind) {
+		case TEACHER: return teacherId;
+		case GROUP: return groupId;
+		}
+		return 0;
 	}
 }

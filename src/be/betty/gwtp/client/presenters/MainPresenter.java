@@ -1,6 +1,9 @@
 package be.betty.gwtp.client.presenters;
 
+import java.util.ArrayList;
+
 import be.betty.gwtp.client.CardHandler;
+import be.betty.gwtp.client.Filter_kind;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.action.GetCards;
 import be.betty.gwtp.client.action.GetCardsResult;
@@ -32,7 +35,6 @@ import com.gwtplatform.mvp.client.proxy.PlaceRequest;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.client.proxy.RevealContentEvent;
 
-
 public class MainPresenter extends
 		Presenter<MainPresenter.MyView, MainPresenter.MyProxy> {
 
@@ -55,13 +57,13 @@ public class MainPresenter extends
 
 	public static final Object SLOT_Card = new Object();
 	public static final Object SLOT_OPTION_SELECION = new Object();
-	@Inject CardSelectionOptionPresenter cardSelectionOptionPresenter;
+	@Inject
+	CardSelectionOptionPresenter cardSelectionOptionPresenter;
 	private IndirectProvider<SingleCardPresenter> cardFactory;
 	@Inject
 	DispatchAsync dispatcher;
 
-	// protected ArrayList<SingleCardPresenter> allCards = new
-	// ArrayList<SingleCardPresenter>();
+	protected ArrayList<SingleCardPresenter> allCards = new ArrayList<SingleCardPresenter>();
 
 	@ProxyCodeSplit
 	@NameToken(NameTokens.main)
@@ -87,12 +89,13 @@ public class MainPresenter extends
 	private String project_num;
 	private PickupDragController cardDragController;
 	private CardFilterHandler filterHandler = new CardFilterHandler() {
-		
+
 		@Override
 		public void onCardFilter(CardFilterEvent event) {
-			System.out.println("Teacher from bus_event : "+Storage_access.getTeacher(event.getTeacher_id()));
-			//writeCardWidgets(event.getTeacher_id());
-			
+			System.out.println("Teacher from bus_event : "
+					+ Storage_access.getTeacher(event.getTeacher_id()));
+			writeCardWidgets(Filter_kind.TEACHER, event.getTeacher_id());
+
 		}
 	};
 
@@ -107,8 +110,8 @@ public class MainPresenter extends
 	protected void onBind() {
 		super.onBind();
 		set_dnd();
-		registerHandler(getEventBus().addHandler(
-				CardFilterEvent.getType(), filterHandler));
+		registerHandler(getEventBus().addHandler(CardFilterEvent.getType(),
+				filterHandler));
 
 	}
 
@@ -187,37 +190,37 @@ public class MainPresenter extends
 	}
 
 	/**
-	 * PRE:  local storage Must (already) be filled with the right info
-	 * POST: The page is drawed on screen
-	 *  
+	 * PRE: local storage Must (already) be filled with the right info POST: The
+	 * page is drawed on screen
+	 * 
 	 * Print the cards, the board, with the information in the local storage
 	 */
 	private void print_da_page() {
 		System.out.println("**** Hell yeah, print da page");
-		// des Assert ici pour verifier qq truc sur le local storage serait p-e bien..
-		
+		// des Assert ici pour verifier qq truc sur le local storage serait p-e
+		// bien..
+
 		setInSlot(SLOT_OPTION_SELECION, cardSelectionOptionPresenter);
 		cardSelectionOptionPresenter.init();
-		
-		writeCardWidgets();
+
+		writeCardWidgetsFirst();
 		getView().constructFlex(cardDragController);
 
 	}
 
-	private void writeCardWidgets() {
-
+	private void writeCardWidgetsFirst() {
 		setInSlot(SLOT_Card, null);
 		for (int i = 0; i < Storage_access.getNumberOfCard(); i++) {
 			final int myI = i;
 			cardFactory.get(new AsyncCallback<SingleCardPresenter>() {
 
 				@Override
-				public void onSuccess(SingleCardPresenter result) {
+				public void onSuccess (SingleCardPresenter result) {
 					addToSlot(SLOT_Card, result);
 					result.init(myI);
 					cardDragController.makeDraggable(result.getWidget(), result
 							.getView().getHeader());
-					// allCards.add(result);
+					allCards.add(result);
 
 				}
 
@@ -227,6 +230,16 @@ public class MainPresenter extends
 
 				}
 			});
+		}
+
+	}
+
+	private void writeCardWidgets(Filter_kind filter_kind, int filterObj_ID) {
+
+		for (SingleCardPresenter c : allCards) {
+			System.out.println(c.getView().getHeader());
+			 if(c.getKindId(filter_kind) ==  filterObj_ID)
+				 c.getWidget().setVisible(false);
 		}
 
 	}

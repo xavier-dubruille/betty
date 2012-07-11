@@ -60,6 +60,7 @@ public class LoginActionActionHandler implements
 		sess.setUser_id(user);
 		s.save(sess);
 
+		
 		t.commit();
 		s.close();
 		// TODO: on supprime les sessions id plus valide ? ou tous --> mais pas

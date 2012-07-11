@@ -26,6 +26,7 @@ public class SubscribeActionActionHandler implements
 	@Override
 	public SubscribeActionResult execute(SubscribeAction action,
 			ExecutionContext context) throws ActionException {
+		System.out.println("you did it	");
 		return null;
 	}
 	
