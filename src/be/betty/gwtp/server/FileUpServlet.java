@@ -161,8 +161,10 @@ public class FileUpServlet extends HttpServlet {
 		t.commit();
 		s.close();
 
+		// the "project entry" is now saved, we now have to create the rest of the project
 		CreateUserProject create = new CreateUserProject(projectToBeSaved);
 
+		// First, we create course, teachers, .. everything from the "courses file"
 		try {
 			create.createStateFromCardFile();
 		} catch (NoFileException e) {
@@ -179,6 +181,24 @@ public class FileUpServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		// TODO: gestion d'ereurs.. (et prevenir l'utilisateur de l'erreur..)
+		
+		// Second, we create the Rooms, and everything from the "room file"
+		try {
+			create.createStateFromRoomFile();
+		} catch (NoFileException e) {
+			logger.error("problems with files, project can't be created 1 ->"
+					+ e.getMessage());
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			logger.error("problems with files, project can't be created 2 ->"
+					+ e.getMessage());
+			e.printStackTrace();
+		} catch (IOException e) {
+			logger.error("problems with files, project can't be created 3 ->"
+					+ e.getMessage());
+			e.printStackTrace();
+		}
+		
 
 	}
 

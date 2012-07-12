@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,6 +22,7 @@ import be.betty.gwtp.server.bdd.Activity;
 import be.betty.gwtp.server.bdd.Course;
 import be.betty.gwtp.server.bdd.Group_entity;
 import be.betty.gwtp.server.bdd.Project_entity;
+import be.betty.gwtp.server.bdd.Room;
 import be.betty.gwtp.server.bdd.Teacher;
 
 public class CreateUserProject {
@@ -50,6 +52,7 @@ public class CreateUserProject {
 		index = new Index();
 		this.activities_file = projectToBeSaved.getCourse_file();
 		this.current_project = projectToBeSaved;
+		this.rooms_file = projectToBeSaved.getRoom_file();
 	}
 
 	/**
@@ -268,6 +271,94 @@ public class CreateUserProject {
 		}
 		inp.close();
 
+	}
+
+	/**
+	 * PRE: the file must exist and point to the right file !
+	 * PRE: The file must be xls type !
+	 * 
+	 * @throws NoFileException
+	 * @throws FileNotFoundException
+	 */
+	public void createStateFromRoomFile() throws NoFileException, FileNotFoundException, IOException {
+		System.out.println("######### entering create state from room file with file: "+this.rooms_file);
+		String[] line;
+
+		InputStream inp = new FileInputStream(this.rooms_file);
+		HSSFWorkbook wb = new HSSFWorkbook(new POIFSFileSystem(inp));
+		Sheet sheet1 = wb.getSheetAt(0);
+		line = new String[sheet1.getRow(0).getPhysicalNumberOfCells()];
+
+		sess = HibernateUtils.getSession();
+		
+		for (Row row : sheet1) {
+			for (Cell cell : row) {
+
+				switch (cell.getCellType()) {
+				case Cell.CELL_TYPE_STRING:
+					line[cell.getColumnIndex()] = cell.getRichStringCellValue()
+					.getString();
+					break;
+				case Cell.CELL_TYPE_NUMERIC:
+					if (DateUtil.isCellDateFormatted(cell)) {
+						line[cell.getColumnIndex()] = cell.getDateCellValue()
+								.toString();
+					} else {
+
+						line[cell.getColumnIndex()] = ""
+								+ (int) cell.getNumericCellValue();
+					}
+					break;
+				case Cell.CELL_TYPE_BOOLEAN:
+					line[cell.getColumnIndex()] = ""
+							+ cell.getBooleanCellValue();
+
+				default:
+					line[cell.getColumnIndex()] = "";
+				}
+			}
+			// System.out.println(Arrays.asList(line));
+			if (row.getRowNum() == 0) {
+				// index.putRightIndex(line, this.choice_sem);
+				// faut voir si c necessaire..
+			}
+			else
+				constructRoomStateFromLine(line);
+
+		}
+		
+		sess.close();
+		inp.close();
+
+		
+	}
+
+	private void constructRoomStateFromLine(String[] line) {
+
+		System.out.println("##@@ trying to save line : "+Arrays.asList(line));
+		
+		Transaction tran = sess.beginTransaction();
+
+		// TODO: jpense pas que sauvegarder le (meme) projet à chaque ligne soit
+		// une bonne idée.. loin de là !
+		sess.update(current_project);
+
+		Room r = new Room();
+		r.setCode(line[Index.ROOM_CODE]);
+		r.setType(line[Index.ROOM_TYPE]);
+		r.setContenance(line[Index.ROOM_CONTENANCE]);
+		r.setProject(current_project);
+		r.setBoard(Integer.parseInt(line[Index.ROOM_BOARD]));
+		r.setFloor(Integer.parseInt(line[Index.ROOM_FLOOR]));
+		r.setProjo(Integer.parseInt(line[Index.ROOM_PROJO]));
+		r.setRecorder(Integer.parseInt(line[Index.ROOM_RECORDER]));
+		r.setSlide(Integer.parseInt(line[Index.ROOM_SLIDE]));
+		
+
+		sess.save(r);
+		current_project.getRooms().add(r);
+		tran.commit();
+		
 	}
 
 }

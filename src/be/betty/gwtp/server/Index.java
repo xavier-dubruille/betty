@@ -17,6 +17,16 @@ public class Index {
 	public final static String teacher_lastName = "teacher_lastName";
 	public final static String mod = "mod";
 	public final static String section_name = "section_name";
+	
+	// these following (and only these) are used for the room file
+	public static final int ROOM_CODE = 0;
+	public static final int ROOM_TYPE = 2;
+	public static final int ROOM_CONTENANCE = 1;
+	public static final int ROOM_PROJO = 4;
+	public static final int ROOM_SLIDE = 5;
+	public static final int ROOM_RECORDER = 6;
+	public static final int ROOM_BOARD = 7;
+	public static final int ROOM_FLOOR = 3;
 
 	private Map<String, Integer> indexLine;
 	private String[] singleLine;

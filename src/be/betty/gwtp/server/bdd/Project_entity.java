@@ -41,6 +41,10 @@ public class Project_entity {
 	@OneToMany
 	private Collection<Course> courses = new ArrayList<Course>();
 
+	
+	@ManyToMany
+	private Collection<Room> rooms = new ArrayList<Room>();
+	
 	public Integer getId() {
 		return id;
 	}
@@ -111,6 +115,14 @@ public class Project_entity {
 
 	public void setCourses(Collection<Course> courses) {
 		this.courses = courses;
+	}
+
+	public Collection<Room> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(Collection<Room> rooms) {
+		this.rooms = rooms;
 	}
 
 }
