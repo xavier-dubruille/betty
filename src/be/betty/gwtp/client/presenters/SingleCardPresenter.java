@@ -2,6 +2,7 @@ package be.betty.gwtp.client.presenters;
 
 import be.betty.gwtp.client.Filter_kind;
 import be.betty.gwtp.client.Storage_access;
+import be.betty.gwtp.shared.Constants;
 
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
@@ -22,6 +23,8 @@ PresenterWidget<SingleCardPresenter.MyView> {
 
 	private int teacherId;
 	private int groupId;
+	private String group;
+	private String teacher;
 
 	@Inject
 	public SingleCardPresenter(final EventBus eventBus, final MyView view) {
@@ -34,15 +37,33 @@ PresenterWidget<SingleCardPresenter.MyView> {
 	}
 
 	public void init(int myI) {
-		getView().getHeader().setText(Storage_access.getCard(myI));
+		String c = Storage_access.getCard(myI);
+		String[] t = c.split(Constants.SEPARATOR);
+		getView().getHeader().setText(c);
+		group = t[Constants.GROUP_INDEX];
+		teacher = t[Constants.TEACHER_INDEX];
+		
 
 	}
 
+	/**
+	 * Not used, but, in a proper version, should be.
+	 * @param filter_kind
+	 * @return
+	 */
 	public int getKindId(Filter_kind filter_kind) {
 		switch (filter_kind) {
 		case TEACHER: return teacherId;
 		case GROUP: return groupId;
 		}
 		return 0;
+	}
+
+	public String getKindString(Filter_kind filter_kind) {
+		switch (filter_kind) {
+		case TEACHER: return teacher;
+		case GROUP: return group;
+		}
+		return "";
 	}
 }

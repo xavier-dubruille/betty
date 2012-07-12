@@ -40,5 +40,7 @@ public class CardSelectionOptionView extends ViewImpl implements
 		return group_choice;
 	}
 
+
+
 	
 }

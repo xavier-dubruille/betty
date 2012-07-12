@@ -5,7 +5,7 @@
 	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
 	ui:generateLocales='default'>
 
-	<g:PopupPanel modal="true" glassEnabled="true" animationEnabled="true">
+	<g:PopupPanel modal="true" glassEnabled="true">
 
 
 		<g:FormPanel width="351px" height="186px" ui:field="formPanel">
@@ -23,13 +23,19 @@
 					<g:Button ui:field="send_button">Create Project</g:Button>
 				</g:at>
 				<g:at left="103" top="42">
-					<g:FileUpload name="file_courses"/>
+					<g:FileUpload ui:field="courseFile_field"/>
 				</g:at>
 				<g:at left="0" top="0">
-					<g:Hidden name="sess_id" ui:field="sess_id"/>
+					<g:Hidden ui:field="sess_id"/>
 				</g:at>
 				<g:at left="15" top="47">
 					<g:Label text="Courses File"/>
+				</g:at>
+				<g:at left="15" top="80">
+					<g:Label text="Room File"/>
+				</g:at>
+				<g:at left="103" top="75">
+					<g:FileUpload ui:field="roomFile_field"/>
 				</g:at>
 				
 			</g:AbsolutePanel>

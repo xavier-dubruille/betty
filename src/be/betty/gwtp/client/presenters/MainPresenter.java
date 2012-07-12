@@ -92,10 +92,21 @@ public class MainPresenter extends
 
 		@Override
 		public void onCardFilter(CardFilterEvent event) {
-			System.out.println("Teacher from bus_event : "
-					+ Storage_access.getTeacher(event.getTeacher_id()));
-			writeCardWidgets(Filter_kind.TEACHER, event.getTeacher_id());
 
+			// TODO : attention, si on decide de faire 2 combobox, les id venan
+			// de la combox et
+			// du local storage ne seront plus les même.. et donc on pourra pas
+			// faire ainsi.
+
+			switch (event.getFilterType()) {
+			case TEACHER:
+				writeCardWidgets(Filter_kind.TEACHER,
+						Storage_access.getTeacher(event.getFilterObjId()));
+				break;
+			case GROUP:
+				writeCardWidgets(Filter_kind.GROUP,
+						Storage_access.getGroup(event.getFilterObjId()));
+			}
 		}
 	};
 
@@ -178,8 +189,12 @@ public class MainPresenter extends
 			@Override
 			public void onSuccess(GetCardsResult result) {
 
-				Storage_access.setCards(project_num, result.getCards());
 				Storage_access.setTeachers(project_num, result.getTeachers());
+				Storage_access.setGroups(project_num, result.getGroups());
+				Storage_access.setCards(project_num, result.getCards());
+				//Storage_access.populateStorage(project_num,result.getCards());
+				
+				
 				print_da_page();
 				// getView().getContent().setText(result.getActivities().toString());
 
@@ -234,11 +249,11 @@ public class MainPresenter extends
 
 	}
 
-	private void writeCardWidgets(Filter_kind filter_kind, int filterObj_ID) {
+	private void writeCardWidgets(Filter_kind filter_kind, String toFilter) {
 
 		for (SingleCardPresenter c : allCards) {
 			System.out.println(c.getView().getHeader());
-			 if(c.getKindId(filter_kind) ==  filterObj_ID)
+			 if(c.getKindString(filter_kind).equals(toFilter))
 				 c.getWidget().setVisible(false);
 		}
 

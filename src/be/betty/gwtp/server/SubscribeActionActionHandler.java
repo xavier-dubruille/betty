@@ -26,10 +26,46 @@ public class SubscribeActionActionHandler implements
 	@Override
 	public SubscribeActionResult execute(SubscribeAction action,
 			ExecutionContext context) throws ActionException {
-		System.out.println("you did it	");
+		System.out.println(action.getEmail());
+		InsertDB(action.getLogin(), action.getPwd(), action.getEmail());
 		return null;
 	}
-	
+
+	private boolean InsertDB(String user, String password, String email) {
+		
+		try{
+		Session s = HibernateUtils.getSession();
+		Transaction t = s.beginTransaction();
+		
+		User usr = new User();
+		usr.setName(user);
+		usr.setPwd(password);
+		usr.setEmail(email);
+		
+		
+		s.save(usr);
+		t.commit();
+		s.close();
+		}
+		catch (Exception e){
+			//TODO
+			System.out.println(e);
+			return false;
+		}
+		System.out.println("Send to DATABASE OK!!");
+		return true;
+	}
+
+	// TODO
+	private boolean VerifExisting(String user, String email) {
+		return false;
+	}
+
+	// TODO
+	private void SendMail(String email) {
+
+	}
+
 	@Override
 	public void undo(SubscribeAction action, SubscribeActionResult result,
 			ExecutionContext context) throws ActionException {

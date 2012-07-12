@@ -24,6 +24,7 @@ import org.hibernate.Transaction;
 import be.betty.gwtp.server.bdd.Project_entity;
 import be.betty.gwtp.server.bdd.Session_id;
 import be.betty.gwtp.server.bdd.User;
+import be.betty.gwtp.shared.Constants;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
@@ -35,11 +36,14 @@ public class FileUpServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final String UPLOAD_DIRECTORY = "/tmp/"; // TODO: est-ce une
-	// bonne idée de le
-	// mettre ds le tmp
-	// ?
+	// TODO: est-ce une  bonne idée de le mettre ds le tmp ?
+	private static final String UPLOAD_DIRECTORY = "/tmp/"; 
+	
+	
+	
+	
 	private static final Logger logger = Logger.getLogger(FileUpServlet.class);
+	
 
 	@Inject
 	FileUpServlet() {
@@ -115,8 +119,9 @@ public class FileUpServlet extends HttpServlet {
 	private void saveProjectInBdd(HashMap<String, String> project_attributes) {
 
 		logger.trace("savin' project in bdd. projectName="
-				+ project_attributes.get("name") + ", and projectFile="
-				+ project_attributes.get("file_courses"));
+				+ project_attributes.get(Constants.PROJECT_NAME) + ", and projectFile="
+				+ project_attributes.get(Constants.FILE_COURSE ) + ", and localFile="
+				+ project_attributes.get(Constants.FILE_ROOM ));
 
 		// etc
 
@@ -125,7 +130,7 @@ public class FileUpServlet extends HttpServlet {
 		// System.out.println("sess_id = "+project_attributes.get("sess_id"));
 
 		Session_id sess_id = (Session_id) s.get(Session_id.class,
-				project_attributes.get("sess_id"));
+				project_attributes.get(Constants.SESS_ID));
 
 		if (sess_id == null)
 			return; // TODO: Faut une gestion d'erreur ! Mauvais Sess_id !
@@ -135,9 +140,12 @@ public class FileUpServlet extends HttpServlet {
 		// System.out.println("user======> "+user.getName());
 
 		Project_entity projectToBeSaved = new Project_entity();
+
+		projectToBeSaved.setName(project_attributes.get(Constants.PROJECT_NAME));
+		projectToBeSaved.setRoom_file(UPLOAD_DIRECTORY
+				+project_attributes.get(Constants.FILE_ROOM));
 		projectToBeSaved.setCourse_file(UPLOAD_DIRECTORY
-				+ project_attributes.get("file_courses"));
-		projectToBeSaved.setName(project_attributes.get("project_name"));
+				+ project_attributes.get(Constants.FILE_COURSE));
 
 		// s.update(user);
 		System.out.println("****zero****");
@@ -153,8 +161,10 @@ public class FileUpServlet extends HttpServlet {
 		t.commit();
 		s.close();
 
+		// the "project entry" is now saved, we now have to create the rest of the project
 		CreateUserProject create = new CreateUserProject(projectToBeSaved);
 
+		// First, we create course, teachers, .. everything from the "courses file"
 		try {
 			create.createStateFromCardFile();
 		} catch (NoFileException e) {
@@ -170,7 +180,25 @@ public class FileUpServlet extends HttpServlet {
 					+ e.getMessage());
 			e.printStackTrace();
 		}
-		// TODO: gestion d'ereurs.. (et prevenir l'utilisateur de l'erreure..)
+		// TODO: gestion d'ereurs.. (et prevenir l'utilisateur de l'erreur..)
+		
+		// Second, we create the Rooms, and everything from the "room file"
+		try {
+			create.createStateFromRoomFile();
+		} catch (NoFileException e) {
+			logger.error("problems with files, project can't be created 1 ->"
+					+ e.getMessage());
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			logger.error("problems with files, project can't be created 2 ->"
+					+ e.getMessage());
+			e.printStackTrace();
+		} catch (IOException e) {
+			logger.error("problems with files, project can't be created 3 ->"
+					+ e.getMessage());
+			e.printStackTrace();
+		}
+		
 
 	}
 
@@ -185,9 +213,12 @@ public class FileUpServlet extends HttpServlet {
 		// TODO: est ce que le fileName peut être null, et que faire dans ce cas
 		// ?
 		assert fileItem.getName() != null && fileItem.getName().length() > 0;
+		
+		String prefix = (fileItem.getFieldName().equals(Constants.FILE_COURSE)) ? "C_" : "R_";
+		
 		// faudrait aussi prendre que les x premier char pour eviter des
-		// exeption de longueur
-		String fileName = "A_" + System.currentTimeMillis()
+				// exeption de longueur
+		String fileName = prefix + System.currentTimeMillis()
 				+ fileItem.getName();
 		// get only the file name not whole path
 		// if (fileName != null) {

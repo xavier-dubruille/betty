@@ -1,5 +1,6 @@
 package be.betty.gwtp.client.event;
 
+import be.betty.gwtp.client.Filter_kind;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.presenters.MainPresenter;
 
@@ -21,11 +22,12 @@ public class CardFilterEvent extends
 	}
 	
 	@Inject MainPresenter mainPresenter;
-	private int teacher_id;
+	private int filterObjID;
+	private Filter_kind filterType;
 	
-	public CardFilterEvent(int teacher_id) {
-		this.teacher_id = teacher_id;
-		
+	public CardFilterEvent(Filter_kind filterType, int filterObjID) {
+		this.filterObjID = filterObjID;
+		this.filterType = filterType;
 	}
 
 	@Override
@@ -46,7 +48,11 @@ public class CardFilterEvent extends
 		source.fireEvent(new CardFilterEvent());
 	}
 
-	public int getTeacher_id() {
-		return teacher_id;
+	public int getFilterObjId() {
+		return filterObjID;
+	}
+
+	public Filter_kind getFilterType() {
+		return filterType;
 	}
 }

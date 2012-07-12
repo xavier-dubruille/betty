@@ -14,8 +14,8 @@ import com.google.gwt.user.client.ui.Button;
 public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 
 	private final Widget widget;
-	@UiField HTMLPanel contentPanel;
 	@UiField Button deco;
+	@UiField HTMLPanel contentPanel;
 
 	public interface Binder extends UiBinder<Widget, HeaderView> {
 	}

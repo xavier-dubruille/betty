@@ -12,7 +12,7 @@
 				<g:Label text="Professeur" width="73px" height="13px"/>
 			</g:at>
 			<g:at left="89" top="86">
-				<g:ListBox visibleItemCount="5" width="118px" height="18px" ui:field="group_choice"/>
+				<g:ListBox width="118px" height="18px" ui:field="group_choice"/>
 			</g:at>
 			<g:at left="89" top="47">
 				<g:ListBox ui:field="teacher_choice" width="118px" height="18px"/>

@@ -8,6 +8,7 @@ import com.gwtplatform.mvp.client.annotations.NameToken;
 
 import be.betty.gwtp.client.action.LoginAction;
 import be.betty.gwtp.client.action.SubscribeAction;
+import be.betty.gwtp.client.action.SubscribeActionResult;
 import be.betty.gwtp.client.place.NameTokens;
 
 import com.gwtplatform.mvp.client.proxy.PlaceManager;
@@ -16,6 +17,7 @@ import com.google.inject.Inject;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DockPanel;
@@ -70,6 +72,8 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 			final MyProxy proxy) {
 		super(eventBus, view, proxy);
 	}
+	
+	@Inject DispatchAsync dispacher;
 
 	@Override
 	protected void revealInParent() {
@@ -97,11 +101,12 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 		
 	}
 	
+	
 
 	@Override
 	protected void onReset() {
 		super.onReset();
-
+		
 		getView().getSubscibeButton().addClickHandler(new ClickHandler() {
 
 			@Override
@@ -116,6 +121,12 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 				errorSameStr(getView().getPassSubTextbox().getText(), getView().getPassVerSubTextbox().getText(), getView().getPassVerSubErrorLabel());
 				errorSameStr(getView().getEmailSubTextbox().getText(), getView().getEmailVerSubTextbox().getText(), getView().getEmailVerSubErrorLabel());
 				
+				String login = getView().getUserSubTextbox().getText();
+				String pwd = getView().getPassSubTextbox().getText();
+				String email = getView().getEmailSubTextbox().getText();
+				SubscribeAction action = new SubscribeAction(login, pwd, email);
+
+				
 				if(
 						getView().getUserSubErrorLabel().getText().isEmpty() &&
 						getView().getPassSubErrorLabel().getText().isEmpty() &&
@@ -123,7 +134,24 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 						getView().getEmailSubErrorLabel().getText().isEmpty() &&
 						getView().getEmailVerSubErrorLabel().getText().isEmpty()
 						){
+					
+					dispacher.execute(action , new AsyncCallback<SubscribeActionResult>() {
+
+						@Override
+						public void onFailure(Throwable caught) {
+							// TODO Auto-generated method stub
+							
+							
+						}
+
+						@Override
+						public void onSuccess(SubscribeActionResult result) {
+							// TODO Auto-generated method stub
+							
+						}
+					});
 					//System.out.println("plus d'erreur");				
+
 					
 				}else{
 					//System.out.println("encore des erreurs");
