@@ -6,6 +6,9 @@ import be.betty.gwtp.client.place.NameTokens;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyCodes;
+import com.google.gwt.event.dom.client.KeyDownEvent;
+import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.Window;
@@ -76,15 +79,6 @@ public class LoginPresenter extends
 	@Override
 	protected void onBind() {
 		super.onBind();
-	}
-
-	//String width= "720px";
-	//String height = "300px";
-	
-	@Override
-	protected void onReset() {
-		super.onReset();
-		
 		
 		//getView().getDock_panel().setWidth(width);
 		//getView().getDock_panel().setHeight(height);
@@ -92,28 +86,50 @@ public class LoginPresenter extends
 		if (stockStore != null && stockStore.getItem("session_id") != null)
 			placeManager.revealPlace(new PlaceRequest(NameTokens.projects));
 
-		getView().getLogin_textbox().setText("Jack");
+		getView().getLogin_textbox().setText("jack");
 		getView().getWrongPwd_label().setText("");
+		
+		// Add "EnterKey" handler on login textBox
+		getView().getLogin_textbox().addKeyDownHandler(new KeyDownHandler() {
+			@Override public void onKeyDown(KeyDownEvent event) {
+			      if(KeyCodes.KEY_ENTER == event.getNativeKeyCode())
+			    	  fireLogin();
+			}});
+		
+		// Add "EnterKey" handler on Pwd textBox
+		getView().getPwd_textbox().addKeyDownHandler(new KeyDownHandler() {
+			@Override public void onKeyDown(KeyDownEvent event) {
+			      if(KeyCodes.KEY_ENTER == event.getNativeKeyCode())
+			    	  fireLogin();
+			}});
+		
+		// Add clickHandler
 		getView().getLogin_send().addClickHandler(new ClickHandler() {
-
-			@Override
-			public void onClick(ClickEvent event) {
-				getView().getWrongPwd_label().setText(
-						"Connexion..");
-
-				String login = getView().getLogin_textbox().getText();
-				if (stockStore != null) {
-					stockStore.setItem("login", login);
-				} // pk j'ai fais ca ?
-				String pwd = getView().getPwd_textbox().getText();
-				LoginAction action = new LoginAction(login, pwd);
-				dispatch.execute(action, loginCallback);
-
-			}
-
-		});
+			@Override public void onClick(ClickEvent event) {
+				fireLogin();
+			}});
 	}
 
+	private void fireLogin() {
+		getView().getWrongPwd_label().setText(
+				"Connexion..");
+
+		String login = getView().getLogin_textbox().getText();
+		if (stockStore != null) {
+			stockStore.setItem("login", login);
+		} // pk j'ai fais ca ?
+		String pwd = getView().getPwd_textbox().getText();
+		LoginAction action = new LoginAction(login, pwd);
+		dispatch.execute(action, loginCallback);
+		
+	}
+	
+	@Override
+	protected void onReset() {
+		super.onReset();
+	}
+
+	
 	private AsyncCallback<LoginActionResult> loginCallback = new AsyncCallback<LoginActionResult>() {
 
 		@Override
