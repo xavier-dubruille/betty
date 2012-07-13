@@ -3,6 +3,7 @@ package be.betty.gwtp.client.presenters;
 import java.util.ArrayList;
 
 import be.betty.gwtp.client.CardHandler;
+import be.betty.gwtp.client.CellDropControler;
 import be.betty.gwtp.client.Filter_kind;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.action.GetCards;
@@ -17,9 +18,11 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -52,13 +55,15 @@ public class MainPresenter extends
 		VerticalPanel getCards_panel();
 
 		void constructFlex(PickupDragController cardDragController);
-
 	}
 
 	public static final Object SLOT_Card = new Object();
+	public static final Object SLOT_BOARD = new Object();
 	public static final Object SLOT_OPTION_SELECION = new Object();
-	@Inject
-	CardSelectionOptionPresenter cardSelectionOptionPresenter;
+	
+	@Inject CardSelectionOptionPresenter cardSelectionOptionPresenter;
+	@Inject BoardPresenter boardPresenter;
+	
 	private IndirectProvider<SingleCardPresenter> cardFactory;
 	@Inject
 	DispatchAsync dispatcher;
@@ -87,7 +92,7 @@ public class MainPresenter extends
 	}
 
 	private String project_num;
-	private PickupDragController cardDragController;
+	public static PickupDragController cardDragController;
 	private CardFilterHandler filterHandler = new CardFilterHandler() {
 
 		@Override
@@ -109,6 +114,7 @@ public class MainPresenter extends
 			}
 		}
 	};
+	
 
 	@Override
 	public void prepareFromRequest(PlaceRequest request) {
@@ -120,6 +126,9 @@ public class MainPresenter extends
 	@Override
 	protected void onBind() {
 		super.onBind();
+		
+		
+		
 		set_dnd();
 		registerHandler(getEventBus().addHandler(CardFilterEvent.getType(),
 				filterHandler));
@@ -217,9 +226,16 @@ public class MainPresenter extends
 
 		setInSlot(SLOT_OPTION_SELECION, cardSelectionOptionPresenter);
 		cardSelectionOptionPresenter.init();
+		
+		setInSlot(SLOT_BOARD, boardPresenter);
 
 		writeCardWidgetsFirst();
-		getView().constructFlex(cardDragController);
+		//getView().constructFlex(cardDragController);
+	
+		
+		
+		//CellDropControler dropController = new CellDropControler(simplePanel);
+	   //	cardDragController.registerDropController(dropController);
 
 	}
 
@@ -252,7 +268,7 @@ public class MainPresenter extends
 	private void writeCardWidgets(Filter_kind filter_kind, String toFilter) {
 
 		for (SingleCardPresenter c : allCards) {
-			System.out.println(c.getView().getHeader());
+			//System.out.println(c.getView().getHeader());
 			 if(c.getKindString(filter_kind).equals(toFilter))
 				 c.getWidget().setVisible(false);
 		}

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -22,6 +23,8 @@ import com.gwtplatform.dispatch.shared.ActionException;
 public class LoginActionActionHandler implements
 		ActionHandler<LoginAction, LoginActionResult> {
 
+	private static final Logger logger = Logger.getLogger(LoginActionActionHandler.class);
+	
 	@Inject
 	public LoginActionActionHandler() {
 	}
@@ -31,13 +34,16 @@ public class LoginActionActionHandler implements
 			ExecutionContext context) throws ActionException {
 		// System.out.println("DEBUG: execute server call"); //DEBUG:
 
+		logger.trace("entering execute() from LoginActionActionHandler");
 		String session_id = checkLogin(action.getLogin(), action.getPwd());
+		logger.debug("The server call is almost done, and the sess_id for this user is: "+session_id);
 		return new LoginActionResult(session_id);
 	}
 
 	private String checkLogin(String login, String pwd) {
 		assert login.length() > 0 && pwd.length() > 0;
 
+		logger.trace("entering check login method");
 		System.out.println("Check login method");
 		String sess_uuid = null;
 
@@ -48,6 +54,7 @@ public class LoginActionActionHandler implements
 				.setString("name", login).setString("pwd", pwd).list();
 		System.out.println("just après query");
 
+		logger.debug("query to get the user is done, there is "+q.size()+" results (it should be 1 or 0)");
 		if (q.size() == 0)
 			return null;
 

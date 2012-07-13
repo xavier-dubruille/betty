@@ -9,6 +9,8 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
 
+// This is not constructed by a xml uibinder.. this is because the dnd wasn't working on the 
+// widget return by the uiBinder's way.  (with the method asWidget)
 public class SingleCardView extends ViewImpl implements
 		SingleCardPresenter.MyView {
 
@@ -27,7 +29,7 @@ public class SingleCardView extends ViewImpl implements
 		// create the title bar
 		header = new HTML("Empty");
 
-		// create a panel to hold all our widgets
+		// create a panel to hold all 
 		verticalPanel = new VerticalPanel();
 		verticalPanel.setSpacing(1);
 		verticalPanel.add(header);

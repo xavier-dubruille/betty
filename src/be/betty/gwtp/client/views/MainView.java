@@ -25,8 +25,9 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	@UiField Image dndImage;
 	@UiField Label content;
 	@UiField VerticalPanel cards_panel;
-	@UiField FlexTable flexTable;
 	@UiField SimplePanel CardSelectionOption;
+	@UiField SimplePanel board_panel;
+
 
 	public interface Binder extends UiBinder<Widget, MainView> {
 	}
@@ -47,6 +48,11 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 			 CardSelectionOption.clear();
 			 if (content != null)
 				 CardSelectionOption.add(content);
+		}
+		else if (slot == MainPresenter.SLOT_BOARD) {
+			 board_panel.clear();
+			 if (content != null)
+				 board_panel.add(content);
 		}
 		else {
 		}
@@ -102,25 +108,28 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 
 	@Override
 	public void constructFlex(PickupDragController cardDragController) {
-		int COLUMNS = 5;
-		int ROWS = 6;
-		for (int i = 0; i < COLUMNS; i++) {
-
-			for (int j = 0; j < ROWS; j++) {
-				// create a simple panel drop target for the current cell
-				SimplePanel simplePanel = new SimplePanel();
-				simplePanel.setPixelSize(100, 60);
-				flexTable.setWidget(j, i, simplePanel);
-				// flexTable.getCellFormatter().setStyleName(i, j,
-				// CSS_DEMO_PUZZLE_CELL);
-
-				// instantiate a drop controller of the panel in the current
-				// cell
-				CellDropControler dropController = new CellDropControler(
-						simplePanel);
-				// cardDragController.registerDropController(dropController);
-			}
-		}
+//		int COLUMNS = 5;
+//		int ROWS = 6;
+//		for (int i = 0; i < COLUMNS; i++) {
+//
+//			for (int j = 0; j < ROWS; j++) {
+//				// create a simple panel drop target for the current cell
+//				SimplePanel simplePanel = new SimplePanel();
+//				simplePanel.setPixelSize(100, 60);
+//				flexTable.setWidget(j, i, simplePanel);
+//				// flexTable.getCellFormatter().setStyleName(i, j,
+//				// CSS_DEMO_PUZZLE_CELL);
+//
+//				// instantiate a drop controller of the panel in the current
+//				// cell
+//				CellDropControler dropController = new CellDropControler(
+//						simplePanel);
+//				cardDragController.registerDropController(dropController);
+//			}
+//		}
+		
+		
 	}
+
 
 }

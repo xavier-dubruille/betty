@@ -24,11 +24,11 @@
 						spacing="10" ui:field="cards_panel" />
 				</g:ScrollPanel>
 			</g:at>
-			<g:at left="303" top="122">
-				<g:FlexTable width="352px" height="247px" borderWidth="3" ui:field="flexTable" cellPadding="2" cellSpacing="2"/>
-			</g:at>
 			<g:at left="40" top="47">
 				<g:SimplePanel width="248px" height="93px" ui:field="CardSelectionOption"/>
+			</g:at>
+			<g:at left="323" top="116">
+				<g:SimplePanel width="381px" height="236px" ui:field="board_panel"/>
 			</g:at>
 			
 		</g:AbsolutePanel>
