@@ -5,6 +5,7 @@ import be.betty.gwtp.client.place.DefaultPlace;
 import be.betty.gwtp.client.place.NameTokens;
 import be.betty.gwtp.client.presenters.LoginPresenter;
 import be.betty.gwtp.client.presenters.MainPresenter;
+import be.betty.gwtp.client.views.AboutUsView;
 import be.betty.gwtp.client.views.BoardView;
 import be.betty.gwtp.client.views.HeaderView;
 import be.betty.gwtp.client.views.LoginView;
@@ -27,6 +28,7 @@ import be.betty.gwtp.client.presenters.NewProjectPresenter;
 import be.betty.gwtp.client.presenters.SingleCardPresenter;
 import be.betty.gwtp.client.views.CardSelectionOptionView;
 import be.betty.gwtp.client.presenters.BoardPresenter;
+import be.betty.gwtp.client.presenters.AboutUsPresenter;
 
 public class ClientModule extends AbstractPresenterModule {
 
@@ -67,5 +69,8 @@ public class ClientModule extends AbstractPresenterModule {
 
 		bindPresenterWidget(BoardPresenter.class, BoardPresenter.MyView.class,
 				BoardView.class);
-	}
+	
+		bindPresenterWidget(AboutUsPresenter.class,
+				AboutUsPresenter.MyView.class, AboutUsView.class);
+}
 }
