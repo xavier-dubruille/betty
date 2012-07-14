@@ -43,7 +43,8 @@ public class HeaderPresenter extends
 
 	private Storage stockStore;
 	@Inject	PlaceManager placeManager;
-	@Inject AboutUsPresenter aboutUsPresenter;
+	
+	//@Inject AboutUsPresenter aboutUsPresenter;
 
 	@Inject
 	public HeaderPresenter(final EventBus eventBus, final MyView view,
@@ -57,11 +58,13 @@ public class HeaderPresenter extends
 		RevealRootContentEvent.fire(this, this);
 	}
 	
+	/*public void com(){
 	Command command = new Command(){
 		public void execute(){
 			addToPopupSlot(aboutUsPresenter);
 		}
 	};
+	}*/
 
 	@Override
 	protected void onBind() {
