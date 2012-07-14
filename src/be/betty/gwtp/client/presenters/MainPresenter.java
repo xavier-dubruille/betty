@@ -14,6 +14,7 @@ import be.betty.gwtp.client.event.ProjectListModifyEvent;
 import be.betty.gwtp.client.place.NameTokens;
 
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
+import com.allen_sauer.gwt.dnd.client.drop.VerticalPanelDropController;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -74,7 +75,8 @@ public class MainPresenter extends
 	@NameToken(NameTokens.main)
 	public interface MyProxy extends ProxyPlace<MainPresenter> {
 	}
-
+	
+	
 	private Storage stockStore;
 
 	@Inject
@@ -93,6 +95,7 @@ public class MainPresenter extends
 
 	private String project_num;
 	public static PickupDragController cardDragController;
+	public static VerticalPanelDropController cardDropPanel;
 	private CardFilterHandler filterHandler = new CardFilterHandler() {
 
 		@Override
@@ -100,7 +103,7 @@ public class MainPresenter extends
 
 			// TODO : attention, si on decide de faire 2 combobox, les id venan
 			// de la combox et
-			// du local storage ne seront plus les m�me.. et donc on pourra pas
+			// du local storage ne seront plus les mêmes... et donc on pourra pas
 			// faire ainsi.
 
 			switch (event.getFilterType()) {
@@ -141,8 +144,9 @@ public class MainPresenter extends
 		// note: This creates an implicit DropController for the boundary panel
 		cardDragController = new PickupDragController(RootPanel.get(), false);
 		cardDragController.addDragHandler(new CardHandler());
+		cardDropPanel = new VerticalPanelDropController(getView().getCards_panel());
 
-		// TODO vérifier si il y a des lag en utilisant l'application sur le
+		// TODO v�rifier si il y a des lag en utilisant l'application sur le
 		// serveur
 		// mettre en commentaire ces deux lignes
 
@@ -230,6 +234,7 @@ public class MainPresenter extends
 		setInSlot(SLOT_BOARD, boardPresenter);
 
 		writeCardWidgetsFirst();
+		cardDragController.registerDropController(cardDropPanel);
 		//getView().constructFlex(cardDragController);
 	
 		
