@@ -198,11 +198,10 @@ public class MainPresenter extends
 			@Override
 			public void onSuccess(GetCardsResult result) {
 
-				Storage_access.setTeachers(project_num, result.getTeachers());
-				Storage_access.setGroups(project_num, result.getGroups());
-				Storage_access.setCards(project_num, result.getCards());
-				//Storage_access.populateStorage(project_num,result.getCards());
+
+				Storage_access.populateStorage(project_num,result);
 				
+				//Storage_access.printStorage();
 				
 				print_da_page();
 				// getView().getContent().setText(result.getActivities().toString());

@@ -8,28 +8,33 @@ public class Card_dto implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	
-	private String teacher; //faudrait p-e créer un obj teacher_dto avec prenom, nom, mail, ...
-	private String course;  //idem
-	private String group;   //idem
+	
+	private int teacher; // Actualy it's the id of teacher in bdd
+	private int course;  
+	private int group;   
 	private int period_q1;
 	private int period_q2;
-	public String getTeacher() {
+	private int slot = 0; //  The value "0" is for the case where is not placed 
+    private int room = 0;
+	
+    public int getTeacher() {
 		return teacher;
 	}
-	public void setTeacher(String teacher) {
+	public void setTeacher(int teacher) {
 		this.teacher = teacher;
 	}
-	public String getCourse() {
+	public int getCourse() {
 		return course;
 	}
-	public void setCourse(String course) {
+	public void setCourse(int course) {
 		this.course = course;
 	}
-	public String getGroup() {
+	public int getGroup() {
 		return group;
 	}
-	public void setGroup(String group) {
+	public void setGroup(int group) {
 		this.group = group;
 	}
 	public int getPeriod_q1() {
@@ -43,6 +48,18 @@ public class Card_dto implements Serializable{
 	}
 	public void setPeriod_q2(int period_q2) {
 		this.period_q2 = period_q2;
+	}
+	public int getSlot() {
+		return slot;
+	}
+	public int getRoom() {
+		return room;
+	}
+	public void setSlot(int slot) {
+		this.slot = slot;
+	}
+	public void setRoom(int room) {
+		this.room = room;
 	}
 	
 	

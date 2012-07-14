@@ -25,6 +25,7 @@ PresenterWidget<SingleCardPresenter.MyView> {
 	private int groupId;
 	private String group;
 	private String teacher;
+	private boolean isPlaced;
 
 	@Inject
 	public SingleCardPresenter(final EventBus eventBus, final MyView view) {
@@ -65,5 +66,15 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		case GROUP: return group;
 		}
 		return "";
+	}
+
+	public boolean isPlaced() {
+		//idealement, faudrait juste verifier dans le local storage
+		return isPlaced;
+	}
+
+	public void setPlaced(boolean isPlaced) {
+		//idealement, faudrait renvoyer la réponse du localStorage
+		this.isPlaced = isPlaced;
 	}
 }
