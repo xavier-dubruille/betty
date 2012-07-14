@@ -25,7 +25,7 @@
 				</g:DockPanel>
 			</g:Dock>
 			<g:Dock direction="SOUTH">
-				<g:MenuBar animationEnabled="true" width="100%" height="" autoOpen="true">
+				<g:MenuBar animationEnabled="true" width="100%" height="" autoOpen="true" ui:field="menuBar">
 				<g:MenuItem text="File">
 					<g:MenuBar vertical="true">
 						<g:MenuItem text="Open"/>
@@ -70,7 +70,7 @@
 					</g:MenuBar>
 				</g:MenuItem>
 				<g:MenuItemSeparator/>
-				<g:MenuItem text="Help">
+				<g:MenuItem text="Help" ui:field="helpMenuItem">
 					<g:MenuBar vertical="true">
 						<g:MenuItem text="Manual"/>
 						<g:MenuItem text="About us" ui:field="aboutUs"/>

@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.MenuItem;
+import com.google.gwt.user.client.ui.MenuBar;
 
 public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 
@@ -18,6 +19,8 @@ public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 	@UiField Button deco;
 	@UiField HTMLPanel contentPanel;
 	@UiField MenuItem aboutUs;
+	@UiField MenuItem helpMenuItem;
+	@UiField MenuBar menuBar;
 
 	public interface Binder extends UiBinder<Widget, HeaderView> {
 	}
@@ -52,5 +55,13 @@ public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 	
 	public MenuItem getAboutUs(){
 		return aboutUs;
+	}
+	
+	public MenuItem getHelpMenuItem(){
+		return helpMenuItem;
+	}
+	
+	public MenuBar getMenuBar(){
+		return menuBar;
 	}
 }

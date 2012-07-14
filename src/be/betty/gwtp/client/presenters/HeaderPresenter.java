@@ -16,7 +16,9 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.GwtEvent.Type;
 import com.google.gwt.storage.client.Storage;
+import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.gwtplatform.mvp.client.proxy.RevealRootContentEvent;
 
@@ -30,6 +32,8 @@ public class HeaderPresenter extends
 
 		Button getDeco();
 		public MenuItem getAboutUs();
+		public MenuItem getHelpMenuItem();
+		public MenuBar getMenuBar();
 		
 	}
 
@@ -52,6 +56,12 @@ public class HeaderPresenter extends
 	protected void revealInParent() {
 		RevealRootContentEvent.fire(this, this);
 	}
+	
+	Command command = new Command(){
+		public void execute(){
+			addToPopupSlot(aboutUsPresenter);
+		}
+	};
 
 	@Override
 	protected void onBind() {
@@ -71,7 +81,9 @@ public class HeaderPresenter extends
 		});
 		
 		//TODO quand on clique sur about us, ouvrir le popup menu
-		//getView().getAboutUs().
+		/*MenuItem item = new MenuItem("aboutUSTest", command);	
+		getView().getMenuBar().addItem(item);
+			//addToPopupSlot(aboutUsPresenter);**/
 	}
 
 	@Override
