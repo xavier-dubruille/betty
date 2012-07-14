@@ -10,12 +10,14 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.MenuItem;
 
 public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 
 	private final Widget widget;
 	@UiField Button deco;
 	@UiField HTMLPanel contentPanel;
+	@UiField MenuItem aboutUs;
 
 	public interface Binder extends UiBinder<Widget, HeaderView> {
 	}
@@ -46,5 +48,9 @@ public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 	@Override
 	public Button getDeco() {
 		return deco;
+	}
+	
+	public MenuItem getAboutUs(){
+		return aboutUs;
 	}
 }

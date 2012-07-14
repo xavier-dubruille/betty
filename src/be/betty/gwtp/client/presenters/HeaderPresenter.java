@@ -17,6 +17,7 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.GwtEvent.Type;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.MenuItem;
 import com.gwtplatform.mvp.client.proxy.RevealRootContentEvent;
 
 public class HeaderPresenter extends
@@ -28,6 +29,7 @@ public class HeaderPresenter extends
 	public interface MyView extends View {
 
 		Button getDeco();
+		public MenuItem getAboutUs();
 		
 	}
 
@@ -37,6 +39,7 @@ public class HeaderPresenter extends
 
 	private Storage stockStore;
 	@Inject	PlaceManager placeManager;
+	@Inject AboutUsPresenter aboutUsPresenter;
 
 	@Inject
 	public HeaderPresenter(final EventBus eventBus, final MyView view,
@@ -66,6 +69,9 @@ public class HeaderPresenter extends
 				
 			}
 		});
+		
+		//TODO quand on clique sur about us, ouvrir le popup menu
+		//getView().getAboutUs().
 	}
 
 	@Override

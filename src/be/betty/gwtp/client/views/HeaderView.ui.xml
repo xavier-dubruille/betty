@@ -73,7 +73,7 @@
 				<g:MenuItem text="Help">
 					<g:MenuBar vertical="true">
 						<g:MenuItem text="Manual"/>
-						<g:MenuItem text="About us"/>
+						<g:MenuItem text="About us" ui:field="aboutUs"/>
 					</g:MenuBar>
 				</g:MenuItem>
 			</g:MenuBar>
