@@ -24,6 +24,7 @@ PresenterWidget<SingleCardPresenter.MyView> {
 	private int teacherId;
 	private int groupId;
 	private String group;
+	private String course;
 	private String teacher;
 	private boolean isPlaced;
 
@@ -39,11 +40,13 @@ PresenterWidget<SingleCardPresenter.MyView> {
 
 	public void init(int myI) {
 		String c = Storage_access.getCard(myI);
-		String[] t = c.split(Constants.SEPARATOR);
-		getView().getHeader().setText(c);
-		group = t[Constants.GROUP_INDEX];
-		teacher = t[Constants.TEACHER_INDEX];
 		
+		group = Storage_access.getGroupCard(c);
+		teacher = Storage_access.getTeacherCard(c);
+		course = Storage_access.getCourseCard(c);
+		
+
+		getView().getHeader().setText(course+ " T="+teacher);
 
 	}
 
