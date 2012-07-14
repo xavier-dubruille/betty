@@ -73,13 +73,14 @@ text-align: center;
 	font-weight: bold;
 }
 .project {
-	background: #BBD2E1;
+	background: FFA000;
+	//#BBD2E1; 
 	//text-align: center;;
-	color: #FF4901;
+	color: white;
 	font-weight: bold;
 	padding: 10px;
-	border-left: 2px solid blue;
-	border-right: 2px solid blue;
+	border-left: 2px solid black;
+	border-right: 2px solid black;
 	margin-left: 10px;
 	margin-right: 10px;
 	

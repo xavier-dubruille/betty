@@ -19,16 +19,60 @@
 					<h1> Welcome to Betty</h1>
 				</g:HTMLPanel>
 					</g:Dock>
+					<g:Dock direction="EAST" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE">
+						<g:Label text="Jack" horizontalAlignment="ALIGN_RIGHT" width="86px"/>
+					</g:Dock>
 				</g:DockPanel>
 			</g:Dock>
 			<g:Dock direction="SOUTH">
-				<g:MenuBar animationEnabled="true" width="100%" height="">
+				<g:MenuBar animationEnabled="true" width="100%" height="" autoOpen="true">
 				<g:MenuItem text="File">
+					<g:MenuBar vertical="true">
+						<g:MenuItem text="Open"/>
+						<g:MenuItem text="Save"/>
+						<g:MenuItemSeparator/>
+						<g:MenuItem text="Export Project">
+							<g:MenuBar vertical="true">
+								<g:MenuItem text="XLS file"/>
+								<g:MenuItem text="XML file"/>
+							</g:MenuBar>
+						</g:MenuItem>
+						<g:MenuItem text="Import Project"/>
+					</g:MenuBar>
+				</g:MenuItem>
+				<g:MenuItem text="Edit">
+					<g:MenuBar vertical="true">
+						<g:MenuItem text="Undo"/>
+						<g:MenuItem text="Data">
+							<g:MenuBar vertical="true">
+								<g:MenuItem text="Professor"/>
+								<g:MenuItem text="Room"/>
+								<g:MenuItem text="Course"/>
+								<g:MenuItem text="Card"/>
+							</g:MenuBar>
+						</g:MenuItem>
+					</g:MenuBar>
+				</g:MenuItem>
+				<g:MenuItem text="Project">
+					<g:MenuBar vertical="true">
+						<g:MenuItem text="Solver">
 					<g:MenuBar vertical="true"/>
+				</g:MenuItem>
+						<g:MenuItem text="Manual">
+							<g:MenuBar vertical="true"/>
+						</g:MenuItem>
+					</g:MenuBar>
+				</g:MenuItem>
+				<g:MenuItem text="View">
+					<g:MenuBar vertical="true">
+						<g:MenuItem text="Classic"/>
+						<g:MenuItem text="Comparator"/>
+					</g:MenuBar>
 				</g:MenuItem>
 				<g:MenuItemSeparator/>
 				<g:MenuItem text="Help">
 					<g:MenuBar vertical="true">
+						<g:MenuItem text="Manual"/>
 						<g:MenuItem text="About us"/>
 					</g:MenuBar>
 				</g:MenuItem>

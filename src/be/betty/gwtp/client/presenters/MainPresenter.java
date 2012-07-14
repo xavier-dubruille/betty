@@ -100,7 +100,7 @@ public class MainPresenter extends
 
 			// TODO : attention, si on decide de faire 2 combobox, les id venan
 			// de la combox et
-			// du local storage ne seront plus les même.. et donc on pourra pas
+			// du local storage ne seront plus les mÔøΩme.. et donc on pourra pas
 			// faire ainsi.
 
 			switch (event.getFilterType()) {
@@ -142,7 +142,7 @@ public class MainPresenter extends
 		cardDragController = new PickupDragController(RootPanel.get(), false);
 		cardDragController.addDragHandler(new CardHandler());
 
-		// TODO vÈrifier si il y a des lag en utilisant l'application sur le
+		// TODO v√©rifier si il y a des lag en utilisant l'application sur le
 		// serveur
 		// mettre en commentaire ces deux lignes
 
