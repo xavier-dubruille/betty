@@ -4,6 +4,7 @@ import be.betty.gwtp.client.presenters.SingleCardPresenter;
 
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Hidden;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
@@ -17,6 +18,7 @@ public class SingleCardView extends ViewImpl implements
 	Widget widget;
 	public VerticalPanel verticalPanel;
 	public HTML header;
+	private Hidden h;
 
 	@Inject
 	public SingleCardView() {
@@ -33,6 +35,8 @@ public class SingleCardView extends ViewImpl implements
 		verticalPanel = new VerticalPanel();
 		verticalPanel.setSpacing(1);
 		verticalPanel.add(header);
+		//h = new Hidden("id");
+		//verticalPanel.add(h);
 		boundaryPanel.add(verticalPanel);
 	}
 
@@ -49,5 +53,10 @@ public class SingleCardView extends ViewImpl implements
 	@Override
 	public HTML getHeader() {
 		return header;
+	}
+
+	@Override
+	public Hidden getH() {
+		return h;
 	}
 }

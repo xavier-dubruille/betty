@@ -1,5 +1,8 @@
 package be.betty.gwtp.client;
 
+import be.betty.gwtp.client.event.DropCardEvent;
+import be.betty.gwtp.client.event.ProjectListModifyEvent;
+
 import com.allen_sauer.gwt.dnd.client.DragEndEvent;
 import com.allen_sauer.gwt.dnd.client.DragHandler;
 import com.allen_sauer.gwt.dnd.client.DragStartEvent;
@@ -22,6 +25,8 @@ public class CardHandler implements DragHandler {
 	@Override
 	public void onPreviewDragEnd(DragEndEvent event) throws VetoDragException {
 		System.out.println("on preview drag end: "+ event);
+		System.out.println("*** drag end :"+event.getSource().toString());
+		//getEventBus().fireEvent( new DropCardEvent());
 
 	}
 

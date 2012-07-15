@@ -2,9 +2,9 @@ package be.betty.gwtp.client;
 
 import java.util.ArrayList;
 
-import org.apache.commons.lang.StringUtils;
 
 import be.betty.gwtp.client.action.GetCardsResult;
+import be.betty.gwtp.shared.BettyUtils;
 import be.betty.gwtp.shared.dto.Card_dto;
 import be.betty.gwtp.shared.dto.Course_dto;
 import be.betty.gwtp.shared.dto.Group_dto;
@@ -155,8 +155,17 @@ public class Storage_access {
 		int slot = per*10 + day;
 		String[] s = getCard(cardID).split(STORAGE_SEPARATOR);
 		s[SLOT_INDEX]=""+slot;
-		stockStore.setItem(CARD_PREFIX+cardID, StringUtils.join(s, STORAGE_SEPARATOR));
+		stockStore.setItem(CARD_PREFIX+cardID, BettyUtils.join(s, STORAGE_SEPARATOR));
 	}
+	
+
+	public static void revoveFromSlot(int cardID) {
+		String[] s = getCard(cardID).split(STORAGE_SEPARATOR);
+		s[SLOT_INDEX]="0";
+		s[ROOM_INDEX]="0";
+		stockStore.setItem(CARD_PREFIX+cardID, BettyUtils.join(s, STORAGE_SEPARATOR));
+	}
+
 	
 	public static String getTeacher(int i) {
 		return stockStore.getItem(TEACHER_PREFIX+i);
