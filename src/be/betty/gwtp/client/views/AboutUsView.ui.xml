@@ -6,13 +6,18 @@
 	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
 	ui:generateLocales='default'>
 
-	<g:PopupPanel>
+	<g:PopupPanel width="300px" height="150px" animationEnabled="true" glassEnabled="true">
+		<g:HTMLPanel width="100%" height="100%">
+			<g:DockPanel width="100%" height="100%">
+				<g:Dock direction="NORTH" horizontalAlignment="ALIGN_CENTER">
+					<g:Label text="ABOUT US ..."/>
+				</g:Dock>
+				<g:Dock direction="SOUTH" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE">
+					<g:Button text="Ok" ui:field="okButton"/>
+				</g:Dock>
+			</g:DockPanel>
+		</g:HTMLPanel>
 		
-		<HTMLPanel>
-			<B>About Us...</B>
-			<g:Button text="Ok" ui:field="okButton"/>
-		</HTMLPanel>
-	
 	</g:PopupPanel>
 	
 </ui:UiBinder>

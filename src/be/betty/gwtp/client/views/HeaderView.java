@@ -12,15 +12,15 @@ import com.google.inject.Inject;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.MenuBar;
+import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
 
 public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 
 	private final Widget widget;
 	@UiField Button deco;
 	@UiField HTMLPanel contentPanel;
-	@UiField MenuItem aboutUs;
-	@UiField MenuItem helpMenuItem;
-	@UiField MenuBar menuBar;
+	@UiField MenuBar helpMenuBar;
 
 	public interface Binder extends UiBinder<Widget, HeaderView> {
 	}
@@ -53,15 +53,8 @@ public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 		return deco;
 	}
 	
-	public MenuItem getAboutUs(){
-		return aboutUs;
+	public MenuBar getHelpMenuBar(){
+		return helpMenuBar;
 	}
-	
-	public MenuItem getHelpMenuItem(){
-		return helpMenuItem;
-	}
-	
-	public MenuBar getMenuBar(){
-		return menuBar;
-	}
+
 }

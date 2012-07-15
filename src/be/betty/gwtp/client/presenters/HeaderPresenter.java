@@ -31,9 +31,7 @@ public class HeaderPresenter extends
 	public interface MyView extends View {
 
 		Button getDeco();
-		public MenuItem getAboutUs();
-		public MenuItem getHelpMenuItem();
-		public MenuBar getMenuBar();
+		public MenuBar getHelpMenuBar();
 		
 	}
 
@@ -44,7 +42,7 @@ public class HeaderPresenter extends
 	private Storage stockStore;
 	@Inject	PlaceManager placeManager;
 	
-	//@Inject AboutUsPresenter aboutUsPresenter;
+	@Inject AboutUsPresenter aboutUsPresenter;
 
 	@Inject
 	public HeaderPresenter(final EventBus eventBus, final MyView view,
@@ -58,13 +56,13 @@ public class HeaderPresenter extends
 		RevealRootContentEvent.fire(this, this);
 	}
 	
-	/*public void com(){
-	Command command = new Command(){
+	//Create something to do when we click on the aboutUs MenuItem
+	Command aboutUsCommand = new Command(){
 		public void execute(){
 			addToPopupSlot(aboutUsPresenter);
 		}
 	};
-	}*/
+	
 
 	@Override
 	protected void onBind() {
@@ -83,10 +81,11 @@ public class HeaderPresenter extends
 			}
 		});
 		
-		//TODO quand on clique sur about us, ouvrir le popup menu
-		/*MenuItem item = new MenuItem("aboutUSTest", command);	
-		getView().getMenuBar().addItem(item);
-			//addToPopupSlot(aboutUsPresenter);**/
+		// Create a new MenuItem and add a command
+		MenuItem item = new MenuItem("aboutUSTest", aboutUsCommand);	
+		//add the new item to the specific bar (here is on the Help menu)
+		getView().getHelpMenuBar().addItem(item);
+			
 	}
 
 	@Override

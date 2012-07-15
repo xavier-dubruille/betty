@@ -34,4 +34,5 @@ public class AboutUsView extends PopupViewImpl implements
 	public Button getOkButton(){
 		return okButton;
 	}
+	
 }

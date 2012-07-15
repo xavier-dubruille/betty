@@ -83,8 +83,14 @@ public class LoginPresenter extends
 		//getView().getDock_panel().setWidth(width);
 		//getView().getDock_panel().setHeight(height);
 		
-		if (stockStore != null && stockStore.getItem("session_id") != null)
-		//	placeManager.revealPlace(new PlaceRequest(NameTokens.projects));
+		if (stockStore != null){
+			System.out.println("stockStore pas null");
+			if(stockStore.getItem("session_id") != null){
+				System.out.println(stockStore.getItem("session_id").toString());
+				placeManager.revealPlace(new PlaceRequest(NameTokens.projects));	
+			}
+		}
+			
 
 		getView().getLogin_textbox().setText("jack");
 		getView().getWrongPwd_label().setText("");
