@@ -6,10 +6,14 @@ import org.hibernate.Transaction;
 import be.betty.gwtp.client.action.GetCards;
 import be.betty.gwtp.client.action.GetCardsResult;
 import be.betty.gwtp.server.bdd.Activity;
+import be.betty.gwtp.server.bdd.Course;
 import be.betty.gwtp.server.bdd.Group_entity;
 import be.betty.gwtp.server.bdd.Project_entity;
 import be.betty.gwtp.server.bdd.Teacher;
 import be.betty.gwtp.shared.dto.Card_dto;
+import be.betty.gwtp.shared.dto.Course_dto;
+import be.betty.gwtp.shared.dto.Group_dto;
+import be.betty.gwtp.shared.dto.Teacher_dto;
 
 import com.google.inject.Inject;
 import com.gwtplatform.dispatch.server.ExecutionContext;
@@ -42,21 +46,24 @@ ActionHandler<GetCards, GetCardsResult> {
 		for (Activity a : p.getActivities()) {
 			// System.out.println("***  Teacher:"+a.getTeacher().getName()+" Course:"+a.getCourse().getName()+" Group:"+a.getGroup().getCode());
 			Card_dto card = new Card_dto();
-			card.setCourse(a.getCourse().getName());
-			card.setGroup(a.getGroup().getCode());
-			card.setTeacher(a.getTeacher().getFirstName()+" "+a.getTeacher().getName());
+			card.setCourse(a.getCourse().getId());
+			card.setGroup(a.getGroup().getId());
+			card.setTeacher(a.getTeacher().getId());
 			result.addCard(card);
 		}
 		
-		for (Teacher te : p.getTeachers()) {
-			result.addTeacher(te.getFirstName()+" "+te.getName());
-		}
+		for (Teacher te : p.getTeachers())
+			result.addTeacher(new Teacher_dto(te.getName(), te.getFirstName(), te.getId()));
+		
 		
 		for (Group_entity g : p.getGroups())
-			result.addGroup(g.getCode());
+			result.addGroup(new Group_dto(g.getCode(), g.getId()));
+		
+		for (Course c: p.getCourses())
+			result.addCourse(new Course_dto(c.getName(), c.getId()));
 			
 
-		t.commit();
+		t.commit();   
 		s.close();
 		return result;
 	}

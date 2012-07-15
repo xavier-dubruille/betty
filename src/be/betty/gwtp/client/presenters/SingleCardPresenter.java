@@ -24,7 +24,9 @@ PresenterWidget<SingleCardPresenter.MyView> {
 	private int teacherId;
 	private int groupId;
 	private String group;
+	private String course;
 	private String teacher;
+	private boolean isPlaced;
 
 	@Inject
 	public SingleCardPresenter(final EventBus eventBus, final MyView view) {
@@ -38,11 +40,13 @@ PresenterWidget<SingleCardPresenter.MyView> {
 
 	public void init(int myI) {
 		String c = Storage_access.getCard(myI);
-		String[] t = c.split(Constants.SEPARATOR);
-		getView().getHeader().setText(c);
-		group = t[Constants.GROUP_INDEX];
-		teacher = t[Constants.TEACHER_INDEX];
 		
+		group = Storage_access.getGroupCard(c);
+		teacher = Storage_access.getTeacherCard(c);
+		course = Storage_access.getCourseCard(c);
+		
+
+		getView().getHeader().setText(course+ " T="+teacher);
 
 	}
 
@@ -65,5 +69,15 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		case GROUP: return group;
 		}
 		return "";
+	}
+
+	public boolean isPlaced() {
+		//idealement, faudrait juste verifier dans le local storage
+		return isPlaced;
+	}
+
+	public void setPlaced(boolean isPlaced) {
+		//idealement, faudrait renvoyer la réponse du localStorage
+		this.isPlaced = isPlaced;
 	}
 }

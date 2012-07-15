@@ -8,10 +8,6 @@ public class Constants {
 	public static final String FILE_COURSE = "c";
 	public static final String FILE_ROOM = "r";
 	
-	// Used when dealing with Local Storage
-	public static final String SEPARATOR = "¤"; // separate arguments
-	public static final int GROUP_INDEX = 2; // arguments places
-	public static final int TEACHER_INDEX = 1;
-	public static final int TEACHER_COURSE = 0;
+
 
 }
