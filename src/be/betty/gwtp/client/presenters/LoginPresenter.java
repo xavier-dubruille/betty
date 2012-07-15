@@ -87,7 +87,7 @@ public class LoginPresenter extends
 			System.out.println("stockStore pas null");
 			if(stockStore.getItem("session_id") != null){
 				System.out.println(stockStore.getItem("session_id").toString());
-				placeManager.revealPlace(new PlaceRequest(NameTokens.projects));	
+				//placeManager.revealPlace(new PlaceRequest(NameTokens.projects));	
 			}
 		}
 			

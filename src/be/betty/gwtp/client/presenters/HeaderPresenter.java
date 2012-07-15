@@ -82,7 +82,7 @@ public class HeaderPresenter extends
 		});
 		
 		// Create a new MenuItem and add a command
-		MenuItem item = new MenuItem("aboutUSTest", aboutUsCommand);	
+		MenuItem item = new MenuItem("about us", aboutUsCommand);	
 		//add the new item to the specific bar (here is on the Help menu)
 		getView().getHelpMenuBar().addItem(item);
 			
