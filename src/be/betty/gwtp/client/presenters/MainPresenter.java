@@ -9,7 +9,9 @@ import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.action.GetCards;
 import be.betty.gwtp.client.action.GetCardsResult;
 import be.betty.gwtp.client.event.CardFilterEvent;
+import be.betty.gwtp.client.event.DropCardEvent;
 import be.betty.gwtp.client.event.CardFilterEvent.CardFilterHandler;
+import be.betty.gwtp.client.event.DropCardEvent.DropCardHandler;
 import be.betty.gwtp.client.event.ProjectListModifyEvent;
 import be.betty.gwtp.client.place.NameTokens;
 
@@ -66,10 +68,9 @@ public class MainPresenter extends
 	@Inject BoardPresenter boardPresenter;
 	
 	private IndirectProvider<SingleCardPresenter> cardFactory;
-	@Inject
-	DispatchAsync dispatcher;
+	@Inject DispatchAsync dispatcher;
 
-	protected ArrayList<SingleCardPresenter> allCards = new ArrayList<SingleCardPresenter>();
+	protected ArrayList<SingleCardPresenter> allCards;
 
 	@ProxyCodeSplit
 	@NameToken(NameTokens.main)
@@ -85,6 +86,8 @@ public class MainPresenter extends
 		super(eventBus, view, proxy);
 		cardFactory = new StandardProvider<SingleCardPresenter>(provider);
 		stockStore = Storage.getLocalStorageIfSupported();
+		
+		allCards = new ArrayList<SingleCardPresenter>();
 	}
 
 	@Override
@@ -118,6 +121,24 @@ public class MainPresenter extends
 		}
 	};
 	
+	private DropCardHandler dropCardHandler = new DropCardHandler() {
+		@Override public void onDropCard(DropCardEvent event) {
+			System.out.println("$$$$$ Catch event.. day="+event.getDay()+" and period= "+event.getPeriod()+" cardid="+event.getCardID());
+			if (event.getDay() != 0) {
+				//System.out.println("tiiiittllee"+allCards.get(event.getCardID()).getWidget().getTitle());
+				//System.out.println(allCards.size());
+				allCards.get(event.getCardID()).getWidget().addStyleName("cardPlaced");
+				Storage_access.setSlotCard(event.getCardID(), event.getDay(), event.getPeriod());
+				//TODO: faut aussi l'envoyer ˆ la bdd, ou un truc du genre
+			}
+			else {
+				allCards.get(event.getCardID()).getWidget().addStyleName("card");
+				Storage_access.revoveFromSlot(event.getCardID());
+				// faut aussi l'envoyer ˆ la bdd, ou un truc du genre
+			}
+		}
+	};
+	
 
 	@Override
 	public void prepareFromRequest(PlaceRequest request) {
@@ -135,6 +156,9 @@ public class MainPresenter extends
 		set_dnd();
 		registerHandler(getEventBus().addHandler(CardFilterEvent.getType(),
 				filterHandler));
+		
+		registerHandler(getEventBus().addHandler(
+				DropCardEvent.getType(), dropCardHandler));
 
 	}
 
@@ -232,8 +256,8 @@ public class MainPresenter extends
 		
 		setInSlot(SLOT_BOARD, boardPresenter);
 
-		writeCardWidgetsFirst();
 		cardDragController.registerDropController(cardDropPanel);
+		writeCardWidgetsFirstTime();
 		//getView().constructFlex(cardDragController);
 	
 		
@@ -243,8 +267,9 @@ public class MainPresenter extends
 
 	}
 
-	private void writeCardWidgetsFirst() {
+	private void writeCardWidgetsFirstTime() {
 		setInSlot(SLOT_Card, null);
+		allCards.clear();
 		for (int i = 0; i < Storage_access.getNumberOfCard(); i++) {
 			final int myI = i;
 			cardFactory.get(new AsyncCallback<SingleCardPresenter>() {

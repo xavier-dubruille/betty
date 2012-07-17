@@ -9,11 +9,20 @@ body {
 		sans-serif !important;
 		background-color: #f9f9f9 !important;
 }
+
+.cardPlaced {
+	border: medium solid;
+	font-size: 10px;
+	background: #F00;
+	color: red;
+}
+
 .card {
 	border: medium solid;
 	font-size: 10px;
 	background-color: lightsteelblue;
 }
+
 .panelCell {
 	border: medium solid;
 }
@@ -25,8 +34,8 @@ body {
 .panel_filter_options {
 	background-color: cornflowerblue;
 }
-. {
-}
+. { }
+
 .Header {
 	background: #258;
 	color: #FF4901;
@@ -38,7 +47,7 @@ body {
 	text-align: center;
 }
 .HtmlPanel {
-text-align: center;
+	text-align: center;
 }
 .login {
 	background: #258;

@@ -9,6 +9,7 @@ import com.gwtplatform.mvp.client.View;
 import com.google.inject.Inject;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Hidden;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class SingleCardPresenter extends
@@ -19,6 +20,8 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		VerticalPanel getVerticalPanel();
 
 		HTML getHeader();
+
+		Hidden getH();
 	}
 
 	private int teacherId;
@@ -45,7 +48,11 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		teacher = Storage_access.getTeacherCard(c);
 		course = Storage_access.getCourseCard(c);
 		
-
+		// TODO trouver un meilleur moyen de transmettre l'id au widget..
+		getView().asWidget().setTitle(""+myI);
+		//getView().getH().setValue(""+myI); //serait mieu que le titre.. si ca marchait..
+		
+		
 		getView().getHeader().setText(course+ " T="+teacher);
 
 	}

@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.Hidden;
 
 public class BoardView extends ViewImpl implements BoardPresenter.MyView {
 
@@ -23,26 +24,7 @@ public class BoardView extends ViewImpl implements BoardPresenter.MyView {
 	@Inject
 	public BoardView(final Binder binder) {
 		widget = binder.createAndBindUi(this);
-		int COLUMNS = 5;
-		int ROWS = 6;
-		for (int i = 0; i < COLUMNS; i++) {
-
-			for (int j = 0; j < ROWS; j++) {
-				// create a simple panel drop target for the current cell
-				SimplePanel simplePanel = new SimplePanel();
-				simplePanel.setPixelSize(100, 60);
-				simplePanel.setStyleName("card");
-				flexTable.setWidget(j, i, simplePanel);
-				//flexTable.getCellFormatter().setStyleName();
-				// CSS_DEMO_PUZZLE_CELL);
-
-				// instantiate a drop controller of the panel in the current
-				// cell
-				CellDropControler dropController = new CellDropControler(
-						simplePanel);
-				MainPresenter.cardDragController.registerDropController(dropController);
-			}
-		}
+		
 		
 	}
 
@@ -52,4 +34,9 @@ public class BoardView extends ViewImpl implements BoardPresenter.MyView {
 	}
 	
 	@UiField FlexTable flexTable;
+
+	@Override
+	public FlexTable getFlexTable() {
+		return flexTable;
+	}
 }
