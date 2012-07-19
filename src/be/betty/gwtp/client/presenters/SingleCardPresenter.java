@@ -10,6 +10,7 @@ import com.google.inject.Inject;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Hidden;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class SingleCardPresenter extends
@@ -22,6 +23,9 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		HTML getHeader();
 
 		Hidden getH();
+		
+		Label getTeacher();
+		Label getCourse();
 	}
 
 	private int teacherId;
@@ -51,9 +55,10 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		// TODO trouver un meilleur moyen de transmettre l'id au widget..
 		getView().asWidget().setTitle(""+myI);
 		//getView().getH().setValue(""+myI); //serait mieu que le titre.. si ca marchait..
-		
-		
-		getView().getHeader().setText(course+ " T="+teacher);
+		getView().getCourse().setText(course);
+		getView().getTeacher().setText(teacher);
+		//getView().getHeader().setPixelSize(99,59);
+		//getView().getHeader().setText(course+ " T="+teacher);
 
 	}
 
@@ -84,7 +89,7 @@ PresenterWidget<SingleCardPresenter.MyView> {
 	}
 
 	public void setPlaced(boolean isPlaced) {
-		//idealement, faudrait renvoyer la rŽponse du localStorage
+		//idealement, faudrait renvoyer la rï¿½ponse du localStorage
 		this.isPlaced = isPlaced;
 	}
 }
