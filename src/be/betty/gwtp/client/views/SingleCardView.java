@@ -38,7 +38,8 @@ public class SingleCardView extends ViewImpl implements
 
 		// create the title bar
 		header = new HTML("Empty");
-
+		course = new Label("Empty");
+		teacher = new Label("Empty");
 		// create a panel to hold all 
 		verticalPanel = new VerticalPanel();
 		verticalPanel.setSpacing(1);
