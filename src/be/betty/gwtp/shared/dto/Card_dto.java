@@ -18,6 +18,7 @@ public class Card_dto implements Serializable{
 	private int period_q2;
 	private int slot = 0; //  The value "0" is for the case where is not placed 
     private int room = 0;
+	private int bddId;
 	
     public int getTeacher() {
 		return teacher;
@@ -60,6 +61,12 @@ public class Card_dto implements Serializable{
 	}
 	public void setRoom(int room) {
 		this.room = room;
+	}
+	public int getBddId() {
+		return bddId;
+	}
+	public void setBddId(int bddId) {
+		this.bddId = bddId;
 	}
 	
 	

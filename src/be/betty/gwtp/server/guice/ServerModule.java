@@ -12,6 +12,8 @@ import be.betty.gwtp.server.DeleteProjectActionActionHandler;
 import be.betty.gwtp.server.GetCardsActionHandler;
 import be.betty.gwtp.client.action.SubscribeAction;
 import be.betty.gwtp.server.SubscribeActionActionHandler;
+import be.betty.gwtp.client.action.SaveCardDropAction;
+import be.betty.gwtp.server.SaveCardDropActionActionHandler;
 
 public class ServerModule extends HandlerModule {
 
@@ -29,5 +31,8 @@ public class ServerModule extends HandlerModule {
 		bindHandler(GetCards.class, GetCardsActionHandler.class);
 	
 		bindHandler(SubscribeAction.class, SubscribeActionActionHandler.class);
+
+		bindHandler(SaveCardDropAction.class,
+				SaveCardDropActionActionHandler.class);
 }
 }

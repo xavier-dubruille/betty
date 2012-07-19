@@ -15,12 +15,14 @@ public class DropCardEvent extends GwtEvent<DropCardEvent.DropCardHandler> {
 	private int cardID;
 	private int day;
 	private int period;
+	private int room;
 
-	public DropCardEvent(int cardID, int period, int day) {
+	public DropCardEvent(int cardID, int period, int day, int room) {
 		super();
 		this.cardID = cardID;
 		this.day = day;
 		this.period = period;
+		this.room = room;
 	}
 
 	public DropCardEvent() {
@@ -66,5 +68,9 @@ public class DropCardEvent extends GwtEvent<DropCardEvent.DropCardHandler> {
 
 	public void setPeriod(int period) {
 		this.period = period;
+	}
+
+	public int getRoom() {
+		return room;
 	}
 }

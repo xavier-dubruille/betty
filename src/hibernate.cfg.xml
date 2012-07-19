@@ -25,6 +25,7 @@
 		<mapping class="be.betty.gwtp.server.bdd.Group_entity" />
 		<mapping class="be.betty.gwtp.server.bdd.Course" />
 		<mapping class="be.betty.gwtp.server.bdd.Activity" />
+		<mapping class="be.betty.gwtp.server.bdd.ActivityState" />
 		<mapping class="be.betty.gwtp.server.bdd.User" />
 		<mapping class="be.betty.gwtp.server.bdd.Session_id" />
 		<mapping class="be.betty.gwtp.server.bdd.Room" />

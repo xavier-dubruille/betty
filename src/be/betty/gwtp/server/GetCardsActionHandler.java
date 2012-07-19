@@ -49,6 +49,7 @@ ActionHandler<GetCards, GetCardsResult> {
 			card.setCourse(a.getCourse().getId());
 			card.setGroup(a.getGroup().getId());
 			card.setTeacher(a.getTeacher().getId());
+			card.setBddId(a.getId());
 			result.addCard(card);
 		}
 		

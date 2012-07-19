@@ -41,6 +41,7 @@ public class Storage_access {
 	private static final int GROUP_INDEX = 2;
 	private static final int SLOT_INDEX = 3;
 	private static final int ROOM_INDEX = 4;
+	private static final int BDDID_INDEX = 5;
 	
 	static {
 		stockStore = Storage.getLocalStorageIfSupported();
@@ -101,7 +102,8 @@ public class Storage_access {
 					teachers_map.indexOf(c.getTeacher())+ s + 
 					groups_map.indexOf(c.getGroup()) +s +
 					c.getSlot() + s +
-					c.getRoom());
+					c.getRoom() + s+
+					c.getBddId());
 			i++;
 		}
 		stockStore.setItem(NUMBER_OF_CARD, "" + i);
@@ -218,6 +220,9 @@ public class Storage_access {
 	}
 	public static int getRoomCard(String card) {
 		return Integer.parseInt(card.split(STORAGE_SEPARATOR)[ROOM_INDEX]);
+	}
+	public static int getBddIdCard(String card) {
+		return Integer.parseInt(card.split(STORAGE_SEPARATOR)[BDDID_INDEX]);
 	}
 	
 	/**

@@ -8,6 +8,8 @@ import be.betty.gwtp.client.Filter_kind;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.action.GetCards;
 import be.betty.gwtp.client.action.GetCardsResult;
+import be.betty.gwtp.client.action.SaveCardDropAction;
+import be.betty.gwtp.client.action.SaveCardDropActionResult;
 import be.betty.gwtp.client.event.CardFilterEvent;
 import be.betty.gwtp.client.event.DropCardEvent;
 import be.betty.gwtp.client.event.CardFilterEvent.CardFilterHandler;
@@ -124,6 +126,25 @@ public class MainPresenter extends
 	private DropCardHandler dropCardHandler = new DropCardHandler() {
 		@Override public void onDropCard(DropCardEvent event) {
 			System.out.println("$$$$$ Catch event.. day="+event.getDay()+" and period= "+event.getPeriod()+" cardid="+event.getCardID());
+			int activity_bddId = Storage_access.getBddIdCard(Storage_access.getCard(event.getCardID()));
+			
+			// "first", save to bdd (it's asynchronous)
+			dispatcher.execute(new SaveCardDropAction(event.getDay(), event.getPeriod(), activity_bddId, event.getRoom()),
+					new AsyncCallback<SaveCardDropActionResult>() {
+						@Override public void onFailure(Throwable arg0) {
+							System.out.println("save 'dropped card' failed !!");
+							System.out.println("tostring"+arg0);
+							System.out.println("get message:"+arg0.getMessage());
+
+						}
+
+						@Override public void onSuccess(SaveCardDropActionResult result) {
+							System.out.println("save card drop action sucess!!!");
+
+						}
+					});
+
+			// Then save in local Storage
 			if (event.getDay() != 0) {
 				//System.out.println("tiiiittllee"+allCards.get(event.getCardID()).getWidget().getTitle());
 				//System.out.println(allCards.size());
