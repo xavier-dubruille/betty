@@ -23,6 +23,14 @@ body {
 	background-color: lightsteelblue;
 }
 
+.courseCard{
+	font-size: 6pt;
+}
+
+.teacherCard{
+	font-size: 8pt;
+}
+
 .panelCell {
 	border: medium solid;
 }
@@ -39,7 +47,7 @@ body {
 .Header {
 	background: #258;
 	color: #FF4901;
-	//text-align: center;
+	/*text-align: center;*/
 	font-weight: bold;
 	padding: 10px;
 }
@@ -69,7 +77,7 @@ body {
 }
 .subscribe {
 	background: #258;
-	//text-align: center;
+	/*text-align: center;*/
 	box-shadow: 8px 8px 12px #aaa;
 	border-radius: 6px;
 	color: #FF4901;
@@ -82,9 +90,9 @@ body {
 	font-weight: bold;
 }
 .project {
-	background: FFA000;
-	//#BBD2E1; 
-	//text-align: center;;
+	background: #FFA000;
+	/*#BBD2E1; 
+	//text-align: center;*/
 	color: white;
 	font-weight: bold;
 	padding: 10px;
