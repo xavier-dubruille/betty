@@ -3,8 +3,10 @@ package be.betty.gwtp.client.views;
 import be.betty.gwtp.client.presenters.SingleCardPresenter;
 
 import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Hidden;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
@@ -19,14 +21,20 @@ public class SingleCardView extends ViewImpl implements
 	public VerticalPanel verticalPanel;
 	public HTML header;
 	private Hidden h;
+	private Label course;
+	private Label teacher;
 
 	@Inject
 	public SingleCardView() {
 		// use the boundary panel as this composite's widget
-		final AbsolutePanel boundaryPanel = new AbsolutePanel();
-		boundaryPanel.setPixelSize(100, 60);
-		boundaryPanel.addStyleName("card");
-		widget = boundaryPanel;
+		//final AbsolutePanel boundaryPanel = new AbsolutePanel();
+		//boundaryPanel.setPixelSize(100, 60);
+		final DockPanel dockPanel = new DockPanel();
+		dockPanel.setPixelSize(100, 60);
+		dockPanel.addStyleName("card");
+		//boundaryPanel.addStyleName("card");
+		//widget = boundaryPanel;
+		widget = dockPanel;
 
 		// create the title bar
 		header = new HTML("Empty");
@@ -34,10 +42,15 @@ public class SingleCardView extends ViewImpl implements
 		// create a panel to hold all 
 		verticalPanel = new VerticalPanel();
 		verticalPanel.setSpacing(1);
-		verticalPanel.add(header);
+		//verticalPanel.add(header);
+		course.setPixelSize(99, 40);
+		teacher.setPixelSize(99, 19);
+		verticalPanel.add(course);
+		verticalPanel.add(teacher);
 		//h = new Hidden("id");
 		//verticalPanel.add(h);
-		boundaryPanel.add(verticalPanel);
+		dockPanel.add(verticalPanel, dockPanel.CENTER);
+		//boundaryPanel.add(verticalPanel);
 	}
 
 	@Override
@@ -59,4 +72,13 @@ public class SingleCardView extends ViewImpl implements
 	public Hidden getH() {
 		return h;
 	}
+	
+	public Label getCourse(){
+		return course;
+	}
+	
+	public Label getTeacher(){
+		return teacher;
+	}
+	
 }
