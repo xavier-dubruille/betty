@@ -300,6 +300,7 @@ public class MainPresenter extends
 					addToSlot(SLOT_Card, result);
 					result.init(myI);
 					cardDragController.makeDraggable(result.getWidget(), result.getView().getCourse());
+					cardDragController.makeDraggable(result.getWidget(), result.getView().getTeacher());
 					allCards.add(result);
 
 				}
