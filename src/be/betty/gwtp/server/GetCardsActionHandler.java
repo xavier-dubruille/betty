@@ -8,6 +8,7 @@ import be.betty.gwtp.client.action.GetCardsResult;
 import be.betty.gwtp.server.bdd.Activity;
 import be.betty.gwtp.server.bdd.Course;
 import be.betty.gwtp.server.bdd.Group_entity;
+import be.betty.gwtp.server.bdd.ProjectInstance;
 import be.betty.gwtp.server.bdd.Project_entity;
 import be.betty.gwtp.server.bdd.Teacher;
 import be.betty.gwtp.shared.dto.Card_dto;
@@ -62,8 +63,12 @@ ActionHandler<GetCards, GetCardsResult> {
 		
 		for (Course c: p.getCourses())
 			result.addCourse(new Course_dto(c.getName(), c.getId()));
-			
+		
+		//System.out.println("**<<<** bdd instances:"+p.getProjectInstances());
+		for (ProjectInstance ins: p.getProjectInstances())
+			result.addProjectInstance(""+ins.getId());
 
+		result.setDefaultInstance(0);
 		t.commit();   
 		s.close();
 		return result;

@@ -19,6 +19,8 @@ import be.betty.gwtp.client.place.NameTokens;
 
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
 import com.allen_sauer.gwt.dnd.client.drop.VerticalPanelDropController;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -26,6 +28,7 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -58,6 +61,10 @@ public class MainPresenter extends
 		VerticalPanel getCards_panel();
 
 		void constructFlex(PickupDragController cardDragController);
+
+		ListBox getComboInstance();
+
+		Label getCurrentInstance();
 	}
 
 	public static final Object SLOT_Card = new Object();
@@ -172,7 +179,11 @@ public class MainPresenter extends
 	protected void onBind() {
 		super.onBind();
 		
-		
+		getView().getComboInstance().addChangeHandler(new ChangeHandler() {
+			@Override public void onChange(ChangeEvent arg0) {
+				getView().getCurrentInstance().setText(
+						""+getView().getComboInstance().getSelectedIndex());
+			}});
 		
 		set_dnd();
 		registerHandler(getEventBus().addHandler(CardFilterEvent.getType(),
@@ -262,8 +273,8 @@ public class MainPresenter extends
 	}
 
 	/**
-	 * PRE: local storage Must (already) be filled with the right info POST: The
-	 * page is drawed on screen
+	 * PRE: local storage Must (already) be filled with the right info 
+	 * POST: The page is drawed on screen
 	 * 
 	 * Print the cards, the board, with the information in the local storage
 	 */
@@ -278,6 +289,9 @@ public class MainPresenter extends
 		setInSlot(SLOT_BOARD, boardPresenter);
 
 		cardDragController.registerDropController(cardDropPanel);
+		
+		writeInstancePanel();
+		
 		writeCardWidgetsFirstTime();
 		//getView().constructFlex(cardDragController);
 	
@@ -288,6 +302,20 @@ public class MainPresenter extends
 
 	}
 
+	private void writeInstancePanel() {
+		// faudrait choper l'instance "par defaut", ms pe pas mnt (=>avt) ?
+		
+		System.out.println("***mm**  number of instance="+Storage_access.getNumberOfInstance());
+		System.out.println("***mm**  first Instance="+Storage_access.getInstance(0));
+		for (int i = 0; i<Storage_access.getNumberOfInstance(); i++)
+			getView().getComboInstance().addItem(Storage_access.getInstance(i));
+		
+		
+	}
+
+	/**
+	 *  PRE: local storage must be full-filled
+	 */
 	private void writeCardWidgetsFirstTime() {
 		setInSlot(SLOT_Card, null);
 		allCards.clear();

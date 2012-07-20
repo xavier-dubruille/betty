@@ -15,12 +15,15 @@ public class GetCardsResult implements Result {
 	ArrayList<Card_dto> cards;
 	ArrayList<Group_dto> groups;
 	ArrayList<Course_dto> courses;
+	private ArrayList<String> projectInstances;
+	private int defaultInstance;
 
 	public GetCardsResult() {
 		cards = new ArrayList<Card_dto>();
 		teachers =  new ArrayList<Teacher_dto>();
 		groups = new ArrayList<Group_dto>();
 		courses = new ArrayList<Course_dto>();
+		projectInstances = new ArrayList<String>();
 	}
 
 	public void addCard(Card_dto card) {
@@ -56,5 +59,21 @@ public class GetCardsResult implements Result {
 	
 	public void addCourse(Course_dto c) {
 		courses.add(c);
+	}
+	
+	public void addProjectInstance(String ins) {
+		projectInstances.add(ins);
+	}
+
+	public ArrayList<String> getProjectInstances() {
+		return projectInstances;
+	}
+
+	public void setDefaultInstance(int default_instance) {
+		this.defaultInstance = default_instance;
+	}
+	
+	public int getDefaultInstance() {
+		return defaultInstance;
 	}
 }

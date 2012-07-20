@@ -15,6 +15,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
+import com.google.gwt.user.client.ui.ListBox;
 
 public class MainView extends ViewImpl implements MainPresenter.MyView {
 
@@ -26,7 +27,9 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	@UiField VerticalPanel cards_panel;
 	@UiField SimplePanel CardSelectionOption;
 	@UiField SimplePanel board_panel;
-
+	@UiField ListBox comboInstance;
+	@UiField Label currentInstance;
+ 
 
 	public interface Binder extends UiBinder<Widget, MainView> {
 	}
@@ -98,10 +101,6 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 		return cards_panel;
 	}
 
-	public void setCards_panel(VerticalPanel cards_panel) {
-		this.cards_panel = cards_panel;
-	}
-
 	@Override
 	public void constructFlex(PickupDragController cardDragController) {
 //		int COLUMNS = 5;
@@ -125,6 +124,16 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 //		}
 		
 		
+	}
+
+	@Override
+	public ListBox getComboInstance() {
+		return comboInstance;
+	}
+
+	@Override
+	public Label getCurrentInstance() {
+		return currentInstance;
 	}
 
 

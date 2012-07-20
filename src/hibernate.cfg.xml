@@ -6,9 +6,9 @@
 <hibernate-configuration>
 	<session-factory>
 		<!-- Affiche les logs SQL -->
-		<property name="show_sql">true</property>
-		<property name="hibernate.format_sql">true</property>
-		<property name="use_sql_comments">true</property>
+<!-- 		<property name="show_sql">true</property> -->
+<!-- 		<property name="hibernate.format_sql">true</property> -->
+<!-- 		<property name="use_sql_comments">true</property> -->
 
 
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>

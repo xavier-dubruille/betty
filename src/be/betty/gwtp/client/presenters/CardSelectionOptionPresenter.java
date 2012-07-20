@@ -37,14 +37,12 @@ public class CardSelectionOptionPresenter extends
 		super.onBind();
 		
 		getView().getTeacher_choice().addChangeHandler(new ChangeHandler() {
-			@Override
-			public void onChange(ChangeEvent arg0) {
+			@Override public void onChange(ChangeEvent arg0) {
 				myEventBus.fireEvent(new CardFilterEvent(Filter_kind.TEACHER, getView().getTeacher_choice().getSelectedIndex()));
 			}});
 		
 		getView().getGroup_choice().addChangeHandler(new ChangeHandler() {
-			@Override
-			public void onChange(ChangeEvent arg0) {
+			@Override public void onChange(ChangeEvent arg0) {
 				myEventBus.fireEvent(new CardFilterEvent(Filter_kind.GROUP, getView().getGroup_choice().getSelectedIndex()));
 			}});
 		}

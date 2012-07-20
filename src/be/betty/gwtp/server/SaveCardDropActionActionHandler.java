@@ -38,7 +38,7 @@ public class SaveCardDropActionActionHandler implements
 		as.setPeriod(action.getPeriod());
 		as.setProjectInstance((ProjectInstance) s.get(ProjectInstance.class, action.getProjectInstance()));
 		s.save(as);
-		System.out.println("saveCardDropActionActionHandler: cardId="+action.getCardBddId()+", day="+action.getDay()+", period="+action.getPeriod());
+		//System.out.println("saveCardDropActionActionHandler: cardId="+action.getCardBddId()+", day="+action.getDay()+", period="+action.getPeriod());
 		t.commit();
 		s.close();
 

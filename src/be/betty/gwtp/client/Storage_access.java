@@ -33,9 +33,11 @@ public class Storage_access {
 	private static final String COURSE_PREFIX = "C";
 	private static final String NUMBER_OF_COURSES = "c";
 	private static final String STORAGE_SEPARATOR = "#";
-	private static final String CURRENT_INSTANCE = "I";
+	private static final String CURRENT_INSTANCE = "u";
+	private static final String NUMBER_OF_INSTANCE = "U";
+	private static final String INSTANCE_PREFIX = "I";
 
-	// if the folowing constant have to change:
+	// if the following constants come to change,
 	// then the method setCards() HAS TO be changed also !!
 	private static final int COURSE_INDEX = 0;
 	private static final int TEACHER_INDEX = 1;
@@ -85,6 +87,10 @@ public class Storage_access {
 		Storage_access.setCourses(project_num, result.getCourses());
 		
 		Storage_access.setCards(project_num, result.getCards());
+		
+		System.out.println("***--** Instances to be populated: "+result.getProjectInstances());
+		System.out.println("***--** Default Instance ="+result.getDefaultInstance());
+		Storage_access.setProjectInstances(result.getProjectInstances(), result.getDefaultInstance());
 
 	}
 
@@ -144,6 +150,25 @@ public class Storage_access {
 			i++;
 		}
 		stockStore.setItem(NUMBER_OF_GROUPS, "" + i);
+	}
+	
+	public static void setProjectInstances(ArrayList<String> pis, int defaultInstance) {
+		int i = 0;
+		for (String in : pis) {
+			stockStore.setItem(INSTANCE_PREFIX +i, in);
+			i++;
+		}
+		stockStore.setItem(NUMBER_OF_INSTANCE, "" + i);
+		
+		stockStore.setItem(CURRENT_INSTANCE, ""+defaultInstance);
+	}
+
+	public static int getNumberOfInstance() {
+		return Integer.parseInt(stockStore.getItem(NUMBER_OF_INSTANCE));
+	}
+
+	public static String getInstance(int i) {
+		return stockStore.getItem(INSTANCE_PREFIX+i);
 	}
 	
 	/**
@@ -271,6 +296,7 @@ public class Storage_access {
 			
 		}
 	}
+
 
 
 }
