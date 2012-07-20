@@ -299,7 +299,7 @@ public class MainPresenter extends
 				public void onSuccess (SingleCardPresenter result) {
 					addToSlot(SLOT_Card, result);
 					result.init(myI);
-					cardDragController.makeDraggable(result.getWidget(), result.getView().getDockPanel());
+					cardDragController.makeDraggable(result.getWidget(), result.getView().getCourse());
 					allCards.add(result);
 
 				}
