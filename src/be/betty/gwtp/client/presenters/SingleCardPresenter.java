@@ -8,6 +8,7 @@ import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 import com.google.inject.Inject;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Hidden;
 import com.google.gwt.user.client.ui.Label;
@@ -26,6 +27,7 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		
 		Label getTeacher();
 		Label getCourse();
+		DockPanel getDockPanel();
 	}
 
 	private int teacherId;
@@ -56,11 +58,11 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		getView().asWidget().setTitle(""+myI);
 		//getView().getH().setValue(""+myI); //serait mieu que le titre.. si ca marchait..
 		
-		//getView().getCourse().setText(course);
-		//getView().getTeacher().setText(teacher);
+		getView().getCourse().setText(course);
+		getView().getTeacher().setText(teacher);
 		
 		//getView().getHeader().setPixelSize(99,59);
-		getView().getHeader().setText(course+ " \nT="+teacher);
+		//getView().getHeader().setText(course+ " \nT="+teacher);
 
 	}
 

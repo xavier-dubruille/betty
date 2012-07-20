@@ -150,12 +150,12 @@ public class MainPresenter extends
 				//System.out.println(allCards.size());
 				allCards.get(event.getCardID()).getWidget().addStyleName("cardPlaced");
 				Storage_access.setSlotCard(event.getCardID(), event.getDay(), event.getPeriod());
-				//TODO: faut aussi l'envoyer ˆ la bdd, ou un truc du genre
+				//TODO: faut aussi l'envoyer ï¿½ la bdd, ou un truc du genre
 			}
 			else {
 				allCards.get(event.getCardID()).getWidget().addStyleName("card");
 				Storage_access.revoveFromSlot(event.getCardID());
-				// faut aussi l'envoyer ˆ la bdd, ou un truc du genre
+				// faut aussi l'envoyer ï¿½ la bdd, ou un truc du genre
 			}
 		}
 	};
@@ -299,8 +299,7 @@ public class MainPresenter extends
 				public void onSuccess (SingleCardPresenter result) {
 					addToSlot(SLOT_Card, result);
 					result.init(myI);
-					cardDragController.makeDraggable(result.getWidget(), result
-							.getView().getHeader());
+					cardDragController.makeDraggable(result.getWidget(), result.getView().getDockPanel());
 					allCards.add(result);
 
 				}

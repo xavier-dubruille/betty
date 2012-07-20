@@ -23,6 +23,7 @@ public class SingleCardView extends ViewImpl implements
 	private Hidden h;
 	private Label course;
 	private Label teacher;
+	private DockPanel dockPanel;
 
 	@Inject
 	public SingleCardView() {
@@ -39,27 +40,35 @@ public class SingleCardView extends ViewImpl implements
 		widget = boundaryPanel;
 
 		// create the title bar
-		header = new HTML("Empty");
+		/*header = new HTML("Empty");
 		header.setPixelSize(99, 59);
 		header.setStyleName("courseCard");
-		
-		/*course = new Label("Empty");
+		*/
+		dockPanel = new DockPanel();
+		course = new Label("Empty");
 		teacher = new Label("Empty");
 		
 		course.setStyleName("courseCard");
 		teacher.setStyleName("teacherCard");
 		
 		course.setPixelSize(99, 40);
-		teacher.setPixelSize(99, 19);*/
+		teacher.setPixelSize(99, 19);
 		
+		//dockPanel.add(verticalPanel, dockPanel.CENTER);
+
+		dockPanel.add(course, dockPanel.CENTER);
+		dockPanel.add(teacher, dockPanel.SOUTH);
+		dockPanel.setPixelSize(99, 59);
 		// create a panel to hold all 
 		
 		verticalPanel = new VerticalPanel();
 		verticalPanel.setSpacing(1);
-		verticalPanel.add(header);
+		//verticalPanel.add(header);
 		
-		/*verticalPanel.add(course);
-		veticalPanel.add(teacher);*/
+		//verticalPanel.add(course);
+		//verticalPanel.add(teacher);
+		
+		verticalPanel.add(dockPanel);
 		
 		//h = new Hidden("id");
 		//verticalPanel.add(h);
@@ -93,6 +102,10 @@ public class SingleCardView extends ViewImpl implements
 	
 	public Label getTeacher(){
 		return teacher;
+	}
+	
+	public DockPanel getDockPanel(){
+		return dockPanel;
 	}
 	
 }
