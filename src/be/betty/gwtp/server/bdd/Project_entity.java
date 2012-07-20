@@ -40,6 +40,9 @@ public class Project_entity {
 
 	@OneToMany
 	private Collection<Course> courses = new ArrayList<Course>();
+	
+	@OneToMany
+	private Collection<ProjectInstance> projectInstances = new ArrayList<ProjectInstance>();
 
 	
 	@ManyToMany
@@ -81,48 +84,36 @@ public class Project_entity {
 		return users;
 	}
 
-	public void setUsers(Collection<User> users) {
-		this.users = users;
-	}
 
 	public Collection<Activity> getActivities() {
 		return activities;
 	}
 
-	public void setActivities(Collection<Activity> activities) {
-		this.activities = activities;
-	}
 
 	public Collection<Teacher> getTeachers() {
 		return teachers;
 	}
 
-	public void setTeachers(Collection<Teacher> teachers) {
-		this.teachers = teachers;
-	}
 
 	public Collection<Group_entity> getGroups() {
 		return groups;
 	}
 
-	public void setGroups(Collection<Group_entity> groups) {
-		this.groups = groups;
-	}
+
 
 	public Collection<Course> getCourses() {
 		return courses;
 	}
 
-	public void setCourses(Collection<Course> courses) {
-		this.courses = courses;
-	}
 
 	public Collection<Room> getRooms() {
 		return rooms;
 	}
 
-	public void setRooms(Collection<Room> rooms) {
-		this.rooms = rooms;
+
+	public Collection<ProjectInstance> getProjectInstances() {
+		return projectInstances;
 	}
+
 
 }

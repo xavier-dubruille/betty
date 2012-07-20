@@ -23,6 +23,7 @@ public class ActivityState {
 	private boolean isFixed; //jsai plus pk non plus..
 	private boolean isManual; //jsais plus..
     //@ManyToOne private Project_instance ...
+	@ManyToOne private ProjectInstance projectInstance;
 	
 	@ManyToOne
 	private Teacher teacher;
@@ -77,6 +78,12 @@ public class ActivityState {
 	}
 	public void setPeriod(int period) {
 		this.period = period;
+	}
+	public ProjectInstance getProjectInstance() {
+		return projectInstance;
+	}
+	public void setProjectInstance(ProjectInstance projectInstance) {
+		this.projectInstance = projectInstance;
 	}
 	
 	

@@ -22,7 +22,6 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 
 	@UiField Label mainLabel;
 	@UiField AbsolutePanel dndpanel;
-	@UiField Image dndImage;
 	@UiField Label content;
 	@UiField VerticalPanel cards_panel;
 	@UiField SimplePanel CardSelectionOption;
@@ -79,9 +78,6 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 		return mainLabel;
 	}
 
-	public Image getDndImage() {
-		return dndImage;
-	}
 
 	public AbsolutePanel getDndPanel() {
 		return dndpanel;

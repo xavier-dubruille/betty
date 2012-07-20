@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import be.betty.gwtp.server.bdd.ProjectInstance;
 import be.betty.gwtp.server.bdd.Project_entity;
 import be.betty.gwtp.server.bdd.Session_id;
 import be.betty.gwtp.server.bdd.User;
@@ -146,6 +147,11 @@ public class FileUpServlet extends HttpServlet {
 				+project_attributes.get(Constants.FILE_ROOM));
 		projectToBeSaved.setCourse_file(UPLOAD_DIRECTORY
 				+ project_attributes.get(Constants.FILE_COURSE));
+		ProjectInstance pi = new ProjectInstance("Default", 0);
+		s.save(pi);
+		//pi.setParentProject(projectToBeSaved);
+		
+		projectToBeSaved.getProjectInstances().add(pi);
 
 		// s.update(user);
 		System.out.println("****zero****");

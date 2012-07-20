@@ -33,6 +33,7 @@ public class Storage_access {
 	private static final String COURSE_PREFIX = "C";
 	private static final String NUMBER_OF_COURSES = "c";
 	private static final String STORAGE_SEPARATOR = "#";
+	private static final String CURRENT_INSTANCE = "I";
 
 	// if the folowing constant have to change:
 	// then the method setCards() HAS TO be changed also !!
@@ -168,6 +169,13 @@ public class Storage_access {
 		stockStore.setItem(CARD_PREFIX+cardID, BettyUtils.join(s, STORAGE_SEPARATOR));
 	}
 
+	public static int getCurrentProjectInstance() {
+		String current = stockStore.getItem(CURRENT_INSTANCE);
+		if (current == null) 
+			return 1;
+		else
+			return Integer.parseInt(current);
+	}
 	
 	public static String getTeacher(int i) {
 		return stockStore.getItem(TEACHER_PREFIX+i);

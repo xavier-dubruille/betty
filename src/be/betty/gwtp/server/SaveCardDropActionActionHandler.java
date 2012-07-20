@@ -4,10 +4,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.gwtplatform.dispatch.server.actionhandler.ActionHandler;
+
+import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.action.SaveCardDropAction;
 import be.betty.gwtp.client.action.SaveCardDropActionResult;
 import be.betty.gwtp.server.bdd.Activity;
 import be.betty.gwtp.server.bdd.ActivityState;
+import be.betty.gwtp.server.bdd.ProjectInstance;
 import be.betty.gwtp.server.bdd.Project_entity;
 
 import com.google.inject.Inject;
@@ -33,6 +36,7 @@ public class SaveCardDropActionActionHandler implements
 		as.setActivity(activity);
 		as.setDay(action.getDay());
 		as.setPeriod(action.getPeriod());
+		as.setProjectInstance((ProjectInstance) s.get(ProjectInstance.class, action.getProjectInstance()));
 		s.save(as);
 		System.out.println("saveCardDropActionActionHandler: cardId="+action.getCardBddId()+", day="+action.getDay()+", period="+action.getPeriod());
 		t.commit();

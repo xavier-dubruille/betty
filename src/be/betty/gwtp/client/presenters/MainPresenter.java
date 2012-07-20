@@ -51,8 +51,6 @@ public class MainPresenter extends
 
 		public AbsolutePanel getDndPanel();
 
-		public Image getDndImage();
-
 		Label getContent();
 
 		void setContent(Label content);
@@ -127,9 +125,11 @@ public class MainPresenter extends
 		@Override public void onDropCard(DropCardEvent event) {
 			System.out.println("$$$$$ Catch event.. day="+event.getDay()+" and period= "+event.getPeriod()+" cardid="+event.getCardID());
 			int activity_bddId = Storage_access.getBddIdCard(Storage_access.getCard(event.getCardID()));
+			int projectInstance = Storage_access.getCurrentProjectInstance();
+			System.out.println("　　　　　Actual project instance= "+projectInstance);
 			
 			// "first", save to bdd (it's asynchronous)
-			dispatcher.execute(new SaveCardDropAction(event.getDay(), event.getPeriod(), activity_bddId, event.getRoom()),
+			dispatcher.execute(new SaveCardDropAction(event.getDay(), event.getPeriod(), activity_bddId, event.getRoom(), projectInstance),
 					new AsyncCallback<SaveCardDropActionResult>() {
 						@Override public void onFailure(Throwable arg0) {
 							System.out.println("save 'dropped card' failed !!");

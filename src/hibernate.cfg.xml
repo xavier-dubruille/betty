@@ -22,6 +22,7 @@
 
 		<mapping class="be.betty.gwtp.server.bdd.Teacher" />
 		<mapping class="be.betty.gwtp.server.bdd.Project_entity" />
+		<mapping class="be.betty.gwtp.server.bdd.ProjectInstance" />
 		<mapping class="be.betty.gwtp.server.bdd.Group_entity" />
 		<mapping class="be.betty.gwtp.server.bdd.Course" />
 		<mapping class="be.betty.gwtp.server.bdd.Activity" />

@@ -102,3 +102,23 @@ body {
 	margin-right: 10px;
 	
 }
+.instancePanel {
+	border-top: thin solid black;
+	border-right: thin solid Black;
+	border-bottom: thin solid Black;
+	border-left: thin solid black;
+	background-color: gold;
+}
+.currentInstanceNumber {
+	color: black;
+	font-stretch: extra-expanded;
+	font-variant: small-caps;
+	font-size: 18mm;
+	font-style: normal;
+	font-family: Century Gothic;
+	font-weight: bold;
+}
+.simpleLabel {
+	color: black;
+	font-size: 9px;
+}

@@ -6,16 +6,12 @@
 	ui:generateLocales='default'>
 
 	<g:HTMLPanel>
-		<g:AbsolutePanel height="525px" ui:field="dndpanel"
+		<g:AbsolutePanel height="587px" ui:field="dndpanel"
 			width="977px">
-			<g:at left="578" top="42">
+			<g:at left="390" top="47">
 				<g:Label ui:field="mainLabel" width="126px" height="24px" />
 			</g:at>
-			<g:at left="346" top="-7">
-				<g:Image width="100px" height="100px" url="logo-185x175.png"
-					ui:field="dndImage" />
-			</g:at>
-			<g:at left="478" top="10">
+			<g:at left="406" top="0">
 				<g:Label width="177px" height="100px" ui:field="content" />
 			</g:at>
 			<g:at left="40" top="225">
@@ -29,6 +25,22 @@
 			</g:at>
 			<g:at left="323" top="116">
 				<g:SimplePanel width="381px" height="236px" ui:field="board_panel"/>
+			</g:at>
+			<g:at left="744" top="10">
+				<g:AbsolutePanel width="100px" height="100px" styleName="instancePanel">
+					<g:at left="10" top="0">
+						<g:Label text="0" width="57px" height="63px" ui:field="currentInstance" styleName="currentInstanceNumber"/>
+					</g:at>
+					<g:at left="0" top="82">
+						<g:ListBox/>
+					</g:at>
+					<g:at left="72" top="79">
+						<g:Image width="28px" height="21px" url="Plus_sign.png"/>
+					</g:at>
+					<g:at left="0" top="0">
+						<g:Label text="Instance Courante" width="100px" height="13px" styleName="simpleLabel"/>
+					</g:at>
+				</g:AbsolutePanel>
 			</g:at>
 			
 		</g:AbsolutePanel>
