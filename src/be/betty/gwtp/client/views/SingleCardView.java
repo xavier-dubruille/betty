@@ -27,30 +27,43 @@ public class SingleCardView extends ViewImpl implements
 	@Inject
 	public SingleCardView() {
 		// use the boundary panel as this composite's widget
-		//final AbsolutePanel boundaryPanel = new AbsolutePanel();
-		//boundaryPanel.setPixelSize(100, 60);
-		final DockPanel dockPanel = new DockPanel();
-		dockPanel.setPixelSize(100, 60);
-		dockPanel.addStyleName("card");
+		final AbsolutePanel boundaryPanel = new AbsolutePanel();
+		boundaryPanel.setPixelSize(100, 60);
+		boundaryPanel.addStyleName("card");
+		//final DockPanel dockPanel = new DockPanel();
+		//dockPanel.setPixelSize(100, 60);
+		//dockPanel.addStyleName("card");
+
 		//boundaryPanel.addStyleName("card");
 		//widget = boundaryPanel;
-		widget = dockPanel;
+		widget = boundaryPanel;
 
 		// create the title bar
 		header = new HTML("Empty");
-		course = new Label("Empty");
+		header.setPixelSize(99, 59);
+		header.setStyleName("courseCard");
+		
+		/*course = new Label("Empty");
 		teacher = new Label("Empty");
+		
+		course.setStyleName("courseCard");
+		teacher.setStyleName("teacherCard");
+		
+		course.setPixelSize(99, 40);
+		teacher.setPixelSize(99, 19);*/
+		
 		// create a panel to hold all 
+		
 		verticalPanel = new VerticalPanel();
 		verticalPanel.setSpacing(1);
-		//verticalPanel.add(header);
-		course.setPixelSize(99, 40);
-		teacher.setPixelSize(99, 19);
-		verticalPanel.add(course);
-		verticalPanel.add(teacher);
+		verticalPanel.add(header);
+		
+		/*verticalPanel.add(course);
+		veticalPanel.add(teacher);*/
+		
 		//h = new Hidden("id");
 		//verticalPanel.add(h);
-		dockPanel.add(verticalPanel, dockPanel.CENTER);
+		boundaryPanel.add(verticalPanel);
 		//boundaryPanel.add(verticalPanel);
 	}
 

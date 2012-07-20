@@ -55,12 +55,12 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		// TODO trouver un meilleur moyen de transmettre l'id au widget..
 		getView().asWidget().setTitle(""+myI);
 		//getView().getH().setValue(""+myI); //serait mieu que le titre.. si ca marchait..
-		getView().getCourse().setStyleName("courseCard");
-		getView().getTeacher().setStyleName("teacherCard");
-		getView().getCourse().setText(course);
-		getView().getTeacher().setText(teacher);
+		
+		//getView().getCourse().setText(course);
+		//getView().getTeacher().setText(teacher);
+		
 		//getView().getHeader().setPixelSize(99,59);
-		//getView().getHeader().setText(course+ " T="+teacher);
+		getView().getHeader().setText(course+ " \nT="+teacher);
 
 	}
 
