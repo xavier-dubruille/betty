@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import be.betty.gwtp.shared.dto.Card_dto;
 import be.betty.gwtp.shared.dto.Course_dto;
 import be.betty.gwtp.shared.dto.Group_dto;
+import be.betty.gwtp.shared.dto.ProjectInstance_dto;
 import be.betty.gwtp.shared.dto.Teacher_dto;
 
 import com.gwtplatform.dispatch.shared.Result;
@@ -15,7 +16,7 @@ public class GetCardsResult implements Result {
 	ArrayList<Card_dto> cards;
 	ArrayList<Group_dto> groups;
 	ArrayList<Course_dto> courses;
-	private ArrayList<String> projectInstances;
+	private ArrayList<ProjectInstance_dto> projectInstances;
 	private int defaultInstance;
 
 	public GetCardsResult() {
@@ -23,7 +24,7 @@ public class GetCardsResult implements Result {
 		teachers =  new ArrayList<Teacher_dto>();
 		groups = new ArrayList<Group_dto>();
 		courses = new ArrayList<Course_dto>();
-		projectInstances = new ArrayList<String>();
+		projectInstances = new ArrayList<ProjectInstance_dto>();
 	}
 
 	public void addCard(Card_dto card) {
@@ -61,11 +62,11 @@ public class GetCardsResult implements Result {
 		courses.add(c);
 	}
 	
-	public void addProjectInstance(String ins) {
+	public void addProjectInstance(ProjectInstance_dto ins) {
 		projectInstances.add(ins);
 	}
 
-	public ArrayList<String> getProjectInstances() {
+	public ArrayList<ProjectInstance_dto> getProjectInstances() {
 		return projectInstances;
 	}
 

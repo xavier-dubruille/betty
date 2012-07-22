@@ -6,16 +6,20 @@ import be.betty.gwtp.client.CardHandler;
 import be.betty.gwtp.client.CellDropControler;
 import be.betty.gwtp.client.Filter_kind;
 import be.betty.gwtp.client.Storage_access;
+import be.betty.gwtp.client.action.GetActivityStateAction;
+import be.betty.gwtp.client.action.GetActivityStateActionResult;
 import be.betty.gwtp.client.action.GetCards;
 import be.betty.gwtp.client.action.GetCardsResult;
 import be.betty.gwtp.client.action.SaveCardDropAction;
 import be.betty.gwtp.client.action.SaveCardDropActionResult;
+import be.betty.gwtp.client.event.BoardViewChangedEvent;
 import be.betty.gwtp.client.event.CardFilterEvent;
 import be.betty.gwtp.client.event.DropCardEvent;
 import be.betty.gwtp.client.event.CardFilterEvent.CardFilterHandler;
 import be.betty.gwtp.client.event.DropCardEvent.DropCardHandler;
 import be.betty.gwtp.client.event.ProjectListModifyEvent;
 import be.betty.gwtp.client.place.NameTokens;
+import be.betty.gwtp.shared.dto.ActivityState_dto;
 
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
 import com.allen_sauer.gwt.dnd.client.drop.VerticalPanelDropController;
@@ -77,7 +81,7 @@ public class MainPresenter extends
 	private IndirectProvider<SingleCardPresenter> cardFactory;
 	@Inject DispatchAsync dispatcher;
 
-	protected ArrayList<SingleCardPresenter> allCards;
+	public static ArrayList<SingleCardPresenter> allCards;
 
 	@ProxyCodeSplit
 	@NameToken(NameTokens.main)
@@ -86,6 +90,8 @@ public class MainPresenter extends
 	
 	
 	private Storage stockStore;
+	private EventBus eventBus;
+	
 
 	@Inject
 	public MainPresenter(final EventBus eventBus, final MyView view,
@@ -93,7 +99,7 @@ public class MainPresenter extends
 		super(eventBus, view, proxy);
 		cardFactory = new StandardProvider<SingleCardPresenter>(provider);
 		stockStore = Storage.getLocalStorageIfSupported();
-		
+		this.eventBus = eventBus;
 		allCards = new ArrayList<SingleCardPresenter>();
 	}
 
@@ -118,11 +124,11 @@ public class MainPresenter extends
 
 			switch (event.getFilterType()) {
 			case TEACHER:
-				writeCardWidgets(Filter_kind.TEACHER,
+				writeCardsFromSelector(Filter_kind.TEACHER,
 						Storage_access.getTeacher(event.getFilterObjId()));
 				break;
 			case GROUP:
-				writeCardWidgets(Filter_kind.GROUP,
+				writeCardsFromSelector(Filter_kind.GROUP,
 						Storage_access.getGroup(event.getFilterObjId()));
 			}
 		}
@@ -181,8 +187,15 @@ public class MainPresenter extends
 		
 		getView().getComboInstance().addChangeHandler(new ChangeHandler() {
 			@Override public void onChange(ChangeEvent arg0) {
+				int selectedIndex = getView().getComboInstance().getSelectedIndex();
+				
 				getView().getCurrentInstance().setText(
-						""+getView().getComboInstance().getSelectedIndex());
+						""+Storage_access.getInstanceLocalNum(selectedIndex)
+						);
+				
+				Storage_access.setCurrentProjectInstance(Storage_access.getInstanceBddId(selectedIndex));
+				
+				reDrowStatusCard();
 			}});
 		
 		set_dnd();
@@ -244,6 +257,7 @@ public class MainPresenter extends
 		getView().getMainLabel().setText(
 				"Welcome " + login + " *****  Projet num " + project_num);
 
+	//	final boolean[] DONT_REPEAT_YOURSELF = {true};  //marche po :(
 		GetCards action = new GetCards(project_num);
 		dispatcher.execute(action, new AsyncCallback<GetCardsResult>() {
 
@@ -257,14 +271,17 @@ public class MainPresenter extends
 
 			@Override
 			public void onSuccess(GetCardsResult result) {
-
+//				if (DONT_REPEAT_YOURSELF[0])
+//					DONT_REPEAT_YOURSELF[0]=false;
+//				else return;
 
 				Storage_access.populateStorage(project_num,result);
 				
-				//Storage_access.printStorage();
+				
 				
 				print_da_page();
 				// getView().getContent().setText(result.getActivities().toString());
+				//Storage_access.printStorage();
 
 			}
 
@@ -291,6 +308,11 @@ public class MainPresenter extends
 		cardDragController.registerDropController(cardDropPanel);
 		
 		writeInstancePanel();
+		Storage_access.setCurrentProjectInstance(Storage_access.getInstanceBddId(Storage_access.getCurrentProjectInstance()));
+		
+		reDrowStatusCard();
+		
+		this.boardPresenter.redrawBoard();
 		
 		writeCardWidgetsFirstTime();
 		//getView().constructFlex(cardDragController);
@@ -303,13 +325,13 @@ public class MainPresenter extends
 	}
 
 	private void writeInstancePanel() {
-		// faudrait choper l'instance "par defaut", ms pe pas mnt (=>avt) ?
 		
-		System.out.println("***mm**  number of instance="+Storage_access.getNumberOfInstance());
-		System.out.println("***mm**  first Instance="+Storage_access.getInstance(0));
+		//System.out.println("***mm**  number of instance="+Storage_access.getNumberOfInstance());
+		//System.out.println("***mm**  first Instance="+Storage_access.getInstance(0));
+		getView().getComboInstance().clear();
 		for (int i = 0; i<Storage_access.getNumberOfInstance(); i++)
-			getView().getComboInstance().addItem(Storage_access.getInstance(i));
-		
+			getView().getComboInstance().addItem(""+Storage_access.getInstanceLocalNum(i)+": "+Storage_access.getInstanceDesc(i));
+		//Storage_access.printStorage();
 		
 	}
 
@@ -343,7 +365,17 @@ public class MainPresenter extends
 
 	}
 
-	private void writeCardWidgets(Filter_kind filter_kind, String toFilter) {
+	/**
+	 * 
+	 * le principe est d'appliquer "un filtre" au cartons,
+	 * pour en faire "disparaitre" ou "reaparaitre"
+	 * Faut voire si c'est le plus performant/bug free
+	 * ou sinon, on fait comme la methode d'apres..
+	 * 
+	 * @param filter_kind
+	 * @param toFilter
+	 */
+	private void writeCardsFromSelector(Filter_kind filter_kind, String toFilter) {
 
 		for (SingleCardPresenter c : allCards) {
 			//System.out.println(c.getView().getHeader());
@@ -352,4 +384,42 @@ public class MainPresenter extends
 		}
 
 	}
+	
+	/**
+	 *  ( devrait pe bien etre fusionne avec le precedent, ms fonctionne pas de la mm maniere, 
+	 *  et surtt, celle ci a besoin d'une requete server.. ms bon, on peu s'arranger)
+	 *  
+	 *  Le principe est d'appeller cette methode a chaque fois que le
+	 *  statu des cartes est modifie (changement de vues, (de mode?), d'instance, (de filtres ?) )
+	 *  
+	 *  Pour le moment elle n'est (et ne doit etre) utilise lors d'un changemnt d'instances
+	 *  
+	 */
+	private void reDrowStatusCard() {
+		int currentInstance= Storage_access.getCurrentProjectInstance() ;
+		Storage_access.setCurrentProjectInstance(currentInstance);
+		dispatcher.execute(new GetActivityStateAction(currentInstance), new AsyncCallback<GetActivityStateActionResult>() {
+
+	
+
+			@Override public void onFailure(Throwable arg0) {
+				System.out.println("!!!!!!!!!!!!!!!!!!!!!****  failed to get activities status");
+
+			}
+
+			@Override public void onSuccess(GetActivityStateActionResult result) {
+				System.out.println(result.getActivitiesState().toString());
+				for (int i=0; i< Storage_access.getNumberOfCard(); i++) {
+					ActivityState_dto a = result.getActivitiesState().get(""+Storage_access.getBddIdCard(Storage_access.getCard(i)));
+					if (a == null) continue;
+					Storage_access.setSlotCard(i, a.getDay(), a.getPeriod());	
+					
+				}
+				eventBus.fireEvent( new BoardViewChangedEvent());
+				//Storage_access.printStorage();
+			}});
+
+		
+	}
+
 }

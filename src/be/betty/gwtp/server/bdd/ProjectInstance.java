@@ -1,11 +1,15 @@
 package be.betty.gwtp.server.bdd;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class ProjectInstance {
@@ -15,8 +19,11 @@ public class ProjectInstance {
 	@Column(name = "id")
 	private Integer id; //faut voire si on peut mettre une combinaison de parentProject+num comme cle primaire
 	private String description;
-	@ManyToOne private Project_entity parentProject;
+
 	private int num;
+	@ManyToOne private Project_entity parentProject;
+	@OneToMany private Collection<ActivityState> activitiesState = new ArrayList<ActivityState>();
+	
 	public ProjectInstance() {}
 	public ProjectInstance(String description, int num) {
 		this.description = description;
@@ -42,6 +49,9 @@ public class ProjectInstance {
 	}
 	public Integer getId() {
 		return id;
+	}
+	public Collection<ActivityState> getActivitiesState() {
+		return activitiesState;
 	}
 	
 	

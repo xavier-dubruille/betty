@@ -8,6 +8,7 @@ import be.betty.gwtp.shared.BettyUtils;
 import be.betty.gwtp.shared.dto.Card_dto;
 import be.betty.gwtp.shared.dto.Course_dto;
 import be.betty.gwtp.shared.dto.Group_dto;
+import be.betty.gwtp.shared.dto.ProjectInstance_dto;
 import be.betty.gwtp.shared.dto.Teacher_dto;
 
 import com.google.gwt.storage.client.Storage;
@@ -37,7 +38,7 @@ public class Storage_access {
 	private static final String NUMBER_OF_INSTANCE = "U";
 	private static final String INSTANCE_PREFIX = "I";
 
-	// if the following constants come to change,
+	// if one of the following constants come to change,
 	// then the method setCards() HAS TO be changed also !!
 	private static final int COURSE_INDEX = 0;
 	private static final int TEACHER_INDEX = 1;
@@ -45,6 +46,13 @@ public class Storage_access {
 	private static final int SLOT_INDEX = 3;
 	private static final int ROOM_INDEX = 4;
 	private static final int BDDID_INDEX = 5;
+	
+	// if one of the following constants come to change,
+	// then the method setProjectInstance() HAS TO be changed also !!
+	private static final int PI_BDDID_INDEX = 0;
+	private static final int PI_STATUS_INDEX = 1; //e.g. if the instance has been deleted and have to be disabled
+	private static final int PI_NUMBER = 2;
+	private static final int PI_DESC = 3;
 	
 	static {
 		stockStore = Storage.getLocalStorageIfSupported();
@@ -152,15 +160,30 @@ public class Storage_access {
 		stockStore.setItem(NUMBER_OF_GROUPS, "" + i);
 	}
 	
-	public static void setProjectInstances(ArrayList<String> pis, int defaultInstance) {
+	/**
+	 * if this come to change, then some constants HAS TO be changed !! (see above)
+	 * 
+	 * Actuelement, le parametre "defaultInstance" nest PAS utilise !
+	 * il prendre le premier.. c plus simple, ca marche, mais c pas mieu..
+	 * @param pis
+	 * @param defaultInstance
+	 */
+	public static void setProjectInstances(ArrayList<ProjectInstance_dto> pis, int defaultInstance) {
 		int i = 0;
-		for (String in : pis) {
-			stockStore.setItem(INSTANCE_PREFIX +i, in);
+		String s = STORAGE_SEPARATOR;
+		for (ProjectInstance_dto in : pis) {
+			if (i == 0) stockStore.setItem(CURRENT_INSTANCE, ""+in.getBddId());
+			
+			stockStore.setItem(INSTANCE_PREFIX +i,""
+					+in.getBddId() +s
+					+"T"+s
+					+in.getLocalNum() +s
+					+in.getDescription() );
 			i++;
 		}
 		stockStore.setItem(NUMBER_OF_INSTANCE, "" + i);
 		
-		stockStore.setItem(CURRENT_INSTANCE, ""+defaultInstance);
+		//stockStore.setItem(CURRENT_INSTANCE, ""+defaultInstance);
 	}
 
 	public static int getNumberOfInstance() {
@@ -194,12 +217,30 @@ public class Storage_access {
 		stockStore.setItem(CARD_PREFIX+cardID, BettyUtils.join(s, STORAGE_SEPARATOR));
 	}
 
+	public static void setCurrentProjectInstance(int currentProjectInstance) {
+		stockStore.setItem(CURRENT_INSTANCE, ""+currentProjectInstance);
+	}
 	public static int getCurrentProjectInstance() {
 		String current = stockStore.getItem(CURRENT_INSTANCE);
 		if (current == null) 
 			return 1;
 		else
 			return Integer.parseInt(current);
+	}
+	
+	public static int getInstanceBddId(int i) {
+		String instance = stockStore.getItem(INSTANCE_PREFIX+i);
+		return Integer.parseInt(instance.split(STORAGE_SEPARATOR)[PI_BDDID_INDEX]);
+	}
+	
+	public static int getInstanceLocalNum(int i) {
+		String instance = stockStore.getItem(INSTANCE_PREFIX+i);
+		return Integer.parseInt(instance.split(STORAGE_SEPARATOR)[PI_NUMBER]);
+	}
+	
+	public static String getInstanceDesc(int i) {
+		String instance = stockStore.getItem(INSTANCE_PREFIX+i);
+		return instance.split(STORAGE_SEPARATOR)[PI_DESC];
 	}
 	
 	public static String getTeacher(int i) {
@@ -281,6 +322,10 @@ public class Storage_access {
 		System.out.println("** Then all the groups **");
 		for(int i=0;i < Storage_access.getNumberOfGroup(); i++)
 			System.out.println("Group "+i+" = "+Storage_access.getGroup(i));
+		
+		System.out.println("** Then all the projects instances **");
+		for(int i=0;i < Storage_access.getNumberOfInstance(); i++)
+			System.out.println("Instance"+i+" = "+Storage_access.getInstance(i));
 		
 		System.out.println("**All cards in a nicer way...**");
 

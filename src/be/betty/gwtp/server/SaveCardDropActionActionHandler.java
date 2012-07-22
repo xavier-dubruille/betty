@@ -32,12 +32,17 @@ public class SaveCardDropActionActionHandler implements
 		Transaction t = s.beginTransaction();
 
 		Activity activity = (Activity) s.get(Activity.class, action.getCardBddId());
+		System.out.println("**project instance="+action.getProjectInstance());
+		ProjectInstance pi = (ProjectInstance) s.get(ProjectInstance.class, action.getProjectInstance());
+		assert (pi != null): "probleme annormal dans la reception de l'instance dans laquelle poser les cartons";
 		ActivityState as = new ActivityState();
 		as.setActivity(activity);
 		as.setDay(action.getDay());
 		as.setPeriod(action.getPeriod());
-		as.setProjectInstance((ProjectInstance) s.get(ProjectInstance.class, action.getProjectInstance()));
+		as.setProjectInstance(pi);
 		s.save(as);
+		pi.getActivitiesState().add(as);
+		s.save(pi);
 		//System.out.println("saveCardDropActionActionHandler: cardId="+action.getCardBddId()+", day="+action.getDay()+", period="+action.getPeriod());
 		t.commit();
 		s.close();

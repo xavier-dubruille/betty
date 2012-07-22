@@ -2,6 +2,7 @@ package be.betty.gwtp.server.guice;
 
 import com.gwtplatform.dispatch.server.guice.HandlerModule;
 
+import be.betty.gwtp.client.action.GetActivityStateAction;
 import be.betty.gwtp.client.action.GetCards;
 import be.betty.gwtp.client.action.GetProjectsAction;
 import be.betty.gwtp.client.action.LoginAction;
@@ -14,6 +15,7 @@ import be.betty.gwtp.client.action.SubscribeAction;
 import be.betty.gwtp.server.SubscribeActionActionHandler;
 import be.betty.gwtp.client.action.SaveCardDropAction;
 import be.betty.gwtp.server.SaveCardDropActionActionHandler;
+import be.betty.gwtp.server.GetActivityStateActionActionHandler;
 
 public class ServerModule extends HandlerModule {
 
@@ -34,5 +36,8 @@ public class ServerModule extends HandlerModule {
 
 		bindHandler(SaveCardDropAction.class,
 				SaveCardDropActionActionHandler.class);
+
+		bindHandler(GetActivityStateAction.class,
+				GetActivityStateActionActionHandler.class);
 }
 }

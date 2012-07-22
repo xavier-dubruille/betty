@@ -32,6 +32,7 @@ public class CellDropControler extends SimpleDropController {
 	@Override
 	public void onDrop(DragContext context) {
 		dropTarget.setWidget(context.draggable);
+		//dropTarget.add(context.draggable);
 		
 		Widget w = context.selectedWidgets.get(0);
 		if ( w != null) {

@@ -14,6 +14,7 @@ import be.betty.gwtp.server.bdd.Teacher;
 import be.betty.gwtp.shared.dto.Card_dto;
 import be.betty.gwtp.shared.dto.Course_dto;
 import be.betty.gwtp.shared.dto.Group_dto;
+import be.betty.gwtp.shared.dto.ProjectInstance_dto;
 import be.betty.gwtp.shared.dto.Teacher_dto;
 
 import com.google.inject.Inject;
@@ -66,7 +67,7 @@ ActionHandler<GetCards, GetCardsResult> {
 		
 		//System.out.println("**<<<** bdd instances:"+p.getProjectInstances());
 		for (ProjectInstance ins: p.getProjectInstances())
-			result.addProjectInstance(""+ins.getId());
+			result.addProjectInstance(new ProjectInstance_dto(ins.getId(), ins.getNum(), ins.getDescription()));
 
 		result.setDefaultInstance(0);
 		t.commit();   
