@@ -24,11 +24,11 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	@UiField Label mainLabel;
 	@UiField AbsolutePanel dndpanel;
 	@UiField Label content;
-	@UiField VerticalPanel cards_panel;
-	@UiField SimplePanel CardSelectionOption;
 	@UiField SimplePanel board_panel;
 	@UiField ListBox comboInstance;
 	@UiField Label currentInstance;
+	@UiField SimplePanel CardSelectionOption;
+	@UiField VerticalPanel cards_panel;
  
 
 	public interface Binder extends UiBinder<Widget, MainView> {
