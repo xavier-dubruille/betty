@@ -14,8 +14,7 @@ public class GetActivityStateAction extends
 		// For serialization only
 	}
 	
-	@Override
-	public boolean isSecured() {
+	@Override public boolean isSecured() {
 		return false;
 	}
 
