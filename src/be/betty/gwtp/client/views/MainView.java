@@ -29,6 +29,8 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	@UiField SimplePanel board_panel;
 	@UiField ListBox comboInstance;
 	@UiField Label currentInstance;
+	@UiField ListBox combo_viewChoice1;
+	@UiField ListBox combo_viewChoice2;
  
 
 	public interface Binder extends UiBinder<Widget, MainView> {
@@ -134,6 +136,16 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	@Override
 	public Label getCurrentInstance() {
 		return currentInstance;
+	}
+
+	@Override
+	public ListBox getCombo_viewChoice1() {
+		return combo_viewChoice1;
+	}
+
+	@Override
+	public ListBox getCombo_viewChoice2() {
+		return combo_viewChoice2;
 	}
 
 

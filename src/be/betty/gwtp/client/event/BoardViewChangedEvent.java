@@ -13,8 +13,25 @@ public class BoardViewChangedEvent extends
 		void onBoardViewChanged(BoardViewChangedEvent event);
 	}
 
-	public BoardViewChangedEvent() {
+	private int comboViewIndex_1;
+	private int comboViewIndex_2;
+
+	private BoardViewChangedEvent() {
+		// on peut p-e mettre d'autre valeurs "par default"... 
+		// mais de tt facon, se constructeur "ne devrait pas" etre utilise.
+		comboViewIndex_1 = 0;
+		comboViewIndex_2 = 0;
 	}
+	
+	
+
+	public BoardViewChangedEvent(int comboViewIndex_1, int comboViewIndex_2) {
+		super();
+		this.comboViewIndex_1 = comboViewIndex_1;
+		this.comboViewIndex_2 = comboViewIndex_2;
+	}
+
+
 
 	@Override
 	protected void dispatch(BoardViewChangedHandler handler) {
@@ -32,5 +49,13 @@ public class BoardViewChangedEvent extends
 
 	public static void fire(HasHandlers source) {
 		source.fireEvent(new BoardViewChangedEvent());
+	}
+
+	public int getComboViewIndex_1() {
+		return comboViewIndex_1;
+	}
+
+	public int getComboViewIndex_2() {
+		return comboViewIndex_2 ;
 	}
 }

@@ -96,8 +96,8 @@ public class Storage_access {
 		
 		Storage_access.setCards(project_num, result.getCards());
 		
-		System.out.println("***--** Instances to be populated: "+result.getProjectInstances());
-		System.out.println("***--** Default Instance ="+result.getDefaultInstance());
+		//System.out.println("***--** Instances to be populated: "+result.getProjectInstances());
+		//System.out.println("***--** Default Instance ="+result.getDefaultInstance());
 		Storage_access.setProjectInstances(result.getProjectInstances(), result.getDefaultInstance());
 
 	}
@@ -286,8 +286,14 @@ public class Storage_access {
 	public static String getTeacherCard(String card) {
 		return getTeacher(Integer.parseInt(card.split(STORAGE_SEPARATOR)[TEACHER_INDEX]));
 	}
+	public static int getTeacherIdCard(String card) {
+		return Integer.parseInt(card.split(STORAGE_SEPARATOR)[TEACHER_INDEX]);
+	}
 	public static String getGroupCard(String card) {
 		return getGroup(Integer.parseInt(card.split(STORAGE_SEPARATOR)[GROUP_INDEX]));
+	}
+	public static int getGroupIdCard(String card) {
+		return Integer.parseInt(card.split(STORAGE_SEPARATOR)[GROUP_INDEX]);
 	}
 	public static int getSlotCard(String card) {
 		return Integer.parseInt(card.split(STORAGE_SEPARATOR)[SLOT_INDEX]);

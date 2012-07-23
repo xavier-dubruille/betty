@@ -42,6 +42,12 @@
 					</g:at>
 				</g:AbsolutePanel>
 			</g:at>
+			<g:at left="539" top="82">
+				<g:ListBox ui:field="combo_viewChoice1"/>
+			</g:at>
+			<g:at left="638" top="82">
+				<g:ListBox ui:field="combo_viewChoice2"/>
+			</g:at>
 			
 		</g:AbsolutePanel>
 

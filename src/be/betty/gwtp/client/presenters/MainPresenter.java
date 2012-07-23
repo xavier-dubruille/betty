@@ -69,6 +69,10 @@ public class MainPresenter extends
 		ListBox getComboInstance();
 
 		Label getCurrentInstance();
+
+		ListBox getCombo_viewChoice1();
+
+		ListBox getCombo_viewChoice2();
 	}
 
 	public static final Object SLOT_Card = new Object();
@@ -198,6 +202,21 @@ public class MainPresenter extends
 				reDrowStatusCard();
 			}});
 		
+		getView().getCombo_viewChoice1().addChangeHandler(new ChangeHandler() {
+			@Override public void onChange(ChangeEvent arg0) {
+				printSecondComboBxView(getView().getCombo_viewChoice1().getSelectedIndex());
+				
+			}
+
+		});
+		
+		getView().getCombo_viewChoice2().addChangeHandler(new ChangeHandler() {
+			@Override public void onChange(ChangeEvent arg0) {
+				reDrowStatusCard();
+			}
+
+		});
+		
 		set_dnd();
 		registerHandler(getEventBus().addHandler(CardFilterEvent.getType(),
 				filterHandler));
@@ -307,12 +326,13 @@ public class MainPresenter extends
 
 		cardDragController.registerDropController(cardDropPanel);
 		
+		setStaticFirstComboView();
 		writeInstancePanel();
 		Storage_access.setCurrentProjectInstance(Storage_access.getInstanceBddId(Storage_access.getCurrentProjectInstance()));
 		
 		reDrowStatusCard();
 		
-		this.boardPresenter.redrawBoard();
+		this.boardPresenter.redrawBoard(0,0); //TODO n'enregistrerons nous pas la "vue par default"? ou la derniere ?
 		
 		writeCardWidgetsFirstTime();
 		//getView().constructFlex(cardDragController);
@@ -322,6 +342,41 @@ public class MainPresenter extends
 		//CellDropControler dropController = new CellDropControler(simplePanel);
 	   //	cardDragController.registerDropController(dropController);
 
+	}
+
+	/**
+	 * This method will construct the first combobox involved in selecting a view (for the card board)
+	 * It's "static" data, so one should change this with care, as it's used by others (it's handler)
+	 */
+	private void setStaticFirstComboView() {
+		getView().getCombo_viewChoice1().clear();
+		getView().getCombo_viewChoice1().addItem("Professeur");
+		getView().getCombo_viewChoice1().addItem("Local");
+		getView().getCombo_viewChoice1().addItem("Classe");
+	
+	}
+	
+
+	private void printSecondComboBxView(int selectedIndex) {
+		assert selectedIndex >=0 && selectedIndex<=2;
+		getView().getCombo_viewChoice2().clear();
+		
+		switch (selectedIndex) {
+		case 0: 
+			for (int i=0; i< Storage_access.getNumberOfTeacher(); i++){
+				getView().getCombo_viewChoice2().addItem(Storage_access.getTeacher(i));
+			}
+			break;
+		case 1: 
+			
+			break;
+		case 2: 
+			for (int i=0; i< Storage_access.getNumberOfGroup(); i++){
+				getView().getCombo_viewChoice2().addItem(Storage_access.getGroup(i)	);
+			}
+			break;
+		default: return;
+		}
 	}
 
 	private void writeInstancePanel() {
@@ -397,7 +452,7 @@ public class MainPresenter extends
 	 */
 	private void reDrowStatusCard() {
 		int currentInstance= Storage_access.getCurrentProjectInstance() ;
-		Storage_access.setCurrentProjectInstance(currentInstance);
+		
 		dispatcher.execute(new GetActivityStateAction(currentInstance), new AsyncCallback<GetActivityStateActionResult>() {
 
 	
@@ -408,18 +463,27 @@ public class MainPresenter extends
 			}
 
 			@Override public void onSuccess(GetActivityStateActionResult result) {
-				System.out.println(result.getActivitiesState().toString());
 				for (int i=0; i< Storage_access.getNumberOfCard(); i++) {
-					ActivityState_dto a = result.getActivitiesState().get(""+Storage_access.getBddIdCard(Storage_access.getCard(i)));
-					if (a == null) continue;
-					Storage_access.setSlotCard(i, a.getDay(), a.getPeriod());	
+					String card = Storage_access.getCard(i);
+					ActivityState_dto a = result.getActivitiesState().get(""+Storage_access.getBddIdCard(card));
+					if (a == null) 
+						Storage_access.revoveFromSlot(i);	
+					else 
+						Storage_access.setSlotCard(i, a.getDay(), a.getPeriod());	
 					
 				}
-				eventBus.fireEvent( new BoardViewChangedEvent());
+				eventBus.fireEvent( 
+						new BoardViewChangedEvent(getView().getCombo_viewChoice1().getSelectedIndex(),
+												  getView().getCombo_viewChoice2().getSelectedIndex())
+						);
 				//Storage_access.printStorage();
-			}});
+			}
+
+			});
 
 		
 	}
+
+	
 
 }
