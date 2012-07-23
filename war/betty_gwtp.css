@@ -42,7 +42,9 @@ body {
 .panel_filter_options {
 	background-color: cornflowerblue;
 }
-. { }
+. {
+	margin: 5px;
+}
 
 .Header {
 	background: #258;
@@ -103,6 +105,7 @@ body {
 	
 }
 .instancePanel {
+	margin: 5px;
 	border-top: thin solid black;
 	border-right: thin solid Black;
 	border-bottom: thin solid Black;
