@@ -142,7 +142,7 @@ public class MainPresenter extends
 		@Override public void onDropCard(DropCardEvent event) {
 			System.out.println("$$$$$ Catch event.. day="+event.getDay()+" and period= "+event.getPeriod()+" cardid="+event.getCardID());
 			int activity_bddId = Storage_access.getBddIdCard(Storage_access.getCard(event.getCardID()));
-			int projectInstance = Storage_access.getCurrentProjectInstance();
+			int projectInstance = Storage_access.getCurrentProjectInstanceBDDID();
 			System.out.println("　　　　　Actual project instance= "+projectInstance);
 			
 			// "first", save to bdd (it's asynchronous)
@@ -197,7 +197,7 @@ public class MainPresenter extends
 						""+Storage_access.getInstanceLocalNum(selectedIndex)
 						);
 				
-				Storage_access.setCurrentProjectInstance(Storage_access.getInstanceBddId(selectedIndex));
+				Storage_access.setCurrentProjectInstanceBddId(0);
 				
 				reDrowStatusCard();
 			}});
@@ -328,7 +328,8 @@ public class MainPresenter extends
 		
 		setStaticFirstComboView();
 		writeInstancePanel();
-		Storage_access.setCurrentProjectInstance(Storage_access.getInstanceBddId(Storage_access.getCurrentProjectInstance()));
+		Storage_access.setCurrentProjectInstanceBddId(0);
+		//Storage_access.setCurrentProjectInstance(Storage_access.getInstanceBddId(Storage_access.getCurrentProjectInstance()));
 		
 		reDrowStatusCard();
 		
@@ -451,7 +452,7 @@ public class MainPresenter extends
 	 *  
 	 */
 	private void reDrowStatusCard() {
-		int currentInstance= Storage_access.getCurrentProjectInstance() ;
+		int currentInstance= Storage_access.getCurrentProjectInstanceBDDID() ;
 		
 		dispatcher.execute(new GetActivityStateAction(currentInstance), new AsyncCallback<GetActivityStateActionResult>() {
 

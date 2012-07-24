@@ -34,7 +34,7 @@ public class Storage_access {
 	private static final String COURSE_PREFIX = "C";
 	private static final String NUMBER_OF_COURSES = "c";
 	private static final String STORAGE_SEPARATOR = "#";
-	private static final String CURRENT_INSTANCE = "u";
+	private static final String CURRENT_INSTANCE_BDDID = "u";
 	private static final String NUMBER_OF_INSTANCE = "U";
 	private static final String INSTANCE_PREFIX = "I";
 
@@ -98,7 +98,7 @@ public class Storage_access {
 		
 		//System.out.println("***--** Instances to be populated: "+result.getProjectInstances());
 		//System.out.println("***--** Default Instance ="+result.getDefaultInstance());
-		Storage_access.setProjectInstances(result.getProjectInstances(), result.getDefaultInstance());
+		Storage_access.setProjectInstances(result.getProjectInstances(), 0); //result.getDefaultInstance());
 
 	}
 
@@ -172,7 +172,7 @@ public class Storage_access {
 		int i = 0;
 		String s = STORAGE_SEPARATOR;
 		for (ProjectInstance_dto in : pis) {
-			if (i == 0) stockStore.setItem(CURRENT_INSTANCE, ""+in.getBddId());
+			if (i == 0) stockStore.setItem(CURRENT_INSTANCE_BDDID, ""+in.getBddId());
 			
 			stockStore.setItem(INSTANCE_PREFIX +i,""
 					+in.getBddId() +s
@@ -217,15 +217,15 @@ public class Storage_access {
 		stockStore.setItem(CARD_PREFIX+cardID, BettyUtils.join(s, STORAGE_SEPARATOR));
 	}
 
-	public static void setCurrentProjectInstance(int currentProjectInstance) {
-		stockStore.setItem(CURRENT_INSTANCE, ""+currentProjectInstance);
+	public static void setCurrentProjectInstanceBddId(int currentProjectInstance) {
+		stockStore.setItem(CURRENT_INSTANCE_BDDID, ""+getInstanceBddId(currentProjectInstance));
 	}
-	public static int getCurrentProjectInstance() {
-		String current = stockStore.getItem(CURRENT_INSTANCE);
-		if (current == null) 
-			return 1;
-		else
-			return Integer.parseInt(current);
+	
+	public static int getCurrentProjectInstanceBDDID() {
+		String current = stockStore.getItem(CURRENT_INSTANCE_BDDID);
+		assert current != null;
+		
+		return Integer.parseInt(current);
 	}
 	
 	public static int getInstanceBddId(int i) {
