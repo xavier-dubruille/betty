@@ -326,10 +326,16 @@ public class MainPresenter extends
 
 		cardDragController.registerDropController(cardDropPanel);
 		
-		setStaticFirstComboView();
+		
 		writeInstancePanel();
 		Storage_access.setCurrentProjectInstanceBddId(0);
-		//Storage_access.setCurrentProjectInstance(Storage_access.getInstanceBddId(Storage_access.getCurrentProjectInstance()));
+		
+		// for the "view selection" :
+		// We write the first combo, then we select it, then we build the second one, we select it and finaly we draw the cards
+		setStaticFirstComboView();
+		getView().getCombo_viewChoice1().setSelectedIndex(0);
+		printSecondComboBxView(getView().getCombo_viewChoice1().getSelectedIndex());
+		getView().getCombo_viewChoice2().setSelectedIndex(0);
 		
 		reDrowStatusCard();
 		
