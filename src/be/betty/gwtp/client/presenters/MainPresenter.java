@@ -197,7 +197,7 @@ public class MainPresenter extends
 						""+Storage_access.getInstanceLocalNum(selectedIndex)
 						);
 				
-				Storage_access.setCurrentProjectInstanceBddId(0);
+				Storage_access.setCurrentProjectInstanceBddId(selectedIndex);
 				
 				reDrowStatusCard();
 			}});
