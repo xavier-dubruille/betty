@@ -48,7 +48,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 			for (int j = 0; j < ROWS; j++) {
 				// create a simple panel drop target for the current cell
 				SimplePanel simplePanel = new SimplePanel();
-				simplePanel.setPixelSize(UiConstants.getCardWidth(), UiConstants.getCardHeight());
+				simplePanel.setPixelSize(UiConstants.getCardWidth()+5, UiConstants.getCardHeight()+5);
 				simplePanel.setStyleName("flextable");
 				getView().getFlexTable().setWidget(j, i, simplePanel);
 				//flexTable.getCellFormatter().setStyleName();

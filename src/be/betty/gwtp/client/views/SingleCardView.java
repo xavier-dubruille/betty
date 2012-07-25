@@ -3,6 +3,7 @@ package be.betty.gwtp.client.views;
 import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.presenters.SingleCardPresenter;
 
+import com.google.gwt.i18n.client.HasDirection.Direction;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.Hidden;
@@ -44,12 +45,14 @@ public class SingleCardView extends ViewImpl implements
 		//Add a specific CSS for the different label
 		course.setStyleName("courseCard");
 		teacher.setStyleName("teacherCard");
-		group.setStyleName("teacherCard");
+		group.setStyleName("groupCard");
+		
 		
 		//Add a size for the different dockPanel
-		course.setPixelSize(UiConstants.getCardWidth(), 60);
-		teacher.setPixelSize((UiConstants.getCardWidth()/2)-1, 15);
-		group.setPixelSize((UiConstants.getCardWidth()/2)-1, 15);
+		course.setPixelSize(UiConstants.getCardWidth(), (UiConstants.getCardHeight()/3)*2);
+		teacher.setPixelSize((UiConstants.getCardWidth()/2)-1, UiConstants.getCardHeight()/3);
+		group.setPixelSize((UiConstants.getCardWidth()/2)-1, UiConstants.getCardHeight()/3);
+		
 		//Create a new Dockpanel to
 		dockPanel = new DockPanel();
 		dockPanel2 = new DockPanel();
@@ -60,9 +63,7 @@ public class SingleCardView extends ViewImpl implements
 		dockPanel2.add(teacher, DockPanel.EAST);
 		
 		dockPanel.add(dockPanel2, DockPanel.NORTH);
-		//dockPanel.add(teacher, DockPanel.NORTH);
 		dockPanel.add(course, DockPanel.CENTER);
-		//dockPanel.add(group, DockPanel.NORTH);
 		
 		
 		//Add a size to the dockPanel

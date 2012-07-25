@@ -29,6 +29,14 @@ body {
 
 .teacherCard{
 	font-size: 7pt;
+	text-align: right;
+	margin-right: 5px;
+	
+}
+
+.groupCard{
+	font-size: 7pt;
+	text-align: left;
 }
 
 .panelCell {
@@ -44,6 +52,7 @@ body {
 }
 . {
 	margin: 5px;
+	background-color: White;
 }
 
 .Header {
