@@ -21,8 +21,6 @@ PresenterWidget<SingleCardPresenter.MyView> {
 
 		VerticalPanel getVerticalPanel();
 
-		HTML getHeader();
-
 		Hidden getH();
 		
 		Label getTeacher();
@@ -60,9 +58,6 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		
 		getView().getCourse().setText(course);
 		getView().getTeacher().setText(teacher);
-		
-		//getView().getHeader().setPixelSize(99,59);
-		//getView().getHeader().setText(course+ " \nT="+teacher);
 
 	}
 

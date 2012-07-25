@@ -19,10 +19,10 @@ public class SingleCardView extends ViewImpl implements
 
 	Widget widget;
 	public VerticalPanel verticalPanel;
-	public HTML header;
 	private Hidden h;
 	private Label course;
 	private Label teacher;
+	private Label group;
 	private DockPanel dockPanel;
 
 	@Inject
@@ -31,49 +31,43 @@ public class SingleCardView extends ViewImpl implements
 		final AbsolutePanel boundaryPanel = new AbsolutePanel();
 		boundaryPanel.setPixelSize(100, 60);
 		boundaryPanel.addStyleName("card");
-		//final DockPanel dockPanel = new DockPanel();
-		//dockPanel.setPixelSize(100, 60);
-		//dockPanel.addStyleName("card");
-
-		//boundaryPanel.addStyleName("card");
-		//widget = boundaryPanel;
+		
 		widget = boundaryPanel;
 
-		// create the title bar
-		/*header = new HTML("Empty");
-		header.setPixelSize(99, 59);
-		header.setStyleName("courseCard");
-		*/
-		dockPanel = new DockPanel();
+		
+		//Create all new label
 		course = new Label("Empty");
 		teacher = new Label("Empty");
+		group = new Label("Empty");
 		
+		//Add a specific CSS for the different label
 		course.setStyleName("courseCard");
 		teacher.setStyleName("teacherCard");
+		group.setStyleName("teacherCard");
 		
+		//Add a size for the different dockPanel
 		course.setPixelSize(99, 40);
 		teacher.setPixelSize(99, 19);
 		
-		//dockPanel.add(verticalPanel, dockPanel.CENTER);
-
+		//Create a new Dockpanel to
+		dockPanel = new DockPanel();
+		
+		//Add all label in different part of dockPanel to have a clear presentation
 		dockPanel.add(course, dockPanel.CENTER);
 		dockPanel.add(teacher, dockPanel.SOUTH);
+		
+		//Add a size to the dockPanel
 		dockPanel.setPixelSize(99, 59);
+		
 		// create a panel to hold all 
 		
 		verticalPanel = new VerticalPanel();
 		verticalPanel.setSpacing(1);
-		//verticalPanel.add(header);
-		
-		//verticalPanel.add(course);
-		//verticalPanel.add(teacher);
-		
 		verticalPanel.add(dockPanel);
 		
 		//h = new Hidden("id");
 		//verticalPanel.add(h);
 		boundaryPanel.add(verticalPanel);
-		//boundaryPanel.add(verticalPanel);
 	}
 
 	@Override
@@ -84,11 +78,6 @@ public class SingleCardView extends ViewImpl implements
 	@Override
 	public VerticalPanel getVerticalPanel() {
 		return verticalPanel;
-	}
-
-	@Override
-	public HTML getHeader() {
-		return header;
 	}
 
 	@Override
