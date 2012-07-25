@@ -7,7 +7,7 @@
 body {
 	font: 11px "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans",
 		sans-serif !important;
-		background-color: #f9f9f9 !important;
+	background-color: #f9f9f9 !important;
 }
 
 .cardPlaced {
@@ -28,7 +28,7 @@ body {
 }
 
 .teacherCard{
-	font-size: 8pt;
+	font-size: 7pt;
 }
 
 .panelCell {
@@ -124,4 +124,10 @@ body {
 .simpleLabel {
 	color: black;
 	font-size: 9px;
+}
+
+.flextable{
+	border: medium solid;
+	font-size: 10px;
+	background-color: lightsteelblue;
 }

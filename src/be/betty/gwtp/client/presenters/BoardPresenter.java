@@ -2,6 +2,7 @@ package be.betty.gwtp.client.presenters;
 
 import be.betty.gwtp.client.CellDropControler;
 import be.betty.gwtp.client.Storage_access;
+import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.event.BoardViewChangedEvent;
 import be.betty.gwtp.client.event.DropCardEvent;
 import be.betty.gwtp.client.event.BoardViewChangedEvent.BoardViewChangedHandler;
@@ -47,8 +48,8 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 			for (int j = 0; j < ROWS; j++) {
 				// create a simple panel drop target for the current cell
 				SimplePanel simplePanel = new SimplePanel();
-				simplePanel.setPixelSize(100, 60);
-				simplePanel.setStyleName("card");
+				simplePanel.setPixelSize(UiConstants.getCardWidth(), UiConstants.getCardHeight());
+				simplePanel.setStyleName("flextable");
 				getView().getFlexTable().setWidget(j, i, simplePanel);
 				//flexTable.getCellFormatter().setStyleName();
 				// CSS_DEMO_PUZZLE_CELL);
@@ -121,9 +122,9 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 	}
 	
 	private boolean cardBelongToActualView(String card, int index1, int index2) {
-		System.out.println("Should we print this card ? =>"+card);
-		System.out.println("Teacher = num "+Storage_access.getTeacherCard(card));
-		System.out.println("Group   = num "+Storage_access.getGroupCard(card));
+		//System.out.println("Should we print this card ? =>"+card);
+		//System.out.println("Teacher = num "+Storage_access.getTeacherCard(card));
+		//System.out.println("Group   = num "+Storage_access.getGroupCard(card));
 		//System.out.println("Teacher= "+Storage_access.getTeacher(Integer.parseInt(Storage_access.getTeacherCard(card) ) ));
 		//System.out.println("Group= "+Storage_access.getGroup(Integer.parseInt(Storage_access.getGroupCard(card))));
 		int c2 = index2;

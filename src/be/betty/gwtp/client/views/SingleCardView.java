@@ -1,10 +1,10 @@
 package be.betty.gwtp.client.views;
 
+import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.presenters.SingleCardPresenter;
 
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.DockPanel;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Hidden;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -24,12 +24,13 @@ public class SingleCardView extends ViewImpl implements
 	private Label teacher;
 	private Label group;
 	private DockPanel dockPanel;
+	private DockPanel dockPanel2;
 
 	@Inject
 	public SingleCardView() {
 		// use the boundary panel as this composite's widget
 		final AbsolutePanel boundaryPanel = new AbsolutePanel();
-		boundaryPanel.setPixelSize(100, 60);
+		boundaryPanel.setPixelSize(UiConstants.getCardWidth(), UiConstants.getCardHeight());
 		boundaryPanel.addStyleName("card");
 		
 		widget = boundaryPanel;
@@ -46,18 +47,26 @@ public class SingleCardView extends ViewImpl implements
 		group.setStyleName("teacherCard");
 		
 		//Add a size for the different dockPanel
-		course.setPixelSize(99, 40);
-		teacher.setPixelSize(99, 19);
-		
+		course.setPixelSize(UiConstants.getCardWidth(), 60);
+		teacher.setPixelSize((UiConstants.getCardWidth()/2)-1, 15);
+		group.setPixelSize((UiConstants.getCardWidth()/2)-1, 15);
 		//Create a new Dockpanel to
 		dockPanel = new DockPanel();
+		dockPanel2 = new DockPanel();
+		
 		
 		//Add all label in different part of dockPanel to have a clear presentation
-		dockPanel.add(course, dockPanel.CENTER);
-		dockPanel.add(teacher, dockPanel.SOUTH);
+		dockPanel2.add(group, DockPanel.WEST);
+		dockPanel2.add(teacher, DockPanel.EAST);
+		
+		dockPanel.add(dockPanel2, DockPanel.NORTH);
+		//dockPanel.add(teacher, DockPanel.NORTH);
+		dockPanel.add(course, DockPanel.CENTER);
+		//dockPanel.add(group, DockPanel.NORTH);
+		
 		
 		//Add a size to the dockPanel
-		dockPanel.setPixelSize(99, 59);
+		dockPanel.setPixelSize(UiConstants.getCardWidth()-1, UiConstants.getCardHeight()-1);
 		
 		// create a panel to hold all 
 		
@@ -91,6 +100,10 @@ public class SingleCardView extends ViewImpl implements
 	
 	public Label getTeacher(){
 		return teacher;
+	}
+	
+	public Label getGroup(){
+		return group;
 	}
 	
 	public DockPanel getDockPanel(){

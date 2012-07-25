@@ -2,14 +2,12 @@ package be.betty.gwtp.client.presenters;
 
 import be.betty.gwtp.client.Filter_kind;
 import be.betty.gwtp.client.Storage_access;
-import be.betty.gwtp.shared.Constants;
 
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 import com.google.inject.Inject;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.DockPanel;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Hidden;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -25,6 +23,7 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		
 		Label getTeacher();
 		Label getCourse();
+		Label getGroup();
 		DockPanel getDockPanel();
 	}
 
@@ -51,14 +50,20 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		group = Storage_access.getGroupCard(c);
 		teacher = Storage_access.getTeacherCard(c);
 		course = Storage_access.getCourseCard(c);
-		
+		int toto = Storage_access.getNumberOfGroup();
+		int tata = Storage_access.getNumberOfCard();
 		// TODO trouver un meilleur moyen de transmettre l'id au widget..
 		getView().asWidget().setTitle(""+myI);
 		//getView().getH().setValue(""+myI); //serait mieu que le titre.. si ca marchait..
 		
+		
 		getView().getCourse().setText(course);
 		getView().getTeacher().setText(teacher);
-
+		getView().getGroup().setText(group);
+		//System.out.println(group);
+		System.out.println("numberOfGroup: "+toto+"   \t numberOfCard: "+tata);
+		
+		//System.out.println("****");
 	}
 
 	/**

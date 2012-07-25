@@ -143,7 +143,7 @@ public class MainPresenter extends
 			System.out.println("$$$$$ Catch event.. day="+event.getDay()+" and period= "+event.getPeriod()+" cardid="+event.getCardID());
 			int activity_bddId = Storage_access.getBddIdCard(Storage_access.getCard(event.getCardID()));
 			int projectInstance = Storage_access.getCurrentProjectInstanceBDDID();
-			System.out.println("¡¡¡¡¡¡¡¡¡¡Actual project instance= "+projectInstance);
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Actual project instance= "+projectInstance);
 			
 			// "first", save to bdd (it's asynchronous)
 			dispatcher.execute(new SaveCardDropAction(event.getDay(), event.getPeriod(), activity_bddId, event.getRoom(), projectInstance),
@@ -413,6 +413,7 @@ public class MainPresenter extends
 					result.init(myI);
 					cardDragController.makeDraggable(result.getWidget(), result.getView().getCourse());
 					cardDragController.makeDraggable(result.getWidget(), result.getView().getTeacher());
+					cardDragController.makeDraggable(result.getWidget(), result.getView().getGroup());
 					allCards.add(result);
 
 				}
