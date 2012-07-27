@@ -2,6 +2,7 @@ package be.betty.gwtp.client.presenters;
 
 import be.betty.gwtp.client.Filter_kind;
 import be.betty.gwtp.client.Storage_access;
+import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.event.CardFilterEvent;
 
 import com.gwtplatform.mvp.client.PresenterWidget;
@@ -36,14 +37,32 @@ public class CardSelectionOptionPresenter extends
 	protected void onBind() {
 		super.onBind();
 		
+		//init();
+		
 		getView().getTeacher_choice().addChangeHandler(new ChangeHandler() {
 			@Override public void onChange(ChangeEvent arg0) {
-				myEventBus.fireEvent(new CardFilterEvent(Filter_kind.TEACHER, getView().getTeacher_choice().getSelectedIndex()));
+				
+				if (getView().getTeacher_choice().getSelectedIndex()!=0){
+					getView().getGroup_choice().setVisible(true);
+					printSecondComboBxView(getView().getGroup_choice(), getView().getTeacher_choice().getSelectedIndex());
+					getView().getGroup_choice().setSelectedIndex(0);
+				}else{
+					getView().getGroup_choice().setVisible(false);
+				}
+				
 			}});
 		
 		getView().getGroup_choice().addChangeHandler(new ChangeHandler() {
+			
 			@Override public void onChange(ChangeEvent arg0) {
-				myEventBus.fireEvent(new CardFilterEvent(Filter_kind.GROUP, getView().getGroup_choice().getSelectedIndex()));
+				//myEventBus.fireEvent(new CardFilterEvent(Filter_kind.GROUP, getView().getGroup_choice().getSelectedIndex()));
+				int toto = getView().getGroup_choice().getSelectedIndex();
+				System.out.println(toto);
+				
+				//TODO get le nom du prof corespondant à l'index
+				//TODO Savoir ou on se trouve dans la comboBox (prof,...)
+				//TODO Pour toute les cartes dans le storage, prendre celle qui on "toto" comme prof 
+				
 			}});
 		}
 
@@ -57,8 +76,18 @@ public class CardSelectionOptionPresenter extends
 	 */
 	public void init() {
 
-		
-		getView().getTeacher_choice().clear();
+				
+		setStaticFirstComboView(getView().getTeacher_choice());
+		getView().getTeacher_choice().setSelectedIndex(0);
+		if (getView().getTeacher_choice().getSelectedIndex()!=0){
+			getView().getGroup_choice().setVisible(true);
+			printSecondComboBxView(getView().getGroup_choice(), getView().getTeacher_choice().getSelectedIndex());
+			getView().getGroup_choice().setSelectedIndex(0);
+		}else{
+			getView().getGroup_choice().setVisible(false);
+		}
+			
+		/*getView().getTeacher_choice().clear();
 		for (int i=0; i< Storage_access.getNumberOfTeacher(); i++)
 			getView().getTeacher_choice().addItem(Storage_access.getTeacher(i));
 		
@@ -66,6 +95,39 @@ public class CardSelectionOptionPresenter extends
 		for (int i=0; i< Storage_access.getNumberOfGroup(); i++)
 			getView().getGroup_choice().addItem(Storage_access.getGroup(i));
 		
-		
+		*/
 	}
+	
+	public static void setStaticFirstComboView(ListBox box) {
+		box.clear();
+		box.addItem("All card");
+		box.addItem("Professor");
+		box.addItem("Room");
+		box.addItem("Group");
+	
+	}
+	
+	public static void printSecondComboBxView(ListBox box, int selectedIndex) {
+		assert selectedIndex >=0 && selectedIndex<=2;
+		box.clear();
+		
+		switch (selectedIndex) {
+		case 1: 
+			for (int i=0; i< Storage_access.getNumberOfTeacher(); i++){
+				box.addItem(Storage_access.getTeacher(i));
+			}
+			break;
+		case 2: 
+			
+			break;
+		case 3: 
+			for (int i=0; i< Storage_access.getNumberOfGroup(); i++){
+				box.addItem(Storage_access.getGroup(i)	);
+			}
+			break;
+		default: return;
+		}
+	}
+	
+	
 }

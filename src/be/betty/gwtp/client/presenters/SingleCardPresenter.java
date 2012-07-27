@@ -65,6 +65,13 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		
 		//System.out.println("****");
 	}
+	
+	//TODO Redessiner le vertical pannel avec les bonnes nouvelles carte
+	public void ResetCardFilter(){
+		getView().getVerticalPanel().clear();
+		
+		
+	}
 
 	/**
 	 * Not used, but, in a proper version, should be.

@@ -1,5 +1,6 @@
 package be.betty.gwtp.client;
 
+
 public class UiConstants {
 
 	private static final int CARD_WIDTH = 150;
@@ -12,6 +13,5 @@ public class UiConstants {
 	public static int getCardHeight() {
 		return CARD_HEIGHT;
 	}
-	
 	
 }
