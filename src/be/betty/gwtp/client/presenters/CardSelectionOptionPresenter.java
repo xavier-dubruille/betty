@@ -4,6 +4,7 @@ import be.betty.gwtp.client.Filter_kind;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.event.CardFilterEvent;
+import be.betty.gwtp.client.views.SingleCardView;
 
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
@@ -32,6 +33,8 @@ public class CardSelectionOptionPresenter extends
 		myEventBus = eventBus;
 		
 	}
+	
+	@Inject SingleCardPresenter singleCardPresenter;
 
 	@Override
 	protected void onBind() {
@@ -46,6 +49,7 @@ public class CardSelectionOptionPresenter extends
 					getView().getGroup_choice().setVisible(true);
 					printSecondComboBxView(getView().getGroup_choice(), getView().getTeacher_choice().getSelectedIndex());
 					getView().getGroup_choice().setSelectedIndex(0);
+					
 				}else{
 					getView().getGroup_choice().setVisible(false);
 				}
@@ -56,12 +60,22 @@ public class CardSelectionOptionPresenter extends
 			
 			@Override public void onChange(ChangeEvent arg0) {
 				//myEventBus.fireEvent(new CardFilterEvent(Filter_kind.GROUP, getView().getGroup_choice().getSelectedIndex()));
-				int toto = getView().getGroup_choice().getSelectedIndex();
-				System.out.println(toto);
+				String test = getView().getGroup_choice().getItemText(getView().getGroup_choice().getSelectedIndex());
+				System.out.println("nom du prof: "+test);
 				
-				//TODO get le nom du prof corespondant à l'index
-				//TODO Savoir ou on se trouve dans la comboBox (prof,...)
-				//TODO Pour toute les cartes dans le storage, prendre celle qui on "toto" comme prof 
+				//TODO ici je ne prend que le cas d'un prof, il faut le faire pour le reste...
+				for (int i=0; i<MainPresenter.allCards.size(); i++){
+					
+					MainPresenter.allCards.get(i).getWidget().setVisible(false);
+				}
+				if (getView().getTeacher_choice().getItemText(getView().getTeacher_choice().getSelectedIndex()).equalsIgnoreCase("professor")){
+					for (int i=0; i<MainPresenter.allCards.size(); i++){
+						if (MainPresenter.allCards.get(i).getView().getTeacher().getText().equalsIgnoreCase(test))
+							MainPresenter.allCards.get(i).getWidget().setVisible(true);
+					}
+					
+					
+				}
 				
 			}});
 		}
@@ -82,7 +96,6 @@ public class CardSelectionOptionPresenter extends
 		if (getView().getTeacher_choice().getSelectedIndex()!=0){
 			getView().getGroup_choice().setVisible(true);
 			printSecondComboBxView(getView().getGroup_choice(), getView().getTeacher_choice().getSelectedIndex());
-			getView().getGroup_choice().setSelectedIndex(0);
 		}else{
 			getView().getGroup_choice().setVisible(false);
 		}
@@ -108,7 +121,7 @@ public class CardSelectionOptionPresenter extends
 	}
 	
 	public static void printSecondComboBxView(ListBox box, int selectedIndex) {
-		assert selectedIndex >=0 && selectedIndex<=2;
+		assert selectedIndex >=0 && selectedIndex<=3;
 		box.clear();
 		
 		switch (selectedIndex) {

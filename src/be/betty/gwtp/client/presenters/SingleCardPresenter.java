@@ -67,9 +67,14 @@ PresenterWidget<SingleCardPresenter.MyView> {
 	}
 	
 	//TODO Redessiner le vertical pannel avec les bonnes nouvelles carte
-	public void ResetCardFilter(){
-		getView().getVerticalPanel().clear();
+	public void ResetCardFilter(int MyI, String filter){
 		
+			String c = Storage_access.getCard(MyI);
+			teacher = Storage_access.getTeacherCard(c);
+			
+			if (teacher.equalsIgnoreCase(filter)){
+				getView().getTeacher().setText(teacher);
+			}
 		
 	}
 
