@@ -61,7 +61,7 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		getView().getTeacher().setText(teacher);
 		getView().getGroup().setText(group);
 		//System.out.println(group);
-		System.out.println("numberOfGroup: "+toto+"   \t numberOfCard: "+tata);
+		//System.out.println("numberOfGroup: "+toto+"   \t numberOfCard: "+tata);
 		
 		//System.out.println("****");
 	}

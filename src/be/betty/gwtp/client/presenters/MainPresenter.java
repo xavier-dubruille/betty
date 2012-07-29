@@ -6,6 +6,7 @@ import be.betty.gwtp.client.CardHandler;
 import be.betty.gwtp.client.CellDropControler;
 import be.betty.gwtp.client.Filter_kind;
 import be.betty.gwtp.client.Storage_access;
+import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.action.GetActivityStateAction;
 import be.betty.gwtp.client.action.GetActivityStateActionResult;
 import be.betty.gwtp.client.action.GetCards;
@@ -332,7 +333,7 @@ public class MainPresenter extends
 		
 		// for the "view selection" :
 		// We write the first combo, then we select it, then we build the second one, we select it and finaly we draw the cards
-		setStaticFirstComboView();
+		setStaticFirstComboView(getView().getCombo_viewChoice1());
 		getView().getCombo_viewChoice1().setSelectedIndex(0);
 		printSecondComboBxView(getView().getCombo_viewChoice1().getSelectedIndex());
 		getView().getCombo_viewChoice2().setSelectedIndex(0);
@@ -355,11 +356,11 @@ public class MainPresenter extends
 	 * This method will construct the first combobox involved in selecting a view (for the card board)
 	 * It's "static" data, so one should change this with care, as it's used by others (it's handler)
 	 */
-	private void setStaticFirstComboView() {
-		getView().getCombo_viewChoice1().clear();
-		getView().getCombo_viewChoice1().addItem("Professeur");
-		getView().getCombo_viewChoice1().addItem("Local");
-		getView().getCombo_viewChoice1().addItem("Classe");
+	private void setStaticFirstComboView(ListBox box) {
+		box.clear();
+		box.addItem("Professeur");
+		box.addItem("Local");
+		box.addItem("Classe");
 	
 	}
 	

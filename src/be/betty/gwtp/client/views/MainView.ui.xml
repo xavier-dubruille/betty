@@ -55,7 +55,7 @@
 					</g:Dock>
 					<g:Dock direction="WEST" width="30%" height="60%" horizontalAlignment="ALIGN_CENTER">
 						<g:AbsolutePanel height="650px" width="225px">
-							<g:at left="0" top="210">
+							<g:at left="0" top="275">
 								<g:ScrollPanel height="60%" width="100%">
 					<g:VerticalPanel width="100%" height="100%"
 						spacing="10" ui:field="cards_panel" horizontalAlignment="ALIGN_CENTER" />
