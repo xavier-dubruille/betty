@@ -58,7 +58,7 @@
 							<g:at left="0" top="275">
 								<g:ScrollPanel height="60%" width="100%">
 					<g:VerticalPanel width="100%" height="100%"
-						spacing="10" ui:field="cards_panel" horizontalAlignment="ALIGN_CENTER" />
+						spacing="2" ui:field="cards_panel" horizontalAlignment="ALIGN_CENTER" />
 				</g:ScrollPanel>
 							</g:at>
 							<g:at left="0" top="0">
