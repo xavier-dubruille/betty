@@ -34,6 +34,7 @@ public class CardSelectionOptionPresenter extends
 
 	private EventBus myEventBus;
 	private CheckBox myCheckBox;
+	private boolean firstPass = true;
 	
 	@Inject
 	public CardSelectionOptionPresenter(final EventBus eventBus, final MyView view) {
@@ -57,7 +58,9 @@ public class CardSelectionOptionPresenter extends
 					getView().getGroup_choice().setVisible(true);
 					printSecondComboBxView(getView().getGroup_choice(), getView().getComboBoxFilterType().getSelectedIndex());
 					getView().getGroup_choice().setSelectedIndex(0);
-					
+					for (int i=0; i<MainPresenter.allCards.size(); i++){
+						MainPresenter.allCards.get(i).getWidget().setVisible(false);
+					}					
 				}else{
 					getView().getGroup_choice().setVisible(false);
 					for (int i=0; i<MainPresenter.allCards.size(); i++){
@@ -169,18 +172,30 @@ public class CardSelectionOptionPresenter extends
 	}
 
 	//TODO 	Ce que je fais est VRAIMENT DEGUEULASSE. Soit on parse le code xml, soit on trouve un autre moyen 
-	//		de récupérer la valeur de la checkBox
+	//		de récupérer la valeur de la checkBox. Ensuite, le reste du code est pas forcement plus sexy, mais ça fonctionne comme sa
 	@Override
 	public void onValueChange(ValueChangeEvent<Boolean> event) {
 		
+		// Partie horible pour recuperer le nom du prof dans la comboBox selectionnee
 		System.out.println("event source: "+event.getSource());
 		String str = event.getSource().toString();
 		String spt[] = str.split("</label></span>");		
 		int test = spt[0].lastIndexOf(">");
 		String fin = spt[0].substring(test+1);
-
-		// TODO Auto-generated method stub
+		// fin de la partie degueulasse
 		
+		// Le moyen de filtrer est pas forcement mieux non plus... peut mieux faire
+		// (mettre les valeur de la comboBox en static dans UiConstants?)
+		for (int i=0; i<MainPresenter.allCards.size(); i++){
+			if (getView().getComboBoxFilterType().getItemText(getView().getComboBoxFilterType().getSelectedIndex()).equalsIgnoreCase("professor")){
+				if (MainPresenter.allCards.get(i).getView().getTeacher().getText().equalsIgnoreCase(fin))
+					MainPresenter.allCards.get(i).getWidget().setVisible(event.getValue());
+			}else{
+				if (MainPresenter.allCards.get(i).getView().getGroup().getText().equalsIgnoreCase(fin))
+					MainPresenter.allCards.get(i).getWidget().setVisible(event.getValue());
+			}
+				
+		}		
 	}
 	
 }

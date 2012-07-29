@@ -7,7 +7,7 @@
 	ui:generateLocales='default'>
 
 	<g:HTMLPanel>
-		<g:AbsolutePanel height="285px" width="233px" styleName="panel_filter_options">
+		<g:AbsolutePanel height="265px" width="233px" styleName="panel_filter_options">
 			<g:at left="10" top="52">
 				<g:Label text="Option" width="73px" height="13px" horizontalAlignment="ALIGN_LEFT"/>
 			</g:at>
@@ -24,7 +24,7 @@
 				<g:Label text="Filtre de selection des cartons" styleName="small_title"/>
 			</g:at>
 			<g:at left="10" top="138">
-				<g:ScrollPanel width="213px" height="137px" ui:field="cardFilterScrollPanel">
+				<g:ScrollPanel width="213px" height="117px" ui:field="cardFilterScrollPanel">
 					<g:VerticalPanel width="100%" height="100%" ui:field="cardFilterVerticalPanel"/>
 				</g:ScrollPanel>
 			</g:at>
