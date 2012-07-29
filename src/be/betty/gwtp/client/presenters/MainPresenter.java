@@ -428,17 +428,6 @@ public class MainPresenter extends
 		}
 
 	}
-	
-	@Inject CardSelectionOptionPresenter CardSelectionOption;
-	
-	public void filterTheCard(String param){
-		for (int i = 0; i<allCards.size(); i++){
-			String myStr = allCards.get(i).getView().getTeacher().getText();
-			if (!myStr.equalsIgnoreCase(param)){
-				allCards.get(i).removeFromSlot(SLOT_Card, null);
-			}
-		}
-	}
 
 	/**
 	 * 

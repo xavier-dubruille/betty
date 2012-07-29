@@ -61,21 +61,9 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		getView().getTeacher().setText(teacher);
 		getView().getGroup().setText(group);
 		//System.out.println(group);
-		System.out.println("numberOfGroup: "+toto+"   \t numberOfCard: "+tata);
+		//System.out.println("numberOfGroup: "+toto+"   \t numberOfCard: "+tata);
 		
 		//System.out.println("****");
-	}
-	
-	//TODO Redessiner le vertical pannel avec les bonnes nouvelles carte
-	public void ResetCardFilter(int MyI, String filter){
-		
-			String c = Storage_access.getCard(MyI);
-			teacher = Storage_access.getTeacherCard(c);
-			
-			if (teacher.equalsIgnoreCase(filter)){
-				getView().getTeacher().setText(teacher);
-			}
-		
 	}
 
 	/**
