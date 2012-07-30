@@ -12,6 +12,7 @@ import com.gwtplatform.mvp.client.View;
 import com.google.inject.Inject;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 
 public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
@@ -41,14 +42,14 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 	}
 
 	private void constructBoard() {
-		int COLUMNS = 5;
-		int ROWS = 6;
+		int COLUMNS = 6;
+		int ROWS = 7;
 		for (int i = 0; i < COLUMNS; i++) {
-
 			for (int j = 0; j < ROWS; j++) {
 				// create a simple panel drop target for the current cell
 				SimplePanel simplePanel = new SimplePanel();
-				simplePanel.setPixelSize(UiConstants.getCardWidth()+5, UiConstants.getCardHeight()+5);
+				simplePanel.setPixelSize((UiConstants.getCardWidth()+5)/2, (UiConstants.getCardHeight()+5)/4);
+
 				simplePanel.setStyleName("flextable");
 				getView().getFlexTable().setWidget(j, i, simplePanel);
 				//flexTable.getCellFormatter().setStyleName();
@@ -56,9 +57,26 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 
 				// instantiate a drop controller of the panel in the current
 				// cell
+				if (i==0 && j>0){
+					simplePanel.setPixelSize((UiConstants.getCardWidth()+5)/2, UiConstants.getCardHeight()+5);
+					Label periode = new Label();
+					periode.setText(UiConstants.getPeriode()+" "+j);
+					simplePanel.add(periode);
+				}
+				
+				if (j==0 && i>0){
+					simplePanel.setPixelSize(UiConstants.getCardWidth()+5, (UiConstants.getCardHeight()+5)/4);
+					Label day = new Label();
+					day.setText(UiConstants.getWeekDay(i-1));
+					simplePanel.add(day);
+				}
+				if (i> 0 && j>0){
+					simplePanel.setPixelSize(UiConstants.getCardWidth()+5, UiConstants.getCardHeight()+5);
+
 				CellDropControler dropController = new CellDropControler(
 						simplePanel, getEventBus(),j+1,i+1);
 				MainPresenter.cardDragController.registerDropController(dropController);
+				}
 			}
 		}
 	}
@@ -85,11 +103,11 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 		// 1) on va parcourir tt le board, vider les cases
 		System.out.println("Let's redraqwwww Board");
 		
-		int COLUMNS = 5;
-		int ROWS = 6;
-		for (int i = 0; i < COLUMNS; i++) {
+		int COLUMNS = 6;
+		int ROWS = 7;
+		for (int i = 1; i < COLUMNS; i++) {
 
-			for (int j = 0; j < ROWS; j++) {
+			for (int j = 1; j < ROWS; j++) {
 				//System.out.println("class "+j+" "+i+"==> "+getView().getFlexTable().getWidget(j, i).getClass());
 				
 				if (!(getView().getFlexTable().getWidget(j, i) instanceof SimplePanel))
