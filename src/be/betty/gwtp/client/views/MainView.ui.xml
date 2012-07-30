@@ -9,7 +9,7 @@
 		<g:DockPanel width="100%" height="100%" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE">
 			<g:Dock direction="NORTH" width="100%" height="20%">
 						<g:DockPanel width="100%" height="100%">
-							<g:Dock direction="WEST" verticalAlignment="ALIGN_MIDDLE" width="20%" height="100%">
+							<g:Dock direction="EAST" verticalAlignment="ALIGN_MIDDLE" width="20%" height="100%" horizontalAlignment="ALIGN_RIGHT">
 								<g:AbsolutePanel width="150px" height="110px" styleName="instancePanel">
 					<g:at left="10" top="0">
 						<g:Label text="0" width="57px" height="63px" ui:field="currentInstance" styleName="currentInstanceNumber"/>
@@ -25,7 +25,7 @@
 					</g:at>
 				</g:AbsolutePanel>
 							</g:Dock>
-							<g:Dock direction="EAST" width="20%" height="100%" horizontalAlignment="ALIGN_CENTER">
+							<g:Dock direction="WEST" width="20%" height="100%" horizontalAlignment="ALIGN_CENTER">
 								<g:AbsolutePanel height="150px" ui:field="dndpanel"
 			width="150px">
 			<g:at left="0" top="10">
@@ -50,15 +50,19 @@
 							</g:Dock>
 						</g:DockPanel>
 					</g:Dock>
-					<g:Dock direction="CENTER" horizontalAlignment="ALIGN_CENTER" width="70%" height="60%">
+			<g:Dock direction="SOUTH" width="100%" height="20%">
+						<g:ScrollPanel width="100%" height="200px">
+							<g:VerticalPanel width="100%" height="100%" spacing="2" ui:field="notifBarVerticalPanel"/>
+						</g:ScrollPanel>
+					</g:Dock>
+					<g:Dock direction="CENTER" horizontalAlignment="ALIGN_CENTER" width="80%" height="60%">
 						<g:SimplePanel width="100%" height="100%" ui:field="board_panel"/>
 					</g:Dock>
-					<g:Dock direction="WEST" width="30%" height="60%" horizontalAlignment="ALIGN_CENTER">
+					<g:Dock direction="WEST" width="20%" height="60%">
 						<g:AbsolutePanel height="650px" width="225px">
 							<g:at left="0" top="275">
 								<g:ScrollPanel height="60%" width="100%">
-					<g:VerticalPanel width="100%" height="100%"
-						spacing="10" ui:field="cards_panel" horizontalAlignment="ALIGN_CENTER" />
+					<g:VerticalPanel width="100%" height="100%" ui:field="cards_panel" horizontalAlignment="ALIGN_CENTER" />
 				</g:ScrollPanel>
 							</g:at>
 							<g:at left="0" top="0">

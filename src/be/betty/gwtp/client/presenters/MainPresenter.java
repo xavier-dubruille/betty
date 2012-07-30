@@ -80,6 +80,8 @@ public class MainPresenter extends
 		ListBox getCombo_viewChoice1();
 
 		ListBox getCombo_viewChoice2();
+		
+		public VerticalPanel GetNotifBarVerticalPanel();
 	}
 
 	public static final Object SLOT_Card = new Object();
@@ -102,6 +104,7 @@ public class MainPresenter extends
 	
 	private Storage stockStore;
 	private EventBus eventBus;
+	private Label notification;
 	
 
 	@Inject
@@ -240,6 +243,10 @@ public class MainPresenter extends
 		getView().getCombo_viewChoice2().addChangeHandler(new ChangeHandler() {
 			@Override public void onChange(ChangeEvent arg0) {
 				reDrowStatusCard();
+				String txtCbBox1= getView().getCombo_viewChoice1().getItemText(getView().getCombo_viewChoice1().getSelectedIndex());
+				String txtCbBox2 = getView().getCombo_viewChoice2().getItemText(getView().getCombo_viewChoice2().getSelectedIndex());
+				String notif = "The view of "+txtCbBox1+" "+txtCbBox2+" is selected";
+				ClientUtils.notifyUser(getView().GetNotifBarVerticalPanel(), notif);
 			}
 
 		});

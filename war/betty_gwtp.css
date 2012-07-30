@@ -11,14 +11,14 @@ body {
 }
 
 .cardPlaced {
-	border: medium solid;
+	border: medium solid transparent;
 	font-size: 10px;
 	background: #F00;
 	color: red;
 }
 
 .card {
-	border: medium solid;
+	border: medium solid transparent;
 	font-size: 10px;
 	background-color: lightsteelblue;
 }

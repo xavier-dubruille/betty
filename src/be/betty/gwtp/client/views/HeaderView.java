@@ -10,6 +10,7 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -22,6 +23,7 @@ public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 	@UiField HTMLPanel contentPanel;
 	@UiField MenuBar helpMenuBar;
 	@UiField MenuItem CalculeMenu;
+	@UiField Label loginLabel;
 
 	public interface Binder extends UiBinder<Widget, HeaderView> {
 	}
@@ -57,6 +59,10 @@ public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 	@Override
 	public MenuBar getHelpMenuBar(){
 		return helpMenuBar;
+	}
+	
+	public Label getLoginLabel(){
+		return loginLabel;
 	}
 
 	@Override

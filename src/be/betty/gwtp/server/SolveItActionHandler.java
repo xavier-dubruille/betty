@@ -78,7 +78,7 @@ public class SolveItActionHandler implements
                 comments.append("    " + key + ": " + value + "\n");
             }
           //  System.out.println("comments==>"+comments);
-            ClientUtils.notifyUser("comments==>"+comments);
+            //ClientUtils.notifyUser("comments==>"+comments);
         }
         
         m.saveToHibernate(best, action.getInstanceId());

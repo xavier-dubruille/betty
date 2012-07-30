@@ -1,6 +1,8 @@
 package be.betty.gwtp.client;
 
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class ClientUtils {
 
@@ -19,9 +21,11 @@ public class ClientUtils {
 		
 	}
 
-	public static void notifyUser(String soluceInfo) {
+	public static void notifyUser(VerticalPanel notificationBarVerticalPanel, String soluceInfo) {
 		System.out.println("SoluceInfo = "+soluceInfo);
-		
+		Label notification = new Label();
+		notification.setText("notif: "+soluceInfo);
+		notificationBarVerticalPanel.add(notification);
 	}
 
 }

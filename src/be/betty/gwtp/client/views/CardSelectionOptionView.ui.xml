@@ -11,19 +11,19 @@
 			<g:at left="10" top="52">
 				<g:Label text="Option" width="73px" height="13px" horizontalAlignment="ALIGN_LEFT"/>
 			</g:at>
-			<g:at left="89" top="86">
+			<g:at left="89" top="225">
 				<g:ListBox width="118px" height="18px" ui:field="group_choice"/>
 			</g:at>
 			<g:at left="89" top="47">
 				<g:ListBox ui:field="comboBoxFilterType" width="118px" height="18px"/>
 			</g:at>
-			<g:at left="10" top="91">
-				<g:Label text="More" width="73px" height="13px" horizontalAlignment="ALIGN_LEFT"/>
+			<g:at left="10" top="225">
+				<g:Label width="73px" height="13px" horizontalAlignment="ALIGN_LEFT"/>
 			</g:at>
 			<g:at left="10" top="10">
 				<g:Label text="Filtre de selection des cartons" styleName="small_title"/>
 			</g:at>
-			<g:at left="10" top="138">
+			<g:at left="10" top="81">
 				<g:ScrollPanel width="213px" height="117px" ui:field="cardFilterScrollPanel">
 					<g:VerticalPanel width="100%" height="100%" ui:field="cardFilterVerticalPanel"/>
 				</g:ScrollPanel>

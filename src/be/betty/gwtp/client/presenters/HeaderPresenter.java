@@ -2,6 +2,17 @@ package be.betty.gwtp.client.presenters;
 
 import be.betty.gwtp.client.place.NameTokens;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.event.shared.GwtEvent.Type;
+import com.google.gwt.storage.client.Storage;
+import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.MenuBar;
+import com.google.gwt.user.client.ui.MenuItem;
+import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.ContentSlot;
@@ -10,16 +21,6 @@ import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.PlaceRequest;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 import com.gwtplatform.mvp.client.proxy.RevealContentHandler;
-import com.google.inject.Inject;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.event.shared.GwtEvent.Type;
-import com.google.gwt.storage.client.Storage;
-import com.google.gwt.user.client.Command;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.MenuBar;
-import com.google.gwt.user.client.ui.MenuItem;
 import com.gwtplatform.mvp.client.proxy.RevealRootContentEvent;
 
 public class HeaderPresenter extends
@@ -33,6 +34,7 @@ public class HeaderPresenter extends
 		Button getDeco();
 		public MenuBar getHelpMenuBar();
 		MenuItem getCalculeMenu();
+		public Label getLoginLabel();
 		
 	}
 
@@ -75,6 +77,21 @@ public class HeaderPresenter extends
 	protected void onBind() {
 		super.onBind();
 		
+		String login = "";
+		String sess = "";
+		if (stockStore != null) {
+			sess = stockStore.getItem("session_id");
+			login = stockStore.getItem("login");
+		}
+		if (sess == null) {
+			getView().getLoginLabel().setText("Please (re)log first");
+			return;
+		}
+
+		getView().getLoginLabel().setText(
+				"Welcome " + login /*+ " *****  Projet num " + project_num*/);
+	
+		
 		getView().getDeco().addClickHandler(new ClickHandler() {
 			
 			@Override
@@ -98,9 +115,12 @@ public class HeaderPresenter extends
 		getView().getCalculeMenu().setCommand(solveItCommand);
 			
 	}
+	
+	
 
  	@Override
 	protected void onReset() {
 		super.onReset();
 	}
+		
 }

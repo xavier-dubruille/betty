@@ -58,7 +58,7 @@ PresenterWidget<SolveItPopupPresenter.MyView> {
 					}
 
 					@Override public void onSuccess(SolveItResult result) {
-						ClientUtils.notifyUser(result.getSoluceInfo());
+						//ClientUtils.notifyUser(result.getSoluceInfo());
 						// TODO: faut aussi rajouter la nouvelle instance si il y a,
 						// ou recharger la page, si c'est l'instance courante..
 						if (true) {// in case of new instance, we add it
