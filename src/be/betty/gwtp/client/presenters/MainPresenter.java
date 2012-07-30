@@ -218,7 +218,10 @@ public class MainPresenter extends
 		getView().getCombo_viewChoice2().addChangeHandler(new ChangeHandler() {
 			@Override public void onChange(ChangeEvent arg0) {
 				reDrowStatusCard();
-				ClientUtils.notifyUser(getView().GetNotifBarVerticalPanel(), arg0.getSource().toString());
+				String txtCbBox1= getView().getCombo_viewChoice1().getItemText(getView().getCombo_viewChoice1().getSelectedIndex());
+				String txtCbBox2 = getView().getCombo_viewChoice2().getItemText(getView().getCombo_viewChoice2().getSelectedIndex());
+				String notif = "The view of "+txtCbBox1+" "+txtCbBox2+" is selected";
+				ClientUtils.notifyUser(getView().GetNotifBarVerticalPanel(), notif);
 			}
 
 		});
