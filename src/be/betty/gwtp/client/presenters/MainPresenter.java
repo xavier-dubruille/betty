@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import be.betty.gwtp.client.CardHandler;
 import be.betty.gwtp.client.CellDropControler;
+import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.Filter_kind;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
@@ -74,6 +75,8 @@ public class MainPresenter extends
 		ListBox getCombo_viewChoice1();
 
 		ListBox getCombo_viewChoice2();
+		
+		public VerticalPanel GetNotifBarVerticalPanel();
 	}
 
 	public static final Object SLOT_Card = new Object();
@@ -96,6 +99,7 @@ public class MainPresenter extends
 	
 	private Storage stockStore;
 	private EventBus eventBus;
+	private Label notification;
 	
 
 	@Inject
@@ -214,6 +218,7 @@ public class MainPresenter extends
 		getView().getCombo_viewChoice2().addChangeHandler(new ChangeHandler() {
 			@Override public void onChange(ChangeEvent arg0) {
 				reDrowStatusCard();
+				ClientUtils.notifyUser(getView().GetNotifBarVerticalPanel(), arg0.getSource().toString());
 			}
 
 		});
