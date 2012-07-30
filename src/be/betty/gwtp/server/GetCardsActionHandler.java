@@ -5,7 +5,7 @@ import org.hibernate.Transaction;
 
 import be.betty.gwtp.client.action.GetCards;
 import be.betty.gwtp.client.action.GetCardsResult;
-import be.betty.gwtp.server.bdd.Activity;
+import be.betty.gwtp.server.bdd.Activity_entity;
 import be.betty.gwtp.server.bdd.Course;
 import be.betty.gwtp.server.bdd.Group_entity;
 import be.betty.gwtp.server.bdd.ProjectInstance;
@@ -45,7 +45,7 @@ ActionHandler<GetCards, GetCardsResult> {
 		Project_entity p = (Project_entity) s.get(Project_entity.class,
 				Integer.parseInt(action.getProjectId()));
 		// result.setName(p.getName());
-		for (Activity a : p.getActivities()) {
+		for (Activity_entity a : p.getActivities()) {
 			// System.out.println("***  Teacher:"+a.getTeacher().getName()+" Course:"+a.getCourse().getName()+" Group:"+a.getGroup().getCode());
 			Card_dto card = new Card_dto();
 			card.setCourse(a.getCourse().getId());

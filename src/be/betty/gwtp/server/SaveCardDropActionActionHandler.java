@@ -8,7 +8,7 @@ import com.gwtplatform.dispatch.server.actionhandler.ActionHandler;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.action.SaveCardDropAction;
 import be.betty.gwtp.client.action.SaveCardDropActionResult;
-import be.betty.gwtp.server.bdd.Activity;
+import be.betty.gwtp.server.bdd.Activity_entity;
 import be.betty.gwtp.server.bdd.ActivityState;
 import be.betty.gwtp.server.bdd.ProjectInstance;
 import be.betty.gwtp.server.bdd.Project_entity;
@@ -31,7 +31,7 @@ public class SaveCardDropActionActionHandler implements
 		Session s = HibernateUtils.getSession();
 		Transaction t = s.beginTransaction();
 
-		Activity activity = (Activity) s.get(Activity.class, action.getCardBddId());
+		Activity_entity activity = (Activity_entity) s.get(Activity_entity.class, action.getCardBddId());
 		System.out.println("**project instance="+action.getProjectInstance());
 		ProjectInstance pi = (ProjectInstance) s.get(ProjectInstance.class, action.getProjectInstance());
 		assert (pi != null): "probleme annormal dans la reception de l'instance dans laquelle poser les cartons";

@@ -24,14 +24,13 @@ public class AboutUsPresenter extends PresenterWidget<AboutUsPresenter.MyView> {
 	protected void onBind() {
 		super.onBind();
 		
+		// okButton handler
 		getView().getOkButton().addClickHandler(new ClickHandler() {
-			
-			@Override
-			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
+			@Override public void onClick(ClickEvent event) {
 				getView().hide();
-				
 			}
 		});
+		
+		//
 	}
 }

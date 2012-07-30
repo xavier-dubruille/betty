@@ -17,7 +17,7 @@
 					<g:at left="0" top="82">
 						<g:ListBox ui:field="comboInstance"/>
 					</g:at>
-					<g:at left="72" top="79">
+					<g:at left="112" top="82">
 						<g:Image width="28px" height="21px" url="Plus_sign.png"/>
 					</g:at>
 					<g:at left="0" top="0">

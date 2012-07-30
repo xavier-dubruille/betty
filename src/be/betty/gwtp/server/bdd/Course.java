@@ -30,7 +30,7 @@ public class Course {
 	private Project_entity project;
 
 	@OneToMany
-	private Collection<Activity> activities = new ArrayList<Activity>();
+	private Collection<Activity_entity> activities = new ArrayList<Activity_entity>();
 
 	public Course() {
 	}
@@ -100,11 +100,11 @@ public class Course {
 		this.project = project;
 	}
 
-	public Collection<Activity> getActivities() {
+	public Collection<Activity_entity> getActivities() {
 		return activities;
 	}
 
-	public void setActivities(Collection<Activity> activities) {
+	public void setActivities(Collection<Activity_entity> activities) {
 		this.activities = activities;
 	}
 

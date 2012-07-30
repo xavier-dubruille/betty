@@ -16,6 +16,10 @@ import be.betty.gwtp.server.SubscribeActionActionHandler;
 import be.betty.gwtp.client.action.SaveCardDropAction;
 import be.betty.gwtp.server.SaveCardDropActionActionHandler;
 import be.betty.gwtp.server.GetActivityStateActionActionHandler;
+import be.betty.gwtp.client.action.SolveIt;
+import be.betty.gwtp.server.SolveItActionHandler;
+import be.betty.gwtp.client.action.GetInstancesOnly;
+import be.betty.gwtp.server.GetInstancesOnlyActionHandler;
 
 public class ServerModule extends HandlerModule {
 
@@ -39,5 +43,9 @@ public class ServerModule extends HandlerModule {
 
 		bindHandler(GetActivityStateAction.class,
 				GetActivityStateActionActionHandler.class);
+
+		bindHandler(SolveIt.class, SolveItActionHandler.class);
+
+		bindHandler(GetInstancesOnly.class, GetInstancesOnlyActionHandler.class);
 }
 }

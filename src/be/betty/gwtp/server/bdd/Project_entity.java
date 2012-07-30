@@ -30,7 +30,7 @@ public class Project_entity {
 	private Collection<User> users = new ArrayList<User>();
 
 	@OneToMany
-	private Collection<Activity> activities = new ArrayList<Activity>();
+	private Collection<Activity_entity> activities = new ArrayList<Activity_entity>();
 
 	@OneToMany
 	private Collection<Teacher> teachers = new ArrayList<Teacher>();
@@ -85,7 +85,7 @@ public class Project_entity {
 	}
 
 
-	public Collection<Activity> getActivities() {
+	public Collection<Activity_entity> getActivities() {
 		return activities;
 	}
 

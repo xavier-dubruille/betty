@@ -32,6 +32,7 @@ public class HeaderPresenter extends
 
 		Button getDeco();
 		public MenuBar getHelpMenuBar();
+		MenuItem getCalculeMenu();
 		
 	}
 
@@ -43,6 +44,7 @@ public class HeaderPresenter extends
 	@Inject	PlaceManager placeManager;
 	
 	@Inject AboutUsPresenter aboutUsPresenter;
+	@Inject SolveItPopupPresenter solveItPresenter;
 
 	@Inject
 	public HeaderPresenter(final EventBus eventBus, final MyView view,
@@ -63,6 +65,11 @@ public class HeaderPresenter extends
 		}
 	};
 	
+	Command solveItCommand = new Command(){
+		public void execute(){
+			addToPopupSlot(solveItPresenter);
+		}
+	};
 
 	@Override
 	protected void onBind() {
@@ -81,14 +88,18 @@ public class HeaderPresenter extends
 			}
 		});
 		
-		// Create a new MenuItem and add a command
-		MenuItem item = new MenuItem("about us", aboutUsCommand);	
-		//add the new item to the specific bar (here is on the Help menu)
-		getView().getHelpMenuBar().addItem(item);
+		// ------ Menu Bar ----
+		// Create some new MenuItem and add commands
+		MenuItem about = new MenuItem("About us", aboutUsCommand);	
+		//MenuItem solveIt = new MenuItem("Sovle it", solveItCommand);
+		
+		//add the new items to the specific bar
+		getView().getHelpMenuBar().addItem(about);
+		getView().getCalculeMenu().setCommand(solveItCommand);
 			
 	}
 
-	@Override
+ 	@Override
 	protected void onReset() {
 		super.onReset();
 	}

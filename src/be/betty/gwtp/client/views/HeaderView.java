@@ -21,6 +21,7 @@ public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 	@UiField Button deco;
 	@UiField HTMLPanel contentPanel;
 	@UiField MenuBar helpMenuBar;
+	@UiField MenuItem CalculeMenu;
 
 	public interface Binder extends UiBinder<Widget, HeaderView> {
 	}
@@ -53,8 +54,15 @@ public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 		return deco;
 	}
 	
+	@Override
 	public MenuBar getHelpMenuBar(){
 		return helpMenuBar;
 	}
+
+	@Override
+	public MenuItem getCalculeMenu() {
+		return CalculeMenu;
+	}
+
 
 }

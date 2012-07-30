@@ -1,0 +1,31 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'
+	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
+	ui:generateLocales='default' xmlns:w="urn:import:com.google.gwt.widget.client">
+
+	<g:PopupPanel>
+		<g:AbsolutePanel width="421px" height="143px">
+			<g:at left="28" top="10">
+				<g:Label text="Placer le resultat dans l&apos;instance "/>
+			</g:at>
+			<g:at left="28" top="37">
+				<g:Label text="Limite de temps"/>
+			</g:at>
+			<g:at left="222" top="5">
+				<g:ListBox ui:field="instanceChoice"/>
+			</g:at>
+			<g:at left="222" top="37">
+				<g:ListBox ui:field="timeLimit"/>
+			</g:at>
+			<g:at left="153" top="92">
+				<w:TextButton text="Calcule !" ui:field="calculeButton">New button</w:TextButton>
+			</g:at>
+			<g:at left="38" top="92">
+				<w:TextButton text="Cancel" ui:field="cancelButton">New button</w:TextButton>
+			</g:at>
+		</g:AbsolutePanel>
+	</g:PopupPanel>
+</ui:UiBinder>

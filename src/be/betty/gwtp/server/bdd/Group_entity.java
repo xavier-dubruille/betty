@@ -21,7 +21,7 @@ public class Group_entity {
 	private String code;
 
 	@OneToMany
-	private Collection<Activity> activities = new ArrayList<Activity>();
+	private Collection<Activity_entity> activities = new ArrayList<Activity_entity>();
 
 	@ManyToOne
 	private Project_entity project;
@@ -50,11 +50,11 @@ public class Group_entity {
 		this.code = code;
 	}
 
-	public Collection<Activity> getActivities() {
+	public Collection<Activity_entity> getActivities() {
 		return activities;
 	}
 
-	public void setActivities(Collection<Activity> activities) {
+	public void setActivities(Collection<Activity_entity> activities) {
 		this.activities = activities;
 	}
 

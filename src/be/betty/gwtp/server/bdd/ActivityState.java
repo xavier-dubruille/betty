@@ -22,6 +22,7 @@ public class ActivityState {
 	private int period;
 	private boolean isFixed; //jsai plus pk non plus..
 	private boolean isManual; //jsais plus..
+	@ManyToOne private Room room;
     //@ManyToOne private Project_instance ...
 	@ManyToOne private ProjectInstance projectInstance;
 	
@@ -29,7 +30,7 @@ public class ActivityState {
 	private Teacher teacher;
 	
 	@ManyToOne
-	private Activity activity;
+	private Activity_entity activity;
 	public int getId() {
 		return id;
 	}
@@ -61,10 +62,10 @@ public class ActivityState {
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
 	}
-	public Activity getActivity() {
+	public Activity_entity getActivity() {
 		return activity;
 	}
-	public void setActivity(Activity activity) {
+	public void setActivity(Activity_entity activity) {
 		this.activity = activity;
 	}
 	public int getDay() {
@@ -84,6 +85,12 @@ public class ActivityState {
 	}
 	public void setProjectInstance(ProjectInstance projectInstance) {
 		this.projectInstance = projectInstance;
+	}
+	public Room getRoom() {
+		return room;
+	}
+	public void setRoom(Room room) {
+		this.room = room;
 	}
 	
 	

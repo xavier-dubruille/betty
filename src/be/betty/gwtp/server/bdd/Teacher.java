@@ -24,7 +24,7 @@ public class Teacher {
 	private String name;
 
 	@OneToMany
-	private Collection<Activity> activities = new ArrayList<Activity>();
+	private Collection<Activity_entity> activities = new ArrayList<Activity_entity>();
 
 	@ManyToOne
 	private Project_entity project;
@@ -57,11 +57,11 @@ public class Teacher {
 		this.name = name;
 	}
 
-	public Collection<Activity> getActivities() {
+	public Collection<Activity_entity> getActivities() {
 		return activities;
 	}
 
-	public void setActivities(Collection<Activity> activities) {
+	public void setActivities(Collection<Activity_entity> activities) {
 		this.activities = activities;
 	}
 

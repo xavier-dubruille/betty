@@ -20,6 +20,7 @@ import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import com.gwtplatform.mvp.client.gin.DefaultModule;
 
 import be.betty.gwtp.client.presenters.CardSelectionOptionPresenter;
+import be.betty.gwtp.client.presenters.SolveItPopupPresenter;
 import be.betty.gwtp.client.presenters.SubscribePresenter;
 import be.betty.gwtp.client.presenters.ProjectsPresenter;
 import be.betty.gwtp.client.presenters.HeaderPresenter;
@@ -29,6 +30,7 @@ import be.betty.gwtp.client.presenters.SingleCardPresenter;
 import be.betty.gwtp.client.views.CardSelectionOptionView;
 import be.betty.gwtp.client.presenters.BoardPresenter;
 import be.betty.gwtp.client.presenters.AboutUsPresenter;
+import be.betty.gwtp.client.views.SolveItPopupView;
 
 public class ClientModule extends AbstractPresenterModule {
 
@@ -72,5 +74,8 @@ public class ClientModule extends AbstractPresenterModule {
 	
 		bindPresenterWidget(AboutUsPresenter.class,
 				AboutUsPresenter.MyView.class, AboutUsView.class);
+
+		bindPresenterWidget(SolveItPopupPresenter.class,
+				SolveItPopupPresenter.MyView.class, SolveItPopupView.class);
 }
 }

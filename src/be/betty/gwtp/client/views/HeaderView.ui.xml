@@ -55,8 +55,10 @@
 				</g:MenuItem>
 				<g:MenuItem text="Project">
 					<g:MenuBar vertical="true">
-						<g:MenuItem text="Solver">
-					<g:MenuBar vertical="true"/>
+						<g:MenuItem text="Solver" ui:field="solverMenu">
+					<g:MenuBar vertical="true">
+						<g:MenuItem text="Calcule" ui:field="CalculeMenu"/>
+					</g:MenuBar>
 				</g:MenuItem>
 						<g:MenuItem text="Manual">
 							<g:MenuBar vertical="true"/>

@@ -18,7 +18,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import be.betty.gwtp.server.bdd.Activity;
+import be.betty.gwtp.server.bdd.Activity_entity;
 import be.betty.gwtp.server.bdd.Course;
 import be.betty.gwtp.server.bdd.Group_entity;
 import be.betty.gwtp.server.bdd.Project_entity;
@@ -203,7 +203,7 @@ public class CreateUserProject {
 		} else
 			c = (Course) l.get(0);
 
-		Activity a = new Activity(t, g, c, current_project);
+		Activity_entity a = new Activity_entity(t, g, c, current_project);
 		sess.save(a);
 		current_project.getActivities().add(a);
 		tran.commit();

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import be.betty.gwtp.client.CardHandler;
 import be.betty.gwtp.client.CellDropControler;
+import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.Filter_kind;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
@@ -11,16 +12,21 @@ import be.betty.gwtp.client.action.GetActivityStateAction;
 import be.betty.gwtp.client.action.GetActivityStateActionResult;
 import be.betty.gwtp.client.action.GetCards;
 import be.betty.gwtp.client.action.GetCardsResult;
+import be.betty.gwtp.client.action.GetInstancesOnly;
+import be.betty.gwtp.client.action.GetInstancesOnlyResult;
 import be.betty.gwtp.client.action.SaveCardDropAction;
 import be.betty.gwtp.client.action.SaveCardDropActionResult;
 import be.betty.gwtp.client.event.BoardViewChangedEvent;
 import be.betty.gwtp.client.event.CardFilterEvent;
 import be.betty.gwtp.client.event.DropCardEvent;
+import be.betty.gwtp.client.event.InstancesModifiedEvent;
 import be.betty.gwtp.client.event.CardFilterEvent.CardFilterHandler;
 import be.betty.gwtp.client.event.DropCardEvent.DropCardHandler;
+import be.betty.gwtp.client.event.InstancesModifiedEvent.InstancesModifiedHandler;
 import be.betty.gwtp.client.event.ProjectListModifyEvent;
 import be.betty.gwtp.client.place.NameTokens;
 import be.betty.gwtp.shared.dto.ActivityState_dto;
+import be.betty.gwtp.shared.dto.ProjectInstance_dto;
 
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
 import com.allen_sauer.gwt.dnd.client.drop.VerticalPanelDropController;
@@ -117,10 +123,30 @@ public class MainPresenter extends
 	private String project_num;
 	public static PickupDragController cardDragController;
 	public static VerticalPanelDropController cardDropPanel;
+	private InstancesModifiedHandler instancesHandler = new InstancesModifiedHandler() {
+		@Override public void onInstancesModified(InstancesModifiedEvent event) {
+			final int projectId = Storage_access.getSavedProject();
+			dispatcher.execute(new GetInstancesOnly(projectId), new AsyncCallback<GetInstancesOnlyResult>() {
+				@Override public void onFailure(Throwable arg0) {
+					ClientUtils.actionFailed("getting the instance for the project "+projectId+" has failed.");
+				}
+
+				@Override public void onSuccess(GetInstancesOnlyResult result) {
+					// first we repeuplate localStorage
+					int currInstanceBddId = Storage_access.getCurrentProjectInstanceBDDID();
+					Storage_access.setProjectInstances(result.getProjectInstances(), 0);
+					Storage_access.setCurrentProjectInstanceBddId_fromBddID(currInstanceBddId);
+					
+					// then we "reset" the instancesPanel
+					 writeInstancePanel();
+				}
+			});
+		}
+	};
+	
 	private CardFilterHandler filterHandler = new CardFilterHandler() {
 
-		@Override
-		public void onCardFilter(CardFilterEvent event) {
+		@Override public void onCardFilter(CardFilterEvent event) {
 
 			// TODO : attention, si on decide de faire 2 combobox, les id venan
 			// de la combox et
@@ -219,11 +245,16 @@ public class MainPresenter extends
 		});
 		
 		set_dnd();
+		
+		// let's add all the handler (from the evenBus)
 		registerHandler(getEventBus().addHandler(CardFilterEvent.getType(),
 				filterHandler));
 		
 		registerHandler(getEventBus().addHandler(
 				DropCardEvent.getType(), dropCardHandler));
+		
+		registerHandler(getEventBus().addHandler(
+				InstancesModifiedEvent.getType(), instancesHandler));
 
 	}
 

@@ -9,7 +9,7 @@ import com.gwtplatform.dispatch.server.actionhandler.ActionHandler;
 
 import be.betty.gwtp.client.action.GetActivityStateAction;
 import be.betty.gwtp.client.action.GetActivityStateActionResult;
-import be.betty.gwtp.server.bdd.Activity;
+import be.betty.gwtp.server.bdd.Activity_entity;
 import be.betty.gwtp.server.bdd.ActivityState;
 import be.betty.gwtp.server.bdd.ProjectInstance;
 import be.betty.gwtp.shared.dto.ActivityState_dto;

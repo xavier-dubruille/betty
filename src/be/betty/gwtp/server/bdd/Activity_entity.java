@@ -1,14 +1,20 @@
 package be.betty.gwtp.server.bdd;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import be.betty.gwtp.server.solver.Resource;
 
 @Entity
-public class Activity {
+@Table(name = "Activity")
+public class Activity_entity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,10 +33,10 @@ public class Activity {
 	@ManyToOne
 	private Group_entity group;
 
-	public Activity() {
+	public Activity_entity() {
 	}
 
-	public Activity(Teacher t, Group_entity g, Course c,
+	public Activity_entity(Teacher t, Group_entity g, Course c,
 			Project_entity current_project) {
 		this.teacher = t;
 		this.group = g;
@@ -77,5 +83,14 @@ public class Activity {
 	public void setGroup(Group_entity group) {
 		this.group = group;
 	}
+
+	public int getNumberOfStudents() {
+		// TODO faut grossierement calculer le nombre d'etudiants,
+		// faute de mieux, on multiplira le nombre de groupe pas la
+		// "taille par deffaut" d'un groupe..
+		return 42;
+	}
+
+
 
 }

@@ -163,16 +163,14 @@ public class Storage_access {
 	/**
 	 * if this come to change, then some constants HAS TO be changed !! (see above)
 	 * 
-	 * Actuelement, le parametre "defaultInstance" nest PAS utilise !
-	 * il prendre le premier.. c plus simple, ca marche, mais c pas mieu..
 	 * @param pis
-	 * @param defaultInstance
+	 * @param defaultInstance the index of instance (so between 0 and the number of instances) to be the current instance
 	 */
 	public static void setProjectInstances(ArrayList<ProjectInstance_dto> pis, int defaultInstance) {
 		int i = 0;
 		String s = STORAGE_SEPARATOR;
+		
 		for (ProjectInstance_dto in : pis) {
-			if (i == 0) stockStore.setItem(CURRENT_INSTANCE_BDDID, ""+in.getBddId());
 			
 			stockStore.setItem(INSTANCE_PREFIX +i,""
 					+in.getBddId() +s
@@ -183,7 +181,8 @@ public class Storage_access {
 		}
 		stockStore.setItem(NUMBER_OF_INSTANCE, "" + i);
 		
-		//stockStore.setItem(CURRENT_INSTANCE, ""+defaultInstance);
+		int instance = (defaultInstance > 0 && defaultInstance < i) ? defaultInstance : 0;
+		stockStore.setItem(CURRENT_INSTANCE_BDDID, ""+getInstanceBddId(instance));
 	}
 
 	public static int getNumberOfInstance() {
@@ -217,8 +216,21 @@ public class Storage_access {
 		stockStore.setItem(CARD_PREFIX+cardID, BettyUtils.join(s, STORAGE_SEPARATOR));
 	}
 
+	/**
+	 * 
+	 * @param currentProjectInstance the index (in localStorage) of the Instance
+	 */
 	public static void setCurrentProjectInstanceBddId(int currentProjectInstance) {
-		stockStore.setItem(CURRENT_INSTANCE_BDDID, ""+getInstanceBddId(currentProjectInstance));
+		setCurrentProjectInstanceBddId_fromBddID(getInstanceBddId(currentProjectInstance));
+	}
+	
+	/**
+	 * 
+	 * @param currInstanceBddId the bddId of the instance
+	 */
+	public static void setCurrentProjectInstanceBddId_fromBddID(
+			int currInstanceBddId) {
+		stockStore.setItem(CURRENT_INSTANCE_BDDID, ""+currInstanceBddId);
 	}
 	
 	public static int getCurrentProjectInstanceBDDID() {
@@ -275,8 +287,12 @@ public class Storage_access {
 		return Integer.parseInt(stockStore.getItem(NUMBER_OF_CARD));
 	}
 	
-	public static String getSavedProject() {
-		return stockStore.getItem(PROJECT_ON);
+	/**
+	 * 
+	 * @return the bddId of the current project
+	 */
+	public static int getSavedProject() {
+		return Integer.parseInt(stockStore.getItem(PROJECT_ON));
 	}
 	
 	// these folowing methods do not depend directly on local storage, but it's easer this way
@@ -347,6 +363,8 @@ public class Storage_access {
 			
 		}
 	}
+
+
 
 
 
