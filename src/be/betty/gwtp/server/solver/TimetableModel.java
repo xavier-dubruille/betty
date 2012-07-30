@@ -75,6 +75,7 @@ public class TimetableModel extends Model<Activity, Location> {
 
 	private static org.apache.log4j.Logger sLogger = org.apache.log4j.Logger.getLogger(TimetableModel.class);
 	private int iNrDays, iNrHours, projectBddId;
+	private int instanceNum;
 
 	private TimetableModel(int nrDays, int nrHours, int projectBddId) {
 		super();
@@ -94,7 +95,7 @@ public class TimetableModel extends Model<Activity, Location> {
 
 	public static TimetableModel loadFromHibernate (int projectBddId) {
 
-		TimetableModel m = new TimetableModel(5, 6, projectBddId); //TODO faudrait prendre les jour/period de la bdd..
+		TimetableModel m = new TimetableModel(5, 6, projectBddId); //TODO faudrait prendre les jour/period de la bdd ou ?
 
 		HashMap<String, Resource> resTab = new HashMap<String, Resource>();
 
@@ -128,7 +129,7 @@ public class TimetableModel extends Model<Activity, Location> {
 			m.addConstraint(r);
 		}
 
-		System.out.println("restab ("+resTab.size()+")==> "+resTab);
+		//System.out.println("restab ("+resTab.size()+")==> "+resTab);
 		int i=0;
 		for (be.betty.gwtp.server.bdd.Activity_entity ac: p.getActivities()) {
 			i++;
@@ -153,12 +154,12 @@ public class TimetableModel extends Model<Activity, Location> {
 
 			m.addVariable(a);
 			a.init();
-			System.out.println("ressourceGroupFrom activity n¡ "+ac.getId()+" = "+a.getResourceGroups());
+			//System.out.println("ressourceGroupFrom activity n¡ "+ac.getId()+" = "+a.getResourceGroups());
 
 
 		}
 
-		System.out.println("nb of activity (variable) = "+i);
+		//System.out.println("nb of activity (variable) = "+i);
 		t.commit();
 		s.close();
 
@@ -202,15 +203,15 @@ public class TimetableModel extends Model<Activity, Location> {
 			}
 		}
 		
-		int instanceId = instanceBddIdToSaveIn;
-		if (instanceBddIdToSaveIn < 0) {
+		//int instanceId = instanceBddIdToSaveIn; // wrong and not used
+		//if (instanceBddIdToSaveIn < 0) {
 			int instanceMax = 0;
 			for (ProjectInstance proIn : p.getProjectInstances())
 				if (proIn.getNum() > instanceMax)
 					instanceMax = proIn.getNum();
-			instanceId = instanceMax+1;
-		}
-		pi.setNum(instanceId);
+			this.instanceNum = instanceMax+1;
+		//} // not used for now
+		pi.setNum(instanceNum);
 		pi.setDescription("Solver");
 		s.save(pi);
 
@@ -219,5 +220,9 @@ public class TimetableModel extends Model<Activity, Location> {
 		t.commit();
 		s.close();
 
+	}
+
+	public int getInstance() {
+		return instanceNum;
 	}
 }

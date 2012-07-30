@@ -16,6 +16,8 @@ import be.betty.gwtp.client.action.GetInstancesOnly;
 import be.betty.gwtp.client.action.GetInstancesOnlyResult;
 import be.betty.gwtp.client.action.SaveCardDropAction;
 import be.betty.gwtp.client.action.SaveCardDropActionResult;
+import be.betty.gwtp.client.event.AddNotifEvent;
+import be.betty.gwtp.client.event.AddNotifEvent.AddNotifHandler;
 import be.betty.gwtp.client.event.BoardViewChangedEvent;
 import be.betty.gwtp.client.event.CardFilterEvent;
 import be.betty.gwtp.client.event.DropCardEvent;
@@ -62,25 +64,15 @@ public class MainPresenter extends
 
 	public interface MyView extends View {
 		public Label getMainLabel();
-
 		public AbsolutePanel getDndPanel();
-
 		Label getContent();
-
 		void setContent(Label content);
-
 		VerticalPanel getCards_panel();
-
 		void constructFlex(PickupDragController cardDragController);
-
 		ListBox getComboInstance();
-
 		Label getCurrentInstance();
-
 		ListBox getCombo_viewChoice1();
-
 		ListBox getCombo_viewChoice2();
-		
 		public VerticalPanel GetNotifBarVerticalPanel();
 	}
 
@@ -208,6 +200,15 @@ public class MainPresenter extends
 	};
 	
 
+	private AddNotifHandler addNotifHandler = new AddNotifHandler() {
+		@Override public void onAddNotif(AddNotifEvent event) {
+			Label notification = new Label();
+			notification.setText(event.getNotif());
+			getView().GetNotifBarVerticalPanel().add(notification);
+		}
+	};
+	
+
 	@Override
 	public void prepareFromRequest(PlaceRequest request) {
 		super.prepareFromRequest(request);
@@ -262,6 +263,9 @@ public class MainPresenter extends
 		
 		registerHandler(getEventBus().addHandler(
 				InstancesModifiedEvent.getType(), instancesHandler));
+		
+		registerHandler(getEventBus().addHandler(
+				AddNotifEvent.getType(), addNotifHandler));
 
 	}
 

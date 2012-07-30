@@ -21,7 +21,7 @@
 				<g:ListBox ui:field="timeLimit"/>
 			</g:at>
 			<g:at left="153" top="92">
-				<w:TextButton text="Calcule !" ui:field="calculeButton">New button</w:TextButton>
+				<w:TextButton text="Solve It !" ui:field="calculeButton">New button</w:TextButton>
 			</g:at>
 			<g:at left="38" top="92">
 				<w:TextButton text="Cancel" ui:field="cancelButton">New button</w:TextButton>

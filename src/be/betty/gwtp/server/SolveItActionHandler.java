@@ -9,7 +9,6 @@ import net.sf.cpsolver.ifs.util.DataProperties;
 
 import com.gwtplatform.dispatch.server.actionhandler.ActionHandler;
 
-import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.action.SolveIt;
 import be.betty.gwtp.client.action.SolveItResult;
 import be.betty.gwtp.server.solver.Activity;
@@ -70,31 +69,34 @@ public class SolveItActionHandler implements
 			val += (int) varr.getAssignment().toDouble();
 
 		// print comment
+		 StringBuffer comments = new StringBuffer("Solution Info:\n");
         if (!m.assignedVariables().isEmpty()) {
-            StringBuffer comments = new StringBuffer("Solution Info:\n");
+           
             Map<String, String> solutionInfo = (best == null ? m.getInfo() : best.getInfo());
             for (String key : new TreeSet<String>(solutionInfo.keySet())) {
                 String value = solutionInfo.get(key);
                 comments.append("    " + key + ": " + value + "\n");
             }
-          //  System.out.println("comments==>"+comments);
-            //ClientUtils.notifyUser("comments==>"+comments);
+            //System.out.println("comments==>"+comments.toString());
+           
+           
         }
         
         m.saveToHibernate(best, action.getInstanceId());
+        
+        result.setInstanceLocation(m.getInstance());
+        result.setSoluceInfo(comments.toString());
 
         System.out.println("---------------  time: "+(System.currentTimeMillis()-timeMilis)/1000+ " sec.");
 		
 		return result;
 	}
 
-	@Override
-	public void undo(SolveIt action, SolveItResult result, ExecutionContext context)
+	@Override public void undo(SolveIt action, SolveItResult result, ExecutionContext context)
 			throws ActionException {
 	}
 
-	@Override
-	public Class<SolveIt> getActionType() {
+	@Override public Class<SolveIt> getActionType() {
 		return SolveIt.class;
 	}
 }

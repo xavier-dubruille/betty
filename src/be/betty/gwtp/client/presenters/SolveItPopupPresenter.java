@@ -49,6 +49,7 @@ PresenterWidget<SolveItPopupPresenter.MyView> {
 		// CalculeButton handler
 		getView().getCalculeButton().addClickHandler(new ClickHandler() {
 			@Override public void onClick(ClickEvent arg0) {
+				ClientUtils.notifyUser("The Solver has Started ... ", getEventBus());
 				getView().hide();
 				dispatcher.execute(new SolveIt(Storage_access.getCurrentProjectInstanceBDDID(), -1),
 						new AsyncCallback<SolveItResult>() {
@@ -58,7 +59,8 @@ PresenterWidget<SolveItPopupPresenter.MyView> {
 					}
 
 					@Override public void onSuccess(SolveItResult result) {
-						//ClientUtils.notifyUser(result.getSoluceInfo());
+						ClientUtils.notifyUser("Solving is over. (available in instance Num "+result.getInstanceNum()+")", getEventBus());
+						ClientUtils.notifyUser("Post Info are: "+result.getSoluceInfo(), getEventBus());
 						// TODO: faut aussi rajouter la nouvelle instance si il y a,
 						// ou recharger la page, si c'est l'instance courante..
 						if (true) {// in case of new instance, we add it
