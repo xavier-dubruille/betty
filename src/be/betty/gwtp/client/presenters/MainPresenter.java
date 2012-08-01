@@ -309,9 +309,9 @@ public class MainPresenter extends
 	//@Override
 	protected void onReset() {
 		// to make a faster reset.. hope it doesn't create bugs..
-		if (ClientUtils.DONT_REPEAT_YOURSELF)
+		/* if (ClientUtils.DONT_REPEAT_YOURSELF)
 			ClientUtils.DONT_REPEAT_YOURSELF = false;
-		else return;
+		else return; */
 		
 		super.onReset();
 
