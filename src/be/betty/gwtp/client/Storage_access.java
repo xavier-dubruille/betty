@@ -37,6 +37,8 @@ public class Storage_access {
 	private static final String CURRENT_INSTANCE_BDDID = "u";
 	private static final String NUMBER_OF_INSTANCE = "U";
 	private static final String INSTANCE_PREFIX = "I";
+	private static final String NUMBER_OF_DAYS = "d";
+	private static final String NUMBER_OF_PERIODS = "p";
 
 	// if one of the following constants come to change,
 	// then the method setCards() HAS TO be changed also !!
@@ -53,6 +55,7 @@ public class Storage_access {
 	private static final int PI_STATUS_INDEX = 1; //e.g. if the instance has been deleted and have to be disabled
 	private static final int PI_NUMBER = 2;
 	private static final int PI_DESC = 3;
+
 	
 	static {
 		stockStore = Storage.getLocalStorageIfSupported();
@@ -64,7 +67,6 @@ public class Storage_access {
 		teachers_map = new ArrayList<Integer>();
 		courses_map = new ArrayList<Integer>();
 		
-		setDefaultValues();
 	}
 
 
@@ -73,7 +75,8 @@ public class Storage_access {
 	 *  Put in localStorage some default values.. 
 	 */
 	private static void setDefaultValues() {
-		// TODO Auto-generated method stub
+		stockStore.setItem(NUMBER_OF_DAYS, "5");
+		stockStore.setItem(NUMBER_OF_PERIODS, "6");
 		
 	}
 	
@@ -89,6 +92,8 @@ public class Storage_access {
 		// TODO : si rajoute-t-on ici le choix de mettre ˆ jour ou pas le local storage ?
 
 		stockStore.setItem(PROJECT_ON, project_num);
+		
+		setDefaultValues(); // if we don't set some values, we need some default one
 
 		Storage_access.setTeachers(project_num, result.getTeachers());
 		Storage_access.setGroups(project_num, result.getGroups());
@@ -286,6 +291,16 @@ public class Storage_access {
 	public static int getNumberOfCard() {
 		return Integer.parseInt(stockStore.getItem(NUMBER_OF_CARD));
 	}
+	
+
+	public static int getNbDays() {
+		return Integer.parseInt(stockStore.getItem(NUMBER_OF_DAYS));
+	}
+
+	public static int getNbPeriods() {
+		return Integer.parseInt(stockStore.getItem(NUMBER_OF_PERIODS));
+	}
+
 	
 	/**
 	 * 

@@ -1,6 +1,8 @@
 package be.betty.gwtp.client.presenters;
 
+import be.betty.gwtp.client.CardInView;
 import be.betty.gwtp.client.CellDropControler;
+import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.event.BoardViewChangedEvent;
@@ -22,20 +24,22 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 		FlexTable getFlexTable();
 	}
 
-
+	private CardInView[] cardInView;
+	
 	@Inject
 	public BoardPresenter(final EventBus eventBus, final MyView view) {
 		super(eventBus, view);
+		cardInView = new CardInView[1];
 	}
 
 	@Override
 	protected void onBind() {
 		super.onBind();
-		
+
 		constructBoard();
-		
-		
-		
+
+
+
 		registerHandler(getEventBus().addHandler(
 				BoardViewChangedEvent.getType(), boardHandler));
 
@@ -55,15 +59,13 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 				//flexTable.getCellFormatter().setStyleName();
 				// CSS_DEMO_PUZZLE_CELL);
 
-				// instantiate a drop controller of the panel in the current
-				// cell
 				if (i==0 && j>0){
 					simplePanel.setPixelSize((UiConstants.getCardWidth()+5)/2, UiConstants.getCardHeight()+5);
 					Label periode = new Label();
 					periode.setText(UiConstants.getPeriode()+" "+j);
 					simplePanel.add(periode);
 				}
-				
+
 				if (j==0 && i>0){
 					simplePanel.setPixelSize(UiConstants.getCardWidth()+5, (UiConstants.getCardHeight()+5)/4);
 					Label day = new Label();
@@ -73,21 +75,23 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 				if (i> 0 && j>0){
 					simplePanel.setPixelSize(UiConstants.getCardWidth()+5, UiConstants.getCardHeight()+5);
 
-				CellDropControler dropController = new CellDropControler(
-						simplePanel, getEventBus(),j+1,i+1);
-				MainPresenter.cardDragController.registerDropController(dropController);
+					// instantiate a drop controller of the panel in the current cell
+					CellDropControler dropController = new CellDropControler(
+							simplePanel, cardInView, getEventBus(),j,i);
+					MainPresenter.cardDragController.registerDropController(dropController);
 				}
 			}
 		}
 	}
-	
+
 	private BoardViewChangedHandler boardHandler = new BoardViewChangedHandler() {
-		
+
 		@Override public void onBoardViewChanged(BoardViewChangedEvent event) {
 			redrawBoard(event.getComboViewIndex_1(), event.getComboViewIndex_2());
-			
+
 		}
 	};
+	
 
 	/**
 	 * 
@@ -101,70 +105,49 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 	public void redrawBoard(int comboIndex1, int comboIndex2) {
 
 		// 1) on va parcourir tt le board, vider les cases
-		System.out.println("Let's redraqwwww Board");
-		
-		int COLUMNS = 6;
-		int ROWS = 7;
-		for (int i = 1; i < COLUMNS; i++) {
+		System.out.println("Let's redrawwww Board");
 
+		int COLUMNS = Storage_access.getNbDays() + 1;
+		int ROWS = Storage_access.getNbPeriods() +1 ;
+		for (int i = 1; i < COLUMNS; i++) 
 			for (int j = 1; j < ROWS; j++) {
 				//System.out.println("class "+j+" "+i+"==> "+getView().getFlexTable().getWidget(j, i).getClass());
-				
+
 				if (!(getView().getFlexTable().getWidget(j, i) instanceof SimplePanel))
 					continue;
 				SimplePanel s = (SimplePanel) getView().getFlexTable().getWidget(j, i);
 				s.clear();
 				//getView().getFlexTable().getWidget(j, i).getClass()
 				//getView().getFlexTable().getWidget(j, i).getElement().removeFromParent();
-				
 			}
-		}
+		
 		//System.out.println("all cards ==== "+MainPresenter.allCards);
 		// 2) on va parcourir tt les cartons et placer ceux qui doivent l'etre
 		for (int i=0; i< Storage_access.getNumberOfCard(); i++){
 			String c = Storage_access.getCard(i);
 			int slot = Storage_access.getSlotCard(c);
 			if (slot != 0) {
-				if (!cardBelongToActualView(c, comboIndex1, comboIndex2)) continue;
-				int col = slot%10 -1;
-				int row = slot/10 -1;
+				if (!cardInView[0].cardBelongToActualView(c)) continue;
+				int col = ClientUtils.storageSlotToFlexCol(slot);
+				int row = ClientUtils.storageSlotToFlexRow(slot);
 				SimplePanel s = (SimplePanel) getView().getFlexTable().getWidget(row, col);
-				
+
 				s.clear();
 				s.add(MainPresenter.allCards.get(i).getWidget());
 				//getView().getFlexTable().setWidget(row,col, MainPresenter.allCards.get(i).getWidget());
 			}
-				
+
 		}
-		
-	}
-	
-	private boolean cardBelongToActualView(String card, int index1, int index2) {
-		//System.out.println("Should we print this card ? =>"+card);
-		//System.out.println("Teacher = num "+Storage_access.getTeacherCard(card));
-		//System.out.println("Group   = num "+Storage_access.getGroupCard(card));
-		//System.out.println("Teacher= "+Storage_access.getTeacher(Integer.parseInt(Storage_access.getTeacherCard(card) ) ));
-		//System.out.println("Group= "+Storage_access.getGroup(Integer.parseInt(Storage_access.getGroupCard(card))));
-		int c2 = index2;
-		//System.out.println("   Selected choice = "+c2);
-		switch (index1){
-		case 0:
-			if (Storage_access.getTeacherIdCard(card) == c2) return true;
-			
-			break;
-		case 1:
-			break;
-		case 2:
-			if (Storage_access.getGroupIdCard(card) == c2) return true;
-			break;
-		}
-		//System.out.println("==>no");
-		return false;
+
 	}
 
-	@Override
-	protected void onReset() {
+	
+	@Override protected void onReset() {
 		super.onReset();
 		//redrawBoard();
+	}
+
+	public void init(CardInView cardInView) {
+		this.cardInView[0] = cardInView;	
 	}
 }

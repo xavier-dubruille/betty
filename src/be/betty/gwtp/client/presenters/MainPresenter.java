@@ -3,6 +3,8 @@ package be.betty.gwtp.client.presenters;
 import java.util.ArrayList;
 
 import be.betty.gwtp.client.CardHandler;
+import be.betty.gwtp.client.CardInView;
+import be.betty.gwtp.client.CardSelectionDropControler;
 import be.betty.gwtp.client.CellDropControler;
 import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.Filter_kind;
@@ -97,6 +99,10 @@ public class MainPresenter extends
 	private Storage stockStore;
 	private EventBus eventBus;
 	private Label notification;
+	private CardInView cardInView;
+	private String project_num;
+	public static PickupDragController cardDragController;
+	public static CardSelectionDropControler cardDropPanel;
 	
 
 	@Inject
@@ -107,6 +113,7 @@ public class MainPresenter extends
 		stockStore = Storage.getLocalStorageIfSupported();
 		this.eventBus = eventBus;
 		allCards = new ArrayList<SingleCardPresenter>();
+		cardInView = new CardInView(getView().getCombo_viewChoice1(), getView().getCombo_viewChoice2());
 	}
 
 	@Override
@@ -115,9 +122,7 @@ public class MainPresenter extends
 		RevealContentEvent.fire(this, HeaderPresenter.SLOT_CONTENT, this);
 	}
 
-	private String project_num;
-	public static PickupDragController cardDragController;
-	public static VerticalPanelDropController cardDropPanel;
+	
 	private InstancesModifiedHandler instancesHandler = new InstancesModifiedHandler() {
 		@Override public void onInstancesModified(InstancesModifiedEvent event) {
 			final int projectId = Storage_access.getSavedProject();
@@ -247,7 +252,7 @@ public class MainPresenter extends
 				String txtCbBox1= getView().getCombo_viewChoice1().getItemText(getView().getCombo_viewChoice1().getSelectedIndex());
 				String txtCbBox2 = getView().getCombo_viewChoice2().getItemText(getView().getCombo_viewChoice2().getSelectedIndex());
 				String notif = "The view of "+txtCbBox1+" "+txtCbBox2+" is selected";
-				ClientUtils.notifyUser(getView().GetNotifBarVerticalPanel(), notif);
+				ClientUtils.notifyUser(notif,getEventBus());
 			}
 
 		});
@@ -275,7 +280,7 @@ public class MainPresenter extends
 		// note: This creates an implicit DropController for the boundary panel
 		cardDragController = new PickupDragController(RootPanel.get(), false);
 		cardDragController.addDragHandler(new CardHandler());
-		cardDropPanel = new VerticalPanelDropController(getView().getCards_panel());
+		cardDropPanel = new CardSelectionDropControler(getView().getCards_panel(), getEventBus());
 
 		// TODO v�rifier si il y a des lag en utilisant l'application sur le
 		// serveur
@@ -301,8 +306,13 @@ public class MainPresenter extends
 
 	}
 
-	@Override
+	//@Override
 	protected void onReset() {
+		// to make a faster reset.. hope it doesn't create bugs..
+		if (ClientUtils.DONT_REPEAT_YOURSELF)
+			ClientUtils.DONT_REPEAT_YOURSELF = false;
+		else return;
+		
 		super.onReset();
 
 		String login = "";
@@ -319,7 +329,7 @@ public class MainPresenter extends
 		getView().getMainLabel().setText(
 				"Welcome " + login + " *****  Projet num " + project_num);
 
-	//	final boolean[] DONT_REPEAT_YOURSELF = {true};  //marche po :(
+		//ClientUtils.DONT_REPEAT_YOURSELF = {true};  //marche po :(
 		GetCards action = new GetCards(project_num);
 		dispatcher.execute(action, new AsyncCallback<GetCardsResult>() {
 
@@ -366,7 +376,9 @@ public class MainPresenter extends
 		cardSelectionOptionPresenter.init();
 		
 		setInSlot(SLOT_BOARD, boardPresenter);
+		boardPresenter.init(this.cardInView);
 
+		
 		cardDragController.registerDropController(cardDropPanel);
 		
 		
@@ -517,7 +529,7 @@ public class MainPresenter extends
 				for (int i=0; i< Storage_access.getNumberOfCard(); i++) {
 					String card = Storage_access.getCard(i);
 					ActivityState_dto a = result.getActivitiesState().get(""+Storage_access.getBddIdCard(card));
-					if (a == null) 
+					if (a == null || a.getDay() == 0 || a.getPeriod() == 0) 
 						Storage_access.revoveFromSlot(i);	
 					else 
 						Storage_access.setSlotCard(i, a.getDay(), a.getPeriod());	

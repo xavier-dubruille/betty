@@ -33,6 +33,7 @@ public class SolveItPopupView extends PopupViewImpl implements
 	@UiField TextButton calculeButton;
 	@UiField ListBox instanceChoice;
 	@UiField ListBox timeLimit;
+	@UiField ListBox initialState;
 	
 	@Override
 	public TextButton getCancelButton() {
