@@ -10,6 +10,8 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.AbsolutePanel;
 
 public class CardSelectionOptionView extends ViewImpl implements
 		CardSelectionOptionPresenter.MyView {
@@ -30,9 +32,8 @@ public class CardSelectionOptionView extends ViewImpl implements
 	}
 	
 	@UiField ListBox comboBoxFilterType;
-	@UiField ListBox group_choice;
-	@UiField ScrollPanel cardFilterScrollPanel;
-	@UiField VerticalPanel cardFilterVerticalPanel;
+	@UiField SimplePanel simplePanel;
+	@UiField AbsolutePanel filterAbsolutePanel;
 	
 
 	@Override
@@ -40,15 +41,11 @@ public class CardSelectionOptionView extends ViewImpl implements
 		return comboBoxFilterType;
 	}
 
-	@Override
-	public ListBox getGroup_choice() {
-		return group_choice;
+	public SimplePanel getSimplePanel(){
+		return simplePanel;
 	}
-
-	public VerticalPanel getCardFilterVerticalPanel(){
-		return cardFilterVerticalPanel;
-	}
-
-
 	
+	public AbsolutePanel getFilterAbsolutePanel(){
+		return filterAbsolutePanel;
+	}
 }
