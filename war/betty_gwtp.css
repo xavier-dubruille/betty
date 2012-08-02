@@ -17,6 +17,7 @@ body {
 	margin-bottom: 2px;
 	background: #F00;
 	color: red;
+	border-radius: 5px;
 }
 
 .card {
@@ -25,6 +26,7 @@ body {
 	margin-bottom: 2px;
 	font-size: 10px;
 	background-color: lightsteelblue;
+	border-radius: 5px;
 }
 
 .courseCard{
@@ -34,8 +36,7 @@ body {
 .teacherCard{
 	font-size: 7pt;
 	text-align: right;
-	margin-right: 5px;
-	
+	margin-right: 5px;	
 }
 
 .groupCard{
@@ -46,16 +47,21 @@ body {
 .panelCell {
 	border: medium solid;
 }
+
 .small_title {
 	font-size: medium;
 	font-style: normal;
 	font-family: MS PMincho;
 }
+
 .panel_filter_options {
 	background-color: cornflowerblue;
+	border-radius: 10px;
+	margin-left: 5px;
 }
+
 . {
-	margin: 5px;
+	margin: 0px;
 	background-color: White;
 }
 
@@ -65,6 +71,10 @@ body {
 	/*text-align: center;*/
 	font-weight: bold;
 	padding: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
 }
 .ConnexionButton {
 	text-align: center;
@@ -123,13 +133,13 @@ body {
 	border-right: thin solid Black;
 	border-bottom: thin solid Black;
 	border-left: thin solid black;
-	background-color: gold;
+	background-color: cornflowerblue;
 }
 .currentInstanceNumber {
 	color: black;
 	font-stretch: extra-expanded;
 	font-variant: small-caps;
-	font-size: 18mm;
+	font-size: 14mm;
 	font-style: normal;
 	font-family: Century Gothic;
 	font-weight: bold;

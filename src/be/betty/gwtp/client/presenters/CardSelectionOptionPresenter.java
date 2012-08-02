@@ -37,10 +37,6 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 
 	public interface MyView extends View {
 
-		AbsolutePanel getFilterAbsolutePanel();
-
-		ListBox getComboBoxFilterType();
-
 		SimplePanel getSimplePanel();
 		SimplePanel getSimplePanelFirstFilter();
 
@@ -80,7 +76,6 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 
 			@Override
 			public void onChanged(ChangedEvent event) {
-				// TODO Auto-generated method stub
 				System.out.println(event.getValue().toString());
 				System.out.println(event.getSource().toString());
 				indexFirstComboBox = event.getValue().toString();
@@ -94,34 +89,10 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 					for (int i = 0; i < MainPresenter.allCards.size(); i++) {
 						MainPresenter.allCards.get(i).getWidget().setVisible(true);
 					}
-					//getView().getCardFilterVerticalPanel().clear();
 					multiSelectComboForm.hide();
 				}
 			}
 		});
-		// init();
-
-		//Add a Handler to the first ComboBox
-		/*getView().getComboBoxFilterType().addChangeHandler(new ChangeHandler() {
-			@Override
-			public void onChange(ChangeEvent arg0) {
-
-				//If not allcard selected
-				if (getView().getComboBoxFilterType().getSelectedIndex() != 0) {
-					printSecondComboBxView(getView().getComboBoxFilterType().getSelectedIndex());
-					for (int i = 0; i < MainPresenter.allCards.size(); i++) {
-						MainPresenter.allCards.get(i).getWidget().setVisible(false);
-					}	
-				}else {
-					for (int i = 0; i < MainPresenter.allCards.size(); i++) {
-						MainPresenter.allCards.get(i).getWidget().setVisible(true);
-					}
-					//getView().getCardFilterVerticalPanel().clear();
-					multiSelectComboForm.hide();
-				}
-
-			}
-		});*/
 
 		selectItemMultiplePickList.addChangedHandler(new ChangedHandler() {
 
@@ -165,19 +136,9 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 		getView().getSimplePanel().clear();
 		getView().getSimplePanelFirstFilter().clear();
 		setStaticFirstComboBox();
-		//setStaticFirstComboView(getView().getComboBoxFilterType());
-		//getView().getComboBoxFilterType().setSelectedIndex(0);
 		multiSelectComboForm.setWidth(200);
 	}
 
-	/*public static void setStaticFirstComboView(ListBox box) {
-		box.clear();
-		box.addItem("All card");
-		box.addItem("Professor");
-		box.addItem("Group");
-		box.addItem("Type");
-
-	}*/
 
 	private void setStaticFirstComboBox(){
 
@@ -197,11 +158,11 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 	//TODO Changer le nom de cette fonction pour que ca soit plus adapte a la nouvelle configuration (comboBox)
 	public void printSecondComboBxView(int selectedIndex) {
 		assert selectedIndex >= 0 && selectedIndex <= 3;
-		//box.clear();
-		//getView().getCardFilterVerticalPanel().clear();
+		
 		multiSelectComboForm.setWidth(200);
 		multiSelectComboForm.clearValues();
 		multiSelectComboForm.clear();
+		
 		getView().getSimplePanel().clear();
 
 		switch (selectedIndex) {
@@ -250,38 +211,4 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 			return;
 		}
 	}
-
-	// TODO Ce que je fais est VRAIMENT DEGUEULASSE. Soit on parse le code xml,
-	// soit on trouve un autre moyen
-	// de récupérer la valeur de la checkBox. Ensuite, le reste du code est pas
-	// forcement plus sexy, mais ça fonctionne comme sa
-	//@Override
-	/*public void onValueChange(ValueChangeEvent<Boolean> event) {
-
-		// Partie horible pour recuperer le nom du prof dans la comboBox
-		// selectionnee
-		System.out.println("event source: " + event.getSource());
-		String str = event.getSource().toString();
-		String spt[] = str.split("</label></span>");
-		int test = spt[0].lastIndexOf(">");
-		String fin = spt[0].substring(test + 1);
-		// fin de la partie degueulasse
-
-		// Le moyen de filtrer est pas forcement mieux non plus... peut mieux
-		// faire
-		// (mettre les valeur de la comboBox en static dans UiConstants?)
-		// Le faire de facon asynchrone et ajouter les cartes petit a petit...
-		//
-		for (int i = 0; i < MainPresenter.allCards.size(); i++) {
-			if (getView().getComboBoxFilterType().getItemText(getView().getComboBoxFilterType().getSelectedIndex()).equalsIgnoreCase("professor")) {
-				if (MainPresenter.allCards.get(i).getView().getTeacher().getText().equalsIgnoreCase(fin))
-					MainPresenter.allCards.get(i).getWidget().setVisible(event.getValue());
-			} else {
-				if (MainPresenter.allCards.get(i).getView().getGroup().getText().equalsIgnoreCase(fin))
-					MainPresenter.allCards.get(i).getWidget().setVisible(event.getValue());
-			}
-
-		}
-	}*/
-
 }

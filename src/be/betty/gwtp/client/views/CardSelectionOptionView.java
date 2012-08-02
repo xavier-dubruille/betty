@@ -30,24 +30,13 @@ public class CardSelectionOptionView extends ViewImpl implements
 	public Widget asWidget() {
 		return widget;
 	}
-	
-	@UiField ListBox comboBoxFilterType;
 	@UiField SimplePanel simplePanel;
 	@UiField AbsolutePanel filterAbsolutePanel;
 	@UiField SimplePanel simplePanelFirstFilter;
 	
 
-	@Override
-	public ListBox getComboBoxFilterType() {
-		return comboBoxFilterType;
-	}
-
 	public SimplePanel getSimplePanel(){
 		return simplePanel;
-	}
-	
-	public AbsolutePanel getFilterAbsolutePanel(){
-		return filterAbsolutePanel;
 	}
 	
 	public SimplePanel getSimplePanelFirstFilter(){

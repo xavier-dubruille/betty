@@ -4,7 +4,7 @@
 	xmlns:g='urn:import:com.google.gwt.user.client.ui'
 	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
 	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
-	ui:generateLocales='default'>
+	ui:generateLocales='default' xmlns:w="urn:import:com.google.gwt.widget.client">
 
 	<g:HTMLPanel>
 		<g:VerticalPanel width="308px" height="167px">
