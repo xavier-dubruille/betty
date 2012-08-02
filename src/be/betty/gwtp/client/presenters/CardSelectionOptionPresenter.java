@@ -64,14 +64,12 @@ public class CardSelectionOptionPresenter extends
 					printSecondComboBxView(getView().getComboBoxFilterType().getSelectedIndex());
 					//getView().getGroup_choice().setSelectedIndex(0);
 					for (int i = 0; i < MainPresenter.allCards.size(); i++) {
-						MainPresenter.allCards.get(i).getWidget()
-								.setVisible(false);
+						MainPresenter.allCards.get(i).setVisible(false);
 					}
 				} else {
 					//getView().getGroup_choice().setVisible(false);
 					for (int i = 0; i < MainPresenter.allCards.size(); i++) {
-						MainPresenter.allCards.get(i).getWidget()
-								.setVisible(true);
+						MainPresenter.allCards.get(i).setVisible(true);
 					}
 					getView().getCardFilterVerticalPanel().clear();
 				}
@@ -217,7 +215,7 @@ public class CardSelectionOptionPresenter extends
 		// Le faire de facon asynchrone et ajouter les cartes petit a petit...
 		//
 		for (int i = 0; i < MainPresenter.allCards.size(); i++) {
-			CardWidget cardW = MainPresenter.allCards.get(i).getView().getCardWidget();
+			CardWidget cardW = MainPresenter.allCards.get(i);
 			if (getView()
 					.getComboBoxFilterType()
 					.getItemText(
@@ -226,13 +224,11 @@ public class CardSelectionOptionPresenter extends
 					.equalsIgnoreCase("professor")) {
 				if (cardW.getTeacher()
 						.getText().equalsIgnoreCase(fin))
-					MainPresenter.allCards.get(i).getWidget()
-							.setVisible(event.getValue());
+					MainPresenter.allCards.get(i).setVisible(event.getValue());
 			} else {
 				if (cardW.getGroup()
 						.getText().equalsIgnoreCase(fin))
-					MainPresenter.allCards.get(i).getWidget()
-							.setVisible(event.getValue());
+					MainPresenter.allCards.get(i).setVisible(event.getValue());
 			}
 
 		}

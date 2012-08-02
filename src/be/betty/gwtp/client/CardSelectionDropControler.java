@@ -17,6 +17,9 @@
 package be.betty.gwtp.client;
 
 import be.betty.gwtp.client.event.DropCardEvent;
+import be.betty.gwtp.client.presenters.MainPresenter;
+import be.betty.gwtp.client.views.ourWidgets.CardWidget;
+import be.betty.gwtp.client.views.ourWidgets.ModifiedVerticalPanel;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.Label;
@@ -93,8 +96,12 @@ public class CardSelectionDropControler extends AbstractInsertPanelDropControlle
 	public void onDrop(DragContext context) {
 
 		Widget w = context.selectedWidgets.get(0);
-		if ( w != null) {
+		if ( w != null && w instanceof CardWidget) {
 			int id = Integer.parseInt(w.getElement().getTitle()); //TODO faut un meilleur moyen que le titre!
+			Widget w2 =  MainPresenter.allCards.get(""+id);
+			if (w2 != null && w2.getParent() instanceof ModifiedVerticalPanel)
+				((ModifiedVerticalPanel)w2.getParent()).realRemove(w2);
+			MainPresenter.allCards.put(""+id, (CardWidget) w);
 			eventBus.fireEvent(new DropCardEvent(id,0,0,0));
 		}
 		super.onDrop(context);

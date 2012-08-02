@@ -8,6 +8,7 @@ import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.event.BoardViewChangedEvent;
 import be.betty.gwtp.client.event.DropCardEvent;
 import be.betty.gwtp.client.event.BoardViewChangedEvent.BoardViewChangedHandler;
+import be.betty.gwtp.client.event.DropCardEvent.DropCardHandler;
 import be.betty.gwtp.client.views.ourWidgets.CardWidget;
 
 import com.gwtplatform.mvp.client.PresenterWidget;
@@ -17,6 +18,7 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.Widget;
 
 public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 
@@ -26,6 +28,19 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 	}
 
 	private CardInView[] cardInView;
+	
+	private DropCardHandler dropCardHandler = new DropCardHandler() {
+		@Override public void onDropCard(DropCardEvent event) {
+			clearSingleCardFromBoard(""+event.getCardID(), event.getDay(), event.getPeriod());
+		} 
+	};
+	
+	private BoardViewChangedHandler boardHandler = new BoardViewChangedHandler() {
+		@Override public void onBoardViewChanged(BoardViewChangedEvent event) {
+			redrawBoard(event.getComboViewIndex_1(), event.getComboViewIndex_2());
+		}
+	};
+	
 	
 	@Inject
 	public BoardPresenter(final EventBus eventBus, final MyView view) {
@@ -43,13 +58,16 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 
 		registerHandler(getEventBus().addHandler(
 				BoardViewChangedEvent.getType(), boardHandler));
+		
+		registerHandler(getEventBus().addHandler(
+				DropCardEvent.getType(), dropCardHandler));
 
 	}
 
 	private void constructBoard() {	
 		
-		int COLUMNS = Storage_access.getNbDays() + 1;
-		int ROWS = Storage_access.getNbPeriods() +1 ;
+		int COLUMNS = 6;
+		int ROWS = 7 ;
 		
 		for (int i = 0; i < COLUMNS; i++) {
 			for (int j = 0; j < ROWS; j++) {
@@ -87,14 +105,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 		}
 	}
 
-	private BoardViewChangedHandler boardHandler = new BoardViewChangedHandler() {
 
-		@Override public void onBoardViewChanged(BoardViewChangedEvent event) {
-			redrawBoard(event.getComboViewIndex_1(), event.getComboViewIndex_2());
-
-		}
-	};
-	
 
 	/**
 	 * 
@@ -136,14 +147,36 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 				SimplePanel s = (SimplePanel) getView().getFlexTable().getWidget(row, col);
 
 				s.clear();
-				s.add(((CardWidget)MainPresenter.allCards.get(i).getWidget()).cloneWidget());
+				s.add( MainPresenter.allCards.get(i).cloneWidget());
 				//getView().getFlexTable().setWidget(row,col, MainPresenter.allCards.get(i).getWidget());
 			}
 
 		}
 
 	}
+	
 
+	public void clearSingleCardFromBoard(String cardId, int day, int period) {
+		
+		
+		int COLUMNS = Storage_access.getNbDays() + 1;
+		int ROWS = Storage_access.getNbPeriods() +1 ;
+		for (int i = 1; i < COLUMNS; i++) 
+			for (int j = 1; j < ROWS; j++) {
+				//System.out.println("class "+j+" "+i+"==> "+getView().getFlexTable().getWidget(j, i).getClass());
+
+				if (i == day && j == period) continue;
+				if (!(getView().getFlexTable().getWidget(j, i) instanceof SimplePanel))
+					continue; // ca arrive ?
+				SimplePanel s = (SimplePanel) getView().getFlexTable().getWidget(j, i);
+				Widget w = s.getWidget();
+				if (w == null || w.getElement() == null) continue;
+				if(cardId.equals( w.getElement().getTitle()))
+						s.clear();
+				//getView().getFlexTable().getWidget(j, i).getClass()
+				//getView().getFlexTable().getWidget(j, i).getElement().removeFromParent();
+			}
+	}
 	
 	@Override protected void onReset() {
 		super.onReset();

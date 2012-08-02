@@ -83,16 +83,6 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		return "";
 	}
 
-	public boolean isPlaced() {
-		return Storage_access.isCardPlaced(""+storageId);
-	}
 
 
-	public void setRightCss() {
-		//System.out.println("isCardPlaced "+storageId+" placed ? "+isPlaced());
-		if (isPlaced())
-			getWidget().setStyleName(UiConstants.CSS_PLACED_CARD);
-		else
-			getWidget().setStyleName(UiConstants.CSS_CARD);
-	}
 }
