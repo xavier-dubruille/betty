@@ -28,7 +28,10 @@ import be.betty.gwtp.client.event.CardFilterEvent.CardFilterHandler;
 import be.betty.gwtp.client.event.DropCardEvent.DropCardHandler;
 import be.betty.gwtp.client.event.InstancesModifiedEvent.InstancesModifiedHandler;
 import be.betty.gwtp.client.event.ProjectListModifyEvent;
+import be.betty.gwtp.client.event.SelectionCardsModifiedEvent;
+import be.betty.gwtp.client.event.SelectionCardsModifiedEvent.SelectionCardsModifiedHandler;
 import be.betty.gwtp.client.place.NameTokens;
+import be.betty.gwtp.client.views.ourWidgets.CardWidget;
 import be.betty.gwtp.shared.dto.ActivityState_dto;
 import be.betty.gwtp.shared.dto.ProjectInstance_dto;
 
@@ -199,12 +202,18 @@ public class MainPresenter extends
 			else {
 				allCards.get(event.getCardID()).getWidget().addStyleName("card");
 				Storage_access.revoveFromSlot(event.getCardID());
-				// faut aussi l'envoyer � la bdd, ou un truc du genre
+				// faut aussi l'envoyer a la bdd, ou un truc du genre
 			}
 		}
 	};
 	
-
+	private SelectionCardsModifiedHandler selectCardHandler = new SelectionCardsModifiedHandler () {
+		@Override public void onSelectionCardsModified(SelectionCardsModifiedEvent event) {
+			for (SingleCardPresenter c : allCards)
+				c.setRightCss();
+		}
+	};
+	
 	private AddNotifHandler addNotifHandler = new AddNotifHandler() {
 		@Override public void onAddNotif(AddNotifEvent event) {
 			Label notification = new Label();
@@ -271,6 +280,9 @@ public class MainPresenter extends
 		
 		registerHandler(getEventBus().addHandler(
 				AddNotifEvent.getType(), addNotifHandler));
+		
+		registerHandler(getEventBus().addHandler(
+				SelectionCardsModifiedEvent.getType(), selectCardHandler));
 
 	}
 
@@ -464,11 +476,11 @@ public class MainPresenter extends
 
 				@Override
 				public void onSuccess (SingleCardPresenter result) {
-					addToSlot(SLOT_Card, result);
 					result.init(myI);
-					cardDragController.makeDraggable(result.getWidget(), result.getView().getCourse());
-					cardDragController.makeDraggable(result.getWidget(), result.getView().getTeacher());
-					cardDragController.makeDraggable(result.getWidget(), result.getView().getGroup());
+					addToSlot(SLOT_Card, result);
+					CardWidget cardW = result.getView().getCardWidget();
+					cardW.setDragControler(cardDragController);
+					cardW.makeItDraggable();
 					allCards.add(result);
 
 				}
@@ -539,6 +551,8 @@ public class MainPresenter extends
 						new BoardViewChangedEvent(getView().getCombo_viewChoice1().getSelectedIndex(),
 												  getView().getCombo_viewChoice2().getSelectedIndex())
 						);
+				
+				eventBus.fireEvent(new SelectionCardsModifiedEvent());
 				//Storage_access.printStorage();
 			}
 

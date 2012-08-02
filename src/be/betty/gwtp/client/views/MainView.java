@@ -16,6 +16,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.google.gwt.user.client.ui.ListBox;
+import be.betty.gwtp.client.views.ourWidgets.ModifiedVerticalPanel;
 
 public class MainView extends ViewImpl implements MainPresenter.MyView {
 
@@ -30,8 +31,8 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	@UiField ListBox combo_viewChoice1;
 	@UiField ListBox combo_viewChoice2;
 	@UiField SimplePanel CardSelectionOption;
-	@UiField VerticalPanel cards_panel;
 	@UiField VerticalPanel notifBarVerticalPanel;
+	@UiField ModifiedVerticalPanel cards_panel;
  
 
 	public interface Binder extends UiBinder<Widget, MainView> {

@@ -5,6 +5,7 @@ import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.event.CardFilterEvent;
 import be.betty.gwtp.client.views.SingleCardView;
+import be.betty.gwtp.client.views.ourWidgets.CardWidget;
 
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
@@ -216,18 +217,19 @@ public class CardSelectionOptionPresenter extends
 		// Le faire de facon asynchrone et ajouter les cartes petit a petit...
 		//
 		for (int i = 0; i < MainPresenter.allCards.size(); i++) {
+			CardWidget cardW = MainPresenter.allCards.get(i).getView().getCardWidget();
 			if (getView()
 					.getComboBoxFilterType()
 					.getItemText(
 							getView().getComboBoxFilterType()
 									.getSelectedIndex())
 					.equalsIgnoreCase("professor")) {
-				if (MainPresenter.allCards.get(i).getView().getTeacher()
+				if (cardW.getTeacher()
 						.getText().equalsIgnoreCase(fin))
 					MainPresenter.allCards.get(i).getWidget()
 							.setVisible(event.getValue());
 			} else {
-				if (MainPresenter.allCards.get(i).getView().getGroup()
+				if (cardW.getGroup()
 						.getText().equalsIgnoreCase(fin))
 					MainPresenter.allCards.get(i).getWidget()
 							.setVisible(event.getValue());
