@@ -34,6 +34,7 @@ public class CardSelectionOptionView extends ViewImpl implements
 	@UiField ListBox comboBoxFilterType;
 	@UiField SimplePanel simplePanel;
 	@UiField AbsolutePanel filterAbsolutePanel;
+	@UiField SimplePanel simplePanelFirstFilter;
 	
 
 	@Override
@@ -47,5 +48,9 @@ public class CardSelectionOptionView extends ViewImpl implements
 	
 	public AbsolutePanel getFilterAbsolutePanel(){
 		return filterAbsolutePanel;
+	}
+	
+	public SimplePanel getSimplePanelFirstFilter(){
+		return simplePanelFirstFilter;
 	}
 }

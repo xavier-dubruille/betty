@@ -4,10 +4,10 @@
 	xmlns:g='urn:import:com.google.gwt.user.client.ui'
 	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
 	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
-	ui:generateLocales='default'>
+	ui:generateLocales='default' xmlns:p1="urn:import:com.smartgwt.client.widgets.form">
 
 	<g:HTMLPanel>
-		<g:AbsolutePanel height="140px" width="233px" styleName="panel_filter_options" ui:field="filterAbsolutePanel">
+		<g:AbsolutePanel height="215px" width="233px" styleName="panel_filter_options" ui:field="filterAbsolutePanel">
 			<g:at left="10" top="10">
 				<g:Label text="Card filter" styleName="small_title" width="213px" height="16px" horizontalAlignment="ALIGN_CENTER"/>
 			</g:at>
@@ -17,8 +17,11 @@
 			<g:at left="58" top="47">
 				<g:ListBox ui:field="comboBoxFilterType" width="149px" height="22px"/>
 			</g:at>
-			<g:at left="10" top="71">
+			<g:at left="10" top="150">
 				<g:SimplePanel width="197px" height="55px" ui:field="simplePanel"/>
+			</g:at>
+			<g:at left="10" top="89">
+				<g:SimplePanel width="197px" height="55px" ui:field="simplePanelFirstFilter"/>
 			</g:at>
 		</g:AbsolutePanel>
 	</g:HTMLPanel>
