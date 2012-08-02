@@ -13,6 +13,8 @@ public class ClientUtils {
 
 
 	
+	public static boolean DONT_REPEAT_YOURSELF = true;
+
 	/**
 	 * This method is meant to be called whenever 
 	 * a failure occurs..
@@ -28,17 +30,31 @@ public class ClientUtils {
 		
 	}
 
-	public static void notifyUser(VerticalPanel notificationBarVerticalPanel, String soluceInfo) {
-		
-		
-	}
 
 	public static void notifyUser(String notif, EventBus eventBus) {
 		System.out.println("Notif = "+notif);
 		// should we log it too ?
 		eventBus.fireEvent(new AddNotifEvent(notif));
-		
-		
 	}
+	
+	/**
+	 * 
+	 * @param slot the slot in localStorage representing the day and period
+	 * @return the index of the flexTable column 
+	 */
+	public static int storageSlotToFlexCol(int slot) {
+		return slot%10;
+	}
+	
+	/**
+	 * 
+	 * @param slot the slot in localStorage representing the day and period
+	 * @return the index of the flexTable row
+	 */
+	public static int storageSlotToFlexRow(int slot) {
+		return slot/10;
+	}
+	
+	
 
 }

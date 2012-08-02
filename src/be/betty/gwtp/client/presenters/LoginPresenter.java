@@ -4,6 +4,8 @@ import be.betty.gwtp.client.action.LoginAction;
 import be.betty.gwtp.client.action.LoginActionResult;
 import be.betty.gwtp.client.place.NameTokens;
 
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
@@ -35,19 +37,12 @@ public class LoginPresenter extends
 
 	public interface MyView extends View {
 		public Label getLogin_label();
-
 		public TextBox getLogin_textbox();
-
 		public Button getLogin_send();
-
 		public TextBox getPwd_textbox();
-
 		public Label getWrongPwd_label();
-		
 		public HTMLPanel getHtml_panel();
-		
 		public AbsolutePanel getAbsolute_panel();
-		
 		public DockPanel getDock_panel();
 	}
 
@@ -71,10 +66,8 @@ public class LoginPresenter extends
 		RevealRootContentEvent.fire(this, this);
 	}
 
-	@Inject
-	PlaceManager placeManager;
-	@Inject
-	DispatchAsync dispatch;
+	@Inject PlaceManager placeManager;
+	@Inject DispatchAsync dispatch;
 
 	@Override
 	protected void onBind() {
@@ -113,6 +106,9 @@ public class LoginPresenter extends
 			@Override public void onClick(ClickEvent event) {
 				fireLogin();
 			}});
+		
+	        
+		
 	}
 
 	private void fireLogin() {
@@ -132,6 +128,9 @@ public class LoginPresenter extends
 	@Override
 	protected void onReset() {
 		super.onReset();
+
+		getView().getWrongPwd_label().setText("");
+    	getView().getLogin_textbox().setFocus(true);
 	}
 
 	

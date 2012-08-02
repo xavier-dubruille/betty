@@ -20,13 +20,15 @@ public class CellDropControler extends SimpleDropController {
 	private EventBus eventBus;
 	private int day;
 	private int period;
+	private CardInView[] cardInView;
 
-	public CellDropControler(SimplePanel dropTarget, EventBus eventBus, int day, int period) {
+	public CellDropControler(SimplePanel dropTarget, CardInView[] cardInView, EventBus eventBus, int day, int period) {
 		super(dropTarget);
 		this.eventBus = eventBus;
 		this.dropTarget = dropTarget;
 		this.day = day;
 		this.period = period;
+		this.cardInView = cardInView;
 	}
 
 	@Override
@@ -53,7 +55,13 @@ public class CellDropControler extends SimpleDropController {
 
 	@Override
 	public void onPreviewDrop(DragContext context) throws VetoDragException {
-		if (dropTarget.getWidget() != null) {
+		
+		if (dropTarget.getWidget() != null )
+			throw new VetoDragException();
+		
+		String card = Storage_access.getCard(Integer.parseInt(context.selectedWidgets.get(0).getElement().getTitle()));
+		if ( !cardInView[0].cardBelongToActualView(card)) {
+			ClientUtils.notifyUser("This Card can't be placed on this view", eventBus);
 			throw new VetoDragException();
 		}
 		super.onPreviewDrop(context);

@@ -7,24 +7,30 @@
 	ui:generateLocales='default' xmlns:w="urn:import:com.google.gwt.widget.client">
 
 	<g:PopupPanel>
-		<g:AbsolutePanel width="421px" height="143px">
-			<g:at left="28" top="10">
-				<g:Label text="Placer le resultat dans l&apos;instance "/>
+		<g:AbsolutePanel width="479px" height="202px">
+			<g:at left="40" top="58">
+				<g:Label text="Write Result In"/>
 			</g:at>
-			<g:at left="28" top="37">
-				<g:Label text="Limite de temps"/>
+			<g:at left="40" top="93">
+				<g:Label text="Time Limit"/>
 			</g:at>
-			<g:at left="222" top="5">
+			<g:at left="206" top="53">
 				<g:ListBox ui:field="instanceChoice"/>
 			</g:at>
-			<g:at left="222" top="37">
+			<g:at left="206" top="88">
 				<g:ListBox ui:field="timeLimit"/>
 			</g:at>
-			<g:at left="153" top="92">
+			<g:at left="206" top="147">
 				<w:TextButton text="Solve It !" ui:field="calculeButton">New button</w:TextButton>
 			</g:at>
-			<g:at left="38" top="92">
+			<g:at left="70" top="147">
 				<w:TextButton text="Cancel" ui:field="cancelButton">New button</w:TextButton>
+			</g:at>
+			<g:at left="40" top="26">
+				<g:Label text="Take as initial state"/>
+			</g:at>
+			<g:at left="206" top="26">
+				<g:ListBox ui:field="initialState"/>
 			</g:at>
 		</g:AbsolutePanel>
 	</g:PopupPanel>
