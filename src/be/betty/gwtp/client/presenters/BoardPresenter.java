@@ -8,6 +8,7 @@ import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.event.BoardViewChangedEvent;
 import be.betty.gwtp.client.event.DropCardEvent;
 import be.betty.gwtp.client.event.BoardViewChangedEvent.BoardViewChangedHandler;
+import be.betty.gwtp.client.views.ourWidgets.CardWidget;
 
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
@@ -47,9 +48,11 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 
 	}
 
-	private void constructBoard() {
-		int COLUMNS = 6;
-		int ROWS = 7;
+	private void constructBoard() {	
+		
+		int COLUMNS = 6;// Storage_access.getNbDays() + 1;
+		int ROWS = 7; //Storage_access.getNbPeriods() +1 ;
+		
 		for (int i = 0; i < COLUMNS; i++) {
 			for (int j = 0; j < ROWS; j++) {
 				// create a simple panel drop target for the current cell
@@ -148,9 +151,10 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 				SimplePanel s = (SimplePanel) getView().getFlexTable().getWidget(row, col);
 
 				s.clear();
-				s.add(MainPresenter.allCards.get(i).getWidget());
+				s.add(((CardWidget)MainPresenter.allCards.get(i).getWidget()).cloneWidget());
 				// getView().getFlexTable().setWidget(row,col,
 				// MainPresenter.allCards.get(i).getWidget());
+
 			}
 
 		}

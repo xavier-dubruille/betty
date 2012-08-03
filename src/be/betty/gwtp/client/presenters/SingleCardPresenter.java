@@ -2,11 +2,14 @@ package be.betty.gwtp.client.presenters;
 
 import be.betty.gwtp.client.Filter_kind;
 import be.betty.gwtp.client.Storage_access;
+import be.betty.gwtp.client.UiConstants;
+import be.betty.gwtp.client.views.ourWidgets.CardWidget;
 
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 import com.google.inject.Inject;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.Hidden;
 import com.google.gwt.user.client.ui.Label;
@@ -16,15 +19,8 @@ public class SingleCardPresenter extends
 PresenterWidget<SingleCardPresenter.MyView> {
 
 	public interface MyView extends View {
+		CardWidget getCardWidget();
 
-		VerticalPanel getVerticalPanel();
-
-		Hidden getH();
-		
-		Label getTeacher();
-		Label getCourse();
-		Label getGroup();
-		DockPanel getDockPanel();
 	}
 
 	private int teacherId;
@@ -32,7 +28,7 @@ PresenterWidget<SingleCardPresenter.MyView> {
 	private String group;
 	private String course;
 	private String teacher;
-	private boolean isPlaced;
+	private int storageId;
 
 	@Inject
 	public SingleCardPresenter(final EventBus eventBus, final MyView view) {
@@ -45,6 +41,7 @@ PresenterWidget<SingleCardPresenter.MyView> {
 	}
 
 	public void init(int myI) {
+		storageId = myI;
 		String c = Storage_access.getCard(myI);
 		
 		group = Storage_access.getGroupCard(c);
@@ -56,10 +53,11 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		getView().asWidget().setTitle(""+myI);
 		//getView().getH().setValue(""+myI); //serait mieu que le titre.. si ca marchait..
 		
-		
-		getView().getCourse().setText(course);
-		getView().getTeacher().setText(teacher);
-		getView().getGroup().setText(group);
+		CardWidget cardW = getView().getCardWidget();
+		cardW.getCourse().setText(course);
+		cardW.getTeacher().setText(teacher);
+		cardW.getGroup().setText(group);
+		cardW.setCardId(myI);
 		//System.out.println(group);
 		//System.out.println("numberOfGroup: "+toto+"   \t numberOfCard: "+tata);
 		
@@ -88,12 +86,15 @@ PresenterWidget<SingleCardPresenter.MyView> {
 	}
 
 	public boolean isPlaced() {
-		//idealement, faudrait juste verifier dans le local storage
-		return isPlaced;
+		return Storage_access.isCardPlaced(""+storageId);
 	}
 
-	public void setPlaced(boolean isPlaced) {
-		//idealement, faudrait renvoyer la r�ponse du localStorage
-		this.isPlaced = isPlaced;
+
+	public void setRightCss() {
+		//System.out.println("isCardPlaced "+storageId+" placed ? "+isPlaced());
+		if (isPlaced())
+			getWidget().setStyleName(UiConstants.CSS_PLACED_CARD);
+		else
+			getWidget().setStyleName(UiConstants.CSS_CARD);
 	}
 }
