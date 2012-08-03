@@ -2,6 +2,8 @@ package be.betty.gwtp.client;
 
 import be.betty.gwtp.client.event.DropCardEvent;
 import be.betty.gwtp.client.event.ProjectListModifyEvent;
+import be.betty.gwtp.client.presenters.MainPresenter;
+import be.betty.gwtp.client.views.ourWidgets.CardWidget;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -49,6 +51,7 @@ public class CellDropControler extends SimpleDropController {
 			eventBus.fireEvent( new DropCardEvent(id,day,period, room));
 			//System.out.println("drop..."+w.g);
 			//Storage_access.printStorage();
+			((CardWidget)w).setFromSelectionPanel(false);
 		}
 		super.onDrop(context);
 		
@@ -57,12 +60,13 @@ public class CellDropControler extends SimpleDropController {
 	@Override
 	public void onPreviewDrop(DragContext context) throws VetoDragException {
 		
-		if (dropTarget.getWidget() != null )
-			throw new VetoDragException();
 		
-		String card = Storage_access.getCard(Integer.parseInt(context.selectedWidgets.get(0).getElement().getTitle()));
-		if ( !cardInView[0].cardBelongToActualView(card)) {
-			ClientUtils.notifyUser("This Card can't be placed on this view", eventBus);
+		CardWidget w = (CardWidget) context.selectedWidgets.get(0);
+		String cardId = w.getElement().getTitle();
+		String card = Storage_access.getCard(cardId);
+		CardWidget w2 = MainPresenter.allCards.get(cardId);
+		if (dropTarget.getWidget() != null || !cardInView[0].cardBelongToActualView(card)) {
+			ClientUtils.notifyUser("This Card can't be placed there", eventBus);
 			throw new VetoDragException();
 		}
 		super.onPreviewDrop(context);

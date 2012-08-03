@@ -22,6 +22,7 @@ import be.betty.gwtp.client.views.ourWidgets.CardWidget;
 import be.betty.gwtp.client.views.ourWidgets.ModifiedVerticalPanel;
 
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -94,15 +95,43 @@ public class CardSelectionDropControler extends AbstractInsertPanelDropControlle
 
 	@Override
 	public void onDrop(DragContext context) {
-
+		/*
+		 * Petite explication du code..
+		 * Il y a w(/w1) qui est le widget "droppe" et w2 qui est le widget fesant partie de la liste des widgets (ds la selection)
+		 * 
+		 * Plusieurs cas peuvent arriver : 
+		 * 1) le carton est originaire de la view et donc, sont homologue w2 doit etre enleve grafiquement
+		 *    mais aussi de la map "allCards". Le carton doit etre retire du storage et la bdd (cf DropCardEvent).
+		 * 2) le carton provient deja des cartons de selections et ne dois alors rien faire, sauf
+		 * 	  si le carton est un carton place, alors on demande a l'utilisateur que faire
+		 */
 		Widget w = context.selectedWidgets.get(0);
 		if ( w != null && w instanceof CardWidget) {
 			int id = Integer.parseInt(w.getElement().getTitle()); //TODO faut un meilleur moyen que le titre!
-			Widget w2 =  MainPresenter.allCards.get(""+id);
+			CardWidget w2 =  MainPresenter.allCards.get(""+id);
+			CardWidget w1 = (CardWidget) w;
+			
+			// dans tt les cas, faut supprimer la version dans le selectionPanel
+			// et mettre le bon widget dans la map (allcards)
 			if (w2 != null && w2.getParent() instanceof ModifiedVerticalPanel)
 				((ModifiedVerticalPanel)w2.getParent()).realRemove(w2);
-			MainPresenter.allCards.put(""+id, (CardWidget) w);
-			eventBus.fireEvent(new DropCardEvent(id,0,0,0));
+			MainPresenter.allCards.put(""+id, w1);
+			
+			// si ca vient de la vue, on drop la card
+			if (!w1.isFromSelectionPanel()) 
+				eventBus.fireEvent(new DropCardEvent(id,0,0,0));
+			
+			// si ca vient du panneau de selection, on demande a l'utilisateur
+			if ( w1.isFromSelectionPanel() && w1.isPlaced()) {
+				boolean b = Window.confirm("Are you sure you want to unset this card ?");
+				if (b) {
+					eventBus.fireEvent(new DropCardEvent(id,0,0,0));
+					w1.setStyleName(UiConstants.CSS_CARD);
+				}
+			}
+			
+			// et sinon on ne fait rien :p 
+
 		}
 		super.onDrop(context);
 
