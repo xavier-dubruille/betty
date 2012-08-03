@@ -131,7 +131,9 @@ body {
 	border-right: 2px solid black;
 	border-bottom: 2px solid black;
 	border-left: 2px solid black;
-	font-weight: bold;	
+	font-weight: bold;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
 
 .instancePanel {
