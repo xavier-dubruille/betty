@@ -25,18 +25,14 @@ public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView
 	@UiField DockPanel DockSubscribePanel;
 	@UiField Button subscibeButton;
 	@UiField Label emailSubLabel;
-	@UiField Label emailVerSubLabel;
 	@UiField TextBox userSubTextbox;
 	@UiField PasswordTextBox passSubTextbox;
 	@UiField PasswordTextBox passVerSubTextbox;
 	@UiField TextBox emailSubTextbox;
-	@UiField TextBox emailVerSubTextbox;
 	@UiField Label userSubErrorLabel;
 	@UiField Label passSubErrorLabel;
 	@UiField Label passVerSubErrorLabel;
 	@UiField Label emailSubErrorLabel;
-	@UiField Label emailVerSubErrorLabel;
-
 	
 	
 	public interface Binder extends UiBinder<Widget, SubscribeView> {
@@ -70,10 +66,6 @@ public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView
 		return emailSubLabel;
 	}
 
-	public Label getEmailVerSubLabel() {
-		return emailVerSubLabel;
-	}
-
 	public TextBox getUserSubTextbox() {
 		return userSubTextbox;
 	}
@@ -88,12 +80,7 @@ public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView
 
 	public TextBox getEmailSubTextbox() {
 		return emailSubTextbox;
-	}
-
-	public TextBox getEmailVerSubTextbox() {
-		return emailVerSubTextbox;
-	}
-	
+	}	
 
 	public Label getUserSubErrorLabel() {
 		return userSubErrorLabel;
@@ -106,13 +93,9 @@ public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView
 	public Label getPassVerSubErrorLabel() {
 		return passVerSubErrorLabel;
 	}
-
-	public Label getEmailSubErrorLabel() {
+	
+	public Label getEmailSubErrorLabel(){
 		return emailSubErrorLabel;
-	}
-
-	public Label getEmailVerSubErrorLabel() {
-		return emailVerSubErrorLabel;
 	}
 
 	@UiHandler("subscibeButton")

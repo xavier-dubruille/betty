@@ -38,8 +38,6 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 
 		public Label getEmailSubLabel();
 
-		public Label getEmailVerSubLabel();
-
 		public TextBox getUserSubTextbox();
 
 		public PasswordTextBox getPassSubTextbox();
@@ -47,8 +45,6 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 		public PasswordTextBox getPassVerSubTextbox();
 
 		public TextBox getEmailSubTextbox();
-
-		public TextBox getEmailVerSubTextbox();
 
 		public Label getUserSubErrorLabel();
 
@@ -58,7 +54,6 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 
 		public Label getEmailSubErrorLabel();
 
-		public Label getEmailVerSubErrorLabel();
 
 	}
 
@@ -117,9 +112,7 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 				errorCompleteField(getView().getPassSubTextbox().getText().isEmpty(), getView().getPassSubErrorLabel());
 				errorCompleteField(getView().getPassVerSubTextbox().getText().isEmpty(), getView().getPassVerSubErrorLabel());
 				errorCompleteField(getView().getEmailSubTextbox().getText().isEmpty(), getView().getEmailSubErrorLabel());
-				errorCompleteField(getView().getEmailVerSubTextbox().getText().isEmpty(), getView().getEmailVerSubErrorLabel());
 				errorSameStr(getView().getPassSubTextbox().getText(), getView().getPassVerSubTextbox().getText(), getView().getPassVerSubErrorLabel());
-				errorSameStr(getView().getEmailSubTextbox().getText(), getView().getEmailVerSubTextbox().getText(), getView().getEmailVerSubErrorLabel());
 				
 				String login = getView().getUserSubTextbox().getText();
 				String pwd = getView().getPassSubTextbox().getText();
@@ -131,8 +124,7 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 						getView().getUserSubErrorLabel().getText().isEmpty() &&
 						getView().getPassSubErrorLabel().getText().isEmpty() &&
 						getView().getPassVerSubErrorLabel().getText().isEmpty() &&
-						getView().getEmailSubErrorLabel().getText().isEmpty() &&
-						getView().getEmailVerSubErrorLabel().getText().isEmpty()
+						getView().getEmailSubErrorLabel().getText().isEmpty() 
 						){
 					
 					dispacher.execute(action , new AsyncCallback<SubscribeActionResult>() {

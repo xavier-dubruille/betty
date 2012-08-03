@@ -22,9 +22,6 @@
 				<g:at left="125" top="132">
 					<g:Label text="Email" ui:field="emailSubLabel"/>
 				</g:at>
-				<g:at left="125" top="162">
-					<g:Label text="Email" ui:field="emailVerSubLabel"/>
-				</g:at>
 				<g:at left="180" top="36">
 					<g:TextBox ui:field="userSubTextbox"/>
 				</g:at>
@@ -36,9 +33,6 @@
 				</g:at>
 				<g:at left="180" top="126">
 					<g:TextBox ui:field="emailSubTextbox"/>
-				</g:at>
-				<g:at left="180" top="156">
-					<g:TextBox ui:field="emailVerSubTextbox"/>
 				</g:at>
 				<g:at left="224" top="197">
 					<g:Button text="Subscribe" ui:field="subscibeButton" width="" height=""/>
@@ -54,9 +48,6 @@
 				</g:at>
 				<g:at left="337" top="132">
 					<g:Label ui:field="emailSubErrorLabel" styleName="errorLabel"/>
-				</g:at>
-				<g:at left="337" top="162">
-					<g:Label ui:field="emailVerSubErrorLabel" styleName="errorLabel"/>
 				</g:at>
 			</g:AbsolutePanel>
 			</g:Dock>
