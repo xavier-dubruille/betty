@@ -10,6 +10,11 @@ body {
 	background-color: #f9f9f9 !important;
 }
 
+.test{
+	background-color: white;
+	padding: 5px;
+}
+
 .cardPlaced {
 	border: 1px solid;
 	font-size: 10px;
@@ -28,6 +33,8 @@ body {
 	background-color: lightsteelblue;
 	border-radius: 5px;
 }
+
+
 
 .courseCard{
 	font-size: 6pt;
@@ -62,7 +69,7 @@ body {
 
 . {
 	margin: 0px;
-	background-color: White;
+	padding: 0px;
 }
 
 .Header {
@@ -71,8 +78,6 @@ body {
 	/*text-align: center;*/
 	font-weight: bold;
 	padding: 10px;
-	margin-left: 10px;
-	margin-right: 10px;
 	border-top-right-radius: 10px;
 	border-top-left-radius: 10px;
 }
@@ -80,6 +85,7 @@ body {
 	text-align: center;
 }
 .HtmlPanel {
+	margin: 0px;
 	text-align: center;
 }
 .login {
@@ -115,18 +121,19 @@ body {
 	font-weight: bold;
 }
 .project {
-	background: #FFA000;
+	background: #FF4901;
 	/*#BBD2E1; 
 	//text-align: center;*/
 	color: white;
-	font-weight: bold;
-	padding: 10px;
-	border-left: 2px solid black;
-	border-right: 2px solid black;
-	margin-left: 10px;
 	margin-right: 10px;
-	
+	margin-left: 10px;
+	padding: 0px;
+	border-right: 2px solid black;
+	border-bottom: 2px solid black;
+	border-left: 2px solid black;
+	font-weight: bold;	
 }
+
 .instancePanel {
 	margin: 5px;
 	border-top: thin solid black;
@@ -153,4 +160,15 @@ body {
 	border: medium solid;
 	font-size: 10px;
 	background-color: lightsteelblue;
+}
+
+.ProjectCarton1{
+	background-color: cornflowerblue;
+	color: white;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	border-radius: 10px;
+	margin-bottom: 5px;
 }

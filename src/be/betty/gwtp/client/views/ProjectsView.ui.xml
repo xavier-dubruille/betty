@@ -6,8 +6,8 @@
 	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
 	ui:generateLocales='default' xmlns:w="urn:import:com.google.gwt.widget.client">
 
-	<g:HTMLPanel>
-		<g:VerticalPanel width="308px" height="167px">
+	<g:HTMLPanel styleName="test">
+		<g:VerticalPanel width="100%" height="100%">
 			<g:Label ui:field="info_label" />
 			<g:HTMLPanel ui:field="project_field" />
 			<g:Button ui:field="new_project">Create New Poject</g:Button>

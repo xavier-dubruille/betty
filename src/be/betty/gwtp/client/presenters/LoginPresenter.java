@@ -19,6 +19,7 @@ import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.inject.Inject;
@@ -44,6 +45,7 @@ public class LoginPresenter extends
 		public HTMLPanel getHtml_panel();
 		public AbsolutePanel getAbsolute_panel();
 		public DockPanel getDock_panel();
+		public Image getLoadingPicture();
 	}
 
 	@ProxyCodeSplit
@@ -75,7 +77,7 @@ public class LoginPresenter extends
 		
 		//getView().getDock_panel().setWidth(width);
 		//getView().getDock_panel().setHeight(height);
-		
+		getView().getLoadingPicture().setVisible(false);
 		if (stockStore != null){
 			if(stockStore.getItem("session_id") != null){
 				System.out.println(stockStore.getItem("session_id").toString());
@@ -112,6 +114,7 @@ public class LoginPresenter extends
 	}
 
 	private void fireLogin() {
+		getView().getLoadingPicture().setVisible(true);
 		getView().getWrongPwd_label().setText(
 				"Connexion..");
 
@@ -130,6 +133,7 @@ public class LoginPresenter extends
 		super.onReset();
 
 		getView().getWrongPwd_label().setText("");
+		getView().getLoadingPicture().setVisible(false);
     	getView().getLogin_textbox().setFocus(true);
 	}
 
@@ -140,6 +144,7 @@ public class LoginPresenter extends
 		public void onFailure(Throwable caught) {
 			Window.alert("pas possible d'effectuer l'action.. la raison est : "+caught.getMessage()+"***** et le toString:"
 					+caught.toString() );
+			getView().getLoadingPicture().setVisible(false);
 		}
 
 		@Override
@@ -158,6 +163,7 @@ public class LoginPresenter extends
 				PlaceRequest request = new PlaceRequest(NameTokens.projects);
 				placeManager.revealPlace(request);
 			} else {
+				getView().getLoadingPicture().setVisible(false);
 				getView().getWrongPwd_label().setText(
 						"Wrong Password (hint: try Admin admin)");
 			}

@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
+import com.google.gwt.user.client.ui.Image;
 
 public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 
@@ -26,6 +27,7 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 	@UiField HTMLPanel Html_panel;
 	@UiField AbsolutePanel Absolute_panel;
 	@UiField DockPanel Dock_panel;
+	@UiField Image loadingPicture;
 	
 	public interface Binder extends UiBinder<Widget, LoginView> {
 	}
@@ -74,7 +76,9 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 		return Dock_panel;
 	}
 	
-	
+	public Image getLoadingPicture() {
+		return loadingPicture;
+	}
 	
 	
 	
