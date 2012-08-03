@@ -17,7 +17,7 @@ public class ModifiedVerticalPanel extends VerticalPanel {
 		int index = getWidgetIndex(w);
 
 		if (index != -1 && w instanceof CardWidget) {
-			CardWidget clone = ((CardWidget)w).cloneWidget();
+			CardWidget clone = ((CardWidget)w).cloneWidget(true);
 			clone.setStyleName(UiConstants.CSS_PLACED_CARD);
 			MainPresenter.allCards.put(clone.getElement().getTitle(), clone);
 			insert(clone, index);
@@ -53,4 +53,8 @@ public class ModifiedVerticalPanel extends VerticalPanel {
 		return super.remove(w);
 	}
 	
+	@Override
+	public void add(Widget w) {
+		super.add(w);
+	}
 }

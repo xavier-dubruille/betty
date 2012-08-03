@@ -82,6 +82,12 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		}
 		return "";
 	}
+	
+	@Override public String toString() {
+		CardWidget cardW = getView().getCardWidget();
+		if (cardW == null) return "widget Null";
+		return cardW.getTeacher().getText();
+	}
 
 
 

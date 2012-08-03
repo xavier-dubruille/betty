@@ -288,6 +288,10 @@ public class Storage_access {
 		return stockStore.getItem(CARD_PREFIX+i);
 	}
 	
+	public static String getCard(String i) {
+		return stockStore.getItem(CARD_PREFIX+i);
+	}
+	
 	public static int getNumberOfCard() {
 		return Integer.parseInt(stockStore.getItem(NUMBER_OF_CARD));
 	}

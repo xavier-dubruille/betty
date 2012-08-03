@@ -147,7 +147,10 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 				SimplePanel s = (SimplePanel) getView().getFlexTable().getWidget(row, col);
 
 				s.clear();
-				s.add( MainPresenter.allCards.get(i).cloneWidget());
+				//System.out.println("je veu rajouter, dans la case "+row+"-"+col+" le carton num "+i);
+				//System.out.println("allcard = "+MainPresenter.allCards);
+				//Storage_access.printStorage();
+				s.add( MainPresenter.allCards.get(""+i).cloneWidget(false));
 				//getView().getFlexTable().setWidget(row,col, MainPresenter.allCards.get(i).getWidget());
 			}
 

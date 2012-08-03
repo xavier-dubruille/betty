@@ -19,6 +19,7 @@ public class CardWidget extends Composite {
 	private Label group;
 	private int cardId;
 	private PickupDragController dragController;
+	private boolean fromSelectionPanel;
 
 	public CardWidget() {
 		// use the boundary panel as this composite's widget
@@ -28,6 +29,7 @@ public class CardWidget extends Composite {
 
 		initWidget(boundaryPanel);
 
+		fromSelectionPanel = true;
 		//Create all new label
 		course = new Label("Empty");
 		teacher = new Label("Empty");
@@ -101,9 +103,10 @@ public class CardWidget extends Composite {
 	}
 
 
-	public CardWidget cloneWidget() {
+	public CardWidget cloneWidget(boolean fromSelectionPanel) {
 		CardWidget clone = new CardWidget();
 		
+		clone.setFromSelectionPanel(fromSelectionPanel);
 		clone.getCourse().setText(getCourse().getText());
 		clone.getTeacher().setText(getTeacher().getText());
 		clone.getGroup().setText(getGroup().getText());
@@ -113,6 +116,13 @@ public class CardWidget extends Composite {
 		
 		return clone;
 	}
+
+	public void setFromSelectionPanel(boolean fromSelectionPanel) {
+		this.fromSelectionPanel = fromSelectionPanel;
+		
+	}
+
+
 
 	private PickupDragController getDragController() {
 		return this.dragController;
@@ -134,5 +144,11 @@ public class CardWidget extends Composite {
 		dragController.makeDraggable(this, getCourse());
 		dragController.makeDraggable(this, getTeacher());
 		dragController.makeDraggable(this, getGroup());
+	}
+
+
+
+	public boolean isFromSelectionPanel() {
+		return fromSelectionPanel;
 	}
 }
