@@ -20,10 +20,10 @@ public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 
 	private final Widget widget;
 	@UiField Button deco;
-	@UiField HTMLPanel contentPanel;
 	@UiField MenuBar helpMenuBar;
 	@UiField MenuItem CalculeMenu;
 	@UiField Label loginLabel;
+	@UiField HTMLPanel contentPanel;
 
 	public interface Binder extends UiBinder<Widget, HeaderView> {
 	}

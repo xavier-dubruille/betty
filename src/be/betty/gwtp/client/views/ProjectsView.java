@@ -11,6 +11,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.Image;
 
 public class ProjectsView extends ViewImpl implements ProjectsPresenter.MyView {
 
@@ -31,6 +32,7 @@ public class ProjectsView extends ViewImpl implements ProjectsPresenter.MyView {
 	@UiField HTMLPanel project_field;
 	@UiField Label info_label;
 	@UiField Button new_project;
+	@UiField Image loadingPicutre;
 	
 	@Override
 	public HTMLPanel getProjectField() {
@@ -69,6 +71,8 @@ public class ProjectsView extends ViewImpl implements ProjectsPresenter.MyView {
 		return new_project;
 	}
 	
-	
+	public Image getLoadingPicture(){
+		return loadingPicutre;
+	}
 	
 }
