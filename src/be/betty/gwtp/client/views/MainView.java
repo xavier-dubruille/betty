@@ -32,9 +32,8 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	@UiField ListBox combo_viewChoice1;
 	@UiField ListBox combo_viewChoice2;
 	@UiField VerticalPanel notifBarVerticalPanel;
-	@UiField VerticalPanel cards_panel;
-	ModifiedVerticalPanel modifiedVerticalPanel;
-
+	@UiField ModifiedVerticalPanel cards_panel;
+	
 	public interface Binder extends UiBinder<Widget, MainView> {
 	}
 
@@ -104,7 +103,7 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	}
 
 	@Override
-	public VerticalPanel getCards_panel() {
+	public ModifiedVerticalPanel getCards_panel() {
 		return cards_panel;//modifiedVerticalPanel;
 	}
 
