@@ -1,5 +1,6 @@
 package be.betty.gwtp.client.views.ourWidgets;
 
+import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
 
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
@@ -71,6 +72,21 @@ public class CardWidget extends Composite {
 	}
 
 
+
+	public boolean isPlaced() {
+		String storageId = this.getElement().getTitle();
+		return Storage_access.isCardPlaced(""+storageId);
+	}
+
+	
+	public void setRightCss() {
+		//System.out.println("isCardPlaced "+storageId+" placed ? "+isPlaced());
+		if (isPlaced())
+			this.setStyleName(UiConstants.CSS_PLACED_CARD);
+		else
+			this.setStyleName(UiConstants.CSS_CARD);
+	}
+	
 	public Label getCourse() {
 		return course;
 	}

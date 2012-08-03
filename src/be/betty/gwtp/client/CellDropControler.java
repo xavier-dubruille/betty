@@ -38,6 +38,7 @@ public class CellDropControler extends SimpleDropController {
 		
 		Widget w = context.selectedWidgets.get(0);
 		if ( w != null) {
+			w.setStyleName(UiConstants.CSS_CARD);
 			//String s = w.getElement().getAttribute("id");
 			//System.out.println(w.getElement().getTitle());
 			int id = Integer.parseInt(w.getElement().getTitle()); //TODO faut un meilleur moyen!

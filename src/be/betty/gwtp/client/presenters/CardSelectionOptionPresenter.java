@@ -84,11 +84,12 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 				if (!event.getValue().toString().equalsIgnoreCase("0")) {
 					printSecondComboBxView(Integer.parseInt(event.getValue().toString()));
 					for (int i = 0; i < MainPresenter.allCards.size(); i++) {
-						MainPresenter.allCards.get(i).getWidget().setVisible(false);
-					}	
-				}else {
+						MainPresenter.allCards.get(i).setVisible(false);
+					}
+				} else {
+					//getView().getGroup_choice().setVisible(false);
 					for (int i = 0; i < MainPresenter.allCards.size(); i++) {
-						MainPresenter.allCards.get(i).getWidget().setVisible(true);
+						MainPresenter.allCards.get(i).setVisible(true);
 					}
 					multiSelectComboForm.hide();
 				}
@@ -102,7 +103,7 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 				// TODO Auto-generated method stub
 
 				for (int i = 0; i < MainPresenter.allCards.size(); i++) {
-					MainPresenter.allCards.get(i).getWidget().setVisible(false);
+					MainPresenter.allCards.get(i).setVisible(false);
 				}
 				try{
 					checkBoxTab = event.getValue().toString().split(",");
@@ -212,6 +213,7 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 			return;
 		}
 	}
+
 
 //	// TODO Ce que je fais est VRAIMENT DEGUEULASSE. Soit on parse le code xml,
 //	// soit on trouve un autre moyen

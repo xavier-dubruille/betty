@@ -1,6 +1,8 @@
 package be.betty.gwtp.client.presenters;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import be.betty.gwtp.client.CardHandler;
 import be.betty.gwtp.client.CardInView;
@@ -91,7 +93,7 @@ public class MainPresenter extends
 	private IndirectProvider<SingleCardPresenter> cardFactory;
 	@Inject DispatchAsync dispatcher;
 
-	public static ArrayList<SingleCardPresenter> allCards;
+	public static Map<String,CardWidget> allCards;
 
 	@ProxyCodeSplit
 	@NameToken(NameTokens.main)
@@ -115,7 +117,7 @@ public class MainPresenter extends
 		cardFactory = new StandardProvider<SingleCardPresenter>(provider);
 		stockStore = Storage.getLocalStorageIfSupported();
 		this.eventBus = eventBus;
-		allCards = new ArrayList<SingleCardPresenter>();
+		allCards = new HashMap<String, CardWidget>();
 		cardInView = new CardInView(getView().getCombo_viewChoice1(), getView().getCombo_viewChoice2());
 	}
 
@@ -151,25 +153,26 @@ public class MainPresenter extends
 
 		@Override public void onCardFilter(CardFilterEvent event) {
 
-			// TODO : attention, si on decide de faire 2 combobox, les id venan
-			// de la combox et
-			// du local storage ne seront plus les mêmes... et donc on pourra pas
-			// faire ainsi.
-
-			switch (event.getFilterType()) {
-			case TEACHER:
-				writeCardsFromSelector(Filter_kind.TEACHER,
-						Storage_access.getTeacher(event.getFilterObjId()));
-				break;
-			case GROUP:
-				writeCardsFromSelector(Filter_kind.GROUP,
-						Storage_access.getGroup(event.getFilterObjId()));
-			}
+//			// TODO : attention, si on decide de faire 2 combobox, les id venan
+//			// de la combox et
+//			// du local storage ne seront plus les mêmes... et donc on pourra pas
+//			// faire ainsi.
+//
+//			switch (event.getFilterType()) {
+//			case TEACHER:
+//				writeCardsFromSelector(Filter_kind.TEACHER,
+//						Storage_access.getTeacher(event.getFilterObjId()));
+//				break;
+//			case GROUP:
+//				writeCardsFromSelector(Filter_kind.GROUP,
+//						Storage_access.getGroup(event.getFilterObjId()));
+//			}
 		}
 	};
 	
 	private DropCardHandler dropCardHandler = new DropCardHandler() {
 		@Override public void onDropCard(DropCardEvent event) {
+			
 			System.out.println("$$$$$ Catch event.. day="+event.getDay()+" and period= "+event.getPeriod()+" cardid="+event.getCardID());
 			int activity_bddId = Storage_access.getBddIdCard(Storage_access.getCard(event.getCardID()));
 			int projectInstance = Storage_access.getCurrentProjectInstanceBDDID();
@@ -195,12 +198,12 @@ public class MainPresenter extends
 			if (event.getDay() != 0) {
 				//System.out.println("tiiiittllee"+allCards.get(event.getCardID()).getWidget().getTitle());
 				//System.out.println(allCards.size());
-				allCards.get(event.getCardID()).getWidget().addStyleName("cardPlaced");
+			//	allCards.get(event.getCardID()).addStyleName("cardPlaced");
 				Storage_access.setSlotCard(event.getCardID(), event.getDay(), event.getPeriod());
 				//TODO: faut aussi l'envoyer � la bdd, ou un truc du genre
 			}
 			else {
-				allCards.get(event.getCardID()).getWidget().addStyleName("card");
+			//	allCards.get(event.getCardID()).addStyleName("card");
 				Storage_access.revoveFromSlot(event.getCardID());
 				// faut aussi l'envoyer a la bdd, ou un truc du genre
 			}
@@ -209,7 +212,7 @@ public class MainPresenter extends
 	
 	private SelectionCardsModifiedHandler selectCardHandler = new SelectionCardsModifiedHandler () {
 		@Override public void onSelectionCardsModified(SelectionCardsModifiedEvent event) {
-			for (SingleCardPresenter c : allCards)
+			for (CardWidget c : allCards.values())
 				c.setRightCss();
 		}
 	};
@@ -481,7 +484,7 @@ public class MainPresenter extends
 					CardWidget cardW = result.getView().getCardWidget();
 					cardW.setDragControler(cardDragController);
 					cardW.makeItDraggable();
-					allCards.add(result);
+					allCards.put(""+myI, cardW);
 
 				}
 
@@ -494,27 +497,27 @@ public class MainPresenter extends
 		}
 
 	}
-
-	/**
-	 * 
-	 * le principe est d'appliquer "un filtre" au cartons,
-	 * pour en faire "disparaitre" ou "reaparaitre"
-	 * Faut voire si c'est le plus performant/bug free
-	 * ou sinon, on fait comme la methode d'apres..
-	 * 
-	 * @param filter_kind
-	 * @param toFilter
-	 */
-	private void writeCardsFromSelector(Filter_kind filter_kind, String toFilter) {
-
-		for (SingleCardPresenter c : allCards) {
-			//System.out.println(c.getView().getHeader());
-			 if(c.getKindString(filter_kind).equals(toFilter))
-				 c.getWidget().setVisible(false);
-		}
-
-	}
-	
+//
+//	/**
+//	 * 
+//	 * le principe est d'appliquer "un filtre" au cartons,
+//	 * pour en faire "disparaitre" ou "reaparaitre"
+//	 * Faut voire si c'est le plus performant/bug free
+//	 * ou sinon, on fait comme la methode d'apres..
+//	 * 
+//	 * @param filter_kind
+//	 * @param toFilter
+//	 */
+//	private void writeCardsFromSelector(Filter_kind filter_kind, String toFilter) {
+//
+//		for (CardWidget c : allCards) {
+//			//System.out.println(c.getView().getHeader());
+//			 if(c.getKindString(filter_kind).equals(toFilter))
+//				 c.getWidget().setVisible(false);
+//		}
+//
+//	}
+//	
 	/**
 	 *  ( devrait pe bien etre fusionne avec le precedent, ms fonctionne pas de la mm maniere, 
 	 *  et surtt, celle ci a besoin d'une requete server.. ms bon, on peu s'arranger)
