@@ -20,6 +20,7 @@ PresenterWidget<SingleCardPresenter.MyView> {
 
 	public interface MyView extends View {
 		CardWidget getCardWidget();
+
 	}
 
 	private int teacherId;

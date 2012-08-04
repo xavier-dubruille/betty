@@ -68,7 +68,6 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 
 	private void constructBoard() {	
 		
-
 		int COLUMNS = 6;// Storage_access.getNbDays() + 1;
 		int ROWS = 7; //Storage_access.getNbPeriods() +1 ;
 		

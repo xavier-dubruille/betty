@@ -33,6 +33,7 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	@UiField ListBox combo_viewChoice2;
 	@UiField VerticalPanel notifBarVerticalPanel;
 	@UiField ModifiedVerticalPanel cards_panel;
+	
 	public interface Binder extends UiBinder<Widget, MainView> {
 	}
 

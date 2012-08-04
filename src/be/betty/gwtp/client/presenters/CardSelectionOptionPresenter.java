@@ -215,7 +215,6 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 	}
 
 
-
 //	// TODO Ce que je fais est VRAIMENT DEGUEULASSE. Soit on parse le code xml,
 //	// soit on trouve un autre moyen
 //	// de récupérer la valeur de la checkBox. Ensuite, le reste du code est pas
