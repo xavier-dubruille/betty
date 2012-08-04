@@ -26,21 +26,22 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	@UiField AbsolutePanel dndpanel;
 	@UiField Label content;
 	@UiField SimplePanel board_panel;
+	@UiField SimplePanel CardSelectionOption;
 	@UiField ListBox comboInstance;
 	@UiField Label currentInstance;
 	@UiField ListBox combo_viewChoice1;
 	@UiField ListBox combo_viewChoice2;
-	@UiField SimplePanel CardSelectionOption;
 	@UiField VerticalPanel notifBarVerticalPanel;
 	@UiField ModifiedVerticalPanel cards_panel;
- 
-
 	public interface Binder extends UiBinder<Widget, MainView> {
 	}
 
 	@Inject
 	public MainView(final Binder binder) {
 		widget = binder.createAndBindUi(this);
+		//modifiedVerticalPanel = new ModifiedVerticalPanel();
+		//cards_panel.add(modifiedVerticalPanel);
+		
 	}
 
 	@Override
@@ -101,8 +102,8 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	}
 
 	@Override
-	public VerticalPanel getCards_panel() {
-		return cards_panel;
+	public ModifiedVerticalPanel getCards_panel() {
+		return cards_panel;//modifiedVerticalPanel;
 	}
 
 	@Override

@@ -32,12 +32,15 @@
 			<g:at left="10" top="222">
 				<g:Hyperlink text="Subscribe ?" targetHistoryToken="subscribe" width="" height="" styleName="loginlink" />
 			</g:at>
-			<g:at left="195" top="120">
+			<g:at left="146" top="122">
 
-				<g:Label styleName="wrong_pwd" ui:field="wrong_pwd" width="720" />
+				<g:Label styleName="wrong_pwd" ui:field="wrong_pwd" width="250px" height="15px" horizontalAlignment="ALIGN_CENTER" text="connexion.." />
 			</g:at>
 			<g:at left="365" top="222">
 				<g:Hyperlink text="Check Dnd sample" targetHistoryToken="main" styleName="loginlink"/>
+			</g:at>
+			<g:at left="307" top="118">
+				<g:Image width="35px" height="35px" url="Loading1.gif" ui:field="loadingPicture"/>
 			</g:at>
 		</g:AbsolutePanel>
 			</g:Dock>

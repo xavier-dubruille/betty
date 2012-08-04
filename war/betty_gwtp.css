@@ -10,6 +10,11 @@ body {
 	background-color: #f9f9f9 !important;
 }
 
+.test{
+	background-color: white;
+	padding: 5px;
+}
+
 .cardPlaced {
 	border: 1px solid;
 	font-size: 10px;
@@ -24,7 +29,10 @@ body {
 	margin-bottom: 2px;
 	font-size: 10px;
 	background-color: lightsteelblue;
+	border-radius: 5px;
 }
+
+
 
 .courseCard{
 	font-size: 6pt;
@@ -33,8 +41,7 @@ body {
 .teacherCard{
 	font-size: 7pt;
 	text-align: right;
-	margin-right: 5px;
-	
+	margin-right: 5px;	
 }
 
 .groupCard{
@@ -45,17 +52,22 @@ body {
 .panelCell {
 	border: medium solid;
 }
+
 .small_title {
 	font-size: medium;
 	font-style: normal;
 	font-family: MS PMincho;
 }
+
 .panel_filter_options {
 	background-color: cornflowerblue;
+	border-radius: 10px;
+	margin-left: 5px;
 }
+
 . {
-	margin: 5px;
-	background-color: White;
+	margin: 0px;
+	padding: 0px;
 }
 
 .Header {
@@ -64,11 +76,14 @@ body {
 	/*text-align: center;*/
 	font-weight: bold;
 	padding: 10px;
+	border-top-right-radius: 10px;
+	border-top-left-radius: 10px;
 }
 .ConnexionButton {
 	text-align: center;
 }
 .HtmlPanel {
+	margin: 0px;
 	text-align: center;
 }
 .login {
@@ -104,31 +119,34 @@ body {
 	font-weight: bold;
 }
 .project {
-	background: #FFA000;
+	background: #FF4901;
 	/*#BBD2E1; 
 	//text-align: center;*/
 	color: white;
-	font-weight: bold;
-	padding: 10px;
-	border-left: 2px solid black;
-	border-right: 2px solid black;
-	margin-left: 10px;
 	margin-right: 10px;
-	
+	margin-left: 10px;
+	padding: 0px;
+	border-right: 2px solid black;
+	border-bottom: 2px solid black;
+	border-left: 2px solid black;
+	font-weight: bold;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
+
 .instancePanel {
 	margin: 5px;
 	border-top: thin solid black;
 	border-right: thin solid Black;
 	border-bottom: thin solid Black;
 	border-left: thin solid black;
-	background-color: gold;
+	background-color: cornflowerblue;
 }
 .currentInstanceNumber {
 	color: black;
 	font-stretch: extra-expanded;
 	font-variant: small-caps;
-	font-size: 18mm;
+	font-size: 14mm;
 	font-style: normal;
 	font-family: Century Gothic;
 	font-weight: bold;
@@ -142,4 +160,15 @@ body {
 	border: medium solid;
 	font-size: 10px;
 	background-color: lightsteelblue;
+}
+
+.ProjectCarton1{
+	background-color: cornflowerblue;
+	color: white;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	border-radius: 10px;
+	margin-bottom: 5px;
 }

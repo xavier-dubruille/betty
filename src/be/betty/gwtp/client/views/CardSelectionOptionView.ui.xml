@@ -4,29 +4,18 @@
 	xmlns:g='urn:import:com.google.gwt.user.client.ui'
 	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
 	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
-	ui:generateLocales='default'>
+	ui:generateLocales='default' xmlns:p1="urn:import:com.smartgwt.client.widgets.form">
 
 	<g:HTMLPanel>
-		<g:AbsolutePanel height="265px" width="233px" styleName="panel_filter_options">
-			<g:at left="10" top="52">
-				<g:Label text="Option" width="73px" height="13px" horizontalAlignment="ALIGN_LEFT"/>
+		<g:AbsolutePanel height="135px" width="219px" styleName="panel_filter_options" ui:field="filterAbsolutePanel">
+			<g:at left="0" top="10">
+				<g:Label text="Card filter" styleName="small_title" width="219px" height="16px" horizontalAlignment="ALIGN_CENTER"/>
 			</g:at>
-			<g:at left="89" top="225">
-				<g:ListBox width="118px" height="18px" ui:field="group_choice"/>
+			<g:at left="10" top="78">
+				<g:SimplePanel width="197px" height="35px" ui:field="simplePanel"/>
 			</g:at>
-			<g:at left="89" top="47">
-				<g:ListBox ui:field="comboBoxFilterType" width="118px" height="18px"/>
-			</g:at>
-			<g:at left="10" top="225">
-				<g:Label width="73px" height="13px" horizontalAlignment="ALIGN_LEFT"/>
-			</g:at>
-			<g:at left="10" top="10">
-				<g:Label text="Filtre de selection des cartons" styleName="small_title"/>
-			</g:at>
-			<g:at left="10" top="81">
-				<g:ScrollPanel width="213px" height="117px" ui:field="cardFilterScrollPanel">
-					<g:VerticalPanel width="100%" height="100%" ui:field="cardFilterVerticalPanel"/>
-				</g:ScrollPanel>
+			<g:at left="10" top="38">
+				<g:SimplePanel width="197px" height="35px" ui:field="simplePanelFirstFilter"/>
 			</g:at>
 		</g:AbsolutePanel>
 	</g:HTMLPanel>

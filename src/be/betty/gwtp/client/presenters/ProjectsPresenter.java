@@ -16,6 +16,7 @@ import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -48,6 +49,8 @@ public class ProjectsPresenter extends
 		public HTMLPanel getProjectField();
 
 		public Label getInfo_label();
+		
+		public Image getLoadingPicture();
 
 		Button getNew_project();
 	}
@@ -79,7 +82,8 @@ public class ProjectsPresenter extends
 	@Override
 	protected void onBind() {
 		super.onBind();
-
+		
+		getView().getLoadingPicture().setVisible(false);
 		getView().getNew_project().addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -101,8 +105,10 @@ public class ProjectsPresenter extends
 
 		System.out.println("On reset");
 		setInSlot(SLOT_project, null);
-
+		
+		getView().getLoadingPicture().setVisible(true);
 		getView().getInfo_label().setText("Fetching info ..");
+				
 		String sess = null;
 		if (stockStore != null)
 			sess = stockStore.getItem("session_id");
@@ -121,6 +127,7 @@ public class ProjectsPresenter extends
 		public void onSuccess(GetProjectsActionResult result) {
 
 			getView().getInfo_label().setText("");
+			getView().getLoadingPicture().setVisible(false);
 			writeProjectWidgets(result.getProjects());
 
 		}

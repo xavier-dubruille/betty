@@ -24,6 +24,10 @@ public class SingleProjectView extends ViewImpl implements
 	@UiField Hyperlink project;
 	@UiField Label label;
 	@UiField Button deleteButton;
+	@UiField Label labelProjectNameSem2;
+	@UiField Hyperlink linkProjectNameSem2;
+	@UiField Hyperlink linkSettingsSem2;
+	@UiField Button deleteButtonSem2;
 	
 	@Inject
 	public SingleProjectView(final Binder binder) {
