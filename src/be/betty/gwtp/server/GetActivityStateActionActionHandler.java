@@ -34,17 +34,25 @@ public class GetActivityStateActionActionHandler implements
 			throw new ActionException("Invalid Action, try to erase your cookies and re-log");
 		
 		HashMap<String, ActivityState_dto> h = new HashMap<String, ActivityState_dto>();
-
+		
+		// le but c'est d'avoir l'activityState id le plus haut possible pour une activity donnée
+		HashMap<Integer,Integer> max = new HashMap<Integer, Integer>(); //used to make sure of the correct activityState's order
+		
 		Session s = HibernateUtils.getSession();
 		Transaction t = s.beginTransaction();
 		
+		int activityId;
 		ProjectInstance pi = (ProjectInstance) s.get(ProjectInstance.class, action.getInstanceBddId());
 		for (ActivityState as : pi.getActivitiesState()) {
-			h.put(""+as.getActivity().getId(), new ActivityState_dto(as.getDay(), as.getPeriod()));
+			activityId = as.getActivity().getId();
+			if ( max.containsKey(activityId) && max.get(activityId) >= as.getId()) continue;
+			max.put(activityId, as.getId());
+			h.put(""+activityId, new ActivityState_dto(as.getDay(), as.getPeriod()));
 		}
 		
 		t.commit();   
 		s.close();
+		
 		
 		return new GetActivityStateActionResult(h);
 	}

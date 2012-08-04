@@ -10,6 +10,7 @@ import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.event.CardFilterEvent;
 import be.betty.gwtp.client.views.SingleCardView;
+import be.betty.gwtp.client.views.ourWidgets.CardWidget;
 
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
@@ -83,11 +84,12 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 				if (!event.getValue().toString().equalsIgnoreCase("0")) {
 					printSecondComboBxView(Integer.parseInt(event.getValue().toString()));
 					for (int i = 0; i < MainPresenter.allCards.size(); i++) {
-						MainPresenter.allCards.get(i).getWidget().setVisible(false);
-					}	
-				}else {
+						MainPresenter.allCards.get(i).setVisible(false);
+					}
+				} else {
+					//getView().getGroup_choice().setVisible(false);
 					for (int i = 0; i < MainPresenter.allCards.size(); i++) {
-						MainPresenter.allCards.get(i).getWidget().setVisible(true);
+						MainPresenter.allCards.get(i).setVisible(true);
 					}
 					multiSelectComboForm.hide();
 				}
@@ -101,7 +103,7 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 				// TODO Auto-generated method stub
 
 				for (int i = 0; i < MainPresenter.allCards.size(); i++) {
-					MainPresenter.allCards.get(i).getWidget().setVisible(false);
+					MainPresenter.allCards.get(i).setVisible(false);
 				}
 				try{
 					checkBoxTab = event.getValue().toString().split(",");
@@ -109,11 +111,11 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 						String str = checkBoxTab[i];
 						for (int j = 0; j < MainPresenter.allCards.size(); j++){
 							if (indexFirstComboBox.equalsIgnoreCase("1")) {
-								if (MainPresenter.allCards.get(j).getView().getTeacher().getText().equalsIgnoreCase(str))
-									MainPresenter.allCards.get(j).getWidget().setVisible(true);
+					//			if (MainPresenter.allCards.get(j).getView().getTeacher().getText().equalsIgnoreCase(str))
+					//				MainPresenter.allCards.get(j).getWidget().setVisible(true);
 							}else if (indexFirstComboBox.equalsIgnoreCase("2")) {
-								if (MainPresenter.allCards.get(j).getView().getGroup().getText().equalsIgnoreCase(str))
-									MainPresenter.allCards.get(j).getWidget().setVisible(true);
+					//			if (MainPresenter.allCards.get(j).getView().getGroup().getText().equalsIgnoreCase(str))
+					//				MainPresenter.allCards.get(j).getWidget().setVisible(true);
 							}
 						}	
 					}
@@ -211,4 +213,49 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 			return;
 		}
 	}
+
+
+//	// TODO Ce que je fais est VRAIMENT DEGUEULASSE. Soit on parse le code xml,
+//	// soit on trouve un autre moyen
+//	// de récupérer la valeur de la checkBox. Ensuite, le reste du code est pas
+//	// forcement plus sexy, mais ça fonctionne comme sa
+//	@Override
+//	public void onValueChange(ValueChangeEvent<Boolean> event) {
+//
+//		// Partie horible pour recuperer le nom du prof dans la comboBox
+//		// selectionnee
+//		System.out.println("event source: " + event.getSource());
+//		String str = event.getSource().toString();
+//		String spt[] = str.split("</label></span>");
+//		int test = spt[0].lastIndexOf(">");
+//		String fin = spt[0].substring(test + 1);
+//		// fin de la partie degueulasse
+//
+//		// Le moyen de filtrer est pas forcement mieux non plus... peut mieux
+//		// faire
+//		// (mettre les valeur de la comboBox en static dans UiConstants?)
+//		// Le faire de facon asynchrone et ajouter les cartes petit a petit...
+//		//
+//		for (int i = 0; i < MainPresenter.allCards.size(); i++) {
+//			CardWidget cardW = MainPresenter.allCards.get(i).getView().getCardWidget();
+//			if (getView()
+//					.getComboBoxFilterType()
+//					.getItemText(
+//							getView().getComboBoxFilterType()
+//									.getSelectedIndex())
+//					.equalsIgnoreCase("professor")) {
+//				if (cardW.getTeacher()
+//						.getText().equalsIgnoreCase(fin))
+//					MainPresenter.allCards.get(i).getWidget()
+//							.setVisible(event.getValue());
+//			} else {
+//				if (cardW.getGroup()
+//						.getText().equalsIgnoreCase(fin))
+//					MainPresenter.allCards.get(i).getWidget()
+//							.setVisible(event.getValue());
+//			}
+//
+//		}
+//	}
+
 }

@@ -288,6 +288,10 @@ public class Storage_access {
 		return stockStore.getItem(CARD_PREFIX+i);
 	}
 	
+	public static String getCard(String i) {
+		return stockStore.getItem(CARD_PREFIX+i);
+	}
+	
 	public static int getNumberOfCard() {
 		return Integer.parseInt(stockStore.getItem(NUMBER_OF_CARD));
 	}
@@ -299,6 +303,11 @@ public class Storage_access {
 
 	public static int getNbPeriods() {
 		return Integer.parseInt(stockStore.getItem(NUMBER_OF_PERIODS));
+	}
+	
+	public static boolean isCardPlaced(String cardId) {
+		String card = stockStore.getItem(CARD_PREFIX+cardId);
+		return (getSlotCard(card) !=0);
 	}
 
 	
@@ -378,6 +387,8 @@ public class Storage_access {
 			
 		}
 	}
+
+
 
 
 

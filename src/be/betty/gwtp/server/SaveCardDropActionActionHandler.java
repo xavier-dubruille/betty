@@ -27,7 +27,7 @@ public class SaveCardDropActionActionHandler implements
 	@Override
 	public SaveCardDropActionResult execute(SaveCardDropAction action,
 			ExecutionContext context) throws ActionException {
-		
+
 		Session s = HibernateUtils.getSession();
 		Transaction t = s.beginTransaction();
 
@@ -46,7 +46,6 @@ public class SaveCardDropActionActionHandler implements
 		//System.out.println("saveCardDropActionActionHandler: cardId="+action.getCardBddId()+", day="+action.getDay()+", period="+action.getPeriod());
 		t.commit();
 		s.close();
-
 		return null;
 	}
 
