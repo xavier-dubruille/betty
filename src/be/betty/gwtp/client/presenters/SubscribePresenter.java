@@ -1,3 +1,7 @@
+/**
+ * test
+ */
+
 package be.betty.gwtp.client.presenters;
 
 import com.gwtplatform.dispatch.shared.DispatchAsync;
