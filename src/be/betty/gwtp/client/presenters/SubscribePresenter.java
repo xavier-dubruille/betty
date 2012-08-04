@@ -1,5 +1,5 @@
 /**
- * test
+ * test pour xaxa
  */
 
 package be.betty.gwtp.client.presenters;
