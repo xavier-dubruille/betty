@@ -1,20 +1,33 @@
 package be.betty.gwtp.client;
 
 
+import java.util.regex.Pattern;
+
 import be.betty.gwtp.client.event.AddNotifEvent;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.VerticalPanel;
-import com.google.inject.Inject;
 
 public class ClientUtils {
 
 
 	
 	public static boolean DONT_REPEAT_YOURSELF = true;
-
+	
+	private static final Pattern rfc2822 = Pattern.compile(
+	        "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
+	);
+	
+	public static boolean CheckEmail(String email){
+		
+		if (!rfc2822.matcher(email).matches()) {
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	
 	/**
 	 * This method is meant to be called whenever 
 	 * a failure occurs..

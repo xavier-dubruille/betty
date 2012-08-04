@@ -13,41 +13,53 @@
 				<g:at left="101" top="42">
 					<g:Label ui:field="userSubLabel" text="Username" horizontalAlignment="ALIGN_RIGHT" width="" height=""/>
 				</g:at>
-				<g:at left="101" top="72">
+				<g:at left="101" top="77">
 					<g:Label ui:field="passSubLabel " text="Password"/>
 				</g:at>
-				<g:at left="101" top="102">
+				<g:at left="101" top="112">
 					<g:Label ui:field="passVerSubLabel" text="Password"/>
 				</g:at>
-				<g:at left="125" top="132">
+				<g:at left="125" top="147">
 					<g:Label text="Email" ui:field="emailSubLabel"/>
 				</g:at>
 				<g:at left="180" top="36">
 					<g:TextBox ui:field="userSubTextbox"/>
 				</g:at>
-				<g:at left="180" top="66">
+				<g:at left="180" top="71">
 					<g:PasswordTextBox ui:field="passSubTextbox"/>
 				</g:at>
-				<g:at left="180" top="96">
+				<g:at left="180" top="106">
 					<g:PasswordTextBox ui:field="passVerSubTextbox"/>
 				</g:at>
-				<g:at left="180" top="126">
+				<g:at left="180" top="141">
 					<g:TextBox ui:field="emailSubTextbox"/>
 				</g:at>
 				<g:at left="224" top="197">
 					<g:Button text="Subscribe" ui:field="subscibeButton" width="" height=""/>
 				</g:at>
-				<g:at left="337" top="42">
+				<g:at left="370" top="42">
 					<g:Label ui:field="userSubErrorLabel" styleName="errorLabel"/>
 				</g:at>
-				<g:at left="337" top="72">
+				<g:at left="370" top="77">
 					<g:Label ui:field="passSubErrorLabel" styleName="errorLabel"/>
 				</g:at>
-				<g:at left="337" top="102">
+				<g:at left="370" top="112">
 					<g:Label ui:field="passVerSubErrorLabel" styleName="errorLabel"/>
 				</g:at>
-				<g:at left="337" top="132">
+				<g:at left="370" top="147">
 					<g:Label ui:field="emailSubErrorLabel" styleName="errorLabel"/>
+				</g:at>
+				<g:at left="336" top="32">
+					<g:Image width="32px" height="32px" ui:field="usernamePicture"/>
+				</g:at>
+				<g:at left="336" top="67">
+					<g:Image width="32px" height="32px" ui:field="passwordPicture"/>
+				</g:at>
+				<g:at left="336" top="102">
+					<g:Image width="32px" height="32px" ui:field="passwordVerPicture"/>
+				</g:at>
+				<g:at left="336" top="137">
+					<g:Image width="32px" height="32px" ui:field="emailPicture"/>
 				</g:at>
 			</g:AbsolutePanel>
 			</g:Dock>

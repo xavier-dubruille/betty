@@ -16,6 +16,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.PasswordTextBox;
+import com.google.gwt.user.client.ui.Image;
 
 public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView {
 
@@ -33,6 +34,10 @@ public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView
 	@UiField Label passSubErrorLabel;
 	@UiField Label passVerSubErrorLabel;
 	@UiField Label emailSubErrorLabel;
+	@UiField Image usernamePicture;
+	@UiField Image passwordPicture;
+	@UiField Image passwordVerPicture;
+	@UiField Image emailPicture;
 	
 	
 	public interface Binder extends UiBinder<Widget, SubscribeView> {
@@ -96,6 +101,22 @@ public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView
 	
 	public Label getEmailSubErrorLabel(){
 		return emailSubErrorLabel;
+	}
+
+	public Image getUsernamePicture() {
+		return usernamePicture;
+	}
+
+	public Image getPasswordPicture() {
+		return passwordPicture;
+	}
+
+	public Image getPasswordVerPicture() {
+		return passwordVerPicture;
+	}
+
+	public Image getEmailPicture() {
+		return emailPicture;
 	}
 
 	@UiHandler("subscibeButton")
