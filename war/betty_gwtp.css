@@ -66,8 +66,10 @@ body {
 }
 
 . {
+	color: Black;
 	margin: 0px;
 	padding: 0px;
+	background-color: Silver;
 }
 
 .Header {
@@ -167,8 +169,12 @@ body {
 	color: white;
 	padding-left: 10px;
 	padding-right: 10px;
-	padding-top: 30px;
-	padding-bottom: 30px;
+	padding-top: 40px;
+	padding-bottom: 40px;
 	border-radius: 10px;
 	margin-bottom: 5px;
+}
+.projectNameLabel {
+color: black;
+
 }

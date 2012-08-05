@@ -7,39 +7,59 @@
 	ui:generateLocales='default'>
 
 	<g:HTMLPanel width="100%" height="100%">
-		<g:HorizontalPanel width="100%" height="100%" horizontalAlignment="ALIGN_CENTER" spacing="5">
+		<g:VerticalPanel width="100%" height="100%">
+			<g:Cell width="100%" height="25px" horizontalAlignment="ALIGN_CENTER">
+				<g:Label text="Project Name" horizontalAlignment="ALIGN_CENTER" width="100%" height="100%" styleName="projectNameLabel"/>
+			</g:Cell>
+			<g:Cell width="100%" height="100%">
+				<g:HorizontalPanel width="100%" height="100%" horizontalAlignment="ALIGN_CENTER" spacing="5">
 			<g:Cell width="50%">
 				<g:HorizontalPanel height="" width="100%" styleName="ProjectCarton1" horizontalAlignment="ALIGN_LEFT">
-			<g:Cell width="10%" verticalAlignment="ALIGN_MIDDLE">
+			<g:Cell width="20%" verticalAlignment="ALIGN_MIDDLE">
 				<g:Label text="Project Name : " ui:field="label" width="100%"/>
 			</g:Cell>
-			<g:Cell width="70%" verticalAlignment="ALIGN_MIDDLE">
+			<g:Cell width="50%" verticalAlignment="ALIGN_MIDDLE">
 				<g:Hyperlink text="Empty" targetHistoryToken="main" ui:field="project" width="100%"/>
 			</g:Cell>
-			<g:Cell horizontalAlignment="ALIGN_CENTER" width="10%" verticalAlignment="ALIGN_MIDDLE">
+			<g:Cell horizontalAlignment="ALIGN_CENTER" width="15%" verticalAlignment="ALIGN_MIDDLE">
 				<g:Hyperlink text="Settings" targetHistoryToken="main" ui:field="project_settings" width="100%" />
 			</g:Cell>
-			<g:Cell horizontalAlignment="ALIGN_RIGHT" width="10%" verticalAlignment="ALIGN_MIDDLE">
+			<g:Cell horizontalAlignment="ALIGN_RIGHT" width="15%" verticalAlignment="ALIGN_MIDDLE">
 				<g:Button ui:field="deleteButton" width="100%">Delete It</g:Button>
 			</g:Cell>
 		</g:HorizontalPanel>
 			</g:Cell>
 			<g:Cell width="50%">
-				<g:HorizontalPanel width="100%" styleName="ProjectCarton1" height="">
-					<g:Cell width="10%" verticalAlignment="ALIGN_MIDDLE">
+				<g:HorizontalPanel width="100%" styleName="ProjectCarton1" height="" horizontalAlignment="ALIGN_CENTER">
+					<g:Cell width="20%" verticalAlignment="ALIGN_MIDDLE">
 						<g:Label text="Project Name :" width="100%" ui:field="labelProjectNameSem2"/>
 					</g:Cell>
-					<g:Cell width="70%" verticalAlignment="ALIGN_MIDDLE">
+					<g:Cell width="50%" verticalAlignment="ALIGN_MIDDLE">
 						<g:Hyperlink text="Empty" targetHistoryToken="newHistoryToken" width="100%" ui:field="linkProjectNameSem2"/>
 					</g:Cell>
-					<g:Cell width="10%" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE">
+					<g:Cell width="15%" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE">
 						<g:Hyperlink text="Settings" targetHistoryToken="newHistoryToken" width="100%" ui:field="linkSettingsSem2"/>
 					</g:Cell>
-					<g:Cell width="10%" horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE">
+					<g:Cell width="15%" horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE">
 						<g:Button text="Delete It" width="100%" ui:field="deleteButtonSem2"/>
 					</g:Cell>
 				</g:HorizontalPanel>
 			</g:Cell>
 		</g:HorizontalPanel>
+			</g:Cell>
+			<g:Cell horizontalAlignment="ALIGN_RIGHT" width="100%" height="50px">
+				<g:AbsolutePanel width="200px" height="50px">
+					<g:at left="151" top="0">
+						<g:Image width="40px" height="40px" url="Delete.png"/>
+					</g:at>
+					<g:at left="106" top="0">
+						<g:Image width="40px" height="40px" url="settings.png"/>
+					</g:at>
+				</g:AbsolutePanel>
+			</g:Cell>
+			<g:Cell width="100%" height="50px" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE">
+				<g:Image width="200px" height="20px" url="separateBar.png"/>
+			</g:Cell>
+		</g:VerticalPanel>
 	</g:HTMLPanel>
 </ui:UiBinder>
