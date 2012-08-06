@@ -72,8 +72,8 @@ public class MainPresenter extends
 	public interface MyView extends View {
 		public Label getMainLabel();
 		public AbsolutePanel getDndPanel();
-		Label getContent();
-		void setContent(Label content);
+		//Label getContent();
+		//void setContent(Label content);
 		VerticalPanel getCards_panel();
 		void constructFlex(PickupDragController cardDragController);
 		ListBox getComboInstance();

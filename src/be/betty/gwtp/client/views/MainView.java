@@ -24,7 +24,6 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 
 	@UiField Label mainLabel;
 	@UiField AbsolutePanel dndpanel;
-	@UiField Label content;
 	@UiField SimplePanel board_panel;
 	@UiField SimplePanel CardSelectionOption;
 	@UiField ListBox comboInstance;
@@ -92,15 +91,15 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 		return dndpanel;
 	}
 
-	@Override
-	public Label getContent() {
-		return content;
-	}
-
-	@Override
-	public void setContent(Label content) {
-		this.content = content;
-	}
+//	@Override
+//	public Label getContent() {
+//		return content;
+//	}
+//
+//	@Override
+//	public void setContent(Label content) {
+//		this.content = content;
+//	}
 
 	@Override
 	public ModifiedVerticalPanel getCards_panel() {

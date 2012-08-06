@@ -138,11 +138,9 @@ body {
 
 .instancePanel {
 	margin: 5px;
-	border-top: thin solid black;
-	border-right: thin solid Black;
-	border-bottom: thin solid Black;
-	border-left: thin solid black;
+	border: thin solid black;
 	background-color: cornflowerblue;
+	border-radius: 10px;
 }
 .currentInstanceNumber {
 	color: black;

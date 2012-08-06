@@ -11,11 +11,11 @@
 			<g:at left="0" top="10">
 				<g:Label text="Card filter" styleName="small_title" width="219px" height="16px" horizontalAlignment="ALIGN_CENTER"/>
 			</g:at>
-			<g:at left="10" top="78">
-				<g:SimplePanel width="197px" height="35px" ui:field="simplePanel"/>
-			</g:at>
 			<g:at left="10" top="38">
 				<g:SimplePanel width="197px" height="35px" ui:field="simplePanelFirstFilter"/>
+			</g:at>
+			<g:at left="10" top="78">
+				<g:SimplePanel width="197px" height="35px" ui:field="simplePanel"/>
 			</g:at>
 		</g:AbsolutePanel>
 	</g:HTMLPanel>

@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 
 import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.Storage_access;
-import be.betty.gwtp.client.event.SetViewEvent;
+//import be.betty.gwtp.client.event.SetViewEvent;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.CheckBox;
