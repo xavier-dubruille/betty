@@ -26,12 +26,14 @@ import be.betty.gwtp.client.event.BoardViewChangedEvent;
 import be.betty.gwtp.client.event.CardFilterEvent;
 import be.betty.gwtp.client.event.DropCardEvent;
 import be.betty.gwtp.client.event.InstancesModifiedEvent;
+import be.betty.gwtp.client.event.SetViewEvent;
 import be.betty.gwtp.client.event.CardFilterEvent.CardFilterHandler;
 import be.betty.gwtp.client.event.DropCardEvent.DropCardHandler;
 import be.betty.gwtp.client.event.InstancesModifiedEvent.InstancesModifiedHandler;
 import be.betty.gwtp.client.event.ProjectListModifyEvent;
 import be.betty.gwtp.client.event.SelectionCardsModifiedEvent;
 import be.betty.gwtp.client.event.SelectionCardsModifiedEvent.SelectionCardsModifiedHandler;
+import be.betty.gwtp.client.event.SetViewEvent.SetViewHandler;
 import be.betty.gwtp.client.place.NameTokens;
 import be.betty.gwtp.client.views.ourWidgets.CardWidget;
 import be.betty.gwtp.shared.dto.ActivityState_dto;
@@ -149,6 +151,32 @@ public class MainPresenter extends
 		}
 	};
 	
+	private SetViewHandler setViewHandler = new SetViewHandler() {
+		@Override public void onSetView(SetViewEvent event) {
+			int index1, index2;
+			try {
+				index1 = Integer.parseInt(event.getIndex1());
+				index2 = Integer.parseInt(event.getIndex2());
+			} catch (NumberFormatException e) {
+				return;
+			}
+			
+			int realIndex1;
+			
+			if (index1 == 1)
+				realIndex1 = 0;
+			else if (index1 == 2)
+				realIndex1 = 2;
+			else return;
+			
+			getView().getCombo_viewChoice1().setItemSelected(realIndex1, true);
+			printSecondComboBxView(realIndex1);
+			getView().getCombo_viewChoice2().setItemSelected(index2, true);
+			getEventBus().fireEvent(new BoardViewChangedEvent(index1, index2));
+			
+		}	
+	};
+	
 	private CardFilterHandler filterHandler = new CardFilterHandler() {
 
 		@Override public void onCardFilter(CardFilterEvent event) {
@@ -178,7 +206,7 @@ public class MainPresenter extends
 			int projectInstance = Storage_access.getCurrentProjectInstanceBDDID();
 			System.out.println("����������Actual project instance= "+projectInstance);
 			
-			// "first", save to bdd (it's asynchronous)
+			// "first", save to bdd (it's asynchronous, so instantaneous)
 			dispatcher.execute(new SaveCardDropAction(event.getDay(), event.getPeriod(), activity_bddId, event.getRoom(), projectInstance),
 					new AsyncCallback<SaveCardDropActionResult>() {
 						@Override public void onFailure(Throwable arg0) {
@@ -286,6 +314,9 @@ public class MainPresenter extends
 		
 		registerHandler(getEventBus().addHandler(
 				SelectionCardsModifiedEvent.getType(), selectCardHandler));
+		
+		registerHandler(getEventBus().addHandler(
+				SetViewEvent.getType(), setViewHandler));
 
 	}
 

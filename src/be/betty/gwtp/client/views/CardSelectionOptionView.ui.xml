@@ -7,15 +7,21 @@
 	ui:generateLocales='default' xmlns:p1="urn:import:com.smartgwt.client.widgets.form">
 
 	<g:HTMLPanel>
-		<g:AbsolutePanel height="135px" width="219px" styleName="panel_filter_options" ui:field="filterAbsolutePanel">
+		<g:AbsolutePanel height="189px" width="228px" styleName="panel_filter_options" ui:field="filterAbsolutePanel">
 			<g:at left="0" top="10">
 				<g:Label text="Card filter" styleName="small_title" width="219px" height="16px" horizontalAlignment="ALIGN_CENTER"/>
 			</g:at>
-			<g:at left="10" top="78">
+			<g:at left="20" top="137">
 				<g:SimplePanel width="197px" height="35px" ui:field="simplePanel"/>
 			</g:at>
-			<g:at left="10" top="38">
+			<g:at left="20" top="96">
 				<g:SimplePanel width="197px" height="35px" ui:field="simplePanelFirstFilter"/>
+			</g:at>
+			<g:at left="21" top="77">
+				<g:CheckBox text="Sow Placed Cards" ui:field="doShowPlacedCard"/>
+			</g:at>
+			<g:at left="21" top="45">
+				<g:CheckBox text=" Switch automatically to Corresponding View" ui:field="doSwitchView"/>
 			</g:at>
 		</g:AbsolutePanel>
 	</g:HTMLPanel>

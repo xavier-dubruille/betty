@@ -27,6 +27,8 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 
 		SimplePanel getSimplePanel();
 		SimplePanel getSimplePanelFirstFilter();
+		CheckBox getDoShowPlacedCard();
+		CheckBox getDoSwitchView();
 	}
 
 	private EventBus myEventBus;
@@ -67,6 +69,7 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 		getView().getSimplePanel().clear();
 		getView().getSimplePanel().add(multiSelectComboForm);
 		
+		getView().getDoShowPlacedCard().setTitle("Help info xxx"); // not working :'(
 
 		firstComboBox.addChangedHandler(new ChangedHandler() {
 			@Override public void onChanged(ChangedEvent event) {
@@ -109,16 +112,16 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 				}
 				try{
 					checkBoxTab = event.getValue().toString().split(",");
-					//if () myEventBus.fireEvent(new SetViewEvent(0,0));
+				if (getView().getDoSwitchView().getValue()) myEventBus.fireEvent(new SetViewEvent(indexFirstComboBox,checkBoxTab[0]));
 					for(int i=0; i< checkBoxTab.length; i++){
 						String str = checkBoxTab[i];
 						for (int j = 0; j < MainPresenter.allCards.size(); j++){
 							//ClientUtils.notifyUser("i= "+i+"j ="+j, myEventBus);
 							if (indexFirstComboBox.equalsIgnoreCase("1")) {
-								if (MainPresenter.allCards.get(""+j).getTeacher().getText().equalsIgnoreCase(str))
+								if (str.equals(""+MainPresenter.allCards.get(""+j).getTeacherId()))
 									MainPresenter.allCards.get(""+j).setVisible(true);
 							}else if (indexFirstComboBox.equalsIgnoreCase("2")) {
-								if (MainPresenter.allCards.get(""+j).getGroup().getText().equalsIgnoreCase(str))
+								if (str.equals(""+MainPresenter.allCards.get(""+j).getGroupId()))
 									MainPresenter.allCards.get(""+j).setVisible(true);
 							}
 						}	
@@ -183,7 +186,7 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 		case 1:
 			LinkedHashMap<String, String> valueMapTeach = new LinkedHashMap<String, String>();
 			for (int i = 0; i < Storage_access.getNumberOfTeacher(); i++) {
-				valueMapTeach.put(Storage_access.getTeacher(i), Storage_access.getTeacher(i));
+				valueMapTeach.put(""+i, Storage_access.getTeacher(i));
 			}
 			//ClientUtils.notifyUser(valueMapTeach.toString(), this.myEventBus);
 			selectItemMultiplePickList.setTitle("prof");
@@ -199,7 +202,7 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 		case 2:
 			LinkedHashMap<String, String> valueMapGroup = new LinkedHashMap<String, String>();
 			for (int i = 0; i < Storage_access.getNumberOfGroup(); i++) {
-				valueMapGroup.put(Storage_access.getGroup(i), Storage_access.getGroup(i));
+				valueMapGroup.put(""+i, Storage_access.getGroup(i));
 			}
 			selectItemMultiplePickList.setTitle("Group");
 			selectItemMultiplePickList.setMultiple(true);
