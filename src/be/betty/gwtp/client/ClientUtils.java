@@ -1,7 +1,7 @@
 package be.betty.gwtp.client;
 
 
-import java.util.regex.Pattern;
+//import java.util.regex.Pattern;
 
 import be.betty.gwtp.client.event.AddNotifEvent;
 
@@ -14,17 +14,17 @@ public class ClientUtils {
 	
 	public static boolean DONT_REPEAT_YOURSELF = true;
 	
-	private static final Pattern rfc2822 = Pattern.compile(
-	        "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
-	);
+//	private static final Pattern rfc2822 = Pattern.compile(
+//	        "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
+//	);
 	
 	public static boolean CheckEmail(String email){
 		
-		if (!rfc2822.matcher(email).matches()) {
-			return false;
-		}else{
+//		if (!rfc2822.matcher(email).matches()) {
+//			return false;
+//		}else{
 			return true;
-		}
+//		}
 	}
 	
 	
