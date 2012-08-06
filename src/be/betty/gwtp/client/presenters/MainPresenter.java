@@ -27,6 +27,7 @@ import be.betty.gwtp.client.event.CardFilterEvent;
 import be.betty.gwtp.client.event.DropCardEvent;
 import be.betty.gwtp.client.event.InstancesModifiedEvent;
 import be.betty.gwtp.client.event.SetViewEvent;
+import be.betty.gwtp.client.event.ShowPlacedCardEvent;
 import be.betty.gwtp.client.event.CardFilterEvent.CardFilterHandler;
 import be.betty.gwtp.client.event.DropCardEvent.DropCardHandler;
 import be.betty.gwtp.client.event.InstancesModifiedEvent.InstancesModifiedHandler;
@@ -34,8 +35,10 @@ import be.betty.gwtp.client.event.ProjectListModifyEvent;
 import be.betty.gwtp.client.event.SelectionCardsModifiedEvent;
 import be.betty.gwtp.client.event.SelectionCardsModifiedEvent.SelectionCardsModifiedHandler;
 import be.betty.gwtp.client.event.SetViewEvent.SetViewHandler;
+import be.betty.gwtp.client.event.ShowPlacedCardEvent.ShowPlacedCardHandler;
 import be.betty.gwtp.client.place.NameTokens;
 import be.betty.gwtp.client.views.ourWidgets.CardWidget;
+import be.betty.gwtp.client.views.ourWidgets.ModifiedVerticalPanel;
 import be.betty.gwtp.shared.dto.ActivityState_dto;
 import be.betty.gwtp.shared.dto.ProjectInstance_dto;
 
@@ -76,7 +79,7 @@ public class MainPresenter extends
 		public AbsolutePanel getDndPanel();
 		Label getContent();
 		void setContent(Label content);
-		VerticalPanel getCards_panel();
+		ModifiedVerticalPanel getCards_panel();
 		void constructFlex(PickupDragController cardDragController);
 		ListBox getComboInstance();
 		Label getCurrentInstance();
@@ -175,6 +178,14 @@ public class MainPresenter extends
 			getEventBus().fireEvent(new BoardViewChangedEvent(index1, index2));
 			
 		}	
+	};
+	
+	private ShowPlacedCardHandler showPlacedHandler = new ShowPlacedCardHandler() {
+		@Override public void onShowPlacedCard(ShowPlacedCardEvent event) {
+			getView().getCards_panel().setShowPlacedCard(event.isChecked());
+			cardSelectionOptionPresenter.setShowPlacedCard(event.isChecked());
+			cardSelectionOptionPresenter.redrawAllCardsFromSelectionPanel();
+		}
 	};
 	
 	private CardFilterHandler filterHandler = new CardFilterHandler() {
@@ -317,6 +328,9 @@ public class MainPresenter extends
 		
 		registerHandler(getEventBus().addHandler(
 				SetViewEvent.getType(), setViewHandler));
+		
+		registerHandler(getEventBus().addHandler(
+				ShowPlacedCardEvent.getType(), showPlacedHandler));
 
 	}
 

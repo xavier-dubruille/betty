@@ -5,13 +5,24 @@ import java.util.Iterator;
 
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
+import be.betty.gwtp.client.event.SetViewEvent;
+import be.betty.gwtp.client.event.ShowPlacedCardEvent;
+import be.betty.gwtp.client.event.ShowPlacedCardEvent.ShowPlacedCardHandler;
 import be.betty.gwtp.client.presenters.MainPresenter;
 
+import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
 public class ModifiedVerticalPanel extends VerticalPanel {
 
+	private boolean showPlaced = true;
+	
+
+	public void setShowPlacedCard( boolean doWeShowPlacedCard) {
+		showPlaced = doWeShowPlacedCard;
+	}
+	
 	@Override
 	public boolean remove(Widget w) {
 		int index = getWidgetIndex(w);
@@ -20,8 +31,10 @@ public class ModifiedVerticalPanel extends VerticalPanel {
 			CardWidget clone = ((CardWidget)w).cloneWidget(true);
 			clone.setStyleName(UiConstants.CSS_PLACED_CARD);
 			MainPresenter.allCards.put(clone.getElement().getTitle(), clone);
+			if (!showPlaced ) clone.setVisible(false);
 			insert(clone, index);
 		}
+		
 
 		return super.remove(w);
 	}
