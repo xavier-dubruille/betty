@@ -178,3 +178,8 @@ body {
 color: black;
 
 }
+.singleProject {
+	background-color: #E0E0E0;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
