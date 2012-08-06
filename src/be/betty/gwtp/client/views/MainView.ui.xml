@@ -35,7 +35,7 @@
 					</g:Dock>
 					<g:Dock direction="WEST" width="20%" height="100%">
 						<g:AbsolutePanel height="150px" ui:field="dndpanel"
-							width="150px">
+							width="225px">
 							<g:at left="0" top="0">
 								<g:SimplePanel ui:field="CardSelectionOption" width="225px"
 							height="150px" />
