@@ -20,6 +20,8 @@ public class CardWidget extends Composite {
 	private int cardId;
 	private PickupDragController dragController;
 	private boolean fromSelectionPanel;
+	private int groupId;
+	private int teacherId;
 
 	public CardWidget() {
 		// use the boundary panel as this composite's widget
@@ -150,5 +152,39 @@ public class CardWidget extends Composite {
 
 	public boolean isFromSelectionPanel() {
 		return fromSelectionPanel;
+	}
+
+
+
+	public void init(int myI) {
+
+		String c = Storage_access.getCard(myI);
+		
+		groupId = Storage_access.getGroupIdCard(c);
+		teacherId = Storage_access.getTeacherIdCard(c);
+		group.setText(Storage_access.getGroupCard(c));
+		teacher.setText(Storage_access.getTeacherCard(c));
+		course.setText(Storage_access.getCourseCard(c));
+		
+		setCardId(myI);
+		
+	}
+
+
+
+	public int getCardId() {
+		return cardId;
+	}
+
+
+
+	public int getGroupId() {
+		return groupId;
+	}
+
+
+
+	public int getTeacherId() {
+		return teacherId;
 	}
 }

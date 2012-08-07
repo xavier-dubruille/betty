@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.CheckBox;
 
 public class CardSelectionOptionView extends ViewImpl implements
 		CardSelectionOptionPresenter.MyView {
@@ -33,6 +34,8 @@ public class CardSelectionOptionView extends ViewImpl implements
 	@UiField SimplePanel simplePanel;
 	@UiField AbsolutePanel filterAbsolutePanel;
 	@UiField SimplePanel simplePanelFirstFilter;
+	@UiField CheckBox doSwitchView;
+	@UiField CheckBox doShowPlacedCard;
 	
 
 	public SimplePanel getSimplePanel(){
@@ -41,5 +44,15 @@ public class CardSelectionOptionView extends ViewImpl implements
 	
 	public SimplePanel getSimplePanelFirstFilter(){
 		return simplePanelFirstFilter;
+	}
+
+	@Override
+	public CheckBox getDoSwitchView() {
+		return doSwitchView;
+	}
+
+	@Override
+	public CheckBox getDoShowPlacedCard() {
+		return doShowPlacedCard;
 	}
 }

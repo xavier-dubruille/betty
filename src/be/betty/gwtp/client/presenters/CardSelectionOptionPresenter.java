@@ -4,8 +4,12 @@ import java.util.LinkedHashMap;
 
 import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.Storage_access;
-//import be.betty.gwtp.client.event.SetViewEvent;
 
+import be.betty.gwtp.client.event.SetViewEvent;
+import be.betty.gwtp.client.event.ShowPlacedCardEvent;
+
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.SimpleCheckBox;
@@ -27,13 +31,15 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 
 		SimplePanel getSimplePanel();
 		SimplePanel getSimplePanelFirstFilter();
+		CheckBox getDoShowPlacedCard();
+		CheckBox getDoSwitchView();
 	}
 
 	private EventBus myEventBus;
 	private CheckBox myCheckBox;
 
 	private SelectItem selectItemMultiplePickList;
-	
+
 
 
 	private DynamicForm multiSelectComboForm;
@@ -44,12 +50,14 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 	private String indexFirstComboBox;
 	private FormItem firstComboBox;
 	private LinkedHashMap<String, String> valueMap;
+	private boolean showPlacedCard = true;
+
 
 	@Inject
 	public CardSelectionOptionPresenter(final EventBus eventBus, final MyView view) {
 		super(eventBus, view);
 		myEventBus = eventBus;
-		
+
 
 		selectComboForm = new DynamicForm();
 		firstComboBox = new ComboBoxItem();   
@@ -66,7 +74,15 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 
 		getView().getSimplePanel().clear();
 		getView().getSimplePanel().add(multiSelectComboForm);
-		
+
+		getView().getDoShowPlacedCard().setTitle("Help info xxx"); // not working :'(
+
+		getView().getDoShowPlacedCard().setValue(true);
+		getView().getDoShowPlacedCard().addClickHandler( new ClickHandler() {
+			@Override public void onClick(ClickEvent event) {
+				getEventBus().fireEvent(new ShowPlacedCardEvent(getView().getDoShowPlacedCard().getValue()));
+			}
+		});
 
 		firstComboBox.addChangedHandler(new ChangedHandler() {
 			@Override public void onChanged(ChangedEvent event) {
@@ -74,11 +90,11 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 					//System.out.println("x"+event.getValue().toString());
 					//System.out.println(event.getSource().toString());
 					indexFirstComboBox = event.getValue().toString();
-					
+
 					//ClientUtils.notifyUser(indexFirstComboBox, myEventBus);
 					if (!valueMap.containsKey(indexFirstComboBox))
 						return;
-					
+
 					if (!indexFirstComboBox.equals("0")) {
 						printSecondComboBxView(Integer.parseInt(indexFirstComboBox));
 						for (int i = 0; i < MainPresenter.allCards.size(); i++) {
@@ -98,36 +114,15 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 		});
 
 		selectItemMultiplePickList.addChangedHandler(new ChangedHandler() {
-			@Override public void onChanged(ChangedEvent event) {
 
+			@Override public void onChanged(ChangedEvent event) {
+				redrawAllCardsFromSelectionPanel();
 				//ClientUtils.notifyUser("on changed (second combobox)", myEventBus);
 				//ClientUtils.notifyUser("size = "+MainPresenter.allCards.size(), myEventBus);
-				for (int i = 0; i < MainPresenter.allCards.size(); i++) {
-
-					//ClientUtils.notifyUser("accession card num "+i+"and its tostring value is: "+MainPresenter.allCards.get(i), myEventBus);
-					MainPresenter.allCards.get(""+i).setVisible(false);
-				}
-				try{
-					checkBoxTab = event.getValue().toString().split(",");
-					//if () myEventBus.fireEvent(new SetViewEvent(0,0));
-					for(int i=0; i< checkBoxTab.length; i++){
-						String str = checkBoxTab[i];
-						for (int j = 0; j < MainPresenter.allCards.size(); j++){
-							//ClientUtils.notifyUser("i= "+i+"j ="+j, myEventBus);
-							if (indexFirstComboBox.equalsIgnoreCase("1")) {
-								if (MainPresenter.allCards.get(""+j).getTeacher().getText().equalsIgnoreCase(str))
-									MainPresenter.allCards.get(""+j).setVisible(true);
-							}else if (indexFirstComboBox.equalsIgnoreCase("2")) {
-								if (MainPresenter.allCards.get(""+j).getGroup().getText().equalsIgnoreCase(str))
-									MainPresenter.allCards.get(""+j).setVisible(true);
-							}
-						}	
-					}
-				}catch (Exception E){
-					//ClientUtils.notifyUser("exeption (second combobox) ==> "+E, myEventBus);
-					System.out.println(E);
-				}
+				
 			}
+
+	
 		});
 	}
 
@@ -135,6 +130,40 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 		super.onReset();
 	}
 
+	public void redrawAllCardsFromSelectionPanel() {
+		for (int i = 0; i < MainPresenter.allCards.size(); i++) {
+
+			//ClientUtils.notifyUser("accession card num "+i+"and its tostring value is: "+MainPresenter.allCards.get(i), myEventBus);
+			MainPresenter.allCards.get(""+i).setVisible(false);
+		}
+		try{
+			checkBoxTab = selectItemMultiplePickList.getValues();
+			if (getView().getDoSwitchView().getValue()) myEventBus.fireEvent(new SetViewEvent(indexFirstComboBox,checkBoxTab[0]));
+			for(int i=0; i< checkBoxTab.length; i++){
+				String str = checkBoxTab[i];
+				for (int j = 0; j < MainPresenter.allCards.size(); j++){
+					//ClientUtils.notifyUser("i= "+i+"j ="+j, myEventBus);
+					if (indexFirstComboBox.equalsIgnoreCase("1")) {
+						if (str.equals(""+MainPresenter.allCards.get(""+j).getTeacherId()))
+							MainPresenter.allCards.get(""+j).setVisible(true);
+					}else if (indexFirstComboBox.equalsIgnoreCase("2")) {
+						if (str.equals(""+MainPresenter.allCards.get(""+j).getGroupId()))
+							MainPresenter.allCards.get(""+j).setVisible(true);
+					}
+				}
+			}
+			if(!showPlacedCard)
+				for (int k = 0; k < MainPresenter.allCards.size(); k++)
+					if (MainPresenter.allCards.get(""+k).isPlaced())
+						MainPresenter.allCards.get(""+k).setVisible(false);
+			
+		}catch (Exception E){
+			//ClientUtils.notifyUser("exeption (second combobox) ==> "+E, myEventBus);
+			System.out.println(E);
+		}
+		
+	}
+	
 	/**
 	 * PRE: the local storage must be filled
 	 */
@@ -147,13 +176,13 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 
 	private void setStaticFirstComboBox(){
 
-		
+
 		//getView().getSimplePanel().clear();
 		getView().getSimplePanelFirstFilter().clear();
 
 		getView().getSimplePanelFirstFilter().add(selectComboForm);
 
-		
+
 		selectComboForm.setWidth(200); 
 		firstComboBox.setTitle("Option");
 		firstComboBox.setType("comboBox");
@@ -171,11 +200,11 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 	//TODO Changer le nom de cette fonction pour que ca soit plus adapte a la nouvelle configuration (comboBox)
 	public void printSecondComboBxView(int selectedIndex) {
 		assert selectedIndex >= 1 && selectedIndex <= 3;
-		
+
 		multiSelectComboForm.setWidth(200);
 		multiSelectComboForm.clearValues();
 		multiSelectComboForm.clear();
-		
+
 		getView().getSimplePanel().clear();
 
 		switch (selectedIndex) {
@@ -183,7 +212,7 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 		case 1:
 			LinkedHashMap<String, String> valueMapTeach = new LinkedHashMap<String, String>();
 			for (int i = 0; i < Storage_access.getNumberOfTeacher(); i++) {
-				valueMapTeach.put(Storage_access.getTeacher(i), Storage_access.getTeacher(i));
+				valueMapTeach.put(""+i, Storage_access.getTeacher(i));
 			}
 			//ClientUtils.notifyUser(valueMapTeach.toString(), this.myEventBus);
 			selectItemMultiplePickList.setTitle("prof");
@@ -199,7 +228,7 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 		case 2:
 			LinkedHashMap<String, String> valueMapGroup = new LinkedHashMap<String, String>();
 			for (int i = 0; i < Storage_access.getNumberOfGroup(); i++) {
-				valueMapGroup.put(Storage_access.getGroup(i), Storage_access.getGroup(i));
+				valueMapGroup.put(""+i, Storage_access.getGroup(i));
 			}
 			selectItemMultiplePickList.setTitle("Group");
 			selectItemMultiplePickList.setMultiple(true);
@@ -224,6 +253,11 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 
 			return;
 		}
+	}
+
+
+	public void setShowPlacedCard(boolean showPlacedCard) {
+		this.showPlacedCard = showPlacedCard;
 	}
 
 }

@@ -25,9 +25,6 @@ PresenterWidget<SingleCardPresenter.MyView> {
 
 	private int teacherId;
 	private int groupId;
-	private String group;
-	private String course;
-	private String teacher;
 	private int storageId;
 
 	@Inject
@@ -42,26 +39,12 @@ PresenterWidget<SingleCardPresenter.MyView> {
 
 	public void init(int myI) {
 		storageId = myI;
-		String c = Storage_access.getCard(myI);
 		
-		group = Storage_access.getGroupCard(c);
-		teacher = Storage_access.getTeacherCard(c);
-		course = Storage_access.getCourseCard(c);
-		int toto = Storage_access.getNumberOfGroup();
-		int tata = Storage_access.getNumberOfCard();
 		// TODO trouver un meilleur moyen de transmettre l'id au widget..
 		getView().asWidget().setTitle(""+myI);
-		//getView().getH().setValue(""+myI); //serait mieu que le titre.. si ca marchait..
 		
 		CardWidget cardW = getView().getCardWidget();
-		cardW.getCourse().setText(course);
-		cardW.getTeacher().setText(teacher);
-		cardW.getGroup().setText(group);
-		cardW.setCardId(myI);
-		//System.out.println(group);
-		//System.out.println("numberOfGroup: "+toto+"   \t numberOfCard: "+tata);
-		
-		//System.out.println("****");
+		cardW.init(myI);
 	}
 
 	/**
@@ -77,13 +60,13 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		return 0;
 	}
 
-	public String getKindString(Filter_kind filter_kind) {
+/*	public String getKindString(Filter_kind filter_kind) {
 		switch (filter_kind) {
 		case TEACHER: return teacher;
 		case GROUP: return group;
 		}
 		return "";
-	}
+	}*/
 	
 	@Override public String toString() {
 		CardWidget cardW = getView().getCardWidget();
