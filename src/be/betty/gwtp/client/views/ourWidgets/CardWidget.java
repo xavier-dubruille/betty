@@ -29,6 +29,7 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 	private boolean fromSelectionPanel;
 	private int groupId;
 	private int teacherId;
+	private MouseDownHandler handler;
 
 	public CardWidget() {
 		// use the boundary panel as this composite's widget
@@ -122,6 +123,7 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 		clone.setTitle(getTitle());
 		clone.setDragControler(getDragController());
 		clone.makeItDraggable();
+		clone.addMouseDownHandler(handler);
 		
 		return clone;
 	}
@@ -198,7 +200,8 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 
 
 	public HandlerRegistration addMouseDownHandler(MouseDownHandler handler) {
-        return addDomHandler(handler, MouseDownEvent.getType());
+        this.handler = handler;
+		return addDomHandler(handler, MouseDownEvent.getType());
     }
 
 

@@ -13,10 +13,17 @@ import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.event.dom.client.MouseDownEvent;
 import com.google.gwt.event.dom.client.MouseDownHandler;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.Event;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.Hidden;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.MenuBar;
+import com.google.gwt.user.client.ui.MenuItem;
+import com.google.gwt.user.client.ui.PopupPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class SingleCardPresenter extends
@@ -30,7 +37,9 @@ PresenterWidget<SingleCardPresenter.MyView> {
 	private int teacherId;
 	private int groupId;
 	private int storageId;
-
+	final private PopupPanel popupPanel = new PopupPanel(true);
+	
+	
 	@Inject
 	public SingleCardPresenter(final EventBus eventBus, final MyView view) {
 		super(eventBus, view);
@@ -39,6 +48,12 @@ PresenterWidget<SingleCardPresenter.MyView> {
 	@Override
 	protected void onBind() {
 		super.onBind();
+		createPopupMenu();
+	}
+	
+	public void onBrowserEvent(Event event) {
+		event.cancelBubble(true);//This will stop the event from being propagated
+		event.preventDefault();
 	}
 
 	public void init(int myI) {
@@ -54,6 +69,10 @@ PresenterWidget<SingleCardPresenter.MyView> {
 			@Override
 			public void onMouseDown(MouseDownEvent event) {
 				// TODO Auto-generated method stub
+				event.preventDefault();
+	            event.stopPropagation();
+	            event.getNativeEvent().stopPropagation();
+	            event.getNativeEvent().preventDefault();
 				System.out.println("on click handler yezzu");
 				int button = event.getNativeEvent().getButton();
 		        if (button == NativeEvent.BUTTON_LEFT) {
@@ -61,10 +80,11 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		        }
 
 		        if (button == NativeEvent.BUTTON_RIGHT) {
-		            event.preventDefault();
+		            
 		            ClientUtils.notifyUser("Jack est le meilleur! "+ii, getEventBus());
 		            System.out.println("right click");
-		            //doRightClick();
+					onRightClick(event.getClientX(), event.getClientY());
+
 		        }	
 			
 			}
@@ -97,7 +117,54 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		if (cardW == null) return "widget Null";
 		return cardW.getTeacher().getText();
 	}
+	
+	Command AddCardCommand = new Command() {
+		  public void execute() {
+		    //deckPanel.showWidget(0);
+		    popupPanel.hide();
+		    Window.alert("Add");
+		  }
+		};
+		 
+		Command ModifiedCardCommand = new Command() {
+		  public void execute() {
+		    //deckPanel.showWidget(1);
+		    popupPanel.hide();
+		    Window.alert("Modified");
+		  }
+		};
+		 
+		Command DeleteCardCommand = new Command() {
+		  public void execute() {
+		    //deckPanel.showWidget(2);
+		    popupPanel.hide();
+		    Window.alert("Delete");
+		  }
+		};
 
+		private void createPopupMenu() {
+			  MenuBar popupMenuBar = new MenuBar(true);
+			  MenuItem alertItem = new MenuItem("Add", true, AddCardCommand);
+			  MenuItem imageItem = new MenuItem("Modify ", true, ModifiedCardCommand);
+			  MenuItem sponserItem = new MenuItem("Delete ", true, DeleteCardCommand);
+			 
+			  popupPanel.setStyleName("popup");
+			  alertItem.addStyleName("popup-item");
+			  imageItem.addStyleName("popup-item");
+			  sponserItem.addStyleName("popup-item");
+			 
+			  popupMenuBar.addItem(alertItem);
+			  popupMenuBar.addItem(imageItem);
+			  popupMenuBar.addItem(sponserItem);
+			 
+			  popupMenuBar.setVisible(true);
+			  popupPanel.add(popupMenuBar);
+			}
+			 
+			public void onRightClick(int x, int y) {	  
+			  popupPanel.setPopupPosition(x, y);
+			  popupPanel.show();
+			}
 
 
 }
