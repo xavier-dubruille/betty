@@ -1,5 +1,7 @@
 package be.betty.gwtp.server.bdd;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -7,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -32,6 +35,11 @@ public class Activity_entity {
 
 	@ManyToOne
 	private Group_entity group;
+	
+	@ManyToMany
+	private Collection<Group_entity> groupSet = new ArrayList<Group_entity>();
+
+	private char classe;
 
 	public Activity_entity() {
 	}
@@ -39,7 +47,8 @@ public class Activity_entity {
 	public Activity_entity(Teacher t, Group_entity g, Course c,
 			Project_entity current_project) {
 		this.teacher = t;
-		this.group = g;
+		classe = g.getCode().charAt(0);
+		groupSet.add(g);
 		this.course = c;
 		this.project = current_project;
 	}
@@ -91,6 +100,17 @@ public class Activity_entity {
 		return 42;
 	}
 
+	public Collection<Group_entity> getGroupSet() {
+		return this.groupSet;
+	}
+
+	public String toString() {
+		return "Card ==> cours="+this.course.getCode()+" groups="+groupSet.toString();
+	}
+
+	public char getClasse() {
+		return classe;
+	}
 
 
 }

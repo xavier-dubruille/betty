@@ -75,8 +75,8 @@ public class Index {
 		return generic_get(teacher_id);
 	}
 
-	public String getPeriod() {
-		return generic_get(period);
+	public int getPeriod() {
+		return Integer.parseInt(generic_get(period));
 	}
 
 	public String getTeacherLastname() {

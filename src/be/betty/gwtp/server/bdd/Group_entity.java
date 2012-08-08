@@ -65,5 +65,9 @@ public class Group_entity {
 	public void setProject(Project_entity project) {
 		this.project = project;
 	}
+	
+	public String toString() {
+		return code;
+	}
 
 }
