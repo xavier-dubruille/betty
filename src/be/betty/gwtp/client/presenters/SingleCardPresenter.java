@@ -1,5 +1,6 @@
 package be.betty.gwtp.client.presenters;
 
+import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.Filter_kind;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
@@ -8,6 +9,9 @@ import be.betty.gwtp.client.views.ourWidgets.CardWidget;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 import com.google.inject.Inject;
+import com.google.gwt.dom.client.NativeEvent;
+import com.google.gwt.event.dom.client.MouseDownEvent;
+import com.google.gwt.event.dom.client.MouseDownHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.DockPanel;
@@ -39,12 +43,32 @@ PresenterWidget<SingleCardPresenter.MyView> {
 
 	public void init(int myI) {
 		storageId = myI;
-		
+		final int ii = myI;
 		// TODO trouver un meilleur moyen de transmettre l'id au widget..
 		getView().asWidget().setTitle(""+myI);
 		
 		CardWidget cardW = getView().getCardWidget();
 		cardW.init(myI);
+		cardW.addMouseDownHandler(new MouseDownHandler() {
+			
+			@Override
+			public void onMouseDown(MouseDownEvent event) {
+				// TODO Auto-generated method stub
+				System.out.println("on click handler yezzu");
+				int button = event.getNativeEvent().getButton();
+		        if (button == NativeEvent.BUTTON_LEFT) {
+		            return;
+		        }
+
+		        if (button == NativeEvent.BUTTON_RIGHT) {
+		            event.preventDefault();
+		            ClientUtils.notifyUser("Jack est le meilleur! "+ii, getEventBus());
+		            System.out.println("right click");
+		            //doRightClick();
+		        }	
+			
+			}
+		});
 	}
 
 	/**

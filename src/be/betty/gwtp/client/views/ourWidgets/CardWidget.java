@@ -4,6 +4,13 @@ import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
 
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.HasClickHandlers;
+import com.google.gwt.event.dom.client.HasMouseDownHandlers;
+import com.google.gwt.event.dom.client.MouseDownEvent;
+import com.google.gwt.event.dom.client.MouseDownHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DockPanel;
@@ -12,7 +19,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class CardWidget extends Composite {
+public class CardWidget extends Composite implements HasMouseDownHandlers {
 
 	private Label course;
 	private Label teacher;
@@ -187,4 +194,18 @@ public class CardWidget extends Composite {
 	public int getTeacherId() {
 		return teacherId;
 	}
+
+
+
+	public HandlerRegistration addMouseDownHandler(MouseDownHandler handler) {
+        return addDomHandler(handler, MouseDownEvent.getType());
+    }
+
+
+
+	/*@Override
+	public HandlerRegistration addClickHandler(ClickHandler handler) {
+		// TODO Auto-generated method stub
+		return null;
+	}*/
 }
