@@ -20,7 +20,8 @@ body {
 	font-size: 10px;
 	padding: 2px;
 	margin-bottom: 2px;
-	background-color: #F00;
+	background-color: #E0E0E0;
+	border-radius: 5px;
 }
 
 .card {
@@ -62,8 +63,8 @@ body {
 .panel_filter_options {
 	background-color: cornflowerblue;
 	border-radius: 10px;
-	margin-left: 5px;
-	margin-top: 5px;
+	margin: 5px;
+	border: thin solid black;
 }
 
 . {

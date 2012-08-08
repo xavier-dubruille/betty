@@ -75,8 +75,9 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 		getView().getSimplePanel().clear();
 		getView().getSimplePanel().add(multiSelectComboForm);
 
-		getView().getDoShowPlacedCard().setTitle("Help info xxx"); // not working :'(
-
+		getView().getDoShowPlacedCard().setTitle("Show the placed card of the curent filter");
+		getView().getDoSwitchView().setTitle("Switch automatically to corresponding view");
+		
 		getView().getDoShowPlacedCard().setValue(true);
 		getView().getDoShowPlacedCard().addClickHandler( new ClickHandler() {
 			@Override public void onClick(ClickEvent event) {

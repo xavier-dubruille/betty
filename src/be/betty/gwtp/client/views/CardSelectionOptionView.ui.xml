@@ -7,23 +7,23 @@
 	ui:generateLocales='default' xmlns:p1="urn:import:com.smartgwt.client.widgets.form">
 
 	<g:HTMLPanel>
-		<g:AbsolutePanel height="189px" width="228px" styleName="panel_filter_options" ui:field="filterAbsolutePanel">
-			<g:at left="0" top="10">
-				<g:Label text="Card filter" styleName="small_title" width="219px" height="16px" horizontalAlignment="ALIGN_CENTER"/>
+		<g:AbsolutePanel height="146px" width="266px" styleName="panel_filter_options" ui:field="filterAbsolutePanel">
+			<g:at left="10" top="10">
+				<g:Label text="Card filter" styleName="small_title" width="246px" height="16px" horizontalAlignment="ALIGN_CENTER"/>
 			</g:at>
 
-			<g:at left="20" top="137">
-				<g:SimplePanel width="197px" height="35px" ui:field="simplePanel"/>
+			<g:at left="10" top="71">
+				<g:SimplePanel width="246px" height="29px" ui:field="simplePanel"/>
 			</g:at>
-			<g:at left="20" top="96">
-				<g:SimplePanel width="197px" height="35px" ui:field="simplePanelFirstFilter"/>
+			<g:at left="10" top="36">
+				<g:SimplePanel width="246px" height="29px" ui:field="simplePanelFirstFilter"/>
 			</g:at>
 
-			<g:at left="21" top="77">
-				<g:CheckBox text="Sow Placed Cards" ui:field="doShowPlacedCard"/>
+			<g:at left="127" top="113">
+				<g:CheckBox text="Placed Cards" ui:field="doShowPlacedCard" width="129px" height="15px"/>
 			</g:at>
-			<g:at left="21" top="45">
-				<g:CheckBox text=" Switch automatically to Corresponding View" ui:field="doSwitchView"/>
+			<g:at left="10" top="113">
+				<g:CheckBox text="Show view" ui:field="doSwitchView" width="100px" height="15px"/>
 			</g:at>
 		</g:AbsolutePanel>
 	</g:HTMLPanel>

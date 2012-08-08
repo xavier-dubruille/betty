@@ -3,8 +3,8 @@ package be.betty.gwtp.client;
 
 public class UiConstants {
 
-	private static final int CARD_WIDTH = 150;
-	private static final int CARD_HEIGHT = 90;
+	private static final int CARD_WIDTH = 120;
+	private static final int CARD_HEIGHT = 72;
 	private static final String PERIODE = "periode";
 	private static final String [] WEEK_DAY = {"Monday", "Tuesday", "Wednesday","Thursday","Friday","Saturday","Sunday"};
 	public static final String CSS_PLACED_CARD = "cardPlaced";
