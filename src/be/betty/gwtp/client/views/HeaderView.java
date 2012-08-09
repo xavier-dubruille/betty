@@ -1,7 +1,6 @@
 package be.betty.gwtp.client.views;
 
 import be.betty.gwtp.client.presenters.HeaderPresenter;
-import be.betty.gwtp.client.presenters.HeaderPresenter.MyView;
 
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -9,12 +8,9 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.MenuBar;
-import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.widget.client.TextButton;
 
 public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {

@@ -1,11 +1,9 @@
 package be.betty.gwtp.client.views;
 
 import be.betty.gwtp.client.presenters.ProjectsPresenter;
-import be.betty.gwtp.client.presenters.ProjectsPresenter.MyView;
 
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;

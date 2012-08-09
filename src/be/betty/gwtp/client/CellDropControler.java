@@ -1,8 +1,6 @@
 package be.betty.gwtp.client;
 
 import be.betty.gwtp.client.event.DropCardEvent;
-import be.betty.gwtp.client.event.ProjectListModifyEvent;
-import be.betty.gwtp.client.presenters.MainPresenter;
 import be.betty.gwtp.client.views.ourWidgets.CardWidget;
 
 import com.google.gwt.event.shared.EventBus;
@@ -64,7 +62,7 @@ public class CellDropControler extends SimpleDropController {
 		CardWidget w = (CardWidget) context.selectedWidgets.get(0);
 		String cardId = w.getElement().getTitle();
 		String card = Storage_access.getCard(cardId);
-		CardWidget w2 = MainPresenter.allCards.get(cardId);
+		//CardWidget w2 = MainPresenter.allCards.get(cardId);
 		if (dropTarget.getWidget() != null || !cardInView[0].cardBelongToActualView(card)) {
 			ClientUtils.notifyUser("This Card can't be placed there", eventBus);
 			throw new VetoDragException();

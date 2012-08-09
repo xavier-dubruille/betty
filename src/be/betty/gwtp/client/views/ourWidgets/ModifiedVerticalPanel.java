@@ -3,14 +3,9 @@ package be.betty.gwtp.client.views.ourWidgets;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
-import be.betty.gwtp.client.event.SetViewEvent;
-import be.betty.gwtp.client.event.ShowPlacedCardEvent;
-import be.betty.gwtp.client.event.ShowPlacedCardEvent.ShowPlacedCardHandler;
 import be.betty.gwtp.client.presenters.MainPresenter;
 
-import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 

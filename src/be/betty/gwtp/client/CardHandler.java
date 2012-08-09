@@ -1,10 +1,7 @@
 package be.betty.gwtp.client;
 
-import be.betty.gwtp.client.event.DropCardEvent;
-import be.betty.gwtp.client.event.ProjectListModifyEvent;
 import be.betty.gwtp.client.presenters.MainPresenter;
 import be.betty.gwtp.client.views.ourWidgets.CardWidget;
-import be.betty.gwtp.client.views.ourWidgets.ModifiedVerticalPanel;
 
 import com.allen_sauer.gwt.dnd.client.DragEndEvent;
 import com.allen_sauer.gwt.dnd.client.DragHandler;

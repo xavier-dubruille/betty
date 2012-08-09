@@ -4,7 +4,6 @@
 
 package be.betty.gwtp.client.presenters;
 
-import java.util.regex.Pattern;
 
 import com.gwtplatform.dispatch.shared.DispatchAsync;
 import com.gwtplatform.mvp.client.Presenter;
@@ -13,24 +12,16 @@ import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 
 import be.betty.gwtp.client.ClientUtils;
-import be.betty.gwtp.client.action.LoginAction;
 import be.betty.gwtp.client.action.SubscribeAction;
 import be.betty.gwtp.client.action.SubscribeActionResult;
 import be.betty.gwtp.client.place.NameTokens;
 
-import com.gwtplatform.mvp.client.proxy.PlaceManager;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.google.inject.Inject;
-import com.google.gwt.event.dom.client.BlurEvent;
-import com.google.gwt.event.dom.client.BlurHandler;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.FocusEvent;
-import com.google.gwt.event.dom.client.FocusHandler;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbsolutePanel;
@@ -159,7 +150,6 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 
 			@Override
 			public void onChange(ChangeEvent event) {
-				// TODO Auto-generated method stub
 				if(!getView().getPassSubTextbox().getText().isEmpty()){
 					if(getView().getPassVerSubTextbox().getText().isEmpty()){
 						getView().getPassVerSubErrorLabel().setText("complete this field");
@@ -191,7 +181,6 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 
 			@Override
 			public void onChange(ChangeEvent event) {
-				// TODO Auto-generated method stub
 				if(!getView().getPassSubTextbox().getText().isEmpty()){
 					if (!getView().getPassVerSubTextbox().getText().toString().equals(getView().getPassSubTextbox().getText().toString())){
 						getView().getPassVerSubErrorLabel().setText("Not the same");
@@ -237,7 +226,6 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 
 			@Override
 			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
 
 				errorCompleteField(getView().getUserSubTextbox().getText().isEmpty(), getView().getUserSubErrorLabel());
 				errorCompleteField(getView().getPassSubTextbox().getText().isEmpty(), getView().getPassSubErrorLabel());

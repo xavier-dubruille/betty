@@ -1,7 +1,6 @@
 package be.betty.gwtp.client.views;
 
 import be.betty.gwtp.client.presenters.SubscribePresenter;
-import be.betty.gwtp.client.presenters.SubscribePresenter.MyView;
 
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.google.gwt.uibinder.client.UiBinder;
