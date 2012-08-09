@@ -46,10 +46,12 @@ ActionHandler<GetCards, GetCardsResult> {
 				Integer.parseInt(action.getProjectId()));
 		// result.setName(p.getName());
 		for (Activity_entity a : p.getActivities()) {
-			// System.out.println("***  Teacher:"+a.getTeacher().getName()+" Course:"+a.getCourse().getName()+" Group:"+a.getGroup().getCode());
+			//System.out.println("***  Teacher:"+a.getTeacher().getName()+" Course:"+a.getCourse().getName()+" Group:"+a.getGroup().getCode());
 			Card_dto card = new Card_dto();
 			card.setCourse(a.getCourse().getId());
-			card.setGroup(a.getGroup().getId());
+			for (Group_entity g: a.getGroupSet())
+				card.addGroup(g.getId());
+			//card.setGroup(4);//a.getGroup().getId());
 			card.setTeacher(a.getTeacher().getId());
 			card.setBddId(a.getId());
 			result.addCard(card);

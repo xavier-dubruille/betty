@@ -25,12 +25,18 @@ public class Group_entity {
 
 	@ManyToOne
 	private Project_entity project;
+	private String year;
+	private String section;
+	private String subGroup;
 
 	public Group_entity() {
 	}
 
-	public Group_entity(String groupCode, Project_entity current_project) {
-		this.code = groupCode;
+	public Group_entity(String year, String section, String subGroup, Project_entity current_project) {
+		this.code = year+section+subGroup;
+		this.year = year;
+		this.section = section;
+		this.setSubGroup(subGroup);
 		this.project = current_project;
 	}
 
@@ -64,6 +70,18 @@ public class Group_entity {
 
 	public void setProject(Project_entity project) {
 		this.project = project;
+	}
+	
+	public String toString() {
+		return code;
+	}
+
+	public String getSubGroup() {
+		return subGroup;
+	}
+
+	public void setSubGroup(String subGroup) {
+		this.subGroup = subGroup;
 	}
 
 }

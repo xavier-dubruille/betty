@@ -1,6 +1,7 @@
 package be.betty.gwtp.client;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 import be.betty.gwtp.client.action.GetCardsResult;
@@ -44,10 +45,11 @@ public class Storage_access {
 	// then the method setCards() HAS TO be changed also !!
 	private static final int COURSE_INDEX = 0;
 	private static final int TEACHER_INDEX = 1;
-	private static final int GROUP_INDEX = 2;
-	private static final int SLOT_INDEX = 3;
-	private static final int ROOM_INDEX = 4;
-	private static final int BDDID_INDEX = 5;
+	private static final int GROUP_SIZE_INDEX = 5;
+	private static final int SLOT_INDEX = 2;
+	private static final int ROOM_INDEX = 3;
+	private static final int BDDID_INDEX = 4;
+	private static final int GROUPS_INDEX = 6;
 	
 	// if one of the following constants come to change,
 	// then the method setProjectInstance() HAS TO be changed also !!
@@ -92,6 +94,7 @@ public class Storage_access {
 		// TODO : si rajoute-t-on ici le choix de mettre ˆ jour ou pas le local storage ?
 
 		stockStore.setItem(PROJECT_ON, project_num);
+		//System.out.println("cards a la population du storage = "+result.getCards());
 		
 		setDefaultValues(); // if we don't set some values, we need some default one
 
@@ -101,9 +104,12 @@ public class Storage_access {
 		
 		Storage_access.setCards(project_num, result.getCards());
 		
+		
 		//System.out.println("***--** Instances to be populated: "+result.getProjectInstances());
 		//System.out.println("***--** Default Instance ="+result.getDefaultInstance());
 		Storage_access.setProjectInstances(result.getProjectInstances(), 0); //result.getDefaultInstance());
+		
+		//printStorage();
 
 	}
 
@@ -116,14 +122,21 @@ public class Storage_access {
 		String s = STORAGE_SEPARATOR;
 		int i = 0;
 		for (Card_dto c : cards) {
+			String groups = "";
+			for (int j=0; j< c.getGroupSet().size(); j++)
+				groups+= s+ groups_map.indexOf(c.getGroupSet().get(j));
+			
+				
 			// if the order change, some static constant HAVE to be changed also !!
 			stockStore.setItem(CARD_PREFIX + i,
 					courses_map.indexOf(c.getCourse()) + s + 
 					teachers_map.indexOf(c.getTeacher())+ s + 
-					groups_map.indexOf(c.getGroup()) +s +
 					c.getSlot() + s +
 					c.getRoom() + s+
-					c.getBddId());
+					c.getBddId() + s +
+					c.getGroupSet().size() +
+					groups
+					);
 			i++;
 		}
 		stockStore.setItem(NUMBER_OF_CARD, "" + i);
@@ -215,7 +228,12 @@ public class Storage_access {
 	
 
 	public static void revoveFromSlot(int cardID) {
-		String[] s = getCard(cardID).split(STORAGE_SEPARATOR);
+		String card = getCard(cardID);
+		if (card == null) {
+			// TODO: en cas d'erreur comme celle-ci, ca pourrait etre bien de recharger le Local Storage.
+			return;
+		}
+		String[] s = card.split(STORAGE_SEPARATOR);
 		s[SLOT_INDEX]="0";
 		s[ROOM_INDEX]="0";
 		stockStore.setItem(CARD_PREFIX+cardID, BettyUtils.join(s, STORAGE_SEPARATOR));
@@ -329,11 +347,24 @@ public class Storage_access {
 	public static int getTeacherIdCard(String card) {
 		return Integer.parseInt(card.split(STORAGE_SEPARATOR)[TEACHER_INDEX]);
 	}
-	public static String getGroupCard(String card) {
-		return getGroup(Integer.parseInt(card.split(STORAGE_SEPARATOR)[GROUP_INDEX]));
+	public static String[] getGroupCard(String card) {
+		String[] c = card.split(STORAGE_SEPARATOR);
+		int groupSize = Integer.parseInt(c[GROUP_SIZE_INDEX]);
+		String[] group_codes = new String[groupSize];
+		//System.out.println("debug: groupsize ="+groupSize);
+		for (int i=0; i< groupSize; i++) {
+			group_codes[i] = getGroup(Integer.parseInt(c[GROUPS_INDEX + i]));
+			//System.out.println(group_codes[i]);
+		}
+		return group_codes;
 	}
-	public static int getGroupIdCard(String card) {
-		return Integer.parseInt(card.split(STORAGE_SEPARATOR)[GROUP_INDEX]);
+	public static int[] getGroupsIdCard(String card) {
+		String[] c = card.split(STORAGE_SEPARATOR);
+		int groupSize = Integer.parseInt(c[GROUP_SIZE_INDEX]);
+		int [] groupIds = new int[groupSize];
+		for (int i=0; i< groupSize; i++)
+			groupIds[i] = Integer.parseInt(c[GROUPS_INDEX + i]);
+		return groupIds;
 	}
 	public static int getSlotCard(String card) {
 		return Integer.parseInt(card.split(STORAGE_SEPARATOR)[SLOT_INDEX]);
@@ -381,7 +412,7 @@ public class Storage_access {
 			System.out.println("Card "+i+" = ");
 			System.out.println("    CouseName = "+Storage_access.getCourseCard(card));
 			System.out.println("    TeacherName = "+Storage_access.getTeacherCard(card));
-			System.out.println("    GroupName = "+Storage_access.getGroupCard(card));
+			System.out.println("    Group codes = "+Arrays.toString(Storage_access.getGroupCard(card)));
 			System.out.println("    Slot = "+Storage_access.getSlotCard(card));
 			System.out.println("    Room = "+Storage_access.getRoomCard(card));
 			

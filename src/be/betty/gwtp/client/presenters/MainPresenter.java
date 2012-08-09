@@ -409,12 +409,12 @@ public class MainPresenter extends
 //				else return;
 
 				Storage_access.populateStorage(project_num,result);
-				
+				//Storage_access.printStorage();
 				
 				
 				print_da_page();
 				// getView().getContent().setText(result.getActivities().toString());
-				//Storage_access.printStorage();
+				
 
 			}
 

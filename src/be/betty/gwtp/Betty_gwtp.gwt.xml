@@ -20,6 +20,8 @@
 	<inherits name='com.gwtplatform.dispatch.Dispatch'/>
 	<inherits name="com.smartgwt.SmartGwt"/>
 
+<!-- 	<set-property name="user.agent" value="safari"/> -->
+	
 	<!-- Specify the app entry point class.                         -->
 	<entry-point class='be.betty.gwtp.client.Betty_gwtp'/>
 

@@ -1,6 +1,8 @@
 package be.betty.gwtp.shared.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Card_dto implements Serializable{
 	
@@ -13,12 +15,17 @@ public class Card_dto implements Serializable{
 	
 	private int teacher; // Actualy it's the id of teacher in bdd
 	private int course;  
-	private int group;   
+	private int group;   // faut l'enleve, plus utilise, normalement :p
+	private List<Integer> groupSet;
 	private int period_q1;
 	private int period_q2;
 	private int slot = 0; //  The value "0" is for the case where is not placed 
     private int room = 0;
 	private int bddId;
+	
+	public Card_dto() {
+		groupSet = new ArrayList<Integer>(5);
+	}
 	
     public int getTeacher() {
 		return teacher;
@@ -68,7 +75,16 @@ public class Card_dto implements Serializable{
 	public void setBddId(int bddId) {
 		this.bddId = bddId;
 	}
+	public void addGroup(int id) {
+		groupSet.add(id);
+	}
+	public List<Integer> getGroupSet() {
+		return groupSet;
+	}
 	
+	public String toString() {
+		return "card dto name ="+this.getCourse()+ " and groups = "+this.getGroupSet();
+	}
 	
 	
 }
