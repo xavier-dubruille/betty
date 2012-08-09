@@ -1,7 +1,6 @@
 package be.betty.gwtp.client.views;
 
 import be.betty.gwtp.client.presenters.AboutUsPresenter;
-import be.betty.gwtp.client.presenters.AboutUsPresenter.MyView;
 
 import com.gwtplatform.mvp.client.PopupViewImpl;
 import com.google.gwt.uibinder.client.UiBinder;

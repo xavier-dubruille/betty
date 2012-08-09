@@ -1,17 +1,13 @@
 package be.betty.gwtp.client.presenters;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import be.betty.gwtp.client.CardHandler;
 import be.betty.gwtp.client.CardInView;
 import be.betty.gwtp.client.CardSelectionDropControler;
-import be.betty.gwtp.client.CellDropControler;
 import be.betty.gwtp.client.ClientUtils;
-import be.betty.gwtp.client.Filter_kind;
 import be.betty.gwtp.client.Storage_access;
-import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.action.GetActivityStateAction;
 import be.betty.gwtp.client.action.GetActivityStateActionResult;
 import be.betty.gwtp.client.action.GetCards;
@@ -31,7 +27,6 @@ import be.betty.gwtp.client.event.ShowPlacedCardEvent;
 import be.betty.gwtp.client.event.CardFilterEvent.CardFilterHandler;
 import be.betty.gwtp.client.event.DropCardEvent.DropCardHandler;
 import be.betty.gwtp.client.event.InstancesModifiedEvent.InstancesModifiedHandler;
-import be.betty.gwtp.client.event.ProjectListModifyEvent;
 import be.betty.gwtp.client.event.SelectionCardsModifiedEvent;
 import be.betty.gwtp.client.event.SelectionCardsModifiedEvent.SelectionCardsModifiedHandler;
 import be.betty.gwtp.client.event.SetViewEvent.SetViewHandler;
@@ -40,26 +35,20 @@ import be.betty.gwtp.client.place.NameTokens;
 import be.betty.gwtp.client.views.ourWidgets.CardWidget;
 import be.betty.gwtp.client.views.ourWidgets.ModifiedVerticalPanel;
 import be.betty.gwtp.shared.dto.ActivityState_dto;
-import be.betty.gwtp.shared.dto.ProjectInstance_dto;
 
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
-import com.allen_sauer.gwt.dnd.client.drop.VerticalPanelDropController;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbsolutePanel;
-import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
-import com.google.inject.Singleton;
 import com.gwtplatform.common.client.IndirectProvider;
 import com.gwtplatform.common.client.StandardProvider;
 import com.gwtplatform.dispatch.shared.DispatchAsync;
@@ -109,7 +98,6 @@ public class MainPresenter extends
 	
 	private Storage stockStore;
 	private EventBus eventBus;
-	private Label notification;
 	private CardInView cardInView;
 	private String project_num;
 	public static PickupDragController cardDragController;

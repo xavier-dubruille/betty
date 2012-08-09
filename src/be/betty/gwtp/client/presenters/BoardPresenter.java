@@ -9,9 +9,6 @@ import be.betty.gwtp.client.event.BoardViewChangedEvent;
 import be.betty.gwtp.client.event.DropCardEvent;
 import be.betty.gwtp.client.event.BoardViewChangedEvent.BoardViewChangedHandler;
 import be.betty.gwtp.client.event.DropCardEvent.DropCardHandler;
-import be.betty.gwtp.client.event.SetViewEvent;
-import be.betty.gwtp.client.event.SetViewEvent.SetViewHandler;
-import be.betty.gwtp.client.views.ourWidgets.CardWidget;
 
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;

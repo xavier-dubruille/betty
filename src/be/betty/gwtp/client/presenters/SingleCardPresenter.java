@@ -2,8 +2,6 @@ package be.betty.gwtp.client.presenters;
 
 import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.Filter_kind;
-import be.betty.gwtp.client.Storage_access;
-import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.views.ourWidgets.CardWidget;
 
 import com.gwtplatform.mvp.client.PresenterWidget;
@@ -14,17 +12,10 @@ import com.google.gwt.event.dom.client.MouseDownEvent;
 import com.google.gwt.event.dom.client.MouseDownHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Command;
-import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.CheckBox;
-import com.google.gwt.user.client.ui.DockPanel;
-import com.google.gwt.user.client.ui.Hidden;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.PopupPanel;
-import com.google.gwt.user.client.ui.SimplePanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class SingleCardPresenter extends
 PresenterWidget<SingleCardPresenter.MyView> {
@@ -50,15 +41,9 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		super.onBind();
 		createPopupMenu();
 	}
-	
-	public void onBrowserEvent(Event event) {
-		event.cancelBubble(true);//This will stop the event from being propagated
-		event.preventDefault();
-	}
 
 	public void init(int myI) {
 		storageId = myI;
-		final int ii = myI;
 		// TODO trouver un meilleur moyen de transmettre l'id au widget..
 		getView().asWidget().setTitle(""+myI);
 		
@@ -68,7 +53,6 @@ PresenterWidget<SingleCardPresenter.MyView> {
 			
 			@Override
 			public void onMouseDown(MouseDownEvent event) {
-				// TODO Auto-generated method stub
 				event.preventDefault();
 	            event.stopPropagation();
 	            event.getNativeEvent().stopPropagation();
@@ -81,7 +65,7 @@ PresenterWidget<SingleCardPresenter.MyView> {
 
 		        if (button == NativeEvent.BUTTON_RIGHT) {
 		            
-		            ClientUtils.notifyUser("Jack est le meilleur! "+ii, getEventBus());
+		            ClientUtils.notifyUser("Jack est le meilleur! "+storageId, getEventBus());
 		            System.out.println("right click");
 					onRightClick(event.getClientX(), event.getClientY());
 

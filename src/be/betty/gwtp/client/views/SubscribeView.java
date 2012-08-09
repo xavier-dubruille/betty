@@ -1,7 +1,6 @@
 package be.betty.gwtp.client.views;
 
 import be.betty.gwtp.client.presenters.SubscribePresenter;
-import be.betty.gwtp.client.presenters.SubscribePresenter.MyView;
 
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -10,13 +9,11 @@ import com.google.inject.Inject;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.DockPanel;
-import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.widget.client.TextButton;
 
 public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView {
 
@@ -24,7 +21,6 @@ public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView
 	
 	@UiField AbsolutePanel absoluteSubscribePanel;
 	@UiField DockPanel DockSubscribePanel;
-	@UiField Button subscibeButton;
 	@UiField Label emailSubLabel;
 	@UiField TextBox userSubTextbox;
 	@UiField PasswordTextBox passSubTextbox;
@@ -38,6 +34,7 @@ public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView
 	@UiField Image passwordPicture;
 	@UiField Image passwordVerPicture;
 	@UiField Image emailPicture;
+	@UiField TextButton buttonSubscribe;
 	
 	
 	public interface Binder extends UiBinder<Widget, SubscribeView> {
@@ -61,10 +58,6 @@ public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView
 
 	public DockPanel getDockSubscribePanel() {
 		return DockSubscribePanel;
-	}
-
-	public Button getSubscibeButton() {
-		return subscibeButton;
 	}
 
 	public Label getEmailSubLabel() {
@@ -118,8 +111,9 @@ public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView
 	public Image getEmailPicture() {
 		return emailPicture;
 	}
-
-	@UiHandler("subscibeButton")
-	void onSubscibeButtonClick(ClickEvent event) {
+	
+	public TextButton getButtonSubscribe(){
+		return buttonSubscribe;
 	}
+
 }

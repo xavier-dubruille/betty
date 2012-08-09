@@ -1,7 +1,6 @@
 package be.betty.gwtp.client.event;
 
 import be.betty.gwtp.client.Filter_kind;
-import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.presenters.MainPresenter;
 
 import com.google.gwt.event.shared.GwtEvent;

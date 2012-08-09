@@ -1,6 +1,5 @@
 package be.betty.gwtp.client.action;
 
-import java.io.Serializable;
 
 import com.gwtplatform.dispatch.shared.ActionImpl;
 import be.betty.gwtp.client.action.SaveCardDropActionResult;

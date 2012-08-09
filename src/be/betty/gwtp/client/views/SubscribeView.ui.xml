@@ -4,7 +4,7 @@
 	xmlns:g='urn:import:com.google.gwt.user.client.ui'
 	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
 	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
-	ui:generateLocales='default'>
+	ui:generateLocales='default' xmlns:w="urn:import:com.google.gwt.widget.client">
 
 	<g:HTMLPanel width="" height="">
 		<g:DockPanel width="100%" height="80%" ui:field="DockSubscribePanel" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_BOTTOM">
@@ -34,9 +34,6 @@
 				<g:at left="180" top="141">
 					<g:TextBox ui:field="emailSubTextbox"/>
 				</g:at>
-				<g:at left="224" top="197">
-					<g:Button text="Subscribe" ui:field="subscibeButton" width="" height=""/>
-				</g:at>
 				<g:at left="370" top="42">
 					<g:Label ui:field="userSubErrorLabel" styleName="errorLabel"/>
 				</g:at>
@@ -60,6 +57,9 @@
 				</g:at>
 				<g:at left="336" top="137">
 					<g:Image width="32px" height="32px" ui:field="emailPicture"/>
+				</g:at>
+				<g:at left="215" top="191">
+					<w:TextButton text="Subscribe" ui:field="buttonSubscribe">New button</w:TextButton>
 				</g:at>
 			</g:AbsolutePanel>
 			</g:Dock>

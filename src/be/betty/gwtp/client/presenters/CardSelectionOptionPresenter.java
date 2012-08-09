@@ -2,7 +2,6 @@ package be.betty.gwtp.client.presenters;
 
 import java.util.LinkedHashMap;
 
-import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.Storage_access;
 
 import be.betty.gwtp.client.event.SetViewEvent;
@@ -12,7 +11,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.CheckBox;
-import com.google.gwt.user.client.ui.SimpleCheckBox;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.PresenterWidget;
@@ -36,7 +34,6 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 	}
 
 	private EventBus myEventBus;
-	private CheckBox myCheckBox;
 
 	private SelectItem selectItemMultiplePickList;
 
