@@ -8,28 +8,24 @@
 
 	<g:HTMLPanel styleName="HtmlPanel" width="100%" height="20%">
 		<hr/>
-		<g:DockPanel width="100%" height="40%" verticalAlignment="ALIGN_TOP" horizontalAlignment="ALIGN_CENTER">
-			<g:Dock direction="NORTH" width="100%">
-				<g:DockPanel horizontalAlignment="ALIGN_CENTER" width="100%" height="100%" styleName="Header" verticalAlignment="ALIGN_MIDDLE">
-					<g:Dock direction="WEST" verticalAlignment="ALIGN_MIDDLE" width="50%" height="100%">
-						<g:HTMLPanel width="100%" height="100%">
+		<g:VerticalPanel width="100%" height="40%" horizontalAlignment="ALIGN_CENTER">
+			<g:Cell width="100%">
+				<g:HorizontalPanel styleName="Header" width="100%">
+				<g:Cell width="35%" verticalAlignment="ALIGN_MIDDLE">
+					<g:HTMLPanel width="100%" height="100%">
 					<h1> Welcome to Betty</h1>
 				</g:HTMLPanel>
-					</g:Dock>
-					<g:Dock direction="EAST" width="50%" height="100%" horizontalAlignment="ALIGN_RIGHT" verticalAlignment="ALIGN_MIDDLE">
-						<g:AbsolutePanel width="300px" height="100%">
-							<g:at left="-51" top="10">
-								<g:Label ui:field="loginLabel" text="Jack" horizontalAlignment="ALIGN_RIGHT" width="220px" height="18px"/>
-							</g:at>
-							<g:at left="195" top="10">
-								<g:Button ui:field="deco" text="Deconnection"/>
-							</g:at>
-						</g:AbsolutePanel>
-					</g:Dock>
-				</g:DockPanel>
-			</g:Dock>
-			<g:Dock direction="SOUTH" width="100%" horizontalAlignment="ALIGN_CENTER">
-				<g:MenuBar animationEnabled="true" width="100%" height="" autoOpen="true" ui:field="menuBar">
+				</g:Cell>
+				<g:Cell width="50%" verticalAlignment="ALIGN_MIDDLE" horizontalAlignment="ALIGN_RIGHT">
+					<g:Label ui:field="loginLabel" text="Jack" horizontalAlignment="ALIGN_RIGHT" width="220px" height="18px"/>
+				</g:Cell>
+				<g:Cell width="15%" verticalAlignment="ALIGN_MIDDLE" horizontalAlignment="ALIGN_RIGHT">
+					<g:Button ui:field="deco" text="Disconnect"/>
+				</g:Cell>
+			</g:HorizontalPanel>
+			</g:Cell>
+		</g:VerticalPanel>
+		<g:MenuBar animationEnabled="true" width="99,9%" height="" autoOpen="true" ui:field="menuBar">
 				<g:MenuItem text="File">
 					<g:MenuBar vertical="true">
 						<g:MenuItem text="Open"/>
@@ -88,9 +84,7 @@
 					</g:MenuBar>
 				</g:MenuItem>
 			</g:MenuBar>
-			</g:Dock>
-		</g:DockPanel>
-	<g:HTMLPanel ui:field="contentPanel" height="100%" styleName="project" width="" />
+		<g:HTMLPanel ui:field="contentPanel" height="100%" styleName="project" width="" />
 	</g:HTMLPanel>
 	
 	
