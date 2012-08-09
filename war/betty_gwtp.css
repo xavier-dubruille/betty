@@ -171,6 +171,7 @@ body {
 	padding-top: 40px;
 	padding-bottom: 40px;
 	border-radius: 5px;
+	font-size: 9pt;
 }
 .projectNameLabel {
 color: black;
@@ -180,6 +181,7 @@ color: black;
 	background-color: #E0E0E0;
 	border-radius: 5px;
 	margin-bottom: 10px;
+	
 }
 
 .popup {
@@ -191,7 +193,7 @@ color: black;
  
 .popup-item {
   font-weight: normal;
-  font-size: 80%;
+  font-size: 100%;
 }
 .projectHyperlink {
 	color: white;

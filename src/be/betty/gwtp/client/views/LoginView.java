@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.widget.client.TextButton;
 
 public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 
@@ -23,11 +24,11 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 	@UiField Label wrong_pwd;
 	@UiField TextBox login_textbox;
 	@UiField TextBox pwd_textbox;
-	@UiField Button login_send;
 	@UiField HTMLPanel Html_panel;
 	@UiField AbsolutePanel Absolute_panel;
 	@UiField DockPanel Dock_panel;
 	@UiField Image loadingPicture;
+	@UiField TextButton buttonLogin;
 	
 	public interface Binder extends UiBinder<Widget, LoginView> {
 	}
@@ -48,10 +49,6 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 
 	public TextBox getLogin_textbox() {
 		return login_textbox;
-	}
-
-	public Button getLogin_send() {
-		return login_send;
 	}
 
 	public TextBox getPwd_textbox() {
@@ -80,6 +77,9 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 		return loadingPicture;
 	}
 	
+	public TextButton getButtonLogin(){
+		return buttonLogin;
+	}
 	
 	
 }

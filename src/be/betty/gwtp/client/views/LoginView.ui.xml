@@ -3,7 +3,7 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
 	xmlns:g='urn:import:com.google.gwt.user.client.ui' ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
 	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
-	ui:generateLocales='default'>
+	ui:generateLocales='default' xmlns:w="urn:import:com.google.gwt.widget.client">
 
 
 
@@ -14,14 +14,11 @@
 			<g:Dock direction="CENTER" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE">
 				
 				<g:AbsolutePanel ui:field="Absolute_panel" height="250px" styleName="login" width="500px">
-			<g:at left="250" top="170">
-				<g:Button text="Enter" ui:field="login_send" />
-			</g:at>
 			<g:at left="195" top="69">
 				<g:TextBox ui:field="login_textbox" />
 			</g:at>
 			<g:at left="148" top="75">
-				<g:Label text="Login" ui:field="login_label" />
+				<g:Label text="User" ui:field="login_label" width="31px" height="18px" />
 			</g:at>
 			<g:at left="195" top="93">
 				<g:PasswordTextBox ui:field="pwd_textbox" />
@@ -34,13 +31,16 @@
 			</g:at>
 			<g:at left="146" top="122">
 
-				<g:Label styleName="wrong_pwd" ui:field="wrong_pwd" width="250px" height="15px" horizontalAlignment="ALIGN_CENTER" text="connexion.." />
+				<g:Label styleName="wrong_pwd" ui:field="wrong_pwd" width="250px" height="15px" horizontalAlignment="ALIGN_CENTER" text="connexion" />
 			</g:at>
-			<g:at left="365" top="222">
-				<g:Hyperlink text="Check Dnd sample" targetHistoryToken="main" styleName="loginlink"/>
+			<g:at left="369" top="222">
+				<g:Hyperlink text="Check Dnd sample" targetHistoryToken="main" styleName="loginlink" width="" height=""/>
 			</g:at>
 			<g:at left="307" top="118">
 				<g:Image width="35px" height="35px" url="Loading1.gif" ui:field="loadingPicture"/>
+			</g:at>
+			<g:at left="245" top="159">
+				<w:TextButton text="Login" ui:field="buttonLogin">New button</w:TextButton>
 			</g:at>
 		</g:AbsolutePanel>
 			</g:Dock>

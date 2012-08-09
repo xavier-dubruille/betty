@@ -22,6 +22,7 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.widget.client.TextButton;
 import com.google.inject.Inject;
 import com.gwtplatform.dispatch.shared.DispatchAsync;
 import com.gwtplatform.mvp.client.Presenter;
@@ -39,13 +40,13 @@ public class LoginPresenter extends
 	public interface MyView extends View {
 		public Label getLogin_label();
 		public TextBox getLogin_textbox();
-		public Button getLogin_send();
 		public TextBox getPwd_textbox();
 		public Label getWrongPwd_label();
 		public HTMLPanel getHtml_panel();
 		public AbsolutePanel getAbsolute_panel();
 		public DockPanel getDock_panel();
 		public Image getLoadingPicture();
+		public TextButton getButtonLogin();
 	}
 
 	@ProxyCodeSplit
@@ -104,7 +105,7 @@ public class LoginPresenter extends
 			}});
 		
 		// Add clickHandler
-		getView().getLogin_send().addClickHandler(new ClickHandler() {
+		getView().getButtonLogin().addClickHandler(new ClickHandler() {
 			@Override public void onClick(ClickEvent event) {
 				fireLogin();
 			}});
@@ -116,7 +117,7 @@ public class LoginPresenter extends
 	private void fireLogin() {
 		getView().getLoadingPicture().setVisible(true);
 		getView().getWrongPwd_label().setText(
-				"Connexion..");
+				"Connexion");
 
 		String login = getView().getLogin_textbox().getText();
 		if (stockStore != null) {
@@ -165,7 +166,7 @@ public class LoginPresenter extends
 			} else {
 				getView().getLoadingPicture().setVisible(false);
 				getView().getWrongPwd_label().setText(
-						"Wrong Password (hint: try Admin admin)");
+						"Wrong Password");
 			}
 
 		}
