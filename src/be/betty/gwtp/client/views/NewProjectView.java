@@ -35,7 +35,7 @@ public class NewProjectView extends PopupViewImpl implements
 		widget = binder.createAndBindUi(this);
 		
 		//TODO: the first "setAction()" is not working on tomcat (but does on eclipse), 
-		// and but the second one is ugly!! but works on Tomcat (only ?)ç 
+		// and but the second one is ugly!! but works on Tomcat (only ?)ÔøΩ 
 		formPanel.setAction("upload");
 		//formPanel.setAction("http://betty.sytes.net/betty/upload");
 		

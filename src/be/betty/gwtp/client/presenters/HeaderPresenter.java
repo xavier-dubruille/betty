@@ -34,6 +34,7 @@ public class HeaderPresenter extends
 		Button getDeco();
 		public MenuBar getHelpMenuBar();
 		MenuItem getCalculeMenu();
+		MenuItem getMenuItemNewProject();
 		public Label getLoginLabel();
 		
 	}
@@ -44,7 +45,7 @@ public class HeaderPresenter extends
 
 	private Storage stockStore;
 	@Inject	PlaceManager placeManager;
-	
+	@Inject NewProjectPresenter newProjectPopup;
 	@Inject AboutUsPresenter aboutUsPresenter;
 	@Inject SolveItPopupPresenter solveItPresenter;
 
@@ -70,6 +71,12 @@ public class HeaderPresenter extends
 	Command solveItCommand = new Command(){
 		public void execute(){
 			addToPopupSlot(solveItPresenter);
+		}
+	};
+	
+	Command newProject = new Command(){
+		public void execute(){
+			addToPopupSlot(newProjectPopup);
 		}
 	};
 
@@ -113,6 +120,7 @@ public class HeaderPresenter extends
 		//add the new items to the specific bar
 		getView().getHelpMenuBar().addItem(about);
 		getView().getCalculeMenu().setCommand(solveItCommand);
+		getView().getMenuItemNewProject().setCommand(newProject);
 			
 	}
 	

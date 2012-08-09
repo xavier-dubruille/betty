@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Image;
 
 public class SingleProjectView extends ViewImpl implements
 		SingleProjectPresenter.MyView {
@@ -21,13 +22,11 @@ public class SingleProjectView extends ViewImpl implements
 	public interface Binder extends UiBinder<Widget, SingleProjectView> {
 	}
 
-	@UiField Hyperlink project;
-	@UiField Label label;
-	@UiField Button deleteButton;
-	@UiField Label labelProjectNameSem2;
+	@UiField Hyperlink linkProjectNameSem1;
 	@UiField Hyperlink linkProjectNameSem2;
-	@UiField Hyperlink linkSettingsSem2;
-	@UiField Button deleteButtonSem2;
+	@UiField Label labelProjectName;
+	@UiField Image imageDelete;
+	@UiField Image imageSettings;
 	
 	@Inject
 	public SingleProjectView(final Binder binder) {
@@ -38,20 +37,25 @@ public class SingleProjectView extends ViewImpl implements
 	public Widget asWidget() {
 		return widget;
 	}
-
-	@Override
-	public Hyperlink getProject() {
-		return project;
+	
+	public Hyperlink getLinkProjectNameSem1(){
+		return linkProjectNameSem1;
 	}
-
-	@Override
-	public Label getLabel() {
-		return label;
+	
+	public Hyperlink getLinkProjectNameSem2(){
+		return linkProjectNameSem2;
 	}
-
-	@Override
-	public Button getDeleteButton() {
-		return deleteButton;
+	
+	public Label getLabelProjectName(){
+		return labelProjectName;
+	}
+	
+	public Image getImageDelete(){
+		return imageDelete;
+	}
+	
+	public Image getImageSettings(){
+		return imageSettings;
 	}
 
 }

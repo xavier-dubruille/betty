@@ -271,6 +271,7 @@ public class MainPresenter extends
 		super.prepareFromRequest(request);
 		project_num = request.getParameter("p", "-1");
 		// System.out.println("prepare from request: "+name);
+		System.out.println("load semestre num "+request.getParameter("s", "-1"));
 	}
 
 	@Override

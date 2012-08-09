@@ -167,12 +167,11 @@ body {
 .ProjectCarton1{
 	background-color: cornflowerblue;
 	color: white;
-	padding-left: 10px;
-	padding-right: 10px;
+	padding-left: 5px;
 	padding-top: 40px;
 	padding-bottom: 40px;
-	border-radius: 10px;
-	margin-bottom: 5px;
+	border-radius: 5px;
+	font-size: 9pt;
 }
 .projectNameLabel {
 color: black;
@@ -182,6 +181,7 @@ color: black;
 	background-color: #E0E0E0;
 	border-radius: 5px;
 	margin-bottom: 10px;
+	
 }
 
 .popup {
@@ -193,5 +193,14 @@ color: black;
  
 .popup-item {
   font-weight: normal;
-  font-size: 80%;
+  font-size: 100%;
+}
+.projectHyperlink {
+	color: white;
+	padding-top : 35px;
+	padding-bottom: 35px;
+	padding-left: 20px;
+	padding-right:20px;
+}
+.gwt-Hyperlink {
 }
