@@ -25,12 +25,12 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbsolutePanel;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.widget.client.TextButton;
 import com.gwtplatform.mvp.client.proxy.RevealRootContentEvent;
 
 public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, SubscribePresenter.MyProxy> {
@@ -40,8 +40,6 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 		public AbsolutePanel getAbsoluteSubscribePanel();
 
 		public DockPanel getDockSubscribePanel();
-
-		public Button getSubscibeButton();
 
 		public Label getEmailSubLabel();
 
@@ -69,7 +67,7 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 
 		public Image getEmailPicture();
 
-
+		public TextButton getButtonSubscribe();
 
 	}
 
@@ -99,7 +97,10 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 
 		super.onBind();
 
-
+		getView().getUsernamePicture().setVisible(false);
+		getView().getPasswordVerPicture().setVisible(false);
+		getView().getPasswordPicture().setVisible(false);
+		getView().getEmailPicture().setVisible(false);
 		//TODO Vérifier si le nom d'utilisateur n'existe pas dans la bdd
 		getView().getUserSubTextbox().addChangeHandler(new ChangeHandler() {
 
@@ -222,7 +223,7 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 	protected void onReset() {
 		super.onReset();
 
-		getView().getSubscibeButton().addClickHandler(new ClickHandler() {
+		getView().getButtonSubscribe().addClickHandler(new ClickHandler() {
 
 			@Override
 			public void onClick(ClickEvent event) {
