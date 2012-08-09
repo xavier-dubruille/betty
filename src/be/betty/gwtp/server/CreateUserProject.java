@@ -102,9 +102,9 @@ public class CreateUserProject {
 
 		index.setSingleLine(line);
 
-		int periods = index.getPeriod();
-		assert periods >= 0 && periods < 50 : "You probably have a problem with your periods value ("
-				+ periods + ")";
+		int periods_s1 = index.getPeriod1();
+		assert periods_s1 >= 0 && periods_s1 < 50 : "You probably have a problem with your periods value ("
+				+ periods_s1 + ")";
 
 		// System.out.println("construct card state from line "+Arrays.toString(line));
 
@@ -120,7 +120,7 @@ public class CreateUserProject {
 
 		if (!courses.containsKey(index.getCoursesId()))
 			courses.put(index.getCoursesId(), new Course(index.getCoursesId(), index.getCourseName(),
-					index.getMod(), index.getPeriod(), current_project));
+					index.getMod(), index.getPeriod1(), index.getPeriod2(), current_project));
 
 		String groupCode = index.getYear() + index.getSection() +index.getGroup();
 		if (!groups.containsKey(groupCode))
@@ -251,9 +251,9 @@ public class CreateUserProject {
 		
 		s.save(current_project);
 		
-		ProjectInstance pi = new ProjectInstance("Default instance", 0);
-		s.save(pi);
-		current_project.getProjectInstances().add(pi);
+//		ProjectInstance pi = new ProjectInstance("Default instance", 0);
+//		s.save(pi);
+//		current_project.getProjectInstances().add(pi);
 
 		for (Teacher te : teachers.values()) {
 			s.save(te);
@@ -275,6 +275,8 @@ public class CreateUserProject {
 		for (Activity_entity a: cards.values()) {
 			s.save(a);
 			current_project.getActivities().add(a);
+			
+			//for (int i=0; i<)
 		}
 			
 		t.commit();

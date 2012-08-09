@@ -23,7 +23,6 @@ public class Course {
 	private String code;
 	private String mode; // i.e class or group
 	private String type; // i.e. does it require a special room
-	private int nbPeriod; // per week
 	// section?
 
 	@ManyToOne
@@ -32,16 +31,20 @@ public class Course {
 	@OneToMany
 	private Collection<Activity_entity> activities = new ArrayList<Activity_entity>();
 
+	private int nbPeriod_s2;
+	private int nbPeriod_s1;
+
 	public Course() {
 	}
 
-	public Course(String coursesId, String courseName, String mod, int periods,
-			Project_entity current_project) {
+	public Course(String coursesId, String courseName, String mod, int periods_s1,
+			int periods_s2, Project_entity current_project) {
 		this.project = current_project;
 		this.code = coursesId;
 		this.name = courseName;
 		this.mode = mod;
-		this.nbPeriod = periods;
+		this.nbPeriod_s1 = periods_s1;
+		this.nbPeriod_s2 = periods_s2;
 	}
 
 	public int getId() {
@@ -84,14 +87,23 @@ public class Course {
 		this.type = type;
 	}
 
-	public int getNbPeriod() {
-		return nbPeriod;
+	public int getNbPeriodS1() {
+		return nbPeriod_s1;
 	}
 
-	public void setNbPeriod(int nbPeriod) {
-		this.nbPeriod = nbPeriod;
+	public void setNbPeriodS1(int nbPeriod) {
+		this.nbPeriod_s1 = nbPeriod;
 	}
 
+	public int getNbPeriodS2() {
+		return nbPeriod_s2;
+	}
+
+	public void setNbPeriodS2(int nbPeriod) {
+		this.nbPeriod_s2 = nbPeriod;
+	}
+
+	
 	public Project_entity getProject() {
 		return project;
 	}
@@ -106,6 +118,14 @@ public class Course {
 
 	public void setActivities(Collection<Activity_entity> activities) {
 		this.activities = activities;
+	}
+
+	public int getNbPeriodSX(String semestre) {
+		if (semestre.equals("1"))
+			return getNbPeriodS1();
+		else if(semestre.equals("2"))
+			return getNbPeriodS2();
+		else return 0;
 	}
 
 }

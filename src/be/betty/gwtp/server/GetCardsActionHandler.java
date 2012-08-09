@@ -45,13 +45,16 @@ ActionHandler<GetCards, GetCardsResult> {
 		Project_entity p = (Project_entity) s.get(Project_entity.class,
 				Integer.parseInt(action.getProjectId()));
 		// result.setName(p.getName());
+		Course course;
 		for (Activity_entity a : p.getActivities()) {
+			 course = a.getCourse();
+			 if (course.getNbPeriodSX(action.getSemestre()) == 0)
+				 continue;
 			//System.out.println("***  Teacher:"+a.getTeacher().getName()+" Course:"+a.getCourse().getName()+" Group:"+a.getGroup().getCode());
 			Card_dto card = new Card_dto();
-			card.setCourse(a.getCourse().getId());
+			card.setCourse(course.getId());
 			for (Group_entity g: a.getGroupSet())
 				card.addGroup(g.getId());
-			//card.setGroup(4);//a.getGroup().getId());
 			card.setTeacher(a.getTeacher().getId());
 			card.setBddId(a.getId());
 			result.addCard(card);

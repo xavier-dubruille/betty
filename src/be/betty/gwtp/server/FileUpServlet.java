@@ -189,22 +189,23 @@ public class FileUpServlet extends HttpServlet {
 		// TODO: gestion d'ereurs.. (et prevenir l'utilisateur de l'erreur..)
 		
 		// Second, we create the Rooms, and everything from the "room file"
-		try {
-			create.createStateFromRoomFile();
-		} catch (NoFileException e) {
-			logger.error("problems with files, project can't be created 1 ->"
-					+ e.getMessage());
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			logger.error("problems with files, project can't be created 2 ->"
-					+ e.getMessage());
-			e.printStackTrace();
-		} catch (IOException e) {
-			logger.error("problems with files, project can't be created 3 ->"
-					+ e.getMessage());
-			e.printStackTrace();
-		}
+//		try {
+//			create.createStateFromRoomFile();
+//		} catch (NoFileException e) {
+//			logger.error("problems with files, project can't be created 1 ->"
+//					+ e.getMessage());
+//			e.printStackTrace();
+//		} catch (FileNotFoundException e) {
+//			logger.error("problems with files, project can't be created 2 ->"
+//					+ e.getMessage());
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			logger.error("problems with files, project can't be created 3 ->"
+//					+ e.getMessage());
+//			e.printStackTrace();
+//		}
 		
+		create.saveStateToBdd();
 
 	}
 
