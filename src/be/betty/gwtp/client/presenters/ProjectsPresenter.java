@@ -18,6 +18,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.widget.client.TextButton;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.gwtplatform.common.client.IndirectProvider;
@@ -51,8 +52,8 @@ public class ProjectsPresenter extends
 		public Label getInfo_label();
 		
 		public Image getLoadingPicture();
-
-		Button getNew_project();
+		
+		TextButton getButtonNewProject();
 	}
 
 	@ProxyCodeSplit
@@ -84,9 +85,11 @@ public class ProjectsPresenter extends
 		super.onBind();
 		
 		getView().getLoadingPicture().setVisible(false);
-		getView().getNew_project().addClickHandler(new ClickHandler() {
+		getView().getButtonNewProject().addClickHandler(new ClickHandler() {
+			
 			@Override
 			public void onClick(ClickEvent event) {
+				// TODO Auto-generated method stub
 				addToPopupSlot(newProjectPopup);
 			}
 		});

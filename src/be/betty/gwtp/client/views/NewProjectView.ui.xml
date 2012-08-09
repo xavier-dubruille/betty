@@ -5,7 +5,7 @@
 	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
 	ui:generateLocales='default'>
 
-	<g:PopupPanel modal="true" glassEnabled="true">
+	<g:PopupPanel modal="true" glassEnabled="true" animationEnabled="true" >
 
 
 		<g:FormPanel width="351px" height="186px" ui:field="formPanel">

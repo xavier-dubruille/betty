@@ -24,6 +24,7 @@ public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 	@UiField MenuItem CalculeMenu;
 	@UiField Label loginLabel;
 	@UiField HTMLPanel contentPanel;
+	@UiField MenuItem menuItemNewProject;
 
 	public interface Binder extends UiBinder<Widget, HeaderView> {
 	}
@@ -68,6 +69,10 @@ public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 	@Override
 	public MenuItem getCalculeMenu() {
 		return CalculeMenu;
+	}
+	
+	public MenuItem getMenuItemNewProject(){
+		return menuItemNewProject;
 	}
 
 
