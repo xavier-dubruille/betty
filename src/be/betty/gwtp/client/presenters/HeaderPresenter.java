@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
+import com.google.gwt.widget.client.TextButton;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
@@ -31,7 +32,7 @@ public class HeaderPresenter extends
 	
 	public interface MyView extends View {
 
-		Button getDeco();
+		public TextButton getButtonDisconnect();
 		public MenuBar getHelpMenuBar();
 		MenuItem getCalculeMenu();
 		MenuItem getMenuItemNewProject();
@@ -96,10 +97,10 @@ public class HeaderPresenter extends
 		}
 
 		getView().getLoginLabel().setText(
-				"Welcome " + login /*+ " *****  Projet num " + project_num*/);
+				"Welcome " + login +" "/*+ " *****  Projet num " + project_num*/);
 	
 		
-		getView().getDeco().addClickHandler(new ClickHandler() {
+		getView().getButtonDisconnect().addClickHandler(new ClickHandler() {
 			
 			@Override
 			public void onClick(ClickEvent event) {
