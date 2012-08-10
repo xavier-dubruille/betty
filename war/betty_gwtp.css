@@ -215,6 +215,7 @@ color: black;
   	border-width: 3px 2px 2px 2px;
  	border-style: solid solid solid solid;
  	background: #FEFEE2;
+ 	box-shadow: 8px 8px 12px #aaa;
 }
 .popupPresenterExitBar {
 	background: gray;
