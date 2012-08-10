@@ -51,8 +51,8 @@
 								<g:MenuItem text="Course"/>
 								<g:MenuItem text="Card">
 									<g:MenuBar vertical="true">
-										<g:MenuItem text="Add"/>
-										<g:MenuItem text="Remove"/>
+										<g:MenuItem text="Add" ui:field="addNewCard"/>
+										<g:MenuItem text="Remove" ui:field="removeCard"/>
 									</g:MenuBar>
 								</g:MenuItem>
 							</g:MenuBar>
@@ -81,6 +81,7 @@
 				<g:MenuItem text="Help" ui:field="helpMenuItem">
 					<g:MenuBar vertical="true" ui:field="helpMenuBar">
 						<g:MenuItem text="Manual"/>
+						<g:MenuItem text="About ?" ui:field="about"/>
 					</g:MenuBar>
 				</g:MenuItem>
 			</g:MenuBar>

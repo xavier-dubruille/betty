@@ -35,7 +35,7 @@ PresenterWidget<SingleCardPresenter.MyView> {
 	public SingleCardPresenter(final EventBus eventBus, final MyView view) {
 		super(eventBus, view);
 	}
-
+	@Inject AddNewCardPopupPresenter addNewCardPresenter;
 	@Override
 	protected void onBind() {
 		super.onBind();
@@ -106,7 +106,7 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		  public void execute() {
 		    //deckPanel.showWidget(0);
 		    popupPanel.hide();
-		    Window.alert("Add");
+		    addToPopupSlot(addNewCardPresenter);
 		  }
 		};
 		 
@@ -129,16 +129,13 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		private void createPopupMenu() {
 			  MenuBar popupMenuBar = new MenuBar(true);
 			  MenuItem alertItem = new MenuItem("Add", true, AddCardCommand);
-			  MenuItem imageItem = new MenuItem("Modify ", true, ModifiedCardCommand);
 			  MenuItem sponserItem = new MenuItem("Delete ", true, DeleteCardCommand);
 			 
 			  popupPanel.setStyleName("popup");
 			  alertItem.addStyleName("popup-item");
-			  imageItem.addStyleName("popup-item");
 			  sponserItem.addStyleName("popup-item");
 			 
 			  popupMenuBar.addItem(alertItem);
-			  popupMenuBar.addItem(imageItem);
 			  popupMenuBar.addItem(sponserItem);
 			 
 			  popupMenuBar.setVisible(true);

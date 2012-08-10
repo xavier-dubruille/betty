@@ -35,6 +35,9 @@ public class HeaderPresenter extends
 		public MenuBar getHelpMenuBar();
 		MenuItem getCalculeMenu();
 		MenuItem getMenuItemNewProject();
+		MenuItem getAddNewCard();
+		MenuItem getRemoveCard();
+		MenuItem getMenuItemAbout();
 		public Label getLoginLabel();
 		
 	}
@@ -48,6 +51,7 @@ public class HeaderPresenter extends
 	@Inject NewProjectPresenter newProjectPopup;
 	@Inject AboutUsPresenter aboutUsPresenter;
 	@Inject SolveItPopupPresenter solveItPresenter;
+	@Inject AddNewCardPopupPresenter newCardPresenter;
 
 	@Inject
 	public HeaderPresenter(final EventBus eventBus, final MyView view,
@@ -74,9 +78,15 @@ public class HeaderPresenter extends
 		}
 	};
 	
-	Command newProject = new Command(){
+	Command newProjectCommand = new Command(){
 		public void execute(){
 			addToPopupSlot(newProjectPopup);
+		}
+	};
+	
+	Command addCardCommand = new Command(){
+		public void execute(){
+			addToPopupSlot(newCardPresenter);
 		}
 	};
 
@@ -114,13 +124,10 @@ public class HeaderPresenter extends
 		
 		// ------ Menu Bar ----
 		// Create some new MenuItem and add commands
-		MenuItem about = new MenuItem("About us", aboutUsCommand);	
-		//MenuItem solveIt = new MenuItem("Sovle it", solveItCommand);
-		
-		//add the new items to the specific bar
-		getView().getHelpMenuBar().addItem(about);
+		getView().getMenuItemAbout().setCommand(aboutUsCommand);
 		getView().getCalculeMenu().setCommand(solveItCommand);
-		getView().getMenuItemNewProject().setCommand(newProject);
+		getView().getMenuItemNewProject().setCommand(newProjectCommand);
+		getView().getAddNewCard().setCommand(addCardCommand);
 			
 	}
 	

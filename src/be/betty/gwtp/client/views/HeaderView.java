@@ -22,6 +22,9 @@ public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 	@UiField HTMLPanel contentPanel;
 	@UiField MenuItem menuItemNewProject;
 	@UiField TextButton buttonDisconnect;
+	@UiField MenuItem addNewCard;
+	@UiField MenuItem removeCard;
+	@UiField MenuItem about;
 
 	public interface Binder extends UiBinder<Widget, HeaderView> {
 	}
@@ -70,6 +73,24 @@ public class HeaderView extends ViewImpl implements HeaderPresenter.MyView {
 	public TextButton getButtonDisconnect(){
 		return buttonDisconnect;
 	}
+
+	public Widget getWidget() {
+		return widget;
+	}
+
+	public MenuItem getAddNewCard() {
+		return addNewCard;
+	}
+
+	public MenuItem getRemoveCard() {
+		return removeCard;
+	}
+	
+	public MenuItem getMenuItemAbout(){
+		return about;
+	}
+	
+	
 
 
 }

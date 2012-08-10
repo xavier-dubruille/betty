@@ -1,10 +1,37 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-	xmlns:g='urn:import:com.google.gwt.user.client.ui'
-	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui' ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
 	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
-	ui:generateLocales='default'>
+	ui:generateLocales='default' xmlns:p1="urn:import:com.smartgwt.client.widgets.form" xmlns:w="urn:import:com.google.gwt.widget.client">
 
-	<g:PopupPanel/>
+	<g:PopupPanel styleName="" animationEnabled="true">
+		<g:VerticalPanel width="400px" height="180px">
+			<g:VerticalPanel width="400px" height="180px" spacing="5" styleName="card">
+				<g:Cell width="100%" horizontalAlignment="ALIGN_CENTER">
+					<g:HorizontalPanel width="100%" spacing="5">
+						<g:Cell width="50%" verticalAlignment="ALIGN_MIDDLE">
+							<p1:DynamicForm ui:field="groupDynForm" />
+						</g:Cell>
+						<g:Cell horizontalAlignment="ALIGN_CENTER">
+							<g:ListBox ui:field="teacherComboBox" />
+						</g:Cell>
+					</g:HorizontalPanel>
+				</g:Cell>
+				<g:Cell horizontalAlignment="ALIGN_CENTER">
+					<g:ListBox ui:field="courseComboBox" />
+				</g:Cell>
+			</g:VerticalPanel>
+			<g:Cell width="100%">
+				<g:HorizontalPanel width="100%" spacing="5">
+					<g:Cell width="50%" horizontalAlignment="ALIGN_RIGHT">
+						<w:TextButton text="Create" ui:field="createButton">New button</w:TextButton>
+					</g:Cell>
+					<g:Cell width="50%">
+						<w:TextButton text="Cancel" ui:field="cancelButton">New button</w:TextButton>
+					</g:Cell>
+				</g:HorizontalPanel>
+			</g:Cell>
+		</g:VerticalPanel>
+	</g:PopupPanel>
 </ui:UiBinder>
