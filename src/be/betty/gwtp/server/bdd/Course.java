@@ -34,8 +34,9 @@ public class Course {
 	private int nbPeriod_s2;
 	private int nbPeriod_s1;
 
-	public Course() {
-	}
+
+	private Course() { //serialisation ..
+	} 
 
 	public Course(String coursesId, String courseName, String mod, int periods_s1,
 			int periods_s2, Project_entity current_project) {
@@ -127,5 +128,6 @@ public class Course {
 			return getNbPeriodS2();
 		else return 0;
 	}
+
 
 }
