@@ -6,13 +6,24 @@
 	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
 	ui:generateLocales='default' xmlns:w="urn:import:com.google.gwt.widget.client">
 
-	<g:PopupPanel>
+	<g:PopupPanel styleName="popupPresenter" animationEnabled="true">
 		<g:AbsolutePanel width="479px" height="202px">
+			<g:at left="0" top="0">
+				<g:VerticalPanel width="100%" horizontalAlignment="ALIGN_RIGHT" styleName="popupPresenterExitBar" height="">
+					<w:TextButton value="" width="10px" height="12px" ui:field="closeWindowButton">New button</w:TextButton>
+				</g:VerticalPanel>
+			</g:at>
+			<g:at left="40" top="26">
+				<g:Label text="Take as initial state"/>
+			</g:at>
 			<g:at left="40" top="58">
 				<g:Label text="Write Result In"/>
 			</g:at>
 			<g:at left="40" top="93">
 				<g:Label text="Time Limit"/>
+			</g:at>
+			<g:at left="206" top="26">
+				<g:ListBox ui:field="initialState"/>
 			</g:at>
 			<g:at left="206" top="53">
 				<g:ListBox ui:field="instanceChoice"/>
@@ -25,12 +36,6 @@
 			</g:at>
 			<g:at left="70" top="147">
 				<w:TextButton text="Cancel" ui:field="cancelButton">New button</w:TextButton>
-			</g:at>
-			<g:at left="40" top="26">
-				<g:Label text="Take as initial state"/>
-			</g:at>
-			<g:at left="206" top="26">
-				<g:ListBox ui:field="initialState"/>
 			</g:at>
 		</g:AbsolutePanel>
 	</g:PopupPanel>

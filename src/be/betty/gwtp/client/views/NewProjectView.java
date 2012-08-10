@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.Hidden;
 import com.google.gwt.user.client.ui.FileUpload;
+import com.google.gwt.widget.client.TextButton;
 
 public class NewProjectView extends PopupViewImpl implements
 		NewProjectPresenter.MyView {
@@ -57,6 +58,7 @@ public class NewProjectView extends PopupViewImpl implements
 	@UiField Hidden sess_id;
 	@UiField FileUpload courseFile_field;
 	@UiField FileUpload roomFile_field;
+	@UiField TextButton closeWindowButton;
 	
 	@Override
 	public TextBox getProject_name() {
@@ -87,6 +89,10 @@ public class NewProjectView extends PopupViewImpl implements
 	@Override
 	public FileUpload getRoomFile_field() {
 		return roomFile_field;
+	}
+	
+	public TextButton getCloseWindowButton(){
+		return closeWindowButton;
 	}
 
 }
