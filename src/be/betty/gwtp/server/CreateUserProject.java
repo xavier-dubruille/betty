@@ -251,9 +251,9 @@ public class CreateUserProject {
 		
 		s.save(current_project);
 		
-//		ProjectInstance pi = new ProjectInstance("Default instance", 0);
-//		s.save(pi);
-//		current_project.getProjectInstances().add(pi);
+		ProjectInstance pi = new ProjectInstance("Default instance", 0);
+		s.save(pi);
+		current_project.getProjectInstances().add(pi);
 
 		for (Teacher te : teachers.values()) {
 			s.save(te);
@@ -273,10 +273,29 @@ public class CreateUserProject {
 		
 		
 		for (Activity_entity a: cards.values()) {
-			s.save(a);
-			current_project.getActivities().add(a);
 			
-			//for (int i=0; i<)
+			
+			Activity_entity ac;
+			int p1 = a.getCourse().getNbPeriodS1();
+			int p2 = a.getCourse().getNbPeriodS2();
+			
+			if (p1 != 0) {
+				a.getTeacher().setSem1(true);
+				for (int i=1; i<=p1; i++) {
+					ac = a.clone(i,"1");
+					s.save(ac);
+					current_project.getActivities().add(ac);
+				}
+			}
+			
+			if (p2 != 0) {
+				a.getTeacher().setSem2(true);
+				for (int i=1; i<=p2; i++) {
+					ac = a.clone(i,"2");
+					s.save(ac);
+					current_project.getActivities().add(ac);
+				}
+			}
 		}
 			
 		t.commit();

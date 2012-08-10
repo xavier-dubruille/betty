@@ -40,6 +40,9 @@ public class Activity_entity {
 	private Collection<Group_entity> groupSet = new ArrayList<Group_entity>();
 
 	private char classe;
+	private int occurrence;
+
+	private String semestre;
 
 	public Activity_entity() {
 	}
@@ -52,6 +55,10 @@ public class Activity_entity {
 		this.course = c;
 		this.project = current_project;
 	}
+
+
+		
+	
 
 	public Integer getId() {
 		return id;
@@ -110,6 +117,34 @@ public class Activity_entity {
 
 	public char getClasse() {
 		return classe;
+	}
+
+	public int getOccurrence() {
+		return occurrence;
+	}
+
+	public void setOccurrence(int occurrence) {
+		this.occurrence = occurrence;
+	}
+
+	public String getSemestre() {
+		return semestre;
+	}
+	
+	public void setSemestre(String sem) {
+		semestre = sem;
+	}
+
+	public Activity_entity clone(int occurrence, String sem) {
+		Activity_entity clone = new Activity_entity();
+		clone.teacher = teacher;
+		clone.classe =  classe;
+		clone.groupSet = groupSet;
+		clone.course = course;
+		clone.project = project;
+		clone.occurrence = occurrence;
+		clone.semestre = sem;
+		return clone;
 	}
 
 

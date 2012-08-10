@@ -23,14 +23,13 @@ public class Teacher {
 	@Column(name = "name", nullable = false)
 	private String name;
 
-	@OneToMany
-	private Collection<Activity_entity> activities = new ArrayList<Activity_entity>();
-
 	@ManyToOne
 	private Project_entity project;
 	private String firstName;
+	private boolean sem1;
+	private boolean sem2;
 
-	public Teacher() {
+	private Teacher() { // for serialisation
 	}
 
 	public Teacher(String teacherId, String teacherFirstname,
@@ -39,6 +38,8 @@ public class Teacher {
 		this.code = teacherId;
 		this.name = teacherLastname;
 		this.project = current_project;
+		sem1 = false;
+		sem2 = false;
 	}
 
 	public int getId() {
@@ -55,14 +56,6 @@ public class Teacher {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Collection<Activity_entity> getActivities() {
-		return activities;
-	}
-
-	public void setActivities(Collection<Activity_entity> activities) {
-		this.activities = activities;
 	}
 
 	public Project_entity getProject() {
@@ -87,6 +80,31 @@ public class Teacher {
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+
+	public boolean giveCoursesThisSem(String semestre) {
+		if (semestre.equals("1") && sem1)
+			return true;
+		if (semestre.equals("2") && sem2)
+			return true;
+		
+		return false;
+	}
+
+	public boolean isSem1() {
+		return sem1;
+	}
+
+	public void setSem1(boolean sem1) {
+		this.sem1 = sem1;
+	}
+
+	public boolean isSem2() {
+		return sem2;
+	}
+
+	public void setSem2(boolean sem2) {
+		this.sem2 = sem2;
 	}
 
 }

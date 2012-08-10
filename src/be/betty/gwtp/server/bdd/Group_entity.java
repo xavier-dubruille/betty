@@ -20,9 +20,6 @@ public class Group_entity {
 	private int id;
 	private String code;
 
-	@OneToMany
-	private Collection<Activity_entity> activities = new ArrayList<Activity_entity>();
-
 	@ManyToOne
 	private Project_entity project;
 	private String year;
@@ -54,14 +51,6 @@ public class Group_entity {
 
 	public void setCode(String code) {
 		this.code = code;
-	}
-
-	public Collection<Activity_entity> getActivities() {
-		return activities;
-	}
-
-	public void setActivities(Collection<Activity_entity> activities) {
-		this.activities = activities;
 	}
 
 	public Project_entity getProject() {
