@@ -208,3 +208,14 @@ color: black;
 	padding-right: 10px;
 	padding-left: 10px;
 }
+
+.popupPresenter{
+	border-radius: 5px;
+	border-color: gray gray gray gray;
+  	border-width: 3px 2px 2px 2px;
+ 	border-style: solid solid solid solid;
+}
+.popupPresenterExitBar {
+	background: gray;
+	padding-right: 5px;
+}

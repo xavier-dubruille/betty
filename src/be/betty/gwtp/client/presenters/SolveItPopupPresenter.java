@@ -22,6 +22,7 @@ PresenterWidget<SolveItPopupPresenter.MyView> {
 	public interface MyView extends PopupView {
 		TextButton getCancelButton();
 		TextButton getCalculeButton();
+		TextButton getCloseWindowButton();
 		ListBox getInstance_choice();
 		ListBox getTimeLimit();
 	}
@@ -42,6 +43,14 @@ PresenterWidget<SolveItPopupPresenter.MyView> {
 		// CancelButton handler
 		getView().getCancelButton().addClickHandler(new ClickHandler() {
 			@Override public void onClick(ClickEvent arg0) {
+				getView().hide();
+			}
+		});
+		
+		getView().getCloseWindowButton().addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
 				getView().hide();
 			}
 		});

@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
 import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteHandler;
 import com.google.gwt.user.client.ui.Hidden;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.widget.client.TextButton;
 import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.PopupView;
 import com.gwtplatform.mvp.client.PresenterWidget;
@@ -26,6 +27,8 @@ public class NewProjectPresenter extends
 		Button getCancel_button();
 
 		TextBox getProject_name();
+		
+		TextButton getCloseWindowButton();
 
 		Button getSend_button();
 
@@ -58,6 +61,14 @@ public class NewProjectPresenter extends
 		
 		// cancel_button handler
 		getView().getCancel_button().addClickHandler(new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				getView().hide();
+			}
+		});
+		
+		getView().getCloseWindowButton().addClickHandler(new ClickHandler() {
+			
 			@Override
 			public void onClick(ClickEvent event) {
 				getView().hide();

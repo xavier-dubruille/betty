@@ -12,7 +12,7 @@ import com.google.gwt.widget.client.TextButton;
 import com.google.gwt.user.client.ui.ListBox;
 
 public class SolveItPopupView extends PopupViewImpl implements
-		SolveItPopupPresenter.MyView {
+SolveItPopupPresenter.MyView {
 
 	private final Widget widget;
 
@@ -34,7 +34,8 @@ public class SolveItPopupView extends PopupViewImpl implements
 	@UiField ListBox instanceChoice;
 	@UiField ListBox timeLimit;
 	@UiField ListBox initialState;
-	
+	@UiField TextButton closeWindowButton;
+
 	@Override
 	public TextButton getCancelButton() {
 		return cancelButton;
@@ -43,6 +44,10 @@ public class SolveItPopupView extends PopupViewImpl implements
 	@Override
 	public TextButton getCalculeButton() {
 		return calculeButton;
+	}
+
+	public TextButton getCloseWindowButton() {
+		return closeWindowButton;
 	}
 
 	@Override

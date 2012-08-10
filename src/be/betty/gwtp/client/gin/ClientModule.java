@@ -7,6 +7,7 @@ import be.betty.gwtp.client.presenters.LoginPresenter;
 import be.betty.gwtp.client.presenters.MainPresenter;
 import be.betty.gwtp.client.views.AboutUsView;
 import be.betty.gwtp.client.views.BoardView;
+import be.betty.gwtp.client.views.DeleteProjectPopupView;
 import be.betty.gwtp.client.views.HeaderView;
 import be.betty.gwtp.client.views.LoginView;
 import be.betty.gwtp.client.views.MainView;
@@ -31,6 +32,7 @@ import be.betty.gwtp.client.views.CardSelectionOptionView;
 import be.betty.gwtp.client.presenters.BoardPresenter;
 import be.betty.gwtp.client.presenters.AboutUsPresenter;
 import be.betty.gwtp.client.views.SolveItPopupView;
+import be.betty.gwtp.client.presenters.DeleteProjectPopupPresenter;
 
 public class ClientModule extends AbstractPresenterModule {
 
@@ -74,6 +76,10 @@ public class ClientModule extends AbstractPresenterModule {
 	
 		bindPresenterWidget(AboutUsPresenter.class,
 				AboutUsPresenter.MyView.class, AboutUsView.class);
+
+		bindPresenterWidget(DeleteProjectPopupPresenter.class,
+				DeleteProjectPopupPresenter.MyView.class,
+				DeleteProjectPopupView.class);
 
 		bindPresenterWidget(SolveItPopupPresenter.class,
 				SolveItPopupPresenter.MyView.class, SolveItPopupView.class);
