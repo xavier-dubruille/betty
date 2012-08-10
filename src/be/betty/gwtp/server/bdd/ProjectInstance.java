@@ -21,7 +21,7 @@ public class ProjectInstance {
 	private String description;
 
 	private int num;
-	@ManyToOne private Project_entity parentProject;
+	
 	@OneToMany private Collection<ActivityState> activitiesState = new ArrayList<ActivityState>();
 	
 	public ProjectInstance() {}
@@ -35,12 +35,7 @@ public class ProjectInstance {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Project_entity getParentProject() {
-		return parentProject;
-	}
-	public void setParentProject(Project_entity parentProject) {
-		this.parentProject = parentProject;
-	}
+
 	public int getNum() {
 		return num;
 	}
