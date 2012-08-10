@@ -89,6 +89,8 @@ public class MainPresenter extends
 	@Inject DispatchAsync dispatcher;
 
 	public static Map<String,CardWidget> allCards;
+	private String sem;
+
 
 	@ProxyCodeSplit
 	@NameToken(NameTokens.main)
@@ -258,6 +260,7 @@ public class MainPresenter extends
 	public void prepareFromRequest(PlaceRequest request) {
 		super.prepareFromRequest(request);
 		project_num = request.getParameter("p", "-1");
+		sem = request.getParameter("s", "-1") ;
 		// System.out.println("prepare from request: "+name);
 		System.out.println("load semestre num "+request.getParameter("s", "-1"));
 	}
@@ -380,9 +383,10 @@ public class MainPresenter extends
 				"Welcome " + login + " *****  Projet num " + project_num);
 
 		//ClientUtils.DONT_REPEAT_YOURSELF = {true};  //marche po :(
-		GetCards action = new GetCards(project_num);
+		GetCards action = new GetCards(project_num, sem);
 		dispatcher.execute(action, new AsyncCallback<GetCardsResult>() {
 
+			
 			@Override
 			public void onFailure(Throwable arg0) {
 				// TODO Auto-generated method stub
@@ -398,12 +402,12 @@ public class MainPresenter extends
 //				else return;
 
 				Storage_access.populateStorage(project_num,result);
-				
+				//Storage_access.printStorage();
 				
 				
 				print_da_page();
 				// getView().getContent().setText(result.getActivities().toString());
-				//Storage_access.printStorage();
+				
 
 			}
 

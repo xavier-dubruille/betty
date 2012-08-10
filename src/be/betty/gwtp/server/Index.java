@@ -6,17 +6,19 @@ import java.util.Map;
 // TODO: met-t-on des assert ˆ toutes les methodes ?
 public class Index {
 
-	public final static String group = "group";
-	public final static String section = "section";
-	public final static String year = "year";
-	public final static String course_name = "course_name";
-	public final static String teacher_firstName = "teacher_firstName";
-	public final static String courses_id = "courses_id";
-	public final static String teacher_id = "teacher_id";
-	public final static String period = "period";
-	public final static String teacher_lastName = "teacher_lastName";
-	public final static String mod = "mod";
-	public final static String section_name = "section_name";
+	private final static String group = "group";
+	private final static String section = "section";
+	private final static String year = "year";
+	private final static String course_name = "course_name";
+	private final static String teacher_firstName = "teacher_firstName";
+	private final static String courses_id = "courses_id";
+	private final static String teacher_id = "teacher_id";
+	private final static String period1 = "period1";
+	private final static String period2 = "period2";
+	private final static String teacher_lastName = "teacher_lastName";
+	private final static String mod = "mod";
+	private final static String section_name = "section_name";
+	private final static String info = "info";
 	
 	// these following (and only these) are used for the room file
 	public static final int ROOM_CODE = 0;
@@ -30,6 +32,7 @@ public class Index {
 
 	private Map<String, Integer> indexLine;
 	private String[] singleLine;
+	
 
 	public Index() {
 		indexLine = new HashMap<String, Integer>();
@@ -75,8 +78,12 @@ public class Index {
 		return generic_get(teacher_id);
 	}
 
-	public String getPeriod() {
-		return generic_get(period);
+	public int getPeriod1() {
+		return Integer.parseInt(generic_get(period1));
+	}
+	
+	public int getPeriod2() {
+		return Integer.parseInt(generic_get(period2));
 	}
 
 	public String getTeacherLastname() {
@@ -117,42 +124,44 @@ public class Index {
 		for (int i = 0; i < line.length; i++) {
 
 			if (line[i].equalsIgnoreCase("annŽe"))
-				indexLine.put("year", i);
+				indexLine.put(year, i);
 
 			else if (line[i].equalsIgnoreCase("IntitulŽ cours"))
-				indexLine.put("course_name", i);
+				indexLine.put(course_name, i);
 
 			else if (line[i].equalsIgnoreCase("PrŽnom"))
-				indexLine.put("teacher_firstName", i);
+				indexLine.put(teacher_firstName, i);
 
 			else if (line[i].equalsIgnoreCase("nom"))
-				indexLine.put("teacher_lastName", i);
+				indexLine.put(teacher_lastName, i);
 
-			else if (line[i].equalsIgnoreCase(sem)) {
-				indexLine.put("period", i);
+			else if (line[i].equalsIgnoreCase("ORCO_NombrePeriodeSemaineSemestre1")) {
+				indexLine.put(period1, i);
 				// System.out.println("on a fixŽ l'index des periodes ˆ: "+i);
 			}
+			else if (line[i].equalsIgnoreCase("ORCO_NombrePeriodeSemaineSemestre2"))
+				indexLine.put(period2, i);
 
 			else if (line[i].equalsIgnoreCase("CodeCours"))
-				indexLine.put("courses_id", i);
+				indexLine.put(courses_id, i);
 
 			else if (line[i].equalsIgnoreCase("PERS_Id"))
-				indexLine.put("teacher_id", i);
+				indexLine.put(teacher_id, i);
 
 			else if (line[i].equalsIgnoreCase("groupe"))
-				indexLine.put("group", i);
+				indexLine.put(group, i);
 
 			else if (line[i].equalsIgnoreCase("IntitulŽ Section"))
-				indexLine.put("section_name", i);
+				indexLine.put(section_name, i);
 
 			else if (line[i].equalsIgnoreCase("Section"))
-				indexLine.put("section", i);
+				indexLine.put(section, i);
 
 			else if (line[i].equalsIgnoreCase("Mode"))
-				indexLine.put("mod", i);
+				indexLine.put(mod, i);
 
 			else if (line[i].equalsIgnoreCase("ORCO_SalleInformatique"))
-				indexLine.put("info", i);
+				indexLine.put(info, i);
 
 		}
 		// System.out.println("indexline :"+indexLine);

@@ -34,7 +34,7 @@ public class CardInView {
 		case 1:
 			break;
 		case 2:
-			if (Storage_access.getGroupIdCard(card) == c2) return true;
+			//if (Storage_access.getGroupIdCard(card) == c2) return true;
 			break;
 		}
 		//System.out.println("==>no");
