@@ -2,21 +2,23 @@
 
 
 echo "*** Starting remove the (remote) old project"
-ssh root@betty.sytes.net 'rm -rf /var/lib/tomcat6/webapps/betty/*'
+ssh root@betty.sytes.net "rm -rf /var/lib/tomcat6/webapps/$1"
+ssh root@betty.sytes.net "mkdir /var/lib/tomcat6/webapps/$1"
 
-echo "*** Done remove, starting moving local files"
-mv war/WEB-INF/lib /tmp
-mv war/WEB-INF/deploy /tmp
+echo "*** Done remove, starting copy local files"
+rm -fr /tmp/bett
+mkdir /tmp/bett
+cp -r war/* /tmp/bett/
+rm -r /tmp/bett/WEB-INF/lib
+rm -r /tmp/bett/WEB-INF/deploy
+rm -r /tmp/bett/betty_gwtp/sc
 
 echo "*** Sending data .."
-scp -r war/* root@betty.sytes.net:/var/lib/tomcat6/webapps/betty
-
-echo "*** Data sent, putting local files in place."
-mv /tmp/lib war/WEB-INF/
-mv /tmp/deploy war/WEB-INF/
+scp -r /tmp/bett/* root@betty.sytes.net:/var/lib/tomcat6/webapps/$1
 
 echo "*** Copying libraries in the remote war directory"
-ssh root@betty.sytes.net 'cp -r /var/lib/tomcat6/webapps/complete_lib2 /var/lib/tomcat6/webapps/betty/WEB-INF/lib'
+ssh root@betty.sytes.net "cp -r /var/lib/tomcat6/webapps/all_libs /var/lib/tomcat6/webapps/$1/WEB-INF/lib"
+ssh root@betty.sytes.net "cp -r /var/lib/tomcat6/webapps/skins /var/lib/tomcat6/webapps/$1/betty_gwtp/sc"
 
 
 echo "*** Let's restart tomcat.."

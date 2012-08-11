@@ -14,6 +14,7 @@ import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.widget.client.TextButton;
+import com.google.gwt.user.client.ui.Hyperlink;
 
 public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 
@@ -28,6 +29,8 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 	@UiField DockPanel Dock_panel;
 	@UiField Image loadingPicture;
 	@UiField TextButton buttonLogin;
+	@UiField Hyperlink forgetPassword;
+	@UiField Hyperlink hyperlinkSubscribe;
 	
 	public interface Binder extends UiBinder<Widget, LoginView> {
 	}
@@ -80,5 +83,11 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 		return buttonLogin;
 	}
 	
+	/*public Image getImageGoSubscribe(){
+		return imageGoSubscribe;
+	}*/
 	
+	public Hyperlink getHyperlinkSubscribe(){
+		return hyperlinkSubscribe;
+	}
 }

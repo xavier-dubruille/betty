@@ -15,6 +15,11 @@ body {
 	padding: 5px;
 }
 
+.testImageButton{
+	color: black;
+	background: transparent url(arrowRight.jpg);
+}
+
 .cardPlaced {
 	border: 1px solid;
 	font-size: 10px;
@@ -220,4 +225,8 @@ color: black;
 .popupPresenterExitBar {
 	background: gray;
 	padding-right: 5px;
+}
+
+.clickable{
+	cursor: pointer;
 }

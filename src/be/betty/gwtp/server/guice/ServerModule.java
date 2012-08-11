@@ -20,6 +20,8 @@ import be.betty.gwtp.client.action.SolveIt;
 import be.betty.gwtp.server.SolveItActionHandler;
 import be.betty.gwtp.client.action.GetInstancesOnly;
 import be.betty.gwtp.server.GetInstancesOnlyActionHandler;
+import be.betty.gwtp.client.action.SubscribeUserAction;
+import be.betty.gwtp.server.SubscribeUserActionActionHandler;
 
 public class ServerModule extends HandlerModule {
 
@@ -37,6 +39,9 @@ public class ServerModule extends HandlerModule {
 		bindHandler(GetCards.class, GetCardsActionHandler.class);
 	
 		bindHandler(SubscribeAction.class, SubscribeActionActionHandler.class);
+
+		bindHandler(SubscribeUserAction.class,
+				SubscribeUserActionActionHandler.class);
 
 		bindHandler(SaveCardDropAction.class,
 				SaveCardDropActionActionHandler.class);

@@ -113,9 +113,10 @@ public class HeaderPresenter extends
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				if (stockStore != null) {
+				if (stockStore != null) {	
 					stockStore.removeItem("login");
 					stockStore.removeItem("session_id");
+					stockStore.clear();
 					placeManager.revealPlace(new PlaceRequest(NameTokens.login));
 				}
 				

@@ -42,9 +42,8 @@ public class AddNewCardPopupPresenter extends
 	@Override
 	protected void onBind() {
 		super.onBind();
-		
-		createComboBox();
-
+	
+		//createComboBox();
 		
 		getView().getCourseComboBox().addChangeHandler(new ChangeHandler() {
 			
@@ -66,7 +65,9 @@ public class AddNewCardPopupPresenter extends
 	}
 	
 	@Override
-	public void onReset() {
+
+	protected void onReset() {
+		super.onReset();
 		populateComboBox();
 	}
 	
@@ -81,7 +82,7 @@ public class AddNewCardPopupPresenter extends
 	public void populateComboBox(){
 		
 		// FOR GROUP
-		LinkedHashMap<String, String> valueMapGroup = new LinkedHashMap<String, String>();
+		/*LinkedHashMap<String, String> valueMapGroup = new LinkedHashMap<String, String>();
 		for (int i = 0; i < Storage_access.getNumberOfGroup(); i++) {
 			valueMapGroup.put(""+i, Storage_access.getGroup(i));
 		}
@@ -90,6 +91,7 @@ public class AddNewCardPopupPresenter extends
 		groupComboBox.setMultipleAppearance(MultipleAppearance.PICKLIST);
 		groupComboBox.setValueMap(valueMapGroup);
 		getView().getGroupDynForm().setItems(groupComboBox);
+		*/
 		
 		for (int i = 0; i < Storage_access.getNumberOfTeacher(); i++) {
 			getView().getTeacherComboBox().addItem(Storage_access.getTeacher(i), ""+i);
