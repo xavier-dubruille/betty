@@ -16,6 +16,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.TextBox;
@@ -44,6 +45,8 @@ public class LoginPresenter extends
 		public DockPanel getDock_panel();
 		public Image getLoadingPicture();
 		public TextButton getButtonLogin();
+		//public Image getImageGoSubscribe();
+		public Hyperlink getHyperlinkSubscribe();
 	}
 
 	@ProxyCodeSplit
@@ -72,6 +75,13 @@ public class LoginPresenter extends
 	@Override
 	protected void onBind() {
 		super.onBind();
+		
+		Image image = new Image("arrowRight.png");
+		getView().getHyperlinkSubscribe().getElement().appendChild(image.getElement());
+		image.addStyleName("clickable");
+		getView().getHyperlinkSubscribe().setTitle("Subscribe");
+		
+		//getView().getImageGoSubscribe().addStyleName("clickable");
 		
 		//getView().getDock_panel().setWidth(width);
 		//getView().getDock_panel().setHeight(height);

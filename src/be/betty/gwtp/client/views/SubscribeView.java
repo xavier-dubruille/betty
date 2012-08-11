@@ -14,6 +14,7 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.PasswordTextBox;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.widget.client.TextButton;
+import com.google.gwt.user.client.ui.Hyperlink;
 
 public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView {
 
@@ -35,6 +36,7 @@ public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView
 	@UiField Image passwordVerPicture;
 	@UiField Image emailPicture;
 	@UiField TextButton buttonSubscribe;
+	@UiField Hyperlink hyperlinkLogin;
 	
 	
 	public interface Binder extends UiBinder<Widget, SubscribeView> {
@@ -114,6 +116,10 @@ public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView
 	
 	public TextButton getButtonSubscribe(){
 		return buttonSubscribe;
+	}
+	
+	public Hyperlink getHyperlinkLogin(){
+		return hyperlinkLogin;
 	}
 
 }
