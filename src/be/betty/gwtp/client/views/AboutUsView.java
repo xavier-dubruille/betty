@@ -9,16 +9,19 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
+import com.google.gwt.widget.client.TextButton;
 
 public class AboutUsView extends PopupViewImpl implements
 		AboutUsPresenter.MyView {
 
 	private final Widget widget;
-	@UiField Button okButton;
 
 	public interface Binder extends UiBinder<Widget, AboutUsView> {
 	}
 
+	@UiField TextButton okButton;
+	@UiField TextButton closeWindowButton;
+	
 	@Inject
 	public AboutUsView(final EventBus eventBus, final Binder binder) {
 		super(eventBus);
@@ -29,9 +32,13 @@ public class AboutUsView extends PopupViewImpl implements
 	public Widget asWidget() {
 		return widget;
 	}
-	
-	public Button getOkButton(){
+
+	public TextButton getOkButton() {
 		return okButton;
+	}
+	
+	public TextButton getCloseWindowButton() {
+		return closeWindowButton;
 	}
 	
 }

@@ -11,7 +11,7 @@
 			<g:VerticalPanel width="100%" horizontalAlignment="ALIGN_RIGHT" styleName="popupPresenterExitBar" ui:field="verticalPanel">
 				<w:TextButton value="" width="10px" height="12px" ui:field="buttonCloseBar">New button</w:TextButton>
 			</g:VerticalPanel>
-			<g:Label text="New Label" horizontalAlignment="ALIGN_CENTER" ui:field="LabelInfo"/>
+			<g:Label text="Are you sure you want to delete it?" horizontalAlignment="ALIGN_CENTER" ui:field="LabelInfo"/>
 			<g:HorizontalPanel width="100%" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE">
 				<w:TextButton width="50px" ui:field="buttonYes" text="Yes">New button</w:TextButton>
 				<w:TextButton text="No" ui:field="ButtonNo" width="50px">New button</w:TextButton>

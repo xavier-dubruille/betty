@@ -172,6 +172,7 @@ body {
 .ProjectCarton1{
 	background-color: cornflowerblue;
 	color: white;
+	box-shadow: 8px 8px 12px #aaa;
 	padding-left: 5px;
 	padding-top: 40px;
 	padding-bottom: 40px;
@@ -219,12 +220,13 @@ color: black;
 	border-color: gray gray gray gray;
   	border-width: 3px 2px 2px 2px;
  	border-style: solid solid solid solid;
- 	background: #FEFEE2;
+ 	background: #F6F6F6;
  	box-shadow: 8px 8px 12px #aaa;
 }
 .popupPresenterExitBar {
 	background: gray;
 	padding-right: 5px;
+	padding-left: 5px;
 }
 
 .clickable{

@@ -7,12 +7,14 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.widget.client.TextButton;
 
 public class AboutUsPresenter extends PresenterWidget<AboutUsPresenter.MyView> {
 
 	public interface MyView extends PopupView {
 		// TODO Put your view methods here
-		public Button getOkButton();
+		public TextButton getOkButton();
+		public TextButton getCloseWindowButton();
 	}
 
 	@Inject
@@ -24,13 +26,20 @@ public class AboutUsPresenter extends PresenterWidget<AboutUsPresenter.MyView> {
 	protected void onBind() {
 		super.onBind();
 		
-		// okButton handler
 		getView().getOkButton().addClickHandler(new ClickHandler() {
 			@Override public void onClick(ClickEvent event) {
 				getView().hide();
 			}
 		});
 		
-		//
+		getView().getCloseWindowButton().addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				// TODO Auto-generated method stub
+				getView().hide();
+			}
+		});
+		
 	}
 }

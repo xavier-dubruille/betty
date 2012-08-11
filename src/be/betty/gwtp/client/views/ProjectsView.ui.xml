@@ -12,7 +12,7 @@
 				<w:TextButton text="Create new project" ui:field="buttonNewProject">New button</w:TextButton>
 			</g:Cell>
 			<g:Cell horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE">
-				<g:Label ui:field="info_label" height="17px" />
+				<g:Label ui:field="info_label" height="17px" horizontalAlignment="ALIGN_CENTER" />
 			</g:Cell>
 			<g:Cell horizontalAlignment="ALIGN_CENTER">
 				<g:Image width="64px" height="64px" url="LoadingProject.gif" ui:field="loadingPicutre"/>

@@ -108,7 +108,7 @@ public class ProjectsPresenter extends
 		setInSlot(SLOT_project, null);
 		
 		getView().getLoadingPicture().setVisible(true);
-		getView().getInfo_label().setText("Fetching info ..");
+		getView().getInfo_label().setText("Loading");
 				
 		String sess = null;
 		if (stockStore != null)
@@ -141,15 +141,21 @@ public class ProjectsPresenter extends
 	};
 
 	private void writeProjectWidgets(final ArrayList<Project> projects) {
-
-		for (int i = 0; i < projects.size(); i++) {
+		
+		final ArrayList<Project> projectsSorted = new ArrayList<Project>();
+		
+		for (int i = projects.size(); i > 0; i--){
+			projectsSorted.add(projects.get(i-1));
+		}
+		
+		for (int i = 0; i < projectsSorted.size(); i++) {
 			final int myI = i;
 			projectFactory.get(new AsyncCallback<SingleProjectPresenter>() {
 
 				@Override
 				public void onSuccess(SingleProjectPresenter result) {
 					addToSlot(SLOT_project, result);
-					result.init(projects.get(myI));
+					result.init(projectsSorted.get(myI));
 				}
 
 				@Override

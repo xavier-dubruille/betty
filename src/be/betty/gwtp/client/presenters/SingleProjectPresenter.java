@@ -2,7 +2,11 @@ package be.betty.gwtp.client.presenters;
 
 import be.betty.gwtp.client.action.DeleteProjectAction;
 import be.betty.gwtp.client.action.DeleteProjectActionResult;
+import be.betty.gwtp.client.event.PopupAreYouSureEvent;
+import be.betty.gwtp.client.event.PopupAreYouSureEvent.PopupAreYouSureHandler;
 import be.betty.gwtp.client.event.ProjectListModifyEvent;
+import be.betty.gwtp.client.event.ShowPlacedCardEvent;
+import be.betty.gwtp.client.event.ShowPlacedCardEvent.ShowPlacedCardHandler;
 import be.betty.gwtp.client.model.Project;
 
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -38,58 +42,31 @@ public class SingleProjectPresenter extends
 
 	private Project projectModel;
 	private Storage stockStore;
+	private EventBus myEventBus;
+	private boolean yesIsCheck;
+
 
 	@Inject
 	public SingleProjectPresenter(final EventBus eventBus, final MyView view) {
 		super(eventBus, view);
 		stockStore = Storage.getLocalStorageIfSupported();
+		myEventBus = eventBus;
 	}
 
 	@Inject
 	DispatchAsync dispatcher;
+	
+	@Inject DeleteProjectPopupPresenter deleteProjectPresenter;
 
 	@Override
 	protected void onBind() {
 		super.onBind();
 
-		/*getView().getDeleteButton().addClickHandler(new ClickHandler() {
+		registerHandler(getEventBus().addHandler(
+				PopupAreYouSureEvent.getType(), areYouSureHandler));
+		getView().getImageDelete().setStyleName("clickable");
+		getView().getImageSettings().setStyleName("clickable");
 
-			@Override
-			public void onClick(ClickEvent event) {
-				// TODO : c'est vrmt cradement ecrit tt ca.. !!
-				Window.alert("you are about to delete project id "
-						+ projectModel.getId());
-				String sess_id = "";
-				if (stockStore != null)
-					sess_id = stockStore.getItem("session_id");
-				DeleteProjectAction action = new DeleteProjectAction(
-						projectModel.getId(), sess_id);
-				dispatcher.execute(action,
-						new AsyncCallback<DeleteProjectActionResult>() {
-
-							@Override
-							public void onFailure(Throwable caught) {
-								// TODO Auto-generated method stub
-
-							}
-
-							@Override
-							public void onSuccess(
-									DeleteProjectActionResult result) {
-								getEventBus().fireEvent(
-										new ProjectListModifyEvent()); // TODO:
-								// add
-								// the
-								// project
-								// in
-								// parameter
-
-							}
-						});
-
-			}
-		});*/
-		
 		getView().getImageDelete().addMouseMoveHandler(new MouseMoveHandler() {
 			
 			@Override
@@ -103,9 +80,13 @@ public class SingleProjectPresenter extends
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				Window.alert("you are about to delete the project: "
-						+ projectModel.getName());
-				String sess_id = "";
+				
+				addToPopupSlot(deleteProjectPresenter);
+				
+				
+				//Window.alert("you are about to delete the project: "
+				//		+ projectModel.getName());
+				/*String sess_id = "";
 				if (stockStore != null)
 					sess_id = stockStore.getItem("session_id");
 				DeleteProjectAction action = new DeleteProjectAction(
@@ -131,7 +112,7 @@ public class SingleProjectPresenter extends
 								// parameter
 
 							}
-						});
+						});*/
 
 			}
 		});
@@ -144,6 +125,54 @@ public class SingleProjectPresenter extends
 			}
 		});
 		
+	}
+	
+	
+	private PopupAreYouSureHandler areYouSureHandler = new PopupAreYouSureHandler() {
+		@Override public void onPopupAreYouSure(PopupAreYouSureEvent event) {
+			yesIsCheck = event.YesisCheck();
+			test();
+			//cardSelectionOptionPresenter.setShowPlacedCard(event.isChecked());
+			//cardSelectionOptionPresenter.redrawAllCardsFromSelectionPanel();
+		}
+	};
+	
+	public void test(){
+		if(yesIsCheck)
+			System.out.println("yes is clicked on efface tout!");		
+		
+		if(!yesIsCheck)
+			System.out.println("No is clicked");
+	}
+	
+	public void deleteProject(){
+		String sess_id = "";
+		if (stockStore != null)
+			sess_id = stockStore.getItem("session_id");
+		DeleteProjectAction action = new DeleteProjectAction(
+				projectModel.getId(), sess_id);
+		dispatcher.execute(action,
+				new AsyncCallback<DeleteProjectActionResult>() {
+
+					@Override
+					public void onFailure(Throwable caught) {
+						// TODO Auto-generated method stub
+
+					}
+
+					@Override
+					public void onSuccess(
+							DeleteProjectActionResult result) {
+						getEventBus().fireEvent(
+								new ProjectListModifyEvent()); // TODO:
+						// add
+						// the
+						// project
+						// in
+						// parameter
+
+					}
+				});
 	}
 
 	public void init(Project project) {
@@ -158,4 +187,8 @@ public class SingleProjectPresenter extends
 		
 
 	}
+	
+	/*public void setYesIsCheck(boolean yesIsCheck){
+		this.yesIsCheck = yesIsCheck;
+	}*/
 }
