@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +39,6 @@ public class CreateUserProject {
 	private int choice_sem = 1;
 	private String csvDelemiter;
 	private Index index;
-	private Session sess;
 	private Project_entity current_project;
 
 	private Map<Integer, Activity_entity> cards;
@@ -46,6 +47,7 @@ public class CreateUserProject {
 	private Map<String, Course> courses;
 	private Activity_entity c;
 	private int cardMapId;
+	private  Map<String, Room> rooms;
 
 	public CreateUserProject(Project_entity projectToBeSaved) {
 		index = new Index();
@@ -57,7 +59,8 @@ public class CreateUserProject {
 		teachers = new HashMap<String, Teacher>();
 		groups = new HashMap<String, Group_entity>();
 		courses = new HashMap<String, Course>();
-		
+		rooms = new HashMap<String, Room>();
+
 		cardMapId = 0;
 	}
 
@@ -81,7 +84,6 @@ public class CreateUserProject {
 		readCardFromXLS(filePath);
 
 	}
-
 
 
 
@@ -110,7 +112,7 @@ public class CreateUserProject {
 
 		// si c'est un cours "sans cartons": on arrète là..
 		if (index.getCourseName().equalsIgnoreCase("stages") ||
-			index.getCoursesId().equalsIgnoreCase("T310T99")) 
+				index.getCoursesId().equalsIgnoreCase("T310T99")) 
 			return;
 
 		if (!teachers.containsKey(index.getTeacherId()))
@@ -120,7 +122,7 @@ public class CreateUserProject {
 
 		if (!courses.containsKey(index.getCoursesId()))
 			courses.put(index.getCoursesId(), new Course(index.getCoursesId(), index.getCourseName(),
-					index.getMod(), index.getPeriod1(), index.getPeriod2(), current_project));
+					index.getMod(), index.getType(), index.getPeriod1(), index.getPeriod2(), current_project));
 
 		String groupCode = index.getYear() + index.getSection() +index.getGroup();
 		if (!groups.containsKey(groupCode))
@@ -143,85 +145,92 @@ public class CreateUserProject {
 			c.getGroupSet().add(groups.get(groupCode));
 			return;
 		}
-		
-		
+
+
 		// et sinon, on crée un nouveau carton..
 		c = new Activity_entity(teachers.get(index.getTeacherId()),
-								groups.get(groupCode),
-								courses.get(index.getCoursesId()), current_project);
+				groups.get(groupCode),
+				courses.get(index.getCoursesId()), current_project);
 		cards.put(cardMapId++, c);
 
 
-
-		//
-		//		List l = null;
-		//
-		//		// System.out.println("teacher id= "+index.getTeacherId());
-		//		l = sess.createQuery("from Teacher where code=? and project_id=?")
-		//				.setString(0, index.getTeacherId())
-		//				.setString(1, "" + current_project.getId()).list();
-		//
-		//		// System.out.println("list = "+l);
-		//		Teacher t;
-		//		if (l.size() == 0) {
-		//			t = new Teacher(index.getTeacherId(), index.getTeacherFirstname(),
-		//					index.getTeacherLastname(), current_project);
-		//			sess.save(t);
-		//			current_project.getTeachers().add(t);
-		//		} else
-		//			t = (Teacher) l.get(0);
-		//
-		//		String group_code = "" + index.getYear() + index.getSection()
-		//				+ index.getGroup();
-		//		Group_entity g;
-		//		l = sess.createQuery("from Group_entity where code=? and project_id=?")
-		//				.setString(0, group_code)
-		//				.setString(1, "" + current_project.getId()).list();
-		//		if (l.size() == 0) {
-		//			g = new Group_entity(group_code, current_project);
-		//			sess.save(g);
-		//			current_project.getGroups().add(g);
-		//		} else
-		//			g = (Group_entity) l.get(0);
-		//
-		//		Course c;
-		//		l = sess.createQuery("from Course where code=? and project_id=?")
-		//				.setString(0, index.getCoursesId())
-		//				.setString(1, "" + current_project.getId()).list();
-		//		if (l.size() == 0) {
-		//			c = new Course(index.getCoursesId(), index.getCourseName(),
-		//					index.getMod(), periods, current_project);
-		//			sess.save(c);
-		//			current_project.getCourses().add(c);
-		//		} else
-		//			c = (Course) l.get(0);
-		//
-		//		Activity_entity a = new Activity_entity(t, g, c, current_project);
-		//		sess.save(a);
-		//		current_project.getActivities().add(a);
-		//		//
-		//		// // System.out.println(index.getCourseName());
-		//		// // System.out.println(Arrays.asList(line));
-		//		//
 		//		// // faut pas oublier ca..
 		//		// // if(teacher_lastName.equalsIgnoreCase("{N}"))
 		//		// // teacher_lastName="Indefini";
 
 	}
 
+	/**
+	 *  
+	 *  it will set to each courses all the possible room for him
+	 *  
+	 *  pre: rooms and activities has to be full-filled !
+	 */
+	public void setRoomToCourse() {
+		for (Course c: courses.values()) {
+			c.setPossibleRooms(getRoomsLike( c.getMode(), c.getType()));
+		}
+
+	}
+
+
+	/**
+	 * 
+	 * It will find all rooms corresponding to the criteria
+	 * 
+	 * @param rooms
+	 * @param mode
+	 * @param type
+	 * @return
+	 */
+	private ArrayList<Room> getRoomsLike( String mode, String type) {
+		ArrayList<Room> possRoom = new ArrayList<Room>();
+		//System.out.println("trouvons des locaux pour un cours en: "+mode+" et de type: "+type);
+		for (Room r: rooms.values()) {
+			//System.out.print("==> qd est-il du local "+r.getCode()+" ?");
+			if (!type.equalsIgnoreCase(r.getType())) {
+				//System.out.println(" .. pas du bon type");
+				continue;
+			}
+			if (mode.equalsIgnoreCase("classe") && r.getContenance() < 42) {
+				//System.out.println(" .. trop petit");
+				continue;
+			}
+			if (mode.equalsIgnoreCase("groupe") && r.getContenance() < 24) {
+				//System.out.println(" .. trop petit");
+				continue;
+			}
+
+			///System.out.println(" .. parfait.");
+			possRoom.add(r);
+		}
+
+		return possRoom;
+	}
+
+
+	/**
+	 * 
+	 * 
+	 * @param coursesId
+	 * @param mod
+	 * @param group
+	 * @param teacherId
+	 * @return
+	 */	
 	private Activity_entity getBelonginActivityIfExist(String coursesId,
 			String mod, String group, String teacherId) {
 		char classe = group.charAt(0);
 		char num = group.charAt(1);
-		
+
 		if (!mod.equalsIgnoreCase("classe"))
 			return null;
-		
+
 		// we want to keep only the "second"(maybe third or fourth) group 
 		// of a class (e.g. L2, L3, M2, ..)
 		if (num <= 49 || num >= 55)
 			return null;
-		
+
 		for (Activity_entity a: cards.values()) {
 			if (a.getCourse().getCode().equalsIgnoreCase(coursesId) &&
 					a.getTeacher().getCode().equalsIgnoreCase(teacherId) &&
@@ -245,40 +254,47 @@ public class CreateUserProject {
 	public void saveStateToBdd() {
 		System.out.println("save in bdd");
 		//System.out.println("activities = "+cards);
-		
+
 		Session s = HibernateUtils.getSession();
 		Transaction t = s.beginTransaction();
-		
+
 		s.save(current_project);
-		
+
 		ProjectInstance pi = new ProjectInstance("Default instance", 0);
 		s.save(pi);
 		current_project.getProjectInstances().add(pi);
+
+		for (Room r: rooms.values()) {
+			s.save(r);
+			current_project.getRooms().add(r);
+		}
 
 		for (Teacher te : teachers.values()) {
 			s.save(te);
 			current_project.getTeachers().add(te);
 		}
-			
-		
+
+
 		for (Course c : courses.values()) {
+			System.out.println("course about to be saved ==> "+c.getPossibleRooms());
 			s.save(c);
 			current_project.getCourses().add(c);
 		}
-		
+
 		for (Group_entity g: groups.values()) {
 			s.save(g);
 			current_project.getGroups().add(g);
 		}
-		
-		
+
+
+
 		for (Activity_entity a: cards.values()) {
-			
-			
+
+
 			Activity_entity ac;
 			int p1 = a.getCourse().getNbPeriodS1();
 			int p2 = a.getCourse().getNbPeriodS2();
-			
+
 			if (p1 != 0) {
 				a.getTeacher().setSem1(true);
 				for (int i=1; i<=p1; i++) {
@@ -287,7 +303,7 @@ public class CreateUserProject {
 					current_project.getActivities().add(ac);
 				}
 			}
-			
+
 			if (p2 != 0) {
 				a.getTeacher().setSem2(true);
 				for (int i=1; i<=p2; i++) {
@@ -297,7 +313,7 @@ public class CreateUserProject {
 				}
 			}
 		}
-			
+
 		t.commit();
 		s.close();
 	}
@@ -325,9 +341,8 @@ public class CreateUserProject {
 
 				switch (cell.getCellType()) {
 				case Cell.CELL_TYPE_STRING:
-					line[cell.getColumnIndex()] = cell.getRichStringCellValue()
-					.getString();
-					break;
+					line[cell.getColumnIndex()] = cell.getRichStringCellValue().getString();
+					break; 
 				case Cell.CELL_TYPE_NUMERIC:
 					if (DateUtil.isCellDateFormatted(cell)) {
 						line[cell.getColumnIndex()] = cell.getDateCellValue()
@@ -335,7 +350,7 @@ public class CreateUserProject {
 					} else {
 
 						line[cell.getColumnIndex()] = ""
-								+ (int) cell.getNumericCellValue();
+								+ (int) Math.ceil( cell.getNumericCellValue());
 					}
 					break;
 				case Cell.CELL_TYPE_BOOLEAN:
@@ -349,7 +364,7 @@ public class CreateUserProject {
 			// System.out.println(Arrays.asList(line));
 			if (row.getRowNum() == 0)
 				index.putRightIndex(line, this.choice_sem);
-			else
+			else 
 				constructCardStateFromLine(line);
 
 		}
@@ -372,8 +387,6 @@ public class CreateUserProject {
 		HSSFWorkbook wb = new HSSFWorkbook(new POIFSFileSystem(inp));
 		Sheet sheet1 = wb.getSheetAt(0);
 		line = new String[sheet1.getRow(0).getPhysicalNumberOfCells()];
-
-		sess = HibernateUtils.getSession();
 
 		for (Row row : sheet1) {
 			for (Cell cell : row) {
@@ -404,14 +417,15 @@ public class CreateUserProject {
 			// System.out.println(Arrays.asList(line));
 			if (row.getRowNum() == 0) {
 				// index.putRightIndex(line, this.choice_sem);
-				// faut voir si c necessaire..
+				// faut voir si c necessaire, car ce fichier a ete creer par nous, et ne dont pas s'adapter a
+				// plusieur config differente
 			}
 			else
 				constructRoomStateFromLine(line);
 
 		}
 
-		sess.close();
+
 		inp.close();
 
 
@@ -419,29 +433,28 @@ public class CreateUserProject {
 
 	private void constructRoomStateFromLine(String[] line) {
 
-		System.out.println("##@@ trying to save line : "+Arrays.asList(line));
-
-		Transaction tran = sess.beginTransaction();
-
-		// TODO: jpense pas que sauvegarder le (meme) projet à chaque ligne soit
-		// une bonne idée.. loin de là !
-		sess.update(current_project);
-
-		Room r = new Room();
-		r.setCode(line[Index.ROOM_CODE]);
-		r.setType(line[Index.ROOM_TYPE]);
-		r.setContenance(line[Index.ROOM_CONTENANCE]);
-		r.setProject(current_project);
-		r.setBoard(Integer.parseInt(line[Index.ROOM_BOARD]));
-		r.setFloor(Integer.parseInt(line[Index.ROOM_FLOOR]));
-		r.setProjo(Integer.parseInt(line[Index.ROOM_PROJO]));
-		r.setRecorder(Integer.parseInt(line[Index.ROOM_RECORDER]));
-		r.setSlide(Integer.parseInt(line[Index.ROOM_SLIDE]));
+		//System.out.println("##@@ trying to save line : "+Arrays.asList(line));
 
 
-		sess.save(r);
-		current_project.getRooms().add(r);
-		tran.commit();
+
+		try {
+			Room r = new Room();
+			r.setCode(line[Index.ROOM_CODE]);
+			r.setType(line[Index.ROOM_TYPE]);
+			r.setContenance(line[Index.ROOM_CONTENANCE]);
+			r.setProject(current_project);
+			r.setBoard(Integer.parseInt(line[Index.ROOM_BOARD]));
+			r.setFloor(Integer.parseInt(line[Index.ROOM_FLOOR]));
+			r.setProjo(Integer.parseInt(line[Index.ROOM_PROJO]));
+			r.setRecorder(Integer.parseInt(line[Index.ROOM_RECORDER]));
+			r.setSlide(Integer.parseInt(line[Index.ROOM_SLIDE]));
+			rooms.put(r.getCode(),r);
+		} catch (NumberFormatException e) {
+			System.out.println("la lecture de cette ligne a foire: "+Arrays.toString(line));
+			return; 
+		}
+
+
 
 	}
 

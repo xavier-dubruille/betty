@@ -1,5 +1,6 @@
 package be.betty.gwtp.server;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +19,7 @@ public class Index {
 	private final static String teacher_lastName = "teacher_lastName";
 	private final static String mod = "mod";
 	private final static String section_name = "section_name";
-	private final static String info = "info";
+	private final static String type = "type";
 	
 	// these following (and only these) are used for the room file
 	public static final int ROOM_CODE = 0;
@@ -94,6 +95,10 @@ public class Index {
 		return generic_get(mod);
 	}
 
+	public String getType() {
+		return generic_get(type);
+	}
+
 	public String getSectionName() {
 		return generic_get(section_name);
 	}
@@ -117,9 +122,6 @@ public class Index {
 	 * @param choice_sem
 	 */
 	public void putRightIndex(String[] line, int choice_sem) {
-
-		String sem = ("ORCO_NombrePeriodeSemaineSemestre" + choice_sem);
-		// System.out.println("choice sem: "+choice_sem+" "+sem);
 
 		for (int i = 0; i < line.length; i++) {
 
@@ -160,12 +162,14 @@ public class Index {
 			else if (line[i].equalsIgnoreCase("Mode"))
 				indexLine.put(mod, i);
 
-			else if (line[i].equalsIgnoreCase("ORCO_SalleInformatique"))
-				indexLine.put(info, i);
+			else if (line[i].equalsIgnoreCase("ORCO_SalleInformatique") ||
+					line[i].equalsIgnoreCase("type"))
+				indexLine.put(type, i);
 
 		}
 		// System.out.println("indexline :"+indexLine);
 		// System.out.println("line      :"+Arrays.toString(line));
 	}
+
 
 }

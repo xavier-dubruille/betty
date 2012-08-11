@@ -59,8 +59,8 @@ public class Room {
 		this.project = project;
 	}
 
-	public String getContenance() {
-		return Contenance;
+	public int getContenance() {
+		return Integer.parseInt(Contenance);
 	}
 
 	public void setContenance(String contenance) {

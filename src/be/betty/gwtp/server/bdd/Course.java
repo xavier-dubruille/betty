@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -30,6 +31,9 @@ public class Course {
 
 	@OneToMany
 	private Collection<Activity_entity> activities = new ArrayList<Activity_entity>();
+	
+	@OneToMany
+	private Collection<Room> possibleRooms = new ArrayList<Room>();
 
 	private int nbPeriod_s2;
 	private int nbPeriod_s1;
@@ -38,12 +42,13 @@ public class Course {
 	private Course() { //serialisation ..
 	} 
 
-	public Course(String coursesId, String courseName, String mod, int periods_s1,
+	public Course(String coursesId, String courseName, String mod, String type, int periods_s1,
 			int periods_s2, Project_entity current_project) {
 		this.project = current_project;
 		this.code = coursesId;
 		this.name = courseName;
 		this.mode = mod;
+		this.type = type;
 		this.nbPeriod_s1 = periods_s1;
 		this.nbPeriod_s2 = periods_s2;
 	}
@@ -127,6 +132,15 @@ public class Course {
 		else if(semestre.equals("2"))
 			return getNbPeriodS2();
 		else return 0;
+	}
+
+
+	public Collection<Room> getPossibleRooms() {
+		return possibleRooms;
+	}
+
+	public void setPossibleRooms(Collection<Room> possibleRooms) {
+		this.possibleRooms = possibleRooms;
 	}
 
 

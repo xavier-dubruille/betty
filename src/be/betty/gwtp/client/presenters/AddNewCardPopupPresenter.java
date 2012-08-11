@@ -44,7 +44,7 @@ public class AddNewCardPopupPresenter extends
 		super.onBind();
 		
 		createComboBox();
-		populateComboBox();
+
 		
 		getView().getCourseComboBox().addChangeHandler(new ChangeHandler() {
 			
@@ -63,6 +63,11 @@ public class AddNewCardPopupPresenter extends
 				getView().hide();
 			}
 		});
+	}
+	
+	@Override
+	public void onReset() {
+		populateComboBox();
 	}
 	
 	public void createComboBox() {

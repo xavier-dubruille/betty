@@ -10,11 +10,13 @@ import be.betty.gwtp.server.bdd.Course;
 import be.betty.gwtp.server.bdd.Group_entity;
 import be.betty.gwtp.server.bdd.ProjectInstance;
 import be.betty.gwtp.server.bdd.Project_entity;
+import be.betty.gwtp.server.bdd.Room;
 import be.betty.gwtp.server.bdd.Teacher;
 import be.betty.gwtp.shared.dto.Card_dto;
 import be.betty.gwtp.shared.dto.Course_dto;
 import be.betty.gwtp.shared.dto.Group_dto;
 import be.betty.gwtp.shared.dto.ProjectInstance_dto;
+import be.betty.gwtp.shared.dto.Room_dto;
 import be.betty.gwtp.shared.dto.Teacher_dto;
 
 import com.google.inject.Inject;
@@ -67,9 +69,17 @@ ActionHandler<GetCards, GetCardsResult> {
 		for (Group_entity g : p.getGroups())
 			result.addGroup(new Group_dto(g.getCode(), g.getId()));
 		
+		for (Room r: p.getRooms())
+			result.addRoom(new Room_dto(r.getCode(), r.getId()));
+		
+		Course_dto co;
 		for (Course c: p.getCourses())
-			if (c.getNbPeriodSX(action.getSemestre()) !=0 )
-				result.addCourse(new Course_dto(c.getName(), c.getId()));
+			if (c.getNbPeriodSX(action.getSemestre()) !=0 ) {
+				co = new Course_dto(c.getName(), c.getId());
+				for (Room r : c.getPossibleRooms())
+					co.addPossibleRoom(r.getId());
+				result.addCourse(co);
+			}
 		
 		//System.out.println("**<<<** bdd instances:"+p.getProjectInstances());
 		for (ProjectInstance ins: p.getProjectInstances())

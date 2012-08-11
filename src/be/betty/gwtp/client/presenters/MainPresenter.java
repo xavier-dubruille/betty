@@ -484,7 +484,9 @@ public class MainPresenter extends
 			}
 			break;
 		case 1: 
-			
+			for (int i=0; i< Storage_access.getNumberOfRoom(); i++){
+				getView().getCombo_viewChoice2().addItem(Storage_access.getRoom(i));
+			}
 			break;
 		case 2: 
 			for (int i=0; i< Storage_access.getNumberOfGroup(); i++){
