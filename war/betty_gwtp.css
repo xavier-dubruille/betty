@@ -97,7 +97,6 @@ body {
 }
 .login {
 	background: #258;
-	//text-align: center;
 	box-shadow: 8px 8px 12px #aaa;
 	border-radius: 6px;
 	color: #FF4901;
@@ -105,14 +104,7 @@ body {
 	font-weight: bold;
 	
 }
-.login:a {
-	color: white;
-	font-size: medium;
-	font-family: calibri, verdana, arial, "times new roman";
-	font-weight: bold;
-	text-decoration: underline;
-	
-}
+
 .subscribe {
 	background: #258;
 	/*text-align: center;*/
@@ -180,7 +172,7 @@ body {
 	font-size: 9pt;
 }
 .projectNameLabel {
-color: black;
+	color: black;
 
 }
 .singleProject {
