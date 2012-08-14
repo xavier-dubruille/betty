@@ -68,7 +68,7 @@ public class HeaderPresenter extends
 	//Create something to do when we click on the aboutUs MenuItem
 	Command aboutUsCommand = new Command(){
 		public void execute(){
-			//addToPopupSlot(aboutUsPresenter);
+			addToPopupSlot(aboutUsPresenter);
 		}
 	};
 	

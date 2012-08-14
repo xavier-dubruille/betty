@@ -67,9 +67,14 @@ body {
 
 .panel_filter_options {
 	background-color: cornflowerblue;
-	border-radius: 10px;
-	margin: 5px;
-	border: thin solid black;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	margin-left: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-left: thin solid black;
+	border-top: thin solid black;
+	border-bottom: thin solid black;
 }
 
 . {
@@ -136,10 +141,8 @@ body {
 }
 
 .instancePanel {
-	margin: 5px;
-	border: thin solid black;
 	background-color: cornflowerblue;
-	border-radius: 10px;
+	margin-right: 5px;
 }
 .currentInstanceNumber {
 	color: black;
@@ -223,4 +226,15 @@ body {
 
 .clickable{
 	cursor: pointer;
+}
+.card_filter_options {
+	background-color: cornflowerblue;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-right: thin solid black;
+	border-top: thin solid black;
+	border-bottom: thin solid black;
 }

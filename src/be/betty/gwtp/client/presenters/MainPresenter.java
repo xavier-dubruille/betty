@@ -43,6 +43,8 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment.HorizontalAlignmentConstant;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -251,6 +253,9 @@ public class MainPresenter extends
 		@Override public void onAddNotif(AddNotifEvent event) {
 			Label notification = new Label();
 			notification.setText(event.getNotif());
+			notification.setStyleName("card");
+			notification.setWidth("150px");
+			notification.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 			getView().GetNotifBarVerticalPanel().add(notification);
 		}
 	};

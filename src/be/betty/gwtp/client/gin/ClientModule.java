@@ -13,6 +13,7 @@ import be.betty.gwtp.client.views.HeaderView;
 import be.betty.gwtp.client.views.LoginView;
 import be.betty.gwtp.client.views.MainView;
 import be.betty.gwtp.client.views.NewProjectView;
+import be.betty.gwtp.client.views.PopupSubscribeRedirectView;
 import be.betty.gwtp.client.views.ProjectsView;
 import be.betty.gwtp.client.views.SingleCardView;
 import be.betty.gwtp.client.views.SingleProjectView;
@@ -35,6 +36,7 @@ import be.betty.gwtp.client.presenters.AboutUsPresenter;
 import be.betty.gwtp.client.views.SolveItPopupView;
 import be.betty.gwtp.client.presenters.DeleteProjectPopupPresenter;
 import be.betty.gwtp.client.presenters.AddNewCardPopupPresenter;
+import be.betty.gwtp.client.presenters.PopupSubscribeRedirectPresenter;
 
 public class ClientModule extends AbstractPresenterModule {
 
@@ -86,6 +88,10 @@ public class ClientModule extends AbstractPresenterModule {
 		bindPresenterWidget(AddNewCardPopupPresenter.class,
 				AddNewCardPopupPresenter.MyView.class,
 				AddNewCardPopupView.class);
+
+		bindPresenterWidget(PopupSubscribeRedirectPresenter.class,
+				PopupSubscribeRedirectPresenter.MyView.class,
+				PopupSubscribeRedirectView.class);
 
 		bindPresenterWidget(SolveItPopupPresenter.class,
 				SolveItPopupPresenter.MyView.class, SolveItPopupView.class);

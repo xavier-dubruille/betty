@@ -94,6 +94,7 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 	}
 
 	@Inject DispatchAsync dispacher;
+	@Inject PopupSubscribeRedirectPresenter SubscribeRedirectPresenter;
 
 	@Override
 	protected void revealInParent() {
@@ -334,13 +335,16 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 						@Override
 						public void onFailure(Throwable caught) {
 							// TODO Auto-generated method stub
-
+							SubscribeRedirectPresenter.init("Failure, try again", 1);
+							addToPopupSlot(SubscribeRedirectPresenter);
 
 						}
 
 						@Override
 						public void onSuccess(SubscribeActionResult result) {
 							// TODO Auto-generated method stub
+							SubscribeRedirectPresenter.init("success. you will now be redirect on login page. Click Ok to finish", 0);
+							addToPopupSlot(SubscribeRedirectPresenter);
 
 						}
 					});
