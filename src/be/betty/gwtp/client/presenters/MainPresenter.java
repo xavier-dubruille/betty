@@ -8,6 +8,7 @@ import be.betty.gwtp.client.CardInView;
 import be.betty.gwtp.client.CardSelectionDropControler;
 import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.Storage_access;
+import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.action.GetActivityStateAction;
 import be.betty.gwtp.client.action.GetActivityStateActionResult;
 import be.betty.gwtp.client.action.GetCards;
@@ -43,9 +44,12 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbsolutePanel;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment.HorizontalAlignmentConstant;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -75,6 +79,7 @@ public class MainPresenter extends
 		Label getCurrentInstance();
 		ListBox getCombo_viewChoice1();
 		ListBox getCombo_viewChoice2();
+		SimplePanel getBoardPanel();
 		public VerticalPanel GetNotifBarVerticalPanel();
 	}
 
@@ -251,7 +256,13 @@ public class MainPresenter extends
 		@Override public void onAddNotif(AddNotifEvent event) {
 			Label notification = new Label();
 			notification.setText(event.getNotif());
-			getView().GetNotifBarVerticalPanel().add(notification);
+			if (event.getError()==UiConstants.getNotifCss())
+				notification.setStyleName("notif");
+			else
+				notification.setStyleName("notif_error");
+			notification.setWidth("150px");
+			notification.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+			getView().GetNotifBarVerticalPanel().insert(notification,0);
 		}
 	};
 	
@@ -268,6 +279,8 @@ public class MainPresenter extends
 	@Override
 	protected void onBind() {
 		super.onBind();
+		
+		getView().getBoardPanel().setPixelSize((UiConstants.getDayNumber()*UiConstants.getCardWidth())-20, (UiConstants.getPeriodeNumber()*UiConstants.getCardHeight())-7);
 		
 		getView().getComboInstance().addChangeHandler(new ChangeHandler() {
 			@Override public void onChange(ChangeEvent arg0) {
@@ -296,7 +309,7 @@ public class MainPresenter extends
 				String txtCbBox1= getView().getCombo_viewChoice1().getItemText(getView().getCombo_viewChoice1().getSelectedIndex());
 				String txtCbBox2 = getView().getCombo_viewChoice2().getItemText(getView().getCombo_viewChoice2().getSelectedIndex());
 				String notif = "The view of "+txtCbBox1+" "+txtCbBox2+" is selected";
-				ClientUtils.notifyUser(notif,getEventBus());
+				ClientUtils.notifyUser(notif, UiConstants.getNotifCss(), getEventBus());
 			}
 
 		});

@@ -2,6 +2,7 @@ package be.betty.gwtp.client.presenters;
 
 import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.Storage_access;
+import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.action.SolveIt;
 import be.betty.gwtp.client.action.SolveItResult;
 import be.betty.gwtp.client.event.InstancesModifiedEvent;
@@ -58,18 +59,19 @@ PresenterWidget<SolveItPopupPresenter.MyView> {
 		// CalculeButton handler
 		getView().getCalculeButton().addClickHandler(new ClickHandler() {
 			@Override public void onClick(ClickEvent arg0) {
-				ClientUtils.notifyUser("The Solver has Started ... ", getEventBus());
+				ClientUtils.notifyUser("The Solver has Started ... ",UiConstants.getNotifCss(), getEventBus());
 				getView().hide();
 				dispatcher.execute(new SolveIt(Storage_access.getCurrentProjectInstanceBDDID(), -1),
 						new AsyncCallback<SolveItResult>() {
 
 					@Override public void onFailure(Throwable arg0) {
 						ClientUtils.actionFailed("SolveIt");
+						ClientUtils.notifyUser("Action failed", UiConstants.getNotifCssError(), getEventBus());
 					}
 
 					@Override public void onSuccess(SolveItResult result) {
-						ClientUtils.notifyUser("Solving is over. (available in instance Num "+result.getInstanceNum()+")", getEventBus());
-						ClientUtils.notifyUser("Post Info are: "+result.getSoluceInfo(), getEventBus());
+						ClientUtils.notifyUser("Solving is over. (available in instance Num "+result.getInstanceNum()+")", UiConstants.getNotifCss(), getEventBus());
+						ClientUtils.notifyUser("Post Info are: "+result.getSoluceInfo(), UiConstants.getNotifCss(), getEventBus());
 						// TODO: faut aussi rajouter la nouvelle instance si il y a,
 						// ou recharger la page, si c'est l'instance courante..
 						if (true) {// in case of new instance, we add it

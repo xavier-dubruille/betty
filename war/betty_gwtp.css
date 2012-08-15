@@ -67,16 +67,37 @@ body {
 
 .panel_filter_options {
 	background-color: cornflowerblue;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	margin-left: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-left: thin solid black;
+	border-top: thin solid black;
+	border-bottom: thin solid black;
+}
+
+.card_filter {
+	background-color: cornflowerblue;
 	border-radius: 10px;
 	margin: 5px;
 	border: thin solid black;
-}
 
+}
 . {
 	color: Black;
 	margin: 0px;
 	padding: 0px;
 	background-color: Silver;
+}
+
+.background_flextable{
+	background: white;
+	background-color: white;
+}
+
+.white{
+	color: white;
 }
 
 .Header {
@@ -121,8 +142,6 @@ body {
 }
 .project {
 	background: #FF4901;
-	/*#BBD2E1; 
-	//text-align: center;*/
 	color: white;
 	margin-right: 10px;
 	margin-left: 10px;
@@ -136,10 +155,8 @@ body {
 }
 
 .instancePanel {
-	margin: 5px;
-	border: thin solid black;
 	background-color: cornflowerblue;
-	border-radius: 10px;
+	margin-right: 5px;
 }
 .currentInstanceNumber {
 	color: black;
@@ -156,7 +173,11 @@ body {
 }
 
 .flextable{
-	border: medium solid;
+	font-size: 10px;
+	background-color: lightsteelblue;
+}
+
+.panelFlextable{
 	font-size: 10px;
 	background-color: lightsteelblue;
 }
@@ -223,4 +244,32 @@ body {
 
 .clickable{
 	cursor: pointer;
+}
+.card_filter_options {
+	background-color: cornflowerblue;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	margin-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-right: thin solid black;
+	border-top: thin solid black;
+	border-bottom: thin solid black;
+}
+
+.notif{
+	border: 1px solid;
+	padding: 7px 2px 7px 2px;
+	margin-bottom: 2px;
+	font-size: 10px;
+	background-color: lightsteelblue;
+	border-radius: 5px;
+}
+.notif_error{
+	border: 1px solid;
+	padding: 7px 2px 7px 2px;
+	margin-bottom: 2px;
+	font-size: 10px;
+	background-color: #DB1702;
+	border-radius: 5px;
 }

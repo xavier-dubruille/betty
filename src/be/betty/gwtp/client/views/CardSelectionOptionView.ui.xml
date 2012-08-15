@@ -7,7 +7,7 @@
 	ui:generateLocales='default' xmlns:p1="urn:import:com.smartgwt.client.widgets.form">
 
 	<g:HTMLPanel>
-		<g:AbsolutePanel height="146px" width="266px" styleName="panel_filter_options" ui:field="filterAbsolutePanel">
+		<g:AbsolutePanel height="146px" width="266px" styleName="card_filter" ui:field="filterAbsolutePanel">
 			<g:at left="10" top="10">
 				<g:Label text="Card filter" styleName="small_title" width="246px" height="16px" horizontalAlignment="ALIGN_CENTER"/>
 			</g:at>
