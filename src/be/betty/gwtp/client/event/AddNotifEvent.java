@@ -21,6 +21,7 @@ public class AddNotifEvent extends GwtEvent<AddNotifEvent.AddNotifHandler> {
 	public String getNotif() {
 		return notif;
 	}
+	
 
 	@Override
 	protected void dispatch(AddNotifHandler handler) {

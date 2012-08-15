@@ -1,7 +1,8 @@
 package be.betty.gwtp.client.presenters;
 
 
-import be.betty.gwtp.client.model.Project;
+import be.betty.gwtp.shared.dto.Project_dto;
+
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.MouseMoveEvent;
@@ -31,7 +32,7 @@ public class SingleProjectPresenter extends
 		public Image getImageSettings();
 	}
 
-	private Project projectModel;
+	private Project_dto projectModel;
 
 
 	@Inject
@@ -111,7 +112,7 @@ public class SingleProjectPresenter extends
 		
 	}
 
-	public void init(Project project) {
+	public void init(Project_dto project) {
 		this.projectModel = project;
 		getView().getLabelProjectName().setText(project.getName());
 		getView().getLinkProjectNameSem1().setText("First semester");

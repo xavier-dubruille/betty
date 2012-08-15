@@ -2,9 +2,13 @@ package be.betty.gwtp.client;
 
 public class ClientSolver {
 
-	public static int findBestRoom(int id, int day, int period) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public static String findBestRoom(int cardId, int day, int period) {
+		//String[] possRooms = Storage_access.getPossibleRooms(cardId);
+		
+		//if (possRooms.length >0)
+		//	return possRooms[0];
+		//else
+			return "";
+	}	
 
 }

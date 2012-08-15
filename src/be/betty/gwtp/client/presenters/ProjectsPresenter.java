@@ -6,8 +6,8 @@ import be.betty.gwtp.client.action.GetProjectsAction;
 import be.betty.gwtp.client.action.GetProjectsActionResult;
 import be.betty.gwtp.client.event.ProjectListModifyEvent;
 import be.betty.gwtp.client.event.ProjectListModifyEvent.ProjectListModifyHandler;
-import be.betty.gwtp.client.model.Project;
 import be.betty.gwtp.client.place.NameTokens;
+import be.betty.gwtp.shared.dto.Project_dto;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -140,9 +140,9 @@ public class ProjectsPresenter extends
 		}
 	};
 
-	private void writeProjectWidgets(final ArrayList<Project> projects) {
+	private void writeProjectWidgets(final ArrayList<Project_dto> projects) {
 		
-		final ArrayList<Project> projectsSorted = new ArrayList<Project>();
+		final ArrayList<Project_dto> projectsSorted = new ArrayList<Project_dto>();
 		
 		for (int i = projects.size(); i > 0; i--){
 			projectsSorted.add(projects.get(i-1));

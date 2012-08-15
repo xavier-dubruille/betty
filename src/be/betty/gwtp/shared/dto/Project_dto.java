@@ -1,18 +1,18 @@
-package be.betty.gwtp.client.model;
+package be.betty.gwtp.shared.dto;
 
 import java.io.Serializable;
 import java.lang.String;
 
-public class Project implements Serializable {
+public class Project_dto implements Serializable {
 
 	private static final long serialVersionUID = 2914802826215166433L;
 	private String name;
 	private int id;
 
-	public Project() {
+	public Project_dto() {
 	}
 
-	public Project(String name, int id) {
+	public Project_dto(String name, int id) {
 		this.name = name;
 		this.id = id;
 	}

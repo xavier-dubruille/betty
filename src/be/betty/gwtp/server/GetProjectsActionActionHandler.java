@@ -8,10 +8,10 @@ import org.hibernate.Transaction;
 
 import be.betty.gwtp.client.action.GetProjectsAction;
 import be.betty.gwtp.client.action.GetProjectsActionResult;
-import be.betty.gwtp.client.model.Project;
 import be.betty.gwtp.server.bdd.Project_entity;
 import be.betty.gwtp.server.bdd.Session_id;
 import be.betty.gwtp.server.bdd.User;
+import be.betty.gwtp.shared.dto.Project_dto;
 
 import com.google.inject.Inject;
 import com.gwtplatform.dispatch.server.ExecutionContext;
@@ -31,7 +31,7 @@ public class GetProjectsActionActionHandler implements
 		String session_id = action.getSession_id();
 		assert session_id != null;
 
-		ArrayList<Project> projects = new ArrayList<Project>();
+		ArrayList<Project_dto> projects = new ArrayList<Project_dto>();
 
 		Session s = HibernateUtils.getSession();
 		Transaction t = s.beginTransaction();
@@ -46,7 +46,7 @@ public class GetProjectsActionActionHandler implements
 		System.out.println("number of user project = " + list.size());
 
 		for (Project_entity e : list)
-			projects.add(new Project(e.getName(), e.getId()));
+			projects.add(new Project_dto(e.getName(), e.getId()));
 
 		t.commit();
 		s.close();

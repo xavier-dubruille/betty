@@ -122,7 +122,7 @@ public class Storage_access {
 		//System.out.println("***--** Default Instance ="+result.getDefaultInstance());
 		Storage_access.setProjectInstances(result.getProjectInstances(), 0); //result.getDefaultInstance());
 
-		printStorage();
+		//printStorage();
 
 	}
 
