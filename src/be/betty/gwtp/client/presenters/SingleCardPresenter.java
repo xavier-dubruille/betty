@@ -49,31 +49,31 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		
 		CardWidget cardW = getView().getCardWidget();
 		cardW.init(myI);
-//		cardW.addMouseDownHandler(new MouseDownHandler() {
-//			
-//			@Override
-//			public void onMouseDown(MouseDownEvent event) {
-//				event.preventDefault();
-//	            event.stopPropagation();
-//	            event.getNativeEvent().stopPropagation();
-//	            event.getNativeEvent().preventDefault();
-//				System.out.println("on click handler yezzu");
-//				int button = event.getNativeEvent().getButton();
-//		        if (button == NativeEvent.BUTTON_LEFT) {
-//		            return;
-//		        }
-//
-//		        if (button == NativeEvent.BUTTON_RIGHT) {
-//		            
+		cardW.addMouseDownHandler(new MouseDownHandler() {
+			
+			@Override
+			public void onMouseDown(MouseDownEvent event) {
+				event.preventDefault();
+	            event.stopPropagation();
+	            event.getNativeEvent().stopPropagation();
+	            event.getNativeEvent().preventDefault();
+				System.out.println("on click handler yezzu");
+				int button = event.getNativeEvent().getButton();
+		        if (button == NativeEvent.BUTTON_LEFT) {
+		            return;
+		        }
+
+		        if (button == NativeEvent.BUTTON_RIGHT) {
+		            
 //		            ClientUtils.notifyUser("Jack est le meilleur! "+storageId, getEventBus());
-//		            System.out.println("right click");
-//					onRightClick(event.getClientX(), event.getClientY());
-//
-//		        }	
-//			
-//			}
-//		});
-//	
+		            System.out.println("right click");
+					onRightClick(event.getClientX(), event.getClientY());
+
+		        }	
+			
+			}
+		});
+	
 	}
 
 	/**
