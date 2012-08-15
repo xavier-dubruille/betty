@@ -77,7 +77,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 				SimplePanel simplePanel = new SimplePanel();
 				simplePanel.setPixelSize((UiConstants.getCardWidth() + 5) / 2,(UiConstants.getCardHeight() + 5) / 4);
 
-				simplePanel.setStyleName("flextable");
+				simplePanel.setStyleName("panelFlextable");
 				getView().getFlexTable().setWidget(j, i, simplePanel);
 				// flexTable.getCellFormatter().setStyleName();
 				// CSS_DEMO_PUZZLE_CELL);

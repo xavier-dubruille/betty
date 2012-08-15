@@ -148,9 +148,11 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 		return combo_viewChoice2;
 	}
 	
-	public VerticalPanel GetNotifBarVerticalPanel(){
+	public VerticalPanel GetNotifBarVerticalPanel() {
 		return notifBarVerticalPanel;
 	}
 
-
+	public SimplePanel getBoardPanel() {
+		return board_panel;
+	}
 }

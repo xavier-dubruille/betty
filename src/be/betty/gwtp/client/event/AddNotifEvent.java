@@ -9,17 +9,23 @@ public class AddNotifEvent extends GwtEvent<AddNotifEvent.AddNotifHandler> {
 
 	public static Type<AddNotifHandler> TYPE = new Type<AddNotifHandler>();
 	private String notif;
+	private int error;
 
 	public interface AddNotifHandler extends EventHandler {
 		void onAddNotif(AddNotifEvent event);
 	}
 
-	public AddNotifEvent(String notif) {
+	public AddNotifEvent(String notif, int error) {
 		this.notif = notif;
+		this.error = error;
 	}
 
 	public String getNotif() {
 		return notif;
+	}
+	
+	public int getError(){
+		return error;
 	}
 
 	@Override
@@ -36,7 +42,7 @@ public class AddNotifEvent extends GwtEvent<AddNotifEvent.AddNotifHandler> {
 		return TYPE;
 	}
 
-	public static void fire(HasHandlers source, String notif) {
-		source.fireEvent(new AddNotifEvent(notif));
+	public static void fire(HasHandlers source, String notif, int error) {
+		source.fireEvent(new AddNotifEvent(notif, error));
 	}
 }

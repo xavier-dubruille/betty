@@ -15,8 +15,12 @@
 						verticalAlignment="ALIGN_MIDDLE">
 						<g:SimplePanel width="134px" height="150px"
 							styleName="card_filter_options">
-							<g:AbsolutePanel width="130px" height="95px"
+							<g:AbsolutePanel width="130px" height="140px"
 								styleName="instancePanel">
+								<g:at left="0" top="0">
+									<g:Label text="Instance Courante" width="130px" height="13px"
+										styleName="simpleLabel" horizontalAlignment="ALIGN_CENTER" />
+								</g:at>
 								<g:at left="0" top="0">
 									<g:Label text="0" width="130px" height="57px"
 										ui:field="currentInstance" styleName="currentInstanceNumber"
@@ -29,9 +33,8 @@
 								<g:at left="98" top="36">
 									<g:Image width="22px" height="21px" url="Plus_sign.png" />
 								</g:at>
-								<g:at left="0" top="0">
-									<g:Label text="Instance Courante" width="130px" height="13px"
-										styleName="simpleLabel" horizontalAlignment="ALIGN_CENTER" />
+								<g:at left="10" top="122">
+									<g:Label text="Notifications" styleName="white"/>
 								</g:at>
 							</g:AbsolutePanel>
 						</g:SimplePanel>
@@ -76,17 +79,19 @@
 				</g:DockPanel>
 			</g:Dock>
 			<g:Dock direction="EAST" width="20%" height="100%">
-				<g:ScrollPanel width="160px" height="500px">
+				<g:ScrollPanel width="180px" height="500px">
 					<g:VerticalPanel width="100%" height="100%"
-						spacing="2" ui:field="notifBarVerticalPanel" />
+						spacing="2" ui:field="notifBarVerticalPanel" horizontalAlignment="ALIGN_CENTER" />
 				</g:ScrollPanel>
 			</g:Dock>
 			<g:Dock direction="CENTER" width="80%" height="60%"
 				horizontalAlignment="ALIGN_CENTER">
-				<g:SimplePanel width="100%" height="100%" ui:field="board_panel" />
+				<g:SimplePanel width="100%" height="100%">
+					<g:SimplePanel ui:field="board_panel" styleName="background_flextable" width="357px" height="67px" />
+				</g:SimplePanel>
 			</g:Dock>
 			<g:Dock direction="WEST" width="20%" height="60%">
-				<g:AbsolutePanel height="650px" width="276px">
+				<g:AbsolutePanel height="545px" width="276px">
 					<g:at left="0" top="10">
 						<g:ScrollPanel height="500px" width="249px">
 							<a:ModifiedVerticalPanel width="100%"

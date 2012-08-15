@@ -44,10 +44,10 @@ public class ClientUtils {
 	}
 
 
-	public static void notifyUser(String notif, EventBus eventBus) {
+	public static void notifyUser(String notif, int error, EventBus eventBus) {
 		System.out.println("Notif = "+notif);
 		// should we log it too ?
-		eventBus.fireEvent(new AddNotifEvent(notif));
+		eventBus.fireEvent(new AddNotifEvent(notif, error));
 	}
 	
 	/**
