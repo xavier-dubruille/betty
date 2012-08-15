@@ -1,1 +1,25 @@
 \section{Nos Choix}
+Nos choix ce sont portés sur une architecture client serveur pour les multiples
+avantages que celle-ci apporte.\\
+Premièrement l'Ephec étant un établissement possédant plusieurs sites,
+ une application client serveur peut permettre d'avoir un centre de donnée commun.
+ Ainsi, un horaire établi à Louvain-la-Neuve pourra être pris en compte lors de l'établissement d'un horaire à Bruxelles.
+Le faite de partager la charge de travail, la grosse partie (solveur,…) étant effectuée sur le serveur, l'horaire peut être établis sur des machines possédant peu de ressource. Par exemple, il sera possible d'établir l'horaire sur une tablette ou encore sur un Smartphone. Grace à ce type d'architecture, l'application n'est pas dépendante du système d'exploitation mis en place ni de l'ordinateur. L'horaire peut être débuté sur une machine Windows, pour ensuite être continuer sur une tablette.
+Les mises à jour de l'application sont aussi complètement transparentes pour l'utilisateur final. Pas besoin de télécharger et d'installer la mise à jour comme sur un logiciel orienté desktop.
+De même, en comparaison toujours avec une application desktop, si il survient un problème avec la station de travail, il est garantis de pouvoir retrouver ces données dans sont entière intégralité, et l'horaire peut continuer à être établi sur une autre station. Les serveurs offre bon nombre d'avantage (duplication des données,…) qu'un ordinateur en pane ne peut offir (même dans le cas d'une écrite sur deux disque différent).
+\\
+Outre cet aspect de facilité pour la partie cliente, il est aussi très facile d'administrer l'application. Celle-ci étant portable et facile d'installation.
+Pas besoins de connaissance approfondie, ou de configurations spéciales du serveur. Il suffit d'installer un serveur (tomcat, jetty, ect…) et d'y mettre au bon endroit le .WAR de l'application. De même, la base de données peu être complètement séparer de l'application et peu se trouver sur un serveur externe. Le type de SGBD à aussi peut d'importance, et il n'est pas nécessaire de créer la base de données au préalable. L'application se charge de la créer d'elle-même grâce à l'utilisation de l'outil Hybernate.
+\\
+% peut être pas mettre ce paragraphe dans le rapport
+Nous avons choisi le langage java d'une part car nous sommes familiariser avec la programmation orienté objet.
+\\
+%Cette partie est plutôt pertinente pour justifier le choix du langage Java au profit d'un autre
+Le choix du langage Java c'est fait instinctivement. Celui-ci est très présent dans le domaine du développement en entreprise. Il possède une forte communauté. Le langage java permet de bien structurer sont programme (au détriment du php (quoi que? Tu pourras peut être en dire plus via ton expérience à tes stages). Ce langage fait preuve d'une certaine rigueur, et fait preuves de robustesse et offre la possibilité d'utiliser des variables typé statique. Nous avons pu tirer avantages de ces derniers points pour établir notre application.
+Nous étions pourtant tout d'abord partie sur l'idée de faire cette application en Python. Ce dernier offre beaucoup de possibilité est aussi adapté au type d'application que nous voulions élaborer. Il possède une structure favorisant les bonnes pratiques, ce point étant particulièrement important pour nous. Le langage java c'est fait plus instinctivement. Tout d'abord, les librairies du solveur sont en java. Nous étions partis dans l'idée de faire du binding entre le python et la librairie java, mais dans un souci de clartés du code, nous avons préféré rester dans le même type de langage. L'arrivé de GWT nous à aussi conforté dans ce choix.
+Il existe plusieurs types de serveur applicatif java. Nous utilisons un serveur Tomcat, écrit lui-même en java et étant multiplateforme. Ainsi l'application peut tourner sur n'importe quel type d'architecture
+\\
+Java EE
+Pour établir notre logiciel, nous avons donc utiliser du java, sous ça forme entreprise édition. Ceci étant nécessaire pour l'élaboration du code partie serveur. Rajouter du blabla sur Java EE (c'est super cool java EE, c'est pour les vrai geek!)
+
+Nous avons ensuite choisi de travailler avec GWT pour les nombreux avantages (cfr chapitre sur GWT) que celui-ci apporte. Dans un souci de portabilité de l'application sur les différents navigateurs existant, mais aussi l'accès à celle-ci en utilisant les dernières technologies offertes par les Smartphones et tablettes, cet outils est plus qu'efficace et est d'une aide très précieuse. La partie cliente étant écrite en java comme la partie serveur.
