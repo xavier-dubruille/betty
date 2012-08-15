@@ -13,6 +13,8 @@ public class UiConstants {
 	public static final int NOTIF_CSS_ERROR = 1;
 	public static final int DAY_NUMBER= 6;
 	public static final int PERIODE_NUMBER = 7;
+	//TODO remplir le tableau avec les bon css
+	public static final String[] SOLVERCOLORCSS = {"lowgreen", "middlegreen", "highgreen", "loworange", "middleorange", "highorange", "lowred", "middlered", "highred"};
 	
 	public static int getCardWidth() {
 		return CARD_WIDTH;
@@ -47,5 +49,9 @@ public class UiConstants {
 	
 	public static int getPeriodeNumber(){
 		return PERIODE_NUMBER;
+	}
+	
+	public static String getColorCss(int index){
+		return SOLVERCOLORCSS[index];
 	}
 }

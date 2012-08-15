@@ -2,6 +2,7 @@ package be.betty.gwtp.client.presenters;
 
 import be.betty.gwtp.client.CardInView;
 import be.betty.gwtp.client.CellDropControler;
+import be.betty.gwtp.client.CellState;
 import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
@@ -10,6 +11,7 @@ import be.betty.gwtp.client.event.DropCardEvent;
 import be.betty.gwtp.client.event.BoardViewChangedEvent.BoardViewChangedHandler;
 import be.betty.gwtp.client.event.DropCardEvent.DropCardHandler;
 
+import com.allen_sauer.gwt.dnd.client.DragController;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 import com.google.inject.Inject;
@@ -28,6 +30,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 
 
 	private CardInView[] cardInView;
+	private CellState[][] cellState = new CellState[5][6];
 	
 	private DropCardHandler dropCardHandler = new DropCardHandler() {
 		@Override public void onDropCard(DropCardEvent event) {
@@ -209,5 +212,22 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 
 	public void init(CardInView cardInView) {
 		this.cardInView[0] = cardInView;	
+	}
+	
+	public void setCellState(CellState[][] cellStateTab) {
+		cellState = cellStateTab;
+	}
+	
+	public void solverCss() {
+		
+		int COLUMNS = Storage_access.getNbDays() + 1;
+		int ROWS = Storage_access.getNbPeriods() +1 ;
+		
+		for (int i = 1; i < COLUMNS; i++){
+			for (int j = 1; j < ROWS; j++){
+				getView().getFlexTable().getWidget(j, i).setStyleName(UiConstants.getColorCss(cellState[i-1][j-1].getColor()));
+				
+			}
+		}
 	}
 }
