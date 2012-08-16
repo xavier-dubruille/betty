@@ -46,7 +46,6 @@ public class AddNewCardPopupPresenter extends
 	}
 
 	@Inject NewCardSuccessPopupPresenter newCardSuccessPopup;
-	@Inject NewCardFailedPopupPresenter newCardFailedPopup;
 	@Inject DispatchAsync dispacher;
 	
 	@Override
@@ -95,7 +94,6 @@ public class AddNewCardPopupPresenter extends
 
 		@Override
 		public void onFailure(Throwable caught) {
-			addToPopupSlot(newCardFailedPopup);
 		}
 
 		@Override

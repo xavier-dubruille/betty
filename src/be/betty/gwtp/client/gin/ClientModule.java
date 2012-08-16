@@ -3,11 +3,26 @@ package be.betty.gwtp.client.gin;
 import be.betty.gwtp.client.place.ClientPlaceManager;
 import be.betty.gwtp.client.place.DefaultPlace;
 import be.betty.gwtp.client.place.NameTokens;
+import be.betty.gwtp.client.presenters.AboutUsPresenter;
+import be.betty.gwtp.client.presenters.AddNewCardPopupPresenter;
+import be.betty.gwtp.client.presenters.BoardPresenter;
+import be.betty.gwtp.client.presenters.CardSelectionOptionPresenter;
+import be.betty.gwtp.client.presenters.DeleteProjectPopupPresenter;
+import be.betty.gwtp.client.presenters.HeaderPresenter;
 import be.betty.gwtp.client.presenters.LoginPresenter;
 import be.betty.gwtp.client.presenters.MainPresenter;
+import be.betty.gwtp.client.presenters.NewCardSuccessPopupPresenter;
+import be.betty.gwtp.client.presenters.NewProjectPresenter;
+import be.betty.gwtp.client.presenters.PopupSubscribeRedirectPresenter;
+import be.betty.gwtp.client.presenters.ProjectsPresenter;
+import be.betty.gwtp.client.presenters.SingleCardPresenter;
+import be.betty.gwtp.client.presenters.SingleProjectPresenter;
+import be.betty.gwtp.client.presenters.SolveItPopupPresenter;
+import be.betty.gwtp.client.presenters.SubscribePresenter;
 import be.betty.gwtp.client.views.AboutUsView;
 import be.betty.gwtp.client.views.AddNewCardPopupView;
 import be.betty.gwtp.client.views.BoardView;
+import be.betty.gwtp.client.views.CardSelectionOptionView;
 import be.betty.gwtp.client.views.DeleteProjectPopupView;
 import be.betty.gwtp.client.views.HeaderView;
 import be.betty.gwtp.client.views.LoginView;
@@ -18,28 +33,11 @@ import be.betty.gwtp.client.views.PopupSubscribeRedirectView;
 import be.betty.gwtp.client.views.ProjectsView;
 import be.betty.gwtp.client.views.SingleCardView;
 import be.betty.gwtp.client.views.SingleProjectView;
+import be.betty.gwtp.client.views.SolveItPopupView;
 import be.betty.gwtp.client.views.SubscribeView;
 
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import com.gwtplatform.mvp.client.gin.DefaultModule;
-
-import be.betty.gwtp.client.presenters.CardSelectionOptionPresenter;
-import be.betty.gwtp.client.presenters.NewCardFailedPopupPresenter;
-import be.betty.gwtp.client.presenters.SolveItPopupPresenter;
-import be.betty.gwtp.client.presenters.SubscribePresenter;
-import be.betty.gwtp.client.presenters.ProjectsPresenter;
-import be.betty.gwtp.client.presenters.HeaderPresenter;
-import be.betty.gwtp.client.presenters.SingleProjectPresenter;
-import be.betty.gwtp.client.presenters.NewProjectPresenter;
-import be.betty.gwtp.client.presenters.SingleCardPresenter;
-import be.betty.gwtp.client.views.CardSelectionOptionView;
-import be.betty.gwtp.client.presenters.BoardPresenter;
-import be.betty.gwtp.client.presenters.AboutUsPresenter;
-import be.betty.gwtp.client.views.SolveItPopupView;
-import be.betty.gwtp.client.presenters.DeleteProjectPopupPresenter;
-import be.betty.gwtp.client.presenters.AddNewCardPopupPresenter;
-import be.betty.gwtp.client.presenters.PopupSubscribeRedirectPresenter;
-import be.betty.gwtp.client.presenters.NewCardSuccessPopupPresenter;
 
 public class ClientModule extends AbstractPresenterModule {
 
@@ -100,10 +98,10 @@ public class ClientModule extends AbstractPresenterModule {
 				NewCardSuccessPopupPresenter.MyView.class,
 				NewCardSuccessPopupView.class);
 		
-		bindPresenterWidget(NewCardFailedPopupPresenter.class,
-				NewCardSuccessPopupPresenter.MyView.class,
-				NewCardSuccessPopupView.class);
-
+		/*bindPresenterWidget(NewCardFailedPopupPresenter.class,
+				NewCardFailedPopupPresenter.MyView.class,
+				NewCardFailedPopupView.class);
+*/
 		bindPresenterWidget(SolveItPopupPresenter.class,
 				SolveItPopupPresenter.MyView.class, SolveItPopupView.class);
 }
