@@ -42,7 +42,7 @@ public class AddNewCardPopupPresenter extends
 	@Override
 	protected void onBind() {
 		super.onBind();
-		System.out.println("on est dans le onBind du addcard popup");
+		//System.out.println("on est dans le onBind du addcard popup");
 		//createComboBox();
 		
 		getView().getCourseComboBox().addChangeHandler(new ChangeHandler() {

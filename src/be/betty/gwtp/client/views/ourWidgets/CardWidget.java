@@ -22,7 +22,7 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 	private int cardId;
 	private PickupDragController dragController;
 	private boolean fromSelectionPanel;
-	private int groupId;
+	private int[] groupsId;
 	private int teacherId;
 	private MouseDownHandler handler;
 
@@ -161,14 +161,14 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 
 
 	public void init(int myI) {
-
 		String c = Storage_access.getCard(myI);
 		String[] groups = Storage_access.getGroupCard(c);
 		String groupsLabel = groups[0];
 		for (int i = 1; i < groups.length; i++)
 			groupsLabel +=  ", "+groups[i];
 		
-		groupId = 1; //Storage_access.getGroupIdCard(c);
+		
+		groupsId = Storage_access.getGroupsIdCard(c);
 		teacherId = Storage_access.getTeacherIdCard(c);
 		group.setText(groupsLabel);
 		teacher.setText(Storage_access.getTeacherCard(c));
@@ -186,8 +186,8 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 
 
 
-	public int getGroupId() {
-		return groupId;
+	public int[] getGroupsId() {
+		return groupsId;
 	}
 
 

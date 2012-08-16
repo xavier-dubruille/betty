@@ -4,6 +4,10 @@
 	padding: 0;
 }
 
+.frontIndex{
+	z-index:1000000000000000;
+}
+
 body {
 	font: 11px "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans",
 		sans-serif !important;

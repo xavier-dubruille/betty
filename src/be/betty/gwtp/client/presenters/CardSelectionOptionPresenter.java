@@ -135,7 +135,7 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 			MainPresenter.allCards.get(""+i).setVisible(false);
 		}
 		
-		if (indexFirstComboBox.equals("0")) {
+		if(firstComboBox.getDisplayValue().equals("All Card")){
 			for (int i = 0; i < MainPresenter.allCards.size(); i++) 
 				MainPresenter.allCards.get(""+i).setVisible(true);
 			if(!showPlacedCard)
@@ -145,6 +145,17 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 		}
 		
 		try{
+			if (indexFirstComboBox.equals("0")) {
+				for (int i = 0; i < MainPresenter.allCards.size(); i++) 
+					MainPresenter.allCards.get(""+i).setVisible(true);
+				if(!showPlacedCard)
+					for (int k = 0; k < MainPresenter.allCards.size(); k++)
+						if (MainPresenter.allCards.get(""+k).isPlaced())
+							MainPresenter.allCards.get(""+k).setVisible(false);
+			}else{
+				
+			}
+			
 			checkBoxTab = selectItemMultiplePickList.getValues();
 			if (getView().getDoSwitchView().getValue()) myEventBus.fireEvent(new SetViewEvent(indexFirstComboBox,checkBoxTab[0]));
 			for(int i=0; i< checkBoxTab.length; i++){
@@ -155,8 +166,9 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 						if (str.equals(""+MainPresenter.allCards.get(""+j).getTeacherId()))
 							MainPresenter.allCards.get(""+j).setVisible(true);
 					}else if (indexFirstComboBox.equalsIgnoreCase("2")) {
-						if (str.equals(""+MainPresenter.allCards.get(""+j).getGroupId()))
-							MainPresenter.allCards.get(""+j).setVisible(true);
+							for (int k = 0; k < +MainPresenter.allCards.get(""+j).getGroupsId().length; k++)
+								if (str.equals(""+MainPresenter.allCards.get(""+j).getGroupsId()[k]))
+									MainPresenter.allCards.get(""+j).setVisible(true);
 					}
 				}
 			}
@@ -200,6 +212,7 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 		valueMap.put("2","Group");
 		valueMap.put("3", "Type");
 		firstComboBox.setValueMap(valueMap);
+		firstComboBox.setDefaultValue("All Card");
 		selectComboForm.setItems(firstComboBox);
 		selectComboForm.redraw();
 

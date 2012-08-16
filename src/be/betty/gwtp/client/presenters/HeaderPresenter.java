@@ -93,7 +93,7 @@ public class HeaderPresenter extends
 	@Override
 	protected void onBind() {
 		super.onBind();
-		
+		getView().getMenuItemAbout().addStyleName("frontIndex");
 		String login = "";
 		String sess = "";
 		if (stockStore != null) {
