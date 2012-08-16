@@ -45,7 +45,7 @@ public class CellDropControler extends SimpleDropController {
 			// TODO si on fait un sorte de petit popup pour choisir grafiquement le local, c ici.
 			
 			//TODO faut voire si c'est la meilleur maniere, notement pour la methode static
-			int room = Integer.parseInt(ClientSolver.findBestRoom(id, day, period)); 
+			int room = 0;//Integer.parseInt(ClientSolver.findBestRoom(id, day, period)); 
 			eventBus.fireEvent( new DropCardEvent(id,day,period, room));
 			//System.out.println("drop..."+w.g);
 			//Storage_access.printStorage();
