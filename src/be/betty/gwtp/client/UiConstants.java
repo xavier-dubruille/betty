@@ -9,6 +9,7 @@ public class UiConstants {
 	private static final String [] WEEK_DAY = {"Monday", "Tuesday", "Wednesday","Thursday","Friday","Saturday","Sunday"};
 	public static final String CSS_PLACED_CARD = "cardPlaced";
 	public static final String CSS_CARD = "card";
+	public static final String CSS_SINGLE_CELL = "panelFlextable";
 	public static final int NOTIF_CSS = 0;
 	public static final int NOTIF_CSS_ERROR = 1;
 	public static final int DAY_NUMBER= 6;

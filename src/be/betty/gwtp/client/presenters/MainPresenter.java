@@ -345,7 +345,7 @@ public class MainPresenter extends
 		// create a DragController to manage drag-n-drop actions
 		// note: This creates an implicit DropController for the boundary panel
 		cardDragController = new PickupDragController(RootPanel.get(), false);
-		cardDragController.addDragHandler(new CardHandler());
+		cardDragController.addDragHandler(new CardHandler(getEventBus()));
 		cardDropPanel = new CardSelectionDropControler(getView().getCards_panel(), getEventBus());
 
 		// TODO v�rifier si il y a des lag en utilisant l'application sur le

@@ -10,6 +10,8 @@ import be.betty.gwtp.client.event.BoardViewChangedEvent;
 import be.betty.gwtp.client.event.DropCardEvent;
 import be.betty.gwtp.client.event.BoardViewChangedEvent.BoardViewChangedHandler;
 import be.betty.gwtp.client.event.DropCardEvent.DropCardHandler;
+import be.betty.gwtp.client.event.PaintCssEvent;
+import be.betty.gwtp.client.event.PaintCssEvent.PaintCssHandler;
 
 import com.allen_sauer.gwt.dnd.client.DragController;
 import com.gwtplatform.mvp.client.PresenterWidget;
@@ -30,26 +32,35 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 
 
 	private CardInView[] cardInView;
-	private CellState[][] cellState = new CellState[5][6];
-	
+	private CellState[][] cellState;
+
 	private DropCardHandler dropCardHandler = new DropCardHandler() {
 		@Override public void onDropCard(DropCardEvent event) {
 			clearSingleCardFromBoard(""+event.getCardID(), event.getDay(), event.getPeriod());
 		} 
 	};
-	
+
 	private BoardViewChangedHandler boardHandler = new BoardViewChangedHandler() {
 		@Override public void onBoardViewChanged(BoardViewChangedEvent event) {
 			redrawBoard(event.getComboViewIndex_1(), event.getComboViewIndex_2());
 		}
 	};
-	
 
-	
+	private PaintCssHandler paintCssHandler = new PaintCssHandler() {
+		@Override public void onPaintCss(PaintCssEvent event) {
+			System.out.println("ON dragggg !!");
+			if (event.getOnOff())
+				constructCellState(event.getCardId());
+			paintSolverCss(event.getOnOff());
+		}
+	};
+
+
 	@Inject
 	public BoardPresenter(final EventBus eventBus, final MyView view) {
 		super(eventBus, view);
 		cardInView = new CardInView[1];
+		cellState = new CellState[5][6];
 	}
 
 	@Override
@@ -58,22 +69,22 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 
 		constructBoard();
 
-
-
-
 		registerHandler(getEventBus().addHandler(
 				BoardViewChangedEvent.getType(), boardHandler));
-		
+
 		registerHandler(getEventBus().addHandler(
 				DropCardEvent.getType(), dropCardHandler));
+
+		registerHandler(getEventBus().addHandler(
+				PaintCssEvent.getType(), paintCssHandler));
 
 	}
 
 	private void constructBoard() {	
-		
+
 		int COLUMNS = 6;// Storage_access.getNbDays() + 1;
 		int ROWS = 7; //Storage_access.getNbPeriods() +1 ;
-		
+
 		for (int i = 0; i < COLUMNS; i++) {
 			for (int j = 0; j < ROWS; j++) {
 				// create a simple panel drop target for the current cell
@@ -100,7 +111,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 					day.setText(UiConstants.getWeekDay(i - 1));
 					simplePanel.add(day);
 				}
-				
+
 				//if we are not on the first line/column, register the panel as dropControler
 				if (i > 0 && j > 0) {
 					simplePanel.setPixelSize(UiConstants.getCardWidth() + 5,UiConstants.getCardHeight() + 5);
@@ -117,12 +128,12 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 
 
 
-//		@Override public void onBoardViewChanged(BoardViewChangedEvent event) {
-//			redrawBoard(event.getComboViewIndex_1(), event.getComboViewIndex_2());
-//
-//		}
-//	};
-	
+	//		@Override public void onBoardViewChanged(BoardViewChangedEvent event) {
+	//			redrawBoard(event.getComboViewIndex_1(), event.getComboViewIndex_2());
+	//
+	//		}
+	//	};
+
 	/**
 	 * 
 	 * Redraw the board, depending on de view (cf parameters) and and the
@@ -151,12 +162,13 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 					continue;
 				SimplePanel s = (SimplePanel) getView().getFlexTable().getWidget(j, i);
 				s.clear();
+				//s.addStyleName(UiConstants.CSS_SINGLE_CELL);
 
 				//getView().getFlexTable().getWidget(j, i).getClass()
 				//getView().getFlexTable().getWidget(j, i).getElement().removeFromParent();
 			}
 
-		
+
 		//System.out.println("all cards ==== "+MainPresenter.allCards);
 		// 2) on va parcourir tt les cartons et placer ceux qui doivent l'etre
 		for (int i = 0; i < Storage_access.getNumberOfCard(); i++) {
@@ -181,11 +193,11 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 
 
 	}
-	
+
 
 	public void clearSingleCardFromBoard(String cardId, int day, int period) {
-		
-		
+
+
 		int COLUMNS = Storage_access.getNbDays() + 1;
 		int ROWS = Storage_access.getNbPeriods() +1 ;
 		for (int i = 1; i < COLUMNS; i++) 
@@ -199,12 +211,12 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 				Widget w = s.getWidget();
 				if (w == null || w.getElement() == null) continue;
 				if(cardId.equals( w.getElement().getTitle()))
-						s.clear();
+					s.clear();
 				//getView().getFlexTable().getWidget(j, i).getClass()
 				//getView().getFlexTable().getWidget(j, i).getElement().removeFromParent();
 			}
 	}
-	
+
 	@Override protected void onReset() {
 		super.onReset();
 		// redrawBoard();
@@ -213,21 +225,47 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 	public void init(CardInView cardInView) {
 		this.cardInView[0] = cardInView;	
 	}
-	
-	public void setCellState(CellState[][] cellStateTab) {
-		cellState = cellStateTab;
-	}
-	
-	public void solverCss() {
-		
-		int COLUMNS = Storage_access.getNbDays() + 1;
-		int ROWS = Storage_access.getNbPeriods() +1 ;
-		
-		for (int i = 1; i < COLUMNS; i++){
-			for (int j = 1; j < ROWS; j++){
-				getView().getFlexTable().getWidget(j, i).setStyleName(UiConstants.getColorCss(cellState[i-1][j-1].getColor()));
-				
+
+	public void constructCellState(String cardID) {
+
+		int cId = Integer.parseInt(cardID);
+		for (int i = 0; i < cellState.length; i++){
+			for (int j = 0; j < cellState[0].length; j++){
+				cellState[i][j] = new CellState(1);
+				if ((cId+i+j) %2 ==0 ) cellState[i][j].setColor(8); //juste pour tester ;)
+
 			}
 		}
+	}
+
+	public void paintSolverCss(boolean on_off) {
+
+		//ClientUtils.notifyUser("debug: paintCss "+on_off, 1, getEventBus());
+		final int COLUMNS = Storage_access.getNbDays() + 1;
+		final int ROWS = Storage_access.getNbPeriods() +1 ;
+
+		assert COLUMNS == cellState.length +1;
+		assert ROWS == cellState[0].length +1;
+
+		if (on_off)
+			for (int i = 1; i < COLUMNS; i++){
+				for (int j = 1; j < ROWS; j++){
+					Widget w = getView().getFlexTable().getWidget(j, i);
+					//CellState c = cellState[i-1][j-1];
+					//System.out.println("cellState num "+i+ " "+j+" cet ca donne: "+c);
+					//System.out.println("color to be painted = "+c.getColor());
+					//ystem.out.println("la couleur 1 coorespond en css a: "+UiConstants.getColorCss(1));
+					w.setStyleName(UiConstants.getColorCss(cellState[i-1][j-1].getColor()));
+
+				}
+			}
+		else 
+			for (int i = 1; i < COLUMNS; i++){
+				for (int j = 1; j < ROWS; j++){
+					Widget w = getView().getFlexTable().getWidget(j, i);
+					w.setStyleName(UiConstants.CSS_SINGLE_CELL);
+
+				}
+			}
 	}
 }
