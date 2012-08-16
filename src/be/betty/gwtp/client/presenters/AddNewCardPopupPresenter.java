@@ -42,7 +42,7 @@ public class AddNewCardPopupPresenter extends
 	@Override
 	protected void onBind() {
 		super.onBind();
-	
+		System.out.println("on est dans le onBind du addcard popup");
 		//createComboBox();
 		
 		getView().getCourseComboBox().addChangeHandler(new ChangeHandler() {
@@ -68,6 +68,7 @@ public class AddNewCardPopupPresenter extends
 
 	protected void onReset() {
 		super.onReset();
+		System.out.println("on reset popupaddcard");
 		populateComboBox();
 	}
 	
@@ -92,9 +93,10 @@ public class AddNewCardPopupPresenter extends
 		groupComboBox.setValueMap(valueMapGroup);
 		getView().getGroupDynForm().setItems(groupComboBox);
 		*/
-		
+		System.out.println("on populate la combobox");
 		for (int i = 0; i < Storage_access.getNumberOfTeacher(); i++) {
-			getView().getTeacherComboBox().addItem(Storage_access.getTeacher(i), ""+i);
+			System.out.println("on rentre dans le fort de la population des profs");
+			getView().getTeacherComboBox().addItem("toto" /*Storage_access.getTeacher(i)*/, ""+i);
 		}
 		
 		for (int i = 0; i < Storage_access.getNumberOfCourses(); i++) {

@@ -134,6 +134,16 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 			//ClientUtils.notifyUser("accession card num "+i+"and its tostring value is: "+MainPresenter.allCards.get(i), myEventBus);
 			MainPresenter.allCards.get(""+i).setVisible(false);
 		}
+		
+		if (indexFirstComboBox.equals("0")) {
+			for (int i = 0; i < MainPresenter.allCards.size(); i++) 
+				MainPresenter.allCards.get(""+i).setVisible(true);
+			if(!showPlacedCard)
+				for (int k = 0; k < MainPresenter.allCards.size(); k++)
+					if (MainPresenter.allCards.get(""+k).isPlaced())
+						MainPresenter.allCards.get(""+k).setVisible(false);
+		}
+		
 		try{
 			checkBoxTab = selectItemMultiplePickList.getValues();
 			if (getView().getDoSwitchView().getValue()) myEventBus.fireEvent(new SetViewEvent(indexFirstComboBox,checkBoxTab[0]));
