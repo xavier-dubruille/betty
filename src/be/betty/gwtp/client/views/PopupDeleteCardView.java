@@ -33,4 +33,23 @@ public class PopupDeleteCardView extends PopupViewImpl implements
 	@UiField TextButton buttonNo;
 	@UiField TextButton buttonCloseWindow;
 	@UiField Label label;
+	
+	public TextButton getButtonYes() {
+		return buttonYes;
+	}
+
+	public TextButton getButtonNo() {
+		return buttonNo;
+	}
+
+	public TextButton getButtonCloseWindow() {
+		return buttonCloseWindow;
+	}
+
+	public Label getLabel() {
+		return label;
+	}
+	
+	
+	
 }
