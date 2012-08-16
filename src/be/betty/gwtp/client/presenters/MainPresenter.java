@@ -337,7 +337,7 @@ public class MainPresenter extends
 		
 		registerHandler(getEventBus().addHandler(
 				ShowPlacedCardEvent.getType(), showPlacedHandler));
-
+		
 	}
 
 	private void set_dnd() {
@@ -378,7 +378,7 @@ public class MainPresenter extends
 		/* if (ClientUtils.DONT_REPEAT_YOURSELF)
 			ClientUtils.DONT_REPEAT_YOURSELF = false;
 		else return; */
-		
+		System.out.println("on reset mainPresenter !");
 		super.onReset();
 
 		String login = "";
@@ -395,37 +395,38 @@ public class MainPresenter extends
 		getView().getMainLabel().setText(
 				"Welcome " + login + " *****  Projet num " + project_num);
 
+		//getView().getCombo_viewChoice2().setItemSelected(0, true);
 		//ClientUtils.DONT_REPEAT_YOURSELF = {true};  //marche po :(
 		GetCards action = new GetCards(project_num, sem);
-		dispatcher.execute(action, new AsyncCallback<GetCardsResult>() {
-
-			
-			@Override
-			public void onFailure(Throwable arg0) {
+		dispatcher.execute(action, new AsyncCallback<GetCardsResult>() {	
+			@Override public void onFailure(Throwable arg0) {
 				// TODO Auto-generated method stub
 				// arg0.printStackTrace();
 				System.err.println("***failure:" + arg0);
 
 			}
-
-			@Override
-			public void onSuccess(GetCardsResult result) {
+			@Override public void onSuccess(GetCardsResult result) {
 //				if (DONT_REPEAT_YOURSELF[0])
 //					DONT_REPEAT_YOURSELF[0]=false;
 //				else return;
 
 				Storage_access.populateStorage(project_num,result);
-				//Storage_access.printStorage();
-				
-				
+//				//Storage_access.printStorage();
+//						
 				print_da_page();
-				// getView().getContent().setText(result.getActivities().toString());
-				
-
+//				// getView().getContent().setText(result.getActivities().toString());
 			}
 
 		});
 
+	}
+	
+	@Override protected void onReveal()
+	{
+		super.onReveal();
+
+		setInSlot(SLOT_OPTION_SELECION, cardSelectionOptionPresenter);
+		setInSlot(SLOT_BOARD, boardPresenter);
 	}
 
 	/**
@@ -439,10 +440,10 @@ public class MainPresenter extends
 		// des Assert ici pour verifier qq truc sur le local storage serait p-e
 		// bien..
 
-		setInSlot(SLOT_OPTION_SELECION, cardSelectionOptionPresenter);
+	//	setInSlot(SLOT_OPTION_SELECION, cardSelectionOptionPresenter);
 		cardSelectionOptionPresenter.init();
 		
-		setInSlot(SLOT_BOARD, boardPresenter);
+		//setInSlot(SLOT_BOARD, boardPresenter);
 		boardPresenter.init(this.cardInView);
 
 		

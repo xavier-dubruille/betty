@@ -100,12 +100,18 @@ public class ProjectsPresenter extends
 	@Inject
 	DispatchAsync dispatcher;
 
+	@Override protected void onReveal()
+	{
+		super.onReveal();
+		setInSlot(SLOT_project, null);
+	}
+	
 	@Override
 	protected void onReset() {
 		super.onReset();
 
 		System.out.println("On reset");
-		setInSlot(SLOT_project, null);
+		
 		
 		getView().getLoadingPicture().setVisible(true);
 		getView().getInfo_label().setText("Loading");

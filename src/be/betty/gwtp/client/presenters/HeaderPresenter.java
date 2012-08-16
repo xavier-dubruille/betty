@@ -1,5 +1,8 @@
 package be.betty.gwtp.client.presenters;
 
+import be.betty.gwtp.client.event.NewCardPopupEvent;
+import be.betty.gwtp.client.event.NewCardPopupEvent.NewCardPopupHandler;
+import be.betty.gwtp.client.event.ShowPlacedCardEvent;
 import be.betty.gwtp.client.place.NameTokens;
 
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -53,6 +56,12 @@ public class HeaderPresenter extends
 	@Inject SolveItPopupPresenter solveItPresenter;
 	@Inject AddNewCardPopupPresenter newCardPresenter;
 
+	private NewCardPopupHandler newCardPopupdHandler = new NewCardPopupHandler() {
+		@Override public void onNewCardPopup(NewCardPopupEvent event) {
+			addToPopupSlot(newCardPresenter);
+		}
+	};
+	
 	@Inject
 	public HeaderPresenter(final EventBus eventBus, final MyView view,
 			final MyProxy proxy) {
@@ -86,9 +95,10 @@ public class HeaderPresenter extends
 	
 	Command addCardCommand = new Command(){
 		public void execute(){
-			addToPopupSlot(newCardPresenter);
+			getEventBus().fireEvent(new NewCardPopupEvent());
 		}
 	};
+
 
 	@Override
 	protected void onBind() {
@@ -122,6 +132,10 @@ public class HeaderPresenter extends
 				
 			}
 		});
+		
+		registerHandler(getEventBus().addHandler(
+				NewCardPopupEvent.getType(), newCardPopupdHandler));
+		
 		
 		// ------ Menu Bar ----
 		// Create some new MenuItem and add commands
