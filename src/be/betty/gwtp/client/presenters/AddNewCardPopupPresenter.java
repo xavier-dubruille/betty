@@ -12,6 +12,7 @@ import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.widget.client.TextButton;
@@ -44,6 +45,8 @@ public class AddNewCardPopupPresenter extends
 		super(eventBus, view);
 	}
 
+	@Inject NewCardSuccessPopupPresenter newCardSuccessPopup;
+	@Inject NewCardFailedPopupPresenter newCardFailedPopup;
 	@Inject DispatchAsync dispacher;
 	
 	@Override
@@ -92,14 +95,13 @@ public class AddNewCardPopupPresenter extends
 
 		@Override
 		public void onFailure(Throwable caught) {
-			// TODO Auto-generated method stub
-			
+			addToPopupSlot(newCardFailedPopup);
 		}
 
 		@Override
 		public void onSuccess(CreateNewCardActionResult result) {
-			// TODO Auto-generated method stub
-			
+			getView().hide();
+			addToPopupSlot(newCardSuccessPopup);
 		}
 	};
 	

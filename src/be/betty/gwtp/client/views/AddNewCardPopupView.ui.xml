@@ -23,7 +23,7 @@
 				</g:Cell>
 			</g:VerticalPanel>
 			<g:Cell width="100%">
-				<g:HorizontalPanel width="100%" spacing="5">
+				<g:HorizontalPanel width="100%" spacing="5" styleName="popupPresenter">
 					<g:Cell width="50%" horizontalAlignment="ALIGN_RIGHT">
 						<w:TextButton text="Create" ui:field="createButton">New button</w:TextButton>
 					</g:Cell>
