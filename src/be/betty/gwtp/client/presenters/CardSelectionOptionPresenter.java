@@ -138,6 +138,10 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 		if(firstComboBox.getDisplayValue().equalsIgnoreCase("All Card")){
 			for (int i = 0; i < MainPresenter.allCards.size(); i++) 
 				MainPresenter.allCards.get(""+i).setVisible(true);
+			if(!showPlacedCard)
+				for (int k = 0; k < MainPresenter.allCards.size(); k++)
+					if (MainPresenter.allCards.get(""+k).isPlaced())
+						MainPresenter.allCards.get(""+k).setVisible(false);
 		}
 		
 		try{

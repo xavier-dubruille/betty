@@ -22,6 +22,8 @@ import be.betty.gwtp.client.action.GetInstancesOnly;
 import be.betty.gwtp.server.GetInstancesOnlyActionHandler;
 import be.betty.gwtp.client.action.SubscribeUserAction;
 import be.betty.gwtp.server.SubscribeUserActionActionHandler;
+import be.betty.gwtp.client.action.CreateNewCardAction;
+import be.betty.gwtp.server.CreateNewCardActionActionHandler;
 
 public class ServerModule extends HandlerModule {
 
@@ -42,6 +44,9 @@ public class ServerModule extends HandlerModule {
 
 		bindHandler(SubscribeUserAction.class,
 				SubscribeUserActionActionHandler.class);
+
+		bindHandler(CreateNewCardAction.class,
+				CreateNewCardActionActionHandler.class);
 
 		bindHandler(SaveCardDropAction.class,
 				SaveCardDropActionActionHandler.class);
