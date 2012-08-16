@@ -313,3 +313,7 @@ body {
 .highred{
  background-color: #850606;
 }
+.panelBoardFilterText {
+	color: white;
+	font-size: 16pt;
+}

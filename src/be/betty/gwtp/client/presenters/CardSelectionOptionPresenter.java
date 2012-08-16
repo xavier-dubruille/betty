@@ -135,26 +135,12 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 			MainPresenter.allCards.get(""+i).setVisible(false);
 		}
 		
-		if(firstComboBox.getDisplayValue().equals("All Card")){
+		if(firstComboBox.getDisplayValue().equalsIgnoreCase("All Card")){
 			for (int i = 0; i < MainPresenter.allCards.size(); i++) 
 				MainPresenter.allCards.get(""+i).setVisible(true);
-			if(!showPlacedCard)
-				for (int k = 0; k < MainPresenter.allCards.size(); k++)
-					if (MainPresenter.allCards.get(""+k).isPlaced())
-						MainPresenter.allCards.get(""+k).setVisible(false);
 		}
 		
 		try{
-			if (indexFirstComboBox.equals("0")) {
-				for (int i = 0; i < MainPresenter.allCards.size(); i++) 
-					MainPresenter.allCards.get(""+i).setVisible(true);
-				if(!showPlacedCard)
-					for (int k = 0; k < MainPresenter.allCards.size(); k++)
-						if (MainPresenter.allCards.get(""+k).isPlaced())
-							MainPresenter.allCards.get(""+k).setVisible(false);
-			}else{
-				
-			}
 			
 			checkBoxTab = selectItemMultiplePickList.getValues();
 			if (getView().getDoSwitchView().getValue()) myEventBus.fireEvent(new SetViewEvent(indexFirstComboBox,checkBoxTab[0]));
