@@ -25,7 +25,8 @@
 			</g:HorizontalPanel>
 			</g:Cell>
 		</g:VerticalPanel>
-		<g:MenuBar animationEnabled="true" width="99,9%" height="" autoOpen="true" ui:field="menuBar">
+		<g:VerticalPanel width="100%" horizontalAlignment="ALIGN_CENTER">
+			<g:MenuBar animationEnabled="true" width="99,9%" height="" autoOpen="true" ui:field="menuBar">
 				<g:MenuItem text="File">
 					<g:MenuBar vertical="true">
 						<g:MenuItem text="Open"/>
@@ -85,6 +86,7 @@
 					</g:MenuBar>
 				</g:MenuItem>
 			</g:MenuBar>
+		</g:VerticalPanel>
 		<g:HTMLPanel ui:field="contentPanel" height="100%" styleName="project" width="" />
 	</g:HTMLPanel>
 	

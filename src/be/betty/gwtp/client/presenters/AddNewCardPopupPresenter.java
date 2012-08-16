@@ -99,7 +99,6 @@ public class AddNewCardPopupPresenter extends
 		@Override
 		public void onSuccess(CreateNewCardActionResult result) {
 			getView().hide();
-			addToPopupSlot(newCardSuccessPopup);
 		}
 	};
 	

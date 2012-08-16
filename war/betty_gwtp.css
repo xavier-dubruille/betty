@@ -5,12 +5,13 @@
 }
 
 .frontIndex{
-	z-index:1000000000000000;
+	position: relative;	
+	z-index:1;
 }
 
 .backIndex{
 	position: relative;
-	z-index: -1000;
+	z-index: 2;
 }
 
 body {
