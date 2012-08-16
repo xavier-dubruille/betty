@@ -1,5 +1,8 @@
 package be.betty.gwtp.server;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -49,10 +52,11 @@ public class LoginActionActionHandler implements
 
 		Session s = HibernateUtils.getSession();
 		Transaction t = s.beginTransaction();
-		System.out.println("just après ouvertur");
+		System.out.println("just apres ouvertur");
+		String pwdHash = ServerUtils.getSha255Hex(pwd);
 		List q = s.createQuery("from User where name = :name and pwd= :pwd")
-				.setString("name", login).setString("pwd", pwd).list();
-		System.out.println("just après query");
+				.setString("name", login).setString("pwd", pwdHash).list();
+		System.out.println("just apres query");
 
 		logger.debug("query to get the user is done, there is "+q.size()+" results (it should be 1 or 0)");
 		if (q.size() == 0)
@@ -76,13 +80,12 @@ public class LoginActionActionHandler implements
 		return sess_uuid;
 	}
 
-	@Override
-	public void undo(LoginAction action, LoginActionResult result,
+	
+	@Override public void undo(LoginAction action, LoginActionResult result,
 			ExecutionContext context) throws ActionException {
 	}
 
-	@Override
-	public Class<LoginAction> getActionType() {
+	@Override public Class<LoginAction> getActionType() {
 		return LoginAction.class;
 	}
 }

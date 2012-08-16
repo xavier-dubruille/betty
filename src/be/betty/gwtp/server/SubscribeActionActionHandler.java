@@ -39,7 +39,7 @@ public class SubscribeActionActionHandler implements
 		
 		User usr = new User();
 		usr.setName(user);
-		usr.setPwd(password);
+		usr.setPwd(ServerUtils.getSha255Hex(password));
 		usr.setEmail(email);
 		
 		
