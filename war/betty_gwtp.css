@@ -8,6 +8,10 @@
 	z-index:1000000000000000;
 }
 
+.backIndex{
+	z-index: -1000;
+}
+
 body {
 	font: 11px "Lucida Grande", Verdana, Arial, "Bitstream Vera Sans",
 		sans-serif !important;
