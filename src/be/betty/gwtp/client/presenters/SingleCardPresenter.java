@@ -2,6 +2,7 @@ package be.betty.gwtp.client.presenters;
 
 import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.Filter_kind;
+import be.betty.gwtp.client.event.NewCardPopupEvent;
 import be.betty.gwtp.client.views.ourWidgets.CardWidget;
 
 import com.gwtplatform.mvp.client.PresenterWidget;
@@ -35,7 +36,7 @@ PresenterWidget<SingleCardPresenter.MyView> {
 	public SingleCardPresenter(final EventBus eventBus, final MyView view) {
 		super(eventBus, view);
 	}
-	@Inject AddNewCardPopupPresenter addNewCardPresenter;
+	//@Inject AddNewCardPopupPresenter addNewCardPresenter;
 	@Override
 	protected void onBind() {
 		super.onBind();
@@ -107,7 +108,8 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		  public void execute() {
 		    //deckPanel.showWidget(0);
 		    popupPanel.hide();
-		    addToPopupSlot(addNewCardPresenter);
+		    getEventBus().fireEvent(new NewCardPopupEvent());
+		   // addToPopupSlot(addNewCardPresenter);
 		  }
 		};
 		 
