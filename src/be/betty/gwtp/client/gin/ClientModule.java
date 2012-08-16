@@ -13,6 +13,7 @@ import be.betty.gwtp.client.presenters.LoginPresenter;
 import be.betty.gwtp.client.presenters.MainPresenter;
 import be.betty.gwtp.client.presenters.NewCardSuccessPopupPresenter;
 import be.betty.gwtp.client.presenters.NewProjectPresenter;
+import be.betty.gwtp.client.presenters.PopupDeleteCardPresenter;
 import be.betty.gwtp.client.presenters.PopupSubscribeRedirectPresenter;
 import be.betty.gwtp.client.presenters.ProjectsPresenter;
 import be.betty.gwtp.client.presenters.SingleCardPresenter;
@@ -29,6 +30,7 @@ import be.betty.gwtp.client.views.LoginView;
 import be.betty.gwtp.client.views.MainView;
 import be.betty.gwtp.client.views.NewCardSuccessPopupView;
 import be.betty.gwtp.client.views.NewProjectView;
+import be.betty.gwtp.client.views.PopupDeleteCardView;
 import be.betty.gwtp.client.views.PopupSubscribeRedirectView;
 import be.betty.gwtp.client.views.ProjectsView;
 import be.betty.gwtp.client.views.SingleCardView;
@@ -101,6 +103,10 @@ public class ClientModule extends AbstractPresenterModule {
 		/*bindPresenterWidget(NewCardFailedPopupPresenter.class,
 				NewCardFailedPopupPresenter.MyView.class,
 				NewCardFailedPopupView.class);
+
+		bindPresenterWidget(PopupDeleteCardPresenter.class,
+				PopupDeleteCardPresenter.MyView.class,
+				PopupDeleteCardView.class);
 */
 		bindPresenterWidget(SolveItPopupPresenter.class,
 				SolveItPopupPresenter.MyView.class, SolveItPopupView.class);

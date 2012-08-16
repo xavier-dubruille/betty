@@ -19,6 +19,7 @@ import com.gwtplatform.mvp.client.View;
 import com.google.inject.Inject;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -101,6 +102,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 					simplePanel.setPixelSize((UiConstants.getCardWidth()+5)/2, UiConstants.getCardHeight()+5);
 					Label periode = new Label();
 					periode.setText(UiConstants.getPeriode() + " " + j);
+					simplePanel.setStyleName("titleFlextable");
 					simplePanel.add(periode);
 				}
 
@@ -108,8 +110,14 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 				if (j==0 && i>0){
 					simplePanel.setPixelSize(UiConstants.getCardWidth()+5, (UiConstants.getCardHeight()+5)/4);
 					Label day = new Label();
+					day.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 					day.setText(UiConstants.getWeekDay(i - 1));
+					simplePanel.setStyleName("titleFlextable");
 					simplePanel.add(day);
+				}
+				
+				if(j==0 && i==0){
+					simplePanel.setStyleName("titleFlextable");
 				}
 
 				//if we are not on the first line/column, register the panel as dropControler

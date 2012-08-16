@@ -19,6 +19,7 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 	private Label course;
 	private Label teacher;
 	private Label group;
+	private Label room;
 	private int cardId;
 	private PickupDragController dragController;
 	private boolean fromSelectionPanel;
@@ -39,30 +40,36 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 		course = new Label("Empty");
 		teacher = new Label("Empty");
 		group = new Label("Empty");
+		room = new Label("LABO");
 
 		//Add a specific CSS for the different label
 		course.setStyleName("courseCard");
 		teacher.setStyleName("teacherCard");
 		group.setStyleName("groupCard");
+		room.setStyleName("teacherCard");
 
 
 		//Add a size for the different dockPanel
-		course.setPixelSize(UiConstants.getCardWidth(), (UiConstants.getCardHeight()/3)*2);
-		teacher.setPixelSize((UiConstants.getCardWidth()/2)-1, UiConstants.getCardHeight()/3);
-		group.setPixelSize((UiConstants.getCardWidth()/2)-1, UiConstants.getCardHeight()/3);
+		course.setPixelSize(UiConstants.getCardWidth(), (UiConstants.getCardHeight()/4)*2);
+		teacher.setPixelSize(((UiConstants.getCardWidth()/3)*2)-1, (UiConstants.getCardHeight()/4)+5);
+		group.setPixelSize((UiConstants.getCardWidth()/3)-1, (UiConstants.getCardHeight()/4)+5);
+		room.setPixelSize((UiConstants.getCardWidth())-1, UiConstants.getCardHeight()/4);
 
 		//Create a new Dockpanel to
 		DockPanel dockPanel = new DockPanel();
 		DockPanel dockPanel2 = new DockPanel();
-
+		DockPanel dockPanelRoomAndDelete = new DockPanel();
 
 		//Add all label in different part of dockPanel to have a clear presentation
 		dockPanel2.add(group, DockPanel.WEST);
 		dockPanel2.add(teacher, DockPanel.EAST);
-
+		
+		dockPanelRoomAndDelete.add(room, DockPanel.EAST);
+		
 		dockPanel.add(dockPanel2, DockPanel.NORTH);
+		dockPanel.add(dockPanelRoomAndDelete, DockPanel.SOUTH);
 		dockPanel.add(course, DockPanel.CENTER);
-
+		
 
 		//Add a size to the dockPanel
 		dockPanel.setPixelSize(UiConstants.getCardWidth()-1, UiConstants.getCardHeight()-1);
@@ -106,6 +113,10 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 	public Label getGroup() {
 		return group;
 	}
+	
+	public Label getRoom() {
+		return room;
+	}
 
 
 	public CardWidget cloneWidget(boolean fromSelectionPanel) {
@@ -115,6 +126,7 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 		clone.getCourse().setText(getCourse().getText());
 		clone.getTeacher().setText(getTeacher().getText());
 		clone.getGroup().setText(getGroup().getText());
+		clone.getRoom().setText(getRoom().getText());
 		clone.setTitle(getTitle());
 		clone.setDragControler(getDragController());
 		clone.makeItDraggable();

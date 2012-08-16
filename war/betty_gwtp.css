@@ -151,7 +151,7 @@ body {
 	font-weight: bold;
 }
 .project {
-	background: #FF4901;
+	background: #A4969B;
 	color: white;
 	margin-right: 10px;
 	margin-left: 10px;
@@ -182,14 +182,14 @@ body {
 	font-size: 9px;
 }
 
-.flextable{
+.panelFlextable{
 	font-size: 10px;
 	background-color: lightsteelblue;
 }
 
-.panelFlextable{
+.titleFlextable{
 	font-size: 10px;
-	background-color: lightsteelblue;
+	background-color: #258;
 }
 
 .ProjectCarton1{

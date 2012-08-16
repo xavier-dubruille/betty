@@ -45,6 +45,8 @@ PresenterWidget<SingleCardPresenter.MyView> {
 
 	public void init(int myI) {
 		storageId = myI;
+		//cardId = myI;
+		
 		// TODO trouver un meilleur moyen de transmettre l'id au widget..
 		getView().asWidget().setTitle(""+myI);
 		
@@ -110,14 +112,6 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		    popupPanel.hide();
 		    getEventBus().fireEvent(new NewCardPopupEvent());
 		   // addToPopupSlot(addNewCardPresenter);
-		  }
-		};
-		 
-		Command ModifiedCardCommand = new Command() {
-		  public void execute() {
-		    //deckPanel.showWidget(1);
-		    popupPanel.hide();
-		    Window.alert("Modified");
 		  }
 		};
 		 

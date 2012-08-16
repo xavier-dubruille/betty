@@ -196,7 +196,6 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 		selectComboForm.setWidth(200); 
 		firstComboBox.setTitle("Option");
 		firstComboBox.setType("comboBox");
-		firstComboBox.setTextBoxStyle("backIndex");
 		valueMap = new LinkedHashMap<String, String>();
 		valueMap.put("0", "All card");
 		valueMap.put("1", "Professor");
