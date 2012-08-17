@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Room {
+public class Room implements Comparable<Room>{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -105,6 +105,11 @@ public class Room {
 
 	public void setFloor(int floor) {
 		this.floor = floor;
+	}
+
+	@Override
+	public int compareTo(Room r) {
+		return this.getCode().compareToIgnoreCase(r.getCode());
 	}
 
 	

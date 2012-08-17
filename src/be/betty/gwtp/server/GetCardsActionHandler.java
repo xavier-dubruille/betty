@@ -1,5 +1,9 @@
 package be.betty.gwtp.server;
 
+
+import java.util.Collections;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -63,16 +67,22 @@ ActionHandler<GetCards, GetCardsResult> {
 			card.setBddId(a.getId());
 			result.addCard(card);
 		}
-		
-		for (Teacher te : p.getTeachers())
+		List<Teacher> lt = (List<Teacher>) p.getTeachers();
+		Collections.sort(lt);
+		for (Teacher te : lt) {
+			System.out.println(te.getName());
 			if (te.giveCoursesThisSem(action.getSemestre()))
 				result.addTeacher(new Teacher_dto(te.getName(), te.getFirstName(), te.getId()));
+		}
 		
-		
-		for (Group_entity g : p.getGroups())
+		List<Group_entity> lg = (List<Group_entity>) p.getGroups();
+		Collections.sort(lg);
+		for (Group_entity g : lg)
 			result.addGroup(new Group_dto(g.getCode(), g.getId()));
 		
-		for (Room r: p.getRooms())
+		List<Room> lr = (List<Room>)p.getRooms();
+		Collections.sort(lr);
+		for (Room r: lr)
 			result.addRoom(new Room_dto(r.getCode(), r.getId()));
 		
 		Course_dto co;
