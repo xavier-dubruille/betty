@@ -8,6 +8,7 @@ public class GetActivityStateAction extends
 		ActionImpl<GetActivityStateActionResult> {
 
 	private int instanceBddId;
+	private String sessId;
 
 	@SuppressWarnings("unused")
 	private GetActivityStateAction() {
@@ -18,11 +19,16 @@ public class GetActivityStateAction extends
 		return false;
 	}
 
-	public GetActivityStateAction(int instanceBddId) {
+	public GetActivityStateAction(int instanceBddId, String sessId) {
 		this.instanceBddId = instanceBddId;
+		this.sessId = sessId;
 	}
 
 	public int getInstanceBddId() {
 		return instanceBddId;
+	}
+
+	public String getSessId() {
+		return sessId;
 	}
 }

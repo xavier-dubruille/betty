@@ -30,12 +30,12 @@ public class GetActivityStateActionActionHandler implements
 	public GetActivityStateActionResult execute(GetActivityStateAction action,
 			ExecutionContext context) throws ActionException {
 		
-		if (!CheckCookies.checkProjectInstance(action.getInstanceBddId()))
-			throw new ActionException("Invalid Action, try to erase your cookies and re-log");
+		if (!CheckSession.isProjectActionPermited(action.getInstanceBddId(), true, action.getSessId()))
+			throw new ActionException("Invalid Action, try to re-log");
 		
 		HashMap<String, ActivityState_dto> h = new HashMap<String, ActivityState_dto>();
 		
-		// le but c'est d'avoir l'activityState id le plus haut possible pour une activity donnée
+		// le but c'est d'avoir l'activityState id le plus haut possible pour une activity donnee
 		HashMap<Integer,Integer> max = new HashMap<Integer, Integer>(); //used to make sure of the correct activityState's order
 		
 		Session s = HibernateUtils.getSession();

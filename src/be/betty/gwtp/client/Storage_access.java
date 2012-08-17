@@ -45,6 +45,7 @@ public class Storage_access {
 	private static final String NUMBER_OF_PERIODS = "p";
 	private static final String NUMBER_OF_ROOM = "r";
 	private static final String ROOM_PREFIX = "R";
+	private static final String SESSID_PREFIX = "session_id";
 
 	// if one of the following constants come to change,
 	// then the method setCards() HAS TO be changed also !!
@@ -100,10 +101,10 @@ public class Storage_access {
 	 * @param result
 	 */
 	public static void populateStorage(String project_num, GetCardsResult result) {
-		// TODO: il faut (mieu?) verifier si il y a dŽja des cartons dans le
+		// TODO: il faut (mieu?) verifier si il y a dï¿½ja des cartons dans le
 		// local storage, si ce sont les bons, etc
 
-		// TODO : si rajoute-t-on ici le choix de mettre ˆ jour ou pas le local storage ?
+		// TODO : si rajoute-t-on ici le choix de mettre ï¿½ jour ou pas le local storage ?
 
 		stockStore.setItem(PROJECT_ON, project_num);
 		//System.out.println("cards a la population du storage = "+result.getCards());
@@ -240,6 +241,15 @@ public class Storage_access {
 		stockStore.setItem(CURRENT_INSTANCE_BDDID, ""+getInstanceBddId(instance));
 	}
 
+	public static String getSessId() {
+		return stockStore.getItem(SESSID_PREFIX);
+	}
+	
+	public static void setSessId(String sessId) {
+		stockStore.setItem(SESSID_PREFIX, sessId);
+	}
+	
+	
 	public static int getNumberOfInstance() {
 		return Integer.parseInt(stockStore.getItem(NUMBER_OF_INSTANCE));
 	}
@@ -473,6 +483,7 @@ public class Storage_access {
 
 		}
 	}
+
 
 
 

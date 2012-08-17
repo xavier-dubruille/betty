@@ -214,8 +214,8 @@ public class MainPresenter extends
 			System.out.println("����������Actual project instance= "+projectInstance);
 			
 			// "first", save to bdd (it's asynchronous, so instantaneous)
-			dispatcher.execute(new SaveCardDropAction(event.getDay(), event.getPeriod(), activity_bddId, event.getRoom(), projectInstance),
-					new AsyncCallback<SaveCardDropActionResult>() {
+			dispatcher.execute(new SaveCardDropAction(event.getDay(), event.getPeriod(), activity_bddId, event.getRoom(),
+					projectInstance, Storage_access.getSessId()), new AsyncCallback<SaveCardDropActionResult>() {
 						@Override public void onFailure(Throwable arg0) {
 							System.out.println("save 'dropped card' failed !!");
 							System.out.println("tostring"+arg0);
@@ -397,12 +397,13 @@ public class MainPresenter extends
 
 		//getView().getCombo_viewChoice2().setItemSelected(0, true);
 		//ClientUtils.DONT_REPEAT_YOURSELF = {true};  //marche po :(
-		GetCards action = new GetCards(project_num, sem);
+		GetCards action = new GetCards(project_num, sem, Storage_access.getSessId());
 		dispatcher.execute(action, new AsyncCallback<GetCardsResult>() {	
 			@Override public void onFailure(Throwable arg0) {
 				// TODO Auto-generated method stub
 				// arg0.printStackTrace();
 				System.err.println("***failure:" + arg0);
+				ClientUtils.actionFailed("Operation failed "+arg0);
 
 			}
 			@Override public void onSuccess(GetCardsResult result) {
@@ -586,7 +587,8 @@ public class MainPresenter extends
 	private void reDrowStatusCard() {
 		int currentInstance= Storage_access.getCurrentProjectInstanceBDDID() ;
 		
-		dispatcher.execute(new GetActivityStateAction(currentInstance), new AsyncCallback<GetActivityStateActionResult>() {
+		dispatcher.execute(new GetActivityStateAction(currentInstance, Storage_access.getSessId()), 
+				new AsyncCallback<GetActivityStateActionResult>() {
 
 	
 

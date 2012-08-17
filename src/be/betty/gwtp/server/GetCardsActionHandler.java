@@ -36,6 +36,9 @@ ActionHandler<GetCards, GetCardsResult> {
 			throws ActionException {
 
 		assert Integer.parseInt(action.getProjectId()) >= 0;
+		int projectId = Integer.parseInt(action.getProjectId());
+		if (!CheckSession.isProjectActionPermited(projectId, false, action.getSessId()))
+			throw new ActionException("Invalid Action, try to erase your cookies and re-log");
 
 		GetCardsResult result = new GetCardsResult();
 
@@ -45,7 +48,7 @@ ActionHandler<GetCards, GetCardsResult> {
 		Transaction t = s.beginTransaction();
 
 		Project_entity p = (Project_entity) s.get(Project_entity.class,
-				Integer.parseInt(action.getProjectId()));
+				projectId);
 		// result.setName(p.getName());
 	
 		for (Activity_entity a : p.getActivities()) {

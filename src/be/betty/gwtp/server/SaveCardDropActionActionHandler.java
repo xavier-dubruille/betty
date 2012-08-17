@@ -28,6 +28,9 @@ public class SaveCardDropActionActionHandler implements
 	public SaveCardDropActionResult execute(SaveCardDropAction action,
 			ExecutionContext context) throws ActionException {
 
+		if (!CheckSession.isProjectActionPermited(action.getProjectInstance(), true, action.getSessId()))
+			throw new ActionException("Invalid Action, try to re-log");
+		
 		Session s = HibernateUtils.getSession();
 		Transaction t = s.beginTransaction();
 

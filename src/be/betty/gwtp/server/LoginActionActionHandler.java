@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -69,6 +70,7 @@ public class LoginActionActionHandler implements
 		Session_id sess = new Session_id();
 		sess.setSess_id(sess_uuid);
 		sess.setUser_id(user);
+		sess.setCreationDate(new Date());
 		s.save(sess);
 
 		

@@ -24,7 +24,10 @@ ActionHandler<DeleteProjectAction, DeleteProjectActionResult> {
 			ExecutionContext context) throws ActionException {
 
 		assert action.getProject_id() >= 0 : "You've got a problem with your project_id while trying to delete it";
-
+		
+		if (!CheckSession.isProjectActionPermited(action.getProject_id(), false, action.getSession_id()))
+			throw new ActionException("You can't delete this project, try to re-log");
+		
 		Session s = HibernateUtils.getSession();
 		Transaction t = s.beginTransaction();
 
@@ -37,7 +40,7 @@ ActionHandler<DeleteProjectAction, DeleteProjectActionResult> {
 		Project_entity p = (Project_entity) s.get(Project_entity.class,
 				action.getProject_id());
 		s.delete(p);
-		// TODO: il faut égalment supprimer tout les autres données de se
+		// TODO: il faut egalment supprimer tout les autres donnees de se
 		// projets !!
 
 		t.commit();

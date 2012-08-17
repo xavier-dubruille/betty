@@ -11,15 +11,17 @@ public class SaveCardDropAction extends ActionImpl<SaveCardDropActionResult> {
 	private int cardBddId;
 	private int room;
 	private int projectInstance;
+	private String sessId;
 
 	public SaveCardDropAction() {} //for serialisation purposes
-	public SaveCardDropAction(int day, int period, int cardBddId, int room, int projectInstance) {
+	public SaveCardDropAction(int day, int period, int cardBddId, int room, int projectInstance, String sessId) {
 		super();
 		this.day = day;
 		this.period = period;
 		this.cardBddId = cardBddId;
 		this.room = room;
 		this.projectInstance = projectInstance;
+		this.sessId = sessId;
 	}
 	
 	@Override
@@ -55,6 +57,9 @@ public class SaveCardDropAction extends ActionImpl<SaveCardDropActionResult> {
 	}
 	public int setProjectInstance() {
 		return this.projectInstance;
+	}
+	public String getSessId() {
+		return sessId;
 	}
 
 }
