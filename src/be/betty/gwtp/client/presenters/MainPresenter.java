@@ -21,8 +21,6 @@ import be.betty.gwtp.client.event.AddNotifEvent;
 import be.betty.gwtp.client.event.AddNotifEvent.AddNotifHandler;
 import be.betty.gwtp.client.event.BoardViewChangedEvent;
 import be.betty.gwtp.client.event.CardFilterEvent;
-import be.betty.gwtp.client.event.DeleteCardEvent;
-import be.betty.gwtp.client.event.DeleteCardEvent.DeleteCardHandler;
 import be.betty.gwtp.client.event.DropCardEvent;
 import be.betty.gwtp.client.event.InstancesModifiedEvent;
 import be.betty.gwtp.client.event.SetViewEvent;
@@ -186,12 +184,6 @@ public class MainPresenter extends
 		}
 	};
 	
-	private DeleteCardHandler deleteCardHandler = new DeleteCardHandler() {
-		@Override public void onDeleteCard(DeleteCardEvent event) {
-			System.out.println("dans le main l'id du carton:: "+event.getCardId());
-		}
-	};
-	
 	private CardFilterHandler filterHandler = new CardFilterHandler() {
 
 		@Override public void onCardFilter(CardFilterEvent event) {
@@ -345,10 +337,6 @@ public class MainPresenter extends
 		
 		registerHandler(getEventBus().addHandler(
 				ShowPlacedCardEvent.getType(), showPlacedHandler));
-		
-		registerHandler(getEventBus().addHandler(
-				DeleteCardEvent.getType(), deleteCardHandler));
-		
 		
 	}
 
