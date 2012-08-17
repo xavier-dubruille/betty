@@ -1,6 +1,5 @@
 package be.betty.gwtp.client.presenters;
 
-import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.Filter_kind;
 import be.betty.gwtp.client.event.NewCardPopupEvent;
 import be.betty.gwtp.client.views.ourWidgets.CardWidget;
@@ -13,7 +12,6 @@ import com.google.gwt.event.dom.client.MouseDownEvent;
 import com.google.gwt.event.dom.client.MouseDownHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Command;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.PopupPanel;
@@ -31,6 +29,8 @@ PresenterWidget<SingleCardPresenter.MyView> {
 	private int storageId;
 	final private PopupPanel popupPanel = new PopupPanel(true);
 	
+	
+	@Inject PopupDeleteCardPresenter deleteCardPresenter;
 	
 	@Inject
 	public SingleCardPresenter(final EventBus eventBus, final MyView view) {
@@ -118,8 +118,10 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		Command DeleteCardCommand = new Command() {
 		  public void execute() {
 		    //deckPanel.showWidget(2);
+		    deleteCardPresenter.init("are you sure to delete the card ", storageId);
+		    addToPopupSlot(deleteCardPresenter);
 		    popupPanel.hide();
-		    Window.alert("Delete");
+
 		  }
 		};
 

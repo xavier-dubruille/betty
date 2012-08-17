@@ -100,14 +100,10 @@ public class ClientModule extends AbstractPresenterModule {
 				NewCardSuccessPopupPresenter.MyView.class,
 				NewCardSuccessPopupView.class);
 		
-		/*bindPresenterWidget(NewCardFailedPopupPresenter.class,
-				NewCardFailedPopupPresenter.MyView.class,
-				NewCardFailedPopupView.class);
-
 		bindPresenterWidget(PopupDeleteCardPresenter.class,
 				PopupDeleteCardPresenter.MyView.class,
 				PopupDeleteCardView.class);
-*/
+
 		bindPresenterWidget(SolveItPopupPresenter.class,
 				SolveItPopupPresenter.MyView.class, SolveItPopupView.class);
 }
