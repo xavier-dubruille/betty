@@ -1,5 +1,6 @@
 package be.betty.gwtp.client.presenters;
 
+import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.event.NewCardPopupEvent;
 import be.betty.gwtp.client.event.NewCardPopupEvent.NewCardPopupHandler;
 import be.betty.gwtp.client.event.ShowPlacedCardEvent;
@@ -123,12 +124,9 @@ public class HeaderPresenter extends
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				if (stockStore != null) {	
-					stockStore.removeItem("login");
-					stockStore.removeItem("session_id");
-					stockStore.clear();
-					placeManager.revealPlace(new PlaceRequest(NameTokens.login));
-				}
+				Storage_access.clear();
+				placeManager.revealPlace(new PlaceRequest(NameTokens.login));
+		
 				
 			}
 		});

@@ -31,6 +31,7 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 	@UiField TextButton buttonLogin;
 	@UiField Hyperlink forgetPassword;
 	@UiField Hyperlink hyperlinkSubscribe;
+	@UiField Hyperlink cacheProject;
 	
 	public interface Binder extends UiBinder<Widget, LoginView> {
 	}
@@ -90,4 +91,10 @@ public class LoginView extends ViewImpl implements LoginPresenter.MyView {
 	public Hyperlink getHyperlinkSubscribe(){
 		return hyperlinkSubscribe;
 	}
+
+	@Override
+	public Hyperlink getCacheProject() {
+		return cacheProject;
+	}
+
 }

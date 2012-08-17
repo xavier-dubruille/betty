@@ -424,8 +424,9 @@ public class MainPresenter extends
 			return;
 		}
 
-		getView().getMainLabel().setText(
-				"Welcome " + login + " *****  Projet num " + project_num);
+		Storage_access.setProjectName(project_num);
+		Storage_access.setSemester(sem);
+		getView().getMainLabel().setText("Project Loading ...");//Project: "+Storage_access.getProjectName()+", semestre "+sem);
 
 		//getView().getCombo_viewChoice2().setItemSelected(0, true);
 		//ClientUtils.DONT_REPEAT_YOURSELF = {true};  //marche po :(
@@ -448,6 +449,8 @@ public class MainPresenter extends
 //						
 				print_da_page();
 //				// getView().getContent().setText(result.getActivities().toString());
+				getView().getMainLabel().setText("Project: "+Storage_access.getProjectName()+", semestre "+sem);
+
 			}
 
 		});
