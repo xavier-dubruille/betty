@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "teacher")
-public class Teacher {
+public class Teacher implements Comparable <Teacher>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
@@ -105,6 +105,12 @@ public class Teacher {
 
 	public void setSem2(boolean sem2) {
 		this.sem2 = sem2;
+	}
+
+
+	@Override
+	public int compareTo(Teacher t) {
+		return this.getName().compareToIgnoreCase(t.getName());
 	}
 
 }

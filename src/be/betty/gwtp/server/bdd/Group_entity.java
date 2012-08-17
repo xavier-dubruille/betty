@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Group_entity {
+public class Group_entity implements Comparable<Group_entity> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -71,6 +71,11 @@ public class Group_entity {
 
 	public void setSubGroup(String subGroup) {
 		this.subGroup = subGroup;
+	}
+
+	@Override
+	public int compareTo(Group_entity g) {
+		return this.getCode().compareToIgnoreCase(getCode());
 	}
 
 }
