@@ -75,7 +75,7 @@ public class Group_entity implements Comparable<Group_entity> {
 
 	@Override
 	public int compareTo(Group_entity g) {
-		return this.getCode().compareToIgnoreCase(getCode());
+		return this.getCode().compareToIgnoreCase(g.getCode());
 	}
 
 }
