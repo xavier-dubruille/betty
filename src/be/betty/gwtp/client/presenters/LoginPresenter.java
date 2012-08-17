@@ -1,5 +1,6 @@
 package be.betty.gwtp.client.presenters;
 
+import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.action.LoginAction;
 import be.betty.gwtp.client.action.LoginActionResult;
 import be.betty.gwtp.client.place.NameTokens;
@@ -47,6 +48,7 @@ public class LoginPresenter extends
 		public TextButton getButtonLogin();
 		//public Image getImageGoSubscribe();
 		public Hyperlink getHyperlinkSubscribe();
+		Hyperlink getCacheProject();
 	}
 
 	@ProxyCodeSplit
@@ -143,6 +145,13 @@ public class LoginPresenter extends
 		getView().getWrongPwd_label().setText("");
 		getView().getLoadingPicture().setVisible(false);
     	getView().getLogin_textbox().setFocus(true);
+    	
+    	getView().getCacheProject().setText("");
+    	if (Storage_access.getProjectName() != null) {
+    		getView().getCacheProject().setText("Vous avez un projet en cours, voulez vous le reprendre? "+Storage_access.getProjectName());
+    		getView().getCacheProject().setTargetHistoryToken("main;p="+Storage_access.getSavedProject()+";s="+Storage_access.getSemester());
+    	}
+    		//getView().getWrongPwd_label().setText("Vous avez un projet en cours, voulez vous le reprendre? "+Storage_access.getProjectName());
 	}
 
 	

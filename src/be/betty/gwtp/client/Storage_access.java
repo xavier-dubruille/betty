@@ -45,7 +45,10 @@ public class Storage_access {
 	private static final String NUMBER_OF_PERIODS = "p";
 	private static final String NUMBER_OF_ROOM = "r";
 	private static final String ROOM_PREFIX = "R";
-	private static final String SESSID_PREFIX = "session_id";
+	private static final String SESSID_PREFIX = "session_id"; // can't be change before you're sure no one use the old way
+	private static final String PROJECT_NAME_PREFIX = "P";
+	private static final String SEMESTER_PREFIX = "s";
+
 
 	// if one of the following constants come to change,
 	// then the method setCards() HAS TO be changed also !!
@@ -70,12 +73,15 @@ public class Storage_access {
 	private static final int CO_PR_SIZE_INDEX = 1; //e.g. if the instance has been deleted and have to be disabled
 	private static final int CO_PR_INDEX = 2;
 
+	
+
 
 	static {
 		stockStore = Storage.getLocalStorageIfSupported();
 		if (stockStore == null) {
 			// TODO: "You're browser is crap, get an other one" --> gestion
 			// d'erreurs !
+			ClientUtils.actionFailed("Fatal Error. Youre browser doesn't seem to be compatible.. You should get the last version.");
 		}
 		groups_map = new ArrayList<Integer>();
 		teachers_map = new ArrayList<Integer>();
@@ -94,7 +100,28 @@ public class Storage_access {
 		stockStore.setItem(NUMBER_OF_PERIODS, "6");
 
 	}
+	
+	public static void clear() {
+		stockStore.removeItem(PROJECT_NAME_PREFIX);
+		stockStore.clear();
+	}
 
+	public static String getProjectName() {
+		return stockStore.getItem(PROJECT_NAME_PREFIX);
+	}
+	
+	public static void setProjectName(String projectName) {
+		stockStore.setItem(PROJECT_NAME_PREFIX, projectName);
+	}
+	
+	public static String getSemester() {
+		return stockStore.getItem(SEMESTER_PREFIX);
+	}
+	
+	public static void setSemester(String semester) {
+		stockStore.setItem(SEMESTER_PREFIX, semester);
+	}
+	
 	/**
 	 * Main method to populate the local Storage
 	 * @param project_num
@@ -483,6 +510,10 @@ public class Storage_access {
 
 		}
 	}
+
+
+
+
 
 
 
