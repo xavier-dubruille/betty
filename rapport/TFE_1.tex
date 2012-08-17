@@ -4,17 +4,30 @@
 \usepackage[T1]{fontenc}
 \usepackage[frenchb]{babel}
 \usepackage{graphicx}
-% \usepackage{listings}
-% \lstset{language={Python}}
 \usepackage{url}
 \usepackage{amsmath}
 \usepackage{array}
+\renewcommand{\baselinestretch}{1} %Permet de définir la taille de l'interligne
 
 \usepackage[colorlinks=true]{hyperref}
 \hypersetup{urlcolor=blue,linkcolor=blue,citecolor=blue,colorlinks=true}
 \usepackage{geometry}
-\geometry{hmargin=2cm,vmargin=2cm}
+\geometry{lmargin=2cm,rmargin=1.5cm,vmargin=2.5cm} %Permet de modifier la marge gauche (lmargin), de droite (rmargin) et verticale (vmargin)
+
+
+
 \usepackage{fancybox}
+%Numérotation en haut à droite
+\usepackage{fancyheadings} 
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}   
+\fancyhf{}            
+\rhead{\thepage}
+%Fin Numérotation en haut à droite
+
+
+
+
 
 % \usepackage{wrapfig} %% ADDED
 \usepackage{color} %% ADDED
@@ -45,39 +58,6 @@
 \makeatother
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%%% Pour l'insertion jolie de code Python %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{color}
-\definecolor{darkgreen}{rgb}{0,0.54,0.54}
-
-\usepackage{listings}
-\lstset{
-captionpos=t,
-flexiblecolumns=true,
-numbers=left,
-stepnumber=1,
-basicstyle=\ttfamily\scriptsize,%\ttfamily\scriptsize,
-numberstyle=\ttfamily,
-keywordstyle=\ttfamily\textcolor{darkgreen},
-caption={Code
-Python},
-stringstyle=\rmfamily\textcolor{magenta},
-commentstyle=\normalfont\textcolor{blue},
-breaklines=true,
-extendedchars=true,
-showstringspaces=false
-frame=single,
-}
-\newcommand{\inputPython}[2]{
-\lstinputlisting[language={Python},caption={#2}]{#1}
-}
-\lstnewenvironment{CodeMatlab}[1]{\lstset{language=matlab,caption={Code Matlab}}}{}
-%%% fin pour l'insertion jolie de code Python  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%Il suffit alors d'utiliser la commande \inputPython{fichier.py}{texte a mettre dans le caption} pour insérer un fichier Python.
-
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -127,7 +107,7 @@ Ecole Pratique des Hautes Etudes Commerciales
 
 \newpage
 
-\thispagestyle{empty}
+\thispagestyle{empty} %Enlêve la numérotation de cette page
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ABSTRACT
@@ -161,14 +141,17 @@ Nous tenons à remercier chaleureusement:
 
 \newpage
 \null
-\thispagestyle{empty}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TABLE DES MATIERES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagenumbering{roman}
+\setcounter{page}{1} %Permet de faire commencer la numérotation à la première page de la Table des matières
 
 \tableofcontents %savoir si les subsubsections doivent apparaitrent
-\thispagestyle{empty}
+
+ 
 
 
 
@@ -176,7 +159,8 @@ Nous tenons à remercier chaleureusement:
 % INTRODUCTION
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
-\setcounter{page}{1} %permet de commencer la numerotation à zéro
+\pagenumbering{arabic}
+\setcounter{page}{1} %permet de commencer la numerotation à zéro à partir de cette page
 \include{intro}
 
 
