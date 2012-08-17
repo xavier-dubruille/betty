@@ -9,6 +9,8 @@ import be.betty.gwtp.client.CardSelectionDropControler;
 import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
+import be.betty.gwtp.client.action.DeleteCardAction;
+import be.betty.gwtp.client.action.DeleteCardActionResult;
 import be.betty.gwtp.client.action.GetActivityStateAction;
 import be.betty.gwtp.client.action.GetActivityStateActionResult;
 import be.betty.gwtp.client.action.GetCards;
@@ -191,8 +193,25 @@ public class MainPresenter extends
 		@Override
 		public void onDeleteCard(DeleteCardEvent event) {
 			System.out.println("dans le main Id de la carte: "+event.getCardId());
+			DeleteCardAction action = new DeleteCardAction(event.getSessionId(), event.getCardId());
+			dispatcher.execute(action, new AsyncCallback<DeleteCardActionResult>() {
+
+				@Override
+				public void onFailure(Throwable caught) {
+					// TODO Auto-generated method stub
+					System.out.println("failed to send the action delete card");
+				}
+
+				@Override
+				public void onSuccess(DeleteCardActionResult result) {
+					System.out.println("the action to delete card send with success");
+					
+				}
+			});
 		}
 	};
+	
+	
 	
 	private CardFilterHandler filterHandler = new CardFilterHandler() {
 
