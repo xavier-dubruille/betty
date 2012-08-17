@@ -193,7 +193,8 @@ public class MainPresenter extends
 		@Override
 		public void onDeleteCard(DeleteCardEvent event) {
 			System.out.println("dans le main Id de la carte: "+event.getCardId());
-			DeleteCardAction action = new DeleteCardAction(event.getSessionId(), event.getCardId());
+			DeleteCardAction action = new DeleteCardAction(event.getSessionId(),
+					Integer.parseInt(Storage_access.getBddIdFromCardId(event.getCardId())));
 			dispatcher.execute(action, new AsyncCallback<DeleteCardActionResult>() {
 
 				@Override
@@ -205,6 +206,7 @@ public class MainPresenter extends
 				@Override
 				public void onSuccess(DeleteCardActionResult result) {
 					System.out.println("the action to delete card send with success");
+					onReset();
 					
 				}
 			});

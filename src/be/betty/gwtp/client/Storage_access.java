@@ -320,6 +320,10 @@ public class Storage_access {
 	public static void setCurrentProjectInstanceBddId(int currentProjectInstance) {
 		setCurrentProjectInstanceBddId_fromBddID(getInstanceBddId(currentProjectInstance));
 	}
+	
+	public static String getBddIdFromCardId(int cardId) {
+		return stockStore.getItem(CARD_PREFIX+cardId).split(STORAGE_SEPARATOR)[BDDID_INDEX];
+	}
 
 	/**
 	 * 
@@ -384,6 +388,9 @@ public class Storage_access {
 	public static String getCard(int i) {
 		return stockStore.getItem(CARD_PREFIX+i);
 	}
+	
+
+
 
 	public static String getCard(String i) {
 		return stockStore.getItem(CARD_PREFIX+i);
@@ -465,6 +472,9 @@ public class Storage_access {
 		return Integer.parseInt(card.split(STORAGE_SEPARATOR)[BDDID_INDEX]);
 	}
 
+
+
+	
 	/**
 	 * print to console the content of localStorage..
 	 * For Debuggin' purposes !

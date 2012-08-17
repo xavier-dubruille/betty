@@ -69,11 +69,9 @@ ActionHandler<GetCards, GetCardsResult> {
 		}
 		List<Teacher> lt = (List<Teacher>) p.getTeachers();
 		Collections.sort(lt);
-		for (Teacher te : lt) {
-			System.out.println(te.getName());
+		for (Teacher te : lt)
 			if (te.giveCoursesThisSem(action.getSemestre()))
 				result.addTeacher(new Teacher_dto(te.getName(), te.getFirstName(), te.getId()));
-		}
 		
 		List<Group_entity> lg = (List<Group_entity>) p.getGroups();
 		Collections.sort(lg);
