@@ -36,8 +36,6 @@ PresenterWidget<SingleCardPresenter.MyView> {
 	public SingleCardPresenter(final EventBus eventBus, final MyView view) {
 		super(eventBus, view);
 	}
-	
-	@Inject PopupDeleteCardPresenter deleteCardPresenter;
 	//@Inject AddNewCardPopupPresenter addNewCardPresenter;
 	@Override
 	protected void onBind() {
@@ -121,8 +119,7 @@ PresenterWidget<SingleCardPresenter.MyView> {
 		  public void execute() {
 		    //deckPanel.showWidget(2);
 		    popupPanel.hide();
-		    deleteCardPresenter.init("are you sure you want to delete the card number ",storageId);
-		    addToPopupSlot(deleteCardPresenter);
+		    Window.alert("Delete");
 		  }
 		};
 
