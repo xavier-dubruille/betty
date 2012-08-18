@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.4.17)  18 AUG 2012 16:50
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.4.17)  18 AUG 2012 17:17
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -486,6 +486,7 @@ Package: kvoptions 2009/08/13 v3.4 Keyval support for LaTeX options (HO)
 Package: kvsetkeys 2009/07/30 v1.5 Key value parser with default handler suppor
 t (HO)
 ))
+Package hyperref Info: Option `colorlinks' set `false' on input line 2864.
 Package hyperref Info: Hyper figures OFF on input line 2975.
 Package hyperref Info: Link nesting OFF on input line 2980.
 Package hyperref Info: Hyper index ON on input line 2983.
@@ -543,16 +544,13 @@ Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
 \Hy@abspage=\count108
 \c@Item=\count109
 )
-
-Package hyperref Warning: Wrong driver `hypertex.def';
-(hyperref)                pdfTeX is running in PDF mode.
-(hyperref)                Forcing driver `hpdftex.def'.
-
-*hyperref using driver hpdftex*
+*hyperref using default driver hpdftex*
 (/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
 \Fld@listcount=\count110
 )
+Package hyperref Info: Option `colorlinks' set `true' on input line 37.
+
 (/usr/share/texmf/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 
@@ -619,21 +617,21 @@ Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 (./recommandation.aux) (./conclusion.aux))
 \openout1 = `these.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 98.
-LaTeX Font Info:    ... okay on input line 98.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 98.
-LaTeX Font Info:    ... okay on input line 98.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 98.
-LaTeX Font Info:    ... okay on input line 98.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 98.
-LaTeX Font Info:    ... okay on input line 98.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 98.
-LaTeX Font Info:    ... okay on input line 98.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 98.
-LaTeX Font Info:    ... okay on input line 98.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 98.
-LaTeX Font Info:    ... okay on input line 98.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 98.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 100.
+LaTeX Font Info:    ... okay on input line 100.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 100.
 
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -679,9 +677,9 @@ driver: pdftex
 \@twosidetrue \@mparswitchtrue 
 (1in=72.27pt, 1cm=28.45pt)
 -----------------------
-LaTeX Info: Redefining \degres on input line 98.
-LaTeX Info: Redefining \dots on input line 98.
-LaTeX Info: Redefining \up on input line 98.
+LaTeX Info: Redefining \degres on input line 100.
+LaTeX Info: Redefining \dots on input line 100.
+LaTeX Info: Redefining \up on input line 100.
 (/usr/share/texmf/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count120
@@ -695,7 +693,7 @@ LaTeX Info: Redefining \up on input line 98.
 \MPnumerator=\count124
 \everyMPtoPDFconversion=\toks25
 )
-Package hyperref Info: Link coloring OFF on input line 98.
+Package hyperref Info: Link coloring ON on input line 100.
  (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 
@@ -704,8 +702,8 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
 \c@section@level=\count125
 )
-LaTeX Info: Redefining \ref on input line 98.
-LaTeX Info: Redefining \pageref on input line 98.
+LaTeX Info: Redefining \ref on input line 100.
+LaTeX Info: Redefining \pageref on input line 100.
  (./these.out)
 (./these.out)
 \@outlinefile=\write3
@@ -717,52 +715,52 @@ LaTeX Info: Redefining \pageref on input line 98.
 File: ./pics/ephec_logo.png Graphic file (type png)
 
 <use ./pics/ephec_logo.png>
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 102.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 104.
 
  (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 102.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 104.
 
 
 (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 102
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 104
 .
 
 (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 102
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 104
 .
 
 (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 102.
+(Font)              <12> on input line 104.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 102.
+(Font)              <8> on input line 104.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 102.
-LaTeX Font Info:    Try loading font information for U+msa on input line 102.
+(Font)              <6> on input line 104.
+LaTeX Font Info:    Try loading font information for U+msa on input line 104.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 102.
+LaTeX Font Info:    Try loading font information for U+msb on input line 104.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 102--102
+Overfull \hbox (17.62482pt too wide) in paragraph at lines 104--104
 [][] 
  []
 
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
-(Font)              using `T1/lmr/bx/n' instead on input line 102.
+(Font)              using `T1/lmr/bx/n' instead on input line 104.
 
 [1
 
@@ -774,7 +772,7 @@ LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
 ]
 File: ./pics/ephec_logo.png Graphic file (type png)
  <use ./pics/ephec_logo.png>
-Overfull \hbox (17.62482pt too wide) in paragraph at lines 105--105
+Overfull \hbox (17.62482pt too wide) in paragraph at lines 107--107
 [][] 
  []
 
@@ -782,7 +780,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.105 \maketitle
+l.107 \maketitle
                  [1] (./resume.texpdfTeX warning (ext4): destination with the s
 ame identifier (name{page.ii}) has been already used, duplicate ignored
 <to be read again> 
@@ -1185,10 +1183,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 9616 strings out of 493848
- 132141 string characters out of 1152823
- 250518 words of memory out of 3000000
- 12454 multiletter control sequences out of 15000+50000
+ 9618 strings out of 493848
+ 132168 string characters out of 1152823
+ 250496 words of memory out of 3000000
+ 12456 multiletter control sequences out of 15000+50000
  57011 words of font info for 45 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  38i,12n,46p,1166b,511s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1198,7 +1196,7 @@ hare/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/publ
 ic/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/t
 exmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
 i12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb>
-Output written on these.pdf (52 pages, 298379 bytes).
+Output written on these.pdf (52 pages, 298450 bytes).
 PDF statistics:
  664 PDF objects out of 1000 (max. 8388607)
  136 named destinations out of 1000 (max. 500000)
