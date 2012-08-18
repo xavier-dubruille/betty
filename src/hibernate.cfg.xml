@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+     "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+    
+<hibernate-configuration>
+	<session-factory>
+		<!-- Affiche les logs SQL -->
+<!-- 		<property name="show_sql">true</property> -->
+<!-- 		<property name="hibernate.format_sql">true</property> -->
+<!-- 		<property name="use_sql_comments">true</property> -->
+
+
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://betty.sytes.net/betty?autoReconnect=true</property>
+		<property name="hibernate.connection.username">betty</property>
+		<property name="hibernate.connection.password">aqzsed</property>
+		<property name="hibernate.connection.pool_size">30</property>
+
+		<!-- Comportement pour la conservation des tables -->
+		<property name="hbm2ddl.auto">update</property>
+		
+		
+
+		<mapping class="be.betty.gwtp.server.bdd.Teacher" />
+		<mapping class="be.betty.gwtp.server.bdd.Project_entity" />
+		<mapping class="be.betty.gwtp.server.bdd.ProjectInstance" />
+		<mapping class="be.betty.gwtp.server.bdd.Group_entity" />
+		<mapping class="be.betty.gwtp.server.bdd.Course" />
+		<mapping class="be.betty.gwtp.server.bdd.Activity_entity" />
+		<mapping class="be.betty.gwtp.server.bdd.ActivityState" />
+		<mapping class="be.betty.gwtp.server.bdd.User" />
+		<mapping class="be.betty.gwtp.server.bdd.Session_id" />
+		<mapping class="be.betty.gwtp.server.bdd.Room" />
+		<mapping class="be.betty.gwtp.server.bdd.TeacherTimePref" />
+	
+	</session-factory>
+</hibernate-configuration>

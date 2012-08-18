@@ -1,0 +1,21 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'
+	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
+	ui:generateLocales='default' xmlns:w="urn:import:com.google.gwt.widget.client">
+
+	<g:PopupPanel styleName="popupPresenter">
+		<g:VerticalPanel width="273px" height="156px" horizontalAlignment="ALIGN_CENTER">
+			<g:VerticalPanel width="100%" horizontalAlignment="ALIGN_RIGHT" styleName="popupPresenterExitBar" ui:field="verticalPanel">
+				<w:TextButton value="" width="10px" height="12px" ui:field="buttonCloseBar">New button</w:TextButton>
+			</g:VerticalPanel>
+			<g:Label text="Are you sure?" horizontalAlignment="ALIGN_CENTER" ui:field="LabelInfo"/>
+			<g:HorizontalPanel width="100%" horizontalAlignment="ALIGN_CENTER" verticalAlignment="ALIGN_MIDDLE">
+				<w:TextButton width="50px" ui:field="buttonYes" text="Yes">New button</w:TextButton>
+				<w:TextButton text="No" ui:field="ButtonNo" width="50px">New button</w:TextButton>
+			</g:HorizontalPanel>
+		</g:VerticalPanel>
+	</g:PopupPanel>
+</ui:UiBinder>

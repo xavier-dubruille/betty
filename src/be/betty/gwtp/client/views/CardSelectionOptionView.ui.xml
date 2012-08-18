@@ -1,0 +1,30 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'
+	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
+	ui:generateLocales='default' xmlns:p1="urn:import:com.smartgwt.client.widgets.form">
+
+	<g:HTMLPanel>
+		<g:AbsolutePanel height="146px" width="266px" styleName="card_filter" ui:field="filterAbsolutePanel">
+			<g:at left="10" top="10">
+				<g:Label text="Card filter" styleName="small_title" width="246px" height="16px" horizontalAlignment="ALIGN_CENTER"/>
+			</g:at>
+
+			<g:at left="10" top="71">
+				<g:SimplePanel width="246px" height="29px" ui:field="simplePanel"/>
+			</g:at>
+			<g:at left="10" top="36">
+				<g:SimplePanel width="246px" height="29px" ui:field="simplePanelFirstFilter"/>
+			</g:at>
+
+			<g:at left="127" top="113">
+				<g:CheckBox text="Placed Cards" ui:field="doShowPlacedCard" width="129px" height="15px"/>
+			</g:at>
+			<g:at left="10" top="113">
+				<g:CheckBox text="Show view" ui:field="doSwitchView" width="100px" height="15px"/>
+			</g:at>
+		</g:AbsolutePanel>
+	</g:HTMLPanel>
+</ui:UiBinder>
