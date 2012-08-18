@@ -1,8 +1,8 @@
-\section{Nos Choix}
+\section{Réflexion autour de l'application}
 
 %************************ CLIENT SERVEUR *********************************
 \subsection{Client/Serveur}
-Nos choix ce sont portés sur une architecture client serveur pour les multiples
+Notre application se base sur une architecture client serveur pour les multiples
 avantages que celle-ci apporte.\\
 Premièrement l'Ephec étant un établissement possédant plusieurs sites,
  une application client serveur peut permettre d'avoir un centre de données
@@ -10,8 +10,8 @@ Premièrement l'Ephec étant un établissement possédant plusieurs sites,
  De cette manière, un horaire établi à Louvain-la-Neuve pourra être pris en
  compte lors de l'établissement d'un horaire à Bruxelles.\\
 L'avantage de partager la charge de travail, la grosse partie (solveur,…) étant
-effectuée sur le serveur, permet que l'élaboraiton de l'horaire puissent se
-faire sur des machines possédant peu de ressource. Par exemple, il sera
+effectuée sur le serveur, permet que l'élaboration de l'horaire puisse se
+faire sur des machines possédant peu de ressources. Par exemple, il sera
 possible d'établir l'horaire sur une tablette ou encore sur un Smartphone.\\
 \\
 Grâce à ce type d'architecture, l'application n'est pas dépendante du système
@@ -21,21 +21,20 @@ Les mises à jour de l'application sont aussi complètement transparentes pour
 l'utilisateur final. Pas besoin de télécharger et d'installer les mises à jour
 comme sur un logiciel orienté desktop.\\
 De même, en comparaison toujours avec une application desktop, si il survient un
-problème avec la station de travail, il est garantis de pouvoir retrouver ces
-données dans sont entière intégralité, et l'horaire peut continuer à être établi
-sur une autre station. Les serveurs offre bon nombre d'avantage (duplication des
-données,…) qu'un ordinateur en pane ne peut offrir (même dans le cas d'une
-écrite sur deux disques différents).\\
+problème avec la station de travail, il est garanti de pouvoir retrouver ces
+données dans leurs entières intégralités, et l'horaire peut continuer à être établi
+sur une autre station. Les serveurs offrent de nombreux avantages (duplication des
+données, séparations sur plusieurs sites,…) qu'un ordinateur en panne ne peut offrir.\\
 \\
 Outre cet aspect de facilité pour la partie cliente, il est aussi très facile
 d'administrer l'application. Celle-ci étant portable et facile d'installation.
-Pas besoins de connaissance approfondie, ou de configurations spéciales du
+Pas besoins de connaissances approfondies, ou de configurations spéciales du
 serveur. Il suffit d'installer un serveur\footnote{un serveur permettant
 de faire tourner une application web java comme: tomcat, jetty, ect…} et d'y
 mettre l'application\footnote{sous forme de '.war'} dans le bon dossier.
 De même, la base de données peu être complètement indépendante de l'application
 et peu se trouver sur un serveur externe.
-Le type de SGBD utilisé à peut d'importance, et il n'est pas nécessaire de créer
+Le type de SGBD\footnote{Système de gestion de base de données} utilisé à peut d'importance, et il n'est pas nécessaire de créer
 la base de données au préalable. L'application se charge de la créer d'elle-même
 grâce à l'utilisation de l'outil Hibernate.
 
@@ -78,17 +77,20 @@ l'application peut tourner sur n'importe quel type d'architecture.
 %************************ Google web Toolkit *********************************
 \subsection{Google Web Toolkit (GWT)}
 
-Nous avons ensuite choisi de travailler avec GWT pour les nombreux avantages
-(chapitre sur GWT) que celui-ci apporte. Dans un souci de portabilité de
-l'application sur les différents navigateurs existant le code javascript étant
-généré automatiquement par GWT, mais aussi l'accès à celle-ci en utilisant les
-dernières technologies offertes par les Smartphones et tablettes, cet outils est
-plus qu'efficace et est d'une aide très précieuse. La partie cliente étant
-écrite en java comme la partie serveur.
+Nous avons choisi de travailler avec GWT pour les nombreux avantages\footnote{cfr. Chapitre GWT} que celui-ci apporte. GWT nous permet de coder la partie cliente de l'application en Java, et celui-ci génère le code javascript correspondant. Le code généré par GWT peut être adapté au différent navigateur les plus répandu à ce jour tel que Chrome, Firefox, Internet Explorer,... La partie serveur étant réaliser en java, il est plus facile pour le développeur de créer sont application dans un langage unique. GWT utilise du java EE du coté serveur, langage très puissant et ayant déjà fait ces preuves de robustesse puisque celui-ci est très répandu dans le monde professionnel. Google web toolkit propose également l'utilisation d'outils comme Gin and Juce qui feront l'objet d'un autre point. Comme sont nom l'indique, GWT est une vrai boite à outils.
+
+%******************************** Hibernate ***********************************
+\subsection{Hibernate}
+Pour la communication avec la base de données, nous utilisions l'outil Hibernate. Nous ne rentrerons pas dans les détails de cet outil, celui-ci fera l'objet d'un autre point. Nous dirons juste que Hibernate est un outil performant, permettant de représenter les tables de base de données en objet, facilitant ainsi l'utilisation des données. Il peut être utilisé avec n'importe quel type de SGBD et créé les tables automatiquement. Il possède donc de nombreux avantages et est aussi utilisé en entreprise.
 
 %************************ Solveur *********************************
 \subsection{Solveur}
 
 Après analyse des différentes libraires, nous nous sommes orientez sur la
 librairie xxx. Celle-ci étant beaucoup plus adapté à nos besoins, qui sont de
-pouvoir gérer des contraintes sous la forme de désidérata. 
+pouvoir gérer des contraintes sous la forme de désidérata. Elle est écrite en java et est orienter pour la problématique de la création d'horaire pour un établissement scolaire. A défaut des autres librairies étant plus orienté contraintes et non désidérata, celle-ci propose des options de configurations correspondant à nos besoins et au besoins d'un établissement tel que l'Ephec. Nous l'avons pris uniquement pour des raisons de performance et de correspondance à ce qui doit être fait, et non pas par facilité d'utilisation.
+
+%************************** GitHub *********************************
+\subsection{GitHub}
+Puisque nous faisons ce Travail en équipe, il est nécessaire de pouvoir avoir un suivit de ce que chacun de nous fait, de pouvoir fusionner nos travaux et de garder une trace des différentes version en cas du bug éventuel. Nous avons choisi GitHub pour gérer notre projet, celui-ci étant simple d'utilisation, très performant, gratuit et permettant surtout de fusionner les différents code écrit, au sein d'une même page, de manière indépendante et intelligente.
+
