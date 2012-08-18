@@ -4,10 +4,10 @@
 *.lof
 *.log
 *.bak
-*.cls
 *.lot
 *.out
 *.aux
+*.swp
 
 # gwt stuff #
 #############
