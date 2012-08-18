@@ -1,1 +1,14 @@
 \section{La base de données}
+la bdd se veut, délibérament, extrèment simple/minimal.  Le but n'est pas de gérer l'info (xx).
+
+Par exemple, on ne se soucie pas de donnée propre à l'année, la section, l'implentation, etc etc.  La seule chose qui nous interesse, ce sont les Activities (qu'on nome ainsi dans un contexte général, ou spécifique aux contrainte, mais qu'on nomme également "cartons" lorsque le contexte des grahiques.. il se peut que il soit fait usage du mauvais termes à certain moments, veillez nous en excuser (xxx).
+Donc pour ces activities, toutes les info qui le composent se doivent d'être séparé (tel que le prof, le cours, etc).
+
+une autre table très particulière est les activityState, qui correspond à l'états d'un carton (idéalement à un instant donné), cad, si ce carton est placé, où et qd.  Le but est de pouvoir offrir des retour en arrière ou une annalyse des mouvements effectué, comme par exemple en selectionnant un carton et voir les états précédent de se dit cartons (mais cela n'est pas fait dans la version actuel du programme) ainsi que de priviligier l'ajout à lecture (car il faudrait faire une recherche et un update à chaque pose de cartons), et également permetre de régler des litiges pouvant survenir (utilisation synchrone du programme par exemple).  Il rend également la gestion des différentes "Instances" bcp plus simples.  L'inconvénient, c'est qu'il faut faire une recherche un peu plus longue lors du chargement du projet car il faut selectionner le nernier état du carton. Egalement, il est possible que cette table pourrait atteindre de grosse tailles, et il est necessaire, une fois le projet cloturé, de supprimer les données inutiles. 
+
+Les "instances" sont un set d'états, xxx
+
+pour la gestions des contraintes, il est également necessaire de les sauvegarder, et seulement un set non exostif de contraintes est possibles d'etre enregistré (et traité dans notre programme). Néanmoins, ce set est relativement large et permet de "nommer" la plus part des contraintes.  Il s'agit principalement de "préférences".  Préférences qui pourront être "hard" ou "soft" (un indiquateur est possible pour y mettre plus de grénulosité, mais il n'est actuelement pas pris en compte par notre solveur).  préférence applicable sur un Moment (jour/period) ou sur un(des) local(aux).  préférences dont la sources peuvent être prof, cours, groupe, local.
+
+Avec ca, il est possible de 
+
