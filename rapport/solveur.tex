@@ -1,18 +1,14 @@
 \section{Solveur}
 le but ici n'est pas d'énumérer toutes les étapes par lesquelles nous sommes passé ainsi que toutes les essais infructué effectué, car ce serait long et inninteressant. Nous allons nous concentrer sur la méthode actuelle utilisée en tantant de justifié son choix. Pour pouvoir expliquer son choix et sont utilisation, nous allons devoir revenir sur les explications plus générale de la programmation par contraites et d'autre thechniques OR (operation research).  Pour plus d'information sur le sujet, nous invitons le lecteur, à XXX, ainsi qu'à la thèse de M qui fut de loins l'ouvrage qui nous a le plus éclairé quand la à la problematique de xx
 
-Le solveur (celui du coté serveur), est indépendant de tout, absolument tout. Il est écrit en java, et repose sur une librérire de csp. Il réside donc du coté serveur, dans le servelet de l'application, c'est donc le meme pour tout utilisateurs se connectant au  site. Il ressevra l'information et l'enregistrera xxx
-
-
-Apprès bpc de recherches, cette librairie est de loins la plus adapté et à jours (la dernière version datant du 20 juin, est d'ailleur celle utilisé par le programme).  Ca permetra un dévellopenment du solveur, independament de la bdd ou de l'interface.
-Les possibilités de cette librairie combiné à nos choix d'infrastrcuture sont énorme, et à notre grande tristèsse, ne sont pas utilisé au maximum de sa puissance..  seule la surface à pu être implémenté, faute de temps.
 
 ----
-Pour pouvoir apporter un réel avantage à notre application, comparé à la méthode actuelle, était de fournir une certaine "inteligence" à notre application.
+Pour pouvoir apporter un réel avantage à notre application, comparé à la méthode actuelle de création d'horraire (i.e. manuel), il était necessaire de lui rajouter une certaine "inteligence". 
 Une partie de cette "inteligence" est pris en charge du coté client, qui comme décrit dans une précédente section, se charge d'assister l'utilisateur lors de la création de son horraire.
 
-Cependant, ce support est minimaliste, et une recherche plus poussée est effectué du coté serveur à l'aide d'outil de programmation par contraite et de "recherche opérationnelle".
+Cependant, ce support est minimaliste, et une recherche plus poussée est effectué du coté serveur à l'aide d'outil de programmation par contraite et de "recherche opérationnelle".  Ce solveur sera ensuite amené à nourire le solveur minimaliste du coté client et proposer un certain pilotage de se solveur au travers de l'application cliente. 
 
+Pour ariver à ses résultats on s'est tourné vers des outils de programmation par contrainte et de recherche opérationnelle. 
 Pour comprendre notre choix de librairie ainsi que son utilisation, il est important de revenir sur les principe fondamentaux de la programmation par contraintes.
 
 
@@ -20,6 +16,19 @@ Pour comprendre notre choix de librairie ainsi que son utilisation, il est impor
 
 La programmation par contrainte un paradigme de programmation \footnote{paradigme} ayant pour but la résolution de problèmes combinatoire en
 descrivant plutot le but recherché que la méthode utilisé, c'est pourquoi la programmation par contrainte es une forme de programmation déclarative.
---citation--
+« Constraint Programming represents one of the closest approaches computer science has yet made to the Holy Grail of programming: the user states the problem, the computer solves it. »
+— E. Freuder--citation--
 
-dans le cas qui nous concerne, la problème de création d'horraire, est un cas typique de CSP
+dans le cas qui nous concerne, la problème de création d'horraire, est un cas typique de CSP (Constraint Satisfaction Problem), et comme tout csp peut se définir comme suit:
+*** definition formelle ***
+Dans notre cas, les variables sont, se qu'on appelle "activity", et correspondent à un cours, ou tous type d'activitée pouvant avoir lieu à l'Ephec; il s'agit, dans la méthode traditionnel des cartons physique qui seront manipulé lors de la création d'un horraire.
+
+
+
+
+\subsubsection{Choix de librairies}
+Le solveur (celui du coté serveur), est indépendant de tout, absolument tout. Il est écrit en java, et repose sur une librérire de csp. Il réside donc du coté serveur, dans le servelet de l'application, c'est donc le meme pour tout utilisateurs se connectant au  site. Il ressevra l'information et l'enregistrera xxx
+
+
+Apprès bpc de recherches, cette librairie est de loins la plus adapté et à jours (la dernière version datant du 20 juin, est d'ailleur celle utilisé par le programme).  Ca permetra un dévellopenment du solveur, independament de la bdd ou de l'interface.
+Les possibilités de cette librairie combiné à nos choix d'infrastrcuture sont énorme, et à notre grande tristèsse, ne sont pas utilisé au maximum de sa puissance..  seule la surface à pu être implémenté, faute de temps.
