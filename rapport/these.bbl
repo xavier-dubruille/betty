@@ -11,4 +11,10 @@
 \newblock Th\`ese de doctorat, Charles University in Prague, Faculté of
   Mathematics and Physics.
 
+\bibitem[Sch{\"a}rlig, 1985]{Scharlig_1985}
+\bgroup\fonteauteurs\bgroup Sch{\"a}rlig\egroup\egroup{}, A. (1985).
+\newblock {\em D{\'e}cider sur plusieurs crit{\`e}res: panorama de l'aide {\`a}
+  la d{\'e}cision multicrit{\`e}re}, volume~1.
+\newblock PPUR.
+
 \end{thebibliography}

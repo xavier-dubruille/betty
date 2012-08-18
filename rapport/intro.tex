@@ -7,46 +7,89 @@
 %• la problématique 2) délimiter le sujet
 %• l’annonce du plan (très claire) 3) annoncer le plan
 
-Dans le domaine de l'enseignement, la création des horaires de cours est une tâche ardue pour les secrétariats. En effet, il s'agit de prendre simultanément en compte de très nombreuses contraintes ; les locaux ne sont pas toujours libres, les professeurs ont des \textit{desiderata} particuliers, les élèves ont des parcours différents, etc. Cette somme de contraintes font de la mise en place d'emploi du temps un travail long et fastidieux qu'il s'agit de réitérer à chaque rentrée scolaire.\\
+Dans le domaine de l'enseignement, la création des horaires de cours est une tâche ardue pour les secrétariats. En effet, il s'agit de prendre simultanément en compte de très nombreuses contraintes ; les locaux ne sont pas toujours libres, les professeurs ont des \textit{desideratas} particuliers, les élèves ont des parcours différents, etc. Cette somme de critères contraignants font de la mise en place d'emplois du temps pour chacun des professeurs et, corollairement, des élèves, un travail long et fastidieux qui doit être réitéré à chaque rentrée académique.\\
 \newline
 \indent
-Ce type de problème touche au domaine plus large de la programmation par contraintes, dite \enquote{constraint programming} \citep{Muller_2005}. Ce paradigme de programmation s'attache à traiter les problèmes où une large combinatoire est nécessaire pour trouver un ensemble de solutions satisfaisant les différents acteurs impliqués. Par exemple, la programmation par contraintes est notamment utilisée pour traiter les problèmes relatifs aux circuits d'attente aérien au-dessus des aéroports. Il s'agit de prendre simultanément en compte la quantité de kérosène restante pour chacun des avions, les pistes occupées ou en passe de l'être, les prédictions météos, les \enquote{gates} libres, les ressources disponibles au sol, etc.
+Ce type de problème est l'objet de la programmation par contraintes, dite \enquote{constraint programming} \citep{Muller_2005}. Ce paradigme de programmation s'attache à traiter les problèmes où une large combinatoire est nécessaire pour trouver un ensemble de solutions satisfaisant les différents acteurs impliqués. Par exemple, la programmation par contraintes est notamment utilisée pour traiter les problèmes relatifs aux circuits d'attente aérien au-dessus des aéroports. Il s'agit de prendre simultanément en compte la quantité de kérosène restante pour chacun des avions, les pistes occupées, les prédictions météos, les \enquote{gates} libres, les ressources disponibles au sol, etc. Mais, la programmation par contraintes se retrouve aussi dans d'autres tâches telles que la gestion de la main d’œuvre, la mise en place de tournois sportifs de grande envergure, etc.
 \newline
 \indent
+La recherche par contrainte constitue l'un des outils fondamentaux du domaine, plus vaste, de la 
+recherche opérationnelle, dite \enquote{operations research} \citep{Scharlig_1985}. La recherche opérationnelle se donne pour objectif d'aider la prise de décision pour trouver une solution optimale face à un problème donné. Dans ce contexte, il est naturel que la programmation par contraintes, par sa prise en compte de critères multiples, trouve sa place comme méthode de résolution de problèmes.\\
+\newline
+\indent
+C'est dans ce contexte que s'inscrit le présent travail qui vise à détailler la procédure de conception d'un outil dédié à la création d'horaires de cours pour l'EPHEC\footnote{Ecole Pratique des Hautes Etudes Commerciales} et reposant sur la programmation par contraintes.
+\newline
+\indent
+Madame \textsc{Gillet}, Directrice de l'établissement EPHEC à Louvain-la-Neuve, établit l'horaire à chaque nouveau semestre de l'année académique. L'établissement de cet horaire nécessite de considérer un grand nombre de contraintes ; citons notamment les \textit{desideratas} exprimés par les professeurs, la nécessité qu'un cours se donne dans un local avec un matériel adapté au sujet qu'il traite\footnote{Par exemple, certains cours nécessitent du matériel informatique pour leur bonne tenue.} ou, encore, les impératifs liés au programme de cours des différentes promotions.
+\newline
+\indent
+Toutefois, dans le cadre particulier de l'EPHEC, certaines difficultés supplémentaires sont à examiner. En effet, les professeurs externes, qui ont des charges d'enseignements dans d'autres établissements, doivent se voir attribuer des horaires spécifiques.  De plus, certains cours sont dispensés dans des locaux hors des murs de l'EPHEC qui ont des périodes de disponibilité variables qu'il est nécessaire de prendre en compte.\\
+\newline
+\indent
+Sans une approche computationnelle, ces contraintes doivent être  être prises en compte manuellement par la personne établissant l'horaire. Or, cette considération minutieuse des contraintes est un véritable \enquote{casse-tête} nécessitant un effort cognitif important pour le résoudre. 
+\newline
+\indent
+La programmation par contraintes permet de résoudre de manière automatique cette problématique et facilite ainsi la tâche qui incombe à la personne en charge de l'élaboration d'un horaire. Ainsi, notre solution s'inscrit dans un cadre applicatif réel et  utile face à la tâche chronophage de création d'horaires. \\
+\newline
+\indent
+Afin de répondre à cette problématique, différents aspects ont dû être étudiés ; la notion de contrainte que nous décrirons de façon théorique, le paradigme de programmation correspondant et, enfin,  les différents outils existants dédiés à ce domaine. Cependant, afin de rendre notre solution utile au plus grand nombre, deux aspects supplémentaires ont du être travaillés.
+\newline
+\indent
+Premièrement, il a été décidé d'orienter notre solution dans une visée de service Web. Ainsi, notre solution ne nécessite pas d'installation préalable à son utilisation. Et, en outre, ce choix permet de centraliser les données au sein d'une unique base de données.
+\newline
+\indent
+Deuxièmement, dans une optique d'ergonomie et de facilité d'emploi, il a été choisi d'effectuer un travail important sur l'interface. En effet, la création d'horaires étant une tâche déjà complexe en soi, il nous a paru inutile d'alourdir la charge cognitive qu'elle nécessite en obligeant l'utilisateur à apprendre à manipuler notre solution.\\
+\newline
+\indent
+Ces deux aspects ont apportés un lot de difficultés auquel notre solution a dû répondre. Citons notamment la nécessité d'une approche asynchrone dans la gestion de la base de données afin de garder une solution rapide. En effet, lorsqu'un horaire subit une modification, il est nécessaire de le changer dans le base de donnée. Cette demande faite à la base de données nécessite une réponse avant de pouvoir continuer. Or, le temps de réponse, au vu des traitements nécessaires, n'est pas toujours  assez rapide. En conséquence, il a été nécessaire d'utiliser des fonctions de rappel, dit \enquote{callback}, afin de ne pas ralentir l'ensemble du système.
+\newline
+\indent
+De plus, la mise en place d'un service Web a aussi apporté la nécessité d'utiliser des librairies avancées. Par exemple, nous faisons un grand usage de Google Web Toolkit et Java EE. Ces deux outils proposent des méthodes orientées service Web, cependant, ils nécessitent un temps d'apprentissage plus long comparé à des solutions basiques.
+\newline
+\indent
+D'autres difficultés ont été rencontrées au cours de notre travail et seront explicitées dans le suite de ce travail.\\
+\newline
+\indent
+Afin d'étayer notre propos, ce présent travail se divise en sept sections :
+\begin{itemize}
+\item \textbf{La première section} présente la solution dans son ensemble. Y sont notamment décrits l'interface, l'implémentation effective des contraintes, l'utilisation de la mémoire cache, etc.\\
+
+\item \textbf{La deuxième section} expose le cadre technologique utilisé pour notre solution.\\
+
+\item \textbf{La troisième section} décrit la méthodologie sous-jacente à la conception de notre solution. Y sont notamment examinés l'approche en travail d'équipe et les outils nécessaires à cette approche.\\
+
+\item \textbf{La quatrième section} offre une présentation plus poussées des outils utilisés.\\
+
+\item \textbf{La cinquième section} montre les différents points importants dans notre code et dans la gestion de la base de données.\\
+
+\item \textbf{La sixième section} se destine à la programmation par contraintes et à l'implémentation qui en est faite au sein du code.\\
+
+\item \textbf{La septième section} propose quelques réflexions sur notre solution et présente des perspectives d'extension à notre travail.\\
+
+\end{itemize}
+
+Enfin, une conclusion achèvera ce travail et seront synthétisés les différents aspects saillants de notre solution.
 
 
-une approche par contraintes est utilisée dans les domaines des transports,  la gestion de main d’œuvre, la , la création d'horaires dans les tournois sportifs, etc.\\
-
-  Par exemple, le problème du jeu \textit{sudokou} est un exemple où la programmation par contraintes pourrait intervenir pour trouver une solution. Cependant, dans le \textit{sudokou}, la contrainte est simple ; un chiffre doit être unique dans la ligne et la colonne qu'il occupe.
-\newline
-\indent
-La programmation par contraintes par contraintes est utilisées dans de nombreux domaines tels que les transports, la gestion de main d’œuvre, la création d'horaires dans les tournois sportifs, etc.\\
-\newline
-\indent
-
-Face à ce constat, de nombreux travaux ont eu pour sujet la \enquote{constraint programming}. 
-\newline
-\indent
-L'objectif de notre mémoire est d'aider à la création des horaires de l'EPHEC.
-Dans cet objectif, nous avons décidé de créer une application internet permettant d'accéder
-aux données présentes sur les serveurs de l'école.\\
-\newline
-\indent
-Cette application est créée pour être utilisée au sein de l'école, c'est pourquoi il faut un 
-outil adapté à l'EPHEC simple d'utilisation et interactif. \\
-\newline
-\indent
-Ce rapport décrira la méthodologie utilisée et les choix de conception faits.
-Par la suite, nous décrirons plus profondément le programme et sa structure avant de clore sur une discussion sur les possibilités du programme. 
 
 
-Avant tout, il est nécessaire de bien saisir la problématique et en quoi celle-ci peut être utile à notre travail. Nous avons du faire un analyse approfondie sur ce qu'était une contraintes ainsi que la programmation de celles-ci. Il a fallu ensuite analyser les différents outils nous permettant de "programmer par contraintes" et ensuite essayer de les implémenter dans un logiciel d'aide à la création d'horaire que nous avons du créer au préalable.\\
-\newline
-\indent
-%D'abord, pourquoi on a fait ça et pourquoi ce TFE. En quoi c'est utilite pr notre travail
-Madame Gillet, Directrice de l'établissement Ephec à Louvain-la-Neuve, établit l'horaire a chaque nouveau quadrimestre de l'année scolaire. l'établissement d'un horaire doit se faire sous certaines contraintes et en fonction de désidératas remis par les professeurs. Le nombre de locaux informatique est limité, certains professeurs sont dit "externe" à l'Ephec, ceux-ci doivent se voir attribué un horaire particulier, certain cours se donne dans des locaux externes à l'Ephec et ne sont donc pas disponible à chaque période de cours. Toute ces contraintes, si elle ne sont pas informatisée doivent prise en compte par la personne établissant l'horaire qui doit réaliser un "vrai casse tête chinois" afin d'avoir un horaire le plus adéquat possible.\\
-\newline
-\indent
-La programmation par contrainte permet de résoudre de manière automatique cette problématique, facilitant ainsi la tâche qui incombe à la personne en charge de l'élaboration d'un horaire. Nous allons d'abord définir ce qu'est une contraintes de manière plus théorique pour bien saisir la problématique et la provenance de celle-ci. Nous discuterons ensuite autour des différentes solutions existantes nous permettant de réaliser cela.
+%Nous allons d'abord définir ce qu'est une contraintes de manière plus théorique pour bien saisir la problématique et la provenance de celle-ci. Nous discuterons ensuite autour des différentes solutions existantes nous permettant de réaliser cela.
+%Face à ce constat, de nombreux travaux ont eu pour sujet la \enquote{constraint programming}. 
+%\newline
+%\indent
+%L'objectif de notre mémoire est d'aider à la création des horaires de l'EPHEC.
+%Dans cet objectif, nous avons décidé de créer une application internet permettant d'accéder
+%aux données présentes sur les serveurs de l'école.\\
+%\newline
+%\indent
+%Cette application est créée pour être utilisée au sein de l'école, c'est pourquoi il faut un 
+%outil adapté à l'EPHEC simple d'utilisation et interactif. \\
+%\newline
+%\indent
+%Ce rapport décrira la méthodologie utilisée et les choix de conception faits.
+%Par la suite, nous décrirons plus profondément le programme et sa structure avant de clore sur une discussion sur les possibilités du programme. 
+
+
+%Avant tout, il est nécessaire de bien saisir la problématique et en quoi celle-ci peut être utile à notre travail. Nous avons du faire un analyse approfondie sur ce qu'était une contraintes ainsi que la programmation de celles-ci. Il a fallu ensuite analyser les différents outils nous permettant de "programmer par contraintes" et ensuite essayer de les implémenter dans un logiciel d'aide à la création d'horaire que nous avons du créer au préalable.\\
 
 
