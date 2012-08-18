@@ -1,4 +1,5 @@
-\section{Solveur}
+% !TeX root = these.tex
+\chapter{Solveur}
 le but ici n'est pas d'énumérer toutes les étapes par lesquelles nous sommes passé ainsi que toutes les essais infructué effectué, car ce serait long et inninteressant. Nous allons nous concentrer sur la méthode actuelle utilisée en tantant de justifié son choix. Pour pouvoir expliquer son choix et sont utilisation, nous allons devoir revenir sur les explications plus générale de la programmation par contraites et d'autre thechniques OR (operation research).  Pour plus d'information sur le sujet, nous invitons le lecteur, à XXX, ainsi qu'à la thèse de M qui fut de loins l'ouvrage qui nous a le plus éclairé quand la à la problematique de xx
 
 
@@ -12,7 +13,7 @@ Pour ariver à ses résultats on s'est tourné vers des outils de programmation 
 Pour comprendre notre choix de librairie ainsi que son utilisation, il est important de revenir sur les principe fondamentaux de la programmation par contraintes.
 
 
-\subsection{Rappels théorique}
+\section{Rappels théorique}
 
 La programmation par contrainte un paradigme de programmation \footnote{paradigme} ayant pour but la résolution de problèmes combinatoire en
 descrivant plutot le but recherché que la méthode utilisé, c'est pourquoi la programmation par contrainte es une forme de programmation déclarative.
@@ -26,7 +27,7 @@ Dans notre cas, les variables sont, se qu'on appelle "activity", et corresponden
 
 
 
-\subsubsection{Choix de librairies}
+\subsection{Choix de librairies}
 Le solveur (celui du coté serveur), est indépendant de tout, absolument tout. Il est écrit en java, et repose sur une librérire de csp. Il réside donc du coté serveur, dans le servelet de l'application, c'est donc le meme pour tout utilisateurs se connectant au  site. Il ressevra l'information et l'enregistrera xxx
 
 

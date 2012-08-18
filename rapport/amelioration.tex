@@ -1,8 +1,9 @@
-\section{Amélioration future}
+% !TeX root = these.tex
+\chapter{Amélioration future}
 
-\subsection{Possibilités d'amélioration du programme}
+\section{Possibilités d'amélioration du programme}
 
-\subsubsection{mode comparaison}
+\subsection{mode comparaison}
 C'était un de nos objectifs principaux; il était question de pouvoir créer à la
 voilée les collonnes représentant plusieur professeurs, loacux ou classe, tout
 en gardant, pour les lignes, les périodes. Malheureusement le manque de temps à
@@ -13,7 +14,7 @@ Cela n'étant certainement pas impossible, la solution idéal nous est pas encor
 connue; probablement qui faudrait rendre l'entièreté de la région contenant le
 tableau comme ``dropable'' afin de subdifiser celle ci.. car actuelement ce soit
 les ``cases'' qui sont dropable..
-\subsubsection{solveur}
+\subsection{solveur}
 Ce fu également un point assez frustrant, étant donné nos recheches abondante
 sur le sujet, et surtout la trouvaille de cette librairire ``miraculeuse'' écrit
 par Muller, et qui, en plus d'être en gpl et fortement maintenue (dernière
@@ -23,12 +24,12 @@ utilise qu'une fractions de ses possibilité.  C'était tout l'avantage de notre
 application (et de sont architectur client-server) et ce n'est pas utilisé a son
 full potentiel.  C'est donc la première amérioration que devra subir notre
 application, car tout est en place pour pouvoir en tirer un avantage certain.
-\subsubsection{droits}
+\subsection{droits}
 Un des but de cette architecture était de pouvoir avoir plusieurs compte lié à
 un projet, avec des droits différents, imaginons des professeurs qui pouraient
 éditer leur désidérata, ou certaine parsonne qui pourait suivre l'évoltion de la
 construction de l'horaire sans pour autant avoir les droits de modification.
-\subsubsection{mode hors ligne}
+\subsection{mode hors ligne}
 On se base entièrement sur le local storage, les requètes vers le serveur ne
 servent qu'a se connecter, charger le projet et enregistrer des modifications.
 Actuelement, il est possible de continuer la création d'un horraire chargé en
@@ -37,7 +38,7 @@ utiliser cette fonctionnalité, il est necessaire de rajouter certaine xxx, tel
 qu'une resyncronisation des modifications faite en local avec la bdd lors que la
 connection est retrouvée ainsi que la possibilité de reprendre un projet en
 cache.
-\subsubsection{upload à partir d'une bdd}
-\subsubsection{modifications de données}
+\subsection{upload à partir d'une bdd}
+\subsection{modifications de données}
 actuelement il n'est pas possible de modifier toutes les données intervenant
 dans l'application (notament la création d'un prof, local, etc), 

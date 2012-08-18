@@ -1,7 +1,9 @@
-\section{Réflexion autour de l'application}
+% !TeX root = these.tex
+
+\chapter{Réflexion autour de l'application}
 
 %************************ CLIENT SERVEUR *********************************
-\subsection{Client/Serveur}
+\section{Client/Serveur}
 Notre application se base sur une architecture client serveur pour les multiples
 avantages que celle-ci apporte.\\
 Premièrement l'Ephec étant un établissement possédant plusieurs sites,
@@ -36,14 +38,14 @@ De même, la base de données peu être complètement indépendante de l'applica
 et peu se trouver sur un serveur externe.
 Le type de SGBD\footnote{Système de gestion de base de données} utilisé à peut d'importance, et il n'est pas nécessaire de créer
 la base de données au préalable. L'application se charge de la créer d'elle-même
-grâce à l'utilisation de l'outil Hibernate.
-
+grâce à l'utilisation de l'outil Hibernate.\\
+\\
 %%%%% repetion, ms c'est un bou de ce que j'avais ecrit, faut voir si c utilie
 La base de donnée et l'application tournent actuellement sur le même serveur, mais rien ne l'impose.
 Il est donc possible de choisir de stoquer la base de donnée de l'application sur un serveur ephec, et d'avoir l'application java tourner sur un serveur "public".
 Les deux peuvent également être hébergé sur des serveurs Ephec, ca nécessite l'installation de Tomcat (ou Jetty, JBoss,..), donc d'un programme ultra léger à très lourd. Multi plate-forme, et aucune configuration particulière (l'archive .war fournie avec le cd, doit juste être déposé dans le bon répertoire pour pouvoir fonctionner).
-Nous préconisons cependant l'utilisation d'un Tomcat derrière un Apache, pour plus de maniabilité (par exemple pour les droits d'accès et la facilité de faire cohabiter notre application avec d'autre chose, sans risque), de perfo et de sécu. 
-
+Nous préconisons cependant l'utilisation d'un Tomcat derrière un Apache, pour plus de maniabilité (par exemple pour les droits d'accès et la facilité de faire cohabiter notre application avec d'autre chose, sans risque), de perfo et de sécu. \\
+\\
 La base de donnée, également n'impose absolument rien. L'application communiquant à la bdd par le biés d'hibernate et de JDBC, il faut:
 1. télécharger le driver jdbc par celui correspondant à la bdd, oracle en recense actuellement 221 (http://developers.sun.com/product/jdbc/drivers/)
 2. configurer le fichier de config d'hibernate
@@ -57,7 +59,7 @@ Hibernate se charge d'écrire toutes les tables nécessaire.  Nous avons fait pl
 %Nous avons choisi le langage java d'une part car nous sommes familiariser avec la programmation orienté objet.
 
 %************************ JAVA *********************************
-\subsection{Java}
+\section{Java}
 %Cette partie est plutôt pertinente pour justifier le choix du langage Java au profit d'un autre
 Le choix du langage Java c'est fait instinctivement. Celui-ci est très présent
 dans le domaine du développement en entreprise. Le langage java permet de bien
@@ -83,29 +85,34 @@ l'application peut tourner sur n'importe quel type d'architecture.
 % Cette partie ne me semble pas utile ici. On parle déjà du java, on dira après
 % que c'est du java EE quand on parlera du serveur
 
-%\subsection{Java EE}
+%\section{Java EE}
 %Pour établir notre logiciel, nous avons donc utiliser du java, sous ça forme
 %entreprise édition. Ceci étant nécessaire pour l'élaboration du code partie
 %serveur. l'utilisation de Google Web Toolkit nous à imposer cette utilisation,
 %et nous avons du 
 
 %************************ Google web Toolkit *********************************
-\subsection{Google Web Toolkit (GWT)}
+\section{Google Web Toolkit (GWT)}
 
 Nous avons choisi de travailler avec GWT pour les nombreux avantages\footnote{cfr. Chapitre GWT} que celui-ci apporte. GWT nous permet de coder la partie cliente de l'application en Java, et celui-ci génère le code javascript correspondant. Le code généré par GWT peut être adapté au différent navigateur les plus répandu à ce jour tel que Chrome, Firefox, Internet Explorer,... La partie serveur étant réaliser en java, il est plus facile pour le développeur de créer sont application dans un langage unique. GWT utilise du java EE du coté serveur, langage très puissant et ayant déjà fait ces preuves de robustesse puisque celui-ci est très répandu dans le monde professionnel. Google web toolkit propose également l'utilisation d'outils comme Gin and Juce qui feront l'objet d'un autre point. Comme sont nom l'indique, GWT est une vrai boite à outils.
 
+
+%****************************** Local Storage *********************************
+\section{HTML5, CSS3}
+Nous avons utiliser les dernières normes de ces langages web. GWT permettant d'utiliser ceux-ci, nous avons décider d'utiliser certaine fonctionnalité intéressante qu'elle propose, comme l'utilisation d'un local storage, venu avec le HTML5, permettant de stocker les données coté client. Le CSS3 quand est à lui est utilisé pour le rendu graphique de l'application.
+
 %******************************** Hibernate ***********************************
-\subsection{Hibernate}
+\section{Hibernate}
 Pour la communication avec la base de données, nous utilisions l'outil Hibernate. Nous ne rentrerons pas dans les détails de cet outil, celui-ci fera l'objet d'un autre point. Nous dirons juste que Hibernate est un outil performant, permettant de représenter les tables de base de données en objet, facilitant ainsi l'utilisation des données. Il peut être utilisé avec n'importe quel type de SGBD et créé les tables automatiquement. Il possède donc de nombreux avantages et est aussi utilisé en entreprise.
 
 %************************ Solveur *********************************
-\subsection{Solveur}
+\section{Solveur}
 
 Après analyse des différentes libraires, nous nous sommes orientez sur la
 librairie xxx. Celle-ci étant beaucoup plus adapté à nos besoins, qui sont de
 pouvoir gérer des contraintes sous la forme de désidérata. Elle est écrite en java et est orienter pour la problématique de la création d'horaire pour un établissement scolaire. A défaut des autres librairies étant plus orienté contraintes et non désidérata, celle-ci propose des options de configurations correspondant à nos besoins et au besoins d'un établissement tel que l'Ephec. Nous l'avons pris uniquement pour des raisons de performance et de correspondance à ce qui doit être fait, et non pas par facilité d'utilisation.
 
 %************************** GitHub *********************************
-\subsection{GitHub}
+\section{GitHub}
 Puisque nous faisons ce Travail en équipe, il est nécessaire de pouvoir avoir un suivit de ce que chacun de nous fait, de pouvoir fusionner nos travaux et de garder une trace des différentes version en cas du bug éventuel. Nous avons choisi GitHub pour gérer notre projet, celui-ci étant simple d'utilisation, très performant, gratuit et permettant surtout de fusionner les différents code écrit, au sein d'une même page, de manière indépendante et intelligente.
 

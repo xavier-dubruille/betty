@@ -13,65 +13,74 @@
 \contentsline {subsection}{\numberline {2.3.2}Semainier}{6}{subsection.2.3.2}
 \contentsline {subsection}{\numberline {2.3.3}Notifications}{7}{subsection.2.3.3}
 \contentsline {subsection}{\numberline {2.3.4}Les filtres}{7}{subsection.2.3.4}
-\contentsline {subsection}{\numberline {2.3.5}Les instances}{8}{subsection.2.3.5}
+\contentsline {subsection}{\numberline {2.3.5}Les instances}{7}{subsection.2.3.5}
 \contentsline {subsection}{\numberline {2.3.6}Le solveur}{8}{subsection.2.3.6}
 \contentsline {subsection}{\numberline {2.3.7}M\IeC {\'e}moire cache}{8}{subsection.2.3.7}
-\contentsline {section}{\numberline {2.4}R\IeC {\'e}flexion autour de l'application}{9}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Client/Serveur}{9}{subsection.2.4.1}
-\contentsline {subsection}{\numberline {2.4.2}Java}{10}{subsection.2.4.2}
-\contentsline {subsection}{\numberline {2.4.3}Google Web Toolkit (GWT)}{10}{subsection.2.4.3}
-\contentsline {subsection}{\numberline {2.4.4}Hibernate}{10}{subsection.2.4.4}
-\contentsline {subsection}{\numberline {2.4.5}Solveur}{11}{subsection.2.4.5}
-\contentsline {subsection}{\numberline {2.4.6}GitHub}{11}{subsection.2.4.6}
-\contentsline {section}{\numberline {2.5}Les outils partie cliente}{12}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Google web toolkit (GWT)}{12}{subsection.2.5.1}
-\contentsline {subsubsection}{\numberline {2.5.1.1}Pr\IeC {\'e}sentation}{12}{subsubsection.2.5.1.1}
-\contentsline {subsubsection}{\numberline {2.5.1.2}Principe de fonctionnement}{12}{subsubsection.2.5.1.2}
-\contentsline {subsubsection}{\numberline {2.5.1.3}Mode de fonctionnement}{12}{subsubsection.2.5.1.3}
-\contentsline {paragraph}{Mode de d\IeC {\'e}veloppement}{13}{section*.5}
-\contentsline {paragraph}{Mode de production}{13}{section*.6}
-\contentsline {subsubsection}{\numberline {2.5.1.4}Architecture GWT}{13}{subsubsection.2.5.1.4}
-\contentsline {subsubsection}{\numberline {2.5.1.5}Ev\IeC {\'e}nement}{13}{subsubsection.2.5.1.5}
-\contentsline {subsubsection}{\numberline {2.5.1.6}Actions}{13}{subsubsection.2.5.1.6}
-\contentsline {subsubsection}{\numberline {2.5.1.7}Exemple d'un projet GWT}{14}{subsubsection.2.5.1.7}
-\contentsline {subsection}{\numberline {2.5.2}Avantages}{14}{subsection.2.5.2}
-\contentsline {subsubsection}{\numberline {2.5.2.1}Debbugage}{14}{subsubsection.2.5.2.1}
-\contentsline {subsubsection}{\numberline {2.5.2.2}Optimisation}{14}{subsubsection.2.5.2.2}
-\contentsline {subsubsection}{\numberline {2.5.2.3}Liste pr\IeC {\'e}d\IeC {\'e}fini de composant}{14}{subsubsection.2.5.2.3}
-\contentsline {subsubsection}{\numberline {2.5.2.4}JSNI (javascript native interface)}{14}{subsubsection.2.5.2.4}
-\contentsline {subsubsection}{\numberline {2.5.2.5}Internationalisation}{14}{subsubsection.2.5.2.5}
-\contentsline {subsubsection}{\numberline {2.5.2.6}Inconv\IeC {\'e}nients}{14}{subsubsection.2.5.2.6}
-\contentsline {subsubsection}{\numberline {2.5.2.7}GWT - Plateform}{15}{subsubsection.2.5.2.7}
-\contentsline {subsubsection}{\numberline {2.5.2.8}Pr\IeC {\'e}sentation}{15}{subsubsection.2.5.2.8}
-\contentsline {subsubsection}{\numberline {2.5.2.9}Le model View Presenter}{15}{subsubsection.2.5.2.9}
-\contentsline {subsection}{\numberline {2.5.3}Libraire externe}{15}{subsection.2.5.3}
-\contentsline {subsubsection}{\numberline {2.5.3.1}GWT-dnd}{15}{subsubsection.2.5.3.1}
-\contentsline {subsubsection}{\numberline {2.5.3.2}Smart-GWT}{16}{subsubsection.2.5.3.2}
-\contentsline {subsection}{\numberline {2.5.4}Local Storage}{16}{subsection.2.5.4}
-\contentsline {subsubsection}{\numberline {2.5.4.1}Principe}{16}{subsubsection.2.5.4.1}
-\contentsline {subsubsection}{\numberline {2.5.4.2}Utilisation dans notre application}{16}{subsubsection.2.5.4.2}
-\contentsline {section}{\numberline {2.6}Les outils partie serveur}{17}{section.2.6}
-\contentsline {subsection}{\numberline {2.6.1}Java EE}{17}{subsection.2.6.1}
-\contentsline {subsection}{\numberline {2.6.2}Hibernate}{17}{subsection.2.6.2}
-\contentsline {section}{\numberline {2.7}Les outils client/serveur}{18}{section.2.7}
-\contentsline {section}{\numberline {2.8}Structure du code}{19}{section.2.8}
-\contentsline {section}{\numberline {2.9}La base de donn\IeC {\'e}es}{20}{section.2.9}
-\contentsline {section}{\numberline {2.10}Solveur}{21}{section.2.10}
-\contentsline {subsection}{\numberline {2.10.1}Rappels th\IeC {\'e}orique}{21}{subsection.2.10.1}
-\contentsline {section}{\numberline {2.11}Discussions}{22}{section.2.11}
-\contentsline {subsection}{\numberline {2.11.1}Choix concernant la performance}{22}{subsection.2.11.1}
-\contentsline {subsection}{\numberline {2.11.2}Choix concernant la s\IeC {\'e}curit\IeC {\'e}}{22}{subsection.2.11.2}
-\contentsline {section}{\numberline {2.12}M\IeC {\'e}thodologie}{23}{section.2.12}
-\contentsline {subsection}{\numberline {2.12.1}GIT et partage des donn\IeC {\'e}es}{23}{subsection.2.12.1}
-\contentsline {subsection}{\numberline {2.12.2}Logiciel de suivi de probl\IeC {\`e}me}{23}{subsection.2.12.2}
-\contentsline {subsection}{\numberline {2.12.3}M\IeC {\'e}thodologie de conception}{23}{subsection.2.12.3}
-\contentsline {section}{\numberline {2.13}Am\IeC {\'e}lioration future}{24}{section.2.13}
-\contentsline {subsection}{\numberline {2.13.1}Possibilit\IeC {\'e}s d'am\IeC {\'e}lioration du programme}{24}{subsection.2.13.1}
-\contentsline {subsubsection}{\numberline {2.13.1.1}mode comparaison}{24}{subsubsection.2.13.1.1}
-\contentsline {subsubsection}{\numberline {2.13.1.2}solveur}{24}{subsubsection.2.13.1.2}
-\contentsline {subsubsection}{\numberline {2.13.1.3}droits}{24}{subsubsection.2.13.1.3}
-\contentsline {subsubsection}{\numberline {2.13.1.4}mode hors ligne}{24}{subsubsection.2.13.1.4}
-\contentsline {subsubsection}{\numberline {2.13.1.5}upload \IeC {\`a} partir d'une bdd}{25}{subsubsection.2.13.1.5}
-\contentsline {subsubsection}{\numberline {2.13.1.6}modifications de donn\IeC {\'e}es}{25}{subsubsection.2.13.1.6}
-\contentsline {section}{\numberline {2.14}Recommandation}{26}{section.2.14}
-\contentsline {section}{\numberline {2.15}Conclusion}{27}{section.2.15}
+\contentsline {chapter}{\numberline {3}R\IeC {\'e}flexion autour de l'application}{9}{chapter.3}
+\contentsline {section}{\numberline {3.1}Client/Serveur}{9}{section.3.1}
+\contentsline {section}{\numberline {3.2}Java}{10}{section.3.2}
+\contentsline {section}{\numberline {3.3}Google Web Toolkit (GWT)}{11}{section.3.3}
+\contentsline {section}{\numberline {3.4}HTML5, CSS3}{11}{section.3.4}
+\contentsline {section}{\numberline {3.5}Hibernate}{11}{section.3.5}
+\contentsline {section}{\numberline {3.6}Solveur}{11}{section.3.6}
+\contentsline {section}{\numberline {3.7}GitHub}{12}{section.3.7}
+\contentsline {chapter}{\numberline {4}Les outils partie cliente}{13}{chapter.4}
+\contentsline {section}{\numberline {4.1}Google web toolkit (GWT)}{13}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Pr\IeC {\'e}sentation}{13}{subsection.4.1.1}
+\contentsline {subsection}{\numberline {4.1.2}Principe de fonctionnement}{13}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Mode de fonctionnement}{14}{subsection.4.1.3}
+\contentsline {paragraph}{Mode de d\IeC {\'e}veloppement}{14}{section*.5}
+\contentsline {paragraph}{Mode de production}{14}{section*.6}
+\contentsline {subsection}{\numberline {4.1.4}Architecture GWT}{14}{subsection.4.1.4}
+\contentsline {paragraph}{\IeC {\'E}v\IeC {\`e}nement}{14}{section*.7}
+\contentsline {paragraph}{Actions}{14}{section*.8}
+\contentsline {subsection}{\numberline {4.1.5}Avantages}{15}{subsection.4.1.5}
+\contentsline {paragraph}{Facilit\IeC {\'e} d'utilisation}{15}{section*.9}
+\contentsline {paragraph}{Debbugage}{15}{section*.10}
+\contentsline {paragraph}{Optimisation}{15}{section*.11}
+\contentsline {paragraph}{pr\IeC {\'e}d\IeC {\'e}fini de composant}{15}{section*.12}
+\contentsline {paragraph}{Code adapter en fonction du navigateur}{15}{section*.13}
+\contentsline {paragraph}{JSNI (javascript native interface)}{15}{section*.14}
+\contentsline {paragraph}{Internationalisation}{15}{section*.15}
+\contentsline {subsection}{\numberline {4.1.6}Inconv\IeC {\'e}nients}{16}{subsection.4.1.6}
+\contentsline {section}{\numberline {4.2}GWT-Designer}{16}{section.4.2}
+\contentsline {section}{\numberline {4.3}GWT - Plateform}{16}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Pr\IeC {\'e}sentation}{16}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Le model View Presenter}{16}{subsection.4.3.2}
+\contentsline {section}{\numberline {4.4}Libraire externe}{17}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}GWT-dnd}{17}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Smart-GWT}{17}{subsection.4.4.2}
+\contentsline {section}{\numberline {4.5}Les langages web}{17}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}HTML5}{17}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}CSS3}{18}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.3}JavaScript}{18}{subsection.4.5.3}
+\contentsline {section}{\numberline {4.6}Local Storage (LS)}{18}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}Local Storage vs Cookies}{18}{subsection.4.6.1}
+\contentsline {subsection}{\numberline {4.6.2}Principe}{18}{subsection.4.6.2}
+\contentsline {subsection}{\numberline {4.6.3}Utilisation dans notre application}{19}{subsection.4.6.3}
+\contentsline {chapter}{\numberline {5}Les outils partie serveur}{21}{chapter.5}
+\contentsline {section}{\numberline {5.1}Java EE}{21}{section.5.1}
+\contentsline {section}{\numberline {5.2}Hibernate}{21}{section.5.2}
+\contentsline {chapter}{\numberline {6}Les outils client/serveur}{23}{chapter.6}
+\contentsline {chapter}{\numberline {7}Structure du code}{25}{chapter.7}
+\contentsline {chapter}{\numberline {8}La base de donn\IeC {\'e}es}{27}{chapter.8}
+\contentsline {chapter}{\numberline {9}Solveur}{29}{chapter.9}
+\contentsline {section}{\numberline {9.1}Rappels th\IeC {\'e}orique}{29}{section.9.1}
+\contentsline {subsection}{\numberline {9.1.1}Choix de librairies}{30}{subsection.9.1.1}
+\contentsline {chapter}{\numberline {10}Discussions}{31}{chapter.10}
+\contentsline {section}{\numberline {10.1}Choix concernant la performance}{31}{section.10.1}
+\contentsline {section}{\numberline {10.2}Choix concernant la s\IeC {\'e}curit\IeC {\'e}}{31}{section.10.2}
+\contentsline {chapter}{\numberline {11}M\IeC {\'e}thodologie}{33}{chapter.11}
+\contentsline {section}{\numberline {11.1}GIT et partage des donn\IeC {\'e}es}{33}{section.11.1}
+\contentsline {section}{\numberline {11.2}Logiciel de suivi de probl\IeC {\`e}me}{33}{section.11.2}
+\contentsline {section}{\numberline {11.3}M\IeC {\'e}thodologie de conception}{33}{section.11.3}
+\contentsline {chapter}{\numberline {12}Am\IeC {\'e}lioration future}{35}{chapter.12}
+\contentsline {section}{\numberline {12.1}Possibilit\IeC {\'e}s d'am\IeC {\'e}lioration du programme}{35}{section.12.1}
+\contentsline {subsection}{\numberline {12.1.1}mode comparaison}{35}{subsection.12.1.1}
+\contentsline {subsection}{\numberline {12.1.2}solveur}{35}{subsection.12.1.2}
+\contentsline {subsection}{\numberline {12.1.3}droits}{35}{subsection.12.1.3}
+\contentsline {subsection}{\numberline {12.1.4}mode hors ligne}{36}{subsection.12.1.4}
+\contentsline {subsection}{\numberline {12.1.5}upload \IeC {\`a} partir d'une bdd}{36}{subsection.12.1.5}
+\contentsline {subsection}{\numberline {12.1.6}modifications de donn\IeC {\'e}es}{36}{subsection.12.1.6}
+\contentsline {chapter}{\numberline {13}Recommandation}{37}{chapter.13}
+\contentsline {chapter}{{Conclusion}}{39}{chapter.13}

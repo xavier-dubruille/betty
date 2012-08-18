@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.4.17)  18 AUG 2012 16:17
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.4.17)  18 AUG 2012 16:50
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -713,7 +713,7 @@ LaTeX Info: Redefining \pageref on input line 98.
 
 \AtBeginShipoutBox=\box29
 \c@lstlisting=\count126
- <./pics/ephec_logo.png, id=166, 149.01031pt x 197.43866pt>
+ <./pics/ephec_logo.png, id=297, 149.01031pt x 197.43866pt>
 File: ./pics/ephec_logo.png Graphic file (type png)
 
 <use ./pics/ephec_logo.png>
@@ -849,11 +849,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 15--16
 
 ) [5] [6
 
-] (./these.toc [7])
+] (./these.toc [7] [8])
 \tf@toc=\write4
 \openout4 = `these.toc'.
 
- [8] (./intro.tex
+ [9] [10
+
+] (./intro.tex
 Underfull \hbox (badness 10000) in paragraph at lines 10--25
 
  []
@@ -869,7 +871,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 10--25
  []
 
 ) [1
-
 
 ]
 \openout2 = `analyse.aux'.
@@ -899,27 +900,221 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--13
 ]
 Chapitre 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 7--12
+Underfull \hbox (badness 10000) in paragraph at lines 9--14
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7--12
+Underfull \hbox (badness 10000) in paragraph at lines 9--14
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14--19
+Underfull \hbox (badness 10000) in paragraph at lines 16--21
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 14--19
+Underfull \hbox (badness 10000) in paragraph at lines 16--21
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 21--22
+Underfull \hbox (badness 10000) in paragraph at lines 23--24
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 27--28
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+lmr on input line 29.
+(/usr/share/texmf/tex/latex/lm/omslmr.fd
+File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 29.
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--32
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 34--35
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--41
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 42--45
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 46--49
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--56
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 50--56
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 57--61
+
+ []
+
+[7]) [8]
+\openout2 = `nosChoix.aux'.
+
+ (./nosChoix.tex
+Chapitre 3.
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--54
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--54
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--54
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--54
+
+ []
+
+[9
+
+
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10]
+[11]) [12]
+\openout2 = `clientSide.aux'.
+
+ (./clientSide.tex
+Chapitre 4.
+[13
+
+
+
+] [14] [15] [16] [17] [18]
+Underfull \hbox (badness 10000) in paragraph at lines 148--151
+
+ []
+
+) [19]
+\openout2 = `serveurSide.aux'.
+
+ (./serveurSide.tex [20
+
+
+
+]
+Chapitre 5.
+
+Overfull \hbox (48.37378pt too wide) in paragraph at lines 9--11
+[]\T1/lmr/m/n/12 notes of-fi-ciel (?) (https ://-docs.jboss.org/hibernate/orm/3
+.3/reference/en/html/queryhql.html) 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--11
+
+ []
+
+) [21]
+\openout2 = `allSide.aux'.
+
+ (./allSide.tex [22
+
+
+
+]
+Chapitre 6.
+) [23]
+\openout2 = `structure.aux'.
+
+ (./structure.tex [24
+
+
+
+]
+Chapitre 7.
+) [25]
+\openout2 = `bdd.aux'.
+
+ (./bdd.tex [26
+
+
+
+]
+Chapitre 8.
+) [27]
+\openout2 = `solveur.aux'.
+
+ (./solveur.tex [28
+
+
+
+]
+Chapitre 9.
+[29]) [30]
+\openout2 = `discussion.aux'.
+
+ (./discussion.tex
+Chapitre 10.
+) [31
+
+
+
+]
+\openout2 = `methodo.aux'.
+
+ (./methodo.tex [32
+
+
+
+]
+Chapitre 11.
+
+Package natbib Warning: Citation `git' on page 33 undefined on input line 11.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--12
+
+ []
+
+
+Package natbib Warning: Citation `github' on page 33 undefined on input line 17
+.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--18
 
  []
 
@@ -928,194 +1123,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 25--26
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 27.
-(/usr/share/texmf/tex/latex/lm/omslmr.fd
-File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 27.
-
-Underfull \hbox (badness 10000) in paragraph at lines 27--28
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 28--29
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 29--30
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 31--32
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 32--33
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 36--39
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 40--43
-
- []
-
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 44--47
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 48--54
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 48--54
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 55--59
-
- []
-
-
-Underfull \vbox (badness 4441) has occurred while \output is active []
-
- [7])
-[8]
-\openout2 = `nosChoix.aux'.
-
- (./nosChoix.tex
-Underfull \hbox (badness 10000) in paragraph at lines 5--40
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--40
-
- []
-
-[9
-
-
-] [10]) [11]
-\openout2 = `clientSide.aux'.
-
- (./clientSide.tex
-Underfull \vbox (badness 1939) has occurred while \output is active []
-
- [12
-
-
-]
-[13] [14] [15]) [16]
-\openout2 = `serveurSide.aux'.
-
- (./serveurSide.tex
-Overfull \hbox (48.37378pt too wide) in paragraph at lines 8--10
-[]\T1/lmr/m/n/12 notes of-fi-ciel (?) (https ://-docs.jboss.org/hibernate/orm/3
-.3/reference/en/html/queryhql.html) 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 8--10
-
- []
-
-) [17
-
-
-]
-\openout2 = `allSide.aux'.
-
- (./allSide.tex) [18
-
-
-]
-\openout2 = `structure.aux'.
-
- (./structure.tex) [19
-
-
-]
-\openout2 = `bdd.aux'.
-
- (./bdd.tex) [20
-
-
-]
-\openout2 = `solveur.aux'.
-
-
-(./solveur.tex) [21
-
-
-]
-\openout2 = `discussion.aux'.
-
- (./discussion.tex) [22
-
-
-]
-\openout2 = `methodo.aux'.
-
- (./methodo.tex
-
-Package natbib Warning: Citation `git' on page 23 undefined on input line 10.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 6--11
-
- []
-
-
-Package natbib Warning: Citation `github' on page 23 undefined on input line 16
-.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 12--17
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 24--25
-
- []
-
-) [23
-
-
-]
+[33]) [34]
 \openout2 = `amelioration.aux'.
 
- (./amelioration.tex)
-Underfull \vbox (badness 1910) has occurred while \output is active []
+ (./amelioration.tex
+Chapitre 12.
+[35
 
- [24
 
 
-]
-[25]
+]) [36]
 \openout2 = `recommandation.aux'.
 
- (./recommandation.tex) [26
+ (./recommandation.tex
+Chapitre 13.
+) [37
+
 
 
 ]
 \openout2 = `conclusion.aux'.
 
- (./conclusion.tex
+ (./conclusion.tex [38
+
+
+
+]
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
@@ -1135,10 +1168,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 7--10
 
  []
 
-) [27
-
-
-] [28
+) [39] [40
 
 
 ]
@@ -1155,22 +1185,22 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 9561 strings out of 493848
- 131761 string characters out of 1152823
- 249518 words of memory out of 3000000
- 12422 multiletter control sequences out of 15000+50000
+ 9616 strings out of 493848
+ 132141 string characters out of 1152823
+ 250518 words of memory out of 3000000
+ 12454 multiletter control sequences out of 15000+50000
  57011 words of font info for 45 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 38i,12n,46p,1166b,504s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,12n,46p,1166b,511s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/en
 c/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/s
 hare/texmf/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf/fonts/type1/publ
 ic/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/t
 exmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr
 i12.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb>
-Output written on these.pdf (38 pages, 270255 bytes).
+Output written on these.pdf (52 pages, 298379 bytes).
 PDF statistics:
- 461 PDF objects out of 1000 (max. 8388607)
- 113 named destinations out of 1000 (max. 500000)
- 334 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 664 PDF objects out of 1000 (max. 8388607)
+ 136 named destinations out of 1000 (max. 500000)
+ 598 words of extra memory for PDF output out of 10000 (max. 10000000)
 

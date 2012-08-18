@@ -1,12 +1,14 @@
+
 % !TeX root = these.tex
+
 \chapter{Présentation de l'application}
-Notre application, surnommée Betty\footnote{Brillant Ephec Time Tabling for You}, a pour but d'être un outils permettant d'élaborer un horaire de façon plus conviviale en comparaison avec la façon de procédé utilisée à l'Ephec. Voici comment l'application ce présente de manière générale, et les fonctionnalités qu'elle propose.
+Notre application, surnommée Betty\footnote{Brillant Ephec Time Tabling for You}, a pour but d'être un outils permettant d'élaborer un horaire de façon plus conviviale en comparaison avec la façon de procédé utilisée à l'Ephec. Voici comment l'application ce présente de manière générale, et les fonctionnalités qu'elle propose dans son état actuel.
 
 \section{Connexion et Inscription}
 
 La première page de l'application propose à l'utilisateur d'entrer son nom d'utilisateur et son mot de passe. Le mot de passe étant crypté en SHA-256\footnote{Secure Hash Algorithm}, dans la base de données. La page propose également de vous inscrire via la flèche en haut à droite de la fenêtre.\\
 \\
-Lors de l'inscription, nous invitons l'utilisateur à entrer sont nom d'utilisateur, mot de passe et email. Les informations entrées sont soumises à des vérifications d'usage), le maximum de ces vérifications étant effectuées du coté client afin de réduire l'échange avec le serveur.\\
+Lors de l'inscription, nous invitons l'utilisateur à entrer sont nom d'utilisateur, mot de passe et email. Les informations entrées sont soumises à des vérifications d'usage, le maximum de ces vérifications étant effectuées du coté client afin de réduire l'échange avec le serveur.\\
 \\
 Pour cette partie, quelques améliorations peuvent être apportées tel que le changement de mot de passe ou la récupération de celui-ci par envoi de mail.
 
@@ -24,8 +26,8 @@ La page principale se présente comme suit:\\
 	
 	\item[-] nord de la page, nous trouvons les différents filtre et options disponible tel que:\\
 	\begin{itemize}
-		\item[•] Card filter\\
-		\item[•] Sélection de la grille à afficher\\
+		\item[•] Card filter
+		\item[•] Sélection de la grille à afficher
 		\item[•] Un panneau regroupant les différentes instances du projet (forme de sous projet)\\
 	\end{itemize}
 	\item[-] À l'ouest les cartons créer sur base du fichier des attributions\\
@@ -33,11 +35,11 @@ La page principale se présente comme suit:\\
 	\item[-] À l'est, un panneau de notification permettant d'avoir un suivit des différentes actions faite par l'utilisateur.
 \end{itemize}
 \subsection{Les attributions}
-La mise en forme des cartons se base sur le design actuelle des ceux actuellement employé à l'Ephec lors de l'établissement manuelle de l'horaire. Ceux-ci comporte le/les classe(s) assigné à un cours donné par un professeur.\\
+La mise en forme des cartons se base sur le design actuelle des ceux actuellement employé à l'Ephec lors de l'établissement manuelle de l'horaire. Ceux-ci comporte le/les classe(s) assignée(s) à un cours donné par un professeur.\\
 \\
-Les cartons sont assigné à un ensemble de locaux ou pourront ce donner le cours. Par exemple, un carton de type informatique serra assigné uniquement aux locaux de type informatique. Lorsque le carton est déposé, le solveur client lui assigne un local disponible parmi cette liste, et nous pouvons voir apparaitre le nom du local en bas à droite du carton.
+A chaque carton est assigné un ensemble de locaux ou pourront ce donner le cours. Par exemple, un carton de type informatique serra assigné uniquement aux locaux de type informatique. Lorsque le carton est déposé, le solveur client lui assigne un local disponible parmi cette liste, et nous pouvons voir apparaitre le nom du local en bas à droite du carton.
 \subsection{Semainier}
-Nous affichons dans le semainier, les informations relative à la personne, classe ou au local choisi via le filtre prévu à cet effet. La grille se colorie en fonction du carton qui est sélectionné. Un code de couleur a été mis en place permettant de distinguer si un carton peut être placé ou pas. Par exemple, si l'on se trouve dans la vue d'une classe et que l'on prend un carton d'une autre classe, toute la grille se coloriera en rouge, montrant à l'utilisateur que celui-ci ne peut pas être placé.\\
+Nous affichons dans le semainier, les informations relatives à la personne, classe ou au local choisi via le filtre prévu à cet effet. La grille se colorie en fonction du carton qui est sélectionné. Un code de couleur a été mis en place permettant de distinguer si un carton peut être placé ou pas. Par exemple, si l'on se trouve dans la vue d'une classe et que l'on prend un carton d'une autre classe, toute la grille se coloriera en rouge, montrant à l'utilisateur que celui-ci ne peut pas être placé.\\
 \\
 Nous distinguons trois groupes de couleurs, vert, orange et rouge. Ces groupes sont eux même subdivisés en trois catégories: couleur claire, normale et foncée. Lorsqu'on colorie la grille horaire, il arrive parfois qu'un carton puisse être placée à plusieurs endroits, les uns plus avantageux que d'autres pour la suite de l'établissement de l'horaire, il est donc nécessaire de pouvoir dire à l'utilisateur que le carton peut être placé, mais l'orienter sur un choix plus adéquat.
 \subsection{Notifications}
