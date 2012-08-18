@@ -1,0 +1,48 @@
+\BOOKMARK [1][-]{chapter*.1}{R\351sum\351}{}
+\BOOKMARK [1][-]{chapter*.1}{Remerciements}{}
+\BOOKMARK [1][-]{chapter*.2}{Table des mati\350res}{}
+\BOOKMARK [0][-]{chapter*.3}{Introduction}{}
+\BOOKMARK [0][-]{chapter.1}{Analyse de la probl\351matique et outils existants}{}
+\BOOKMARK [1][-]{section.1.1}{La programmation par contraintes}{chapter.1}
+\BOOKMARK [0][-]{chapter.2}{Pr\351sentation de l'application}{}
+\BOOKMARK [1][-]{section.2.1}{Connexion et Inscription}{chapter.2}
+\BOOKMARK [1][-]{section.2.2}{Page des projets}{chapter.2}
+\BOOKMARK [1][-]{section.2.3}{Page principale}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.3.1}{Les attributions}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.2}{Semainier}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.3}{Notifications}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.4}{Les filtres}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.5}{Les instances}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.6}{Le solveur}{section.2.3}
+\BOOKMARK [2][-]{subsection.2.3.7}{M\351moire cache}{section.2.3}
+\BOOKMARK [1][-]{section.2.4}{R\351flexion autour de l'application}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.4.1}{Client/Serveur}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.2}{Java}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.3}{Google Web Toolkit \(GWT\)}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.4}{Hibernate}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.5}{Solveur}{section.2.4}
+\BOOKMARK [2][-]{subsection.2.4.6}{GitHub}{section.2.4}
+\BOOKMARK [1][-]{section.2.5}{Les outils partie cliente}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.5.1}{Google web toolkit \(GWT\)}{section.2.5}
+\BOOKMARK [2][-]{subsection.2.5.2}{Avantages}{section.2.5}
+\BOOKMARK [2][-]{subsection.2.5.3}{Libraire externe}{section.2.5}
+\BOOKMARK [2][-]{subsection.2.5.4}{Local Storage}{section.2.5}
+\BOOKMARK [1][-]{section.2.6}{Les outils partie serveur}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.6.1}{Java EE}{section.2.6}
+\BOOKMARK [2][-]{subsection.2.6.2}{Hibernate}{section.2.6}
+\BOOKMARK [1][-]{section.2.7}{Les outils client/serveur}{chapter.2}
+\BOOKMARK [1][-]{section.2.8}{Structure du code}{chapter.2}
+\BOOKMARK [1][-]{section.2.9}{La base de donn\351es}{chapter.2}
+\BOOKMARK [1][-]{section.2.10}{Solveur}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.10.1}{Rappels th\351orique}{section.2.10}
+\BOOKMARK [1][-]{section.2.11}{Discussions}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.11.1}{Choix concernant la performance}{section.2.11}
+\BOOKMARK [2][-]{subsection.2.11.2}{Choix concernant la s\351curit\351}{section.2.11}
+\BOOKMARK [1][-]{section.2.12}{M\351thodologie}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.12.1}{GIT et partage des donn\351es}{section.2.12}
+\BOOKMARK [2][-]{subsection.2.12.2}{Logiciel de suivi de probl\350me}{section.2.12}
+\BOOKMARK [2][-]{subsection.2.12.3}{M\351thodologie de conception}{section.2.12}
+\BOOKMARK [1][-]{section.2.13}{Am\351lioration future}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.13.1}{Possibilit\351s d'am\351lioration du programme}{section.2.13}
+\BOOKMARK [1][-]{section.2.14}{Recommandation}{chapter.2}
+\BOOKMARK [1][-]{section.2.15}{Conclusion}{chapter.2}

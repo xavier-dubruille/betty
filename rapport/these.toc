@@ -1,0 +1,77 @@
+\select@language {french}
+\contentsline {section}{R\'esum\'e}{iii}{chapter*.1}
+\contentsline {section}{Remerciements}{v}{chapter*.1}
+\contentsline {section}{Table des mati\`eres\markboth {\MakeUppercase {Table des mati\`eres}}{\MakeUppercase {Table des mati\`eres}}}{vii}{chapter*.2}
+\contentsline {chapter}{{Introduction}}{1}{chapter*.3}
+\contentsline {chapter}{\numberline {1}Analyse de la probl\IeC {\'e}matique et outils existants}{3}{chapter.1}
+\contentsline {section}{\numberline {1.1}La programmation par contraintes}{3}{section.1.1}
+\contentsline {chapter}{\numberline {2}Pr\IeC {\'e}sentation de l'application}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Connexion et Inscription}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}Page des projets}{5}{section.2.2}
+\contentsline {section}{\numberline {2.3}Page principale}{6}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Les attributions}{6}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Semainier}{6}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Notifications}{7}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}Les filtres}{7}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.5}Les instances}{8}{subsection.2.3.5}
+\contentsline {subsection}{\numberline {2.3.6}Le solveur}{8}{subsection.2.3.6}
+\contentsline {subsection}{\numberline {2.3.7}M\IeC {\'e}moire cache}{8}{subsection.2.3.7}
+\contentsline {section}{\numberline {2.4}R\IeC {\'e}flexion autour de l'application}{9}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Client/Serveur}{9}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Java}{10}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}Google Web Toolkit (GWT)}{10}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}Hibernate}{10}{subsection.2.4.4}
+\contentsline {subsection}{\numberline {2.4.5}Solveur}{11}{subsection.2.4.5}
+\contentsline {subsection}{\numberline {2.4.6}GitHub}{11}{subsection.2.4.6}
+\contentsline {section}{\numberline {2.5}Les outils partie cliente}{12}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Google web toolkit (GWT)}{12}{subsection.2.5.1}
+\contentsline {subsubsection}{\numberline {2.5.1.1}Pr\IeC {\'e}sentation}{12}{subsubsection.2.5.1.1}
+\contentsline {subsubsection}{\numberline {2.5.1.2}Principe de fonctionnement}{12}{subsubsection.2.5.1.2}
+\contentsline {subsubsection}{\numberline {2.5.1.3}Mode de fonctionnement}{12}{subsubsection.2.5.1.3}
+\contentsline {paragraph}{Mode de d\IeC {\'e}veloppement}{13}{section*.5}
+\contentsline {paragraph}{Mode de production}{13}{section*.6}
+\contentsline {subsubsection}{\numberline {2.5.1.4}Architecture GWT}{13}{subsubsection.2.5.1.4}
+\contentsline {subsubsection}{\numberline {2.5.1.5}Ev\IeC {\'e}nement}{13}{subsubsection.2.5.1.5}
+\contentsline {subsubsection}{\numberline {2.5.1.6}Actions}{13}{subsubsection.2.5.1.6}
+\contentsline {subsubsection}{\numberline {2.5.1.7}Exemple d'un projet GWT}{14}{subsubsection.2.5.1.7}
+\contentsline {subsection}{\numberline {2.5.2}Avantages}{14}{subsection.2.5.2}
+\contentsline {subsubsection}{\numberline {2.5.2.1}Debbugage}{14}{subsubsection.2.5.2.1}
+\contentsline {subsubsection}{\numberline {2.5.2.2}Optimisation}{14}{subsubsection.2.5.2.2}
+\contentsline {subsubsection}{\numberline {2.5.2.3}Liste pr\IeC {\'e}d\IeC {\'e}fini de composant}{14}{subsubsection.2.5.2.3}
+\contentsline {subsubsection}{\numberline {2.5.2.4}JSNI (javascript native interface)}{14}{subsubsection.2.5.2.4}
+\contentsline {subsubsection}{\numberline {2.5.2.5}Internationalisation}{14}{subsubsection.2.5.2.5}
+\contentsline {subsubsection}{\numberline {2.5.2.6}Inconv\IeC {\'e}nients}{14}{subsubsection.2.5.2.6}
+\contentsline {subsubsection}{\numberline {2.5.2.7}GWT - Plateform}{15}{subsubsection.2.5.2.7}
+\contentsline {subsubsection}{\numberline {2.5.2.8}Pr\IeC {\'e}sentation}{15}{subsubsection.2.5.2.8}
+\contentsline {subsubsection}{\numberline {2.5.2.9}Le model View Presenter}{15}{subsubsection.2.5.2.9}
+\contentsline {subsection}{\numberline {2.5.3}Libraire externe}{15}{subsection.2.5.3}
+\contentsline {subsubsection}{\numberline {2.5.3.1}GWT-dnd}{15}{subsubsection.2.5.3.1}
+\contentsline {subsubsection}{\numberline {2.5.3.2}Smart-GWT}{16}{subsubsection.2.5.3.2}
+\contentsline {subsection}{\numberline {2.5.4}Local Storage}{16}{subsection.2.5.4}
+\contentsline {subsubsection}{\numberline {2.5.4.1}Principe}{16}{subsubsection.2.5.4.1}
+\contentsline {subsubsection}{\numberline {2.5.4.2}Utilisation dans notre application}{16}{subsubsection.2.5.4.2}
+\contentsline {section}{\numberline {2.6}Les outils partie serveur}{17}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Java EE}{17}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Hibernate}{17}{subsection.2.6.2}
+\contentsline {section}{\numberline {2.7}Les outils client/serveur}{18}{section.2.7}
+\contentsline {section}{\numberline {2.8}Structure du code}{19}{section.2.8}
+\contentsline {section}{\numberline {2.9}La base de donn\IeC {\'e}es}{20}{section.2.9}
+\contentsline {section}{\numberline {2.10}Solveur}{21}{section.2.10}
+\contentsline {subsection}{\numberline {2.10.1}Rappels th\IeC {\'e}orique}{21}{subsection.2.10.1}
+\contentsline {section}{\numberline {2.11}Discussions}{22}{section.2.11}
+\contentsline {subsection}{\numberline {2.11.1}Choix concernant la performance}{22}{subsection.2.11.1}
+\contentsline {subsection}{\numberline {2.11.2}Choix concernant la s\IeC {\'e}curit\IeC {\'e}}{22}{subsection.2.11.2}
+\contentsline {section}{\numberline {2.12}M\IeC {\'e}thodologie}{23}{section.2.12}
+\contentsline {subsection}{\numberline {2.12.1}GIT et partage des donn\IeC {\'e}es}{23}{subsection.2.12.1}
+\contentsline {subsection}{\numberline {2.12.2}Logiciel de suivi de probl\IeC {\`e}me}{23}{subsection.2.12.2}
+\contentsline {subsection}{\numberline {2.12.3}M\IeC {\'e}thodologie de conception}{23}{subsection.2.12.3}
+\contentsline {section}{\numberline {2.13}Am\IeC {\'e}lioration future}{24}{section.2.13}
+\contentsline {subsection}{\numberline {2.13.1}Possibilit\IeC {\'e}s d'am\IeC {\'e}lioration du programme}{24}{subsection.2.13.1}
+\contentsline {subsubsection}{\numberline {2.13.1.1}mode comparaison}{24}{subsubsection.2.13.1.1}
+\contentsline {subsubsection}{\numberline {2.13.1.2}solveur}{24}{subsubsection.2.13.1.2}
+\contentsline {subsubsection}{\numberline {2.13.1.3}droits}{24}{subsubsection.2.13.1.3}
+\contentsline {subsubsection}{\numberline {2.13.1.4}mode hors ligne}{24}{subsubsection.2.13.1.4}
+\contentsline {subsubsection}{\numberline {2.13.1.5}upload \IeC {\`a} partir d'une bdd}{25}{subsubsection.2.13.1.5}
+\contentsline {subsubsection}{\numberline {2.13.1.6}modifications de donn\IeC {\'e}es}{25}{subsubsection.2.13.1.6}
+\contentsline {section}{\numberline {2.14}Recommandation}{26}{section.2.14}
+\contentsline {section}{\numberline {2.15}Conclusion}{27}{section.2.15}

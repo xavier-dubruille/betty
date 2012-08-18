@@ -1,0 +1,198 @@
+\documentclass{these}
+\usepackage[french]{babel}
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[babel=true]{csquotes}
+\usepackage{lscape}
+\usepackage{amssymb}
+\usepackage{chngpage}
+\usepackage{chngcntr}
+
+% Informations factuelles
+\title{\huge Analyse et intégration de techniques \enquote{constraint programming} et \enquote{operations research} pour la réalisation d'un outil d'aide à la création d'horaires}
+\author{Kevin \textsc{Jacoby} et Xavier \textsc{Dubruille}}
+\date{2012}
+\labo{CENTAL}
+\school{École Doctorale}
+\speciality{Traitement Automatique du Langage}
+\university{Linguistique à Finalité TAL}{Ecole Pratique des Hautes Etudes Commerciales}
+%\ISBN{} %à remplir et décommenter lorsque ce numéro est connu.
+\advisor[M]{C. \bsc{Lambeau}} %Directeur de thèse
+
+
+% Compteur de figure
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
+
+% Profondeur TOC
+\setcounter{tocdepth}{1}
+\stepcounter{secnumdepth}
+\stepcounter{tocdepth}
+
+
+% Références
+\usepackage[pdftex, pdfborder={0 0 0},hypertex]{hyperref}
+
+% Math
+\everymath{\displaystyle}
+
+% Code
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\lstset{% general command to set parameter(s)
+language=SQL,
+basicstyle=\small,
+% print whole listing small
+keywordstyle=\color{violet}\bfseries\bf,
+% underlined bold black keywords
+identifierstyle=\color{blue},
+% nothing happens
+commentstyle=\color{red}\bf, % white comments
+stringstyle=\ttfamily,
+% typewriter type for strings
+showstringspaces=false}
+
+% Pstree
+%\usepackage{pstricks}
+%\usepackage{pst-plot,pst-text,pst-tree,pst-eps,pst-fill,pst-node,pst-math}
+%\usepackage[on]{auto-pst-pdf} 
+%\def\TTR{\Tr{\Tcircle[fillstyle=solid,fillcolor=black!60]%
+%  {}}}
+  
+% Paragraph
+\makeatletter
+\renewcommand{\paragraph}{\@startsection{paragraph}{4}{0ex}%
+   {-3.25ex plus -1ex minus -0.2ex}%
+   {1.5ex plus 0.2ex}%
+   {\normalfont\normalsize\bfseries}}
+\makeatother
+
+% Page vierge après Part
+\makeatletter
+\renewcommand{\@endpart}{\vfil\newpage\if@tempswa\twocolumn\fi}
+\makeatother
+
+%Nospace
+\makeatletter
+\@ifpackageloaded{babel}%
+        {\newcommand{\nospace}[1]{{\NoAutoSpaceBeforeFDP{}#1}}}%  % !! double {{}} pour cantonner l'effet à l'argument #1 !!
+        {\newcommand{\nospace}[1]{#1}}
+\makeatother
+
+% Citation - Bibliographie
+\usepackage{natbib}
+\bibpunct{(}{)}{;}{a}{}{;} 
+
+% Intégration d'images
+\usepackage{graphicx}
+\graphicspath{{./pics/}} 
+
+% Siècle
+\def\siecle#1{\textsc{\romannumeral #1}\textsuperscript{e}~siècle}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% Titre
+\frontmatter
+\maketitle
+
+
+\maketitle
+%\setcounter{page}{6} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Resume
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{resume.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Remerciements
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{remerciements.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TOC
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Abréviation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%\input{abrev.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Debut du document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\mainmatter
+\input{intro.tex}
+
+% analyse de la problematique ainsi que les objectifs
+\include{analyse}
+
+% presentation de l'application (option disponible, comment ça marche,...)
+\include{presentationAppli}
+
+% nos choix qd aux techno, gwt et autre
+\include{nosChoix}
+
+% partie cliente de l'applicatin (gwt, gwtp, librairie,...) 
+\include{clientSide}
+
+% partie server de l'applicatin (hibernate, java EE)
+\include{serveurSide}
+
+% chose qui interviennent dans la partie cliente et et serveur (gin/juice)
+\include{allSide}
+
+% organisation du code (avec des pseudo diagramme uml, explication local storage, rpc , % guice,...)
+\include{structure}
+
+% schéma de la base de données (bdd de stockage)
+\include{bdd}
+
+% le solveur qu'on a choisi, comment ça marche
+\include{solveur}
+
+% se trouve pour le moment, les differents chapitre de relexion
+% concernant par ex la secu, la perf, etc
+\include{discussion}
+
+% Comment nous avons travailler (gitHub, skype, egit,...)
+\include{methodo}
+
+% Amélioration envisagable pour le logiciel
+\include{amelioration}
+
+% nos recommandation sur l'utilisation, le fichier xls,...
+\include{recommandation}
+
+\include{conclusion}
+
+\backmatter
+
+\newpage
+\bibliography{official}
+\bibliographystyle{apalike-fr}
+
+%\newpage
+%\listoffigures
+%
+%\newpage
+%\listoftables
+
+\renewcommand{\thesection}{\Alph{section}}
+\setcounter{section}{0} 
+
+%\input{annexe.tex}
+
+
+
+%\makeback
+\end{document}

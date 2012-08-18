@@ -1,0 +1,72 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}
+\BOOKMARK [1][-]{section.2}{Analyse de la probl\351matique et outils existant}{}
+\BOOKMARK [2][-]{subsection.2.1}{La programmation par contraintes}{section.2}
+\BOOKMARK [1][-]{section.3}{Pr\351sentation de l'application}{}
+\BOOKMARK [2][-]{subsection.3.1}{Connexion et Inscription}{section.3}
+\BOOKMARK [2][-]{subsection.3.2}{Page des projets}{section.3}
+\BOOKMARK [2][-]{subsection.3.3}{Page principale}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Les attributions}{subsection.3.3}
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Semainier}{subsection.3.3}
+\BOOKMARK [3][-]{subsubsection.3.3.3}{Notifications}{subsection.3.3}
+\BOOKMARK [3][-]{subsubsection.3.3.4}{Les filtres}{subsection.3.3}
+\BOOKMARK [3][-]{subsubsection.3.3.5}{Les instances}{subsection.3.3}
+\BOOKMARK [3][-]{subsubsection.3.3.6}{Le solveur}{subsection.3.3}
+\BOOKMARK [3][-]{subsubsection.3.3.7}{M\351moire cache}{subsection.3.3}
+\BOOKMARK [1][-]{section.4}{R\351flexion autour de l'application}{}
+\BOOKMARK [2][-]{subsection.4.1}{Client/Serveur}{section.4}
+\BOOKMARK [2][-]{subsection.4.2}{Java}{section.4}
+\BOOKMARK [2][-]{subsection.4.3}{Google Web Toolkit \(GWT\)}{section.4}
+\BOOKMARK [2][-]{subsection.4.4}{Hibernate}{section.4}
+\BOOKMARK [2][-]{subsection.4.5}{Solveur}{section.4}
+\BOOKMARK [2][-]{subsection.4.6}{GitHub}{section.4}
+\BOOKMARK [1][-]{section.5}{Les outils partie cliente}{}
+\BOOKMARK [2][-]{subsection.5.1}{Google web toolkit \(GWT\)}{section.5}
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Pr\351sentation}{subsection.5.1}
+\BOOKMARK [3][-]{subsubsection.5.1.2}{Principe de fonctionnement}{subsection.5.1}
+\BOOKMARK [3][-]{subsubsection.5.1.3}{Mode de fonctionnement}{subsection.5.1}
+\BOOKMARK [3][-]{subsubsection.5.1.4}{Architecture GWT}{subsection.5.1}
+\BOOKMARK [3][-]{subsubsection.5.1.5}{Ev\351nement}{subsection.5.1}
+\BOOKMARK [3][-]{subsubsection.5.1.6}{Actions}{subsection.5.1}
+\BOOKMARK [3][-]{subsubsection.5.1.7}{Exemple d'un projet GWT}{subsection.5.1}
+\BOOKMARK [2][-]{subsection.5.2}{Avantages}{section.5}
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Debbugage}{subsection.5.2}
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Optimisation}{subsection.5.2}
+\BOOKMARK [3][-]{subsubsection.5.2.3}{Liste pr\351d\351fini de composant}{subsection.5.2}
+\BOOKMARK [3][-]{subsubsection.5.2.4}{JSNI \(javascript native interface\)}{subsection.5.2}
+\BOOKMARK [3][-]{subsubsection.5.2.5}{Internationalisation}{subsection.5.2}
+\BOOKMARK [3][-]{subsubsection.5.2.6}{Inconv\351nients}{subsection.5.2}
+\BOOKMARK [3][-]{subsubsection.5.2.7}{GWT - Plateform}{subsection.5.2}
+\BOOKMARK [3][-]{subsubsection.5.2.8}{Pr\351sentation}{subsection.5.2}
+\BOOKMARK [3][-]{subsubsection.5.2.9}{Le model View Presenter}{subsection.5.2}
+\BOOKMARK [2][-]{subsection.5.3}{Libraire externe}{section.5}
+\BOOKMARK [3][-]{subsubsection.5.3.1}{GWT-dnd}{subsection.5.3}
+\BOOKMARK [3][-]{subsubsection.5.3.2}{Smart-GWT}{subsection.5.3}
+\BOOKMARK [2][-]{subsection.5.4}{Local Storage}{section.5}
+\BOOKMARK [3][-]{subsubsection.5.4.1}{Principe}{subsection.5.4}
+\BOOKMARK [3][-]{subsubsection.5.4.2}{Utilisation dans notre application}{subsection.5.4}
+\BOOKMARK [1][-]{section.6}{Les outils partie serveur}{}
+\BOOKMARK [2][-]{subsection.6.1}{Java EE}{section.6}
+\BOOKMARK [2][-]{subsection.6.2}{Hibernate}{section.6}
+\BOOKMARK [1][-]{section.7}{Les outils client/serveur}{}
+\BOOKMARK [1][-]{section.8}{Structure du code}{}
+\BOOKMARK [1][-]{section.9}{La base de donn\351es}{}
+\BOOKMARK [1][-]{section.10}{Solveur}{}
+\BOOKMARK [2][-]{subsection.10.1}{Rappels th\351orique}{section.10}
+\BOOKMARK [1][-]{section.11}{Discussions}{}
+\BOOKMARK [2][-]{subsection.11.1}{Choix concernant la performance}{section.11}
+\BOOKMARK [2][-]{subsection.11.2}{Choix concernant la s\351curit\351}{section.11}
+\BOOKMARK [1][-]{section.12}{M\351thodologie}{}
+\BOOKMARK [2][-]{subsection.12.1}{GIT et partage des donn\351es}{section.12}
+\BOOKMARK [2][-]{subsection.12.2}{Logiciel de suivi de probl\350me}{section.12}
+\BOOKMARK [2][-]{subsection.12.3}{M\351thodologie de conception}{section.12}
+\BOOKMARK [1][-]{section.13}{Am\351lioration future}{}
+\BOOKMARK [2][-]{subsection.13.1}{Possibilit\351s d'am\351lioration du programme}{section.13}
+\BOOKMARK [3][-]{subsubsection.13.1.1}{mode comparaison}{subsection.13.1}
+\BOOKMARK [3][-]{subsubsection.13.1.2}{solveur}{subsection.13.1}
+\BOOKMARK [3][-]{subsubsection.13.1.3}{droits}{subsection.13.1}
+\BOOKMARK [3][-]{subsubsection.13.1.4}{mode hors ligne}{subsection.13.1}
+\BOOKMARK [3][-]{subsubsection.13.1.5}{upload \340 partir d'une bdd}{subsection.13.1}
+\BOOKMARK [3][-]{subsubsection.13.1.6}{modifications de donn\351es}{subsection.13.1}
+\BOOKMARK [1][-]{section.14}{Recommandation}{}
+\BOOKMARK [1][-]{section.15}{Conclusion}{}
+\BOOKMARK [1][-]{section.15}{R\351f\351rences}{}
