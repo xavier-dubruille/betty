@@ -1,9 +1,8 @@
 % !TeX root = these.tex
 \chapter{Solveur}
-le but ici n'est pas d'énumérer toutes les étapes par lesquelles nous sommes passé ainsi que toutes les essais infructué effectué, car ce serait long et inninteressant. Nous allons nous concentrer sur la méthode actuelle utilisée en tantant de justifié son choix. Pour pouvoir expliquer son choix et sont utilisation, nous allons devoir revenir sur les explications plus générale de la programmation par contraites et d'autre thechniques OR (operation research).  Pour plus d'information sur le sujet, nous invitons le lecteur, à XXX, ainsi qu'à la thèse de M qui fut de loins l'ouvrage qui nous a le plus éclairé quand la à la problematique de xx
+i% le but ici n'est pas d'énumérer toutes les étapes par lesquelles nous sommes passé ainsi que toutes les essais infructué effectué, car ce serait long et inninteressant. Nous allons nous concentrer sur la méthode actuelle utilisée en tantant de justifié son choix. Pour pouvoir expliquer son choix et sont utilisation, nous allons devoir revenir sur les explications plus générale de la programmation par contraites et d'autre thechniques OR (operation research).  Pour plus d'information sur le sujet, nous invitons le lecteur, à XXX, ainsi qu'à la thèse de M qui fut de loins l'ouvrage qui nous a le plus éclairé quand la à la problematique de xx
 
 
-----
 Pour pouvoir apporter un réel avantage à notre application, comparé à la méthode actuelle de création d'horraire (i.e. manuel), il était necessaire de lui rajouter une certaine "inteligence". 
 Une partie de cette "inteligence" est pris en charge du coté client, qui comme décrit dans une précédente section, se charge d'assister l'utilisateur lors de la création de son horraire.
 
@@ -22,8 +21,12 @@ descrivant plutot le but recherché que la méthode utilisé, c'est pourquoi la 
 
 dans le cas qui nous concerne, la problème de création d'horraire, est un cas typique de CSP (Constraint Satisfaction Problem), et comme tout csp peut se définir comme suit:
 *** definition formelle ***
-Dans notre cas, les variables sont, se qu'on appelle "activity", et correspondent à un cours, ou tous type d'activitée pouvant avoir lieu à l'Ephec; il s'agit, dans la méthode traditionnel des cartons physique qui seront manipulé lors de la création d'un horraire.
+Dans notre cas, les variables sont, se qu'on va appeller des "activity", et correspondent à un cours ou à tous type d'activitées pouvant avoir lieu à l'Ephec (il s'agit, dans la méthode traditionnel des cartons physique qui seront manipulé lors de la création d'un horraire.)
 
+Le domaine de valeurs que peuvent prendre ses variables, ses activity, sont un local et une periode de la semaine.  Ca fait un domaine à deux dimentions (Lieu X Periode). Dans l'idéal, il faudrait prendre le choix des professeurs comme troisième dimension, mais ce n'est pas le cas dans notre impémentation actuelle. 
+
+Les contraintes deviennent alors les relation mathématiques reliant les activity.
+On a tenté de faire des listes exaustives de ses contraintes, mais seule une sous partie est actuelement pris en compte:
 
 
 
