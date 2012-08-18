@@ -164,7 +164,7 @@
 %\end{minipage} 
       
             \begin{minipage}{0.21\linewidth}
-\includegraphics[scale=0.4]{ephec_logo.png}
+\includegraphics[scale=0.4]{./pics/ephec_logo.png}
 
 \end{minipage}\hfill
 \hspace{-5cm}
