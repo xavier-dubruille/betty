@@ -144,7 +144,7 @@
     \begin{titlepage}
         \thispagestyle{empty}
 %\geometry{nomarginpar,noheadfoot,twoside,showframe,
-%    top=15mm,bottom=20mm,
+%    top=15mm,bottom=20mm,C'
 %    hmargin=25mm,bindingoffset=10mm}
 %        \vsize = 277mm
 %        \voffset = -15mm
