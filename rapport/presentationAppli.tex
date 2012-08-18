@@ -2,7 +2,26 @@
 % !TeX root = these.tex
 
 \chapter{Présentation de l'application}
-Notre application, surnommée Betty\footnote{Brillant Ephec Time Tabling for You}, a pour but d'être un outils permettant d'élaborer un horaire de façon plus conviviale en comparaison avec la façon de procédé utilisée à l'Ephec. Voici comment l'application ce présente de manière générale, et les fonctionnalités qu'elle propose dans son état actuel.
+Notre application, surnommée Betty\footnote{Brillant Ephec Time Tabling for You}, est un outil permettant d'élaborer un horaire de façon plus conviviale et plus rapide comparé à la façon actuelle de procéder à l'EPHEC.\\
+\newline
+\indent
+Cependant, avant tout développement ultérieur, il est nécessaire de présenter les différents objets composant notre solution. Nous avons choisi de travailler par \texttt{projet}. Chaque projet est caractérisé par un ensemble de cours étalés sur deux semestres. Betty permet de gérer plusieurs projets. Dans une optique de confidentialité, l'accès à chaque projet nécessite une \texttt{inscription} et une \texttt{connexion} de la part de l'utilisateur.
+\newline
+\indent
+Au sein de chaque projet, chaque cours est représenté par ce que nous appelons un \texttt{carton}. Un carton est un cadre décrivant le nom du cours, son sigle et le professeur qui lui est rattaché. Betty propose par un système intuitif de \enquote{drag and drop} de positionner ces cartons au sein d'un \texttt{semainier} afin de construire un horaire.
+\newline
+\indent
+Sur cette page présentant le semainier, différents outils sont utilisables afin d'améliorer la création de l'horaire. A chaque cours, sont rattachées ses \texttt{attributions} spécifiques, c'est-à-dire les différentes classes d'élèves auxquelles se destine le cours. Un système de \texttt{notifications} a été mis en place afin d'offrir à l'utilisateur un retour sur les opérations qu'il effectue. Enfin, un système de \texttt{filtres} améliore la vision des données. 
+\newline
+\indent
+La programmation par contraintes est utilisée pour définir de nouveaux horaires. Cette utilisation des possibilités s'effectue au travers d'un panneau d'\texttt{instances}. Une instance  est un état spécifique des cartons, c'est-à-dire un horaire potentiel. Lorsque l'utilisateur l'estime nécessaire, il est possible d'utiliser le  \texttt{solveur}. Le solveur est le système qui est en charge de calculer un nouvel horaire, c'est-à-dire une nouvelle instance, répondant à certaines contraintes.
+\newline
+\indent
+Afin de diminuer les temps de chargement, un mécanisme permet d'exploiter la \texttt{mémoire cache} des navigateurs côté client. Ce procédé permet de minimiser le nombre de requêtes envoyées au serveur et améliore la rapidité de l'ensemble du système.\\
+\newline
+\indent
+Cette présente section décrira ces différents aspects.
+
 
 \section{Connexion et Inscription}
 
