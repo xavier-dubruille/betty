@@ -112,3 +112,15 @@ Une des fonctionnalités les plus intéressante d'HTML5 est la mise en place d'u
 
 	JavaScript
 	Code optimisé, blablabla
+ 
+\subsection{Local Storage}
+\subsubsection{Principe}
+\subsubsection{Utilisation dans notre application}
+Local storage:
+  
+  on a vu grand, et actuellement ses avantages ne compense pas la mise en place de cette thecno.  Mais ce qu'elle pourrait permettre xx
+
+  Lors de chaque modification (par exemple le placement d'un carton), on l'enregistre simultanément dans le LS ainsi qu'on l'envoie (en asynchrone) à la bdd.  Cela permet une fluidité impressionnante, mais dans le cas où la bdd se trouverait sur un serveur lointain, ou qu'elle ne serait momentanément pas disponible.  Une fonctionnalité, en beta (voir alpha), permet de synchroniser l'état du local storage avec la bdd dans le cas où la connexion à la bdd est retrouvée.
+    
+    Actuellement, une connexion internet est requise lors d'un rechargement de la page afin de se mettre à jour, ceci est indispensable pour offrir une synchronisation cohérente. Cependant une fonctionnalité, en Alpha actuellement, permet, si l'option est activé ou si la bdd n'est pas accessible, de fonctionner sans cette dernière, et lors de la récupération de la connexion, les données sont alors synchronisé.
+

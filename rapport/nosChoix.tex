@@ -38,6 +38,21 @@ Le type de SGBD\footnote{Système de gestion de base de données} utilisé à pe
 la base de données au préalable. L'application se charge de la créer d'elle-même
 grâce à l'utilisation de l'outil Hibernate.
 
+%%%%% repetion, ms c'est un bou de ce que j'avais ecrit, faut voir si c utilie
+La base de donnée et l'application tournent actuellement sur le même serveur, mais rien ne l'impose.
+Il est donc possible de choisir de stoquer la base de donnée de l'application sur un serveur ephec, et d'avoir l'application java tourner sur un serveur "public".
+Les deux peuvent également être hébergé sur des serveurs Ephec, ca nécessite l'installation de Tomcat (ou Jetty, JBoss,..), donc d'un programme ultra léger à très lourd. Multi plate-forme, et aucune configuration particulière (l'archive .war fournie avec le cd, doit juste être déposé dans le bon répertoire pour pouvoir fonctionner).
+Nous préconisons cependant l'utilisation d'un Tomcat derrière un Apache, pour plus de maniabilité (par exemple pour les droits d'accès et la facilité de faire cohabiter notre application avec d'autre chose, sans risque), de perfo et de sécu. 
+
+La base de donnée, également n'impose absolument rien. L'application communiquant à la bdd par le biés d'hibernate et de JDBC, il faut:
+1. télécharger le driver jdbc par celui correspondant à la bdd, oracle en recense actuellement 221 (http://developers.sun.com/product/jdbc/drivers/)
+2. configurer le fichier de config d'hibernate
+3. créer une database nommé betty ainsi qu'un utilisateur ayant les droits sur cette bdd 
+Hibernate se charge d'écrire toutes les tables nécessaire.  Nous avons fait plusieurs tests, avec mySql ainsi que Postgres sur des bdd complètement vierge, et aucun problèmes n'est a déclarer.
+
+%%%%%% fin de la petetition
+
+
 % peut être pas mettre ce paragraphe dans le rapport
 %Nous avons choisi le langage java d'une part car nous sommes familiariser avec la programmation orienté objet.
 
