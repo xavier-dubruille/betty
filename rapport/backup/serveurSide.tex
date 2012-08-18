@@ -1,3 +1,4 @@
+% !TeX root = these.tex
 \section{Les outils partie serveur}
 
 
@@ -6,10 +7,19 @@
 %% ce paragraphe est un copié-collé de commentCaMarche et est, forcement à retravailler
 La plateforme Java entreprise (Java EE) est un ensemble de spécifications portée par un consortium de sociétés internationales qui permettent ensemble des solutions pour le développement, le déploiement, et de la gestion des applications d'entreprises multi-niveaux, basées sur des composants.
 
+\begin{figure}[!h]
+    \center
+   	\includegraphics[scale=0.65]{architecture_JEE.png}
+   	\caption{Diagramme issu de\url{architecture_JEE.png}}
+    \label{reference1}
+\end{figure}
+
+Et dans la figure  \ref{reference1}\footnote{Diagramme issu de \url{}}
 ** image**
 Construit sur la plateforme de Java 2 édition standard (Java SE), la plateforme Java EE ajoute les possibilités nécessaires pour fournir une plateforme complète, stable, sécurisée, et rapide de Java au niveau entreprise. 
-Dans la mesure où J2EE s'appuie entièrement sur le Java, il bénéficie des avantages et inconvénients de ce langage, en particulier une bonne portabilité et une maintenabilité du code.
-
+Dans la mesure où J2EE s'appuie entièrement sur le Java, il bénéficie des avantages et inconvénients de ce langage, en particulier une bonne portabilité et une maintenabilité du code.\\
+\newline
+\indent
 L'ensemble de l'infrastructure d'execution JavaEE est donc constitué de services (API) et spécifications tel que:
 HTTP et HTTPS
 Java Transaction API (JTA)
@@ -51,8 +61,13 @@ Ca nous à permit d'apprender les outils et les techniques les plus recherchée 
 
 Pour pouvoir communiquer avec notre base de donnée à partir de notre code java, on a commencé avec jdbc\footnote{Java Database connectivity} mais cela n'était pas suffisant et on s'est tourné ver Hibernate.
 
-Hibernate est un framework libre, appellé framework de  "mapping objet-relationnel" ou encore de "persistance objet des données". 
-**image**
+Hibernate est un framework libre, appellé framework de  "mapping objet-relationnel" ou encore de "persistance objet des données" (voir Figure \ref{reference2}). 
+\begin{figure}[!h]
+    \center
+   	\includegraphics[scale=0.65]{schema_hibernate.png}
+   	\caption{Diagramme issu de\url{}}
+    \label{reference2}
+\end{figure}
 Ca permet donc à la couche applicative de notre programme de traiter les données vennant de la base de donnée comme des objects donc le contenu reste en mémoire même après la fin d'exécution du programme. D'où persistance objet des données. Le lien entre les classes exposées et la source physique des données (dans notre cas une base de données *relationnelle*) est définie par un fichier xml. D'où mapping objet-relationnel.
 Cela nous à permit de gérer notre base de données, comme le reste de l'application en orienté objet, et même si son apprentissage ne fut pas des plus aisée, la gestion générale du code s'en est retrouvé grandement amélioré.
 
