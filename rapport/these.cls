@@ -14,7 +14,7 @@
     top=29mm,bottom=20mm,
     head=10mm,headsep=7mm,
     footskip=10mm,
-    hmargin=2.5cm]{geometry}
+    left=2cm,right=1.5cm]{geometry}
 
 \newif\if@blankemptypage
 \DeclareOption{noblankemptypage}{\@blankemptypagefalse}

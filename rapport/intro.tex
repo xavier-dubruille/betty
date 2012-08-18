@@ -7,10 +7,22 @@
 %• la problématique 2) délimiter le sujet
 %• l’annonce du plan (très claire) 3) annoncer le plan
 
-Dans le domaine de l'enseignement, la création d'horaires de cours est une tâche ardue pour les secrétariats. En effet, il s'agit de prendre simultanément en compte de très nombreuses contraintes ; les locaux ne sont pas toujours libres, les professeurs ont des \textit{desiderata}, les élèves ont des parcours différents. Cette somme de contraintes font de la mise en place d'horaires un travail long et fastidieux qu'il s'agit de réitérer à chaque rentrée scolaire. 
+Dans le domaine de l'enseignement, la création des horaires de cours est une tâche ardue pour les secrétariats. En effet, il s'agit de prendre simultanément en compte de très nombreuses contraintes ; les locaux ne sont pas toujours libres, les professeurs ont des \textit{desiderata} particuliers, les élèves ont des parcours différents, etc. Cette somme de contraintes font de la mise en place d'emploi du temps un travail long et fastidieux qu'il s'agit de réitérer à chaque rentrée scolaire.\\
 \newline
 \indent
-Ce type de problème est un problème récurrent dans le domaine informatique.
+Ce type de problème touche au domaine plus large de la programmation par contraintes, dite \enquote{constraint programming} \citep{Muller_2005}. Ce paradigme de programmation s'attache à traiter les problèmes où une large combinatoire est nécessaire pour trouver un ensemble de solutions satisfaisant les différents acteurs impliqués. Par exemple, la programmation par contraintes est notamment utilisée pour traiter les problèmes relatifs aux circuits d'attente aérien au-dessus des aéroports. Il s'agit de prendre simultanément en compte la quantité de kérosène restante pour chacun des avions, les pistes occupées ou en passe de l'être, les prédictions météos, les \enquote{gates} libres, les ressources disponibles au sol, etc.
+\newline
+\indent
+
+
+une approche par contraintes est utilisée dans les domaines des transports,  la gestion de main d’œuvre, la , la création d'horaires dans les tournois sportifs, etc.\\
+
+  Par exemple, le problème du jeu \textit{sudokou} est un exemple où la programmation par contraintes pourrait intervenir pour trouver une solution. Cependant, dans le \textit{sudokou}, la contrainte est simple ; un chiffre doit être unique dans la ligne et la colonne qu'il occupe.
+\newline
+\indent
+La programmation par contraintes par contraintes est utilisées dans de nombreux domaines tels que les transports, la gestion de main d’œuvre, la création d'horaires dans les tournois sportifs, etc.\\
+\newline
+\indent
 
 Face à ce constat, de nombreux travaux ont eu pour sujet la \enquote{constraint programming}. 
 \newline
@@ -27,5 +39,14 @@ outil adapté à l'EPHEC simple d'utilisation et interactif. \\
 Ce rapport décrira la méthodologie utilisée et les choix de conception faits.
 Par la suite, nous décrirons plus profondément le programme et sa structure avant de clore sur une discussion sur les possibilités du programme. 
 
+
+Avant tout, il est nécessaire de bien saisir la problématique et en quoi celle-ci peut être utile à notre travail. Nous avons du faire un analyse approfondie sur ce qu'était une contraintes ainsi que la programmation de celles-ci. Il a fallu ensuite analyser les différents outils nous permettant de "programmer par contraintes" et ensuite essayer de les implémenter dans un logiciel d'aide à la création d'horaire que nous avons du créer au préalable.\\
+\newline
+\indent
+%D'abord, pourquoi on a fait ça et pourquoi ce TFE. En quoi c'est utilite pr notre travail
+Madame Gillet, Directrice de l'établissement Ephec à Louvain-la-Neuve, établit l'horaire a chaque nouveau quadrimestre de l'année scolaire. l'établissement d'un horaire doit se faire sous certaines contraintes et en fonction de désidératas remis par les professeurs. Le nombre de locaux informatique est limité, certains professeurs sont dit "externe" à l'Ephec, ceux-ci doivent se voir attribué un horaire particulier, certain cours se donne dans des locaux externes à l'Ephec et ne sont donc pas disponible à chaque période de cours. Toute ces contraintes, si elle ne sont pas informatisée doivent prise en compte par la personne établissant l'horaire qui doit réaliser un "vrai casse tête chinois" afin d'avoir un horaire le plus adéquat possible.\\
+\newline
+\indent
+La programmation par contrainte permet de résoudre de manière automatique cette problématique, facilitant ainsi la tâche qui incombe à la personne en charge de l'élaboration d'un horaire. Nous allons d'abord définir ce qu'est une contraintes de manière plus théorique pour bien saisir la problématique et la provenance de celle-ci. Nous discuterons ensuite autour des différentes solutions existantes nous permettant de réaliser cela.
 
 

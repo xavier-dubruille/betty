@@ -1,0 +1,14 @@
+\begin{thebibliography}{}
+\expandafter\ifx\csname fonteauteurs\endcsname\relax
+\def\fonteauteurs{\scshape}\fi
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{{\tt #1}}%
+    \message{You should include the url package}\fi
+
+\bibitem[Müller, 2005]{Muller_2005}
+\bgroup\fonteauteurs\bgroup Müller\egroup\egroup{}, T. (2005).
+\newblock {\em Constraint-based Timetabling}.
+\newblock Th\`ese de doctorat, Charles University in Prague, Faculté of
+  Mathematics and Physics.
+
+\end{thebibliography}

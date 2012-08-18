@@ -1,0 +1,62 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: these.aux
+A level-1 auxiliary file: analyse.aux
+A level-1 auxiliary file: presentationAppli.aux
+A level-1 auxiliary file: nosChoix.aux
+A level-1 auxiliary file: clientSide.aux
+A level-1 auxiliary file: serveurSide.aux
+A level-1 auxiliary file: allSide.aux
+A level-1 auxiliary file: structure.aux
+A level-1 auxiliary file: bdd.aux
+A level-1 auxiliary file: solveur.aux
+A level-1 auxiliary file: discussion.aux
+A level-1 auxiliary file: methodo.aux
+A level-1 auxiliary file: amelioration.aux
+A level-1 auxiliary file: recommandation.aux
+A level-1 auxiliary file: conclusion.aux
+The style file: apalike-fr.bst
+Database file #1: official.bib
+Warning--I didn't find a database entry for "git"
+Warning--I didn't find a database entry for "github"
+You've used 1 entry,
+            2038 wiz_defined-function locations,
+            534 strings with 4656 characters,
+and the built_in function-call counts, 355 in all, are:
+= -- 39
+> -- 7
+< -- 1
++ -- 2
+- -- 2
+* -- 20
+:= -- 85
+add.period$ -- 3
+call.type$ -- 1
+change.case$ -- 5
+chr.to.int$ -- 1
+cite$ -- 1
+duplicate$ -- 12
+empty$ -- 18
+format.name$ -- 3
+if$ -- 63
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 0
+newline$ -- 13
+num.names$ -- 3
+pop$ -- 4
+preamble$ -- 1
+purify$ -- 6
+quote$ -- 0
+skip$ -- 11
+stack$ -- 0
+substring$ -- 24
+swap$ -- 1
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 6
+warning$ -- 0
+while$ -- 2
+width$ -- 0
+write$ -- 20
+(There were 2 warnings)
