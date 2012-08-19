@@ -11,10 +11,10 @@ public class ClientSolver {
 			return "";
 	}
 
-	public static CellState getColor(String cardID, int period, int day) {
+	public static CellState getCellState(String cardID, int period, int day) {
 		
 		
-		int cId = Integer.parseInt(cardID);
+		//int cId = Integer.parseInt(cardID);
 		int color = 0;
 
 		CellState cellState = new CellState(0);
@@ -25,9 +25,9 @@ public class ClientSolver {
 
 		
 		// We'll go through all cards and see with are in conflict
-		for (int i = 0; i<Storage_access.getNumberOfCard(); i++) {
+		for (String i: Storage_access.getAllPlacedCard()) {
 			
-			if (i == cId) continue;
+			if (i.equals(cardID)) continue;
 			
 			String c = Storage_access.getCard(i);
 			if (Storage_access.getDayCard(c) != day || Storage_access.getPeriodCard(c) != period) continue;

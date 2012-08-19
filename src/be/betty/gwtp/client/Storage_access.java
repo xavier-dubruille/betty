@@ -48,6 +48,7 @@ public class Storage_access {
 	private static final String SESSID_PREFIX = "session_id"; // can't be change before you're sure no one use the old way
 	private static final String PROJECT_NAME_PREFIX = "P";
 	private static final String SEMESTER_PREFIX = "s";
+	private static final String ALL_PLACED_CARD = "a";
 
 
 	// if one of the following constants come to change,
@@ -98,9 +99,14 @@ public class Storage_access {
 	private static void setDefaultValues() {
 		stockStore.setItem(NUMBER_OF_DAYS, "5");
 		stockStore.setItem(NUMBER_OF_PERIODS, "6");
+		stockStore.setItem(ALL_PLACED_CARD, "");
 
 	}
-	
+
+	public static void clearPlacedCard() {
+		stockStore.setItem(ALL_PLACED_CARD, "");
+	}
+
 	public static void clear() {
 		stockStore.removeItem(PROJECT_NAME_PREFIX);
 		stockStore.clear();
@@ -291,16 +297,19 @@ public class Storage_access {
 	 * @param day From 1 to 7
 	 * @param per period, from 1 to inf.
 	 */
-	public static void setSlotCard(int cardID, int day, int per) {
+	public static void placeCard(int cardID, int day, int per, int room) {
 		assert day >= 1 && day <=7 ;
 		assert per >= 1 ;
 		int slot = per*10 + day;
 		String[] s = getCard(cardID).split(STORAGE_SEPARATOR);
 		s[SLOT_INDEX]=""+slot;
 		stockStore.setItem(CARD_PREFIX+cardID, BettyUtils.join(s, STORAGE_SEPARATOR));
+		
+		stockStore.setItem(ALL_PLACED_CARD,stockStore.getItem(ALL_PLACED_CARD)+STORAGE_SEPARATOR+cardID);
+		System.out.println("all placed card = "+Arrays.toString(getAllPlacedCard()));
 	}
 
-
+	
 	public static void revoveFromSlot(int cardID) {
 		String card = getCard(cardID);
 		if (card == null) {
@@ -313,6 +322,9 @@ public class Storage_access {
 		stockStore.setItem(CARD_PREFIX+cardID, BettyUtils.join(s, STORAGE_SEPARATOR));
 	}
 
+	public static String[] getAllPlacedCard() {
+		return stockStore.getItem(ALL_PLACED_CARD).substring(1).split(STORAGE_SEPARATOR);
+	}
 	/**
 	 * 
 	 * @param currentProjectInstance the index (in localStorage) of the Instance
@@ -526,7 +538,6 @@ public class Storage_access {
 
 		}
 	}
-
 
 
 

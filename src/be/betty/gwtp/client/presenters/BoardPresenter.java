@@ -241,7 +241,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 		for (int i = 0; i < cellState.length; i++){
 			for (int j = 0; j < cellState[0].length; j++){
 				//System.out.println("pour le cellState "+i+"-"+j+" la couleur va etre de "+ClientSolver.getColor(cardID, i, j));
-				cellState[i][j] = ClientSolver.getColor(cardID, j+1, i+1);
+				cellState[i][j] = ClientSolver.getCellState(cardID, j+1, i+1);
 				//if ((cId+i+j) %2 ==0 ) cellState[i][j].setColor(8); //juste pour tester ;)
 
 			}

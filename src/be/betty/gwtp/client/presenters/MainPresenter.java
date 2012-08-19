@@ -242,7 +242,7 @@ public class MainPresenter extends
 			System.out.println("$$$$$ Catch event.. day="+event.getDay()+" and period= "+event.getPeriod()+" cardid="+event.getCardID());
 			int activity_bddId = Storage_access.getBddIdCard(Storage_access.getCard(event.getCardID()));
 			int projectInstance = Storage_access.getCurrentProjectInstanceBDDID();
-			System.out.println("����������Actual project instance= "+projectInstance);
+			System.out.println("Actual project instance= "+projectInstance);
 			
 			// "first", save to bdd (it's asynchronous, so instantaneous)
 			dispatcher.execute(new SaveCardDropAction(event.getDay(), event.getPeriod(), activity_bddId, event.getRoom(),
@@ -265,7 +265,7 @@ public class MainPresenter extends
 				//System.out.println("tiiiittllee"+allCards.get(event.getCardID()).getWidget().getTitle());
 				//System.out.println(allCards.size());
 			//	allCards.get(event.getCardID()).addStyleName("cardPlaced");
-				Storage_access.setSlotCard(event.getCardID(), event.getDay(), event.getPeriod());
+				Storage_access.placeCard(event.getCardID(), event.getDay(), event.getPeriod(),0);
 				//TODO: faut aussi l'envoyer � la bdd, ou un truc du genre
 			}
 			else {
@@ -635,13 +635,14 @@ public class MainPresenter extends
 			}
 
 			@Override public void onSuccess(GetActivityStateActionResult result) {
+				Storage_access.clearPlacedCard(); // is it the bestWay ?
 				for (int i=0; i< Storage_access.getNumberOfCard(); i++) {
 					String card = Storage_access.getCard(i);
 					ActivityState_dto a = result.getActivitiesState().get(""+Storage_access.getBddIdCard(card));
 					if (a == null || a.getDay() == 0 || a.getPeriod() == 0) 
 						Storage_access.revoveFromSlot(i);	
 					else 
-						Storage_access.setSlotCard(i, a.getDay(), a.getPeriod());	
+						Storage_access.placeCard(i, a.getDay(), a.getPeriod(),0);	
 					
 				}
 				eventBus.fireEvent( 
