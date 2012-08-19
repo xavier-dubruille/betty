@@ -323,7 +323,9 @@ public class Storage_access {
 	}
 
 	public static String[] getAllPlacedCard() {
-		return stockStore.getItem(ALL_PLACED_CARD).substring(1).split(STORAGE_SEPARATOR);
+		String s = stockStore.getItem(ALL_PLACED_CARD);
+		if (s.length() == 0) return new String[0];
+		return s.substring(1).split(STORAGE_SEPARATOR);
 	}
 	/**
 	 * 

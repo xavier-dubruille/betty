@@ -1,5 +1,7 @@
 package be.betty.gwtp.client.presenters;
 
+import java.util.Arrays;
+
 import be.betty.gwtp.client.CardInView;
 import be.betty.gwtp.client.CellDropControler;
 import be.betty.gwtp.client.CellState;
@@ -116,7 +118,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 					simplePanel.setStyleName("titleFlextable");
 					simplePanel.add(day);
 				}
-				
+
 				if(j==0 && i==0){
 					simplePanel.setStyleName("titleFlextable");
 				}
@@ -149,12 +151,13 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 	 * instance (witch is stored in local Storage, so it has to be the right
 	 * instance..)
 	 * 
-	 * @param comboIndex1
-	 *            If it's a teacher, a room or a group
-	 * @param comboIndex2
-	 *            witch tearcher, room or group
+	 * @param comboIndex1 If it's a teacher, a room or a group
+	 * @param comboIndex2  witch tearcher, room or group
 	 */
 	public void redrawBoard(int comboIndex1, int comboIndex2) {
+
+		//System.out.println(" Caller method name: " + new Throwable().getStackTrace()[1].getMethodName()); 
+
 
 		// 1) on va parcourir tt le board, vider les cases
 
@@ -180,11 +183,12 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 
 		//System.out.println("all cards ==== "+MainPresenter.allCards);
 		// 2) on va parcourir tt les cartons et placer ceux qui doivent l'etre
-		for (int i = 0; i < Storage_access.getNumberOfCard(); i++) {
+		for (String i : Storage_access.getAllPlacedCard()) {
 			String c = Storage_access.getCard(i);
 			int slot = Storage_access.getSlotCard(c);
 			if (slot != 0) {
 
+				//System.out.print(" "+i);
 				if (!cardInView[0].cardBelongToActualView(c)) continue;
 				int col = ClientUtils.storageSlotToFlexCol(slot);
 				int row = ClientUtils.storageSlotToFlexRow(slot);
@@ -200,6 +204,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 
 		}
 
+		// System.out.println("Et venant du AllPlaced = "+Arrays.toString(Storage_access.getAllPlacedCard()));
 
 	}
 
@@ -236,7 +241,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 	}
 
 	public void constructCellState(String cardID) {
-		
+
 		int cId = Integer.parseInt(cardID);
 		for (int i = 0; i < cellState.length; i++){
 			for (int j = 0; j < cellState[0].length; j++){
@@ -276,14 +281,14 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 
 				}
 			}
-		else 
+		else {
 			for (int i = 1; i < COLUMNS; i++){
 				for (int j = 1; j < ROWS; j++){
 					Widget w = getView().getFlexTable().getWidget(j, i);
 					w.setStyleName(UiConstants.CSS_SINGLE_CELL);
-					redrawBoard(0,0);
-
 				}
 			}
+			redrawBoard(0,0);
+		}
 	}
 }
