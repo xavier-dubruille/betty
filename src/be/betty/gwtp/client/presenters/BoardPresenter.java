@@ -3,6 +3,7 @@ package be.betty.gwtp.client.presenters;
 import be.betty.gwtp.client.CardInView;
 import be.betty.gwtp.client.CellDropControler;
 import be.betty.gwtp.client.CellState;
+import be.betty.gwtp.client.ClientSolver;
 import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
@@ -235,12 +236,13 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 	}
 
 	public void constructCellState(String cardID) {
-		//commit test
+		
 		int cId = Integer.parseInt(cardID);
 		for (int i = 0; i < cellState.length; i++){
 			for (int j = 0; j < cellState[0].length; j++){
-				cellState[i][j] = new CellState(1);
-				if ((cId+i+j) %2 ==0 ) cellState[i][j].setColor(8); //juste pour tester ;)
+				//System.out.println("pour le cellState "+i+"-"+j+" la couleur va etre de "+ClientSolver.getColor(cardID, i, j));
+				cellState[i][j] = new CellState(ClientSolver.getColor(cardID, j+1, i+1));
+				//if ((cId+i+j) %2 ==0 ) cellState[i][j].setColor(8); //juste pour tester ;)
 
 			}
 		}

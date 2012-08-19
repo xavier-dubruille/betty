@@ -440,6 +440,12 @@ public class Storage_access {
 	public static String getTeacherCard(String card) {
 		return getTeacher(Integer.parseInt(card.split(STORAGE_SEPARATOR)[TEACHER_INDEX]));
 	}
+	public static int getDayCard(String card) {
+		return Integer.parseInt(card.split(STORAGE_SEPARATOR)[SLOT_INDEX])%10;
+	}
+	public static int getPeriodCard(String card) {
+		return Integer.parseInt(card.split(STORAGE_SEPARATOR)[SLOT_INDEX])/10;
+	}
 	public static int getTeacherIdCard(String card) {
 		return Integer.parseInt(card.split(STORAGE_SEPARATOR)[TEACHER_INDEX]);
 	}
