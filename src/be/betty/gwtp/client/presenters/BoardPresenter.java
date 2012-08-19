@@ -235,7 +235,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 	}
 
 	public void constructCellState(String cardID) {
-
+		//commit test
 		int cId = Integer.parseInt(cardID);
 		for (int i = 0; i < cellState.length; i++){
 			for (int j = 0; j < cellState[0].length; j++){
