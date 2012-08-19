@@ -241,7 +241,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 		for (int i = 0; i < cellState.length; i++){
 			for (int j = 0; j < cellState[0].length; j++){
 				//System.out.println("pour le cellState "+i+"-"+j+" la couleur va etre de "+ClientSolver.getColor(cardID, i, j));
-				cellState[i][j] = new CellState(ClientSolver.getColor(cardID, j+1, i+1));
+				cellState[i][j] = ClientSolver.getColor(cardID, j+1, i+1);
 				//if ((cId+i+j) %2 ==0 ) cellState[i][j].setColor(8); //juste pour tester ;)
 
 			}
@@ -265,7 +265,14 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 					//System.out.println("cellState num "+i+ " "+j+" cet ca donne: "+c);
 					//System.out.println("color to be painted = "+c.getColor());
 					//ystem.out.println("la couleur 1 coorespond en css a: "+UiConstants.getColorCss(1));
-					w.setStyleName(UiConstants.getColorCss(cellState[i-1][j-1].getColor()));
+					CellState cs = cellState[i-1][j-1];
+					int color = cs.getColor();
+					w.setStyleName(UiConstants.getColorCss(color));
+					if (color !=0 ) {
+						SimplePanel cell = ((SimplePanel)w);
+						cell.clear();
+						cell.add(new Label(cs.getReason()));
+					}
 
 				}
 			}
@@ -274,6 +281,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 				for (int j = 1; j < ROWS; j++){
 					Widget w = getView().getFlexTable().getWidget(j, i);
 					w.setStyleName(UiConstants.CSS_SINGLE_CELL);
+					redrawBoard(0,0);
 
 				}
 			}

@@ -11,6 +11,7 @@ public class CellState {
 	}
 
 	private int color;
+	private String reason;
 	
 	public int getColor(){
 		return color;
@@ -22,6 +23,15 @@ public class CellState {
 
 	public void setColor(int i) {
 		color = i;
+		
+	}
+	
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
 		
 	}
 }

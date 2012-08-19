@@ -11,12 +11,13 @@ public class ClientSolver {
 			return "";
 	}
 
-	public static int getColor(String cardID, int period, int day) {
+	public static CellState getColor(String cardID, int period, int day) {
 		
 		
 		int cId = Integer.parseInt(cardID);
 		int color = 0;
 
+		CellState cellState = new CellState(0);
 		String card = Storage_access.getCard(cardID);
 		String t = Storage_access.getTeacherCard(card);
 		String[] g = Storage_access.getGroupCard(card);
@@ -31,15 +32,22 @@ public class ClientSolver {
 			String c = Storage_access.getCard(i);
 			if (Storage_access.getDayCard(c) != day || Storage_access.getPeriodCard(c) != period) continue;
 			// let's check if there is teacher conflict
-			if (Storage_access.getTeacherCard(c).equalsIgnoreCase(t))
-				return 8;
+			if (Storage_access.getTeacherCard(c).equalsIgnoreCase(t)) {
+				cellState.setColor(8);
+				cellState.setReason("Teacher conflict");
+				return cellState;
+			}
 			
 			// let's check if there is room conflict
 			
 			// let's check if there is groups conflict
 			for (String groupSource:g) 
 				for (String groupDest:Storage_access.getGroupCard(c))
-					if (groupSource.equals(groupDest)) return 8;
+					if (groupSource.equals(groupDest)) {
+						cellState.setColor(8);
+						cellState.setReason("Group conflict");
+						return cellState;
+					}
 			
 		}
 		
@@ -50,7 +58,7 @@ public class ClientSolver {
 		// let's check info from the server side solver
 		
 		
-		return color;
+		return cellState;
 	}	
 
 }
