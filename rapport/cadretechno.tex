@@ -10,39 +10,49 @@
 	%************************ Présentation *********************************
 \subsubsection{Présentation}
 GWT est un outil open source mis en ligne par Google permettant de développer des applications web avancées. En utilisant cet outil, nous pouvons développer des applications AJAX en langage Java.
-Lors de l'élaboration d'une application, le cross-compiler de GWT traduit la partie cliente de l'application java en fichiers JS. Ces fichiers peuvent être soumis à des optimisations (obscurcir le code, séparation du JS en plusieurs fichiers, etc.). GWT n'a pas pour objectif d'être "just another library" mais possède sa propre philosophie.\\
+Lors de l'élaboration d'une application, le cross-compiler de GWT traduit la partie cliente de l'application java en 
+fichiers JS. Ces fichiers peuvent être soumis à des optimisations (obscurcir le code, séparation du JS en plusieurs 
+´
+% JP : J'utilise la phrase "just another librairy" Peut on laisser ça sous cette forme?
+fichiers, etc.). GWT n'a pas pour objectif d'être "just another library" mais possède sa propre philosophie.\\
 \newline
 \indent
-Pour programmer une application web de notre type, il faut maîtriser des outils comme l'AJAX\footnote{Asynchronous JavaScript And XML}, l'HTML ainsi que le CSS. Le problème principal de ces outils est la compatibilité des navigateurs. La façon de mettre en forme un site web n'aura pas toujours le même rendu sur les différents navigateur. Il faut prendre en compte aussi la difficulté d'utilisation de ces outils de manière avancée (utilisation du DOM en HTML,etc.). Le langage JS est assez complexe d'utilisation, surtout pour l'écriture de grosses applications, le debuggage de celles-ci étant assez fastidieux puisqu'il s'agit d'un langage interprété. Pour pallier à ses problèmes, GWT à été créé. Il a été élaboré dans le but de répondre à un besoin, et non pas de proposer une autre librairie standard. Il s'agit d'une vrai boite à outils, et propose des solutions de développement répondant aux besoins du programmeur.
+Pour programmer une application web de notre type, il faut maîtriser des outils comme l'AJAX\footnote{Asynchronous JavaScript And XML}, l'HTML ainsi que le CSS. Le problème principal de ces outils est la compatibilité entre les différents navigateurs. La façon de mettre en forme un site web n'aura pas toujours le même sur ceux-ci. Il faut prendre en compte aussi la complexité d'utilisation de ces langage de manière avancée (utilisation du DOM en HTML,etc.). Le langage JS est assez complexe d'utilisation, surtout pour l'écriture de grosses applications, le debuggage de celles-ci étant assez fastidieux puisqu'il s'agit d'un langage interprété.
+\newline
+\indent
+Pour pallier à ces problèmes, GWT à été créé. Il a été élaboré dans le but de répondre à un besoin, et non pas de proposer une autre librairie standard. Il s'agit d'une vrai boite à outils, et propose des solutions de développement répondant aux besoins du programmeur.
 % ici je rajouterais qq lignes sur le fait que gwt est énormément utilisé par 
 % des société prestigieuse ainsi que google
+\newline
+\indent
+GWT est utilisé par exemple dans des outils web de Google comme Gmail. Nous pouvons aussi citer l'entreprise Rovio à l'orignie du jeux a succès Angry Bird ayant développer une version HTML5 du jeux à l'aide de GWT\footnote{cf. https://developers.google.com/web-toolkit/casestudies/}.
 
 %************************ Principe de fonctionnement *********************************
 \subsubsection{Principe de fonctionnement}
-GWT possède un plugin Eclipse (et pour d'autre IDE\footnote{Integrated Development Environment} comme NetBeans, JDeveloper, etc.), Eclipse étant l'IDE que nous avons choisi. Ce plugin, dans sa version Eclipse, permet d'intégrer les outils GWT à l'IDE et de faciliter son utilisation pour l'utilisateur en automatisant par exemple, la structure des différents paquets java.
+GWT possède un plugin Eclipse (et pour d'autre IDE\footnote{Integrated Development Environment} comme NetBeans, JDeveloper, etc.), Eclipse étant l'IDE que nous avons choisi. Ce plugin, dans sa version Eclipse, permet d'intégrer les outils GWT à l'IDE et de faciliter son utilisation pour l'utilisateur en automatisant par exemple, la structure des différents packages java.
 \newline
 \indent
-Comme nous l'avons expliqué précédemment, le principe de fonctionnement de GWT est de pouvoir créer des applications web basé en langage Java, celles-ci étant basées sur le modèle client/serveur, et de convertir la partie cliente de l'application en JS, la partie serveur reste en java. L'application peut être compilé pour un ou plusieurs navigateurs. favorisant la compatibilité et l'homogénéité du logiciel sur chacun d'entre eux. Ces deniers chargent uniquement ce qui les concernes. En plus de ces différents aspects qu'offre GWT, il permet aussi de préciser quelles sources du code\footnote{correspondant au .CLASS généré lors de l'exécution du code java} prendre en compte pour un navigateur spécifique.
+Comme nous l'avons expliqué précédemment, le principe de fonctionnement de GWT est de pouvoir créer des applications web basé en langage Java, sur un modèle client/serveur, et de convertir la partie cliente de l'application en JS, la partie serveur restant elle, en java. Un autre aspect de se fonctionnement réside dans la compilation pouvant être éffectuée pour un ou plusieurs navigateurs spécifique, favorisant la compatibilité et l'homogénéité du logiciel sur chacun d'entre eux. Ces deniers chargent uniquement ce qui les concernes. En plus de ces différents aspects qu'offre GWT, il permet aussi de préciser quelles sources du code\footnote{correspondant au .CLASS généré lors de l'exécution du code java} prendre en compte pour un navigateur spécifique.
 
 %************************ Mode de fonctionnement *********************************
 \subsubsection{Mode de fonctionnement}
 Nous distinguons deux types de fonctionnement. Le mode de développement ainsi que le mode de production.
 	
 \paragraph{Mode de développement}
-Le mode de développement consiste à compiler les sources du projet. Celui-ci n'est pas retranscrit en JS mais est directement exécuté en en byte code. Ceci afin de permettre le debuggage de l'application. GWT compile tout de même le projet en JS html et css afin de pouvoir valider le projet.
+Le mode de développement consiste à compiler les sources du projet. Celui-ci n'est pas retranscrit en JS mais est directement exécuté en byte code. Ceci afin de permettre le debuggage de l'application. GWT compile tout de même le projet en JS-HTML-CSS afin de pouvoir valider le projet.
 Pour pouvoir utiliser le mode de développement, il est nécessaire d'installer au préalable le plugin de développement sur le navigateur web. Ce plugin permet de capturer les événements et actions venant du client pour ensuite les envoyer vers le serveur local lancé au moment de l'exécution du projet.
 \paragraph{Mode de production}
 Le mode de production correspond au code JS généré par le compilateur GWT. Le compilateur créer le JS, HTML et CSS a partir de sources du projet. Ce code correspond à l'application final qui pourra être déployer sur notre serveur Tomcat.
 
 %****************************Architecture de GWT******************************
 \subsubsection{Architecture GWT}
-L'architecture d'un projet GWT se fait sous la forme de client/serveur. Nous distinguons deux types de communication dans l'application.
+L'architecture d'un projet GWT se fait sous la forme de client/serveur. Nous allons analyser comment ce déroule la communication entre ces deux parties. Nous distinguons deux types de communication dans l'application.
 \begin{itemize}
 \item Client/Client: communication entre les différentes vue de l'application
 \item Client/Serveur: utilisant le protocole RPC\footnote{Remote Procedure Call} 
 \end{itemize}
 \paragraph{Évènement}
-Afin de pouvoir la communication entre les différentes vues de l'application, GWT utilise un système d'envoi d'évènements (appelé Events). Ceux-ci permetent aux vues de dialoguer entre elle.
+Afin de pouvoir gérer la communication entre les différentes vues de l'application, GWT utilise un système d'envoi d'évènements (appelé Events). Ceux-ci permetent aux vues de dialoguer entre elle.
 Par exemple, une application GWT peu posséder une en-tête. Celle-ci est statique et n'est pas recharger entre les différentes vues. Lors de l'identification, les informations de connexion peuvent être envoyées à la vue suivante pour spécifier à l'utilisateur le nom du compte sur lequel il est connecté.
 Les events sont enregistré auprès de l'eventbus. Cet eventbus peut être écouté pour récupéré les informations voulues.
 
@@ -71,7 +81,7 @@ Le code java est traduit en code JS et automatiquement adapté au navigateur de 
 \paragraph{JSNI (JavaScript Native Interface)}
 GWT offre la possibilité d'utiliser directement du code JS au sein même de notre application. Il est donc tout à fait possible d'utiliser des librairies externes entièrement codée en JS comme Jquery.
 
-\paragraph{Utilisation de GinJector}
+\paragraph{Utilisation de GinJector et Guice}
 GinJector n'étant pas un principe propre GWT permet de créer une indépendance entre les différentes classes du projet. Ainsi, si nous voulons utiliser une object ou une classe dans une autre, il n' y a pas besoin d'instancier cette nouvelle classe. Nous pouvons simplement injecter.
 
 %**************************** Inconvénient de GWT **************************************
@@ -231,16 +241,16 @@ De plus, l'architecture J2EE repose sur des composants distincts, interchangeabl
 \end{itemize}
 
 % === avantages
-Ces outils favorisent l'interaction avec, d'une part, le solveur, et d'autre part, la base de données. Cela constitue un avantage majeur de notre application. Java EE regroupe donc nativement ces libraires dans un endroit unique. Il n'est plus utile de chercher un framework adapté à nos besoin et de devoir faire face à des implémentations, parfois fastidieuse, de ce dit framework.
+Ces outils favorisent l'interaction avec, d'une part, le solveur, et d'autre part, la base de données. Cela constitue un avantage majeur de notre application. Java EE regroupe donc nativement ces libraires dans un endroit unique. Il n'est plus utile de chercher un framework adapté à nos besoin et de devoir faire face à des implémentations, parfois fastidieuse, de ce dit framework, augmentent par ce fait la cohérence du programme et favorisant la maintenance de celui-ci. Ce type de choix favorise le debuggage de l'application.
 
 %% === apprentissage
-Bien qu'ayant déjà utilisé et programmé en Java SE, nous ne nous étions jamais retrouver confronté au Java sous sa forme Entreprise Edition. La différence entre ceux - ci se trouve surtout dans la complexité de leur utilisation. Le java SE ayant une approche plus simpliste et plus orienté desktop, et le Java EE étant beaucoup plus puissant, proposant des outils avancés qui peuvent faire l'objet d'une longue étude avant de pouvoir être implémenté. Utilisé cette forme de Java nous a permis d'en apprendre plus sur ce langage fort demandé en entreprise. Connaitre ce langage constitue un atout majeur pour un développeur, nous sommes ravis d'avoir pu utiliser une partie des possibilités offert par ce langage.
+Bien qu'ayant déjà utilisé et programmé en Java SE, nous ne nous étions jamais retrouver confronté au Java Entreprise Edition. La différence entre ceux - ci se trouve surtout dans la complexité de leur utilisation. Le java SE ayant une approche plus orienté desktop, le Java EE proposant des outils avancés permettant de faire des applications internet (notamment web, mail, etc.), nécéssitant un temps d'apprentissage et d'adaptation. Utiliser du Java EE nous a permis d'en apprendre plus sur ce langage fort demandé en entreprise. Connaitre ce langage constitue un atout majeur pour un développeur, nous sommes ravis d'avoir pu utiliser une partie des possibilités offert par ce langage couplé au outils java EE .
 
-Pour le log des données coté serveur, nous avons utilisé log4j. Cette librairie ne fait pas partie intégrante du Java EE mais nous l'avons utilisé conjointement afin de pouvoir logger ce qu'il se passe coté serveur.
+Pour le log des données coté serveur, nous avons également utilisé log4j qui nous à permis de faciliter le travail de debuggage l'application.
 
 \subsection{Hibernate}
 
-Pour pouvoir communiquer avec notre base de données à partir de notre code java, nous avons tout d'abord utilisé JDBC. Cet outils n'était pas auto-sufisant c'est pour ces raisons que nous nous sommes orienté ver Hibernate.
+Pour pouvoir communiquer avec notre base de données à partir de notre code java, nous avons tout d'abord utilisé JDBC. Nous avons ensuite choisi d'utiliser Hibernate, étant une couche supérieure à JDBC. Hibernate permettant de pouvoir transformer les tables en object, celui-ci offre une bonne cohérence avec l'application.
 
 Hibernate est un framework libre, appellé framework de  \enquote{mapping objet-relationnel} ou encore de \enquote{persistance objet des données} (voir Figure \ref{reference2}). 
 \begin{figure}[!h]
@@ -249,16 +259,15 @@ Hibernate est un framework libre, appellé framework de  \enquote{mapping objet-
    	\caption{Diagramme issu de\url{}}
     \label{reference2}
 \end{figure}
-Cela permet donc à la couche applicative de notre programme de traiter les données vennant de la base de donnée comme des objects donc le contenu reste en mémoire même après la fin d'exécution du programme. D'où persistance objet des données. Le lien entre les classes exposées et la source physique des données (dans notre cas une base de données *relationnelle*) est définie par un fichier xml. D'où mapping objet-relationnel.
-Cela nous à permit de gérer notre base de données, comme le reste de l'application en orienté objet, et même si son apprentissage ne fut pas des plus aisée, la gestion générale du code s'en est retrouvé grandement amélioré.
+Cela permet donc à la couche applicative de notre programme de traiter les données venant de la base de données comme des objets, fournissant un mapping entre le relationelle et l'orienté objet. La base de données peut être traité aves les avantages de l'orienté object (comme le polymorphisme, l'héritage, etc.). Le lien entre les classes exposées et la source physique des données  est définie par un fichier xml d'où le mapping objet-relationnel.
+Cela nous à donc permit de gérer notre base de données, comme le reste de l'application en orienté objet, et même si son apprentissage ne fut pas des plus aisée, la gestion générale du code s'en est retrouvé grandement amélioré.
 
-Un autre avantage recherché par cette solution, est que son indépendance à la base de donnée le rend ultra portable, et, sans aucune modification du code, notre application peu tourner sur 221\footnote{http://developers.sun.com/product/jdbc/drivers} base de données différente.  Notre application, après avoir configuré ses crédential dans le fichier de configuration d'Hibernate, se chargera de créer l'entièretée des tables et la structure de la base de donnée.
+Un autre avantage recherché par cette solution, est que son indépendance à la base de donnée le entièrement portable, et, sans aucune modification du code, nous rappelons que notre application peu tourner sur 221 base de données différentes.  Notre application, après avoir configuré ses crédential dans le fichier de configuration d'Hibernate, se chargera de créer l'entièretée des tables et la structure de la base de donnée.
 
-Théoriquement il aurait donc été possible d'envoyer directement un objet "hibernate" (représentant par exemple une table de notre bdd), à gwt, donc à l'utilisateur, malheureusement le monde n'est pas parfait, et comme stipulé dans la doc GWT\footnote{https://developers.google.com/web-toolkit/articles/using\_gwt\_with\_hibernate},
-une SerializationException est levée à chaque fois un type transférée sur RPC n'est pas «sérialisable». La définition de la sérialisibilité signifie ici que le mécanisme RPC GWT sait comment sérialiser et désérialiser le type de bytecode au format JSON et vice-versa.
-Le problème vient du fait qu'Hibernate modifie les objects afin de les rendre persistant (pour être exact, c'est la librairie javassist qui se charge de réécrire le bytecode de ces objects pour les rendre persistant). Au moment du transfer de l'object, une serialisation est tantée, mais n'étant pas le même (car modifé par javassist), il ne peut être sérialisé par RPC-GWTP.
-Il a fallut donc rajouter des classes de type DTO\footnote{Data Transfer Object}, qui, eu sérialisable ont pu servir de communiquation entre la partie cliente et serveur.
+Théoriquement il aurait donc été possible d'envoyer directement un objet "hibernate" (représentant par exemple une table de notre base de données), à GWT, donc à l'utilisateu. malheureusement la théorie n'est pas toujours applicable, et comme stipulé dans la doc GWT\footnote{https://developers.google.com/web-toolkit/articles/using\_gwt\_with\_hibernate},
+une SerializationException est levée à chaque fois qu'un type transférée via RPC n'est pas «sérialisable». La définition de la sérialisibilité signifie ici que le mécanisme RPC - GWT sait comment sérialiser et désérialiser le type de bytecode au format JSON et vice-versa.
+Le problème vient du fait qu'Hibernate modifie les objets afin de les rendre persistant\footnote{pour être exact, c'est la librairie javassist qui se charge de réécrire le bytecode de ces objects pour les rendre persistant}. Au moment du transfert de l'objet, une serialisation est tantée, mais l'objet n'étant pas le même (car modifé par javassist), il ne peut être sérialisé par RPC-GWTP.
+Il a fallut donc rajouter des classes de type DTO\footnote{Data Transfer Object}, qui, étant sérialisable, ont pu servir de communication entre la partie cliente et serveur.
 
-Hibernate possedant sont propre language de requète HQL \footnote{Hibernate Query Language}, d'apparence similaire au SQL, mais pleinement orienté Object et comprenant des notions comme l'inheritance ou le polymorphisme\footnote{https://docs.jboss.org/hibernate/orm/3.3/reference/en/html/queryhql.html}.  Mais ca nous à bien fais chier (xx), et on a pas su en tirer pleinement avantage.
-
+Hibernate possedant sont propre language de requète HQL \footnote{Hibernate Query Language}, d'apparence similaire au SQL, mais pleinement orienté Object et comprenant des notions comme l'inheritance ou le polymorphisme\footnote{https://docs.jboss.org/hibernate/orm/3.3/reference/en/html/queryhql.html}. Nous n'avons pas pu tirer pleinement avantages et n'étant pas habituer à ce genre de pratique, il a été parfois déroutant d'utiliser un langage mélangeant le SQL et les notions d'orienté objet.
 
