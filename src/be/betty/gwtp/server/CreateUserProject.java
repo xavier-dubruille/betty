@@ -108,9 +108,9 @@ public class CreateUserProject {
 		assert periods_s1 >= 0 && periods_s1 < 50 : "You probably have a problem with your periods value ("
 				+ periods_s1 + ")";
 
-		// System.out.println("construct card state from line "+Arrays.toString(line));
+		//System.out.println("construct card state from line "+Arrays.toString(line));
 
-		// si c'est un cours "sans cartons": on arrte lˆ..
+		// si c'est un cours "sans cartons": on arrï¿½te lï¿½..
 		if (index.getCourseName().equalsIgnoreCase("stages") ||
 				index.getCoursesId().equalsIgnoreCase("T310T99")) 
 			return;
@@ -139,7 +139,7 @@ public class CreateUserProject {
 
 
 
-		// si c'est une classe et que c'est un Zx avec x >1 on ne crŽe pas de carton, ms on update..
+		// si c'est une classe et que c'est un Zx avec x >1 on ne crï¿½e pas de carton, ms on update..
 		c = getBelonginActivityIfExist(index.getCoursesId(), index.getMod(), index.getGroup(), index.getTeacherId());
 		if (c != null) {
 			c.getGroupSet().add(groups.get(groupCode));
@@ -147,7 +147,7 @@ public class CreateUserProject {
 		}
 
 
-		// et sinon, on crŽe un nouveau carton..
+		// et sinon, on cree un nouveau carton..
 		c = new Activity_entity(teachers.get(index.getTeacherId()),
 				groups.get(groupCode),
 				courses.get(index.getCoursesId()), current_project);
@@ -168,6 +168,7 @@ public class CreateUserProject {
 	 */
 	public void setRoomToCourse() {
 		for (Course c: courses.values()) {
+			
 			c.setPossibleRooms(getRoomsLike( c.getMode(), c.getType()));
 		}
 
@@ -187,6 +188,8 @@ public class CreateUserProject {
 		ArrayList<Room> possRoom = new ArrayList<Room>();
 		//System.out.println("trouvons des locaux pour un cours en: "+mode+" et de type: "+type);
 		for (Room r: rooms.values()) {
+		
+			
 			//System.out.print("==> qd est-il du local "+r.getCode()+" ?");
 			if (!type.equalsIgnoreCase(r.getType())) {
 				//System.out.println(" .. pas du bon type");
@@ -201,10 +204,10 @@ public class CreateUserProject {
 				continue;
 			}
 
-			///System.out.println(" .. parfait.");
+			//System.out.println(" .. parfait.");
 			possRoom.add(r);
 		}
-
+		System.out.println("poss room = "+possRoom);
 		return possRoom;
 	}
 

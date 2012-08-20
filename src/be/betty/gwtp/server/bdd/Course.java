@@ -32,11 +32,12 @@ public class Course {
 	@OneToMany
 	private Collection<Activity_entity> activities = new ArrayList<Activity_entity>();
 	
-	@OneToMany
+	@ManyToMany
 	private Collection<Room> possibleRooms = new ArrayList<Room>();
 
 	private int nbPeriod_s2;
 	private int nbPeriod_s1;
+	private int nbPeriod; // completely useless !!  mais necessite un wipe de la bdd avant de supprimer ce champ
 
 
 	private Course() { //serialisation ..
@@ -51,6 +52,7 @@ public class Course {
 		this.type = type;
 		this.nbPeriod_s1 = periods_s1;
 		this.nbPeriod_s2 = periods_s2;
+		nbPeriod = 69;
 	}
 
 	public int getId() {

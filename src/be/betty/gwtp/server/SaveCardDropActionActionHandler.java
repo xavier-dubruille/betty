@@ -12,6 +12,7 @@ import be.betty.gwtp.server.bdd.Activity_entity;
 import be.betty.gwtp.server.bdd.ActivityState;
 import be.betty.gwtp.server.bdd.ProjectInstance;
 import be.betty.gwtp.server.bdd.Project_entity;
+import be.betty.gwtp.server.bdd.Room;
 
 import com.google.inject.Inject;
 import com.gwtplatform.dispatch.server.ExecutionContext;
@@ -33,7 +34,9 @@ public class SaveCardDropActionActionHandler implements
 		
 		Session s = HibernateUtils.getSession();
 		Transaction t = s.beginTransaction();
-
+		
+		
+		Room room= (Room) s.get(Room.class, action.getRoom());
 		Activity_entity activity = (Activity_entity) s.get(Activity_entity.class, action.getCardBddId());
 		System.out.println("**project instance="+action.getProjectInstance());
 		ProjectInstance pi = (ProjectInstance) s.get(ProjectInstance.class, action.getProjectInstance());
@@ -42,6 +45,8 @@ public class SaveCardDropActionActionHandler implements
 		as.setActivity(activity);
 		as.setDay(action.getDay());
 		as.setPeriod(action.getPeriod());
+	
+		as.setRoom(room);
 		as.setProjectInstance(pi);
 		s.save(as);
 		pi.getActivitiesState().add(as);
