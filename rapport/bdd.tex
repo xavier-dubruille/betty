@@ -1,19 +1,36 @@
 % !TeX root = these.tex
 \chapter{La base de données}
 
-Avant de rentrer dans les détails de la base de données, il est a noter que la vision porté sur celle-ci doit être considéré différemment. L'utilisation d'Hibernate nous a permis de gérer la base de données de manière orienté objet et non plus d'une manière relationnel, la base de données n'est donc plus vue en tant que tel mais plutôt comme un ensemble de ces objets. Hibernate crée aussi des tables de mapping, et a sa propre façon de gérer le relationnelle.
-
-La base de données se veut, délibérément, simple et minimale. Le but étant d'avant tout de manipuler les données liées aux attributions et aux autres données requises par la construction d'un horaire (désideratas, etc.). Nous avons donc évité de manipuler les informations superflus en important celles-ci statiquement dans la base de données. Notre application n'ayant pas pour objectif de modifier ces données.
-
-Par exemple, nous ne nous soucions pas de données propre à l'année, la section, l'implantation, etc.,  Nous nous focalisons uniquement sur les attributions. Les informations qui les composes se doivent d'être séparées en différentes parties (par exemple, les professeurs, les différents groupes, etc.). Certaines données ne sont pas normalisées, ceci n'étant pas requis.
-
-%Xavier, peux tu retravailler cette partie ;-)
-Nous pouvons noter un objet plus particulier (correspondant donc à une table de la base de données), l'objet ActivityState. Celui-ci contient l'état d'un carton à un instant donné, c'est à dire, si ce carton est placé, à quel endroit et dans quel ordre le placement a été effectué.  Cette manière de faire nous permettra d'offrir un historique complet de ce qui a été fait en permettant des retours en arrière ou d'offrir une vision statistique de la construction de l'horaire. Nous privilégions de cette manière,  la rapidité et la facilité d'ajout (cette manière ne nécessitant pas de mettre le carton à jour) et prévient également les différentes erreurs pouvant survenir comme une écriture simultanée par différents utilisateurs au sein d'un même projet, d'une perte de connexion, etc.. Ceci étant des perspectives d'avenir du programme et n'étant pour le moment pas prisent en compte.
-
-Afin de stoquer et manipuler les contraintes necessaire à notre application, nous avons décider de gérer ca d'une manière assez simple et intuitive. 
-Le principe de base est de représenter une contrainte/désiderat par un tripplet <source-nivau-destination>.  La source pouvant être des professeurs, locaux, cours, cartons, groupe. Le niveau est simplement un nivau de préférence, qui permettra principalement de savoir si cette contrainte est du type "hard" ou "soft".  La destination est quand à elle soit une période de la semaine soit un local.  De cette manière, une grande partie des contraintes décrite au chapitre 1 peux être représenté.  Pour ce qui est des contraintes portant sur un ensemble (e.g. si on veut que tt les locaux du premier étage soient disponible le lundi matin, il suffira de mettre une contrainte sur chaqu'un de ses locaux du style <L42 - 3 - Lundi première heure>.  En pratique, on a représenté ca par un Objet( table) Préférence sur les diférente source possible.
-Un autre type de contrainte peut être stoqué (bien qu'elle n'est pas encore réelement prise en compte), et la notion de dépendance entre 2 cartons.  Pour des cours qui doivent par exemple etre le plus éloigné ou le plus raproché possible.
-
-Mais, on ne permet actuelement pas (et de tt facon, le solveur ne peut pas les gérer), toute les contraintes dépendante entre elles où conditionnelle (e.g. si le prof X ne peut pas avoir son jour de congé le lundi, il aimerait avoir ses matiné de libre ou ..)
-
-Pour finir, nous dirons que la base de données n'est pas la base de données complète, celles-ci est très évolutive, étant donner les possibilités et facilités offertes par Hibernate.
+Avant de rentrer dans les détails de la base de données, il est à noter que la vision portée sur celle-ci doit être considérée selon un point de vue qui n'est pas classique. En effet, l'utilisation l'Hibernate nous a permis de gérer la base de données de manière orientée objet et non plus d'une manière relationnelle. Ainsi, la base de données n'est donc plus vue en tant que tel mais plutôt comme un ensemble de ces objets. Hibernate crée aussi des tables de mapping et dispose de sa propre façon de gérer le relationnel.\\
+\newline
+\indent
+La base de données se veut, délibérément, simple et minimale. Le but étant, avant tout, de manipuler les données liées aux attributions et aux autres données requises par la construction d'un horaire (nom des classes, desiderata, etc.). Nous avons donc évité de manipuler les informations superflues en important celles-ci statiquement dans la base de données. Notre application n'ayant pas pour objectif de modifier ces données.
+\newline
+\indent
+Par exemple, nous ne nous soucions pas de données propres à l'année, la section, l'implantation, etc. Nous nous focalisons uniquement sur les attributions. Les informations qui les composent doivent être séparées en différentes parties (les professeurs, les différents groupes, etc.). Certaines données ne sont pas normalisées, ceci n'étant pas requis.\\
+\newline
+\indent
+Nous pouvons noter un objet plus particulier (correspondant donc à une table de la base de données), l'objet ActivityState. Celui-ci contient l'état d'un carton à un instant donné, 
+c'est-à-dire si ce carton est placé, à quel endroit et dans quel ordre le placement a été effectué.  Cette manière de faire nous permet d'offrir un historique complet de ce qui a été fait en permettant des retours en arrière ou d'offrir une vision statique de la construction de l'horaire. 
+\newline
+\indent
+Nous privilégions de cette manière,  la rapidité et la facilité d'ajout. En effet, cette manière ne nécessite pas de mettre le carton à jour et prévient également les différentes erreurs pouvant survenir comme une écriture simultanée par différents utilisateurs au sein d'un même projet, d'une perte de connexion, etc. Ceci étant des perspectives d'avenir du programme et n'étant pour le moment pas prises en compte.\\
+\newline
+\indent
+Afin de stocker et manipuler les contraintes nécessaires à notre application, nous avons décidé de gérer cela d'une manière assez simple et intuitive. 
+Le principe de base est de représenter une contrainte/desiderata par un triplet <source-niveau-destination>.  
+\newline
+\indent
+La source pouvant être des professeurs, locaux, cours, cartons, groupe. Le niveau est simplement un niveau de préférence qui permettra principalement de savoir si cette contrainte est du type "hard" ou "soft".  La destination est quant à elle soit une période de la semaine soit un local.  De cette manière, une grande partie des contraintes décrites au chapitre 1 peut être représentée.
+\newline
+\indent
+    Pour ce qui est des contraintes portant sur un ensemble (ex: si on veut que tous les locaux du premier étage soient disponibles le lundi matin, il suffira de mettre une contrainte sur chacun de ses locaux du style <L42 - 3 - Lundi première heure>.  En pratique, on a représenté cela par un Objet( table) Préférence sur les différentes sources possibles.
+   \newline
+   \indent
+Un autre type de contrainte pouvant être stocké (bien qu'elle n'est pas encore réellement prise en compte) est la notion de dépendance entre deux cartons.  Pour des cours qui doivent par exemple être le plus éloignés ou le plus rapprochés possible.\\
+\newline
+\indent
+Mais, nous ne permettons actuellement pas\footnote{Et de toute façon, le solveur ne peut pas les gérer dans son implémentation actuelle.} les contraintes dépendantes entre elles ou conditionnelles (e.g. si le prof X ne peut pas avoir son jour de congé le lundi, il aimerait avoir ses matinées de libre,etc.).\\
+\newline
+\indent
+Pour finir, nous dirons que la base de données n'est pas la base de données complète ; celle-ci est très évolutive, étant données les possibilités et facilités offertes par Hibernate.
