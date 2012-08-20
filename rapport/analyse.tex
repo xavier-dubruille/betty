@@ -16,7 +16,7 @@
 Afin de mieux comprendre la problématique liée à l'élaboration d'un horaire, nous avons tout d'abord pris rendez-vous avec Madame \textsc{Gillet}, directrice de l'EPHEC. Madame \textsc{Gillet} est la personne en charge de l'élaboration des horaires pour la partie Louvain-la-Neuve de l'EPHEC. Nous avons parcouru ensemble les différents problèmes et les différents types de contraintes auxquelles nous devrons faire face. Cette première analyse du problème avait pour but de nous orienter sur le type de contraintes intervenant dans notre travail.
 \newline
 \indent
-Dans un premier temps, cette présente section, théorisera la notion de contrainte. Dans un deuxième temps, seront présentés les différentes contraintes rencontrées dans l'analyse du problème. 
+Dans un premier temps, cette présente section, théorisera la notion de contrainte. Dans un deuxième temps, seront présentées les différentes contraintes rencontrées dans l'analyse du problème. 
 
 \section{Une contrainte en théorie}
 Dans le cadre d'un horaire, nous devons faire face à des contraintes sur des domaines finis. Nous allons illustrer ce concept comme suite :
@@ -24,7 +24,7 @@ Dans le cadre d'un horaire, nous devons faire face à des contraintes sur des do
 $P=(X,D,C)$
 \end{center}
 
-$X$ étant nos variables. Celles-ci seront représentées par les attributions\footnote{C'est-à-dire, les différents cours avec leur propriétés intrinsèques. Dans le cadre de ce rapport, nous désignerons ces cours par l'appellation de cartons. Cette notion sera explicitée dans le chapitre suivant.} dans lesquelles nous retrouverons les éléments suivant :
+$X$ étant nos variables. Celles-ci seront représentées par les attributions\footnote{Les attributions sont les différents cours avec leurs propriétés intrinsèques. Dans le cadre de ce rapport, nous désignerons ces cours par l'appellation de cartons. Cette notion sera explicitée plus loin dans le présent rapport.} dans lesquelles nous retrouverons les éléments suivants :
 \begin{itemize}
 \item nom du professeur
 \item le cours
@@ -39,7 +39,7 @@ Nous pouvons l'écrire sous la forme $Vn$ ou $V$ correspond à la valeur du cart
 	$C$ étant nos contraintes. Il existe différents types de contraintes. Dans la section suivante, nous en énumérerons certaines pour bien se rendre compte du nombre important de celles-ci et dans quel moment elles interviennent.\\
 \newline
 \indent
-Pour régler ce problème de contraintes, il est avantageux de prendre en compte certaines heuristiques ou méta-heuristiques. Nous avons défini le problème rencontré à l'EPHEC comme  étant de type NP-Complet.
+Pour régler ce problème de contraintes, il est avantageux de prendre en compte certaines heuristiques ou métaheuristiques. Nous avons défini le problème rencontré à l'EPHEC comme  étant de type NP-Complet.
 \newline
 \indent
 La problématique de la programmation par contrainte est que les algorithmes de résolution tentent à trouver une solution \texttt{optimale} au problème. Si une contrainte ne peut être prise en compte lors de cette tentative, nous n'obtiendrons pas de résultat. Pour ce faire, il est nécessaire d'appliquer un filtrage de ce qui ne peut être pris en compte. Ce \enquote{mécanisme} s'appelle la \texttt{propagation de contraintes}.
@@ -49,7 +49,7 @@ La propagation de contraintes a pour objectif d'appliquer un filtrage sur les at
 
 \section{Les types de contraintes}
 
-Pour se rendre compte de l'ensemble des contraintes à prendre en compte lors de l'établissement de l'horaire, nous en avons énumérées un maximum dont voici la liste :\\
+Pour se rendre compte de l'ensemble des contraintes à prendre en compte lors de l'établissement de l'horaire, nous en avons énuméré un maximum dont voici la liste :\\
 
 \begin{table}[h!]
 \begin{minipage}[t]{.3\linewidth}
@@ -79,9 +79,9 @@ Marie Curie Ou Place des Sciences\\
 \textbf{Professeurs}\\
 \hline
 \hline
-Desideratas\\
+Desiderata\\
 \hline
-Statut (externe, plein temps, ..)\\
+Statut (externe, plein temps, ...)\\
 \hline
 Local où se donne le cours\\
 \hline
@@ -192,9 +192,9 @@ Attribuer les locaux informatiques à un jour donné pour une option\\
 \hline
 Séparer eu deux semestres\\
 \hline
-Prendre en compte les jours de congés\\
+Prendre en compte les jours de congé\\
 \hline
-Directrice doit définir Demi-classe, groupe, etc. pour un cours\\
+Directrice doit définir demi-classe, groupe, etc. pour un cours\\
 \hline
 Il doit être possible de reporter un cours\\
 \hline
@@ -207,7 +207,7 @@ Il doit être possible de définir une pause\\
 \bigskip
 
 
-Pour des améliorations futures, d'autres contraintes pourront éventuellement être prisent en charge comme :\\
+Pour des améliorations futures, d'autres contraintes pourront éventuellement être prises en charge comme :\\
 
 \begin{table}[h!]
 \begin{minipage}[t]{.3\linewidth}
@@ -245,13 +245,13 @@ Locaux adaptés\\
 
 
 
-En conclusion, nous pouvons voir que le nombre de contraintes à prendre en compte posent un réel problème quand elles doivent être traitées par un humain. Les possibilités, les préférences sur certains types de contraintes devant être absolument prises en compte ou pas, relève d'une réflexion de haut niveau. Les ordinateurs "réfléchissant" de manière plus "mathématique" son en théorie plus apte à répondre de ce genre de problème.
+En conclusion, nous pouvons voir que le nombre de contraintes à prendre en compte pose un réel problème quand elles doivent être traitées par un humain. Les possibilités, les préférences sur certains types de contraintes devant être absolument prises en compte ou pas, relève d'une réflexion de haut niveau. Les ordinateurs "réfléchissant" de manière plus "mathématique" son en théorie plus apte à répondre de ce genre de problème.
 
 \section{Analyse des applications existantes}
-Nous avons fait également une petite étude sur les applications déjà existantes permettant d'élaborer des horaires avec contraintes. Nous pouvons citer \texttt{EDT}, programme très rependu et beaucoup utilisé dans les écoles, \texttt{aSc} Horaire possédant une partie automatisée et manuel pour la création d'horaire ainsi que \texttt{Université time tabling} (UniTime). Cette dernière est une application très prometteuse, mais ne propose que l'établissement d'horaire automatique. Aucune façon manuelle de faire n'est proposée. Il utilise sa propre librairie pour résoudre la problématique des contraintes.
+Nous avons fait également une petite étude sur les applications déjà existantes permettant d'élaborer des horaires avec contraintes. Nous pouvons citer \texttt{EDT}, programme très repandu dans les écoles, \texttt{aSc} Horaire possédant une partie automatisée et manuelle pour la création d'horaire ainsi que \texttt{Université time tabling} (UniTime). Cette dernière est une application très prometteuse, mais ne propose que l'établissement d'horaire automatique. Aucune façon manuelle de faire n'est proposée. Il utilise sa propre librairie pour résoudre la problématique des contraintes.
 
 \section{La programmation par contraintes}
-Nous avons abordé les contraintes de manière théorique, les avons énumérées et cité les applications déjà existantes, quant est-il de l'application de cette théorie? Pour pouvoir programmer par contraintes il existe plusieurs libraire. Certaines propriétaires et d'autres open source. Notre travail ayant pour objectif d'être libre et open source, nous nous somme intéressés à ces dernières et en avons testé certaines :\\
+Nous avons abordé les contraintes de manière théorique, les avons énumérées et cité les applications déjà existantes, qu'en est-il de l'application de cette théorie? Pour pouvoir programmer par contraintes il existe plusieurs libraire. Certaines propriétaires et d'autres open source. Notre travail ayant pour objectif d'être libre et open source, nous nous sommes intéressés à ces dernières et en avons testé certaines :\\
 \begin{itemize}
 \item GeCode
 \item Google OR tools
@@ -298,14 +298,14 @@ Dans le cadre de ce travail, nous avons eu l'occasion de rencontrer monsieur Pie
 Suite à cet entretien, nous avons pu mieux nous rendre compte de la problématique et des vigilances à prendre lors de la programmation par contraintes. Le solveur ne se contente pas d'être une librairie dans laquelle il suffirait d'appeler des fonctions pour résoudre un problème et avoir un résultat. Les choses doivent se faire petit à petit, car si le solveur ne trouve pas de résultat, il n'est pas possible de savoir pourquoi celui-ci n'a pu en trouver un. 
 \newline
 \indent
-Il faut donc y rentrer nos contraintes pas à pas. Certaines contraintes étant plus importante que d'autre, il serait également utile de pouvoir leur mettre un poids. Ceci n'étant pas possible\footnote{L'implémentation actuelles des solveurs proposés ne permet pas de mettre un poids d'importance sur les contraintes}, il a fallu trouver un autre moyen. Monsieur Pierre \textsc{Schaus} nous a alors conseillé d'utiliser une approche par hiérarchisation de nos contraintes. Cette hiérarchie a été exécutée en utilisant un arbre de contraintes. Celles-ci seront ensuite rentrées dans le solveur suivant leurs importances. Monsieur \textsc{Schaus} étant entrain d'élaborer ses propres librairies, nous à montrer quelques exemple concret de l'utilisation de celle-ci et de la marche à suivre.\\
+Il faut donc y rentrer nos contraintes pas à pas. Certaines contraintes étant plus importantes que d'autre, il serait également utile de pouvoir leur mettre un poids. Ceci n'étant pas possible\footnote{L'implémentation actuelle proposée ne permet pas de mettre un poids d'importance sur les contraintes.}, il a fallu trouver un autre moyen. Monsieur Pierre \textsc{Schaus} nous a alors conseillé d'utiliser une approche par hiérarchisation de nos contraintes. Cette hiérarchie a été exécutée en utilisant un arbre de contraintes. Celles-ci seront ensuite rentrées dans le solveur suivant leurs importances. Monsieur \textsc{Schaus} étant entrain d'élaborer ses propres librairies, nous à montrer quelques exemple concret de l'utilisation de celle-ci et de la marche à suivre.\\
 \newline
 \indent
 Il nous a ensuite fourni cette librairie, cette dernière n'étant pas encore distribuée actuellement\footnote{Mais elle sera disponible gratuitement et distribuée en open source sous peu.}. Cependant, cette dernière n'était pas adaptée à notre problème précis\footnote{Cette librairie n'est pas adaptée à un problème NP-Complet car il est impossible d'y ajouter des heuristiques.}. En conséquence de quoi, nous nous sommes tournés, dans un deuxième temps, vers  \texttt{GeCode} et \texttt{Google OR tools} pour faire quelques tests et élaborer un premier prototype.
 
 \section{Décision}
 
-Cependant, à la fin de l'année, pour le prototype final, nous nous sommes tournés vers la librairie \texttt{uniTime} et avons exploré de manière plus approfondie ce que l'application propose. Nous nous sommes basés sur cette dernière pour l'élaboration de notre solveur. En effet, les possibilités que cette librairie offre correspondent parfaitement aux contraintes de type horaire. Nous parlerons plus en détail de cette librairie dans la chapitre lui étant concernée.
+Cependant, à la fin de l'année, pour le prototype final, nous nous sommes tournés vers la librairie \texttt{uniTime} et avons exploré de manière plus approfondie ce que l'application propose. Nous nous sommes basés sur cette dernière pour l'élaboration de notre solveur. En effet, les possibilités que cette librairie offre correspondent parfaitement aux contraintes de type horaire. Nous parlerons plus en détail de cette librairie dans la suite de ce travail.
 
 
 

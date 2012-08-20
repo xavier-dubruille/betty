@@ -8,31 +8,27 @@
 \subsection{Google Web Toolkit (GWT)}
 
 	%************************ Présentation *********************************
-\subsubsection{Présentation}
-GWT est un outil open source mis en ligne par Google permettant de développer des applications web avancées. En utilisant cet outil, nous pouvons développer des applications AJAX en langage Java.
+GWT est un outil open source mis en ligne par Google permettant de développer des applications web avancées. En utilisant cet outil, nous pouvons développer des applications AJAX\footnote{Asynchronous JavaScript And XML} en langage Java.
 Lors de l'élaboration d'une application, le cross-compiler de GWT traduit la partie cliente de l'application java en 
-fichiers JS. Ces fichiers peuvent être soumis à des optimisations (obscurcir le code, séparation du JS en plusieurs 
-´
-% JP : J'utilise la phrase "just another librairy" Peut on laisser ça sous cette forme?
-fichiers, etc.). GWT n'a pas pour objectif d'être "just another library" mais possède sa propre philosophie.\\
+fichiers JS. Ces fichiers peuvent être soumis à des optimisations (obscurcir le code, séparation du JS en plusieurs fichiers, etc.). GWT n'a pas pour objectif d'être "just another library"\footnote{GWT est un ensemble d'outils qui forment une plateforme et non pas simplement une librairie facilitant le travail.} mais possède sa propre philosophie.\\
 \newline
 \indent
-Pour programmer une application web de notre type, il faut maîtriser des outils comme l'AJAX\footnote{Asynchronous JavaScript And XML}, l'HTML ainsi que le CSS. Le problème principal de ces outils est la compatibilité entre les différents navigateurs. La façon de mettre en forme un site web n'aura pas toujours le même sur ceux-ci. Il faut prendre en compte aussi la complexité d'utilisation de ces langage de manière avancée (utilisation du DOM en HTML,etc.). Le langage JS est assez complexe d'utilisation, surtout pour l'écriture de grosses applications, le debuggage de celles-ci étant assez fastidieux puisqu'il s'agit d'un langage interprété.
+Pour programmer une application web de notre type, il faut maîtriser des outils comme l'AJAX, l'HTML ainsi que le CSS. Le problème principal de ces outils réside dans leur compatibilité entre les différents navigateurs. La façon de mettre en forme un site web n'aura pas toujours le même sur ceux-ci. Il faut prendre en compte aussi la complexité d'utilisation de ces langage de manière avancée (utilisation du DOM en HTML, etc.). Le langage JS est assez complexe d'utilisation, surtout pour l'écriture de grosses applications\footnote{Le debuggage de celles-ci étant assez fastidieux puisqu'il s'agit d'un langage interprété.}.
 \newline
 \indent
-Pour pallier à ces problèmes, GWT à été créé. Il a été élaboré dans le but de répondre à un besoin, et non pas de proposer une autre librairie standard. Il s'agit d'une vrai boite à outils, et propose des solutions de développement répondant aux besoins du programmeur.
-% ici je rajouterais qq lignes sur le fait que gwt est énormément utilisé par 
-% des société prestigieuse ainsi que google
+Pour pallier à ces problèmes, GWT a été créé. Il a été élaboré dans le but de répondre à un besoin et non pas de proposer une autre librairie standard. Il s'agit d'une vrai boite à outils qui propose des solutions de développement répondant aux besoins du programmeur.
 \newline
 \indent
-GWT est utilisé par exemple dans des outils web de Google comme Gmail. Nous pouvons aussi citer l'entreprise Rovio à l'orignie du jeux a succès Angry Bird ayant développer une version HTML5 du jeux à l'aide de GWT\footnote{cf. https://developers.google.com/web-toolkit/casestudies/}.
+GWT est utilisé par exemple dans des outils web de Google comme Gmail. Nous pouvons aussi citer l'entreprise Rovio à l'orignie du jeux a succès Angry Bird ayant développé une version HTML5 du jeux à l'aide de GWT\footnote{cf. https://developers.google.com/web-toolkit/casestudies/}.
 
 %************************ Principe de fonctionnement *********************************
 \subsubsection{Principe de fonctionnement}
-GWT possède un plugin Eclipse (et pour d'autre IDE\footnote{Integrated Development Environment} comme NetBeans, JDeveloper, etc.), Eclipse étant l'IDE que nous avons choisi. Ce plugin, dans sa version Eclipse, permet d'intégrer les outils GWT à l'IDE et de faciliter son utilisation pour l'utilisateur en automatisant par exemple, la structure des différents packages java.
+
+GWT possède un plugin Eclipse que nous avons utilisé dans la conception de notre solution. Il est toutefois intéressant de signaler qu'il existe des plugins GWT pour d'autres IDE\footnote{Integrated Development Environment} tels que NetBeans, JDeveloper, etc. 
+Ce plugin, dans sa version Eclipse, permet d'intégrer les outils GWT à l'IDE et de faciliter son utilisation pour l'utilisateur en automatisant, par exemple, la structure des différents packages java.\\
 \newline
 \indent
-Comme nous l'avons expliqué précédemment, le principe de fonctionnement de GWT est de pouvoir créer des applications web basé en langage Java, sur un modèle client/serveur, et de convertir la partie cliente de l'application en JS, la partie serveur restant elle, en java. Un autre aspect de se fonctionnement réside dans la compilation pouvant être éffectuée pour un ou plusieurs navigateurs spécifique, favorisant la compatibilité et l'homogénéité du logiciel sur chacun d'entre eux. Ces deniers chargent uniquement ce qui les concernes. En plus de ces différents aspects qu'offre GWT, il permet aussi de préciser quelles sources du code\footnote{correspondant au .CLASS généré lors de l'exécution du code java} prendre en compte pour un navigateur spécifique.
+Comme nous l'avons expliqué précédemment, le principe de fonctionnement de GWT est de pouvoir créer des applications web en java basées sur un modèle client/serveur et de sérialiser la partie cliente de l'application en JS\footnote{La partie serveur restant elle, en java}. Un autre aspect de se fonctionnement réside dans la compilation pouvant être effectuée pour un ou plusieurs navigateurs spécifique, favorisant la compatibilité et l'homogénéité du logiciel sur chacun d'entre eux. Ces deniers chargent uniquement ce qui les concerne. En plus de ces différents aspects qu'offre GWT, ce dernier permet aussi de préciser quelles sources du code\footnote{correspondant au .CLASS généré lors de l'exécution du code Java.} prendre en compte pour un navigateur spécifique.
 
 %************************ Mode de fonctionnement *********************************
 \subsubsection{Mode de fonctionnement}
@@ -40,73 +36,98 @@ Nous distinguons deux types de fonctionnement. Le mode de développement ainsi q
 	
 \paragraph{Mode de développement}
 Le mode de développement consiste à compiler les sources du projet. Celui-ci n'est pas retranscrit en JS mais est directement exécuté en byte code. Ceci afin de permettre le debuggage de l'application. GWT compile tout de même le projet en JS-HTML-CSS afin de pouvoir valider le projet.
+\newline
+\indent
 Pour pouvoir utiliser le mode de développement, il est nécessaire d'installer au préalable le plugin de développement sur le navigateur web. Ce plugin permet de capturer les événements et actions venant du client pour ensuite les envoyer vers le serveur local lancé au moment de l'exécution du projet.
+
 \paragraph{Mode de production}
-Le mode de production correspond au code JS généré par le compilateur GWT. Le compilateur créer le JS, HTML et CSS a partir de sources du projet. Ce code correspond à l'application final qui pourra être déployer sur notre serveur Tomcat.
+Le mode de production correspond au code JS généré par le compilateur GWT. Le compilateur crée le JS, HTML et CSS à partir des sources du projet. Ce code correspond à l'application finale qui pourra être déployée sur notre serveur Tomcat.
 
 %****************************Architecture de GWT******************************
 \subsubsection{Architecture GWT}
-L'architecture d'un projet GWT se fait sous la forme de client/serveur. Nous allons analyser comment ce déroule la communication entre ces deux parties. Nous distinguons deux types de communication dans l'application.
+L'architecture d'un projet GWT se fait sous la forme client/serveur. Nous allons analyser comment se déroule la communication entre ces deux parties. Nous distinguons deux types de communication dans l'application.
 \begin{itemize}
 \item Client/Client: communication entre les différentes vue de l'application
 \item Client/Serveur: utilisant le protocole RPC\footnote{Remote Procedure Call} 
 \end{itemize}
+
 \paragraph{Évènement}
-Afin de pouvoir gérer la communication entre les différentes vues de l'application, GWT utilise un système d'envoi d'évènements (appelé Events). Ceux-ci permetent aux vues de dialoguer entre elle.
-Par exemple, une application GWT peu posséder une en-tête. Celle-ci est statique et n'est pas recharger entre les différentes vues. Lors de l'identification, les informations de connexion peuvent être envoyées à la vue suivante pour spécifier à l'utilisateur le nom du compte sur lequel il est connecté.
-Les events sont enregistré auprès de l'eventbus. Cet eventbus peut être écouté pour récupéré les informations voulues.
+Afin de pouvoir gérer la communication entre les différentes vues de l'application, GWT utilise un système d'envoi d'évènements, dits \enquote{events}. Ceux-ci permettent aux vues de dialoguer entre elles.
+Par exemple, une application GWT peut posséder une en-tête. Celle-ci est statique et n'est pas rechargée entre les différentes vues. Lors de l'identification, les informations de connexion peuvent être envoyées à la vue suivante pour spécifier à l'utilisateur le nom du compte sur lequel il est connecté.
+Les events sont enregistrés auprès de l'eventbus. Cet eventbus peut être écouté pour récupérer les informations voulues.
 
 \paragraph{Actions}
-Les actions ressemble au Event, à l'exception que celles-ci sont envoyées au serveur. Elle permette par exemple de faire des requêtes vers la base de données pour recueillir certaines informations. Pour rester dans le même exemple, lorsqu'un utilisateur se connecte à l'application en spécifiant sont identifiant et son mot de passe, ceux-ci doivent être vérifié dans la base de données qui va renvoyer, dans le cas ou l'utilisateur existe, la liste des projets qui lui sont assignés. Cette méthode ce fait à l'aide du protocole JSON\footnote{JavaScript Object Notation}/RPC. Les appels se font de manière asynchrone permettant de ne pas bloquer le client lors d'un appel de procédure.
+Les actions ressemblent aux Events, à l'exception que celles-ci sont envoyées au serveur. Elle permettent, par exemple, de faire des requêtes vers la base de données pour recueillir certaines informations. Pour rester dans le même exemple, lorsqu'un utilisateur se connecte à l'application en spécifiant sont identifiant et son mot de passe, ceux-ci doivent être vérifiés dans la base de données qui va renvoyer la liste des projets qui lui sont assignés. Cette méthode se fait à l'aide du protocole JSON\footnote{JavaScript Object Notation}/RPC.
+\newline
+\indent
+Il est primordial de souligner que les appels se font de manière asynchrone ce qui permet de ne pas bloquer le client lors d'un appel de procédure. Cet aspect a fait l'objet d'un travail transversal tout au long du développement. 
 	
 %***************************** Avantage de GWT****************************
-\subsubsection{Avantages}
+\subsubsection{Avantages de GWT}
 
-\paragraph{Facilité d'utilisation}
-Le premier avantage que nous citerons est la facilité d'installation et d'utilisation de l'outil. Pas besoin de configuration fastidieuse. Installer l'IDE, Installer le Plugin, et ça fonctionne.
-La possibilité de pouvoir coder sont application à l'aide d'un langage de haut niveau facilite le développement.
+Les avantages de GWT sont nombreux :  \\
+\begin{itemize}
+\item \textbf{Facilité d'utilisation}\\
+Le premier avantage que nous citerons est la facilité d'installation et d'utilisation de l'outil. Ce dernier ne nécessite pas de configuration fastidieuse. En outre, cet outil offre la possibilité de coder son application à l'aide d'un langage de haut niveau. Cet aspect facilite le développement général.\\
 
-\paragraph{Debbugage}
-Il permet un debuggage rapide du code, celui-ci étant codé en java et non pas en JS qui est un langage interprété.
+\item \textbf{Debbugage}\\
+GWT permet un debuggage rapide du code, ce dernier étant codé en java et non pas en JS qui est un langage interprété.\\
 
-\paragraph{Optimisation}
-Optimisation du code, obfuscation de celui-ci, compression du JS, mise en cache, séparation du JS en différent fichier, etc.
+\item \textbf{Optimisation}\\
+GWT permet notamment l'optimisation et l'obfuscation du code JS. De plus, afin d'améliorer la rapidité des échanges, le code JS est compressé, mis en cache et séparé en différents fichiers.\\
 
-\paragraph{prédéfini de composant}
-Différent widget prédéfini sont disponible, ainsi, pas besoin de codage fastidieux dans le designer d'un bouton, une boite de dialogue, etc. avec la possibilité de créer ses propres widget.
+\item \textbf{Composants génériques}\\
+GWT offre à la réutilisation différents widgets prédéfinis. Ainsi, il n'est pas nécessaire de réécire certaines parties basiques telles qu'un bouton, une boite de dialogue, etc.  En outre, GWT offre la possibilité d'adapter ses widgets afin d'en créer de nouveaux.\\
 
-\paragraph{Code adapter en fonction du navigateur}
-Le code java est traduit en code JS et automatiquement adapté au navigateur de notre choix.
+\item \textbf{Sérialisation du code}\\
+Le code Java est traduit en code JS et automatiquement adapté au navigateur de notre choix.\\
 
-\paragraph{JSNI (JavaScript Native Interface)}
-GWT offre la possibilité d'utiliser directement du code JS au sein même de notre application. Il est donc tout à fait possible d'utiliser des librairies externes entièrement codée en JS comme Jquery.
+\item \textbf{JSNI}\\
+GWT présente une JSNI\footnote{JavaScript Native Interface}, c'est-à-dire une interface nativement implémentée en JavaScript. Cet aspect offre la possibilité d'utiliser directement du code JS au sein même de notre application. Il est donc tout à fait possible d'utiliser des librairies externes entièrement codée en JS telle que Jquery.\\
 
-\paragraph{Utilisation de GinJector et Guice}
-GinJector n'étant pas un principe propre GWT permet de créer une indépendance entre les différentes classes du projet. Ainsi, si nous voulons utiliser une object ou une classe dans une autre, il n' y a pas besoin d'instancier cette nouvelle classe. Nous pouvons simplement injecter.
+\item \textbf{Utilisation de GinJector and Guice}\\
+GinJector and Guice, n'étant pas un principe propre GWT, permet de créer une indépendance entre les différentes classes du projet. Ainsi, si nous voulons utiliser une objet ou une classe dans une autre, il n' y a pas besoin d'instancier cette nouvelle classe. Nous pouvons simplement injecter.
+\end{itemize}
+
+
+
+
 
 %**************************** Inconvénient de GWT **************************************
-\subsubsection{Inconvénients}
-Le principal inconvénient que nous avons pu noter suite à notre expérience personnelle est lorsque l'application atteint un état d'avancement plus avancé, il devient très lourd et très lent de tester son application en mode développement. La JVM\footnote{Java Virtual Machin} devant traduire le code est très lente. Il nous a fallu en moyenne 5 minutes pour charger une page, et nous avons eu frequement des erreurs de type "out of memory" du à la lourdeur de la tache effectuer par l'ordinateur. Pour certains types de test, nous nous somme retrouver dans l'obligation de déployer l'application sur notre serveur tomcat, car la traduction du java vers le JS étant très lourde, certaines partie devait être tester directement en mode production (notamment le drag and drop,…). De même, lorsque l'application doit charger une grande quantité d'information (grand nombre de cartons, professeurs,…) la page mais beaucoup de temps à s'ouvrir.\\
-Autre inconvénient, le temps de compilation du logiciel. Celui-ci peut être très fastidieux en fonction des paramètres demandé.
-	
-Un autre inconvénient est la limitation des widgets fournis de base dans l'application. Pour certaines chose plus avancée nous avons du avoir recourt à des librairie externe, bien que celle-ci ne soit pas aussi performante (comboBox avec CheckBox,…).
+\subsubsection{Inconvénients de GWT}
+Le principal inconvénient que nous avons pu noter suite à notre expérience personnelle est que lorsque l'application atteint un état d'avancement plus prononcé, il devient très lourd et très lent de tester son application en mode développement. La JVM\footnote{Java Virtual Machine} devant traduire le code est très lente. Il nous a fallu en moyenne 5 minutes pour charger une page, et nous avons eu fréquemment des erreurs de type \enquote{out of memory} du à la lourdeur de la tache effectuée par l'ordinateur en mode développement.
+\newline
+\indent
+Pour certains types de test, nous nous sommes retrouvés dans l'obligation de déployer l'application sur notre serveur Tomcat, car la sérialisation du Java vers le JS étant très lourde, certaines parties devaient être testées directement en mode production (notamment le drag and drop, etc.). 
+\newline
+\indent
+De même, lorsque l'application doit charger une grande quantité d'informations (grand nombre de cartons, professeurs,…) la page met beaucoup de temps à s'ouvrir.\\
+\newline
+\indent
+Autre inconvénient, le temps de compilation du logiciel. Celui-ci peut être très fastidieux en fonction des paramètres demandés. 
+\newline
+\indent
+Un autre inconvénient réside dans le nombre assez limité de widgets fournis de base dans l'application. Pour certaines fonctionnalités plus avancées nous avons dû avoir recourt à des librairies externes, bien que celle-ci ne soit pas aussi performante (comboBox avec CheckBox, etc.).
 
 %************************* GWT DESIGNER *******************************
 \subsection{GWT-Designer}
-GWT-Designer est un outils permettant de créer de manière simple les interfaces graphiques. Celle-ci est crée via un fichier XML\footnote{eXtensible Markup Language} et est retranscrite en code java par le compilateur. Ce code XML est éditable "manuellement" ou peut être créer à l'aide d'une interface de drag and drop ou les composants (widgets) peuvent être sélectionné. L'avantage d'utiliser un tel outil est la bonne pratique que celui-ci apporte, permettant de faire une distinction entre les différentes partie du code.
+GWT-Designer est un outil permettant de créer de manière efficace les interfaces graphiques. Ces dernières sont créées via un fichier XML\footnote{eXtensible Markup Language} et sont retranscrites en code Java. 
+\newline
+\indent
+Ce code XML est éditable \enquote{manuellement} ou peut être créé à l'aide d'une interface de \enquote{drag and drop} ou les composants (widgets) peuvent être sélectionnés.
+\newline
+\indent
+L'avantage d'utiliser un tel outil est double ; il permet de faire une distinction entre les différentes parties du code\footnote{Il y a plus de 12 000 lignes de code.} et il permet d'utiliser le format standard XML.
 
 %************************* GWT PLATEFORM *********************************$
 \subsection{GWT - Plateform}
-
-\subsubsection{Présentation}
-
-GWT plateform est un framework basé sur le MVP\footnote{Model View Presenter} et permettant de mieux structurer notre projet en respectant une certaine méthode. Ce framework s'incorpore directement à l'IDE et est dépendant de GWT.
-	
-\subsubsection{Le model View Presenter}
+GWT plateform est un framework basé sur le MVP\footnote{Model View Presenter} et permettant de mieux structurer notre projet en respectant une certaine méthode. Ce framework s'incorpore directement à l'IDE et est dépendant de GWT.\\
+\newline
+\indent
 Le MVP se base sur le MVC\footnote{Model View Controler}. Celui-ci est un design pattern fournissant une manière d'élaborer des interfaces graphique. Il est séparé en trois partie, le modèle de données, les différentes vues de l'application (L'interface du client) et le présenteur (correspondant au controleur du MVC). La partie intéressante de ces modèles réside dans l'utilisation d'un controleur/présenteur, ou transite les informations. L'application est soumise à leur contrôle ce qui permet d'avoir une application plus solide. Dans le MVC le contrôleur s'occupe de gérer les évènements. La logique de contenu (Rendering logic) se passe directement entre le modèle et la vue. En MVP, cette logique est gérée par le présenteur. Plus rien ne transite directement entre l'interface et le modèle mais est soumise au contrôle du présenteur.
 
 %*************************** LIBRAIRIE EXTERNE GWT **************************
-\subsection{Libraire externe}
+\subsection{Libraires externes}
 Pour la création d'une interface plus avancée nous avons du nous diriger vers des librairies externes. 
 \subsubsection{GWT-DND}
 Nous avons utilisé GWT-dnd qui comme son nom l'indique nous a permis
