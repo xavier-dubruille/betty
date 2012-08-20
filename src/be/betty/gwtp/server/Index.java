@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-// TODO: met-t-on des assert ˆ toutes les methodes ?
+// TODO: met-t-on des assert ï¿½ toutes les methodes ?
 public class Index {
 
 	private final static String group = "group";
@@ -125,13 +125,13 @@ public class Index {
 
 		for (int i = 0; i < line.length; i++) {
 
-			if (line[i].equalsIgnoreCase("annŽe"))
+			if (line[i].equalsIgnoreCase("annÃ©e") || line[i].equalsIgnoreCase("anne"))
 				indexLine.put(year, i);
 
-			else if (line[i].equalsIgnoreCase("IntitulŽ cours"))
+			else if (line[i].equalsIgnoreCase("IntitulÃ© cours") || line[i].equalsIgnoreCase("Intitule cours"))
 				indexLine.put(course_name, i);
 
-			else if (line[i].equalsIgnoreCase("PrŽnom"))
+			else if (line[i].equalsIgnoreCase("PrÃ©nom") || line[i].equalsIgnoreCase("Prenom"))
 				indexLine.put(teacher_firstName, i);
 
 			else if (line[i].equalsIgnoreCase("nom"))
@@ -139,7 +139,7 @@ public class Index {
 
 			else if (line[i].equalsIgnoreCase("ORCO_NombrePeriodeSemaineSemestre1")) {
 				indexLine.put(period1, i);
-				// System.out.println("on a fixŽ l'index des periodes ˆ: "+i);
+				// System.out.println("on a fixï¿½ l'index des periodes ï¿½: "+i);
 			}
 			else if (line[i].equalsIgnoreCase("ORCO_NombrePeriodeSemaineSemestre2"))
 				indexLine.put(period2, i);
@@ -153,7 +153,7 @@ public class Index {
 			else if (line[i].equalsIgnoreCase("groupe"))
 				indexLine.put(group, i);
 
-			else if (line[i].equalsIgnoreCase("IntitulŽ Section"))
+			else if (line[i].equalsIgnoreCase("IntitulÃ© Section") || line[i].equalsIgnoreCase("Intitule Section"))
 				indexLine.put(section_name, i);
 
 			else if (line[i].equalsIgnoreCase("Section"))

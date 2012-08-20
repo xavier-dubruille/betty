@@ -112,7 +112,9 @@ public class Room implements Comparable<Room>{
 		return this.getCode().compareToIgnoreCase(r.getCode());
 	}
 
-	
+	public String toString () {
+		return code;
+	}
 	
 
 }

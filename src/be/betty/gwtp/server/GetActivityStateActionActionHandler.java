@@ -47,7 +47,7 @@ public class GetActivityStateActionActionHandler implements
 			activityId = as.getActivity().getId();
 			if ( max.containsKey(activityId) && max.get(activityId) >= as.getId()) continue;
 			max.put(activityId, as.getId());
-			h.put(""+activityId, new ActivityState_dto(as.getDay(), as.getPeriod()));
+			h.put(""+activityId, new ActivityState_dto(as.getDay(), as.getPeriod(), ""+as.getRoom().getId()));
 		}
 		
 		t.commit();   
