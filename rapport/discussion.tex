@@ -1,34 +1,17 @@
 % !TeX root = these.tex
 \chapter{Discussions}
 \section{Choix concernant la performance}
-La question de performance pour un logiciel est un point très important à prendre en compte. En effet, il faut que le programme puisse fournir une bonne fluidité et que celui-ci soit agréable à utiliser. Pour ce faire, nous avons opté pour une solution permettant d'offrir ces performances. L'architecture de l'application, les fonctionnalités utilisées ainsi que 
-
+La question de performance pour un logiciel est un point très important à prendre en compte. En effet, il faut que le programme puisse fournir une bonne fluidité et que celui-ci soit agréable à utiliser. Pour ce faire, nous avons opté pour une solution permettant d'offrir ces performances. L'architecture de l'application, les fonctionnalités utilisées ainsi que la simplicité des différentes pages de l'application, permet de rendre l'application facile d'utilisation, et d'être performante pour le travail qui lui est demandé de faire.
 \section{Choix concernant la sécurité}
 
-Du fait de nos choix de conception, tel que GWT pour générer le JavaScript ou
-Hibernate pour abstraire la base de donnée ou le choix des RPC pour la
-communication client-serveur,etc.  Nous pensons avoir créé une application \enquote{de
-base} très sécurisée  et qu'il serait tout à fait envisageable de faire tourner notre
-application sur un serveur externe.
 
-(xxx) xss, csrf, sha256, check (basique) de la complexité du mot de passe, ainsi
-qu'un catcha très basique aussi pour eviter des bots.
+Du fait de nos choix de conception, tel que GWT pour générer le JS, Hibernate pour abstraire la base de données ou encore, le choix des RPC pour la
+communication client-serveur, nous pensons avoir créé une application \enquote{de base} très sécurisée, et qu'il serait tout à fait envisageable de la faire tourner sur un serveur externe.
+L'utilisation de XSS, CSRF, SHA256, ainsi qu'un catcha très basique afin d'éviter les bots favorise cette sécurité pour le client.
 
-La secu du coté serveur à également été pris en compte, mais, logiquement, en
-moins poussé (quoi que).  A savoir: l'application tourne sur une debian *stable*
-(à savoir Squeeze), n'ayant que peu de services installé.
-Tomcat, notre conteneur d'applet, est lui aussi à jours, et en version stable,
-il ne bénificie d'aucun droit root, ainsi donc, (contrairement à une autre
-application tournant sur Windows par exemple), il n'a pas le droit d'emmetre sur
-le port 80. Pour garder l'application safe et peformante, une redirection de
-son port d'origine est effectué par netfiller sur le port 80.
 
-Nous avons pas poussé plus loins la sécu du coté serveur, étant donnée qu'elle
-est destiné à fonctionner sur d'autre machine, mais en situation réel, il serait
-jusdicieu de mettre en place un liens https.  En situation réel, nous
-préconisons xxx (parfeu, strapping, vm,..)
+La sécurité du coté serveur à également été pris en compte. L'application tourne sur une Debian stable (Squeeze) ayant très peu de service installé. Tomcat, notre conteneur d'applet, est lui aussi à jours et en version stable. Il ne bénéficie d'aucun droit ROOT, ainsi donc, (contrairement à une autre application tournant sur Windows par exemple), il n'a pas le droit d'émettre sur le port 80. Pour garder l'application safe et performante, une redirection de son port d'origine est effectué par Netfilter\footnote{framework implémentant un pare-feu dans le noyaux Linux} sur le port 80.
 
-N'étant pas infaillble, la mise à jour (très aisée pour notre type
-d'application), est nous semple -t-il, une part importante dans la sécurité du
-système. (cela probablement accentué par la mise de notre code source sous une
-license ouverte (gpl3) )
+Nous n'avons pas poussé plus loin la sécurité du coté serveur, étant donnée que celle-ci est destinée à fonctionner sur d'autre machine, mais en situation réel, il serait judicieux de mettre en place un lien HTTPS.
+
+N'étant pas infaillible, la mise à jour (très aisée pour notre type d'application), sera une part importante dans la sécurité du système. Cela étant également accentué par la mise de notre code source sous une licence ouverte de type GPL3.
