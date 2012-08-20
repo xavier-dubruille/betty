@@ -34,3 +34,19 @@ De plus, la méthodologie suivie, qui consistait à découper les parties du pro
 \indent
 En conclusion, nous avons proposés une méthodologie ainsi qu'une solution pour l'assistance à la création d'horaire. Cet aspect rejoint le domaine plus large de la recherche opérationnelle dans laquelle s'inscrit ce présent projet. 
 
+\fbox{\begin{minipage}{\linewidth}
+\textbf{Definition 1} $(CSP).$ A constraint satisfaction problem $(CSP)$ is a triple $\Theta$ = (V,D,C), where
+\begin{itemize}
+\item V = \{$v_1, v_2, ... , v_n$\} is a finite set of variables,
+\item D = \{$Dv_1, Dv_2, ... Dv_n$ \} is a set of domaines (i.e., $Dv_1$ is a set of possibles ...
+\item C = \{$c_1, c_2, ..., c_m$\} is a finite set of constraints restricting the values that the variables can simultaneously take.\\
+
+\textbf{Definition 2} $(assignment)$. Let $\Theta$ be a CSP, an assignment of the variables\\ from V is $\eta$ $	\subseteq$ \{$v$/$a$|$v$ $\in$ V \large \&\normalsize a $\in$ Dv\} where $\forall$ $v$/$a$, $w$/$b$ $\in \eta$ $v$ = w $\Rightarrow$ $a$ = $b$.\\
+An element $v$/$a$ of $\in$ means that variable $v$ has assigned value $a$.\\
+An assignement is complete if |$\eta$| = |V| ( i.e., all variables are assigned).\\
+
+\textbf{Definition 3} $(solution to CSP).$ A solution to the constraint satisfaction problem $\Theta$ is a complete assignement $\sigma$ of the variables from V that satisfies all the constraints.
+
+\end{itemize}
+\end{minipage}}
+
