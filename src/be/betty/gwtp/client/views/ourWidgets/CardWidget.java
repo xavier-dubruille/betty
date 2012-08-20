@@ -26,6 +26,7 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 	private int[] groupsId;
 	private int teacherId;
 	private MouseDownHandler handler;
+	private String roomId;
 
 	public CardWidget() {
 		// use the boundary panel as this composite's widget
@@ -40,7 +41,7 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 		course = new Label("Empty");
 		teacher = new Label("Empty");
 		group = new Label("Empty");
-		room = new Label("LABO");
+		room = new Label("");
 
 		//Add a specific CSS for the different label
 		course.setStyleName("courseCard");
@@ -184,7 +185,7 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 		teacherId = Storage_access.getTeacherIdCard(c);
 		group.setText(groupsLabel);
 		teacher.setText(Storage_access.getTeacherCard(c));
-		course.setText(Storage_access.getCourseCard(c));
+		course.setText(Storage_access.getCourseCardName(c));
 		
 		setCardId(myI);
 		
@@ -214,6 +215,13 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
         this.handler = handler;
 		return addDomHandler(handler, MouseDownEvent.getType());
     }
+
+
+
+	public void setRoom(String roomId) {
+		this.roomId = roomId;
+		room.setText(Storage_access.getRoomName(roomId));
+	}
 
 
 

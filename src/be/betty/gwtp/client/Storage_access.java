@@ -6,6 +6,7 @@ import java.util.List;
 
 
 import be.betty.gwtp.client.action.GetCardsResult;
+import be.betty.gwtp.client.presenters.MainPresenter;
 import be.betty.gwtp.shared.BettyUtils;
 import be.betty.gwtp.shared.dto.Card_dto;
 import be.betty.gwtp.shared.dto.Course_dto;
@@ -103,6 +104,22 @@ public class Storage_access {
 
 	}
 
+
+	public static String[] getPossibleRooms(int cardId) {
+		String[] course = getCourseCard(getCard(cardId)).split(STORAGE_SEPARATOR);
+//		ClientUtils.notifyUser("the course card= "+Arrays.toString(course), 1, MainPresenter.eventBus);
+		int number = Integer.parseInt(course[CO_PR_SIZE_INDEX]);
+	//	ClientUtils.notifyUser("the numer of possible room = "+number, 1, MainPresenter.eventBus);
+		String[] possRoom = new String[number];
+		for (int i=0; i<number; i++) {
+		//	ClientUtils.notifyUser("room i = "+course[i+CO_PR_INDEX ], 1, MainPresenter.eventBus);
+			possRoom[i]= course[i+CO_PR_INDEX ];
+		}
+		return possRoom;
+	}
+
+	
+
 	public static void clearPlacedCard() {
 		stockStore.setItem(ALL_PLACED_CARD, "");
 	}
@@ -134,23 +151,24 @@ public class Storage_access {
 	 * @param result
 	 */
 	public static void populateStorage(String project_num, GetCardsResult result) {
-		// TODO: il faut (mieu?) verifier si il y a d�ja des cartons dans le
+		// TODO: il faut (mieu?) verifier si il y a deja des cartons dans le
 		// local storage, si ce sont les bons, etc
 
-		// TODO : si rajoute-t-on ici le choix de mettre � jour ou pas le local storage ?
+		// TODO : si rajoute-t-on ici le choix de mettre a jour ou pas le local storage ?
 
 		stockStore.setItem(PROJECT_ON, project_num);
 		//System.out.println("cards a la population du storage = "+result.getCards());
 
 		setDefaultValues(); // if we don't set some values, we need some default one
-
+		Storage_access.setRooms(project_num, result.getRooms());
+		
 		Storage_access.setTeachers(project_num, result.getTeachers());
 		Storage_access.setGroups(project_num, result.getGroups());
 		Storage_access.setCourses(project_num, result.getCourses());
 
 		Storage_access.setCards(project_num, result.getCards());
-		System.out.println("getRoom = "+result.getRooms());
-		Storage_access.setRooms(project_num, result.getRooms());
+		//System.out.println("getRoom = "+result.getRooms());
+
 
 		//System.out.println("***--** Instances to be populated: "+result.getProjectInstances());
 		//System.out.println("***--** Default Instance ="+result.getDefaultInstance());
@@ -223,7 +241,7 @@ public class Storage_access {
 		for (Course_dto c : courses) {
 			ps = c.getPossibleRoom();
 			possRoom = "";
-			for (int j=0; j<ps	.size(); j++)
+			for (int j=0; j<ps.size(); j++)
 				possRoom += s+ rooms_map.indexOf(ps.get(j));
 
 			// if this order come to change, then the corresponding
@@ -297,12 +315,13 @@ public class Storage_access {
 	 * @param day From 1 to 7
 	 * @param per period, from 1 to inf.
 	 */
-	public static void placeCard(int cardID, int day, int per, int room) {
+	public static void placeCard(int cardID, int day, int per, String room) {
 		assert day >= 1 && day <=7 ;
 		assert per >= 1 ;
 		int slot = per*10 + day;
 		String[] s = getCard(cardID).split(STORAGE_SEPARATOR);
 		s[SLOT_INDEX]=""+slot;
+	//	s[ROOM_INDEX]=room;
 		stockStore.setItem(CARD_PREFIX+cardID, BettyUtils.join(s, STORAGE_SEPARATOR));
 		
 		stockStore.setItem(ALL_PLACED_CARD,stockStore.getItem(ALL_PLACED_CARD)+STORAGE_SEPARATOR+cardID);
@@ -390,8 +409,8 @@ public class Storage_access {
 		return Integer.parseInt(stockStore.getItem(NUMBER_OF_GROUPS));
 	}
 
-	public static String getCourse(int i) {
-		String course = stockStore.getItem(COURSE_PREFIX+i);
+	public static String getCourseName(String courseId) {
+		String course = stockStore.getItem(COURSE_PREFIX+courseId);
 		return course.split(STORAGE_SEPARATOR)[CO_NAME_INDEX];
 	}
 
@@ -413,6 +432,10 @@ public class Storage_access {
 
 	public static String getRoom(int i) {
 		return stockStore.getItem(ROOM_PREFIX+i);
+	}
+
+	public static String getRoomName(String roomId) {
+		return stockStore.getItem(ROOM_PREFIX+roomId);
 	}
 
 	
@@ -449,7 +472,10 @@ public class Storage_access {
 
 	// these folowing methods do not depend directly on local storage, but it's easer this way
 	public static String getCourseCard(String card) {
-		return getCourse(Integer.parseInt(card.split(STORAGE_SEPARATOR)[COURSE_INDEX]));
+		return getWholeCourse(Integer.parseInt(card.split(STORAGE_SEPARATOR)[COURSE_INDEX]));
+	}
+	public static String getCourseCardName(String card) {
+		return getCourseName(card.split(STORAGE_SEPARATOR)[COURSE_INDEX]);
 	}
 	public static String getTeacherCard(String card) {
 		return getTeacher(Integer.parseInt(card.split(STORAGE_SEPARATOR)[TEACHER_INDEX]));
@@ -542,7 +568,7 @@ public class Storage_access {
 	}
 
 
-
+	
 
 
 

@@ -108,7 +108,7 @@ public class MainPresenter extends
 	
 	
 	private Storage stockStore;
-	private EventBus eventBus;
+	public static EventBus eventBus;
 	private CardInView cardInView;
 	private String project_num;
 	public static PickupDragController cardDragController;
@@ -121,7 +121,7 @@ public class MainPresenter extends
 		super(eventBus, view, proxy);
 		cardFactory = new StandardProvider<SingleCardPresenter>(provider);
 		stockStore = Storage.getLocalStorageIfSupported();
-		this.eventBus = eventBus;
+		MainPresenter.eventBus = eventBus;
 		allCards = new HashMap<String, CardWidget>();
 		cardInView = new CardInView(getView().getCombo_viewChoice1(), getView().getCombo_viewChoice2());
 	}
@@ -262,11 +262,7 @@ public class MainPresenter extends
 
 			// Then save in local Storage
 			if (event.getDay() != 0) {
-				//System.out.println("tiiiittllee"+allCards.get(event.getCardID()).getWidget().getTitle());
-				//System.out.println(allCards.size());
-			//	allCards.get(event.getCardID()).addStyleName("cardPlaced");
-				Storage_access.placeCard(event.getCardID(), event.getDay(), event.getPeriod(),0);
-				//TODO: faut aussi l'envoyer � la bdd, ou un truc du genre
+				Storage_access.placeCard(event.getCardID(), event.getDay(), event.getPeriod(), event.getRoom());
 			}
 			else {
 			//	allCards.get(event.getCardID()).addStyleName("card");
@@ -642,7 +638,7 @@ public class MainPresenter extends
 					if (a == null || a.getDay() == 0 || a.getPeriod() == 0) 
 						Storage_access.revoveFromSlot(i);	
 					else 
-						Storage_access.placeCard(i, a.getDay(), a.getPeriod(),0);	
+						Storage_access.placeCard(i, a.getDay(), a.getPeriod(), "");	
 					
 				}
 				eventBus.fireEvent( 

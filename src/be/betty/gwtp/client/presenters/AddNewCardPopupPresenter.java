@@ -138,7 +138,7 @@ public class AddNewCardPopupPresenter extends
 		}
 		
 		for (int i = 0; i < Storage_access.getNumberOfCourses(); i++) {
-			getView().getCourseComboBox().addItem(Storage_access.getCourse(i), ""+i);
+			getView().getCourseComboBox().addItem(Storage_access.getCourseName(""+i), ""+i);
 		}
 		
 	}

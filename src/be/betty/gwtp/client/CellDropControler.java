@@ -1,6 +1,7 @@
 package be.betty.gwtp.client;
 
 import be.betty.gwtp.client.event.DropCardEvent;
+import be.betty.gwtp.client.presenters.MainPresenter;
 import be.betty.gwtp.client.views.ourWidgets.CardWidget;
 
 import com.google.gwt.event.shared.EventBus;
@@ -45,8 +46,11 @@ public class CellDropControler extends SimpleDropController {
 			// TODO si on fait un sorte de petit popup pour choisir grafiquement le local, c ici.
 			
 			//TODO faut voire si c'est la meilleur maniere, notement pour la methode static
-			int room = 0;//Integer.parseInt(ClientSolver.findBestRoom(id, day, period)); 
-			eventBus.fireEvent( new DropCardEvent(id,day,period, room));
+			String roomId = ClientSolver.findBestRoom(id, day, period); 
+			MainPresenter.allCards.get(""+id).setRoom(roomId);
+			((CardWidget)w).setRoom(roomId);
+			// faut aussi mettre le local sur le carton actuel i.e. w
+			eventBus.fireEvent( new DropCardEvent(id,day,period, roomId));
 			//System.out.println("drop..."+w.g);
 			//Storage_access.printStorage();
 			((CardWidget)w).setFromSelectionPanel(false);

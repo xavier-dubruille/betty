@@ -33,6 +33,7 @@ public class CardInView {
 
 			break;
 		case 1: // room
+			//if (Storage_access.getRoomCard(card) == c2) return true;
 			break;
 		case 2: // group
 			for (int i:Storage_access.getGroupsIdCard(card))

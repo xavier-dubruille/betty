@@ -1,14 +1,29 @@
 package be.betty.gwtp.client;
 
+import java.util.Arrays;
+
+
+import be.betty.gwtp.client.presenters.MainPresenter;
+import be.betty.gwtp.server.FileUpServlet;
+
 public class ClientSolver {
 
+
 	public static String findBestRoom(int cardId, int day, int period) {
-		//String[] possRooms = Storage_access.getPossibleRooms(cardId);
-		
-		//if (possRooms.length >0)
-		//	return possRooms[0];
-		//else
-			return "";
+		String[] possRooms = Storage_access.getPossibleRooms(cardId);
+//		ClientUtils.notifyUser("Possible room for card "+cardId+" ="+Arrays.toString(possRooms), 1, MainPresenter.eventBus);
+		System.out.println("Possible room for card "+cardId+" ="+Arrays.toString(possRooms));
+		if (possRooms.length >0) {
+			return possRooms[0];
+//			for (String i: Storage_access.getAllPlacedCard()) {
+//		
+//				
+//				String c = Storage_access.getCard(i);
+//				if (Storage_access.getDayCard(c) != day || Storage_access.getPeriodCard(c) != period) continue;
+//			}
+	}
+		else
+			return "-1";
 	}
 
 	public static CellState getCellState(String cardID, int period, int day) {

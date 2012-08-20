@@ -119,13 +119,13 @@ public class CardSelectionDropControler extends AbstractInsertPanelDropControlle
 			
 			// si ca vient de la vue, on drop la card
 			if (!w1.isFromSelectionPanel()) 
-				eventBus.fireEvent(new DropCardEvent(id,0,0,0));
+				eventBus.fireEvent(new DropCardEvent(id,0,0,null));
 			
 			// si ca vient du panneau de selection, on demande a l'utilisateur
 			if ( w1.isFromSelectionPanel() && w1.isPlaced()) {
 				boolean b = Window.confirm("Are you sure you want to unset this card ?");
 				if (b) {
-					eventBus.fireEvent(new DropCardEvent(id,0,0,0));
+					eventBus.fireEvent(new DropCardEvent(id,0,0,null));
 					w1.setStyleName(UiConstants.CSS_CARD);
 				}
 			}

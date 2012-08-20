@@ -9,12 +9,12 @@ public class SaveCardDropAction extends ActionImpl<SaveCardDropActionResult> {
 	private int day;
 	private int period;
 	private int cardBddId;
-	private int room;
+	private String room;
 	private int projectInstance;
 	private String sessId;
 
 	public SaveCardDropAction() {} //for serialisation purposes
-	public SaveCardDropAction(int day, int period, int cardBddId, int room, int projectInstance, String sessId) {
+	public SaveCardDropAction(int day, int period, int cardBddId, String room, int projectInstance, String sessId) {
 		super();
 		this.day = day;
 		this.period = period;
