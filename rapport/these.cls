@@ -209,10 +209,10 @@ Ann\'ee Acad\'emique 2011-2012}
                 \vspace*{\stretch{8}}
                 
             \large
-                 \vspace*{\stretch{6}}
-           
-                Travail de fin d'\'etude pr\'esent\'e en vue de l'obtention du grade de\\
-	Baccalaur\'eat en Technologies de l'Informatique
+                 \vspace*{\stretch{6}}          
+                Travail de fin d'\'etudes pr\'esent\'e en vue de l'obtention du grade du\\
+	dipl\^ome de bachelier en Informatique et Syst\`emes :\\
+	finalit\'e Technologie de l'Informatique
                 \vspace*{\stretch{2}}
 
 	\rule{\linewidth}{.5pt}

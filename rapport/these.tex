@@ -24,12 +24,14 @@
 % Compteur de figure
 \counterwithout{figure}{chapter}
 \counterwithout{table}{chapter}
-
+\renewcommand{\thetable}{\Roman{table}}
+\renewcommand{\thefigure}{\Roman{figure}}
 
 % Profondeur TOC
 \setcounter{tocdepth}{1}
 \stepcounter{secnumdepth}
 \stepcounter{tocdepth}
+
 
 
 % Références

@@ -5,7 +5,7 @@
 %\newline
 %\indent
 %D'abord, pourquoi on a fait ça et pourquoi ce TFE. En quoi c'est utilite pr notre travail
-%Madame Gillet, Directrice de l'établissement Ephec à Louvain-la-Neuve, établit l'horaire a chaque nouveau quadrimestre de l'année scolaire. l'établissement d'un horaire doit se faire sous certaines contraintes et en fonction de désidératas remis par les professeurs. Le nombre de locaux informatique est limité, certains professeurs sont dit "externe" à l'Ephec, ceux-ci doivent se voir attribué un horaire particulier, certain cours se donne dans des locaux externes à l'Ephec et ne sont donc pas disponible à chaque période de cours. Toute ces contraintes, si elle ne sont pas informatisée doivent prise en compte par la personne établissant l'horaire qui doit réaliser un "vrai casse tête chinois" afin d'avoir un horaire le plus adéquat possible.\\
+%Madame Gillet, Directrice de l'établissement EPHEC à Louvain-la-Neuve, établit l'horaire a chaque nouveau quadrimestre de l'année scolaire. l'établissement d'un horaire doit se faire sous certaines contraintes et en fonction de désidératas remis par les professeurs. Le nombre de locaux informatique est limité, certains professeurs sont dit "externe" à l'EPHEC, ceux-ci doivent se voir attribué un horaire particulier, certain cours se donne dans des locaux externes à l'EPHEC et ne sont donc pas disponible à chaque période de cours. Toute ces contraintes, si elle ne sont pas informatisée doivent prise en compte par la personne établissant l'horaire qui doit réaliser un "vrai casse tête chinois" afin d'avoir un horaire le plus adéquat possible.\\
 %\newline
 %\indent
 %La programmation par contrainte permet de résoudre de manière automatique cette problématique, facilitant ainsi la tâche qui incombe à la personne en charge de l'élaboration d'un horaire. Nous allons d'abord définir ce qu'est une contraintes de manière plus théorique pour bien saisir la problématique et la provenance de celle-ci. Nous discuterons ensuite autour des différentes solutions existantes nous permettant de réaliser cela.
@@ -13,7 +13,7 @@
 %Parler de notre rencontre avec Pierre bidule je sais plus quoi
 %je sais plus ce qu'on avais dit d'autre
 
-Afin de mieux comprendre la problématique liée à l'élaboration d'un horaire, nous avons tout d'abord pris rendez-vous avec Madame \textsc{Gillet}, directrice de l'Ephec. Madame \textsc{Gillet} est la personne en charge de l'élaboration des horaires pour la partie Louvain-la-Neuve de l'Ephec. Nous avons parcouru ensemble les différents problèmes et les différents types de contraintes auxquelles nous devrons faire face. Cette première analyse du problème avait pour but de nous orienter sur le type de contraintes intervenant dans notre travail.
+Afin de mieux comprendre la problématique liée à l'élaboration d'un horaire, nous avons tout d'abord pris rendez-vous avec Madame \textsc{Gillet}, directrice de l'EPHEC. Madame \textsc{Gillet} est la personne en charge de l'élaboration des horaires pour la partie Louvain-la-Neuve de l'EPHEC. Nous avons parcouru ensemble les différents problèmes et les différents types de contraintes auxquelles nous devrons faire face. Cette première analyse du problème avait pour but de nous orienter sur le type de contraintes intervenant dans notre travail.
 \newline
 \indent
 Dans un premier temps, cette présente section, théorisera la notion de contrainte. Dans un deuxième temps, seront présentés les différentes contraintes rencontrées dans l'analyse du problème. 
@@ -33,13 +33,13 @@ $X$ étant nos variables. Celles-ci seront représentées par les attributions\f
 Nous pouvons l'écrire sous la forme $Vn$ ou $V$ correspond à la valeur du carton, et n sont numéro.\\
 \newline
 \indent
-	$D$ correspond au domaine. Ici, il s'agit d'effectuer un horaire. Notre domaine sera le nombre de locaux disponibles multiplié par le nombre de périodes. Dans le cadre du cours du jour à l'Ephec de Louvain-la-Neuve, nous avons 6 périodes par jour, durant 5 jours. Un local est donc disponible à 6 moments de la journée durant 5 jours/semaine. Il faut donc multiplier le nombre de local par 30. Ce domaine s'écrit donc sous la forme $Nl x Np$.
+	$D$ correspond au domaine. Ici, il s'agit d'effectuer un horaire. Notre domaine sera le nombre de locaux disponibles multiplié par le nombre de périodes. Dans le cadre du cours du jour à l'EPHEC de Louvain-la-Neuve, nous avons 6 périodes par jour, durant 5 jours. Un local est donc disponible à 6 moments de la journée durant 5 jours/semaine. Il faut donc multiplier le nombre de local par 30. Ce domaine s'écrit donc sous la forme $Nl x Np$.
 \newline
 \indent
 	$C$ étant nos contraintes. Il existe différents types de contraintes. Dans la section suivante, nous en énumérerons certaines pour bien se rendre compte du nombre important de celles-ci et dans quel moment elles interviennent.\\
 \newline
 \indent
-Pour régler ce problème de contraintes, il est avantageux de prendre en compte certaines heuristiques ou méta-heuristiques. Nous avons défini le problème rencontré à l'Ephec comme  étant de type NP-Complet.
+Pour régler ce problème de contraintes, il est avantageux de prendre en compte certaines heuristiques ou méta-heuristiques. Nous avons défini le problème rencontré à l'EPHEC comme  étant de type NP-Complet.
 \newline
 \indent
 La problématique de la programmation par contrainte est que les algorithmes de résolution tentent à trouver une solution \texttt{optimale} au problème. Si une contrainte ne peut être prise en compte lors de cette tentative, nous n'obtiendrons pas de résultat. Pour ce faire, il est nécessaire d'appliquer un filtrage de ce qui ne peut être pris en compte. Ce \enquote{mécanisme} s'appelle la \texttt{propagation de contraintes}.
@@ -94,7 +94,8 @@ Temps Louvain-la-Neuve ou Bruxelles\\
     \end{tabular}
 \end{minipage}
 %\caption{\texttt{datatypes properties} appelées pour la description des types \textit{MusicGenre}, \textit{RecordLabel} et \textit{Settlement}}
-\label{resultsDoc2}
+\caption{Contraintes sur les locaux et les professeurs}
+\label{locaux_prof}
 \end{table}
 
 \begin{table}[h!]
@@ -132,7 +133,8 @@ Doit pouvoir ajouter des contraintes\\
 \end{tabular}
 \end{minipage}
 %\caption{\texttt{datatypes properties} appelées pour la description des types \textit{MusicGenre}, \textit{RecordLabel} et \textit{Settlement}}
-\label{resultsDoc2}
+\caption{Contraintes sur les cours et les attributions}
+\label{cours_attribution}
 \end{table}
 
 %\begin{center}
@@ -173,6 +175,7 @@ Doit pouvoir ajouter des contraintes\\
 
 \newpage
 
+\begin{table}[!h]
 \begin{center}
 \begin{tabular}{|p{\linewidth}|}
 \hline 
@@ -199,6 +202,8 @@ Il doit être possible de définir une pause\\
 \hline
 \end{tabular}
 \end{center}
+\caption{Contraintes générales}
+\end{table}
 \bigskip
 
 
@@ -223,7 +228,7 @@ Possibilité de changer de classe\\
 \begin{minipage}[t]{.4\linewidth}
 \begin{tabular}{|l|}
 \hline 
-\textbf{Classe}\\
+\textbf{Classes}\\
 \hline
 \hline
 Nombre d'étudiants maximum\\
@@ -232,8 +237,9 @@ Locaux adaptés\\
 \hline
 \end{tabular}
 \end{minipage}
-%\caption{\texttt{datatypes properties} appelées pour la description des types \textit{MusicGenre}, \textit{RecordLabel} et \textit{Settlement}}
-\label{resultsDoc2}
+
+\caption{Contraintes sur les étudiants et les classes}
+\label{etudiant_classes}
 \end{table}
 \bigskip
 

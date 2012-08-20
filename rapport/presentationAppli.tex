@@ -11,7 +11,7 @@ Cependant, avant tout développement ultérieur, il est nécessaire de présente
 Au sein de chaque projet, chaque cours est représenté par ce que nous appelons un \texttt{carton}. Un carton est un cadre décrivant le nom du cours, son sigle et le professeur qui lui est rattaché. Betty propose par un système intuitif de \enquote{drag and drop} de positionner ces cartons au sein d'un \texttt{semainier} afin de construire un horaire.
 \newline
 \indent
-Sur cette page présentant le semainier, différents outils sont utilisables afin d'améliorer la création de l'horaire. A chaque cours, sont rattachées ses \texttt{attributions} spécifiques, c'est-à-dire les différentes classes d'élèves auxquelles se destine le cours. Un système de \texttt{notifications} a été mis en place afin d'offrir à l'utilisateur un retour sur les opérations qu'il effectue. Enfin, un système de \texttt{filtres} améliore la vision des données. 
+Sur cette page présentant le semainier, différents outils sont utilisables afin d'améliorer la création de l'horaire. À chaque cours, sont rattachées ses \texttt{attributions} spécifiques, c'est-à-dire les différentes classes d'élèves auxquelles se destine le cours. Un système de \texttt{notifications} a été mis en place afin d'offrir à l'utilisateur un retour sur les opérations qu'il effectue. Enfin, un système de \texttt{filtres} améliore la vision des données. 
 \newline
 \indent
 La programmation par contraintes est utilisée pour définir de nouveaux horaires. Cette utilisation des possibilités s'effectue au travers d'un panneau d'\texttt{instances}. Une instance  est un état spécifique des cartons, c'est-à-dire un horaire potentiel. Lorsque l'utilisateur l'estime nécessaire, il est possible d'utiliser le  \texttt{solveur}. Le solveur est le système qui est en charge de calculer un nouvel horaire, c'est-à-dire une nouvelle instance, répondant à certaines contraintes.
@@ -37,6 +37,7 @@ Pour cette partie, quelques améliorations peuvent être apportées tel que le c
 \textbf{Debug : capture d'écran}
 
 \section{Page des projets}
+
 La page est ordonnée de façon à avoir toujours le dernier projet en date créé en haut de la liste. Un projet est présenté de la manière la plus concise possible afin de ne pas perdre l'utilisateur. Ce dernier à la possibilité de créer un nouveau projet\footnote{Option également disponible via le menu}, choisir le semestre à élaborer et de supprimer un projet. L'application devrait dans une prochaine mise à jour proposer des options sur celui-ci tel que le partage de projets entre plusieurs utilisateurs.\\
 \newline
 \indent
@@ -49,41 +50,98 @@ La page principale se présente comme suit:\\
 
 \begin{itemize}	
 	
-	\item[-] Au nord de la page, nous trouvons les différents filtres et options disponibles tel que:\\
-	\begin{itemize}
-		\item[•] Card filter
-		\item[•] Sélection de la grille à afficher
-		\item[•] Un panneau regroupant les différentes instances du projet (forme de sous projet)\\
-	\end{itemize}
-	\item[-] À l'ouest les cartons créés sur base du fichier des attributions\\
-	\item[-] Au centre, le semainier où les cartons pourrons venir se glisser\\
-	\item[-] À l'est, un panneau de notifications permettant d'avoir un suivit des différentes actions faite par l'utilisateur.
+	\item Au nord de la page, nous trouvons les différents filtres et options disponibles tels que :
+	\begin{enumerate}
+		\item Card filter
+		\item Sélection de la grille à afficher
+		\item Un panneau regroupant les différentes instances du projet\\
+	\end{enumerate}
+	\item À l'ouest, les cartons créés sur base du fichier des attributions\\
+	\item Au centre, le semainier où les cartons pourrons venir se glisser\\
+	\item À l'est, un panneau de notifications permettant d'avoir un suivit des différentes actions faite par l'utilisateur.
 \end{itemize}
+\bigskip
+
+\textbf{Debug : Capture d'écran}
+
 \subsection{Les attributions}
-La mise en forme des cartons se base sur le design de ceux actuellement employés à l'Ephec lors de l'établissement manuelle de l'horaire. Ceux-ci comportent le/les classe(s) assignée(s) à un cours donné par un professeur.\\
-\\
-A chaque carton est assigné un ensemble de locaux où pourront se donner les cours. Par exemple, un carton de type informatique serra assigné uniquement aux locaux de type informatique. Lorsque le carton est déposé, le solveur client lui assigne un local disponible parmi cette liste, et nous pouvons voir apparaitre le nom du local en bas à droite du carton.
+La mise en forme des cartons se base sur le design de ceux actuellement employés à l'Ephec lors de l'établissement manuelle de l'horaire. Ceux-ci comportent le/les classe(s) assignée(s) à chaque cours donné par un professeur.\\
+\newline
+\indent
+À chaque carton est assigné un ensemble de locaux où pourront se donner les cours. Par exemple, un carton de type informatique sera assigné uniquement aux locaux de type informatique. Lorsque le carton est déposé, la solution lui assigne un local disponible parmi cette liste, et nous pouvons voir apparaître le nom du local en bas à droite du carton.\\
+\newline
+\indent
+\textbf{Debug : Capture d'écran}
+
 \subsection{Semainier}
-Nous affichons dans le semainier, les informations relatives à la personne, classe ou au local choisi via le filtre prévu à cet effet. La grille se colorie en fonction du carton qui est sélectionné. Un code de couleurs a été mis en place permettant de distinguer si un carton peut être placé ou pas. Par exemple, si l'on se trouve dans la vue d'une classe et que l'on prend un carton d'une autre classe, toute la grille se coloriera en rouge, montrant à l'utilisateur que celui-ci ne peut pas être placé.\\
-\\
-Nous distinguons trois groupes de couleurs, vert, orange et rouge. Ces groupes sont eux-même subdivisés en trois catégories: couleur claire, normale et foncée. Lorsqu'on colorie la grille horaire, il arrive parfois qu'un carton puisse être placé à plusieurs endroits, les uns plus avantageux que d'autres pour la suite de l'établissement de l'horaire, il est donc nécessaire de pouvoir dire à l'utilisateur que le carton peut être placé, mais l'orienter sur un choix plus adéquat. Ce code de couleurs est utilisé dans une version limité pour le moment.
+Nous affichons dans le semainier, les informations relatives à la personne, classe ou au local choisis via le filtre prévu à cet effet. La grille se colorie en fonction du carton qui est sélectionné. Un code de couleurs a été mis en place permettant de distinguer si un carton peut être placé ou pas. Par exemple, si l'on se trouve dans la vue d'une classe et que l'on prend un carton d'une autre classe, toute la grille se coloriera en rouge, montrant à l'utilisateur que celui-ci ne peut pas être placé.\\
+\newline
+\indent
+Nous distinguons trois groupes de couleurs ; vert, orange et rouge. Ces groupes sont eux-même subdivisés en trois catégories: couleur claire, normale et foncée. Lorsqu'on colorie la grille horaire, il arrive parfois qu'un carton puisse être placé à plusieurs endroits, les uns plus avantageux que d'autres pour la suite de l'établissement de l'horaire, il est donc nécessaire de pouvoir dire à l'utilisateur que le carton peut être placé, mais l'orienter sur un choix plus adéquat. Ce code de couleurs est utilisé dans une version limité pour le moment.
+\bigskip
+\textbf{Debug : Capture d'écran}
+
+
 \subsection{Notifications}
-Les notifications sont un support pour l'utilisateur. Lorsque celui-ci effectue une action comme supprimer/ajouter un carton il est nécessaire de savoir si l'action c'est effectuée correctement. A la place d'un popup intrusif, nous avons opté pour ce système, signalant à l'utilisateur de manière plus douce l'état d'actions qui ne peuvent être vues via une interface graphique.\\
-\\
-Nous distinguons ici deux couleurs différentes, une couleur se fondant au thème général de l'application, lorsque tout c'est effectué correctement, et une couleur rouge pour signaler un problème. Ce systèmes est limité et pourra être amélioré dans le futur.
+Les notifications sont un support pour l'utilisateur. Lorsque celui-ci effectue une action comme supprimer/ajouter un carton il est nécessaire de savoir si l'action c'est effectuée correctement. À la place d'un popup intrusif, nous avons opté pour ce système, signalant à l'utilisateur de manière plus douce l'état d'actions qui ne peuvent être vues via une interface graphique.\\
+\newline
+\indent
+Nous distinguons ici deux couleurs différentes, une couleur se fondant au thème général de l'application, lorsque tout c'est effectué correctement, et une couleur rouge pour signaler un problème. Ce systèmes est limité et pourra être amélioré dans le futur.\\
+\newline
+\indent
+
+\textbf{Debug : Capture d'écran}
+
+
 \subsection{Les filtres}
-Les différents filtres permettent de faciliter la création de l'horaire de façon manuelle. Si nous voulons créer l'horaire d'un professeur en particulier, avoir les cartons de tous les professeurs rendrait la tâche plus lourde à l'utilisateur. L'utilisation de ce filtre permet d'avoir une meilleure vue sur ce qui doit être placé.\\
-De même, il est possible d'afficher/masquer les cartons déjà placés. Lorsqu'on filtre les cartons d'une classe, et que tous ces cartons sont placés, ils ne font théoriquement plus parti de la liste des cartons et donc l'utilisateur n'a pas la possibilité de savoir si la dite classe possède des cartons. Ce système favorise aussi la vue d'ensemble sur ce qui a déjà ou non été placé.\\
-\\
-Une dernière option est de pouvoir automatiquement switcher sur la grille horaire correspondant au filtre mis sur les cartons. Si cette option est sélectionnée, et que nous filtrons les cartons de la classe 3TL2, nous supposons ici que l'objectif est de placer les attributions de cette classe, la grille horaire des 3TL2 est alors affichée.\\
-\\
-L'application a donc été pensée afin de minimaliser au maximum les tâches devant être effectuées par l'utilisateur et de lui offrir des outils de filtrage avancé.
+Les différents filtres permettent de faciliter la création de l'horaire de façon manuelle. Si nous voulons créer l'horaire d'un professeur en particulier, avoir les cartons de tous les professeurs rendrait la tâche plus lourde à l'utilisateur. L'utilisation de ce filtre permet d'avoir une meilleure vue sur ce qui doit être placé. Nous parlerons de vue \enquote{vue}.
+\newline
+\indent
+De même, il est possible d'afficher/masquer les cartons déjà placés. Lorsqu'on filtre les cartons d'une classe et que tous ces cartons sont placés, ils ne font théoriquement plus partie de la liste des cartons et donc l'utilisateur n'a pas la possibilité de savoir si la dite classe possède des cartons. Ce système favorise aussi la vue d'ensemble sur ce qui a déjà ou non été placé.\\
+\newline
+\indent
+Une dernière option est de pouvoir automatiquement \enquote{switcher} sur la grille horaire correspondant au filtre mis sur les cartons. Si cette option est sélectionnée et que nous filtrons les cartons de la classe \textit{3TL2}, nous supposons ici que l'objectif est de placer les attributions de cette classe. Par conséquent, seule la grille horaire des \textit{3TL2} est affichée.\\
+\newline
+\indent
+L'application a donc été pensée afin de minimiser l'effort cognitif de l'utilisateur et de lui offrir les outils adéquats pour se concentrer sur son seul objectif ; la création de l'horaire.
+
+
 \subsection{Les instances}
-Le panneau d'instance permet, au sein d'un même projet, de créer un ensemble de sous-projets. L'objectif principal de ce panneau réside dans l'utilisation du solveur. Celui-ci sera lancé dans une nouvelle instance, permettant à l'utilisateur de continuer sont horaire manuellement dans une autre sans être bloqué. Une fois la résolution finie, l'utilisateur peut naviguer entre les différentes instances afin de voir les différents résultats obtenus. \\
-\\
-C'est ici que l'implémentation des instances y trouve sa principale utilité, des améliorations futures pourrons être appliquées, par exemple pouvoir comparer deux instances entre elles.
+
+Le panneau d'instance permet, au sein d'un même projet, de créer un ensemble de 
+sous-projets. L'objectif principal de ce panneau réside dans l'utilisation du solveur. Celui-ci sera lancé dans une nouvelle instance, permettant à l'utilisateur de continuer son horaire manuellement dans une autre sans être bloqué. Une fois la résolution finie, l'utilisateur peut naviguer entre les différentes instances afin de voir les différents résultats obtenus. \\
+\newline
+\indent
+C'est ici que l'implémentation des instances y trouve sa principale utilité. Toutefois, il serait envisageable, comme perspective d'extension à ce travail, de pouvoir comparer deux instances entre elles.\\
+\newline
+\indent
+
+\textbf{Debug : Capture d'écran}
+
+
 %Cette partie est à améliorer et à modifier!
 \subsection{Le solveur}
-Pour lancer le solveur, nous devons aller dans le menu project, solveur, solve. Une fenêtre s'ouvre permettant à l'utilisateur de sélectionner l'instance dans laquelle celui-ci doit effectuer la résolution. Une fois le solveur lancé, une notification apparait à l'utilisateur lui disant que celui-ci est exécuté. à la fin de tentative de résolution, l'utilisateur reçoit une notification lui spécifiant que le solveur a fini son travail et si tout s'est déroulé correctement. Le solveur, dans sa version actuelle, fonctionne parfaitement mais ne propose aucune options de configuration et fonctionne sur des petits projets. 
+Pour lancer le solveur, nous devons aller dans le menu \texttt{project > solveur > solve}. Une fenêtre s'ouvre permettant à l'utilisateur de sélectionner l'instance dans laquelle doit s'effectuer la résolution. Une fois le solveur lancé, une notification apparaît à l'utilisateur lui notifiant que celui-ci est exécuté. À la fin de tentative de résolution, l'utilisateur reçoit une notification lui spécifiant la fin du travail et la bonne ou mauvaise application de ce dernier. Le solveur, dans sa version actuelle, fonctionne correctement mais ne propose, à l'heure actuelle, aucune option de configuration et fonctionne sur des petits projets. 
+
+
 \subsection{Mémoire cache}
-L'application utilise la mémoire cache du navigateur pour stocker les données, ainsi nous minimalisons les requêtes vers le serveur. Ceci pourrait être également exploité pour pouvoir travailler sur l'application sans connexion internet. Les données nécessaires à l'établissement de l'horaire étant stockées dans la partie cliente.
+L'application utilise la mémoire cache du navigateur pour stocker les données, ainsi nous minimisons les requêtes vers le serveur. Ceci pourrait être également exploité pour pouvoir travailler sur l'application sans connexion internet. Les données nécessaires à l'établissement de l'horaire étant stockées dans la partie cliente.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

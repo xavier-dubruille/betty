@@ -133,22 +133,27 @@ L'apparition du local storage avec le HTML5 ouvre une porte en plus au développ
 
 \subsubsection{Local Storage vs Cookies}
 
-
-\begin{tabular}{|l|c|c|}
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|l|l|l|}
   	\hline
    		& Local Storage & Cookie \\
   	\hline
   		Stockage: & 5MB & 80KB (4KB/cookie, 20cookies/domaine) \\
 	\hline  
-  		Utilisation de la B.P.: & Aucune & Envoi des données à chaque requête vers le domaine \\
+		Bande passante : & Aucune & Envoi de données à chaque requête \\
   	\hline
   		Performance: & Data mise en cache du navigateur & Data envoyé répétitivement vers le domaine \\
   	\hline
   		Contraintes: & aucune & 300 cookies maximum \\
   	\hline
-  		Rapidité: & très rapide (données chargé en cache au démarrage & plus lente (serveur vérifie si le cookie existe) \\
+  		Rapidité: & très rapide & plus lente \\
   	\hline
 \end{tabular}
+\end{center}
+\caption{Légende}
+\label{local_storage}
+\end{table}
 %LOCAL STORAGE
 %Capacité de stockage : 5MB
 %Utilisation de la bande passante: Aucune, tout est stocker chez le client)

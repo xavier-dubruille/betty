@@ -4,108 +4,136 @@
 
 %************************ CLIENT SERVEUR *********************************
 \section{Client/Serveur}
-Notre application se base sur une architecture client serveur pour les multiples
-avantages que celle-ci apporte.\\
-Premièrement, l'EPHEC étant un établissement possédant plusieurs sites, une application client serveur peut permettre d'avoir un centre de données
- commun.
- De cette manière, un horaire établi à Louvain-la-Neuve pourra être pris en
- compte lors de l'établissement d'un horaire à Bruxelles.\\
-L'avantage de partager la charge de travail, les grosses parties (solveur, actions lourdes, etc.) étant
-effectuées sur le serveur, permet que l'élaboration de l'horaire puisse se
-faire sur des machines possédants peu de ressources. Par exemple, il sera
-possible d'établir l'horaire sur une tablette ou encore sur un Smartphone.\\
+
+Notre application se base sur une architecture client/serveur pour les multiples
+avantages que celle-ci apporte.
 \newline
 \indent
-Grâce à ce type d'architecture, l'application n'est pas dépendante du système
-d'exploitation mis en place ni de l'ordinateur. L'horaire peut être débuté sur
-une machine Windows, pour ensuite être continué sur une tablette.
+Premièrement, l'EPHEC étant un établissement possédant plusieurs sites, une application client/serveur peut permettre d'avoir un centre de données  commun.
+ \newline
+ \indent
+ De cette manière, un horaire établi à Louvain-la-Neuve pourra être pris en
+ compte lors de l'établissement d'un horaire à Bruxelles.
+L'avantage de laisser les charges de travail effectuées sur le serveur\footnote{Solveur, actions lourdes, etc.} permet que l'élaboration de l'horaire puisse se
+faire sur des machines possédants peu de ressources. Par exemple, il sera
+possible d'établir l'horaire sur une tablette ou encore sur un smartphone.\\
+\newline
+\indent
+Deuxièmement, l'application n'est pas dépendante du système
+d'exploitation mis en place sur l'ordinateur client. L'horaire peut être débuté sur
+une machine Windows pour ensuite être continué sur une tablette.
 Les mises à jour de l'application sont aussi complètement transparentes pour
 l'utilisateur final. Pas besoin de télécharger et d'installer les mises à jour
-comme sur un logiciel orienté desktop.\\
-De même, en comparaison toujours avec une application desktop, s'il survient un
-problème avec la station de travail, il est garanti de pouvoir retrouver ses
-données dans leurs entières intégralités, et l'horaire peut continuer à être établi
-sur une autre station. Les serveurs offrent de nombreux avantages (duplication des
-données, séparation sur plusieurs sites,…) qu'un ordinateur en panne ne peut offrir.\\
+comme sur un logiciel orienté desktop.
 \newline
 \indent
-Outre cet aspect de facilité pour la partie cliente, il est aussi très facile
+De même, toujours en comparaison avec une application desktop, s'il survient un
+problème avec la station de travail, il est garanti de pouvoir retrouver ses
+données dans leur entièreté et l'horaire peut continuer à être établi
+sur une autre station. En outre, les serveurs offrent de nombreux avantages (duplication des
+données, séparation sur plusieurs sites,…) qu'un ordinateur ne peut pas toujours offrir.\\
+\newline
+\indent
+Troisièmement, outre cet aspect de facilité pour la partie cliente, il est aussi très facile
 d'administrer l'application. Celle-ci étant portable et facile d'installation.
 Pas besoin de connaissances approfondies ou de configurations spéciales du
-serveur. Il suffit d'installer un serveur\footnote{un serveur permettant
-de faire tourner une application web java comme: Tomcat, Jetty, etc.} et d'y
-mettre l'application\footnote{sous forme de '.WAR'} dans le bon dossier.
-De même, la base de données peu être complètement indépendante de l'application
-et peu se trouver sur un serveur externe. Ainsi, elle peut par exemple être interne à l'EPHEC et l'application peut se trouver sur un serveur public.
-Le type de SGBD\footnote{Système de Gestion de Base de Données} utilisé a peu d'importance, et il n'est pas nécessaire de créer
-la base de données au préalable. L'application se charge de la créer d'elle-même
-grâce à l'utilisation de l'outil Hibernate. Celui-ci utilise JDBC\footnote{Java Data Base Connectivity}, Hibernate étant une couche supérieure. Il faut cependant noter certains points pour cette partie. Télécharger le driver\footnote{disponible sur http://developers.sun.com/product/jdbc/drivers/} JDBC par celui correspondant à la base de données (Oracle en recense actuellement 221), modifier le fichier de configuration d'Hibernate et créer une base de données nommée betty avec un utilisateur ayant les droits d'administration sur cette base de données. En dehors de ces 3 points, l'application ne nécessite aucune configuration spécifique. Nous avons fait différents tests, avec du mySQL ainsi que du PostgreSQL sur des bases de données vierge, et nous n'avons pas rencontré de problèmes de création.\\
+serveur. Il suffit d'installer un serveur\footnote{Un serveur permet
+de faire tourner une application web Java comme: Tomcat, Jetty, etc.} et d'y
+mettre l'application\footnote{Sous forme de '.WAR'} dans le bon dossier.
 \newline
 \indent
+De façon analogue, la base de données peut être complètement indépendante de l'application et peut se trouver sur un serveur externe. Ainsi, elle peut, par exemple, être interne à l'EPHEC et l'application peut se trouver sur un serveur public externe. En outre, 
+Le type de SGBD\footnote{Système de Gestion de Base de Données} utilisé a peu d'importance. L'application se charge de la créer d'elle-même
+grâce à l'utilisation de l'outil Hibernate. Dans notre solution Hibernate utilise JDBC\footnote{Java Data Base Connectivity}.
+\newline
+\indent
+Toutefois, il est tout à fait possible de modifier JDBC par une autre interface en téléchargeant le drivers correspondant sur le site d'Orale\footnote{\url{http://developers.sun.com/product/jdbc/drivers/}}. Actuellement, Oracle propose 221 drivers différents.\\
+\newline
+\indent
+Ainsi, l'application ne nécessite aucune configuration spécifique sur un ordinateur client. De plus, au niveau du serveur, nous avons fait différents tests utilisant notamment \texttt{MySQL} ainsi que du \texttt{PostgreSQL} et nous n'avons pas rencontré de problèmes de création.
 % peut être pas mettre ce paragraphe dans le rapport
-%Nous avons choisi le langage java d'une part car nous sommes familiariser avec la programmation orienté objet.
+%Nous avons choisi le langage Java d'une part car nous sommes familiariser avec la programmation orienté objet.
 
-%************************ JAVA *********************************
+%************************ Java *********************************
 \section{Java}
 %Cette partie est plutôt pertinente pour justifier le choix du langage Java au profit d'un autre
-Le choix du langage Java s'est fait instinctivement. Celui-ci est très présent
-dans le domaine du développement en entreprise. Le langage java permet de bien
-structurer son programme,il fait preuve d'une certaine rigueur, de robustesse
-et offre la possibilité d'utiliser des variables typées statiques. Nous avons pu
-tirer avantage de ces derniers points pour élaborer notre application.\\
+Le choix du langage Java s'est fait naturellement. Celui-ci est très présent
+dans le domaine du développement en entreprise. De plus, le langage Java permet de bien
+structurer son programme ; il fait preuve d'une certaine rigueur, de robustesse
+et offre la possibilité d'utiliser des variables statiques typées. Nous avons pu
+tirer avantage de ces derniers points pour élaborer notre application.
 \newline
 \indent
-Nous avions, dans une première approche, l'intention de faire cette
-application en Python. Ce Langage offre beaucoup de possibilités et est aussi adapté
-au type d'application que nous voulions élaborer. Il possède une structure
+Toutefois, il est nécessaire de souligner, que dans nos premiers prototypes, nous avons utilisé le langage Python. Python offre beaucoup de possibilités et est aussi adapté
+au type d'application que nous voulions élaborer\footnote{Comme explicité précédemment, la libraire \texttt{Python Constraint} a été utilisée dans un premier temps.}. En outre, il possède une structure
 favorisant les bonnes pratiques, ce point étant particulièrement important pour
-nous. Le langage Java s'est fait plus instinctivement. Tout d'abord, le solveur est codé en java. Nous étions partis dans l'idée de faire du
-binding grâce à l'utilisation de SOAP\footnote{Simple Object Access Protocol} entre le Python et le solveur, mais
-dans un souci de clarté du code, nous avons préféré rester dans le même type de
-langage. L'arrivée de GWT (que nous verrons dans le point suivant) nous à aussi
-conforté dans ce choix.
+nous.\\
 \newline
 \indent
-Il existe plusieurs types de serveur d'application java. Nous utilisons un
-serveur Tomcat, écrit lui-même en java et étant multiplateformes. Ainsi
-l'application peut tourner sur n'importe quel type d'architecture.
+Cependant, au final, le choix du langage Java s'est imposé. Premièrement, le solveur est codé en Java. En effet, bien que nous soyons partis sur l'idée de faire du binding grâce à l'utilisation de SOAP\footnote{Simple Object Access Protocol} entre le Python et le solveur, dans un souci de clarté du code, nous avons préféré rester dans le même type de langage.
+Deuxièmement, l'utilisation de Google Web Toolkit nous a aussi conforté dans ce choix.
+Troisièmement, il existe plusieurs solutions en Java pour la mise en place de serveur. Nous utilisons un serveur Tomcat, écrit lui-même en Java et multiplate-forme. 
 
 
-%************************ JAVA EE *********************************
-% Cette partie ne me semble pas utile ici. On parle déjà du java, on dira après
-% que c'est du java EE quand on parlera du serveur
+
+
+%************************ Java EE *********************************
+% Cette partie ne me semble pas utile ici. On parle déjà du Java, on dira après
+% que c'est du Java EE quand on parlera du serveur
 
 %\section{Java EE}
-%Pour établir notre logiciel, nous avons donc utiliser du java, sous ça forme
+%Pour établir notre logiciel, nous avons donc utiliser du Java, sous ça forme
 %entreprise édition. Ceci étant nécessaire pour l'élaboration du code partie
 %serveur. l'utilisation de Google Web Toolkit nous à imposer cette utilisation,
 %et nous avons du 
 
 %************************ Google web Toolkit *********************************
-\section{Google Web Toolkit (GWT)}
+\section{Google Web Toolkit}
 
-Nous avons choisi de travailler avec GWT pour les nombreux avantages\footnote{cfr. Chapitre 3.1.1 - GWT} que celui-ci apporte. GWT nous permet de coder la partie cliente de l'application en Java, et celui-ci génère le code JS\footnote{JavaScript} correspondant. Le code généré par GWT peut être adapté aux différents navigateurs les plus répandus à ce jour tels que Chrome, Firefox, Internet Explorer, etc.
+Nous avons choisi de travailler avec Google Web Toolkit (GWT) pour les nombreux avantages\footnote{cfr. Chapitre 4.1.1 - GWT} que celui-ci apporte. 
 \newline
 \indent
-La partie serveur étant réalisée en java, il est plus facile pour le développeur de créer son application dans un langage unique. GWT utilise du java EE du coté serveur, langage très puissant et ayant déjà fait ces preuves de robustesse puisque celui-ci est très répandu dans le monde professionnel. Google web toolkit propose également l'utilisation d'outils comme Jin and Guice qui feront l'objet d'un autre point. Comme sont nom l'indique, GWT est une vrai boite à outils.
+Premièrement,  GWT présente l'avantage de permettre de coder la partie cliente de l'application en Java et de sérialiser ce code en JavaScript (JS) afin de l'exécuter sur le navigateur côté client. Ainsi, le code généré par GWT peut être adapté aux différents navigateurs les plus répandus à ce jour tels que Chrome, Firefox, Internet Explorer, etc.
+\newline
+\indent
+Deuxièmement, la partie serveur étant réalisée en Java, le choix de GWT, utilisant du Java, permet de présenter une solution cohérente. En effet, GWT utilise du Java EE du coté serveur, langage ayant déjà fait ces preuves et très répandu dans le monde professionnel.
+\newline
+\indent
+Troisièmement, GWT propose également l'utilisation d'outils tels que Jin and Guice qui feront l'objet d'un autre point. En effet, comme sont nom l'indique, GWT est une vrai boite à outils qui permettent de déployer de façon efficace les bases pour une solution Web.
 
 
 %****************************** Local Storage *********************************
 \section{HTML5, CSS3}
-Nous avons utilisé les dernières normes de ces langages web. GWT permettant d'utiliser ceux-ci, nous avons décidé d'utiliser certaines fonctionnalités intéressantes qu'elle propose, comme l'utilisation d'un local storage, venu avec le HTML5, permettant de stocker les données coté client. Le CSS3, quand est à lui, est utilisé pour le rendu graphique de l'application.
+Nous avons utilisé HTML5 et CSS3 en respectant leurs dernières normes en date. GWT permettant d'utiliser ceux-ci, nous avons décidé d'utiliser certaines fonctionnalités intéressantes que ces derniers proposent tels que l'utilisation d'un local storage\footnote{Le HTML5 offre un local storage permettant de stocker les données directement coté client.} et qu'un rendu graphique générique et de qualité\footnote{Le CSS3 est utilisé pour le rendu graphique de l'application.}.
 
 %******************************** Hibernate ***********************************
 \section{Hibernate}
-Pour la communication avec la base de données, nous utilisons l'outil Hibernate. Nous ne rentrerons pas dans les détails de cet outil, celui-ci fera l'objet d'un autre point. Nous nous limiterons à souligner que Hibernate est un outil performant permettant de représenter les tables de base de données en objets et facilitant ainsi l'utilisation des données. Il est une couche supérieure à JDBC permettant de communiquer avec une base de données. Il peut être utilisé avec n'importe quel type de SGBD et permet la création automatique des tables. Il possède donc de nombreux avantages et est aussi présent en entreprise.
+Pour la communication avec la base de données, nous utilisons l'outil Hibernate. Le réel avantage de Hibernate est de pouvoir utiliser les données selon un paradigme objet. 
+\newline
+\indent
+En effet, Hibernat permet de représenter les tables de la base de données en objets et facilite ainsi l'utilisation des données dans notre code en Java\footnote{Qui, rappelons-le, est intrinsèquement lié à un paradigme objet.}.
+\newline
+\indent
+Dans notre solution, Hibernate est une couche supérieure à JDBC. Cependant, il peut être utilisé avec n'importe quel type de SGBD et permet la création automatique des tables. 
 
 %************************ Solveur *********************************
 \section{Solveur}
 
 Après analyse des différentes libraires, nous nous sommes orientés sur les
-librairies \textit{Unitime}. Celles-ci étant beaucoup plus adaptées à nos besoins, qui sont de
-pouvoir gérer des contraintes sous la forme de désidératas. Elle sont écrites en java et sont orientées pour la problématique de la création d'horaires d'un établissement scolaire. A défaut des autres librairies étant plus orientées contraintes et non désidératas, celle-ci propose des options de configurations correspondant à nos besoins et aux besoins d'un établissement tel que l'EPHEC. Nous l'avons pris uniquement pour des raisons de performance et de correspondance à ce qui doit être fait, et non pas par facilité d'utilisation ou d'apprentissage.
+librairies proposées par le projet \texttt{Unitime}. Celles-ci étant beaucoup plus adaptées à nos besoins, qui sont de pouvoir gérer des contraintes. 
+\newline
+\indent
+Elle sont écrites en Java et sont orientées pour la problématique de la création d'horaires d'un établissement scolaire avec des contraintes pondérées\footnote{Par exemple, les desideratas des professeurs ne doivent pas être vues comme des contraintes pures mais comme des contraintes permettant d'orienter le résultat final.}. En effet, les autres librairies étant plus orientées contraintes pures.
+\newline
+\indent
+Les librairies \texttt{Unitime} proposent des options de configurations correspondant à nos besoins et aux besoins d'un établissement tel que l'EPHEC. 
+\newline
+\indent
+En définitive, nous avons choisi les librairies de \texttt{Unitime} pour des raisons de performance et de correspondance face au problème analysé.
 
 %************************** GitHub *********************************
 \section{GitHub}
-Puisque nous faisons ce travail en équipe, il est nécessaire de pouvoir avoir un suivi de ce que chacun de nous fait, de pouvoir fusionner nos travaux et de garder une trace des différentes version en cas de bugs éventuels. Nous avons choisi GitHub pour gérer notre projet, celui-ci étant simple d'utilisation, très performant, gratuit et permettant surtout de fusionner les différents codes écrits, au sein d'une même page, de manière indépendante et intelligente.
+
+La solution proposée dans ce travail repose sur un large travail d'équipe. Cet aspect inhérent à notre travail, nous a conduit à utiliser GitHub afin de permettre une production collaborative, un suivi des modifications, un système de fusion des travaux et, enfin, un mécanisme de suivi des bugs. 
+
 
