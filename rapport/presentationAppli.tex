@@ -2,7 +2,7 @@
 % !TeX root = these.tex
 
 \chapter{Présentation de l'application}
-Notre application, surnommée Betty\footnote{Brillant Ephec Time Tabling for You}, est un outil permettant d'élaborer un horaire de façon plus conviviale et plus rapide comparé à la façon actuelle de procéder à l'EPHEC.\\
+Notre application, surnommée Betty\footnote{Brillant Ephec Time Tabling for You}, est un outil permettant d'élaborer un horaire de façon plus conviviale et plus rapide comparé à la façon actuelle de procéder à l'Ephec.\\
 \newline
 \indent
 Cependant, avant tout développement ultérieur, il est nécessaire de présenter les différents objets composant notre solution. Nous avons choisi de travailler par \texttt{projet}. Chaque projet est caractérisé par un ensemble de cours étalés sur deux semestres. Betty permet de gérer plusieurs projets. Dans une optique de confidentialité, l'accès à chaque projet nécessite une \texttt{inscription} et une \texttt{connexion} de la part de l'utilisateur.
@@ -25,15 +25,21 @@ Cette présente section décrira ces différents aspects.
 
 \section{Connexion et Inscription}
 
-La première page de l'application propose à l'utilisateur d'entrer son nom d'utilisateur et son mot de passe. Le mot de passe étant crypté en SHA-256\footnote{Secure Hash Algorithm}, dans la base de données. La page propose également de vous inscrire via la flèche en haut à droite de la fenêtre.\\
-\\
-Lors de l'inscription, nous invitons l'utilisateur à entrer sont nom d'utilisateur, mot de passe et email. Les informations entrées sont soumises à des vérifications d'usage, le maximum de ces vérifications étant effectuées du coté client afin de réduire l'échange avec le serveur.\\
-\\
-Pour cette partie, quelques améliorations peuvent être apportées tel que le changement de mot de passe ou la récupération de celui-ci par envoi de mail.
+La première page de l'application propose à l'utilisateur d'entrer son nom d'utilisateur et son mot de passe. Le mot de passe est crypté en SHA-256\footnote{Secure Hash Algorithm 256 bits}, dans la base de données. La page propose également de vous inscrire via la flèche en haut à droite de la fenêtre.
+\newline
+\indent
+Lors de l'inscription, nous invitons l'utilisateur à entrer sont nom d'utilisateur, mot de passe et un email. Les informations entrées sont soumises à des vérifications d'usage, le maximum de ces vérifications étant effectuées du coté client afin de réduire l'échange avec le serveur.
+\newline
+\indent
+Pour cette partie, quelques améliorations peuvent être apportées tel que le changement de mot de passe ou la récupération de celui-ci par envoi de mail.\\
+\newline
+\indent
+\textbf{Debug : capture d'écran}
 
 \section{Page des projets}
-La page est ordonnée de façon à avoir toujours le dernier projet créé en haut de la liste. Un projet est présenté de la manière la plus simple possible afin de ne pas perdre l'utilisateur. Ce dernier à la possibilité de créer un nouveau projet (option également disponible via le menu), Choisir le quadrimestre à élaborer et de supprimer un projet. L'application devrait dans une prochaine mise à jour proposer des options sur celui-ci tel que le partage de projets entre plusieurs utilisateurs.\\
-\\
+La page est ordonnée de façon à avoir toujours le dernier projet en date créé en haut de la liste. Un projet est présenté de la manière la plus concise possible afin de ne pas perdre l'utilisateur. Ce dernier à la possibilité de créer un nouveau projet\footnote{Option également disponible via le menu}, choisir le semestre à élaborer et de supprimer un projet. L'application devrait dans une prochaine mise à jour proposer des options sur celui-ci tel que le partage de projets entre plusieurs utilisateurs.\\
+\newline
+\indent
 Lors de la création d'un nouveau projet, celui-ci doit être nommé et contenir les fichiers nécessaires à l'élaboration de l'horaire. Ces fichiers se présentent sous la forme d'un .xls contenant pour le premier, la liste des attributions de chaque cours, ce fichier est le résultat d'une requête SQL et nous a été fournis par l'Ephec. Le deuxième représente la liste des locaux disponibles, ce fichier n'existant pas en tant que tel, à initialement été créé par Madame Vroman, Professeur à l'Ephec, dans le cadre du "projet horaire" du cours de langage avancé de programmation de deuxième année. Nous y avons ajouté des informations pouvant être prises en compte par le solveur, et permettant de facilité l'établissement manuel d'un horaire.\\
 \\
 Une fois le projet créé et le quadrimestre sélectionné, l'utilisateur est redirigé vers la page principale de l'application dans laquelle l'horaire pourra être créé.

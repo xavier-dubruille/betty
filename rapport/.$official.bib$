@@ -1,0 +1,50 @@
+% This file was created with JabRef 2.7.2.
+% Encoding: UTF-8
+
+@PHDTHESIS{Muller_2005,
+  author = {Tomáš Müller},
+  title = {Constraint-based Timetabling},
+  school = {Charles University in Prague, Faculté of Mathematics and Physics},
+  year = {2005},
+  owner = {jp},
+  timestamp = {2012.08.18}
+}
+
+@BOOK{Scharlig_1985,
+  title = {D{\'e}cider sur plusieurs crit{\`e}res: panorama de l'aide {\`a}
+	la d{\'e}cision multicrit{\`e}re},
+  publisher = {PPUR},
+  year = {1985},
+  author = {Sch{\"a}rlig, A.},
+  volume = {1}
+}
+
+@ARTICLE{Shannon_1980,
+  author = {Shannon, R.E. and Long, S.S. and Buckles, B.P.},
+  title = {Operation research methodologies in industrial engineering: A survey},
+  journal = {AIIE Transactions},
+  year = {1980},
+  volume = {12},
+  pages = {364--367},
+  number = {4},
+  publisher = {Taylor \& Francis}
+}
+
+@ARTICLE{,
+  author = {slkdjf},
+  title = {sdfsq},
+  note = {http:// (vu le 20 août)},
+  owner = {jp},
+  timestamp = {2012.08.20}
+}
+
+@comment{jabref-meta: selector_review:}
+
+@comment{jabref-meta: selector_publisher:}
+
+@comment{jabref-meta: selector_author:}
+
+@comment{jabref-meta: selector_journal:}
+
+@comment{jabref-meta: selector_keywords:}
+
