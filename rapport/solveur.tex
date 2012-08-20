@@ -1,6 +1,6 @@
 % !TeX root = these.tex
 \chapter{Solveur}
-i% le but ici n'est pas d'énumérer toutes les étapes par lesquelles nous sommes passé ainsi que toutes les essais infructué effectué, car ce serait long et inninteressant. Nous allons nous concentrer sur la méthode actuelle utilisée en tantant de justifié son choix. Pour pouvoir expliquer son choix et sont utilisation, nous allons devoir revenir sur les explications plus générale de la programmation par contraites et d'autre thechniques OR (operation research).  Pour plus d'information sur le sujet, nous invitons le lecteur, à XXX, ainsi qu'à la thèse de M qui fut de loins l'ouvrage qui nous a le plus éclairé quand la à la problematique de xx
+% le but ici n'est pas d'énumérer toutes les étapes par lesquelles nous sommes passé ainsi que toutes les essais infructué effectué, car ce serait long et inninteressant. Nous allons nous concentrer sur la méthode actuelle utilisée en tantant de justifié son choix. Pour pouvoir expliquer son choix et sont utilisation, nous allons devoir revenir sur les explications plus générale de la programmation par contraites et d'autre thechniques OR (operation research).  Pour plus d'information sur le sujet, nous invitons le lecteur, à XXX, ainsi qu'à la thèse de M qui fut de loins l'ouvrage qui nous a le plus éclairé quand la à la problematique de xx
 
 %On explique d'ou il vient, ce que c'est, par qui ca a été créé
 
@@ -10,12 +10,14 @@ i% le but ici n'est pas d'énumérer toutes les étapes par lesquelles nous somm
 
 %On peut terminer en concluant sur le temps d'apprentissage, les problèmes relatif a la communcation entre client-serveur... et que, dans une prochaine mise à jour, il serait possible d'avoir un truc vachement plus balaise
 
-Pour pouvoir apporter un réel avantage à notre application, comparé à la méthode actuelle de création d'horraire (i.e. manuel), il était necessaire de lui rajouter une certaine "inteligence". 
-Une partie de cette "inteligence" est pris en charge du coté client, qui comme décrit dans une précédente section, se charge d'assister l'utilisateur lors de la création de son horraire.
-
-Cependant, ce support est minimaliste, et une recherche plus poussée est effectué du coté serveur à l'aide d'outil de programmation par contraite et de "recherche opérationnelle".  Ce solveur sera ensuite amené à nourire le solveur minimaliste du coté client et proposer un certain pilotage de se solveur au travers de l'application cliente. 
-
-Pour ariver à ses résultats on s'est tourné vers des outils de programmation par contrainte et de recherche opérationnelle. 
+Pour pouvoir apporter un réel avantage à notre application, comparé à la méthode actuelle de création d'horaire (i.e. manuel), il était nécessaire de lui rajouter une certaine "intelligence". 
+Une partie de cette "intelligence" est prise en charge du coté client, qui comme décrit dans une précédente section, se charge d'assister l'utilisateur lors de la création de son horaire.
+\newline
+\indent
+Cependant, ce support est minimaliste et une recherche plus poussée est effectué du coté serveur à l'aide d'outil de programmation par contraintes et de "recherche opérationnelle".  Ce solveur sera ensuite amené à nourrir le solveur minimaliste du coté client et proposer un certain pilotage de ce solveur au travers de l'application cliente. 
+\newline
+\indent
+Pour arriver à ces résultats, nous nous sommes tournés vers des outils de programmation par contraintes et de recherche opérationnelle. 
 Pour comprendre notre choix de librairie ainsi que son utilisation, il est important de revenir sur les principe fondamentaux de la programmation par contraintes.
 
 
