@@ -1,25 +1,36 @@
 % !TeX root = these.tex
 \chapter*{Conclusion}
 
-Dans le présent rapport, nous avons vu comment répondre au problème réel et récurrent de la création d'horaires dans le contexte académique. Pour répondre à cette problématique, nous avons dû effectuer un large travail sur trois points en particuliers ; la programmation par contraintes, une solution client/serveur et, enfin, un travail collaboratif en équipe.
+Dans le présent rapport, nous avons vu comment répondre au problème réel et récurrent de la création d'horaires dans le contexte académique. Pour répondre à cette problématique, nous avons dû effectuer un large travail sur trois quatre aspects en particuliers ; la programmation par contraintes, une solution client/serveur, et, enfin, un travail collaboratif en équipe.\\
 \newline
 \indent
-Pour la programmation par contraintes, nous 
+Dans le cadre de la programmation par contraintes, un travail a été fait sur la théorie sous-jacente aux contraintes et au paradigme de programmation correspondant. Cet aspect a été travaillé tant dans la littérature sur le sujet que lors de notre rencontre avec Monsieur  \textsc{Schaus}, docteur dans le sujet.
+Cette rencontre a notamment souligné l'importance du choix des bons outils. En effet, il existe de nombreuses librairies dédiées à la programmation par contraintes, cependant peu sont adaptées à notre problème et permettent de prendre en compte la pondération des contraintes. En effet, comme évoqué précédemment, un \textit{desiderata} exprimé par un professeur n'est pas vraiment une contrainte dure et doit être l'objet d'un traitement à l'aide de règles heuristiques et métaheuristiques.
+\newline
+\indent
+Notre travail sur la programmation par contraintes nous a permis de théorisé plus facilement le problème posé par la création d'horaires à l'Ephec. Rappelons que ce problème a été analysé notamment grâce à notre entretien avec Madame \textsc{Gillet}, directrice de l'établissement sur le site de Louvain-la-Neuve.
+En définitive, nous avons utilisé les libraires offertes par \textit{UniTime} afin d'implémenter un solveur permettant de résoudre les problèmes posés par la création d'horaire.\\
+\newline
+\indent
+Cependant, afin de rendre notre solution utile au plus grand nombre, il a été choisi de prendre une architecture client/serveur. Cette architecture permet notamment de minimiser les problèmes classiques côté client, de centraliser les données sur un seul serveur et d'utiliser des technologies fiables.
+En outre, en utilisant GWT, nous avons permis de scinder l'exécution du code entre le serveur et le client. En effet, comme expliqué précédemment, GWT permet de transposer du Java en JavaScript afin de faire exécuter le code par le navigateur côté client.
+\newline
+\indent
+Enfin, nous avons privilégié les derniers standards, tels que HTML5 et CSS3, afin d'assurer une compatibilité ascendante dans le développement futur de l'application.
+Ainsi, cet aspect client/serveur permet d'élaborer une interface Web afin de permettre à l'utilisateur de se concentrer sur l'aspect important de sa tâche, à savoir la création d'horaire.\\
+\newline
+\indent
+Nous avons réalisé cette solution en équipe. Cet aspect a nécessité d'utiliser certaines méthodes et certains outils. Ces derniers sont surtout git et les systèmes de téléphonie VIP. Ce travail en équipe nous a permis d'apprendre à travailler en équipe et de mettre au point des normes de codage.\\
+\newline
+\indent
+Plus personnellement, ce travail nous a particulièrement tenu à cœur. En effet, beaucoup de travail a été fourni pour utiliser des technologies modernes tels que Hibernate, Java EE que nous pensons être des atouts dans le monde professionnel. Toutefois, il est nécessaire de souligner que nous avons été surpris par la longueur d'apprentissage et d'implémentation de ces technologies. Ces difficultés ont dû être analysées et réglées, notamment au niveau problématique de la gestion asynchrone des échanges client et serveur.
+\newline
+\indent
+En effet, bien que la solution que nous proposons soit encore perfectible en de nombreux points, notamment au niveau des résolutions de contraintes complexes qui étaient l'objectif premier de ce travail, il est nécessaire de souligner que la méthodologie ayant conduit à son élaboration et les choix technologiques pris permettent, malgré la grande quantité de code, une maintenabilité et une robustesse relatives.
+\newline
+\indent
+De plus, la méthodologie suivie, qui consistait à découper les parties du projets en blocs, aurait permis de doubler l'équipe sans que les différents développeurs aient à se marcher sur les pieds. De plus, les moyens mis en place pour développer la solution de façon collaborative auraient permis la gestion d'une équipe plus grande.\\
+\newline
+\indent
+En conclusion, nous avons proposés une méthodologie ainsi qu'une solution pour l'assistance à la création d'horaire. Cet aspect rejoint le domaine plus large de la recherche opérationnelle dans laquelle s'inscrit ce présent projet. 
 
--- on conclut dans le foin :) --\\
-
-->  point cool perso: utilisre des nouvelles technologies \\
-
-->  ce projet nous tien à coeur \\
-non, il n'est pas encore completement utilisable dans le sans que nous voudrions.
-Il est possible de créer horraire, mais les avantage qu'offrent l'outils informatique ne sont eux pas fonctionnel. Notre solution, actuelement offre donc moins d'avantage que le faire en version papier.  Nous croyons cependant bcp dans notre programme et pensons sincèrement, que mme si c'était pas les les plus simple, les décisions que nous avons prise peuvent permettre énormément de choses.  \\
-
--> nous avons été supris par la dificulté (dans le sans qu'un petit scout est
-surpris par la nuit :p ), et il à été très frustrant de devoir faire face à
-d'autre problèmes qu'on avait pas imaginé et qui nous ont dévié de nos objectif
-premier.  Heureusement ce fut des problème interessant qui nous ont bcp appris,
-que ca soit sur la gestion du code, gestion de notre ``équipe'' (fair ce tfe à
-deux était une exelente expérience. ca nous à permit de fournir du code plus
-propre, car relu, des idées plus aboutie, \ldots Notre gestion, et la grosseur
-de la tâche ainsi que sa ``segmentation'' nous aurais permi d'éfectuer ce tfe
-avec 2fois plus de participant, sans qu'ont ne se ``marche sur les pieds'',..)

@@ -20,46 +20,52 @@ GWT introduit un controleur d'application. Dans une application GWT, certaines l
 \section{Les packages java}
 nous allons dans cette section, décortiquer la manière don le programme a été conceptualisé. Pour ce faire, nous allons tout d'abord commencer par analyser les différents packages java ainsi que les classes que celle ci comporte. Comme nous l'avons vu dans le point précédent, l'application est basé sur MVP. Nous pourrons distingué ce modèle au travers des différentes classe contenu dans nos packages.
 %on cite les packages ici et on explique en deux trois mot pourquoi il sont la je pense notement au package DTO
-be.betty.gwtp
-	S'y trouve le fichier de configuration du projet. Ce fichier comporte l'ensemble des informations utilies au bon fonctionnement du projet
 
-be.betty.gwtp.client
-	Nous y trouvons toutes les classes utilitaires de la partie cliente. Certaine de ces classe on des méthode statique, celle-ci étant nos données qui ne changerons pas 
+\begin{itemize}
+\item \textbf{be.betty.gwtp}\\
+	S'y trouve le fichier de configuration du projet. Ce fichier comporte l'ensemble des informations utilies au bon fonctionnement du projet.\\
+	
+\item \textbf{be.betty.gwtp.client}\\
+	Nous y trouvons toutes les classes utilitaires de la partie cliente. Certaine de ces classe on des méthode statique, celle-ci étant nos données qui ne changerons pas.\\
+	
+\item \textbf{be.betty.gwtp.client.action}\\
+	Toutes les actions envoyer depuis la partie cliente ce trouve ici. Elle seront ensuite récupéré dans le packages server du projet.\\
+	
+\item \textbf{be.betty.gwtp.client.event}\\
+	Les différentes évenement envoyer a travers l'application. Comme déjà expliquer précédement, ces énènements sont envoyer sur un busevent, celui-ci peut être écouter afin de récupérérer les informations.\\
+	
+\item \textbf{be.betty.gwtp.client.gin}\\
+	Ce package plus particulier regroupe les informations relative à GinJector. Celui-ci possède notement une classe de configuration permettant a Gin de connaitre la structure du projet afin d'assurer le bon déroulement des différentes injections effectuées.\\
+	
+\item \textbf{be.betty.gwtp.client.place}\\
+Sont contenu, les informations relative au différente "page" du projet. Lorque l'application est lancée, a chaque page est attribuer un token (que nous pouvons retrouver dans l'url), par exemple la page de login correspond à l'url: \url{http://www.nomdusite.com\#login}. Le package place permet la création de ces liens a travers l'application.\\
 
-be.betty.gwtp.client.action
-	Toutes les actions envoyer depuis la partie cliente ce trouve ici. Elle seront ensuite récupéré dans le packages server du projet.
+\item \textbf{be.betty.gwtp.client.presenter}\\
+A chaque vue est associée un présenteur, les présenteurs de chaqu'une de ces vues est contenu dans ce package.\\
 
-be.betty.gwtp.client.event
-	Les différentes évenement envoyer a travers l'application. Comme déjà expliquer précédement, ces énènements sont envoyer sur un busevent, celui-ci peut être écouter afin de récupérérer les informations.
+\item \textbf{be.betty.gwtp.client.views}\\
+ Ici se trouve les information concernant le graphisme général de l'application. Nous distingons deux types de fichier. Des fichier Classique java ainsi que des fichiers XML. Les fichiers XML étant construit à l'aide de GWT-Designer, même si ceux-ci on subit beaucoup de modification manuelle.\\
+ 
+ \item \textbf{be.betty.gwtp.client.views.ourWidgets}\\
+ Correspond à nos widget. Nous y retrouvons nos cartons ainsi que la modification d'un widget déjà existant offert par GWT. Nous avons du modifier nous même ce widget pour pallier a certaine limitation de celui-ci.\\
+ 
+ \item \textbf{be.betty.gwtp.server}\\
+ Toutes les informations utilise, et méthode statique du coté serveur sont mis dans ce package (comme le package client). S'y retrouve aussi les différents Handler des actions.\\
+ 
+ \item \textbf{be.betty.gwtp.server.bdd}\\
+  La base de données créée par Hibernate se retrouve dans ce package. Ces d'ailleurs, via les classes de ce package, que la base de données est automatiquement créée.\\
+  
+ \item \textbf{be.betty.gwtp.server.guice}\\
+ Equivalent de Jin coté serveur.\\
+ 
+\item \textbf{be.betty.gwtp.server.solver}\\
+Les différentes classe utiliser par notre solveur. Celle-ci étant basée sur les classes de Unitime.\\
 
-be.betty.gwtp.client.gin
-	Ce package plus particulier regroupe les informations relative à GinJector. Celui-ci possède notement une classe de configuration permettant a Gin de connaitre la structure du projet afin d'assurer le bon déroulement des différentes injections éffectuée
-be.betty.gwtp.client.place
-Sont contenu, les informations relative au différente "page" du projet. Lorque l'application est lancée, a chaque page est attribuer un token (que nous pouvons retrouver dans l'url), par exemple la page de login correspond à l'url: \enquote{http://www.nomdusite.com\#login}. Le package place permet la création de ces liens a travers l'application.
+\item \textbf{be.betty.gwtp.server.shared}\\
+Contient les méthodes et constantes pouvant être appeler par la partie cliente et serveur de l'application.\\
 
-be.betty.gwtp.client.presenter
-A chaque vue est associée un présenteur, les présenteurs de chaqu'une de ces vues est contenu dans ce package.
+\textbf{be.betty.gwtp.server.shared.dto}\\
+Les classes de data transfert object, étant des POJO\footnote{Plain Old Java Object} permettant de transférer les données entre le client et le seveur permettant la bonne communication entre ces deux parties via RPC.\\
 
-be.betty.gwtp.client.views
-  ici se trouve les information concernant le graphisme général de l'application. Nous distingons deux types de fichier. Des fichier Classique java ainsi que des fichiers XML. Les fichiers XML étant construit à l'aide de GWT-Designer, même si ceux-ci on subit beaucoup de modification manuelle.
+\end{itemize}
 
-be.betty.gwtp.client.views.ourWidgets
-Correspond à nos widget. Nous y retrouvons nos cartons ainsi que la modification d'un widget déjà existant offert par GWT. Nous avons du modifier nous même ce widget pour pallier a certaine limitation de celui-ci.
-
-be.betty.gwtp.server
- Toutes les informations utilise, et méthode statique du coté serveur sont mis dans ce package (comme le package client). S'y retrouve aussi les différents Handler des actions.
-
-be.betty.gwtp.server.bdd
- La base de données créée par Hibernate se retrouve dans ce package. Ces d'ailleurs, via les classes de ce package, que la base de données est automatiquement créée.
-
-be.betty.gwtp.server.guice
-Equivalent de Jin coté serveur
-
-be.betty.gwtp.server.solver
-Les différentes classe utiliser par notre solveur. Celle-ci étant basée sur les classes de Unitime.
-
-be.betty.gwtp.server.shared
-Contient les méthodes et constantes pouvant être appeler par la partie cliente et serveur de l'application.
-
-be.betty.gwtp.server.shared.dto
-les classe de data transfert object, étant des POJO\footnote{Plain Old Java Object} permettant de transférer les données entre le client et le seveur permettant la bonne communication entre ces deux parties via RPC.
