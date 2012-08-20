@@ -3,69 +3,69 @@
 \chapter{Structure du code}
 
 \section{Le model View Presenter}
-MVP est un design pattern\footnote{patron de conception, définissant une façon de conceptualiser un projet} afin d'avoir un code clair et structurer d'une application. Le MVP favorise le travail d'équipe et permet aux différentes acteur prenant par au développement de l'application de pouvoir travailler simultanément. Nous allons découper ces différentes partie.
+MVP est un design pattern\footnote{patron de conception, définissant une façon de conceptualiser un projet} afin d'avoir un code clair et structurer d'une application. Le MVP favorise le travail d'équipe et permet aux différents acteurs prenant part au développement de l'application de pouvoir travailler simultanément. Nous allons découper ces différentes parties.
 
 \subsection{Le modèle}
-Le modèle englobe les données de l'application. Dans notre cas, les informations relative au attributions des cours ainsi que la liste des locaux dans lesquelles devront être placé nos attribution
+Le modèle englobe les données de l'application. Dans notre cas, les informations relatives aux attributions des cours ainsi que la liste des locaux dans lesquelles devront être placées nos attributions.
 
 \subsection{La vue}
-La vue correspond au graphisme de l'application. Pour bien illustrer ce concept, nous pouvons reprendre nos cartons. Ceux contiennent des informations sur les attributions et ce vois attribuer, lorsqu'il est placé dans un horaire, un local. La vue n'a aucune connaissance de ces informations. Notre cartons est uniquement un widget contenant des labels, que ceux ci sont positionner d'une certaines façon, qu'il font un taille de 80 pixels, etc. 
+La vue correspond au graphisme de l'application. Pour bien illustrer ce concept, nous pouvons reprendre nos cartons. Ceux-ci contiennent des informations sur les attributions et se voient attribuer, lorsqu'ils sont placés dans un horaire, un local. La vue n'a aucune connaissance de ces informations. En effet, notre carton est uniquement un widget contenant des labels qui  sont positionnés d'une certaine façon, qui font un taille de 80 pixels, etc. 
 
 \subsection{Le présenteur}
-Le présenteur représente la logique de l'application. Nous pouvons toujours prendre notre carton pour illustrer cette partie. Le modèle étant les données brute, la vue étant le moyen de les afficher, il faut pouvoir définir à un endroit, à quel moment les données doivent être mise a vue de l'utilisateur. Ces dans cette partie qu'intervient le présenteur, en mettant dans chaque carton les informations relative au attribution.
+Le présenteur représente la logique de l'application. Nous reprendrons l'exemple du carton pour illustrer cette partie. Le modèle étant les données brutes, la vue étant le moyen de les afficher, il faut pouvoir définir à un endroit, à quel moment les données doivent être mise a vue de l'utilisateur. C'est dans cette partie qu'intervient le présenteur, en mettant dans chaque carton les informations relatives aux attributions.
  
 \subsection{Le controleur de l'application} 
-GWT introduit un controleur d'application. Dans une application GWT, certaines logique qui ne sont pas assigné à un présenteur en particulier. Ce concept est propre à GWT et ne fait pas réellement parti de l'architecture du design pattern MVP. 
+GWT introduit un contrôleur d'application. Dans une application GWT, certaines logique qui ne sont pas assignées à un présenteur en particulier. Ce concept est propre à GWT et ne fait pas réellement partie de l'architecture du design pattern MVP. 
  
 \section{Les packages java}
-nous allons dans cette section, décortiquer la manière don le programme a été conceptualisé. Pour ce faire, nous allons tout d'abord commencer par analyser les différents packages java ainsi que les classes que celle ci comporte. Comme nous l'avons vu dans le point précédent, l'application est basé sur MVP. Nous pourrons distingué ce modèle au travers des différentes classe contenu dans nos packages.
+Nous allons dans cette section présenter la manière don le programme a été conceptualisé. Pour ce faire, nous allons tout d'abord commencer par analyser les différents packages java ainsi que les classes que ceux-ci comportent. Comme nous l'avons vu dans le point précédent, l'application est basée sur MVP. Nous pourrons distinguer ce modèle au travers des différentes classes contenues dans nos packages : \\
 %on cite les packages ici et on explique en deux trois mot pourquoi il sont la je pense notement au package DTO
 
 \begin{itemize}
 \item \textbf{be.betty.gwtp}\\
-	S'y trouve le fichier de configuration du projet. Ce fichier comporte l'ensemble des informations utilies au bon fonctionnement du projet.\\
+	S'y trouve le fichier de configuration du projet. Ce fichier comporte l'ensemble des informations utiles au bon fonctionnement du projet.\\
 	
 \item \textbf{be.betty.gwtp.client}\\
-	Nous y trouvons toutes les classes utilitaires de la partie cliente. Certaine de ces classe on des méthode statique, celle-ci étant nos données qui ne changerons pas.\\
+	Nous y trouvons toutes les classes utilitaires de la partie cliente. Certaines de ces classe ont des méthodes statiques, celles-ci étant nos données qui ne changerons pas.\\
 	
 \item \textbf{be.betty.gwtp.client.action}\\
-	Toutes les actions envoyer depuis la partie cliente ce trouve ici. Elle seront ensuite récupéré dans le packages server du projet.\\
+	Toutes les actions envoyées depuis la partie cliente se trouve ici. Elle seront ensuite récupérées dans les packages server du projet.\\
 	
 \item \textbf{be.betty.gwtp.client.event}\\
-	Les différentes évenement envoyer a travers l'application. Comme déjà expliquer précédement, ces énènements sont envoyer sur un busevent, celui-ci peut être écouter afin de récupérérer les informations.\\
+	Les différentes événements envoyés au travers de l'application. Comme déjà expliqué précédement, ces événements sont envoyés sur un busevent, celui-ci peut être écouté afin de récupérer les informations.\\
 	
 \item \textbf{be.betty.gwtp.client.gin}\\
-	Ce package plus particulier regroupe les informations relative à GinJector. Celui-ci possède notement une classe de configuration permettant a Gin de connaitre la structure du projet afin d'assurer le bon déroulement des différentes injections effectuées.\\
+	Ce package plus particulier regroupe les informations relatives à GinJector. Celui-ci possède notamment une classe de configuration permettant a Gin de connaître la structure du projet afin d'assurer le bon déroulement des différentes injections effectuées.\\
 	
 \item \textbf{be.betty.gwtp.client.place}\\
-Sont contenu, les informations relative au différente "page" du projet. Lorque l'application est lancée, a chaque page est attribuer un token (que nous pouvons retrouver dans l'url), par exemple la page de login correspond à l'url: \url{http://www.nomdusite.com\#login}. Le package place permet la création de ces liens a travers l'application.\\
+Sont contenus les informations relatives aux différentes "page" du projet. Lorsque l'application est lancée, à chaque page est attribuée un token (que nous pouvons retrouver dans l'url), par exemple la page de login correspond à l'url: \url{http://www.nomdusite.com\#login}. Le package placé permet la création de ces liens a travers l'application.\\
 
 \item \textbf{be.betty.gwtp.client.presenter}\\
-A chaque vue est associée un présenteur, les présenteurs de chaqu'une de ces vues est contenu dans ce package.\\
+A chaque vue est associée un présenteur, les présenteurs de chacune de ces vues est contenu dans ce package.\\
 
 \item \textbf{be.betty.gwtp.client.views}\\
- Ici se trouve les information concernant le graphisme général de l'application. Nous distingons deux types de fichier. Des fichier Classique java ainsi que des fichiers XML. Les fichiers XML étant construit à l'aide de GWT-Designer, même si ceux-ci on subit beaucoup de modification manuelle.\\
+ Ici se trouvent les informations concernant le graphisme général de l'application. Nous distinguons deux types de fichier. Des fichiers classiques Java ainsi que des fichiers XML. Les fichiers XML étant construits à l'aide de GWT-Designer, même si ceux-ci on subit beaucoup de modifications manuelles.\\
  
  \item \textbf{be.betty.gwtp.client.views.ourWidgets}\\
- Correspond à nos widget. Nous y retrouvons nos cartons ainsi que la modification d'un widget déjà existant offert par GWT. Nous avons du modifier nous même ce widget pour pallier a certaine limitation de celui-ci.\\
+ Correspond à nos widget. Nous y retrouvons nos cartons ainsi que la modification d'un widget déjà existant offert par GWT. Nous avons dû modifier nous même ce widget pour pallier a certaines limitations de celui-ci.\\
  
  \item \textbf{be.betty.gwtp.server}\\
- Toutes les informations utilise, et méthode statique du coté serveur sont mis dans ce package (comme le package client). S'y retrouve aussi les différents Handler des actions.\\
+ Toutes les informations utilisées et les méthodes statiques du coté serveur sont mis dans ce package (comme le package client). S'y retrouvent aussi les différents Handler des actions.\\
  
  \item \textbf{be.betty.gwtp.server.bdd}\\
-  La base de données créée par Hibernate se retrouve dans ce package. Ces d'ailleurs, via les classes de ce package, que la base de données est automatiquement créée.\\
+  La base de données créée par Hibernate se retrouve dans ce package. C'est d'ailleurs, via les classes de ce package, que la base de données est automatiquement créée.\\
   
  \item \textbf{be.betty.gwtp.server.guice}\\
- Equivalent de Jin coté serveur.\\
+ Équivalent de Jin coté serveur.\\
  
 \item \textbf{be.betty.gwtp.server.solver}\\
-Les différentes classe utiliser par notre solveur. Celle-ci étant basée sur les classes de Unitime.\\
+Les différentes classes utilisées par notre solveur. Celles-ci étant basée sur les classes de \textit{Unitime}.\\
 
 \item \textbf{be.betty.gwtp.server.shared}\\
-Contient les méthodes et constantes pouvant être appeler par la partie cliente et serveur de l'application.\\
+Contient les méthodes et constantes pouvant être appelées par la partie cliente et serveur de l'application.\\
 
 \textbf{be.betty.gwtp.server.shared.dto}\\
-Les classes de data transfert object, étant des POJO\footnote{Plain Old Java Object} permettant de transférer les données entre le client et le seveur permettant la bonne communication entre ces deux parties via RPC.\\
+Les classes de data transfert object, étant des POJO\footnote{Plain Old Java Object} permettant de transférer les données entre le client et le seveur, permettent la bonne communication entre ces deux parties via RPC.\\
 
 \end{itemize}
 
