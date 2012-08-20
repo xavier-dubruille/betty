@@ -209,10 +209,10 @@ Ann\'ee Acad\'emique 2011-2012}
                 \vspace*{\stretch{8}}
                 
             \large
-                 \vspace*{\stretch{6}}
-           
-                Travail de fin d'\'etude pr\'esent\'e en vue de l'obtention du grade de\\
-	Baccalaur\'eat en Technologies de l'Informatique
+                 \vspace*{\stretch{6}}          
+                Travail de fin d'\'etudes pr\'esent\'e en vue de l'obtention du grade du\\
+	dipl\^ome de bachelier en Informatique et Syst\`emes :\\
+	finalit\'e Technologie de l'Informatique
                 \vspace*{\stretch{2}}
 
 	\rule{\linewidth}{.5pt}
@@ -275,30 +275,30 @@ TEL : +32 (0)10 47 53 90\\
 }
 
 % fancy pagestyle redefinition
-    \fancyhead[LE,RO]{\small\leftmark}
-    \fancyhead[LO,C,RE]{}
-    \fancyfoot[LE,RO]{\rm\thepage}
-    \fancyfoot[LO,RE]{}
-    \fancyfoot[C]{}
-%    \lhead{}
-%    \chead{}
-%     \rhead{\small\leftmark}
-%    \rfoot{\rm\thepage}
-%    \lfoot{}
-%    \cfoot{}
+%    \fancyhead[LE,RO]{\small\leftmark}
+%    \fancyhead[LO,C,RE]{}
+%    \fancyfoot[LE,RO]{\rm\thepage}
+%    \fancyfoot[LO,RE]{}
+%    \fancyfoot[C]{}
+    \lhead{}
+    \chead{}
+     \rhead{\small\leftmark}
+    \rfoot{\rm\thepage}
+    \lfoot{}
+    \cfoot{}
     
 
 % plain pagestyle redefinition
 \fancypagestyle{plain}{
-    \fancyhead[L,C,R]{}
-    \fancyfoot[LE,RO]{\rm\thepage}
-    \fancyfoot[LO,C,RE]{}
-%    \lhead{}
-%    \chead{}
-%    \rhead{}
-%    \rfoot{\rm\thepage}
-%    \lfoot{}
-%    \cfoot{}
+%    \fancyhead[L,C,R]{}
+%    \fancyfoot[LE,RO]{\rm\thepage}
+%    \fancyfoot[LO,C,RE]{}
+    \lhead{}
+    \chead{}
+    \rhead{}
+    \rfoot{\rm\thepage}
+    \lfoot{}
+    \cfoot{}
     \renewcommand{\headrulewidth}{0pt}
 }
 \pagestyle{fancy}
@@ -395,19 +395,19 @@ TEL : +32 (0)10 47 53 90\\
     \@mkboth{\MakeUppercase{#1}}{\MakeUppercase{#1}}
 }
 
-\if@blankemptypage
+%\if@blankemptypage
     %Redefine cleardoublepage so that the pages inserted are really empty
     \renewcommand{\cleardoublepage}{
-        \clearpage
+%        \clearpage
         \if@twoside
             \ifodd
                 \c@page
             \else
                 \null
-                \thispagestyle{empty} %set style empty
-                \newpage
+%                \thispagestyle{empty} %set style empty
+%                \newpage
                 \if@twocolumn\null\newpage\fi
             \fi
         \fi
     }
-\fi
+%\fi
