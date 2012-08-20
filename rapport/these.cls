@@ -2,6 +2,8 @@
 % This model is only usable with LaTeX 2 epsilon
 % (highly) modified by
 % Vivian Brégier <Vivian.Bregier@are-ata.org>
+% AND
+% Jean-Philippe Fauconnier <jean.philipper@gmail.com> (august 2012)
 \NeedsTeXFormat{LaTeX2e}
 
 \ProvidesClass{these}[2007/07/16 classe pour mise en forme de These]
