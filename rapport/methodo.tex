@@ -1,42 +1,58 @@
 % !TeX root = these.tex
 \chapter{Méthodologie de conception}
-Un programme informatique, comme n'importe quel projet, nécessite une bonne gestion pour pouvoir assurer un bon déroulement de ce projet.
+Un programme informatique, comme n'importe quel projet, nécessite une bonne gestion pour pouvoir assurer son bon développement. 
 D'une part, il faut faire face aux difficultés liées au travail d'équipe, d'autre part, il faut gérer le projet en tant que tel.
 
-  \section{GIT et partage des données}
+  \section{Git pour le développement collaboratif}
   La création d'un logiciel en équipe implique la gestion de cette équipe ainsi que le partage et l'échange des
   informations entre chaque membre de celle-ci.
-  L'équipe doit travailler de façon coordonnée, elle doit s'échanger l'état
-  d'avancement du travail ainsi que les résultats obtenus. Pour ce faire, il faut
-  de bons moyens de communication, ou dans notre cas, UN bon moyen de communication: GIT\cite{git}. \\
-
-  GIT est un logiciel de gestion de version décentralisé. Il permet de
+  
+  L'équipe doit travailler de façon coordonnée. En effet, elle doit s'échanger l'état
+  d'avancement du travail ainsi que les résultats obtenus. Dans cette visée, nous nous sommes tournés vers le programme de gestion de versions Git développé par Torvald et, notamment, utilisé dans le cadre du développement du noyau Linux.\\
+\newline
+\indent
+  Git est un logiciel de gestion de version décentralisé. Il permet de
   travailler à plusieurs sur un même projet. Il gère lui-même l'évolution du
-  contenu en fusionnant les changements sans perte d'information. Il garde
-  également en mémoire toutes les versions du code. Il est libre, gratuit et
-  particulièrement facile à utiliser. Le code se trouve sur un dépôt internet, nous avons choisi GitHub\cite{github} pour ce dépôt.\\
+  contenu en fusionnant les changements sans perte d'information. En outre, il garde
+en mémoire toutes les versions du code. De plus, il est libre et
+  adapté aux grands projets.\\
+  \newline
+  \indent
+  Afin de permettre un stockage de notre code, nous avons de nous tourner vers un dépôt GitHub\footnote{GitHub est présenté précédemment.}.
+  
+  
 
   \section{Logiciel de suivi de problème}
-  En plus de cette gestion de versions, GitHub offre un logiciel de suivi de problème, c'est-à-dire, un bugtracker.
-  Un logiciel de suivi de problème est en quelque sorte un journal des problèmes classés par type.
-  C'est un outil particulièrement utile pour le développement en équipe. Il donne un aperçu clair des bugs et de leurs états.
+  
+  En plus de reposer sur Git, GitHub offre un logiciel de suivi de problème, aussi appelé  bugtracker. Un logiciel de suivi de problème est en quelque sorte un journal des problèmes classés par type.  C'est un outil particulièrement utile pour le développement en équipe. Il donne un aperçu clair des bugs et de leurs états de résolution.
 
   \section{Méthode de travail}
-Pour ce travail, il a été important d'avoir une méthode rigoureuse. Nous avons donc scindé le travail en plusieurs parties, sous forme de bloques à effectuer. Pour chacun de ces bloques, nous avons noté les problèmes de conceptions, si il y en a eu, que nous avons pu rencontrer. Nous avons analyser comment chaque bloque pouvait etre conceptualiser, nous pouvons par exemple citer le filtre de cartons qui ne pouvais être conçu avec les outils de base proposé par GWT. Nous avons donc soigneusement analysé chaque partie avant de nous lancer tête baissé dans la conception d'un bloque pour ensuite se retrouver bloquer par les possibilités qui nous était offerte.
-
-Nous avons suivit la méthode RUP\footnote{Rational Unified Process} basé sur UP, définissant un moyen de travailler sur des applications de type orienté objet. elle fournis de nombreux avantages comme le rôle de chaque acteur du projet, le cycle de vie de l'application, etc. Nous nous sommes donc basé sur cette méthode pour élaborer notre travail dans de bonne condition.
-
-Nos besoins étant de trouver une méthode de travail en équipe et d'avoir une bonne gestion de projet. Nous ne rentrerons pas dans les détails de cette méthode, mais nous pouvons dire qu'elle nous à été bénéfique pour l'élaboration de notre application. Certain aspect de cette méthode comme la gestion de projets on pu directement être utiliser via GitHub et sont bugtracker. Cet outils nous a été d'une aide précieuse.
-
-Nous avons conceptualiser notre application dans une optique d'extension. Dans cette objectif, rien n'a été fait statiquement afin de garantir l'évolution future de ce projet. C'est pour ces raisons que certains choix on été effectué, nous rendant la charge de travail plus lourde mais possédant des avantages non négligeable pour la bonne évolution de l'application. L'étendu et le potentiel d'un tel outil-logiciel est énorme, surtout pour un établissement scolaire, nous nous sommes donc conforté dans cette optique.
+Pour ce travail, il a été important d'avoir une méthode rigoureuse. Nous avons donc scindé le travail en plusieurs parties, sous forme de blocs à développer.\\
+\newline
+\indent
+Pour chacun de ces blocs, nous avons noté les problèmes de conceptions et, ensuite, nous avons analysé comment les résoudre. Par exemple,  la difficulté d'implémentation du système d'échanges asynchrones ou, encore, l'absence de support, par GWT, du filtre de cartons ont dû être analysées et ont été l'objet de solution respective. \\
+\newline
+\indent
+Nous avons suivi la méthode RUP\footnote{Rational Unified Process} basée sur UP, définissant un moyen de travailler sur des applications de type orienté objet. Cette dernière fournit de nombreux avantages comme le rôle de chaque acteur du projet, le cycle de vie de l'application, etc. Nous nous sommes donc basés sur cette méthode pour élaborer notre travail dans de bonnes conditions.
+\newline
+\indent
+Nos besoins étant de trouver une méthode de travail en équipe et d'avoir une bonne gestion de projet, nous ne rentrerons pas dans les détails de cette méthode. Toutefois, nous pouvons dire qu'elle nous à été bénéfique pour l'élaboration de notre application. Certains aspects de cette méthode comme la gestion de projets ont pu être utilisés via GitHub et son bugtracker. \\
+\newline
+\indent
+Nous avons conceptualisé notre application dans une optique d'extension. Dans cet objectif, rien n'a été fait statiquement afin de garantir l'évolution future de ce projet. C'est pour ces raisons que certains choix on été effectués, nous rendant la charge de travail plus lourde mais possédant des avantages non négligeables pour la bonne évolution de l'application. L'étendue et le potentiel d'un tel outil-logiciel sont grands, surtout pour un établissement scolaire. Par conséquent, nous nous sommes donc confortés dans cette optique.
 
 \section{Communication}
-Les outils ne fuisent évidement pas à l'élaboration d'un travail en équipe. Une bonne communication interne à du être assurée afin de pouvoir prendre des décisions sur certaines partie du projet. Bien qu'ayant définit la part de travail de chacun, il est important de bien comprendre ce qui a été fait par l'autre. Il faut aussi pouvoir tirer avantage d'un travail à deux, surtout dans le cadre de réflexion concernant la méthode à utiliser, les choix devant être établi pour élaborer certaines partie de l'application mais aussi, dans l'optique qu'il y à plus de chose dans deux tête que dans une, pouvoir partager nos idées afin de pouvoir régler certains problèmes de conception, bugs, etc. 
 
-Pour cette partie, nous avons utilisé des logiciels de VOIP pour le travail à distance, et nous sommes réunis au minimum d'une fois par semaine afin de discuter des différents point ayant été établi, les problèmes rencontrer sur ces points et de trouver, ensemble, une solution aux problèmes s'il y en à eu. Certaines tâches ont donc été effectuées séparément et d'autres conjointement.
+Une bonne communication interne a dû être assurée afin de pouvoir prendre des décisions sur certaines parties du projet. Bien qu'ayant défini la part de travail de chacun, il est important de bien comprendre ce qui a été fait par l'autre. Il faut aussi pouvoir tirer avantage d'un travail à deux, surtout dans le cadre de réflexion concernant la méthode à utiliser. Par exemple, les choix devant être établis en priorité pour élaborer certaines parties de l'application ou pour régler les bugs, etc. \\
+\newline
+\indent
+Nous avons utilisé des logiciels de VOIP et nous  nous sommes réunis régulièrement afin de discuter des différents points. Ainsi, il était plus aisé de parler des problèmes rencontrés et de trouver, ensemble, une solution à ces problèmes. Certaines tâches ont donc été effectuées séparément et d'autres conjointement.
 
-\section{Apport périphérique}
-Nous avons, dans le cadre de nos cours à l'EPHEC, eu l'occasion d'utiliser certaines méthode permettant de bien mettre au clair un programme, tel que la méthode QQOQCP\footnote{Quoi? Qui? Où? Quand? Comment? Pourquoi?}. Nous avons donc tiré parti de cet apprentissage pour introduire la problématique de notre travail. En nous étant intéresser au différentes méthodologie existante, nous avons beaucoup appris sur les problèmes pouvant intervenir dans l'élaboration d'une application (que se soit web ou desktop). Il est bien entendu impératif de ce rendre compte de ces différents points pour pouvoir avoir une cohérence au sein d'une équipe. Il est fréquent pour un développeur de devoir travailler en équipe dans une entreprise, pouvoir avoir cette approche nous donne l'opportunité d'être mieux préparer au monde professionnel.
+\section{Apports périphériques}
+Nous avons, dans le cadre de nos cours à l'EPHEC, eu l'occasion d'utiliser certaines méthodes permettant de bien clarifier un programme telle que la méthode QQOQCP\footnote{Quoi? Qui? Où? Quand? Comment? Pourquoi?}. Nous avons donc tiré parti de cet apprentissage pour introduire la problématique de notre travail. 
+\newline
+\indent
+Ainsi, en reposant sur les différentes méthodologies existantes, nous avons beaucoup appris sur les problèmes pouvant intervenir dans l'élaboration d'une application (que ce soit web ou desktop). Il est bien entendu impératif de se rendre compte de ces différents points pour pouvoir avoir une cohérence au sein d'une équipe. Il est fréquent pour un développeur de devoir travailler en équipe dans une entreprise. Ainsi, cette approche nous donne l'opportunité d'être mieux préparés au monde professionnel.
 
 
 
