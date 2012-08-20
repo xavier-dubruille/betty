@@ -38,7 +38,11 @@ utiliser cette fonctionnalité, il est necessaire de rajouter certaine xxx, tel
 qu'une resyncronisation des modifications faite en local avec la bdd lors que la
 connection est retrouvée ainsi que la possibilité de reprendre un projet en
 cache.
-\subsection{upload à partir d'une bdd}
+\subsection{upload à partir d'une base de données}
+le fichier actuellement utilisé pour l'upload des attributions est le résultat d'une requête SQL. Dans un soucis de clareter et de facilité pour l'utilisateur, il est plus évident de devoir rentrer un fichier manuellement étant donné qu'un autre fichier des locaux doit être également fournis. Pour qu'un upload puisse se faire de manière complète, il faudrait que la liste des locaux avec ce que ceux ci comporte soit également enregister dans une base de données afin de ne pas perdre l'utilisateur sur deux méthodes différentes d'envoi et de pourvoir ainsi garder une certaine cohérence du logiciel.
 \subsection{modifications de données}
 actuelement il n'est pas possible de modifier toutes les données intervenant
-dans l'application (notament la création d'un prof, local, etc), 
+dans l'application (notament la création d'un prof, local, etc.) Il faudrait donc avoir la possibilité d'ajouter certaines informations directement via l'interface du logiciel, afin de prévenir de tout oubli, ou rajout de dernière minute sur le nombre de classes, etc.
+
+\subsection{Upload de contraintes}
+Pour que cette partie puisse être éfectuée, il faudra d'abord s'assurer d'avoir un solveur très résistant. L'idéal serait de permettre à l'utilisateur d'uploader sont fichier de contraintes (sous forme de fichier XML par exemple), ou de pouvoir les entrée manuellement via l'interface. N'étant pas l'objectif de base de notre travail de fin d'étude, celui-ci étant plus orienté sur la programmation par contraintes à proprement parlé et l'intégration de cette programmation dans un outils d'aide à la création d'horaire, et donc l'élaboration de ce logiciel, ceci limite l'utilisateur de l'application aux uniques configuration que nous aurions choisi au préalable. Il faudrait donc dans l'idéal permettre à l'utilisateur de pouvoir manipuler lui même les contraintes.

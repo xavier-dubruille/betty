@@ -1,15 +1,129 @@
 % !TeX root = these.tex
 
 \chapter{Analyse de la problématique et outils existants}
-\section{La programmation par contraintes}
-Avant tout, il est nécessaire de bien saisir la problématique et en quoi celle-ci peut être utile à notre travail. Nous avons du faire un analyse approfondie sur ce qu'était une contraintes ainsi que la programmation de celles-ci. Il a fallu ensuite analyser les différents outils nous permettant de "programmer par contraintes" et ensuite essayer de les implémenter dans un logiciel d'aide à la création d'horaire que nous avons du créer au préalable.\\
-\newline
-\indent
+%Avant tout, il est nécessaire de bien saisir la problématique et en quoi celle-ci peut être utile à notre travail. Nous avons du faire un analyse approfondie sur ce qu'était une contraintes ainsi que la programmation de celles-ci. Il a fallu ensuite analyser les différents outils nous permettant de "programmer par contraintes" et ensuite essayer de les implémenter dans un logiciel d'aide à la création d'horaire que nous avons du créer au préalable.\\
+%\newline
+%\indent
 %D'abord, pourquoi on a fait ça et pourquoi ce TFE. En quoi c'est utilite pr notre travail
-Madame Gillet, Directrice de l'établissement Ephec à Louvain-la-Neuve, établit l'horaire a chaque nouveau quadrimestre de l'année scolaire. l'établissement d'un horaire doit se faire sous certaines contraintes et en fonction de désidératas remis par les professeurs. Le nombre de locaux informatique est limité, certains professeurs sont dit "externe" à l'Ephec, ceux-ci doivent se voir attribué un horaire particulier, certain cours se donne dans des locaux externes à l'Ephec et ne sont donc pas disponible à chaque période de cours. Toute ces contraintes, si elle ne sont pas informatisée doivent prise en compte par la personne établissant l'horaire qui doit réaliser un "vrai casse tête chinois" afin d'avoir un horaire le plus adéquat possible.\\
-\newline
-\indent
-La programmation par contrainte permet de résoudre de manière automatique cette problématique, facilitant ainsi la tâche qui incombe à la personne en charge de l'élaboration d'un horaire. Nous allons d'abord définir ce qu'est une contraintes de manière plus théorique pour bien saisir la problématique et la provenance de celle-ci. Nous discuterons ensuite autour des différentes solutions existantes nous permettant de réaliser cela.
+%Madame Gillet, Directrice de l'établissement Ephec à Louvain-la-Neuve, établit l'horaire a chaque nouveau quadrimestre de l'année scolaire. l'établissement d'un horaire doit se faire sous certaines contraintes et en fonction de désidératas remis par les professeurs. Le nombre de locaux informatique est limité, certains professeurs sont dit "externe" à l'Ephec, ceux-ci doivent se voir attribué un horaire particulier, certain cours se donne dans des locaux externes à l'Ephec et ne sont donc pas disponible à chaque période de cours. Toute ces contraintes, si elle ne sont pas informatisée doivent prise en compte par la personne établissant l'horaire qui doit réaliser un "vrai casse tête chinois" afin d'avoir un horaire le plus adéquat possible.\\
+%\newline
+%\indent
+%La programmation par contrainte permet de résoudre de manière automatique cette problématique, facilitant ainsi la tâche qui incombe à la personne en charge de l'élaboration d'un horaire. Nous allons d'abord définir ce qu'est une contraintes de manière plus théorique pour bien saisir la problématique et la provenance de celle-ci. Nous discuterons ensuite autour des différentes solutions existantes nous permettant de réaliser cela.
 
 %Parler de notre rencontre avec Pierre bidule je sais plus quoi
 %je sais plus ce qu'on avais dit d'autre
+
+Afin de mieux comprendre la problématique liée à l'élaboration d'un horaire, et de mieux comprendre ce qu'est une contrainte, nous avons tout d'abord pris rendez-vous avec Madame Gillet, directrice de l'Ephec. Celle-ci étant la personne en charge de l'élaboration des horaires pour la partie Louvain-la-Neuve. Nous avons parcouru ensembles les différents problèmes et les différents types de contraintes auxquelles nous devrons faire face. Cette première approche ayant pour but de nous orienter sur le type de contraintes intervenants dans notre travail. Il existe en effet plusieurs types de contraintes.
+
+\section{Une contrainte en théorie}
+Dans le cadre d'un horaire, nous devons faire face à des contraintes sur des domaines finis. Nous allons illustrer ce concept comme suite:
+P=(X,D,C)
+	X étant nos variables. Celles-ci seront représentées par les attributions (nos cartons) dans lesquels nous retrouverons les éléments suivant: nom du professeur, le cours, la classe. Nous pouvons l'écrire sous la forme Vn ou V correspond à la valeur du carton, et n sont numéro.
+	D correspond au domaine. Ici, il s'agit d'effectuer un horaire. Notre domaine sera le nombre de locaux disponibles multiplié par le nombre de périodes. Dans le cadre du cours du jour à l'Ephec de Louvain-la-Neuve, nous avons 6 périodes par jour, durant 5 jours. Un local est donc disponible à 6 moments de la journée durant 5 jours/semaine. Il faut donc multiplié le nombre de local par 30. Et nous avons notre domaine finis. Ce domaine s'écrit donc sous la forme Nl x Np.
+	C étant nos contraintes. Il existe différents types de contraintes, nous allons en énumérer certaines pour bien se rendre compte du nombre important de celles-ci et dans quel moment elles interviennent.
+
+Pour régler ce problème de contraintes il est peut être avantageux de prendre en compte certaines heuristiques ou métaheuristiques, le problème étant de type NP-Complet.
+Une problématique de la programmation par contrainte est que les algorithmes de résolution tentent à trouver une solution optimale au problème. Si une contrainte ne peut être prise en compte lors de cette tentative, nous n'obtiendrons pas de résultat. Pour ce faire, il est nécessaire d'appliquer un filtrage de ce qui ne peut être pris en compte. Ce "mécanisme" s'appel la propagation de contraintes.
+
+Propagation de contraintes
+L'objectif étant de d'appliquer un filtrage sur les attributions posant problèmes et de les retirer du pool de cartons pris en charge lors de la résolution de l'horaire. Il est nécessaire de prendre en compte le temps que le filtrage va prendre afin de garantir une meilleure rapidité de la résolution.
+
+\section{Les types de contraintes}
+Pour ce rendre compte de la consistance des contraintes à prendre en compte lors de l'établissement de l'horaire, nous en avons énuméré un maximum dont voici la liste
+Locaux
+Matériels: (transparent, audio, Projecteur)
+Type de local (sale info, auditoire, TP)
+Nombres de places disponibles
+Situation géographique (près d'un ascenseur)
+Doit être attribué à une classe
+Marie Curie, place de science (Premier local à mettre pour les TI)
+
+Professeurs
+Désidérata
+Externe/mi-temps/plein temps
+Ne peut pas se dédoubler (cours dans un local) (deux aussi, mais spécial)
+Exigence sur matériel(s) pour un cours particulier
+Pas de parent-enfant dans la même classe
+Temps cours Louvain-la-Neuve - Bruxelles (éviter les allers-retours inutiles)
+
+Cours
+Etalement dans le temps (nombre de périodes) d'un cours
+Mettre des cours qui se suivent obligatoirement (TP 2 heure à la suite)
+Eviter que certains cours qui se suivent (pas AN+NDLS toute une journée)
+Groupe et demi-groupe
+Compter le nombre de périodes
+Certains cours son donnés toutes les deux semaines
+
+
+
+Attribution (ou carton)
+Doit pouvoir laisser tomber les contraintes
+Doit pouvoir ajouter des contraintes
+
+Obligatoire
+Eviter les fourches
+Si possible, garder les élèves dans un même local et faire déplacer le professeur
+Ordre sur les contraintes (poids sur celle-ci) afin de favoriser un externe plutôt qu'un interne
+Attribuer les locaux informatiques à un jour donné pour une option
+Quadrimestre 1 et 2
+Mettre les jours de congé
+
+Autres
+Directrice doit définir Demi-classe, groupe, etc. pour un cours
+Pouvoir reporter des cours
+Pause (fixe ou variable)
+
+Pour des améliorations futures, d'autres contraintes pourront éventuellement être prisent en charge comme:
+
+Etudiants
+Répartition filles/garçons équitable (sauf TI)
+Répartition en fonction de la provenance des étudiants (égalisé les niveaux d'une classe)
+Possibilité de changer de classe si étudiant sportif (donc changer nombre de personnes dans une classe)
+
+Classe
+Nombre d'étudiant maximum qu'une classe peut accepter (limité par nombre de place des locaux)
+
+Nous pouvons voir que le nombre de contraintes à prendre en compte posent un réel problème quand il doit être traiter par un humain, les possibilités, les préférences sur certains types de contraintes devant être absolument prise en compte ou pas, relève d'une réflexion de haut niveau. Les ordinateurs "réfléchissant" de manière plus "mathématique" son en théorie plus apte à répondre de ce genre de problème.
+
+\section{Analyse des applications existantes}
+Nous avons fait également une petite étude sur les applications déjà existantes permettant d'élaborer des horaires avec contraintes. Nous pouvons citer EDT, programme très rependu et beaucoup utilisé dans les écoles, aSc Horaire possédant une partie automatisée et manuel pour la création d'horaire ainsi que University time tabling (UniTime). Cette dernière est une application très prometteuse, mais ne propose que l'établissement d'horaire automatique. Aucune façon manuelle de faire n'est proposée. Il utilise sa propre librairie pour résoudre la problématique des contraintes.
+
+\section{La programmation par contraintes}
+Nous avons cité les applications déjà existantes, abordé les contraintes de manière théorique, les avons énumérées, quand est-il de l'application de cette théorie. Pour pouvoir programmer par contrainte il existe plusieurs libraire. Certaines payantes, et d'autres Open source et gratuite. Notre travail ayant pour objectif d'être libre et open source, nous nous somme intéresser a ces dernières et en avons testé certaines:
+•	GeCode
+•	OR tools
+•	Python Constraint
+Python constraint, constitue une bonne approche de la problématique, le code étant clair et concis. Celui-ci sera le plus parlant pour illustrer la programmation par contrainte de manière plus concrète.
+
+>>> from constraint import *
+>>> problem = Problem()
+>>> problem.addVariable("a", [1,2,3])
+>>> problem.addVariable("b", [4,5,6])
+>>> problem.getSolutions()
+[{'a': 3, 'b': 6}, {'a': 3, 'b': 5}, {'a': 3, 'b': 4},
+ {'a': 2, 'b': 6}, {'a': 2, 'b': 5}, {'a': 2, 'b': 4},
+ {'a': 1, 'b': 6}, {'a': 1, 'b': 5}, {'a': 1, 'b': 4}]
+
+>>> problem.addConstraint(lambda a, b: a*2 == b,
+                          ("a", "b"))
+>>> problem.getSolutions()
+[{'a': 3, 'b': 6}, {'a': 2, 'b': 4}]
+
+>>> problem = Problem()
+>>> problem.addVariables(["a", "b"], [1, 2, 3])
+>>> problem.addConstraint(AllDifferentConstraint())
+>>> problem.getSolutions()
+[{'a': 3, 'b': 2}, {'a': 3, 'b': 1}, {'a': 2, 'b': 3},
+ {'a': 2, 'b': 1}, {'a': 1, 'b': 2}, {'a': 1, 'b': 3}]
+
+Mettre une explication du code ici
+Nous avons utilisé GeCode et Google OR tools. Ces deux outils sont très puissant mais ne nous on pas permit d'obtenir les résultats attendu.
+
+\section{Rencontre}
+Dans le cadre de ce travail, nous avons eu l'occasion de rencontrer monsieur Pierre Schaus. Ayant effectué sa thèse de doctorat à l'UCL sur la problématique des contraintes. Notre rencontre nous a permis de mieux cerner la problématique.
+Suite à cet entretien, nous avons pu mieux nous rendre compte de la problématique et des vigilances à prendre lors de la programmation par contraintes. Le solveur ne se contente pas d'être une librairie dans laquelle il suffirait d'appeler des fonctions pour résoudre un problème et avoir un résultat. Les choses doivent se faire petit à petit, car si le solveur ne trouve pas de résultat, il n'est pas possible de savoir pourquoi celui-ci n'a pu en trouver un. Il faut donc y rentrer nos contraintes pas à pas. Certaines contraintes étant plus importante que d'autre, il serait également utile de pouvoir leur mettre un poids. Ceci n'étant pas possible, les solveurs ne permettant pas de mettre un poids d'importance sur les contraintes, il a fallu trouver un autre moyen. Monsieur Pierre Schaus nous a alors conseillé de Hiérarchiser nos contraintes en utilisant un arbre de contraintes. Celles-ci seront ensuite rentrées dans le solveur suivant leurs importances. Monsieur Schaus étant entrain d'élaborer ces propres librairies, nous à montrer quelques exemple concret de l'utilisation de celle-ci et de la marche à suivre.
+
+Il nous a ensuite fournis cette librairie. Celle-ci n'étant pas encore distribuée, mais seront disponible gratuitement et distribuée en open source. Suite à nos différents tests basé sur ce que nous avions appris et sur les conseils de Monsieur Schaus, nous nous sommes retrouvé bloquer comme sur OR tools et GeCode, et limité dans l'utilisation que nous voulions en faire..
+
+\section{Décision}
+Nous nous sommes rappeler du logiciel uniTime et avons exploré de manière plus approfondie ce que l'application propose. Nous nous somme basé sur cette dernière pour l'élaboration de notre solveur, les possibilités que cette librairie offre correspondant parfaitement aux contraintes de type horaire. Nous parlerons plus en détail de cette librairie dans la chapitre lui étant concernée.

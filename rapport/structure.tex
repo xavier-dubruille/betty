@@ -1,3 +1,23 @@
 % !TeX root = these.tex
 
 \chapter{Structure du code}
+
+\section{Le model View Presenter}
+MVP est un design pattern\footnote{patron de conception, définissant une façon de conceptualiser un projet} afin d'avoir un code clair et structurer d'une application. Le MVP favorise le travail d'équipe et permet aux différentes acteur prenant par au développement de l'application de pouvoir travailler simultanément. Nous allons découper ces différentes partie.
+
+\subsection{Le modèle}
+Le modèle englobe les données de l'application. Dans notre cas, les informations relative au attributions des cours ainsi que la liste des locaux dans lesquelles devront être placé nos attribution
+
+\subsection{La vue}
+La vue correspond au graphisme de l'application. Pour bien illustrer ce concept, nous pouvons reprendre nos cartons. Ceux contiennent des informations sur les attributions et ce vois attribuer, lorsqu'il est placé dans un horaire, un local. La vue n'a aucune connaissance de ces informations. Notre cartons est uniquement un widget contenant des labels, que ceux ci sont positionner d'une certaines façon, qu'il font un taille de 80 pixels, etc. 
+
+\subsection{Le présenteur}
+Le présenteur représente la logique de l'application. Nous pouvons toujours prendre notre carton pour illustrer cette partie. Le modèle étant les données brute, la vue étant le moyen de les afficher, il faut pouvoir définir à un endroit, à quel moment les données doivent être mise a vue de l'utilisateur. Ces dans cette partie qu'intervient le présenteur, en mettant dans chaque carton les informations relative au attribution.
+ 
+\subsection{Le controleur de l'application} 
+GWT introduit un controleur d'application. Dans une application GWT, certaines logique qui ne sont pas assigné à un présenteur en particulier. Ce concept est propre à GWT et ne fait pas réellement parti de l'architecture du design pattern MVP. 
+ 
+\section{Les packages java}
+nous allons dans cette section, décortiquer la manière don le programme a été conceptualisé. Pour ce faire, nous allons tout d'abord commencer par analyser les différents packages java ainsi que les classes que celle ci comporte. Comme nous l'avons vu dans le point précédent, l'application est basé sur MVP. Nous pourrons distingué ce modèle au travers des différentes classe contenu dans nos packages.
+
+%on cite les packages ici et on explique en deux trois mot pourquoi il sont la je pense notement au package DTO
