@@ -248,7 +248,7 @@ Locaux adaptés\\
 En conclusion, nous pouvons voir que le nombre de contraintes à prendre en compte pose un réel problème quand elles doivent être traitées par un humain. Les possibilités, les préférences sur certains types de contraintes devant être absolument prises en compte ou pas, relève d'une réflexion de haut niveau. Les ordinateurs "réfléchissant" de manière plus "mathématique" son en théorie plus apte à répondre de ce genre de problème.
 
 \section{Analyse des applications existantes}
-Nous avons fait également une petite étude sur les applications déjà existantes permettant d'élaborer des horaires avec contraintes. Nous pouvons citer \texttt{EDT}, programme très repandu dans les écoles, \texttt{aSc} Horaire possédant une partie automatisée et manuelle pour la création d'horaire ainsi que \texttt{Université time tabling} (UniTime). Cette dernière est une application très prometteuse, mais ne propose que l'établissement d'horaire automatique. Aucune façon manuelle de faire n'est proposée. Il utilise sa propre librairie pour résoudre la problématique des contraintes.
+Nous avons fait également une petite étude sur les applications déjà existantes permettant d'élaborer des horaires avec contraintes. Nous pouvons citer \texttt{EDT}, programme très repandu dans les écoles, \texttt{aSc} Horaire possédant une partie automatisée et manuelle pour la création d'horaire ainsi que \texttt{Université time tabling} (UniTime). Cette dernière est une application très prometteuse, mais ne propose que l'établissement d'horaire automatique. Aucune façon manuelle de faire n'est proposée. Il utilise ses propres librairies pour résoudre la problématique des contraintes.
 
 \section{La programmation par contraintes}
 Nous avons abordé les contraintes de manière théorique, les avons énumérées et cité les applications déjà existantes, qu'en est-il de l'application de cette théorie? Pour pouvoir programmer par contraintes il existe plusieurs libraire. Certaines propriétaires et d'autres open source. Notre travail ayant pour objectif d'être libre et open source, nous nous sommes intéressés à ces dernières et en avons testé certaines :\\
@@ -287,8 +287,9 @@ Python constraint, constitue une bonne approche de la problématique, le code é
 \caption{Code python}
 \end{figure}
 
-\textbf{Debug : Mettre une explication du code ici}\\
-
+La FIGURE I\footnote{code exemple trouvé sur le site de python constraint à l'adresse http://labix.org/python-constraint/} propose la résolution d'une contrainte. Dans le premier problème, nous ajoutons deux variables sans poser de contraintes et demandons au solveur de trouver une solution. A ce problème, nous ajoutons la contrainte de \texttt{b = 2 x a}, le solveur retourne alors la solution correspondante. Enfin, dans le troisième exemple, nous créons un nouveau problème, et demandons à ce que chaque élément soit différent.
+\newline
+\indent
 Dans le cadre de notre solution, nous avons utilisé \texttt{GeCode} et \texttt{Google OR tools}. Ces deux outils sont très puissants et nous ont permis de répondre dans une certaine mesure aux contraintes explicitées.
 
 \section{Rencontre}
@@ -298,14 +299,14 @@ Dans le cadre de ce travail, nous avons eu l'occasion de rencontrer monsieur Pie
 Suite à cet entretien, nous avons pu mieux nous rendre compte de la problématique et des vigilances à prendre lors de la programmation par contraintes. Le solveur ne se contente pas d'être une librairie dans laquelle il suffirait d'appeler des fonctions pour résoudre un problème et avoir un résultat. Les choses doivent se faire petit à petit, car si le solveur ne trouve pas de résultat, il n'est pas possible de savoir pourquoi celui-ci n'a pu en trouver un. 
 \newline
 \indent
-Il faut donc y rentrer nos contraintes pas à pas. Certaines contraintes étant plus importantes que d'autre, il serait également utile de pouvoir leur mettre un poids. Ceci n'étant pas possible\footnote{L'implémentation actuelle proposée ne permet pas de mettre un poids d'importance sur les contraintes.}, il a fallu trouver un autre moyen. Monsieur Pierre \textsc{Schaus} nous a alors conseillé d'utiliser une approche par hiérarchisation de nos contraintes. Cette hiérarchie a été exécutée en utilisant un arbre de contraintes. Celles-ci seront ensuite rentrées dans le solveur suivant leurs importances. Monsieur \textsc{Schaus} étant entrain d'élaborer ses propres librairies, nous à montrer quelques exemple concret de l'utilisation de celle-ci et de la marche à suivre.\\
+Il faut donc y rentrer nos contraintes pas à pas. Certaines contraintes étant plus importantes que d'autre, il serait également utile de pouvoir leur mettre un poids. Ceci n'étant pas possible\footnote{L'implémentation actuelle proposée ne permet pas de mettre un poids d'importance sur les contraintes.}, il a fallu trouver un autre moyen. Monsieur Pierre \textsc{Schaus} nous a alors conseillé d'utiliser une approche par hiérarchisation de nos contraintes. Cette hiérarchie a été exécutée en utilisant un arbre de contraintes. Celles-ci seront ensuite rentrées dans le solveur suivant leurs importances. Monsieur \textsc{Schaus} étant entrain d'élaborer ses propres librairies, nous à montrer quelques exemple concret de l'utilisation de celles-ci et de la marche à suivre.\\
 \newline
 \indent
-Il nous a ensuite fourni cette librairie, cette dernière n'étant pas encore distribuée actuellement\footnote{Mais elle sera disponible gratuitement et distribuée en open source sous peu.}. Cependant, cette dernière n'était pas adaptée à notre problème précis\footnote{Cette librairie n'est pas adaptée à un problème NP-Complet car il est impossible d'y ajouter des heuristiques.}. En conséquence de quoi, nous nous sommes tournés, dans un deuxième temps, vers  \texttt{GeCode} et \texttt{Google OR tools} pour faire quelques tests et élaborer un premier prototype.
+Il nous a ensuite fourni ces librairie, ces dernière n'étant pas encore distribuées actuellement\footnote{Mais elles seront disponible gratuitement et distribuées en open source sous peu.}. Cependant, ces dernières n'était pas adaptées à notre problème précis\footnote{Ces librairie ne sont pas adaptées à un problème NP-Complet car il est impossible d'y ajouter des heuristiques.}. En conséquence de quoi, nous nous sommes tournés, dans un deuxième temps, vers  \texttt{GeCode} et \texttt{Google OR tools} pour faire quelques tests et élaborer un premier prototype.
 
 \section{Décision}
 
-Cependant, à la fin de l'année, pour le prototype final, nous nous sommes tournés vers la librairie \texttt{uniTime} et avons exploré de manière plus approfondie ce que l'application propose. Nous nous sommes basés sur cette dernière pour l'élaboration de notre solveur. En effet, les possibilités que cette librairie offre correspondent parfaitement aux contraintes de type horaire. Nous parlerons plus en détail de cette librairie dans la suite de ce travail.
+Cependant, à la fin de l'année, pour le prototype final, nous nous sommes tournés vers les librairies \texttt{uniTime} et avons exploré de manière plus approfondie ce que l'application propose. Nous nous sommes basés sur ces dernières pour l'élaboration de notre solveur. En effet, les possibilités que ces librairies offrent correspondent parfaitement aux contraintes de type horaire. Nous parlerons plus en détail de ces librairies dans la suite de ce travail.
 
 
 

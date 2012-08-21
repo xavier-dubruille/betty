@@ -2,7 +2,7 @@
 % !TeX root = these.tex
 
 \chapter{Présentation de l'application}
-Notre application, surnommée Betty\footnote{Brillant Ephec Time Tabling for You}, est un outil permettant d'élaborer un horaire de façon plus conviviale et plus rapide comparé à la façon actuelle de procéder à l'Ephec.\\
+Notre application, surnommée Betty\footnote{Brillant EPHEC Time Tabling for You}, est un outil permettant d'élaborer un horaire de façon plus conviviale et plus rapide comparé à la façon actuelle de procéder à l'EPHEC.\\
 \newline
 \indent
 Cependant, avant tout développement ultérieur, il est nécessaire de présenter les différents objets composant notre solution. Nous avons choisi de travailler par \texttt{projet}. Chaque projet est caractérisé par un ensemble de cours étalés sur deux semestres. Betty permet de gérer plusieurs projets. Dans une optique de confidentialité, l'accès à chaque projet nécessite une \texttt{inscription} et une \texttt{connexion} de la part de l'utilisateur.
@@ -49,7 +49,7 @@ La page est ordonnée de façon à avoir toujours le dernier projet en date cré
 	\caption{représentation d'un projet}
 \end{center}
 \end{figure}
-\\Lors de la création d'un nouveau projet, celui-ci doit être nommé et contenir les fichiers nécessaires à l'élaboration de l'horaire. Ces fichiers se présentent sous la forme d'un .xls contenant pour le premier, la liste des attributions de chaque cours, ce fichier est le résultat d'une requête SQL et nous a été fourni par l'Ephec. Le deuxième représente la liste des locaux disponibles, ce fichier n'existant pas en tant que tel, à initialement été créé par Madame Vroman, Professeur à l'Ephec, dans le cadre du "projet horaire" du cours de langage avancé de programmation de deuxième année. Nous y avons ajouté des informations pouvant être prises en compte par le solveur, et permettant de facilité l'établissement manuel d'un horaire.\\
+\\Lors de la création d'un nouveau projet, celui-ci doit être nommé et contenir les fichiers nécessaires à l'élaboration de l'horaire. Ces fichiers se présentent sous la forme d'un .xls contenant pour le premier, la liste des attributions de chaque cours, ce fichier est le résultat d'une requête SQL et nous a été fourni par l'EPHEC. Le deuxième représente la liste des locaux disponibles, ce fichier n'existant pas en tant que tel, à initialement été créé par Madame Vroman, Professeur à l'EPHEC, dans le cadre du "projet horaire" du cours de langage avancé de programmation de deuxième année. Nous y avons ajouté des informations pouvant être prises en compte par le solveur, et permettant de facilité l'établissement manuel d'un horaire.\\
 \\
 Une fois le projet créé et le quadrimestre sélectionné, l'utilisateur est redirigé vers la page principale de l'application dans laquelle l'horaire pourra être créé.
 
@@ -77,7 +77,7 @@ La page principale se présente comme suit:\\
 \end{figure}
 
 \subsection{Les attributions}
-La mise en forme des cartons se base sur le design de ceux actuellement employés à l'Ephec lors de l'établissement manuel de l'horaire. Ceux-ci comportent le/les classe(s) assignée(s) à chaque cours donné par un professeur.\\
+La mise en forme des cartons se base sur le design de ceux actuellement employés à l'EPHEC lors de l'établissement manuel de l'horaire. Ceux-ci comportent le/les classe(s) assignée(s) à chaque cours donné par un professeur.\\
 \newline
 \indent
 À chaque carton est assigné un ensemble de locaux où pourront se donner les cours. Par exemple, un carton de type informatique sera assigné uniquement aux locaux de type informatique. Lorsque le carton est déposé, la solution lui assigne un local disponible parmi cette liste, et nous pouvons voir apparaître le nom du local en bas à droite du carton.

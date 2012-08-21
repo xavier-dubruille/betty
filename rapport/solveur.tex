@@ -62,7 +62,7 @@ An assignement is complete if |$\eta$| = |V| ( i.e., all variables are assigned)
 Dans le cas de notre problème, les variables seront les Cartons qu'il faut pouvoir déposer dans le tableau, et leur valeurs seront la place à laquelle ils seront déposés. Leur domaine est donc leur position géographique et temporelle. Il s'agit d'un domaine à deux dimensions, non avons choisi de ne pas prendre en compte une troisième dimension qu'aurait pu être le choix d'un professeur pour un cours. Il est donc necessaire que chaque "carton" aie préalablement un, et un seul prof, qui lui est assigné.
 Les contraintes n'étant que des relation entre nos variables, il est aisé de représenter bon nombre de nos contraintes. Par exemple pour expliciter qu'un prof ne peut donner deux cours simultanément, notre contrainte s'écrit naturelement :
 v1 != v2 où v1 et v2 sont deux cartons d'un meme professeur
-% Dans notre cas, les variables sont, ce qu'on va appeller des "activity", et correspondent à un cours ou à tous type d'activités pouvant avoir lieu à l'Ephec (il s'agit, dans la méthode traditionnelle des cartons physiques qui seront manipulés lors de la création d'un horaire.)
+% Dans notre cas, les variables sont, ce qu'on va appeller des "activity", et correspondent à un cours ou à tous type d'activités pouvant avoir lieu à l'EPHEC (il s'agit, dans la méthode traditionnelle des cartons physiques qui seront manipulés lors de la création d'un horaire.)
 % 
 % Le domaine de valeurs que peuvent prendre ses variables, ses activity, sont un local et une periode de la semaine.  Ca fait un domaine à deux dimensions (Lieu X Periode). Dans l'idéal, il faudrait prendre le choix des professeurs comme troisième dimension, mais ce n'est pas le cas dans notre impémentation actuelle. 
 % 
@@ -81,7 +81,7 @@ Le deusième problème, est que cette facon de backtracking, et d'exploration ex
 \newline
 \indent
 %== Optimisation
-Le troisième problème engendré par cette méthode exaustive, c'est qu'elle ne pourra pas fournire une soltion qui ne respecte pas toutes les contraintes, étant donné qu'il ne se déplace que d'états consistant\footnote{} en états consistant. Si un problème n'offre pas de solution, car il y a trop de contraintes, comme dans le cas de la création d'un horaire Ephec, il ne pourra pas fournir de solution, meme si la "moins pire" des solutions aurait été interessante. Il n'y a donc pas d'optimisation possible.
+Le troisième problème engendré par cette méthode exaustive, c'est qu'elle ne pourra pas fournire une soltion qui ne respecte pas toutes les contraintes, étant donné qu'il ne se déplace que d'états consistant\footnote{} en états consistant. Si un problème n'offre pas de solution, car il y a trop de contraintes, comme dans le cas de la création d'un horaire EPHEC, il ne pourra pas fournir de solution, meme si la "moins pire" des solutions aurait été interessante. Il n'y a donc pas d'optimisation possible.
 \newline
 \indent
 C'est pour cela que nous avons du sortir du modèle classique et utiliser des méthodes dite hybrides, mèlant d'autre méthodes, principalement des heuristiques et métaheuristique, tel que présenté dans les sections suivantes afin de trouver malgré tout une bonne\footnote{peut importe ce que "bonne" signifie} solution, dans des temps accèptables, et permettant de reprendre une solution entamée afin de l'améliorer. \newline
