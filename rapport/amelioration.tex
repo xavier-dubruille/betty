@@ -5,19 +5,18 @@
 
 \subsection{Mode comparaison}
 Cette partie étant un de nos objectifs principaux. Il est question de pouvoir créer à la
-\enquote{volée} les colonnes représentants plusieurs professeurs, locaux ou classes, tout
-en gardant, pour les lignes, les périodes. Malheureusement nous n'avons pas eu le temps de l'implémenter. Un autre problème fondamentale ayant retarder sont élaboration est qu'il n'es pas
-possible de rendre une région ne faisant pas partie du DOM (typiquement rajouté
+\enquote{volée} les colonnes représentant plusieurs professeurs, locaux ou classes, tout
+ en gardant, pour les lignes, les périodes. Malheureusement nous n'avons pas eu le temps de l'implémenter. Un autre problème fondamental ayant retardé son élaboration est qu'il n'est  possible de rendre une région ne faisant pas partie du DOM (typiquement rajouté 
 en JS, donc d'une manière non-statique) comme étant une région \enquote{dropable}.
-Cela n'étant pas impossible, la solution idéal nous est encore inconnue. Il faudrait probablement rendre l'entièreté du tableau comme \enquote{dropable} car actuellement uniquement les case du tableau sont dropable.
+Cela n'étant pas possible, la solution idéale nous est encore inconnue. Il faudrait probablement rendre l'entièreté du tableau comme \enquote{dropable} car actuellement uniquement les cases du tableau sont dropables.
 
 \subsection{Solveur}
 Ce fut également un point assez frustrant, étant donné nos recheches 
-sur le sujet, et surtout la trouvaille de cette librairie ``miraculeuse'' écrit
-par Muller, et qui, en plus d'être en gpl et fortement maintenue (dernière
-version date d'il y a 2 semaines), elle nous paraît très performante et d'une
-rare adéquation.  C'est donc avec beaucoup de tristesse dans l’âme (:p), qu'on n'en
-utilise qu'une fractions de ses possibilité.  C'était tout l'avantage de notre
+sur le sujet, et surtout la trouvaille de cette librairie ``miraculeuse'' écrite 
+par Muller, et qui, en plus d'être en gpl et fortement maintenue (dernière 
+version date d'il y a 2 semaines), elle nous paraît très performante et d'une 
+rare adéquation.  C'est donc avec beaucoup de tristesse dans l’âme (:p), qu'on n'
+utilise qu'une fraction de ses possibilités.  C'était tout l'avantage de notre 
 application (et de sont architectur client-server) et ce n'est pas utilisé a son
 full potentiel.  C'est donc la première amérioration que devra subir notre
 application, car tout est en place pour pouvoir en tirer un avantage certain.
@@ -25,23 +24,23 @@ application, car tout est en place pour pouvoir en tirer un avantage certain.
 \subsection{Droits}
 Un des buts de cette architecture était de pouvoir avoir plusieurs comptes liés à
 un projet, avec des droits différents. Imaginons par exemple, des professeurs qui pourraient
-éditer leur désidérata, ou la possibilité pour un utilisateur de pouvoir suivre l'évolution d'un horaire, sans pour autant pouvoir modifier celui-ci.
+ éditer leurs désidérata, ou la possibilité pour un utilisateur de pouvoir suivre l'évolution d'un horaire, sans pour autant pouvoir modifier celui-ci.
 
 \subsection{Mode hors ligne}
-Nous nous basons entièrement sur le local storage, les requêtes vers le serveur ne
+Nous nous basons entièrement sur le local storage, les requêtes vers le serveur ne 
 servent qu'a se connecter, charger le projet et enregistrer des modifications.
-Actuellement, il est possible de continuer la création d'un horaire chargé en
-mémoire sans la nécessité d'une connexion, cependant, pour pouvoir pleinement
-utiliser cette fonctionnalité, il est nécessaire de rajouter certaine fonctionnalité, tel
-qu'une resynchronisation des modifications faites en local avec la base de données lorsque la
+Actuellement, il est possible de continuer la création d'un horaire chargé en 
+mémoire sans la nécessité d'une connexion, cependant, pour pouvoir pleinement 
+utiliser cette fonctionnalité, il est nécessaire de rajouter certaine fonctionnalité, telle 
+qu'une resynchronisation des modifications faites en local avec la base de données lorsque la 
 connexion est retrouvée. La possibilité, pour l'utilisateur, de reprendre un projet toujours conservé dans la mémoire cache.
 
 \subsection{Upload à partir d'une base de données}
-le fichier actuellement utilisé pour l'upload des attributions est le résultat d'une requête SQL. Dans un soucis de clarté et de facilité pour l'utilisateur, il est plus évident de devoir rentrer un fichier manuellement étant donné qu'un autre fichier des locaux doit être également fournis. Pour qu'un upload puisse se faire de manière complète, il faudrait que la liste des locaux avec ce que ceux ci comporte soit également enregister dans une base de données afin de ne pas perdre l'utilisateur sur deux méthodes différentes d'envoi et de pourvoir ainsi garder une certaine cohérence du logiciel.
+le fichier actuellement utilisé pour l'upload des attributions est le résultat d'une requête SQL. Dans un souci de clarté et de facilité pour l'utilisateur, il est plus évident de devoir rentrer un fichier manuellement étant donné qu'un autre fichier des locaux doit être également fourni. Pour qu'un upload puisse se faire de manière complète, il faudrait que la liste des locaux avec ce que ceci comporte soit également enregistrée dans une base de données afin de ne pas perdre l'utilisateur sur deux méthodes différentes d'envoi et de pouvoir ainsi garder une certaine cohérence du logiciel.
 
 \subsection{Modifications de données}
-actuellement il n'est pas possible de modifier toutes les données intervenant
+actuellement il n'est pas possible de modifier toutes les données intervenant 
 dans l'application (notamment la création d'un prof, local, etc.) Il faudrait donc avoir la possibilité d'ajouter certaines informations directement via l'interface du logiciel, afin de prévenir de tout oubli, ou rajout de dernière minute sur le nombre de classes, etc.
 
 \subsection{Upload de contraintes}
-L'idéal serait de permettre à l'utilisateur d'uploader sont fichier de contraintes (sous forme de fichier XML par exemple), ou de pouvoir les entrée manuellement via l'interface. N'étant pas l'objectif de base de notre travail de fin d'étude, celui-ci étant plus orienté sur la programmation par contraintes à proprement parlé et l'intégration de cette programmation dans un outils d'aide à la création d'horaire, et donc l'élaboration de ce logiciel, ceci limite l'utilisateur de l'application aux uniques configuration que nous aurions choisi au préalable. Il faudrait donc dans l'idéal permettre à l'utilisateur de pouvoir manipuler lui même les contraintes.
+L'idéal serait de permettre à l'utilisateur d'uploader son fichier de contraintes (sous forme de fichier XML par exemple), ou de pouvoir les entrer manuellement via l'interface. N'étant pas l'objectif de base de notre travail de fin d'étude, celui-ci étant plus orienté sur la programmation par contraintes à proprement parlé et l'intégration de cette programmation dans un outil d'aide à la création d'horaire, et donc l'élaboration de ce logiciel, ceci limite l'utilisateur de l'application aux uniques configurations que nous aurions choisesi au préalable. Il faudrait donc dans l'idéal permettre à l'utilisateur de pouvoir manipuler lui même les contraintes.
