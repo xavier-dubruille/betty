@@ -1,8 +1,7 @@
 % !TeX root = these.tex
 \chapter{Solveur}
 % le but ici n'est pas d'énumérer toutes les étapes par lesquelles nous sommes passé ainsi que toutes les essais infructué effectué, car ce serait long et inninteressant. Nous allons nous concentrer sur la méthode actuelle utilisée en tantant de justifié son choix. Pour pouvoir expliquer son choix et sont utilisation, nous allons devoir revenir sur les explications plus générale de la programmation par contraites et d'autre thechniques OR (operation research).  Pour plus d'information sur le sujet, nous invitons le lecteur, à XXX, ainsi qu'à la thèse de M qui fut de loins l'ouvrage qui nous a le plus éclairé quand la à la problematique de xx
-
-%On explique d'ou il vient, ce que c'est, par qui ca a été créé
+%On explique d'ou il vient, ce que c'est, par qui ca a été cree
 
 %Après, on explique l'implémentation dans notre logiciel. On en est ou? Les dificulté rencontré? Ce qu'il manque pour que ça soit super cool
 
@@ -15,36 +14,30 @@ Une partie de cette "intelligence" est prise en charge du coté client, qui comm
 \newline
 \indent
 Cependant, ce support est minimaliste et une recherche plus poussée est effectué du coté serveur à l'aide d'outil de programmation par contraintes et de "recherche opérationnelle".  Ce solveur sera ensuite amené à nourrir le solveur minimaliste du coté client et proposer un certain pilotage de ce solveur au travers de l'application cliente. 
+De cette manière, l'application cliente ne dépend pas du serveur pour fonctionner correctement, en effet, si celui-ci venait a être indisponnible, les seules concéquences seraient que les propositions offertes par l'application cliente ne seront plus aussi poussé. (Il va sans dire que l'option pour créer un horraire complet ne serait plus disponible non plus.)
 \newline
 \indent
-Pour arriver à ces résultats, nous nous sommes tournés vers des outils de programmation par contraintes et de recherche opérationnelle. 
-Pour comprendre notre choix de librairie ainsi que son utilisation, il est important de revenir sur les principe fondamentaux de la programmation par contraintes.
+Ce solveur est donc relativement indépendant du reste de l'application, et permetrait, par exemple d'être facilement remplacé par un autre solveur, casiment, sans aucune modifications du reste du code.
+Actuellement, ce solveur est écrit en java, et repose sur des librairie d'Unitime\footnote{http://www.unitime.org}. Il s'agit d'une librairie de programmation par contrainte et de recherche oppérationnelle.  Pour comprendre son utilisation il est indispensable de bien comprendre les conceptes de la programmation par contraintes ainsi que les outils qu'aporte cette librairie.
 
-
-\section{Rappels théorique}
+\section{cardre théorique}
+...
+\subsection{Recherche Operationnelle}
+La recherche opérationnelle (aussi appelée aide à la décision) peut être définie comme l'ensemble des méthodes et techniques rationnelles orientées vers la recherche de la meilleure façon d'opérer des choix en vue d'aboutir au résultat visé ou au meilleur résultat possible\footnote{Larousse 3 volumes, Paris 1966}
+La recherche opérationnelle peut donc se faire à l'aide de plusieurs technique, tel que l'inteligence artificiel, les systèmes expert\footnote{}, ou encore la programmation par contrainte.  C'est par ce dernier "outil" que nous avons finalement abordé notre problème de cration d'horraire.
+\subsection{Programmation par contrainte}
 
 La programmation par contrainte un paradigme de programmation \footnote{paradigme} ayant pour but la résolution de problèmes combinatoire en
 descrivant plutot le but recherché que la méthode utilisé, c'est pourquoi la programmation par contrainte es une forme de programmation déclarative.
+\begin{quote}
 « Constraint Programming represents one of the closest approaches computer science has yet made to the Holy Grail of programming: the user states the problem, the computer solves it. »
-— E. Freuder--citation--
+— E. Freuder
+\end{quote}
 
-dans le cas qui nous concerne, la problème de création d'horraire, est un cas typique de CSP (Constraint Satisfaction Problem), et comme tout csp peut se définir comme suit:
-*** definition formelle ***
-Dans notre cas, les variables sont, se qu'on va appeller des "activity", et correspondent à un cours ou à tous type d'activitées pouvant avoir lieu à l'Ephec (il s'agit, dans la méthode traditionnel des cartons physique qui seront manipulé lors de la création d'un horraire.)
-
-Le domaine de valeurs que peuvent prendre ses variables, ses activity, sont un local et une periode de la semaine.  Ca fait un domaine à deux dimentions (Lieu X Periode). Dans l'idéal, il faudrait prendre le choix des professeurs comme troisième dimension, mais ce n'est pas le cas dans notre impémentation actuelle. 
-
-Les contraintes deviennent alors les relation mathématiques reliant les activity.
-On a tenté de faire des listes exaustives de ses contraintes, mais seule une sous partie est actuelement pris en compte:
-
-%==============
-
-\subsection{Choix de librairies}
-Le solveur (celui du coté serveur), est indépendant de tout, absolument tout. Il est écrit en java, et repose sur une librérire de csp. Il réside donc du coté serveur, dans le servelet de l'application, c'est donc le meme pour tout utilisateurs se connectant au  site. Il ressevra l'information et l'enregistrera xxx
+dans le cas qui nous concerne, la problème de création d'horraire, est un cas typique de CSP\footnote{Constraint Satisfaction Problem}, et comme tout csp peut se définir comme suit:
+   
 
 
-Apprès bpc de recherches, cette librairie est de loins la plus adapté et à jours (la dernière version datant du 20 juin, est d'ailleur celle utilisé par le programme).  Ca permetra un dévellopenment du solveur, independament de la bdd ou de l'interface.
-Les possibilités de cette librairie combiné à nos choix d'infrastrcuture sont énorme, et à notre grande tristèsse, ne sont pas utilisé au maximum de sa puissance..  seule la surface à pu être implémenté, faute de temps.
 
 \begin{center}
 \fbox{\begin{minipage}{\linewidth}
@@ -62,3 +55,70 @@ An assignement is complete if |$\eta$| = |V| ( i.e., all variables are assigned)
 \end{itemize}
 \end{minipage}}
 \end{center}
+
+%\newline
+\indent
+
+Dans le cas de notre problème, les variables seront les Cartons qu'il faut pouvoir déposer dans le tableau, et leur valeurs seront la place à laquelle ils seront déposé. Leur domaines est donc leur position géographique et temporelle. Il s'agit d'un domaine à deux dimentions, non avons choisi de ne pas prendre en compte une troisième dimention qu'aurait pu être le choix d'un proffesseur pour un cours. Il est donc necessaire que chaque "carton" aie préalablement un, et un seul prof, qui lui est assigné.
+Les contraintes n'étant que des relation entre nos variable, il est aisé de représenter bon nombre de nos contraintes. Par exemple pour expliciter qu'un prof ne peut donner deux cours simultanément, notre contrainte s'écrit naturelement :
+v1 != v2 où v1 et v2 sont deux carton d'un meme proffesseur
+% Dans notre cas, les variables sont, se qu'on va appeller des "activity", et correspondent à un cours ou à tous type d'activitées pouvant avoir lieu à l'Ephec (il s'agit, dans la méthode traditionnel des cartons physique qui seront manipulé lors de la création d'un horraire.)
+% 
+% Le domaine de valeurs que peuvent prendre ses variables, ses activity, sont un local et une periode de la semaine.  Ca fait un domaine à deux dimentions (Lieu X Periode). Dans l'idéal, il faudrait prendre le choix des professeurs comme troisième dimension, mais ce n'est pas le cas dans notre impémentation actuelle. 
+% 
+% Les contraintes deviennent alors les relation mathématiques reliant les activity.
+% On a tenté de faire des listes exaustives de ses contraintes, mais seule une sous partie est actuelement pris en compte:
+\subsubsection{Limitations}
+La plus part des alogirhmes pour résoudre des vsp, éfectues une recheche systematique à travers toute sles assignation pourrislbe de pour les variable du problème. De tel algorithmes garantisse de trouver une solution, si elle éxiste, ou prouver qu'ie ce problème ne possède pas de solution.  
+Ils commancent à partir du'une solution vide (aucune variable n'est assignées) et effectues une recherche exaustive, lorsqu'une "impasse" survient, ils effectue alors un retour en arrière. le plus gros problème d'un tel alogorithme est qu'un mauvais choix d'assignement, particulièrement si celui-ci est éfectué au début de la recheche, ca causera un echec sur la recherche complete d'un sous-arbre. 
+%===1. problème np-complet
+Le premier problème, c'est que cette facon classique recherche la meilleur soltion, en explorant toute les possibilitées. Notre problème étant NP-Complet\footnote{Ne peut être résolut en un temps polynomial}, ce qui explique que nos précédents test avecs des librairies classique furent peut fructueuses.
+Il est donc necessaire d'avoir recourt à des heuristiques \footnote{}, et meta-heuristique\footnote{Une heuristique d'heuristique ou un ensemble d'heuristiques}, dans les prochaine section, nous décrirons brievement deux d'entre elles, à savoir l'Iterative Forward Search sur laquelle nous nous somme basé, ainsi que la Fready search qui pourrait être une autre solution envisageable.
+\newline
+\indent
+%=== MPP ========
+Le deusième problème, est que cette facon de backtracking, et d'exploration exaustive de noeuds ne permet pas de reprendre une solution parcielle car ..
+\newline
+\indent
+%== Optimisation
+Le troisième problème engendré par cette méthode exaustive, c'est qu'elle ne pourra pas fournire une soltion qui ne respecte pas toutes les contraintes, étant donnée qu'il ne se déplace que d'états consistant\footnote{} en états consistant. Si un problème n'offre pas de solution, car il y a trop de contraintes, comme dans le cas de la création d'un horraire Ephec, il ne pourra pas fournir de solution, meme si la "moins pire" des solutions aurait été interessante. Il n'y a donc pas d'optimisation possible.
+\newline
+\indent
+C'est pour cela que nous avons du sortir du modèle classique et utiliser des méthodes dite hybrides, mèlant d'autre méthodes, principalement des heuristiques et métaheuristique, tel que présenté dans les sections suivante afin de trouver malgrés tout une bonne\footnote{peut importe ce que "bonne" signifie} solution, dans des temps accèptable, et permettant de reprendre une solution entamé afin de l'améliorer. \newline
+Quand à la question de l'optimisation, nous avons choisis, comme il se fait fréquent, de séparer nos contraintes en "Hard constraints" et "Soft constraint".  Les "Hard" sont les contraintes sans lesquelles aucunes solutions n'est envisagable (nous avons par exemple mis la contrainte qu'un prof ne peut pas être à deux endroit différent, comme une "Hard constraint"), et les "Soft Constraint" seront les désidéra et autres préférences, ce sont ces dernières qui feront l'objet d'une optimisations. 
+% Dans le cas où une soltion est impossible, il serra necessaire de retirer manuellement des "Hard constraint" et de relancer une recherche
+\subsubsection{MetaHeursistique, et première approche d'evolution}
+Ders alogirittme de recherche local \footnote{mF00}, comme le "min-conflict" ou le tabu search\footnote{} efectuent des recherches, de manière non détemistique, souvant guidée par des heuristique sur des solutions complete, mais pas necessairement fesable.  De tel algorithmes ne guarantisse donc pas de torouver une solution respecant toute les contraintes, mais tante de s'en raprocher. cependante, ces alogoritme peuve être bien plus éficasse (en temps de calcule) que les celle systématique. Et pour des problème d'optimisation comme le notre, ils produiront des résulta be bien meilleur qualité.
+Il existe d'autre apporche qui combine les recheche local avec des algorithme de "backtracking, tel que décision repaire, mais nous avons pas exploré ces solutions.
+
+\subsubsection{IFS}
+Cette méta-heuristique à été développé par M.Muller dans le cadre de sa thèse et est celle utisé dans sa librairie d'unitime. 
+Le but n'étant pas d'expliquer en détail le foncitonnement de cette méta-heurisque, 
+%==============
+
+\subsection{Choix de librairies}
+Notre problème est bien un problème de csp, et la manière de l'aborder, de le traiter ne devrait pas varier d'une librairie à une autre.  Cependant Cette librairieà particulièremnt été écrite pour des csp lié à l'établissement d'horraire d'universitées, en offrant une certaine facilité d'utilisation et un nombre d'options pour gérer des situaltions propre à l'enseignement.
+Elle est particulièrement adéquate dans son implémentation, car elle se base sur la méta-heuristique ifs, présenté précédement, qui s'avaire performante pour ce type de solution.  On a pu l'observer de part nos précédent tests avec les librairire d'OR-tools, et de XX (la lib de P.SHAUS).
+
+La seule autre possibilité qu'on pourrait imaginer, c'est l'utilisation de l'autre méta-heuristique présenté, Geady search, mais n'ayant trouver de librairie se basan sur cette métha heuristique, il serait .. % alors que unitime est complet et fortement maintenu !
+
+
+\subsection{Impementation et état actuel}
+Une fois les principe de CSP compris, l'organisation de notre solveur se simplifie: 
+- Nous repésentons nos Variables par la classe "Activity" qui représente un cours, ou tout autre type d'activitée.\newline
+- Les valeurs que pourront prendre ces variable, sont représenté par la classe "Location" qui représente un local, dont l'ensemble constitue les Domaines de notre CSP.\newline
+- Nos contraintes sont représenté par la classe "Ressource", et permettent de représenter instinctivement, qu'une activitée necessitte tel ou tel "ressources" pour avoir lieu (par exemple, les professeurs, les locaux sont, dans se sens, des "ressources"). Les contraintes Hard seront explicité par le fait qu'une activité exige une et une ressources. Une contraintes Soft sera représenté par le fait qu'elle necessite une ressource parmi un enssemble (comme un cours d'informatique qui peu avoir lieu dans plusieurs classes) \newline
+- Nous avons également une classe appelé "Dependance", qui devrait se charger des contraintes de dépendances entres cours (si un cours doit être raproché ou éloigner d'un autre cours). \newline
+Et bien entendu, se trouve dans se même package, le code necessaire pour chercheer les informations dans la base de donnée et lancer des recherches celon la configuration demandée.
+
+\indent
+
+Actuellement, il est possible de demander la création d'un horraire complet à partir de l'interface client. Celle-ci sera écrite dans une nouvelle instance, et préviendra (via les notifications) l'utilisateur de la réussite ou de l'echec de celui-ci.  Cette manière de faire, permet de ne pas mettre en conflit cette résolution avec ce qui pourrait se passer du coté client. L'utilisateur peut, pendant une résolution en cours, faire tout ce qu'il veut, et une fois une solution trouvée, ccelle-ci se placera simplement dans une nouvelle instance.
+Pour ce qui est de "nourire" les informations du sovleur client, ce n'est, actuellement, pas pleinement fonctionnelle. L'idée, est de générer plusieurs solutions, 
+au fur et à mesure de la construction manuelle, et d'envoyer cela directement dans le Local Storage. Le solveur client, n'a donc qu'a puiser dans ces informations.
+En toute logique, ces résultats s'affinerons au fur et à mesur que le temps passe, et que la construction manuelle évolue. Cela reste de l'ordre du conseil, étant donné qu'il se peut (si la création manuelle avance vite, si le solveur est trop lent) que cette information ne soit pas toujours rigoureusement à jour, même si l'on priviligie les données les plus récente.  Ces résultats ne devront donc pas rentrer en concurance avec ceux du solveur client qui devront avoir le dessus, dans le sens où une action interdite restera interdite et sera toujours marqué en rouge pour l'utilisateur. 
+Mais ces informations, devront faire toutes la différence entre un carton vert et rouge, offrant ainsi à l'utilisateur plus des sugestions que des obligations. 
+
+Les possibilités de cette librairie combiné à nos choix d'infrastrcuture sont énorme, et nous sommes persuadé que c'est la meilleur facon de faire. Autant pour la puissance que pourrait offrir ce solveur, mais aussi à la facilité de sa maintenabilité, du à sa grande indépendance de celui-ci face au reste de l'application.
+Malheuresement, à l'état acutuel, nous avons, matérielement, pas eu le temps de l'explorer pleinement, ni d'offire, via l'interface client, suffisament d'options pour controler celui-ci.
+Le tout étant en place, et le sujet dé-mystifié, le travail restant est minime pour pouvoir profiter pleinement de cet outils, et nous espérons sincèrement avoir l'ocasion de palier à ce manquement lors d'une future mise-à-jour du programme.
