@@ -1,7 +1,7 @@
 % !TeX root = these.tex
 \chapter{La base de données}
 
-Avant de rentrer dans les détails de la base de données, il est à noter que la vision portée sur celle-ci doit être considérée selon un point de vue qui n'est pas classique. En effet, l'utilisation l'Hibernate nous a permis de gérer la base de données de manière orientée objet et non plus d'une manière relationnelle. Ainsi, la base de données n'est donc plus vue en tant que tel mais plutôt comme un ensemble de ces objets. Hibernate crée aussi des tables de mapping et dispose de sa propre façon de gérer le relationnel.\\
+Avant de rentrer dans les détails de la base de données, il est à noter que la vision portée sur celle-ci doit être considérée selon un point de vue qui n'est pas classique. En effet, l'utilisation l'Hibernate nous a permis de gérer la base de données de manière orientée objet et non plus d'une manière relationnelle. Ainsi, la base de données n'est donc plus vue en tant que telle mais plutôt comme un ensemble de ces objets. Hibernate crée aussi des tables de mapping et dispose de sa propre façon de gérer le relationnel.\\
 \newline
 \indent
 La base de données se veut, délibérément, simple et minimale. Le but étant, avant tout, de manipuler les données liées aux attributions et aux autres données requises par la construction d'un horaire (nom des classes, desiderata, etc.). Nous avons donc évité de manipuler les informations superflues en important celles-ci statiquement dans la base de données. Notre application n'ayant pas pour objectif de modifier ces données.
@@ -24,7 +24,7 @@ Le principe de base est de représenter une contrainte/desiderata par un triplet
 La source pouvant être des professeurs, locaux, cours, cartons, groupe. Le niveau est simplement un niveau de préférence qui permettra principalement de savoir si cette contrainte est du type "hard" ou "soft".  La destination est quant à elle soit une période de la semaine soit un local.  De cette manière, une grande partie des contraintes décrites au chapitre 1 peut être représentée.
 \newline
 \indent
-    Pour ce qui est des contraintes portant sur un ensemble (ex: si on veut que tous les locaux du premier étage soient disponibles le lundi matin, il suffira de mettre une contrainte sur chacun de ses locaux du style <L42 - 3 - Lundi première heure>.  En pratique, on a représenté cela par un Objet( table) Préférence sur les différentes sources possibles.
+    Pour ce qui est des contraintes portant sur un ensemble (ex: si on veut que tous les locaux du premier étage soient disponibles le lundi matin, il suffira de mettre une contrainte sur chacun de ces locaux du style <L42 - 3 - Lundi première heure>.  En pratique, on a représenté cela par un Objet( table) Préférence sur les différentes sources possibles.
    \newline
    \indent
 Un autre type de contrainte pouvant être stocké (bien qu'elle n'est pas encore réellement prise en compte) est la notion de dépendance entre deux cartons.  Pour des cours qui doivent par exemple être le plus éloignés ou le plus rapprochés possible.\\
@@ -33,4 +33,4 @@ Un autre type de contrainte pouvant être stocké (bien qu'elle n'est pas encore
 Mais, nous ne permettons actuellement pas\footnote{Et de toute façon, le solveur ne peut pas les gérer dans son implémentation actuelle.} les contraintes dépendantes entre elles ou conditionnelles (e.g. si le prof X ne peut pas avoir son jour de congé le lundi, il aimerait avoir ses matinées de libre,etc.).\\
 \newline
 \indent
-Pour finir, nous dirons que la base de données n'est pas la base de données complète ; celle-ci est très évolutive, étant données les possibilités et facilités offertes par Hibernate.
+Pour finir, nous dirons que la base de données n'est pas la base de données complète ; celle-ci est très évolutive, étant donné les possibilités et facilités offertes par Hibernate.
