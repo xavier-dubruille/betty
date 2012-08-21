@@ -7,10 +7,10 @@ La question de performance pour un logiciel est un point très important à pren
 
 Du fait de nos choix de conception, tel que GWT pour générer le JS, Hibernate pour abstraire la base de données ou encore, le choix des RPC pour la
 communication client-serveur, nous pensons avoir créé une application \enquote{de base} très sécurisée, et qu'il serait tout à fait envisageable de la faire tourner sur un serveur externe.
-L'utilisation de XSS, CSRF, SHA256, ainsi qu'un catcha très basique afin d'éviter les bots favorise cette sécurité pour le client.
+La prévention contre des attaques de type XSS\footnote{Cross-site Scripting}, CSRF\footnote{Cross-site Request Forgery}, le cryptage du mot de passe en SHA256, ainsi qu'un captcha très basique afin d'éviter les bots favorisent cette sécurité pour le client.
 
 
-La sécurité du coté serveur à également été pris en compte. L'application tourne sur une Debian stable (Squeeze) ayant très peu de service installé. Tomcat, notre conteneur d'applet, est lui aussi à jours et en version stable. Il ne bénéficie d'aucun droit ROOT, ainsi donc, (contrairement à une autre application tournant sur Windows par exemple), il n'a pas le droit d'émettre sur le port 80. Pour garder l'application safe et performante, une redirection de son port d'origine est effectué par Netfilter\footnote{framework implémentant un pare-feu dans le noyaux Linux} sur le port 80.
+La sécurité du coté serveur à également été prise en compte. L'application tourne sur une Debian stable (Squeeze) ayant très peu de service installé. Tomcat, notre conteneur d'applet, est lui aussi à jour et en version stable. Il ne bénéficie d'aucun droit ROOT, ainsi donc, (contrairement à une autre application tournant sur Windows par exemple), il n'a pas le droit d'émettre sur le port 80. Pour garder l'application safe et performante, une redirection de son port d'origine est effectué par Netfilter\footnote{framework implémentant un pare-feu dans le noyaux Linux} sur le port 80.
 
 Nous n'avons pas poussé plus loin la sécurité du coté serveur, étant donnée que celle-ci est destinée à fonctionner sur d'autre machine, mais en situation réel, il serait judicieux de mettre en place un lien HTTPS.
 

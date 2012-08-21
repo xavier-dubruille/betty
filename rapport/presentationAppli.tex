@@ -26,22 +26,30 @@ Cette présente section décrira ces différents aspects.
 \section{Connexion et Inscription}
 
 La première page de l'application propose à l'utilisateur d'entrer son nom d'utilisateur et son mot de passe. Le mot de passe est crypté en SHA-256\footnote{Secure Hash Algorithm 256 bits}, dans la base de données. La page propose également de vous inscrire via la flèche en haut à droite de la fenêtre.
-\newline
-\indent
+
+\begin{figure}[!h]
+	\begin{center}
+	\includegraphics[width=8cm,height=4cm]{login.png}	
+	\includegraphics[width=8cm,height=4cm]{subscribe.png}
+	\caption{page de login et d'inscription}
+\end{center}
+\end{figure}
+
 Lors de l'inscription, nous invitons l'utilisateur à entrer sont nom d'utilisateur, mot de passe et un email. Les informations entrées sont soumises à des vérifications d'usage, le maximum de ces vérifications étant effectué du côté client afin de réduire l'échange avec le serveur.
 \newline
 \indent
-Pour cette partie, quelques améliorations peuvent être apportées tel que le changement de mot de passe ou la récupération de celui-ci par envoi de mail.\\
-\newline
-\indent
-\textbf{Debug : capture d'écran}
+Pour cette partie, quelques améliorations peuvent être apportées tel que le changement de mot de passe ou la récupération de celui-ci par envoi de mail.
 
 \section{Page des projets}
 
 La page est ordonnée de façon à avoir toujours le dernier projet en date créé en haut de la liste. Un projet est présenté de la manière la plus concise possible afin de ne pas perdre l'utilisateur. Ce dernier à la possibilité de créer un nouveau projet\footnote{Option également disponible via le menu}, choisir le semestre à élaborer et de supprimer un projet. L'application devrait dans une prochaine mise à jour proposer des options sur celui-ci tels que le partage de projets entre plusieurs utilisateurs.\\
-\newline
-\indent
-Lors de la création d'un nouveau projet, celui-ci doit être nommé et contenir les fichiers nécessaires à l'élaboration de l'horaire. Ces fichiers se présentent sous la forme d'un .xls contenant pour le premier, la liste des attributions de chaque cours, ce fichier est le résultat d'une requête SQL et nous a été fourni par l'Ephec. Le deuxième représente la liste des locaux disponibles, ce fichier n'existant pas en tant que tel, à initialement été créé par Madame Vroman, Professeur à l'Ephec, dans le cadre du "projet horaire" du cours de langage avancé de programmation de deuxième année. Nous y avons ajouté des informations pouvant être prises en compte par le solveur, et permettant de facilité l'établissement manuel d'un horaire.\\
+\begin{figure}[!h]
+	\begin{center}
+	\includegraphics[width=12cm,height=4cm]{project.png}	
+	\caption{représentation d'un projet}
+\end{center}
+\end{figure}
+\\Lors de la création d'un nouveau projet, celui-ci doit être nommé et contenir les fichiers nécessaires à l'élaboration de l'horaire. Ces fichiers se présentent sous la forme d'un .xls contenant pour le premier, la liste des attributions de chaque cours, ce fichier est le résultat d'une requête SQL et nous a été fourni par l'Ephec. Le deuxième représente la liste des locaux disponibles, ce fichier n'existant pas en tant que tel, à initialement été créé par Madame Vroman, Professeur à l'Ephec, dans le cadre du "projet horaire" du cours de langage avancé de programmation de deuxième année. Nous y avons ajouté des informations pouvant être prises en compte par le solveur, et permettant de facilité l'établissement manuel d'un horaire.\\
 \\
 Une fois le projet créé et le quadrimestre sélectionné, l'utilisateur est redirigé vers la page principale de l'application dans laquelle l'horaire pourra être créé.
 
@@ -60,37 +68,32 @@ La page principale se présente comme suit:\\
 	\item Au centre, le semainier où les cartons pourrons venir se glisser\\
 	\item À l'est, un panneau de notifications permettant d'avoir un suivi des différentes actions faite par l'utilisateur.
 \end{itemize}
-\bigskip
 
-\textbf{Debug : Capture d'écran}
+\begin{figure}[!h]
+	\begin{center}
+	\includegraphics[width=16cm,height=6cm]{littlemain.png}	
+	\caption{vue globale de la page principale}
+\end{center}
+\end{figure}
 
 \subsection{Les attributions}
 La mise en forme des cartons se base sur le design de ceux actuellement employés à l'Ephec lors de l'établissement manuel de l'horaire. Ceux-ci comportent le/les classe(s) assignée(s) à chaque cours donné par un professeur.\\
 \newline
 \indent
-À chaque carton est assigné un ensemble de locaux où pourront se donner les cours. Par exemple, un carton de type informatique sera assigné uniquement aux locaux de type informatique. Lorsque le carton est déposé, la solution lui assigne un local disponible parmi cette liste, et nous pouvons voir apparaître le nom du local en bas à droite du carton.\\
-\newline
-\indent
-\textbf{Debug : Capture d'écran}
+À chaque carton est assigné un ensemble de locaux où pourront se donner les cours. Par exemple, un carton de type informatique sera assigné uniquement aux locaux de type informatique. Lorsque le carton est déposé, la solution lui assigne un local disponible parmi cette liste, et nous pouvons voir apparaître le nom du local en bas à droite du carton.
 
 \subsection{Semainier}
 Nous affichons dans le semainier, les informations relatives à la personne, classe ou au local choisis via le filtre prévu à cet effet. La grille se colorie en fonction du carton qui est sélectionné. Un code de couleurs a été mis en place permettant de distinguer si un carton peut être placé ou pas. Par exemple, si l'on se trouve dans la vue d'une classe et que l'on prend un carton d'une autre classe, toute la grille se coloriera en rouge, montrant à l'utilisateur que celui-ci ne peut pas être placé.\\
 \newline
 \indent
 Nous distinguons trois groupes de couleurs ; vert, orange et rouge. Ces groupes sont eux-mêmes subdivisés en trois catégories: couleur claire, normale et foncée. Lorsqu'on colorie la grille horaire, il arrive parfois qu'un carton puisse être placé à plusieurs endroits, les uns plus avantageux que d'autres pour la suite de l'établissement de l'horaire, il est donc nécessaire de pouvoir dire à l'utilisateur que le carton peut être placé, mais l'orienter sur un choix plus adéquat. Ce code de couleurs est utilisé dans une version limitée pour le moment.
-\bigskip
-\textbf{Debug : Capture d'écran}
 
 
 \subsection{Notifications}
 Les notifications sont un support pour l'utilisateur. Lorsque celui-ci effectue une action comme supprimer/ajouter un carton il est nécessaire de savoir si l'action c'est effectuée correctement. À la place d'un popup intrusif, nous avons opté pour ce système, signalant à l'utilisateur de manière plus douce l'état d'actions qui ne peuvent être vues via une interface graphique.\\
 \newline
 \indent
-Nous distinguons ici deux couleurs différentes, une couleur se fondant au thème général de l'application lorsque tout s'est effectué correctement et une couleur rouge pour signaler un problème. Ce système est limité et pourra être amélioré dans le futur.\\
-\newline
-\indent
-
-\textbf{Debug : Capture d'écran}
+Nous distinguons ici deux couleurs différentes, une couleur se fondant au thème général de l'application lorsque tout s'est effectué correctement et une couleur rouge pour signaler un problème. Ce système est limité et pourra être amélioré dans le futur.
 
 
 \subsection{Les filtres}
@@ -112,11 +115,7 @@ Le panneau d'instance permet, au sein d'un même projet, de créer un ensemble d
 sous-projets. L'objectif principal de ce panneau réside dans l'utilisation du solveur. Celui-ci sera lancé dans une nouvelle instance, permettant à l'utilisateur de continuer son horaire manuellement dans une autre sans être bloqué. Une fois la résolution finie, l'utilisateur peut naviguer entre les différentes instances afin de voir les différents résultats obtenus. \\
 \newline
 \indent
-C'est ici que l'implémentation des instances y trouve sa principale utilité. Toutefois, il serait envisageable, comme perspective d'extension à ce travail, de pouvoir comparer deux instances entre elles.\\
-\newline
-\indent
-
-\textbf{Debug : Capture d'écran}
+C'est ici que l'implémentation des instances y trouve sa principale utilité. Toutefois, il serait envisageable, comme perspective d'extension à ce travail, de pouvoir comparer deux instances entre elles.
 
 
 %Cette partie est à améliorer et à modifier!

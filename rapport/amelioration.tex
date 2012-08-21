@@ -4,16 +4,12 @@
 \section{Possibilités d'amélioration du programme}
 
 \subsection{Mode comparaison}
-C'était un de nos objectifs principaux; il était question de pouvoir créer à la
-voilée les colonnes représentant plusieurs professeurs, locaux ou classe, tout
-en gardant, pour les lignes, les périodes. Malheureusement le manque de temps à
-eu raison de nous, ainsi qu'un problème fondamentale, à savoir qu'il n'es pas
-possible, de rendre une région ne faisant pas partie du DOM (typiquement rajouté
-en js, donc d'une manière non-statique) comme étant une région ``dropable''.
-Cela n'étant certainement pas impossible, la solution idéal nous est pas encore
-connue; probablement qui faudrait rendre l'entièreté de la région contenant le
-tableau comme ``dropable'' afin de subdifiser celle ci.. car actuelement ce soit
-les ``cases'' qui sont dropable..
+Cette partie étant un de nos objectifs principaux. Il est question de pouvoir créer à la
+\enquote{volée} les colonnes représentants plusieurs professeurs, locaux ou classes, tout
+en gardant, pour les lignes, les périodes. Malheureusement nous n'avons pas eu le temps de l'implémenter. Un autre problème fondamentale ayant retarder sont élaboration est qu'il n'es pas
+possible de rendre une région ne faisant pas partie du DOM (typiquement rajouté
+en JS, donc d'une manière non-statique) comme étant une région \enquote{dropable}.
+Cela n'étant pas impossible, la solution idéal nous est encore inconnue. Il faudrait probablement rendre l'entièreté du tableau comme \enquote{dropable} car actuellement uniquement les case du tableau sont dropable.
 
 \subsection{Solveur}
 Ce fut également un point assez frustrant, étant donné nos recheches 
@@ -27,23 +23,21 @@ full potentiel.  C'est donc la première amérioration que devra subir notre
 application, car tout est en place pour pouvoir en tirer un avantage certain.
 
 \subsection{Droits}
-Un des but de cette architecture était de pouvoir avoir plusieurs compte lié à
-un projet, avec des droits différents, imaginons des professeurs qui pouraient
-éditer leur désidérata, ou certaine parsonne qui pourait suivre l'évoltion de la
-construction de l'horaire sans pour autant avoir les droits de modification.
+Un des buts de cette architecture était de pouvoir avoir plusieurs comptes liés à
+un projet, avec des droits différents. Imaginons par exemple, des professeurs qui pourraient
+éditer leur désidérata, ou la possibilité pour un utilisateur de pouvoir suivre l'évolution d'un horaire, sans pour autant pouvoir modifier celui-ci.
 
 \subsection{Mode hors ligne}
-On se base entièrement sur le local storage, les requètes vers le serveur ne
+Nous nous basons entièrement sur le local storage, les requêtes vers le serveur ne
 servent qu'a se connecter, charger le projet et enregistrer des modifications.
-Actuelement, il est possible de continuer la création d'un horraire chargé en
-mémoire sans la necessité d'une connections, cependant, pour pouvoir pleinement
-utiliser cette fonctionnalité, il est necessaire de rajouter certaine xxx, tel
-qu'une resyncronisation des modifications faite en local avec la bdd lors que la
-connection est retrouvée ainsi que la possibilité de reprendre un projet en
-cache.
+Actuellement, il est possible de continuer la création d'un horaire chargé en
+mémoire sans la nécessité d'une connexion, cependant, pour pouvoir pleinement
+utiliser cette fonctionnalité, il est nécessaire de rajouter certaine fonctionnalité, tel
+qu'une resynchronisation des modifications faites en local avec la base de données lorsque la
+connexion est retrouvée. La possibilité, pour l'utilisateur, de reprendre un projet toujours conservé dans la mémoire cache.
 
 \subsection{Upload à partir d'une base de données}
-le fichier actuellement utilisé pour l'upload des attributions est le résultat d'une requête SQL. Dans un soucis de clareter et de facilité pour l'utilisateur, il est plus évident de devoir rentrer un fichier manuellement étant donné qu'un autre fichier des locaux doit être également fournis. Pour qu'un upload puisse se faire de manière complète, il faudrait que la liste des locaux avec ce que ceux ci comporte soit également enregister dans une base de données afin de ne pas perdre l'utilisateur sur deux méthodes différentes d'envoi et de pourvoir ainsi garder une certaine cohérence du logiciel.
+le fichier actuellement utilisé pour l'upload des attributions est le résultat d'une requête SQL. Dans un soucis de clarté et de facilité pour l'utilisateur, il est plus évident de devoir rentrer un fichier manuellement étant donné qu'un autre fichier des locaux doit être également fournis. Pour qu'un upload puisse se faire de manière complète, il faudrait que la liste des locaux avec ce que ceux ci comporte soit également enregister dans une base de données afin de ne pas perdre l'utilisateur sur deux méthodes différentes d'envoi et de pourvoir ainsi garder une certaine cohérence du logiciel.
 
 \subsection{Modifications de données}
 actuellement il n'est pas possible de modifier toutes les données intervenant

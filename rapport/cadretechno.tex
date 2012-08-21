@@ -174,6 +174,10 @@ L'apparition du local storage (LS) avec le HTML5 offre de nouvelles possibilité
 \subsubsection{Local Storage vs Cookies}
 
 Tout comme les cookies, les informations contenues dans le local storage ne peuvent pas contenir d'informations sensibles\footnote{Comme, par exemple, les numéros de carte de crédit.}. Il est, cependant, nécessaire de souligner qu'aucun travail de cryptage n'a été fait sur ces données. En effet, nous supposons que les informations contenues dans notre local storage ne sont pas utiles pour les Hackers\footnote{En effet, il nous apparaît inutile de crypter le nom d'un cours.}. 
+\newline
+\indent
+L'utilisation du local storage permet, comme les cookies, de partager les données entre les différents onglets du navigateur. Nous aurions pu nous orienter vers une solution plus simple, comme enregistrer les informations de la partie cliente dans des tableaux ou listes, mais les informations ne seraient plus partagées entre les onglets et fenêtres du navigateur. Ce choix limiterait de manière drastique l'utilisation du programme. 
+
 
 \begin{table}[!h]
 \begin{center}
@@ -212,9 +216,7 @@ Tout comme les cookies, les informations contenues dans le local storage ne peuv
 
 
 
-L'utilisation du local storage permet, comme les cookies, de partager les données entre les différents onglets du navigateur. Nous aurions pu nous orienter vers une solution plus simple, comme enregistrer les informations de la partie cliente dans des tableaux ou listes, mais les informations ne seraient plus partagées entre les onglets et fenêtres du navigateur. Ce choix limiterait de manière drastique l'utilisation du programme. 
-\newline
-\indent
+
 Le local storage présente donc des avantages. La table \ref{local_storage} résume les différentes caractéristiques différant entre l'utilisation d'un local storage et l'utilisation de cookies.
 \newline
 \indent
