@@ -17,7 +17,7 @@ par Muller, et qui, en plus d'être en gpl et fortement maintenue (dernière
 version date d'il y a 2 semaines), elle nous paraît très performante et d'une 
 rare adéquation.  C'est donc avec beaucoup de tristesse dans l’âme (:p), qu'on n'
 utilise qu'une fraction de ses possibilités.  C'était tout l'avantage de notre 
-application (et de sont architectur client-server) et ce n'est pas utilisé a son
+application (et de son architecture client-server) et ce n'est pas utilisé a son
 full potentiel.  C'est donc la première amérioration que devra subir notre
 application, car tout est en place pour pouvoir en tirer un avantage certain.
 
@@ -31,7 +31,7 @@ Nous nous basons entièrement sur le local storage, les requêtes vers le serveu
 servent qu'a se connecter, charger le projet et enregistrer des modifications.
 Actuellement, il est possible de continuer la création d'un horaire chargé en 
 mémoire sans la nécessité d'une connexion, cependant, pour pouvoir pleinement 
-utiliser cette fonctionnalité, il est nécessaire de rajouter certaine fonctionnalité, telle 
+utiliser cette fonctionnalité, il est nécessaire de rajouter certaines fonctionnalités, telles 
 qu'une resynchronisation des modifications faites en local avec la base de données lorsque la 
 connexion est retrouvée. La possibilité, pour l'utilisateur, de reprendre un projet toujours conservé dans la mémoire cache.
 
@@ -39,8 +39,8 @@ connexion est retrouvée. La possibilité, pour l'utilisateur, de reprendre un p
 le fichier actuellement utilisé pour l'upload des attributions est le résultat d'une requête SQL. Dans un souci de clarté et de facilité pour l'utilisateur, il est plus évident de devoir rentrer un fichier manuellement étant donné qu'un autre fichier des locaux doit être également fourni. Pour qu'un upload puisse se faire de manière complète, il faudrait que la liste des locaux avec ce que ceci comporte soit également enregistrée dans une base de données afin de ne pas perdre l'utilisateur sur deux méthodes différentes d'envoi et de pouvoir ainsi garder une certaine cohérence du logiciel.
 
 \subsection{Modifications de données}
-actuellement il n'est pas possible de modifier toutes les données intervenant 
+Actuellement il n'est pas possible de modifier toutes les données intervenant 
 dans l'application (notamment la création d'un prof, local, etc.) Il faudrait donc avoir la possibilité d'ajouter certaines informations directement via l'interface du logiciel, afin de prévenir de tout oubli, ou rajout de dernière minute sur le nombre de classes, etc.
 
 \subsection{Upload de contraintes}
-L'idéal serait de permettre à l'utilisateur d'uploader son fichier de contraintes (sous forme de fichier XML par exemple), ou de pouvoir les entrer manuellement via l'interface. N'étant pas l'objectif de base de notre travail de fin d'étude, celui-ci étant plus orienté sur la programmation par contraintes à proprement parlé et l'intégration de cette programmation dans un outil d'aide à la création d'horaire, et donc l'élaboration de ce logiciel, ceci limite l'utilisateur de l'application aux uniques configurations que nous aurions choisesi au préalable. Il faudrait donc dans l'idéal permettre à l'utilisateur de pouvoir manipuler lui même les contraintes.
+L'idéal serait de permettre à l'utilisateur d'uploader son fichier de contraintes (sous forme de fichier XML par exemple), ou de pouvoir les entrer manuellement via l'interface. N'étant pas l'objectif de base de notre travail de fin d'étude, celui-ci étant plus orienté sur la programmation par contraintes à proprement parlé et l'intégration de cette programmation dans un outil d'aide à la création d'horaire, et donc l'élaboration de ce logiciel, ceci limite l'utilisateur de l'application aux uniques configurations que nous aurions choisis au préalable. Il faudrait donc dans l'idéal permettre à l'utilisateur de pouvoir manipuler lui même les contraintes.

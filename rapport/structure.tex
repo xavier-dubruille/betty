@@ -9,7 +9,7 @@ MVP est un design pattern\footnote{patron de conception, définissant une façon
 Le modèle englobe les données de l'application. Dans notre cas, les informations relatives aux attributions des cours ainsi que la liste des locaux dans lesquelles devront être placées nos attributions.
 
 \subsection{La vue}
-La vue correspond au graphisme de l'application. Pour bien illustrer ce concept, nous pouvons reprendre nos cartons. Ceux-ci contiennent des informations sur les attributions et se voient attribuer, lorsqu'ils sont placés dans un horaire, un local. La vue n'a aucune connaissance de ces informations. En effet, notre carton est uniquement un widget contenant des labels qui  sont positionnés d'une certaine façon, qui font un taille de 80 pixels, etc. 
+La vue correspond au graphisme de l'application. Pour bien illustrer ce concept, nous pouvons reprendre nos cartons. Ceux-ci contiennent des informations sur les attributions et se voient attribuer, lorsqu'ils sont placés dans un horaire, un local. La vue n'a aucune connaissance de ces informations. En effet, notre carton est uniquement un widget contenant des labels qui  sont positionnés d'une certaine façon, qui font une taille de 80 pixels, etc. 
 
 \subsection{Le présenteur}
 Le présenteur représente la logique de l'application. Nous reprendrons l'exemple du carton pour illustrer cette partie. Le modèle étant les données brutes, la vue étant le moyen de les afficher, il faut pouvoir définir à un endroit, à quel moment les données doivent être mise a vue de l'utilisateur. C'est dans cette partie qu'intervient le présenteur, en mettant dans chaque carton les informations relatives aux attributions.
@@ -18,7 +18,7 @@ Le présenteur représente la logique de l'application. Nous reprendrons l'exemp
 GWT introduit un contrôleur d'application. Dans une application GWT, certaines logique qui ne sont pas assignées à un présenteur en particulier. Ce concept est propre à GWT et ne fait pas réellement partie de l'architecture du design pattern MVP. 
  
 \section{Les packages java}
-Nous allons dans cette section présenter la manière don le programme a été conceptualisé. Pour ce faire, nous allons tout d'abord commencer par analyser les différents packages java ainsi que les classes que ceux-ci comportent. Comme nous l'avons vu dans le point précédent, l'application est basée sur MVP. Nous pourrons distinguer ce modèle au travers des différentes classes contenues dans nos packages : \\
+Nous allons dans cette section présenter la manière dont le programme a été conceptualisé. Pour ce faire, nous allons tout d'abord commencer par analyser les différents packages java ainsi que les classes que ceux-ci comportent. Comme nous l'avons vu dans le point précédent, l'application est basée sur MVP. Nous pourrons distinguer ce modèle au travers des différentes classes contenues dans nos packages : \\
 %on cite les packages ici et on explique en deux trois mot pourquoi il sont la je pense notement au package DTO
 
 \begin{itemize}
@@ -26,7 +26,7 @@ Nous allons dans cette section présenter la manière don le programme a été c
 	S'y trouve le fichier de configuration du projet. Ce fichier comporte l'ensemble des informations utiles au bon fonctionnement du projet.\\
 	
 \item \textbf{be.betty.gwtp.client}\\
-	Nous y trouvons toutes les classes utilitaires de la partie cliente. Certaines de ces classe ont des méthodes statiques, celles-ci étant nos données qui ne changerons pas.\\
+	Nous y trouvons toutes les classes utilitaires de la partie cliente. Certaines de ces classes ont des méthodes statiques, celles-ci étant nos données qui ne changerons pas.\\
 	
 \item \textbf{be.betty.gwtp.client.action}\\
 	Toutes les actions envoyées depuis la partie cliente se trouve ici. Elle seront ensuite récupérées dans les packages server du projet.\\
@@ -44,7 +44,7 @@ Sont contenus les informations relatives aux différentes "page" du projet. Lors
 A chaque vue est associée un présenteur, les présenteurs de chacune de ces vues est contenu dans ce package.\\
 
 \item \textbf{be.betty.gwtp.client.views}\\
- Ici se trouvent les informations concernant le graphisme général de l'application. Nous distinguons deux types de fichier. Des fichiers classiques Java ainsi que des fichiers XML. Les fichiers XML étant construits à l'aide de GWT-Designer, même si ceux-ci on subit beaucoup de modifications manuelles.\\
+ Ici se trouvent les informations concernant le graphisme général de l'application. Nous distinguons deux types de fichier. Des fichiers classiques Java ainsi que des fichiers XML. Les fichiers XML étant construits à l'aide de GWT-Designer, même si ceux-ci on subi beaucoup de modifications manuelles.\\
  
  \item \textbf{be.betty.gwtp.client.views.ourWidgets}\\
  Correspond à nos widget. Nous y retrouvons nos cartons ainsi que la modification d'un widget déjà existant offert par GWT. Nous avons dû modifier nous même ce widget pour pallier a certaines limitations de celui-ci.\\

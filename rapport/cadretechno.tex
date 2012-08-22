@@ -95,7 +95,7 @@ GinJector and Guice, n'étant pas un principe propre GWT, permet de créer une i
 
 %**************************** Inconvénient de GWT **************************************
 \subsubsection{Inconvénients de GWT}
-Le principal inconvénient que nous avons pu noter suite à notre expérience personnelle est que lorsque l'application atteint un état d'avancement plus prononcé, il devient très lourd et très lent de tester son application en mode développement. La JVM\footnote{Java Virtual Machine} devant traduire le code est très lente. Il nous a fallu en moyenne 5 minutes pour charger une page, et nous avons eu fréquemment des erreurs de type \enquote{out of memory} du à la lourdeur de la tâche effectuée par l'ordinateur en mode développement.
+Le principal inconvénient que nous avons pu noter suite à notre expérience personnelle est que lorsque l'application atteint un état d'avancement plus prononcé, il devient très lourd et très lent de tester son application en mode développement. La JVM\footnote{Java Virtual Machine} devant traduire le code est très lente. Il nous a fallu en moyenne 5 minutes pour charger une page, et nous avons eu fréquemment des erreurs de type \enquote{out of memory} dues à la lourdeur de la tâche effectuée par l'ordinateur en mode développement.
 \newline
 \indent
 Pour certains types de test, nous nous sommes retrouvés dans l'obligation de déployer l'application sur notre serveur Tomcat, car la sérialisation du Java vers le JS étant très lourde, certaines parties devaient être testées directement en mode production (notamment le drag and drop, etc.). 
@@ -107,7 +107,7 @@ De même, lorsque l'application doit charger une grande quantité d'informations
 Autre inconvénient, le temps de compilation du logiciel. Celui-ci peut être très fastidieux en fonction des paramètres demandés. 
 \newline
 \indent
-Un autre inconvénient réside dans le nombre assez limité de widgets fournis de base dans l'application. Pour certaines fonctionnalités plus avancées nous avons dû avoir recourt à des librairies externes, bien que celle-ci ne soit pas aussi performante (comboBox avec CheckBox, etc.).
+Un autre inconvénient réside dans le nombre assez limité de widgets fournis de base dans l'application. Pour certaines fonctionnalités plus avancées nous avons dû avoir recourt à des librairies externes, bien que celles-ci ne soient pas aussi performantes (comboBox avec CheckBox, etc.).
 
 %************************* GWT DESIGNER *******************************
 \subsection{GWT-Designer}
@@ -127,7 +127,7 @@ GWT - Plateform est un framework MVP\footnote{Model View Presenter} permettant d
 Le MVP se base sur le MVC\footnote{Model View Controler}. Celui-ci est un design pattern fournissant une manière d'élaborer des interfaces graphiques. Il est séparé en trois parties ; le modèle de données, les différentes vues de l'application\footnote{Au sein de l'interface du client} et le présenteur\footnote{Le présenteur correspond au contrôleur du MVC}. 
 \newline
 \indent
-La partie intéressante de ces deux modèles réside dans l'utilisation d'un contrôleur/présenteur où transite les informations. Ainsi, l'application est soumise à leur contrôle ce qui permet d'avoir une application plus robuste. 
+La partie intéressante de ces deux modèles réside dans l'utilisation d'un contrôleur/présenteur où transitent les informations. Ainsi, l'application est soumise à leur contrôle ce qui permet d'avoir une application plus robuste. 
 Dans le MVC, le contrôleur s'occupe de gérer les événements. La logique de contenu (Rendering logic) se passe directement entre le modèle et la vue. 
 En MVP, cette logique est gérée par le présenteur. En définitive, rien ne transite directement entre l'interface et le modèle mais tout est soumis au contrôle du présenteur.
 
@@ -228,7 +228,7 @@ De plus, la mise en place d'un local storage, bien qu'étant une partie fastidie
 Le principe de ce local storage est donc de fournir un moyen de stocker et d'accéder rapidement aux données tout en limitant le trafic entre le client et le serveur. Nous ne rentrerons pas dans la structure de celui-ci, ce point faisant partie d'un autre chapitre. Les informations sont mises en cache et peuvent être supprimées à tout moment par l'utilisateur.
 
 \subsubsection{Utilisation dans notre application}
-Lors de chaque modifications (comme le placement d'un carton), nous enregistrons ces changements dans le local storage ainsi que dans la base de données de manière asynchrone afin de permettre une grande rapidité de l'application. 
+Lors de chaque modification (comme le placement d'un carton), nous enregistrons ces changements dans le local storage ainsi que dans la base de données de manière asynchrone afin de permettre une grande rapidité de l'application. 
 \newline
 \indent
 Dans l'hypothèse où la base de données ne serait plus accessible (ex: perte de connexion) nous avons implémenté une fonctionnalité\footnote{En version alpha au moment de l'écriture de ces lignes.} permettant de synchroniser l'état du local storage avec la base de données lors du retour de connexion.
@@ -319,7 +319,7 @@ Cela permet donc à la couche applicative de notre programme de traiter les donn
  La base de données peut être traitée avec les avantages de l'orienté objet (comme le polymorphisme, l'héritage, etc.). Le lien entre les classes et la source physique des données  est défini au sein d'un fichier xml. Ainsi, il s'agit effectivement d'un mapping objet-relationnel.
  \newline
  \indent
-Cela nous à donc permit de gérer notre base de données dans un paradigme orienté objet comme le reste de l'application.
+Cela nous à donc permis de gérer notre base de données dans un paradigme orienté objet comme le reste de l'application.
 \begin{figure}[!h]
     \center
    	\includegraphics[scale=0.65]{schema_hibernate.png}
