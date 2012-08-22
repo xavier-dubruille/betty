@@ -25,7 +25,7 @@ Pour comprendre son utilisation il est indispensable de bien comprendre les conc
 \section{cardre théorique}
 \subsection{Recherche Operationnelle}
 La recherche opérationnelle (aussi appelée aide à la décision) peut être définie comme l'ensemble des méthodes et techniques rationnelles orientées vers la recherche de la meilleure façon d'opérer des choix en vue d'aboutir au résultat visé ou au meilleur résultat possible\footnote{Larousse 3 volumes, Paris 1966}
-La recherche opérationnelle peut donc se faire à l'aide de plusieurs techniques, tel que l'inteligence artificielle, les systèmes experts\footnote{}, ou encore la programmation par contrainte.  C'est par ce dernier "outil" que nous avons finalement abordé notre problème de création d'horaire.
+La recherche opérationnelle peut donc se faire à l'aide de plusieurs techniques, tel que l'inteligence artificielle, les systèmes experts\footnote{outil capable de reproduire les mécanismes cognitifs d'un expert, dans un domaine particulier}, ou encore la programmation par contrainte.  C'est par ce dernier "outil" que nous avons finalement abordé notre problème de création d'horaire.
 \subsection{Programmation par contrainte}
 
 La programmation par contrainte un paradigme de programmation \footnote{paradigme} ayant pour but la résolution de problèmes combinatoire en
@@ -35,7 +35,7 @@ La programmation par contrainte un paradigme de programmation \footnote{paradigm
 — E. Freuder
 \end{quote}
 
-dans le cas qui nous concerne, la problème de création d'horaire, est un cas typique de CSP\footnote{Constraint Satisfaction Problem}, et comme tout csp peut se définir comme suit:
+Dans le cas qui nous concerne, le problème de création d'horaire, est un cas typique de CSP\footnote{Constraint Satisfaction Problem}, et comme tout csp peut se définir comme suit:
    
 \begin{center}
 \fbox{\begin{minipage}{\linewidth}
@@ -74,12 +74,15 @@ lorsqu'une "impasse" survient, ils effectuent alors un retour en arrière ou "ba
 Le plus gros problème d'un tel alogorithme est qu'un mauvais choix d'assignement,
  particulièrement si celui-ci est éffectué au début de la recheche, causera une recherche infructueuse sur l'entièretée d'un sous-arbre. 
 %===1. problème np-complet
-Le premier problème, c'est que cette facon classique recherche la meilleur soltion, en explorant toutes les possibilitées. Notre problème étant NP-Complet\footnote{Ne peut être résolut en un temps polynomial}, ce qui explique que nos précédents tests avecs des librairies classique furent peut concluante.\newline.
-Il est donc necessaire d'avoir recourt à des heuristiques \footnote{}, et meta-heuristique\footnote{Une heuristique d'heuristique ou un ensemble d'heuristiques}, dans les prochaine section, nous décrirons brièvement l'une d'entre elles, à savoir l'Iterative Forward Search qui est celle utilisé pour l'écriture d'UniTime, la librairie que nous utilisons.
+\newline
+\indent
+Unpremier problème, c'est que cette facon classique recherche la meilleur solution, en explorant toutes les possibilitées. Notre problème étant NP-Complet\footnote{Ne peut être résolut en un temps polynomial}, ce qui explique que nos précédents tests avecs des librairies classique furent peut concluante.\newline.
+Il est donc necessaire d'avoir recourt à des heuristiques \footnote{Technique empirique de résolution de problèmes}, 
+et metaheuristique\footnote{Algorithme d’optimisation visant à résoudre des problèmes d’optimisation difficile }, dans les prochaine section, nous décrirons brièvement l'une d'entre elles, à savoir l'Iterative Forward Search qui est celle utilisé pour l'écriture d'UniTime, la librairie que nous utilisons.
 \newline
 \indent
 %=== MPP ========
-Le deusième problème, est que cette facon de backtracking, et d'exploration exaustive de noeuds ne permet pas de reprendre une solution parcielle car ..
+Le deusième problème, est que cette façon de backtracking, et d'exploration exaustive de noeuds ne permet pas de reprendre une solution parcielle car ..
 \newline
 \indent
 %== Optimisation
@@ -90,10 +93,10 @@ C'est pour cela que nous avons du sortir du modèle classique et utiliser des m�
 Quant à la question de l'optimisation, nous avons choisi, comme il se fait fréquemment, de séparer nos contraintes en "Hard constraints" et "Soft constraint".  Les "Hard" sont les contraintes sans lesquelles aucune solution n'est envisagable (nous avons par exemple mis la contrainte qu'un prof ne peut pas être à deux endroits différent, comme une "Hard constraint"), et les "Soft Constraint" seront les désidéra et autres préférences, ce sont ces dernières qui feront l'objet d'une optimisation. 
 % Dans le cas où une solution est impossible, il sera necessaire de retirer manuellement des "Hard constraint" et de relancer une recherche
 \subsubsection{MetaHeursistique, et première approche d'evolution}
-Des alogirittmes de recherche local \footnote{mF00}, comme le "min-conflict" ou le tabu search\footnote{} effectuent des recherches, de manière non détemistique, souvant guidée par des heuristique sur des solutions complete, mais pas necessairement fesable.  De tel algorithmes ne guarantisse donc pas de torouver une solution respecant toute les contraintes, mais tante de s'en raprocher. cependante, ces alogoritme peuve être bien plus efficace(en temps de calcul) que les celle systématique. Et pour des problème d'optimisation comme le notre, ils produiront des résultats de bien meilleure qualité.
-Il existe d'autres approches qui combinent les recheches locales avec des algorithmes de "backtrackingi", tel que décision repaire, mais nous avons pas exploré ces solutions.
+Des alogirittmes de recherche local \footnote{mF00}, comme le "min-conflict" ou la recherche Tabou\footnote{La recherche tabou est une métaheuristique d'optimisation présentée par Fred Glover en 1986} effectuent des recherches, de manière non détemistique, souvant guidée par des heuristique sur des solutions complete, mais pas necessairement fesable.  De tel algorithmes ne guarantisse donc pas de torouver une solution respecant toute les contraintes, mais tante de s'en raprocher. cependante, ces alogoritme peuve être bien plus efficace(en temps de calcul) que les celle systématique. Et pour des problème d'optimisation comme le notre, ils produiront des résultats de bien meilleure qualité.
+Il existe d'autres approches qui combinent les recheches locales avec des algorithmes de "backtracking", tel que "decision repaire", mais nous avons pas exploré ces solutions.
 
-\subsubsection{IFS}
+\subsubsection{Itérative Forward Search}
 Cette méta-heuristique à été développé par M.Muller dans le cadre de sa thèse et est celle utisé dans sa librairie d'UniTime. 
 % Le but n'étant pas d'expliquer en détail le fonctionnement de cette méta-heurisque, 
 %==============
@@ -122,7 +125,8 @@ Pour ce qui est de "nourrir" les informations du sovleur client, ce n'est, actue
 au fur et à mesure de la construction manuelle, et d'envoyer cela directement dans le Local Storage. Le solveur client, n'a donc qu'a puiser dans ces informations.
 En toute logique, ces résultats s'affineront au fur et à mesure que le temps passe, et que la construction manuelle évolue. Cela reste de l'ordre du conseil, étant donné qu'il se peut (si la création manuelle avance vite, si le solveur est trop lent) que cette information ne soit pas toujours rigoureusement à jour, même si l'on privilégie les données les plus récentes.  Ces résultats ne devront donc pas rentrer en concurrence avec ceux du solveur client qui devront avoir le dessus, dans le sens où une action interdite restera interdite et sera toujours marquée en rouge pour l'utilisateur. 
 Mais ces informations, devront faire toutes la différence entre un carton vert et rouge, offrant ainsi à l'utilisateur plus des sugestions que des obligations. 
-
+\newline
+\indent
 Les possibilités de cette librairie combinées à nos choix d'infrastrcuture sont énormes, et nous sommes persuadés que c'est la meilleure facon de faire. Autant pour la puissance que pourrait offrir ce solveur, mais aussi à la facilité de sa maintenabilité, due à sa grande indépendance face au reste de l'application.
 Malheuresement, à l'état actuel, nous n'avons, matérielement, pas eu le temps de l'explorer pleinement, ni d'offir, via l'interface client, suffisament d'options pour controler celui-ci.
-Le tout étant en place, et le sujet dé-mystifié, le travail restant est minime pour pouvoir profiter pleinement de cet outil, et nous espérons sincèrement avoir l'ocasion de palier à ce manquement lors d'une future mise-à-jour du programme.
+Le tout étant en place, et le sujet dé-mystifié, le travail restant est n'est plus si grand afin de pour pouvoir profiter pleinement de cet outil, et nous espérons sincèrement avoir l'ocasion de palier à ce manquement lors d'une future mise-à-jour du programme.
