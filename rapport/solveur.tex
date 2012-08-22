@@ -70,40 +70,52 @@ v1 != v2 où v1 et v2 sont deux cartons d'un meme professeur
 \subsubsection{Limitations}
 La plus part des alogirhmes pour résoudre des CSP, effectuent une recheche systematique à travers toutes les assignations possibles pour les variables du problème. De tel algorithmes garantissent de trouver une solution, si elle éxiste, ou prouver que ce problème ne possède pas de solution.  
 Ils commencent à partir du'une solution vide (aucune variable n'est assignée) et effectuent une recherche exhaustive,
-lorsqu'une "impasse" survient, ils effectuent alors un retour en arrière ou "backtracking".  
+lorsqu'une "impasse" survient, ils effectuent alors un retour en arrière ou "backtracking".  \newline
 Le plus gros problème d'un tel alogorithme est qu'un mauvais choix d'assignement,
  particulièrement si celui-ci est éffectué au début de la recheche, causera une recherche infructueuse sur l'entièretée d'un sous-arbre. 
 %===1. problème np-complet
 \newline
 \indent
-Unpremier problème, c'est que cette facon classique recherche la meilleur solution, en explorant toutes les possibilitées. Notre problème étant NP-Complet\footnote{Ne peut être résolut en un temps polynomial}, ce qui explique que nos précédents tests avecs des librairies classique furent peut concluante.\newline.
-Il est donc necessaire d'avoir recourt à des heuristiques \footnote{Technique empirique de résolution de problèmes}, 
-et metaheuristique\footnote{Algorithme d’optimisation visant à résoudre des problèmes d’optimisation difficile }, dans les prochaine section, nous décrirons brièvement l'une d'entre elles, à savoir l'Iterative Forward Search qui est celle utilisé pour l'écriture d'UniTime, la librairie que nous utilisons.
+Un premier problème, est que cette facon classique recherche la meilleur solution, en explorant toutes les possibilitées, hors, notre problème étant NP-Complet\footnote{Ne peut être résolut en un temps polynomial}, il n'est pas envisageable de trouver une solution, de cette manière, comprenant l'entièretée des données fournie pour la création d'un horraire à l'EPHEC.  C'est ce que nous avons expérimenté, lors de nos tests préliminaire avec ce type d'agorithmes, sur un ensemble très réstreint d'attributions. 
 \newline
+Il sera donc necessaire de recourir à des heuristiques\footnote{Technique empirique de résolution de problèmes} afin d'explorer seulment un nombre plus réduit de possiblitées.
+\newline
+
+%Il est donc necessaire d'avoir recourt à des heuristiques \footnote{Technique empirique de résolution de problèmes}, 
+%et metaheuristique\footnote{Algorithme d’optimisation visant à résoudre des problèmes d’optimisation difficile }, dans les prochaine section, nous décrirons brièvement l'une d'entre elles, à savoir l'Iterative Forward Search qui est celle utilisé pour l'écriture d'UniTime, la librairie que nous utilisons.
 \indent
 %=== MPP ========
-Le deusième problème, est que cette façon de backtracking, et d'exploration exaustive de noeuds ne permet pas de reprendre une solution parcielle car ..
+Le deusième problème, est que comme cette façon de faire repose excusivement sur des techniques de "backtracking", de propagation de contrainte\footnote{La propagation de contraintes est le fait de réduire le domaine d'une contrainte afin de maintenir l'ensemble des valeurs possibles cohérent avec les contraintes du problème},
+et d'exploration exaustive de l'arbre des possibilités, il  ne permet pas d'avoir un résultat intemédiaire utilisable.  
+Il n'est pas possible également de reprendre la recherche sur un état partiel, empêchant ainsi la résolution d'un \textbf{Minimal Perturbation Problem}\footnote{Le but étant de trouver une meilleur solution, sur un problème fini ou partiellement fini, en causant le minimum de perturbations possible} qui pourrait s'avèrer très utile dans notre cas. \newline
+Comme nous alons le voir dans la prochaine section, seule une recherche itérative pourra nous permettre cela, et particulièrement la librairie d'UniTime qui a été écrite dans ce sens là.\footnote{Minimal Perturbation Problem in Course Timetabling, Tomas Muller and Hana Rudova, PATAT 2005 }
 \newline
 \indent
 %== Optimisation
-Le troisième problème engendré par cette méthode exaustive, c'est qu'elle ne pourra pas fournire une soltion qui ne respecte pas toutes les contraintes, étant donné qu'il ne se déplace que d'états consistant\footnote{} en états consistant. Si un problème n'offre pas de solution, car il y a trop de contraintes, comme dans le cas de la création d'un horaire EPHEC, il ne pourra pas fournir de solution, meme si la "moins pire" des solutions aurait été interessante. Il n'y a donc pas d'optimisation possible.
+Le troisième problème engendré par cette méthode traditionnelle, est que lorsqu'il n'y a pas de solution possible, rien ne peut être renvoyé.  Une solution qui aurait pu convenir sera rejeté car ne respectant pas toutes les contraintes. Cela est d'autant plus le cas, dans un problème tel que 
+celui de la création d'horraires à l'EPHEC, où il existe beaucoup trop de contraintes -- même si elles ne sont pas toutes indispensable--.  Cela est dû au fait que ces méthodes de programmation par contraintes ne vont qu'en état consistant\footnote{Un état consitant, brièvement, est un état où aucune contraintes n'est violée} à un autre état consitant. Il n'y a donc pas d'optimisations possible (avec des contraintes qui n'auraient pas les même poids), car lorsqu'un état inconsistant est atteint, cela constitue un "deadLock", et il en résulte la suppréssion de tout le sous arbre de possibilités correspondant.\newline
+Nécessité donc, de se tourner vers d'autres solutions.
 \newline
 \indent
-C'est pour cela que nous avons du sortir du modèle classique et utiliser des méthodes dite hybrides, mèlant d'autre méthodes, principalement des heuristiques et métaheuristique, tel que présenté dans les sections suivantes afin de trouver malgré tout une bonne\footnote{peut importe ce que "bonne" signifie} solution, dans des temps accèptables, et permettant de reprendre une solution entamée afin de l'améliorer. \newline
+C'est pour cela que nous avons du sortir du modèle classique et utiliser des méthodes dite hybrides, mèlant d'autre méthodes, principalement des heuristiques et métaheuristique, tel que présenté dans les sections suivantes afin de trouver malgré tout une bonne (peut importe ce que "bonne" signifie) solution, dans des temps accéptable, et permettant de reprendre une solution entamée afin de l'améliorer. \newline
 Quant à la question de l'optimisation, nous avons choisi, comme il se fait fréquemment, de séparer nos contraintes en "Hard constraints" et "Soft constraint".  Les "Hard" sont les contraintes sans lesquelles aucune solution n'est envisagable (nous avons par exemple mis la contrainte qu'un prof ne peut pas être à deux endroits différent, comme une "Hard constraint"), et les "Soft Constraint" seront les désidéra et autres préférences, ce sont ces dernières qui feront l'objet d'une optimisation. 
 % Dans le cas où une solution est impossible, il sera necessaire de retirer manuellement des "Hard constraint" et de relancer une recherche
-\subsubsection{MetaHeursistique, et première approche d'evolution}
-Des alogirittmes de recherche local \footnote{mF00}, comme le "min-conflict" ou la recherche Tabou\footnote{La recherche tabou est une métaheuristique d'optimisation présentée par Fred Glover en 1986} effectuent des recherches, de manière non détemistique, souvant guidée par des heuristique sur des solutions complete, mais pas necessairement fesable.  De tel algorithmes ne guarantisse donc pas de torouver une solution respecant toute les contraintes, mais tante de s'en raprocher. cependante, ces alogoritme peuve être bien plus efficace(en temps de calcul) que les celle systématique. Et pour des problème d'optimisation comme le notre, ils produiront des résultats de bien meilleure qualité.
+\subsubsection{Metaheursistique, et première approche d'évolution}
+Des alogirittmes de recherche locale\footnote{métaheuristique utilisée pour résoudre des problèmes d'optimisation difficiles. Peut être utilisée sur des problèmes de recherche d'une solution maximisant un critère parmi un ensemble de solutions candidates}, comme le "min-conflict" ou la recherche Tabou\footnote{La recherche tabou est une métaheuristique d'optimisation présentée par Fred Glover en 1986} effectuent des recherches, de manière non détemistique, souvant guidée par des heuristique sur des solutions complete, mais pas necessairement fesable.  
+De tel algorithmes ne guarantissent donc pas de touver une solution respectant toutes les contraintes, mais tente de s'en raprocher. cependant, ces alogorithmes peuvent être bien plus efficace(en temps de calcul) que les celles systématique. Et pour des problèmes d'optimisation comme le notre, ils produiront des résultats de bien meilleure qualité.
 Il existe d'autres approches qui combinent les recheches locales avec des algorithmes de "backtracking", tel que "decision repaire", mais nous avons pas exploré ces solutions.
 
 \subsubsection{Itérative Forward Search}
-Cette méta-heuristique à été développé par M.Muller dans le cadre de sa thèse et est celle utisé dans sa librairie d'UniTime. 
+Cette métaheuristique à été développé par M.Muller dans le cadre de sa thèse et est celle utisé dans sa librairie d'UniTime. 
+Elle répond à tout nos besoins décris précédemment. Nous ne décrirons pas son fonctionnement, 
+necessitant l'expliquation d'autre concepts et dépassant le cadre de ce present TFE. Nous invitons cependant, le lecteur désireu, a se référer à la thèse passionnante de M.Muller\footnote{\textbf{Constraint-based Timetabling}, Tomáš Müller, Charles University in Prague, Faculté of Mathematics and Physics, 2005}, ainsi que plusieurs de ses articles écrit à l'ocation de PATAT\footnote{Conférences internationnal sur Practice and Theory of Automated Timetabling (PATAT)}, dont les références se trouve en bibliographie.
+
 % Le but n'étant pas d'expliquer en détail le fonctionnement de cette méta-heurisque, 
 %==============
 
 \subsection{Choix de librairies}
 Notre problème est bien un problème de csp, et la manière de l'aborder, de le traiter ne devrait pas varier d'une librairie à une autre.  Cependant Cette librairieà particulièrement été écrite pour des csp liés à l'établissement d'horaires d'universités, en offrant une certaine facilité d'utilisation et un nombre d'options pour gérer des situations propres à l'enseignement.
-Elle est particulièrement adéquate dans son implémentation, car elle se base sur la méta-heuristique ifs, présenté précédement, qui s'avère performante pour ce type de solution.  On a pu l'observer de par nos précédents tests avec les librairies d'OR-tools, et de XX (la lib de P.SHAUS).
+Elle est particulièrement adéquate dans son implémentation, car elle se base sur la méta-heuristique ifs, présenté précédement, qui s'avère performante pour ce type de solution.  On a pu l'observer de par nos précédents tests avec les librairies d'OR-tools, et celle de P.SCHAUSE.
 \newline
 \indent
 Un autre avantage de cette librairie, est qu'elle est libre de droit, et régulièrement mise à jours (d'ailleurs, la dernière version, sorti il y a quelques semaine à été incorporé au programme).
