@@ -75,7 +75,7 @@ public class Storage_access {
 	private static final int CO_PR_SIZE_INDEX = 1; //e.g. if the instance has been deleted and have to be disabled
 	private static final int CO_PR_INDEX = 2;
 
-	
+
 
 
 	static {
@@ -105,46 +105,72 @@ public class Storage_access {
 	}
 
 
+	/**
+	 * Return all the room where the specified card can occupy
+	 * @param cardId
+	 * @return
+	 */
 	public static String[] getPossibleRooms(int cardId) {
 		String[] course = getCourseCard(getCard(cardId)).split(STORAGE_SEPARATOR);
-//		ClientUtils.notifyUser("the course card= "+Arrays.toString(course), 1, MainPresenter.eventBus);
+		//		ClientUtils.notifyUser("the course card= "+Arrays.toString(course), 1, MainPresenter.eventBus);
 		int number = Integer.parseInt(course[CO_PR_SIZE_INDEX]);
-	//	ClientUtils.notifyUser("the numer of possible room = "+number, 1, MainPresenter.eventBus);
+		//	ClientUtils.notifyUser("the numer of possible room = "+number, 1, MainPresenter.eventBus);
 		String[] possRoom = new String[number];
 		for (int i=0; i<number; i++) {
-		//	ClientUtils.notifyUser("room i = "+course[i+CO_PR_INDEX ], 1, MainPresenter.eventBus);
+			//	ClientUtils.notifyUser("room i = "+course[i+CO_PR_INDEX ], 1, MainPresenter.eventBus);
 			possRoom[i]= course[i+CO_PR_INDEX ];
 		}
 		return possRoom;
 	}
 
-	
 
+	/**
+	 * Clear the list where all the placed card are
+	 */
 	public static void clearPlacedCard() {
 		stockStore.setItem(ALL_PLACED_CARD, "");
 	}
 
+	/**
+	 * Clear local storage (is it working properly ?)
+	 */
 	public static void clear() {
 		stockStore.removeItem(PROJECT_NAME_PREFIX);
 		stockStore.clear();
 	}
 
+	/**
+	 * 
+	 * @return the project name
+	 */
 	public static String getProjectName() {
 		return stockStore.getItem(PROJECT_NAME_PREFIX);
 	}
-	
+
+	/**
+	 * Set the project name
+	 * @param projectName
+	 */
 	public static void setProjectName(String projectName) {
 		stockStore.setItem(PROJECT_NAME_PREFIX, projectName);
 	}
-	
+
+	/**
+	 * 
+	 * @return the semester actualy loaded in the local storage
+	 */
 	public static String getSemester() {
 		return stockStore.getItem(SEMESTER_PREFIX);
 	}
-	
+
+	/**
+	 * Set the actual semester
+	 * @param semester
+	 */
 	public static void setSemester(String semester) {
 		stockStore.setItem(SEMESTER_PREFIX, semester);
 	}
-	
+
 	/**
 	 * Main method to populate the local Storage
 	 * @param project_num
@@ -161,7 +187,7 @@ public class Storage_access {
 
 		setDefaultValues(); // if we don't set some values, we need some default one
 		Storage_access.setRooms(project_num, result.getRooms());
-		
+
 		Storage_access.setTeachers(project_num, result.getTeachers());
 		Storage_access.setGroups(project_num, result.getGroups());
 		Storage_access.setCourses(project_num, result.getCourses());
@@ -178,6 +204,12 @@ public class Storage_access {
 
 	}
 
+	/**
+	 * Construct the local storage for the room
+	 * 
+	 * @param project_num
+	 * @param rooms
+	 */
 	private static void setRooms(String project_num, ArrayList<Room_dto> rooms) {
 		rooms_map.clear();
 		int i = 0;
@@ -219,7 +251,12 @@ public class Storage_access {
 		stockStore.setItem(NUMBER_OF_CARD, "" + i);
 	}
 
-
+	/**
+	 * Construct the local Storage for the teachers
+	 * 
+	 * @param projectID
+	 * @param teachers
+	 */
 	private static void setTeachers(String projectID, ArrayList<Teacher_dto> teachers) {
 		teachers_map.clear();
 		int i = 0;
@@ -292,19 +329,34 @@ public class Storage_access {
 		stockStore.setItem(CURRENT_INSTANCE_BDDID, ""+getInstanceBddId(instance));
 	}
 
+	/**
+	 * 
+	 * @return the sessId of the user actualy on
+	 */
 	public static String getSessId() {
 		return stockStore.getItem(SESSID_PREFIX);
 	}
-	
+
+	/**
+	 * Set the user sessId
+	 * @param sessId
+	 */
 	public static void setSessId(String sessId) {
 		stockStore.setItem(SESSID_PREFIX, sessId);
 	}
-	
-	
+
+	/**
+	 * 
+	 * @return The number of instances
+	 */
 	public static int getNumberOfInstance() {
 		return Integer.parseInt(stockStore.getItem(NUMBER_OF_INSTANCE));
 	}
 
+	/**
+	 * @param i the instance id
+	 * @return the instance
+	 */
 	public static String getInstance(int i) {
 		return stockStore.getItem(INSTANCE_PREFIX+i);
 	}
@@ -321,14 +373,18 @@ public class Storage_access {
 		int slot = per*10 + day;
 		String[] s = getCard(cardID).split(STORAGE_SEPARATOR);
 		s[SLOT_INDEX]=""+slot;
-	//	s[ROOM_INDEX]=room;
+		//	s[ROOM_INDEX]=room;
 		stockStore.setItem(CARD_PREFIX+cardID, BettyUtils.join(s, STORAGE_SEPARATOR));
-		
+
 		stockStore.setItem(ALL_PLACED_CARD,stockStore.getItem(ALL_PLACED_CARD)+STORAGE_SEPARATOR+cardID);
 		System.out.println("all placed card = "+Arrays.toString(getAllPlacedCard()));
 	}
 
-	
+
+	/**
+	 * Called to remove a card from his slot in the local storage
+	 * @param cardID
+	 */
 	public static void revoveFromSlot(int cardID) {
 		String card = getCard(cardID);
 		if (card == null) {
@@ -341,6 +397,10 @@ public class Storage_access {
 		stockStore.setItem(CARD_PREFIX+cardID, BettyUtils.join(s, STORAGE_SEPARATOR));
 	}
 
+	/**
+	 * 
+	 * @return all card markded as placed
+	 */
 	public static String[] getAllPlacedCard() {
 		String s = stockStore.getItem(ALL_PLACED_CARD);
 		if (s.length() == 0) return new String[0];
@@ -353,7 +413,12 @@ public class Storage_access {
 	public static void setCurrentProjectInstanceBddId(int currentProjectInstance) {
 		setCurrentProjectInstanceBddId_fromBddID(getInstanceBddId(currentProjectInstance));
 	}
-	
+
+	/**
+	 * 
+	 * @param cardId
+	 * @return
+	 */
 	public static String getBddIdFromCardId(int cardId) {
 		return stockStore.getItem(CARD_PREFIX+cardId).split(STORAGE_SEPARATOR)[BDDID_INDEX];
 	}
@@ -370,7 +435,7 @@ public class Storage_access {
 	private static String getWholeCourse(int i) {
 		return stockStore.getItem(COURSE_PREFIX+i);
 	}
-	
+
 	public static int getCurrentProjectInstanceBDDID() {
 		String current = stockStore.getItem(CURRENT_INSTANCE_BDDID);
 		assert current != null;
@@ -421,7 +486,7 @@ public class Storage_access {
 	public static String getCard(int i) {
 		return stockStore.getItem(CARD_PREFIX+i);
 	}
-	
+
 
 
 
@@ -438,7 +503,7 @@ public class Storage_access {
 		return stockStore.getItem(ROOM_PREFIX+roomId);
 	}
 
-	
+
 	public static int getNumberOfCard() {
 		return Integer.parseInt(stockStore.getItem(NUMBER_OF_CARD));
 	}
@@ -447,7 +512,7 @@ public class Storage_access {
 	public static int getNbDays() {
 		return Integer.parseInt(stockStore.getItem(NUMBER_OF_DAYS));
 	}
-	
+
 	public static int getNumberOfRoom() {
 		return Integer.parseInt(stockStore.getItem(NUMBER_OF_ROOM));
 	}
@@ -511,18 +576,26 @@ public class Storage_access {
 	public static int getSlotCard(String card) {
 		return Integer.parseInt(card.split(STORAGE_SEPARATOR)[SLOT_INDEX]);
 	}
+	
 	public static int getRoomCard(String card) {
 		return Integer.parseInt(card.split(STORAGE_SEPARATOR)[ROOM_INDEX]);
 	}
+	
+	/**
+	 * Get the bdd id from a card
+	 * 
+	 * @param card
+	 * @return
+	 */
 	public static int getBddIdCard(String card) {
 		return Integer.parseInt(card.split(STORAGE_SEPARATOR)[BDDID_INDEX]);
 	}
 
 
 
-	
+
 	/**
-	 * print to console the content of localStorage..
+	 * Print to console the content of localStorage..
 	 * For Debuggin' purposes !
 	 */
 	public static void printStorage() {
@@ -568,7 +641,7 @@ public class Storage_access {
 	}
 
 
-	
+
 
 
 

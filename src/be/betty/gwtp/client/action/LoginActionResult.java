@@ -3,6 +3,11 @@ package be.betty.gwtp.client.action;
 import com.gwtplatform.dispatch.shared.Result;
 import java.lang.String;
 
+/**
+ * The result of the corresponding action.
+ * Used to return the sessId of the new logged user.
+ *
+ */
 public class LoginActionResult implements Result {
 
 	private String session_id;

@@ -1,5 +1,11 @@
 package be.betty.gwtp.client;
 
+/**
+ * 
+ * Caracterise the state of a cell. 
+ * It's use to print color on the user screen
+ *
+ */
 public class CellState {
 	
 	public CellState(){
@@ -30,6 +36,10 @@ public class CellState {
 		return reason;
 	}
 
+	/**
+	 * Use to explain the reason of the color.
+	 * @param reason
+	 */
 	public void setReason(String reason) {
 		this.reason = reason;
 		

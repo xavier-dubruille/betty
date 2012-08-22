@@ -4,6 +4,11 @@ import com.gwtplatform.dispatch.shared.ActionImpl;
 
 import be.betty.gwtp.client.action.GetActivityStateActionResult;
 
+/**
+ * This action is used when we require all the state of a card
+ * i.e if it's placed and where/when it's placed
+ *
+ */
 public class GetActivityStateAction extends
 		ActionImpl<GetActivityStateActionResult> {
 

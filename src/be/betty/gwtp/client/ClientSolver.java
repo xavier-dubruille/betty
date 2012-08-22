@@ -9,6 +9,15 @@ import be.betty.gwtp.server.FileUpServlet;
 public class ClientSolver {
 
 
+	/**
+	 * This is called to find the best room for a specified card.
+	 * It's used when droping a card on a "non-room" view
+	 * 
+	 * @param cardId the card
+	 * @param day
+	 * @param period
+	 * @return
+	 */
 	public static String findBestRoom(int cardId, int day, int period) {
 		String[] possRooms = Storage_access.getPossibleRooms(cardId);
 //		ClientUtils.notifyUser("Possible room for card "+cardId+" ="+Arrays.toString(possRooms), 1, MainPresenter.eventBus);
@@ -26,6 +35,15 @@ public class ClientSolver {
 			return "-1";
 	}
 
+	/**
+	 * Construct a cellstate Object. 
+	 * It will be colled when a card-drag is started, it will then be called for each Cell
+	 * 
+	 * @param cardID the card witch is dragged
+	 * @param period
+	 * @param day
+	 * @return
+	 */
 	public static CellState getCellState(String cardID, int period, int day) {
 		
 		

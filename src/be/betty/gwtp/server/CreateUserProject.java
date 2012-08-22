@@ -49,6 +49,10 @@ public class CreateUserProject {
 	private int cardMapId;
 	private  Map<String, Room> rooms;
 
+	/**
+	 * 
+	 * @param projectToBeSaved
+	 */
 	public CreateUserProject(Project_entity projectToBeSaved) {
 		index = new Index();
 		this.activities_file = projectToBeSaved.getCourse_file();
@@ -254,6 +258,9 @@ public class CreateUserProject {
 		return null;
 	}
 
+	/**
+	 *  Save the state of the object into the bdd
+	 */
 	public void saveStateToBdd() {
 		System.out.println("save in bdd");
 		//System.out.println("activities = "+cards);
@@ -434,6 +441,10 @@ public class CreateUserProject {
 
 	}
 
+	/**
+	 * 
+	 * @param line
+	 */
 	private void constructRoomStateFromLine(String[] line) {
 
 		//System.out.println("##@@ trying to save line : "+Arrays.asList(line));

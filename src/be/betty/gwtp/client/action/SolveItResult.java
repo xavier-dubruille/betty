@@ -2,6 +2,11 @@ package be.betty.gwtp.client.action;
 
 import com.gwtplatform.dispatch.shared.Result;
 
+/**
+ * When the corresponding action is done, this will be used to notify 
+ * the user with the result.
+ *
+ */
 public class SolveItResult implements Result {
 
 	private String soluceInfo;

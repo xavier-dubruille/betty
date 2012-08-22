@@ -2,6 +2,11 @@ package be.betty.gwtp.client.action;
 
 import com.gwtplatform.dispatch.shared.ActionImpl;
 
+/**
+ * This action is used to get all cards from bdd.
+ * Note: we do not fetch theirs state.
+ *
+ */
 public class GetCards extends ActionImpl<GetCardsResult> {
 
 	private String project_id;

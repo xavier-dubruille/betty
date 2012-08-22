@@ -5,6 +5,10 @@ import com.google.gwt.event.shared.EventHandler;
 import java.lang.String;
 import com.google.gwt.event.shared.HasHandlers;
 
+/**
+ * 
+ * 
+ */
 public class AddNotifEvent extends GwtEvent<AddNotifEvent.AddNotifHandler> {
 
 	public static Type<AddNotifHandler> TYPE = new Type<AddNotifHandler>();

@@ -2,6 +2,10 @@ package be.betty.gwtp.client.action;
 
 import com.gwtplatform.dispatch.shared.ActionImpl;
 
+/**
+ * This action is called when a login is made
+ *
+ */
 public class LoginAction extends ActionImpl<LoginActionResult> {
 
 	private String login;

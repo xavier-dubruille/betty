@@ -3,6 +3,11 @@ package be.betty.gwtp.client.action;
 import com.gwtplatform.dispatch.shared.ActionImpl;
 import be.betty.gwtp.client.action.SolveItResult;
 
+/**
+ * This action is used to ask (with all necessary options)
+ * the server-solveur  to calculate a solutions
+ *
+ */
 public class SolveIt extends ActionImpl<SolveItResult> {
 
 	private int projectBddID;

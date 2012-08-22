@@ -11,10 +11,18 @@ import com.allen_sauer.gwt.dnd.client.DragStartEvent;
 import com.allen_sauer.gwt.dnd.client.VetoDragException;
 import com.google.gwt.event.shared.EventBus;
 
+
 public class CardHandler implements DragHandler {
 
 	private EventBus eventBus;
 
+	/**
+	 * Constructor. 
+	 * Create a CardHandler to manage the card 
+	 * (when droped, dragged, etc)
+	 * 
+	 * @param eb
+	 */
 	public CardHandler(EventBus eb) {
 		eventBus = eb;
 	}
@@ -56,12 +64,18 @@ public class CardHandler implements DragHandler {
 
 	}
 
-	@Override
-	public void onDragStart(DragStartEvent event) {
+	/**
+	 * 
+	 * Method to be called when the drag start
+	 */
+	@Override public void onDragStart(DragStartEvent event) {
 		System.out.println("on drag start: "+ event);
 
 	}
 
+	/**
+	 * Method to be called when the drag end
+	 */
 	@Override
 	public void onPreviewDragEnd(DragEndEvent event) throws VetoDragException {
 		System.out.println("on preview drag end: "+ event);
@@ -70,6 +84,9 @@ public class CardHandler implements DragHandler {
 
 	}
 
+	/**
+	 * Method to be called just before the drag start
+	 */
 	@Override
 	public void onPreviewDragStart(DragStartEvent event)
 			throws VetoDragException {

@@ -3,6 +3,11 @@ package be.betty.gwtp.client.action;
 import com.gwtplatform.dispatch.shared.ActionImpl;
 import be.betty.gwtp.client.action.GetInstancesOnlyResult;
 
+/**
+ * This action is used to get all the diferent instance from
+ * a specific project
+ *
+ */
 public class GetInstancesOnly extends ActionImpl<GetInstancesOnlyResult> {
 
 	private int projectId;

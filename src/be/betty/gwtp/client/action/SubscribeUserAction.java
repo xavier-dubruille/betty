@@ -3,6 +3,10 @@ package be.betty.gwtp.client.action;
 import com.gwtplatform.dispatch.shared.ActionImpl;
 import be.betty.gwtp.client.action.SubscribeUserActionResult;
 
+/**
+ * Used to check if a specified user is already in bdd
+ *
+ */
 public class SubscribeUserAction extends ActionImpl<SubscribeUserActionResult> {
 
 	

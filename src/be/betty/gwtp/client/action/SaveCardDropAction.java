@@ -4,6 +4,10 @@ package be.betty.gwtp.client.action;
 import com.gwtplatform.dispatch.shared.ActionImpl;
 import be.betty.gwtp.client.action.SaveCardDropActionResult;
 
+/**
+ * This action is called each time a card is placed or un placed.
+ *
+ */
 public class SaveCardDropAction extends ActionImpl<SaveCardDropActionResult> {
 
 	private int day;

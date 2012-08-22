@@ -15,8 +15,13 @@ public class Betty_gwtp implements EntryPoint {
 
 	private final ClientGinjector ginjector = GWT.create(ClientGinjector.class);
 
-	@Override
-	public void onModuleLoad() {
+	/**
+	 *  Real Entry point of the app.
+	 *  
+	 *  It's only designed to catched unHandled exeption 
+	 *  and then call the old entry point
+	 */
+	@Override public void onModuleLoad() {
 
 		// set uncaught exception handler
 		GWT.setUncaughtExceptionHandler(new GWT.UncaughtExceptionHandler() {
@@ -57,6 +62,9 @@ public class Betty_gwtp implements EntryPoint {
 
 	}
 
+	/**
+	 *  Entry point (after catching unhandled exeption)
+	 */
 	private void onModuleLoad2() {
 
 		// This is required for Gwt-Platform proxy's generator

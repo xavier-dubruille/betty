@@ -12,12 +12,25 @@ public class CardInView {
 	ListBox combo_viewChoice1;
 	ListBox combo_viewChoice2;
 
+	/**
+	 * Constructor.
+	 * It has to be constructed with the 2 combobox used to determined if the 
+	 * designed card is actualy in the view.
+	 * @param combo_viewChoice1
+	 * @param combo_viewChoice2
+	 */
 	public CardInView(ListBox combo_viewChoice1, ListBox combo_viewChoice2) {
 		super();
 		this.combo_viewChoice1 = combo_viewChoice1;
 		this.combo_viewChoice2 = combo_viewChoice2;
 	}
 
+	/**
+	 * The purpose is decide if a card belong to that view
+	 * 
+	 * @param card the card to check
+	 * @return if it belong to
+	 */
 	public boolean cardBelongToActualView(String card) {
 		//System.out.println("Should we print this card ? =>"+card);
 		//System.out.println("Teacher = num "+Storage_access.getTeacherCard(card));

@@ -3,6 +3,10 @@ package be.betty.gwtp.client.action;
 import com.gwtplatform.dispatch.shared.ActionImpl;
 import be.betty.gwtp.client.action.CreateNewCardActionResult;
 
+/**
+ * This action is called when a new card is created
+ *
+ */
 public class CreateNewCardAction extends ActionImpl<CreateNewCardActionResult> {
 	
 	private int teacherId;

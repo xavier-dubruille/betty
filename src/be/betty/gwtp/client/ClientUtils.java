@@ -8,6 +8,10 @@ import be.betty.gwtp.client.event.AddNotifEvent;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
 
+/**
+ * This class is to put all utilities needed in client side
+ *
+ */
 public class ClientUtils {
 
 
@@ -18,6 +22,12 @@ public class ClientUtils {
 //	        "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
 //	);
 	
+	/**
+	 * Use to check if the email entered by the user is
+	 * in a right syntax.
+	 * @param email the input email
+	 * @return if it's valid
+	 */
 	public static boolean CheckEmail(String email){
 		
 //		if (!rfc2822.matcher(email).matches()) {
@@ -44,6 +54,13 @@ public class ClientUtils {
 	}
 
 
+	/**
+	 * This method allows to make a notification on the UI
+	 * 
+	 * @param notif the string to be notified to the user
+	 * @param error the level of the notif importance
+	 * @param eventBus
+	 */
 	public static void notifyUser(String notif, int error, EventBus eventBus) {
 		System.out.println("Notif = "+notif);
 		// should we log it too ?

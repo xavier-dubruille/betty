@@ -2,6 +2,10 @@ package be.betty.gwtp.client.action;
 
 import com.gwtplatform.dispatch.shared.ActionImpl;
 
+/**
+ * This action is used when Deleting a project
+ *
+ */
 public class DeleteProjectAction extends ActionImpl<DeleteProjectActionResult> {
 
 	private int project_id;

@@ -1,8 +1,5 @@
 package be.betty.gwtp.client.place;
 
-/*
- * SAAAAAALUUUUUUUUUUUUUUUUUUTTTT!!!
- */
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;

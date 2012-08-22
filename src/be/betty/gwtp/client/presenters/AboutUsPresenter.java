@@ -9,6 +9,10 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.widget.client.TextButton;
 
+/**
+ * Presenter for the popup called "about"
+ *
+ */
 public class AboutUsPresenter extends PresenterWidget<AboutUsPresenter.MyView> {
 
 	public interface MyView extends PopupView {
@@ -36,7 +40,6 @@ public class AboutUsPresenter extends PresenterWidget<AboutUsPresenter.MyView> {
 			
 			@Override
 			public void onClick(ClickEvent event) {
-				// TODO Auto-generated method stub
 				getView().hide();
 			}
 		});

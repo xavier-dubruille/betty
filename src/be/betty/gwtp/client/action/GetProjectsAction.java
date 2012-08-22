@@ -2,6 +2,11 @@ package be.betty.gwtp.client.action;
 
 import com.gwtplatform.dispatch.shared.ActionImpl;
 
+/**
+ * This action is used to fetch all projects from the 
+ * current user
+ *
+ */
 public class GetProjectsAction extends ActionImpl<GetProjectsActionResult> {
 
 	private String session_id;

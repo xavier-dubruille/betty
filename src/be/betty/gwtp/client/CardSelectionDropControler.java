@@ -58,11 +58,19 @@ public class CardSelectionDropControler extends AbstractInsertPanelDropControlle
 		this.eventBus = eventBus;
 	}
 
+
+	/**
+	 *  @Override
+	 */
 	@Override
 	protected LocationWidgetComparator getLocationWidgetComparator() {
 		return LocationWidgetComparator.BOTTOM_HALF_COMPARATOR;
 	}
 
+
+	/**
+	 *  @Override
+	 */
 	@Override
 	protected Widget newPositioner(DragContext context) {
 		// Use two widgets so that setPixelSize() consistently affects dimensions
@@ -93,8 +101,10 @@ public class CardSelectionDropControler extends AbstractInsertPanelDropControlle
 		return outer;
 	}
 
-	@Override
-	public void onDrop(DragContext context) {
+	/**
+	 *  @Override
+	 */
+	@Override public void onDrop(DragContext context) {
 		/*
 		 * Petite explication du code..
 		 * Il y a w(/w1) qui est le widget "droppe" et w2 qui est le widget fesant partie de la liste des widgets (ds la selection)

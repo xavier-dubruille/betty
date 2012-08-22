@@ -23,6 +23,14 @@ public class CellDropControler extends SimpleDropController {
 	private int period;
 	private CardInView[] cardInView;
 
+	/**
+	 * 
+	 * @param dropTarget
+	 * @param cardInView
+	 * @param eventBus
+	 * @param day
+	 * @param period
+	 */
 	public CellDropControler(SimplePanel dropTarget, CardInView[] cardInView, EventBus eventBus, int day, int period) {
 		super(dropTarget);
 		this.eventBus = eventBus;
@@ -32,6 +40,10 @@ public class CellDropControler extends SimpleDropController {
 		this.cardInView = cardInView;
 	}
 
+
+	/**
+	 *  @Override
+	 */
 	@Override
 	public void onDrop(DragContext context) {
 		dropTarget.setWidget(context.draggable);
@@ -59,6 +71,10 @@ public class CellDropControler extends SimpleDropController {
 		
 	}
 
+
+	/**
+	 *  @Override
+	 */
 	@Override
 	public void onPreviewDrop(DragContext context) throws VetoDragException {
 		

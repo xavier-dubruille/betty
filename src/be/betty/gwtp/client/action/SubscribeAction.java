@@ -3,6 +3,11 @@ package be.betty.gwtp.client.action;
 import com.gwtplatform.dispatch.shared.ActionImpl;
 import be.betty.gwtp.client.action.SubscribeActionResult;
 
+/**
+ * 
+ * Action used when a user is subscribing
+ *
+ */
 public class SubscribeAction extends ActionImpl<SubscribeActionResult> {
 
 	private String login;

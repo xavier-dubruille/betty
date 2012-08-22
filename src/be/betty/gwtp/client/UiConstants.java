@@ -1,6 +1,11 @@
 package be.betty.gwtp.client;
 
-
+/**
+ * 
+ * This class will contain all the Constant involved in graphics
+ * So to make graphical preference, it can be done here
+ *
+ */
 public class UiConstants {
 
 	private static final int CARD_WIDTH = 120;
