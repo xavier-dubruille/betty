@@ -14,14 +14,15 @@ Une partie de cette "intelligence" est prise en charge du coté client, qui comm
 \newline
 \indent
 Cependant, ce support est minimaliste et une recherche plus poussée est effectué du coté serveur à l'aide d'outil de programmation par contraintes et de "recherche opérationnelle".  Ce solveur sera ensuite amené à nourrir le solveur minimaliste du coté client et proposer un certain pilotage de ce solveur au travers de l'application cliente. 
-De cette manière, l'application cliente ne dépend pas du serveur pour fonctionner correctement, en effet, si celui-ci venait a être indisponible, les seules concéquences seraient que les propositions offertes par l'application cliente ne seront plus aussi poussées. (Il va sans dire que l'option pour créer un hrraire complet ne serait plus disponible non plus.)
+De cette manière, l'application cliente ne dépend pas du serveur pour fonctionner correctement, en effet, si celui-ci venait a être indisponible, les seules concéquences seraient que les propositions offertes par l'application cliente ne seraiennt plus aussi poussées. 
+(Il va sans dire que l'option pour créer un horraire complet ne serait plus disponible non plus.)
 \newline
 \indent
 Ce solveur est donc relativement indépendant du reste de l'application, et permettrait, par exemple d'être facilement remplacé par un autre solveur, quasiment, sans aucune modification du reste du code.
-Actuellement, ce solveur est écrit en java, et repose sur des librairie d'UniTime\footnote{http://www.UniTime.org}. Il s'agit d'une librairie de programmation par contrainte et de recherche oppérationnelle.  Pour comprendre son utilisation il est indispensable de bien comprendre les concepts de la programmation par contraintes ainsi que les outils qu'aporte cette librairie.
+Actuellement, ce solveur est écrit en java, et repose sur des librairie d'UniTime\footnote{http://www.UniTime.org}. Il s'agit d'une librairie de programmation par contrainte et de recherche oppérationnelle.
+Pour comprendre son utilisation il est indispensable de bien comprendre les concepts de la programmation par contraintes ainsi que les outils qu'aporte cette librairie.
 
 \section{cardre théorique}
-...
 \subsection{Recherche Operationnelle}
 La recherche opérationnelle (aussi appelée aide à la décision) peut être définie comme l'ensemble des méthodes et techniques rationnelles orientées vers la recherche de la meilleure façon d'opérer des choix en vue d'aboutir au résultat visé ou au meilleur résultat possible\footnote{Larousse 3 volumes, Paris 1966}
 La recherche opérationnelle peut donc se faire à l'aide de plusieurs techniques, tel que l'inteligence artificielle, les systèmes experts\footnote{}, ou encore la programmation par contrainte.  C'est par ce dernier "outil" que nous avons finalement abordé notre problème de création d'horaire.
@@ -36,22 +37,15 @@ La programmation par contrainte un paradigme de programmation \footnote{paradigm
 
 dans le cas qui nous concerne, la problème de création d'horaire, est un cas typique de CSP\footnote{Constraint Satisfaction Problem}, et comme tout csp peut se définir comme suit:
    
-
-
-
 \begin{center}
 \fbox{\begin{minipage}{\linewidth}
-\textbf{Definition 1} $(CSP).$ A constraint satisfaction problem $(CSP)$ is a triple $\Theta$ = (V,D,C), where
+\textbf{Definition 1} $(CSP).$ Un problème de satisfaction de contraintes $(CSP)$ est un triplet $\Theta$ = (V,D,C), où
 \begin{itemize}
-\item V = \{$v_1, v_2, ... , v_n$\} is a finite set of variables,
-\item D = \{$Dv_1, Dv_2, ... ,Dv_n$ \} is a set of domaines (i.e., $Dv_1$ is a set of possibles ...
-\item C = \{$c_1, c_2, ..., c_m$\} is a finite set of constraints restricting the values that the variables can simultaneously take.\\
+\item V = \{$v_1, v_2, ... , v_n$\} est un ensemble fini de variables,
+\item D = \{$Dv_1, Dv_2, ... ,Dv_n$ \} est l'ensemble de domaines que ces varriables peuvent prendre, %(i.e., $Dv_1$ is a set of possibles ...
+\item C = \{$c_1, c_2, ..., c_m$\} est un ensemble de contraintes, spécifiant les combinaisons de valeurs mutuellement compatibles.\\
 
-\textbf{Definition 2} $(assignment)$. Let $\Theta$ be a CSP, an assignment of the variables\\ from V is $\eta$ $	\subseteq$ \{$v$/$a$|$v$ $\in$ V \large \&\normalsize \mbox{} a $\in$ Dv\} where $\forall$ $v$/$a$, $w$/$b$ $\in \eta$ $v$ = w $\Rightarrow$ $a$ = $b$.\\
-An element $v$/$a$ of $\in$ means that variable $v$ has assigned value $a$.\\
-An assignement is complete if |$\eta$| = |V| ( i.e., all variables are assigned).\\
-
-\textbf{Definition 3} $(solution$ $to$ $CSP).$ A solution to the constraint satisfaction problem $\Theta$ is a complete assignement $\sigma$ of the variables from V that satisfies all the constraints.
+\textbf{Definition 2} $(solution$ $d'une$ $CSP).$ Une solution à un problème de satisfaction de contraintes $\Theta$ est l'ensemble des assignations $\sigma$ de toutes les variables de V qui satisfassent toutes les contraintes.
 \end{itemize}
 \end{minipage}}
 \end{center}
@@ -59,8 +53,13 @@ An assignement is complete if |$\eta$| = |V| ( i.e., all variables are assigned)
 %\newline
 \indent
 
-Dans le cas de notre problème, les variables seront les Cartons qu'il faut pouvoir déposer dans le tableau, et leur valeurs seront la place à laquelle ils seront déposés. Leur domaine est donc leur position géographique et temporelle. Il s'agit d'un domaine à deux dimensions, non avons choisi de ne pas prendre en compte une troisième dimension qu'aurait pu être le choix d'un professeur pour un cours. Il est donc necessaire que chaque "carton" aie préalablement un, et un seul prof, qui lui est assigné.
-Les contraintes n'étant que des relation entre nos variables, il est aisé de représenter bon nombre de nos contraintes. Par exemple pour expliciter qu'un prof ne peut donner deux cours simultanément, notre contrainte s'écrit naturelement :
+Dans le cas de notre problème, les variables seront les Cartons qu'il faut pouvoir déposer dans le tableau, et leur valeurs seront la place à laquelle ils seront déposés.
+Leur domaine est donc leur position géographique et temporelle. 
+Il s'agit d'un domaine à deux dimensions, nous avons choisi de ne pas prendre en compte une troisième dimension qu'aurait pu être le choix 
+d'un professeur pour un cours. 
+Il est donc necessaire que chaque "carton" aie préalablement un, et un seul prof, qui lui soitassigné.
+Les contraintes n'étant que des relations mathématique entre nos variables, il est aisé de représenter bon nombre de nos contraintes. 
+Par exemple pour expliciter qu'un prof ne peut donner deux cours simultanément, notre contrainte s'écrit naturelement :
 v1 != v2 où v1 et v2 sont deux cartons d'un meme professeur
 % Dans notre cas, les variables sont, ce qu'on va appeller des "activity", et correspondent à un cours ou à tous type d'activités pouvant avoir lieu à l'EPHEC (il s'agit, dans la méthode traditionnelle des cartons physiques qui seront manipulés lors de la création d'un horaire.)
 % 
@@ -69,11 +68,14 @@ v1 != v2 où v1 et v2 sont deux cartons d'un meme professeur
 % Les contraintes deviennent alors les relations mathématiques reliant les activity.
 % On a tenté de faire des listes exaustives de ses contraintes, mais seule une sous partie est actuellement prise en compte:
 \subsubsection{Limitations}
-La plus part des alogirhmes pour résoudre des vsp, effectuent une recheche systematique à travers toute sles assignation possiblese pour les variables du problème. De tel algorithmes garantissent de trouver une solution, si elle éxiste, ou prouver que ce problème ne possède pas de solution.  
-Ils commencent à partir du'une solution vide (aucune variable n'est assignée) et effectuent une recherche exhaustive, lorsqu'une "impasse" survient, ils effectuent alors un retour en arrière. le plus gros problème d'un tel alogorithme est qu'un mauvais choix d'assignement, particulièrement si celui-ci est éffectué au début de la recheche, causera un echec sur la recherche complete d'un sous-arbre. 
+La plus part des alogirhmes pour résoudre des CSP, effectuent une recheche systematique à travers toutes les assignations possibles pour les variables du problème. De tel algorithmes garantissent de trouver une solution, si elle éxiste, ou prouver que ce problème ne possède pas de solution.  
+Ils commencent à partir du'une solution vide (aucune variable n'est assignée) et effectuent une recherche exhaustive,
+lorsqu'une "impasse" survient, ils effectuent alors un retour en arrière ou "backtracking".  
+Le plus gros problème d'un tel alogorithme est qu'un mauvais choix d'assignement,
+ particulièrement si celui-ci est éffectué au début de la recheche, causera une recherche infructueuse sur l'entièretée d'un sous-arbre. 
 %===1. problème np-complet
-Le premier problème, c'est que cette facon classique recherche la meilleur soltion, en explorant toute les possibilitées. Notre problème étant NP-Complet\footnote{Ne peut être résolut en un temps polynomial}, ce qui explique que nos précédents test avecs des librairies classique furent peut fructueuses.
-Il est donc necessaire d'avoir recourt à des heuristiques \footnote{}, et meta-heuristique\footnote{Une heuristique d'heuristique ou un ensemble d'heuristiques}, dans les prochaine section, nous décrirons brievement deux d'entre elles, à savoir l'Iterative Forward Search sur laquelle nous nous somme basé, ainsi que la Fready search qui pourrait être une autre solution envisageable.
+Le premier problème, c'est que cette facon classique recherche la meilleur soltion, en explorant toutes les possibilitées. Notre problème étant NP-Complet\footnote{Ne peut être résolut en un temps polynomial}, ce qui explique que nos précédents tests avecs des librairies classique furent peut concluante.\newline.
+Il est donc necessaire d'avoir recourt à des heuristiques \footnote{}, et meta-heuristique\footnote{Une heuristique d'heuristique ou un ensemble d'heuristiques}, dans les prochaine section, nous décrirons brièvement l'une d'entre elles, à savoir l'Iterative Forward Search qui est celle utilisé pour l'écriture d'UniTime, la librairie que nous utilisons.
 \newline
 \indent
 %=== MPP ========
@@ -89,18 +91,20 @@ Quant à la question de l'optimisation, nous avons choisi, comme il se fait fré
 % Dans le cas où une solution est impossible, il sera necessaire de retirer manuellement des "Hard constraint" et de relancer une recherche
 \subsubsection{MetaHeursistique, et première approche d'evolution}
 Des alogirittmes de recherche local \footnote{mF00}, comme le "min-conflict" ou le tabu search\footnote{} effectuent des recherches, de manière non détemistique, souvant guidée par des heuristique sur des solutions complete, mais pas necessairement fesable.  De tel algorithmes ne guarantisse donc pas de torouver une solution respecant toute les contraintes, mais tante de s'en raprocher. cependante, ces alogoritme peuve être bien plus efficace(en temps de calcul) que les celle systématique. Et pour des problème d'optimisation comme le notre, ils produiront des résultats de bien meilleure qualité.
-Il existe d'autres approches qui combinent les recheches locales avec des algorithmes de "backtracking, tel que décision repaire, mais nous avons pas exploré ces solutions.
+Il existe d'autres approches qui combinent les recheches locales avec des algorithmes de "backtrackingi", tel que décision repaire, mais nous avons pas exploré ces solutions.
 
 \subsubsection{IFS}
 Cette méta-heuristique à été développé par M.Muller dans le cadre de sa thèse et est celle utisé dans sa librairie d'UniTime. 
-Le but n'étant pas d'expliquer en détail le fonctionnement de cette méta-heurisque, 
+% Le but n'étant pas d'expliquer en détail le fonctionnement de cette méta-heurisque, 
 %==============
 
 \subsection{Choix de librairies}
 Notre problème est bien un problème de csp, et la manière de l'aborder, de le traiter ne devrait pas varier d'une librairie à une autre.  Cependant Cette librairieà particulièrement été écrite pour des csp liés à l'établissement d'horaires d'universités, en offrant une certaine facilité d'utilisation et un nombre d'options pour gérer des situations propres à l'enseignement.
 Elle est particulièrement adéquate dans son implémentation, car elle se base sur la méta-heuristique ifs, présenté précédement, qui s'avère performante pour ce type de solution.  On a pu l'observer de par nos précédents tests avec les librairies d'OR-tools, et de XX (la lib de P.SHAUS).
-
-La seule autre possibilité qu'on pourrait imaginer, c'est l'utilisation de l'autre méta-heuristique présentée, Geady search, mais n'ayant trouvé de librairie se basant sur cette métha heuristique, il serait .. % alors que UniTime est complet et fortement maintenu !
+\newline
+\indent
+Un autre avantage de cette librairie, est qu'elle est libre de droit, et régulièrement mise à jours (d'ailleurs, la dernière version, sorti il y a quelques semaine à été incorporé au programme).
+% La seule autre possibilité qu'on pourrait imaginer, c'est l'utilisation de l'autre méta-heuristique présentée, Geady search, mais n'ayant trouvé de librairie se basant sur cette métha heuristique, il serait .. % alors que UniTime est complet et fortement maintenu !
 
 
 \subsection{Impementation et état actuel}
