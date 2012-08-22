@@ -9,53 +9,6 @@
 
 
 
-\section{Formats de sérialisation RDF}
-\label{annexe/serialisation}
-
-% Pour les citer, voir Annexe \ref{annexe/serialisation}
-% Important : compiler 2x
-
-%\begin{figure}[!h]
-%    \center
-%   	\includegraphics[scale=0.75]{figureX.png}
-%\end{figure}
-
-
-
-\newpage
-
-
-\section{Exemple de code}
-\label{annexe/espace_nom}
-
-\begin{figure}[!h]
-\begin{lstlisting}[frame=single]
- from constraint import *
- problem = Problem()
- problem.addVariable("a", [1,2,3])
- problem.addVariable("b", [4,5,6])
- problem.getSolutions()
-[{'a': 3, 'b': 6}, {'a': 3, 'b': 5}, {'a': 3, 'b': 4},
- {'a': 2, 'b': 6}, {'a': 2, 'b': 5}, {'a': 2, 'b': 4},
- {'a': 1, 'b': 6}, {'a': 1, 'b': 5}, {'a': 1, 'b': 4}]
-
- problem.addConstraint(lambda a, b: a*2 == b,
-                          ("a", "b"))
- problem.getSolutions()
-[{'a': 3, 'b': 6}, {'a': 2, 'b': 4}]
-
- problem = Problem()
- problem.addVariables(["a", "b"], [1, 2, 3])
- problem.addConstraint(AllDifferentConstraint())
- problem.getSolutions()
-[{'a': 3, 'b': 2}, {'a': 3, 'b': 1}, {'a': 2, 'b': 3},
- {'a': 2, 'b': 1}, {'a': 1, 'b': 2}, {'a': 1, 'b': 3}]
-\end{lstlisting}
-\caption{Code python}
-\end{figure}
-
-\newpage
-
 
 \section{Page de connexion et d'inscription}
 \label{annexe/espace_nom}

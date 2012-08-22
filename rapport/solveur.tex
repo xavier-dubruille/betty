@@ -18,7 +18,7 @@ De cette manière, l'application cliente ne dépend pas du serveur pour fonction
 \newline
 \indent
 Ce solveur est donc relativement indépendant du reste de l'application, et permettrait, par exemple d'être facilement remplacé par un autre solveur, quasiment, sans aucune modification du reste du code.
-Actuellement, ce solveur est écrit en java, et repose sur des librairie d'Unitime\footnote{http://www.unitime.org}. Il s'agit d'une librairie de programmation par contrainte et de recherche oppérationnelle.  Pour comprendre son utilisation il est indispensable de bien comprendre les concepts de la programmation par contraintes ainsi que les outils qu'aporte cette librairie.
+Actuellement, ce solveur est écrit en java, et repose sur des librairie d'UniTime\footnote{http://www.UniTime.org}. Il s'agit d'une librairie de programmation par contrainte et de recherche oppérationnelle.  Pour comprendre son utilisation il est indispensable de bien comprendre les concepts de la programmation par contraintes ainsi que les outils qu'aporte cette librairie.
 
 \section{cardre théorique}
 ...
@@ -92,7 +92,7 @@ Des alogirittmes de recherche local \footnote{mF00}, comme le "min-conflict" ou 
 Il existe d'autres approches qui combinent les recheches locales avec des algorithmes de "backtracking, tel que décision repaire, mais nous avons pas exploré ces solutions.
 
 \subsubsection{IFS}
-Cette méta-heuristique à été développé par M.Muller dans le cadre de sa thèse et est celle utisé dans sa librairie d'unitime. 
+Cette méta-heuristique à été développé par M.Muller dans le cadre de sa thèse et est celle utisé dans sa librairie d'UniTime. 
 Le but n'étant pas d'expliquer en détail le fonctionnement de cette méta-heurisque, 
 %==============
 
@@ -100,7 +100,7 @@ Le but n'étant pas d'expliquer en détail le fonctionnement de cette méta-heur
 Notre problème est bien un problème de csp, et la manière de l'aborder, de le traiter ne devrait pas varier d'une librairie à une autre.  Cependant Cette librairieà particulièrement été écrite pour des csp liés à l'établissement d'horaires d'universités, en offrant une certaine facilité d'utilisation et un nombre d'options pour gérer des situations propres à l'enseignement.
 Elle est particulièrement adéquate dans son implémentation, car elle se base sur la méta-heuristique ifs, présenté précédement, qui s'avère performante pour ce type de solution.  On a pu l'observer de par nos précédents tests avec les librairies d'OR-tools, et de XX (la lib de P.SHAUS).
 
-La seule autre possibilité qu'on pourrait imaginer, c'est l'utilisation de l'autre méta-heuristique présentée, Geady search, mais n'ayant trouvé de librairie se basant sur cette métha heuristique, il serait .. % alors que unitime est complet et fortement maintenu !
+La seule autre possibilité qu'on pourrait imaginer, c'est l'utilisation de l'autre méta-heuristique présentée, Geady search, mais n'ayant trouvé de librairie se basant sur cette métha heuristique, il serait .. % alors que UniTime est complet et fortement maintenu !
 
 
 \subsection{Impementation et état actuel}
