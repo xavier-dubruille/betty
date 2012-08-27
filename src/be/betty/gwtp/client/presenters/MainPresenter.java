@@ -447,7 +447,7 @@ public class MainPresenter extends
 //						
 				print_da_page();
 //				// getView().getContent().setText(result.getActivities().toString());
-				getView().getMainLabel().setText("Project: "+Storage_access.getProjectName()+", semestre "+sem);
+				getView().getMainLabel().setText(Storage_access.getProjectCurrent()+" semester "+sem);
 
 			}
 

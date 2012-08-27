@@ -48,6 +48,7 @@ public class Storage_access {
 	private static final String ROOM_PREFIX = "R";
 	private static final String SESSID_PREFIX = "session_id"; // can't be change before you're sure no one use the old way
 	private static final String PROJECT_NAME_PREFIX = "P";
+	private static final String PROJECT_CURRENT = "z";
 	private static final String SEMESTER_PREFIX = "s";
 	private static final String ALL_PLACED_CARD = "a";
 
@@ -136,6 +137,7 @@ public class Storage_access {
 	 */
 	public static void clear() {
 		stockStore.removeItem(PROJECT_NAME_PREFIX);
+		stockStore.removeItem(PROJECT_CURRENT);
 		stockStore.clear();
 	}
 
@@ -146,6 +148,10 @@ public class Storage_access {
 	public static String getProjectName() {
 		return stockStore.getItem(PROJECT_NAME_PREFIX);
 	}
+	
+	public static String getProjectCurrent() {
+		return stockStore.getItem(PROJECT_CURRENT);
+	}
 
 	/**
 	 * Set the project name
@@ -153,6 +159,10 @@ public class Storage_access {
 	 */
 	public static void setProjectName(String projectName) {
 		stockStore.setItem(PROJECT_NAME_PREFIX, projectName);
+	}
+	
+	public static void setProjectCurrent(String currentProject) {
+		stockStore.setItem(PROJECT_CURRENT, currentProject);
 	}
 
 	/**

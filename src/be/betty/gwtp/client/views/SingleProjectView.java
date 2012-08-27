@@ -20,10 +20,10 @@ public class SingleProjectView extends ViewImpl implements
 	}
 
 	@UiField Hyperlink linkProjectNameSem1;
-	@UiField Hyperlink linkProjectNameSem2;
 	@UiField Label labelProjectName;
 	@UiField Image imageDelete;
 	@UiField Image imageSettings;
+	@UiField Hyperlink linkProjectNameSem2;
 	
 	@Inject
 	public SingleProjectView(final Binder binder) {

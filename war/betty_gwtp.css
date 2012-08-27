@@ -110,6 +110,36 @@ body {
 	color: white;
 }
 
+.link{
+	background-color: cornflowerblue;
+	color: white;
+	box-shadow: 8px 8px 12px #aaa;
+	padding-left: 5px;
+	padding-top: 40px;
+	padding-bottom: 40px;
+	border-radius: 5px;
+	font-size: 9pt;
+}
+
+.link a{
+    color: white;
+    text-decoration: none;
+}
+
+.link a:hover{
+	color: white;
+	text-decoration: none;
+}
+
+.link a:visited{
+	color: white;
+	text-decoration: none;
+}
+
+.link a:active{
+	color: white;
+	text-decoration: none;
+}
 .Header {
 	background: #258;
 	color: #FF4901;

@@ -1,6 +1,8 @@
 package be.betty.gwtp.client.presenters;
 
 
+import be.betty.gwtp.client.Storage_access;
+import be.betty.gwtp.client.place.NameTokens;
 import be.betty.gwtp.shared.dto.Project_dto;
 
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -16,6 +18,8 @@ import com.google.inject.Inject;
 import com.gwtplatform.dispatch.shared.DispatchAsync;
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
+import com.gwtplatform.mvp.client.proxy.PlaceManager;
+import com.gwtplatform.mvp.client.proxy.PlaceRequest;
 
 public class SingleProjectPresenter extends
 		PresenterWidget<SingleProjectPresenter.MyView> {
@@ -33,7 +37,8 @@ public class SingleProjectPresenter extends
 	}
 
 	private Project_dto projectModel;
-
+	
+	@Inject PlaceManager placeManager;
 
 	@Inject
 	public SingleProjectPresenter(final EventBus eventBus, final MyView view) {
@@ -112,15 +117,39 @@ public class SingleProjectPresenter extends
 		
 	}
 
+	@SuppressWarnings("deprecation")
 	public void init(Project_dto project) {
 		this.projectModel = project;
+		final Project_dto proj = project;
+		final String nameproj = project.getName();
 		getView().getLabelProjectName().setText(project.getName());
+		
 		getView().getLinkProjectNameSem1().setText("First semester");
+		getView().getLinkProjectNameSem1().addStyleName("clickable");
 		getView().getLinkProjectNameSem1().setTargetHistoryToken(
 				"main;p=" + project.getId()+";s=1");
+		
+		getView().getLinkProjectNameSem1().addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent arg0) {
+				
+				Storage_access.setProjectCurrent(proj.getName());
+			}
+		});
+		
 		getView().getLinkProjectNameSem2().setText("Second semester");
+		getView().getLinkProjectNameSem2().addStyleName("clickable");
 		getView().getLinkProjectNameSem2().setTargetHistoryToken(
 				"main;p=" + project.getId()+";s=2");
+		getView().getLinkProjectNameSem2().addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent arg0) {
+				
+				Storage_access.setProjectCurrent(proj.getName());				
+			}
+		});
 		
 
 	}
