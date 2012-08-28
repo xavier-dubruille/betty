@@ -24,6 +24,12 @@ public class ActivityState_dto implements Serializable {
 	}
 	
 	
+	public ActivityState_dto(int day, int period) {
+		super();
+		this.day = day;
+		this.period = period;
+	}
+
 	public int getDay() {
 		return day;
 	}

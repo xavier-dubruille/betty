@@ -43,11 +43,12 @@ public class GetActivityStateActionActionHandler implements
 		
 		int activityId;
 		ProjectInstance pi = (ProjectInstance) s.get(ProjectInstance.class, action.getInstanceBddId());
+
 		for (ActivityState as : pi.getActivitiesState()) {
 			activityId = as.getActivity().getId();
 			if ( max.containsKey(activityId) && max.get(activityId) >= as.getId()) continue;
 			max.put(activityId, as.getId());
-			h.put(""+activityId, new ActivityState_dto(as.getDay(), as.getPeriod(), ""+as.getRoom().getId()));
+			h.put(""+activityId, new ActivityState_dto(as.getDay(), as.getPeriod()));//, ""+as.getRoom().getId()));
 		}
 		
 		t.commit();   
