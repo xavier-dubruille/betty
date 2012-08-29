@@ -1,5 +1,6 @@
 package be.betty.gwtp.client.presenters;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -632,22 +633,27 @@ public class MainPresenter extends
 
 			@Override public void onSuccess(GetActivityStateActionResult result) {
 				Storage_access.clearPlacedCard(); // is it the bestWay ?
+				ArrayList<Integer> r = Storage_access.getRoomMap();
 				for (int i=0; i< Storage_access.getNumberOfCard(); i++) {
 					String card = Storage_access.getCard(i);
 					ActivityState_dto a = result.getActivitiesState().get(""+Storage_access.getBddIdCard(card));
 					if (a == null || a.getDay() == 0 || a.getPeriod() == 0) 
 						Storage_access.revoveFromSlot(i);	
 					else 
-						Storage_access.placeCard(i, a.getDay(), a.getPeriod(), "");	
+						Storage_access.placeCard(i, a.getDay(), a.getPeriod(), ""+r.indexOf(a.getRoom()));	
+					
 					
 				}
+				
+				//Storage_access.printStorage();
+				
 				eventBus.fireEvent( 
 						new BoardViewChangedEvent(getView().getCombo_viewChoice1().getSelectedIndex(),
 												  getView().getCombo_viewChoice2().getSelectedIndex())
 						);
 				
 				eventBus.fireEvent(new SelectionCardsModifiedEvent());
-				//Storage_access.printStorage();
+				//
 			}
 
 			});

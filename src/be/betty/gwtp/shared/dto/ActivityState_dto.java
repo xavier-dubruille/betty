@@ -24,6 +24,12 @@ public class ActivityState_dto implements Serializable {
 	}
 	
 	
+	/**
+	 * shouldn't be used.. (but the one with room argurment)
+	 * 
+	 * @param day
+	 * @param period
+	 */
 	public ActivityState_dto(int day, int period) {
 		super();
 		this.day = day;
@@ -43,8 +49,8 @@ public class ActivityState_dto implements Serializable {
 		this.period = period;
 	}
 
-	public String getRoom() {
-		return room;
+	public int getRoom() {
+		return Integer.parseInt(room);
 	}
 
 	
@@ -52,3 +58,4 @@ public class ActivityState_dto implements Serializable {
 	
 
 }
+	

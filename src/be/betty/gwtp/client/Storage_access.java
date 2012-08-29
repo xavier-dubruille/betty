@@ -76,7 +76,10 @@ public class Storage_access {
 	private static final int CO_PR_SIZE_INDEX = 1; //e.g. if the instance has been deleted and have to be disabled
 	private static final int CO_PR_INDEX = 2;
 
-
+	// if one of the following constants come to change,
+	// then the method setRooms() HAS TO be changed also !!
+	private static final int ROOM_BDDID_INDEX = 0;
+	private static final int ROOM_CODE_INDEX = 1;
 
 
 	static {
@@ -224,7 +227,11 @@ public class Storage_access {
 		rooms_map.clear();
 		int i = 0;
 		for (Room_dto r: rooms) {
-			stockStore.setItem(ROOM_PREFIX  + i, r.getCode()); 
+			
+			// if the order change, some static constant HAVE to be changed also !!
+			stockStore.setItem(ROOM_PREFIX  + i,
+					r.getBddId()+ STORAGE_SEPARATOR+
+					r.getCode()); 
 			rooms_map.add(r.getBddId());
 			i++;
 		}
@@ -383,7 +390,7 @@ public class Storage_access {
 		int slot = per*10 + day;
 		String[] s = getCard(cardID).split(STORAGE_SEPARATOR);
 		s[SLOT_INDEX]=""+slot;
-		//	s[ROOM_INDEX]=room;
+		s[ROOM_INDEX]=room;
 		stockStore.setItem(CARD_PREFIX+cardID, BettyUtils.join(s, STORAGE_SEPARATOR));
 
 		stockStore.setItem(ALL_PLACED_CARD,stockStore.getItem(ALL_PLACED_CARD)+STORAGE_SEPARATOR+cardID);
@@ -505,14 +512,28 @@ public class Storage_access {
 	}
 
 
-	public static String getRoom(int i) {
-		return stockStore.getItem(ROOM_PREFIX+i);
+	public static String getRoom(int roomId) {
+		return stockStore.getItem(ROOM_PREFIX+roomId).split(STORAGE_SEPARATOR)[ROOM_CODE_INDEX];
 	}
 
 	public static String getRoomName(String roomId) {
-		return stockStore.getItem(ROOM_PREFIX+roomId);
+		return stockStore.getItem(ROOM_PREFIX+roomId).split(STORAGE_SEPARATOR)[ROOM_CODE_INDEX];
 	}
-
+	
+	/**
+	 * TODO: attention !!!  Pour etre pleinement base sur le local storage, 
+	 * cette fonction est probablement la seule qui posera probleme, car
+	 * elle renvoie rooms_map qui est cree au on reset de la page (et ne devrait etre 
+	 * utilise que la !!).   Pour respecter cette idee, cette methode devrait reconstruire une
+	 * arrayList a partir du contenu du local storage !! (c'est p-e une perte de performance, mais 
+	 * bon.. faut choisir. )
+	 * 
+	 * @return L'arrayList qui sert de mapping entre l'index de la room dans la bdd et celle utilis
+	 * dans cette appli (ce sont les key de l'arrayList, et les valeurs sont les bddId)
+	 */
+	public static ArrayList<Integer> getRoomMap(){
+		return rooms_map;
+	}
 
 	public static int getNumberOfCard() {
 		return Integer.parseInt(stockStore.getItem(NUMBER_OF_CARD));
