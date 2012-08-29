@@ -520,6 +520,12 @@ public class Storage_access {
 		return stockStore.getItem(ROOM_PREFIX+roomId).split(STORAGE_SEPARATOR)[ROOM_CODE_INDEX];
 	}
 	
+	public static String getRoomBDDID(String roomId) {
+		return stockStore.getItem(ROOM_PREFIX+roomId).split(STORAGE_SEPARATOR)[ROOM_BDDID_INDEX];
+	}
+
+
+	
 	/**
 	 * TODO: attention !!!  Pour etre pleinement base sur le local storage, 
 	 * cette fonction est probablement la seule qui posera probleme, car
@@ -679,6 +685,7 @@ public class Storage_access {
 
 		}
 	}
+
 
 
 

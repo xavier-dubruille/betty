@@ -1,6 +1,8 @@
 package be.betty.gwtp.client.action;
 
 
+import java.io.Serializable;
+
 import com.gwtplatform.dispatch.shared.ActionImpl;
 import be.betty.gwtp.client.action.SaveCardDropActionResult;
 
@@ -13,9 +15,9 @@ public class SaveCardDropAction extends ActionImpl<SaveCardDropActionResult> {
 	private int day;
 	private int period;
 	private int cardBddId;
-	private String room;
 	private int projectInstance;
 	private String sessId;
+	private String roomBddID;
 
 	public SaveCardDropAction() {} //for serialisation purposes
 	public SaveCardDropAction(int day, int period, int cardBddId, String room, int projectInstance, String sessId) {
@@ -23,7 +25,7 @@ public class SaveCardDropAction extends ActionImpl<SaveCardDropActionResult> {
 		this.day = day;
 		this.period = period;
 		this.cardBddId = cardBddId;
-		this.room = room;
+		this.roomBddID = room;
 		this.projectInstance = projectInstance;
 		this.sessId = sessId;
 	}
@@ -64,6 +66,9 @@ public class SaveCardDropAction extends ActionImpl<SaveCardDropActionResult> {
 	}
 	public String getSessId() {
 		return sessId;
+	}
+	public String getRoom() {
+		return roomBddID;
 	}
 
 }

@@ -62,7 +62,7 @@ public class CellDropControler extends SimpleDropController {
 			MainPresenter.allCards.get(""+id).setRoom(roomId);
 			((CardWidget)w).setRoom(roomId);
 			// faut aussi mettre le local sur le carton actuel i.e. w
-			eventBus.fireEvent( new DropCardEvent(id,day,period, roomId));
+			eventBus.fireEvent( new DropCardEvent(id,day,period, Storage_access.getRoomBDDID(roomId)));
 			//System.out.println("drop..."+w.g);
 			//Storage_access.printStorage();
 			((CardWidget)w).setFromSelectionPanel(false);
