@@ -181,7 +181,10 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 			}
 
 
-		//System.out.println("all cards ==== "+MainPresenter.allCards);
+//		System.out.println(" on va parcourir tt les cartes placer pour printer les bonnes");
+//		System.out.println("tt les carton place sont: "+Arrays.toString(Storage_access.getAllPlacedCard()));
+//		Storage_access.printStorage();
+		 
 		// 2) on va parcourir tt les cartons et placer ceux qui doivent l'etre
 		for (String i : Storage_access.getAllPlacedCard()) {
 			String c = Storage_access.getCard(i);
@@ -189,13 +192,13 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 			if (slot != 0) {
 
 				//System.out.print(" "+i);
-				if (!cardInView[0].cardBelongToActualView(c)) continue;
+				if (!cardInView[0].cardBelongToActualView(c, false)) continue;
 				int col = ClientUtils.storageSlotToFlexCol(slot);
 				int row = ClientUtils.storageSlotToFlexRow(slot);
 				SimplePanel s = (SimplePanel) getView().getFlexTable().getWidget(row, col);
 
 				s.clear();
-				//System.out.println("je veu rajouter, dans la case "+row+"-"+col+" le carton num "+i);
+				System.out.println("je veu rajouter, dans la case "+row+"-"+col+" le carton num "+i);
 				//System.out.println("allcard = "+MainPresenter.allCards);
 				//Storage_access.printStorage();
 				s.add( MainPresenter.allCards.get(""+i).cloneWidget(false));

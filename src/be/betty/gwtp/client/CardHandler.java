@@ -90,7 +90,7 @@ public class CardHandler implements DragHandler {
 	@Override
 	public void onPreviewDragStart(DragStartEvent event)
 			throws VetoDragException {
-		Storage_access.printStorage();
+		//Storage_access.printStorage();
 		System.out.println("on preview drag start: "+ event);
 		
 		if (event.getSource() instanceof CardWidget ) {

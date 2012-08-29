@@ -394,7 +394,7 @@ public class Storage_access {
 		stockStore.setItem(CARD_PREFIX+cardID, BettyUtils.join(s, STORAGE_SEPARATOR));
 
 		stockStore.setItem(ALL_PLACED_CARD,stockStore.getItem(ALL_PLACED_CARD)+STORAGE_SEPARATOR+cardID);
-		System.out.println("all placed card = "+Arrays.toString(getAllPlacedCard()));
+		//System.out.println("all placed card = "+Arrays.toString(getAllPlacedCard()));
 	}
 
 
