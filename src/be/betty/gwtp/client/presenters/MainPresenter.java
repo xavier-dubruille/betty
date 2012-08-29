@@ -639,9 +639,11 @@ public class MainPresenter extends
 					ActivityState_dto a = result.getActivitiesState().get(""+Storage_access.getBddIdCard(card));
 					if (a == null || a.getDay() == 0 || a.getPeriod() == 0) 
 						Storage_access.revoveFromSlot(i);	
-					else 
-						Storage_access.placeCard(i, a.getDay(), a.getPeriod(), ""+r.indexOf(a.getRoom()));	
-					
+					else {
+						String rId = ""+r.indexOf(a.getRoom());
+						Storage_access.placeCard(i, a.getDay(), a.getPeriod(), rId);	
+						MainPresenter.allCards.get(""+i).setRoom(rId);
+					}
 					
 				}
 				

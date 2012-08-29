@@ -19,8 +19,8 @@ public class Card_dto implements Serializable{
 	private List<Integer> groupSet;
 	private int period_q1;
 	private int period_q2;
-	private int slot = 0; //  The value "0" is for the case where is not placed 
-    private int room = 0;
+	private int slot = 0; //  The value "0" is for the case where is not placed  // devrait etre enleve
+    private int room = -1; // devrait aussi ne pas exister.. (et n'est normalement pas utilise)
 	private int bddId;
 	
 	public Card_dto() {

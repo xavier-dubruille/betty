@@ -258,7 +258,7 @@ public class Storage_access {
 					courses_map.indexOf(c.getCourse()) + s + 
 					teachers_map.indexOf(c.getTeacher())+ s + 
 					c.getSlot() + s +
-					c.getRoom() + s+
+					"-1" + s+
 					c.getBddId() + s +
 					c.getGroupSet().size() +
 					groups
@@ -410,7 +410,7 @@ public class Storage_access {
 		}
 		String[] s = card.split(STORAGE_SEPARATOR);
 		s[SLOT_INDEX]="0";
-		s[ROOM_INDEX]="0";
+		s[ROOM_INDEX]="-1";
 		stockStore.setItem(CARD_PREFIX+cardID, BettyUtils.join(s, STORAGE_SEPARATOR));
 	}
 
@@ -566,6 +566,15 @@ public class Storage_access {
 		return Integer.parseInt(stockStore.getItem(PROJECT_ON));
 	}
 
+
+	public static String getRoomNameFromCard(String card) {
+		String roomId = card.split(STORAGE_SEPARATOR)[ROOM_INDEX];
+		if (roomId.equals("-1"))
+			return "";
+		return getRoomName(roomId);
+	}
+
+	
 	// these folowing methods do not depend directly on local storage, but it's easer this way
 	public static String getCourseCard(String card) {
 		return getWholeCourse(Integer.parseInt(card.split(STORAGE_SEPARATOR)[COURSE_INDEX]));
@@ -670,6 +679,7 @@ public class Storage_access {
 
 		}
 	}
+
 
 
 
