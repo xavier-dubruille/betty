@@ -64,13 +64,13 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 		//Add all label in different part of dockPanel to have a clear presentation
 		dockPanel2.add(group, DockPanel.WEST);
 		dockPanel2.add(teacher, DockPanel.EAST);
-		
+
 		dockPanelRoomAndDelete.add(room, DockPanel.EAST);
-		
+
 		dockPanel.add(dockPanel2, DockPanel.NORTH);
 		dockPanel.add(dockPanelRoomAndDelete, DockPanel.SOUTH);
 		dockPanel.add(course, DockPanel.CENTER);
-		
+
 
 		//Add a size to the dockPanel
 		dockPanel.setPixelSize(UiConstants.getCardWidth()-1, UiConstants.getCardHeight()-1);
@@ -93,7 +93,7 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 		return Storage_access.isCardPlaced(""+storageId);
 	}
 
-	
+
 	public void setRightCss() {
 		//System.out.println("isCardPlaced "+storageId+" placed ? "+isPlaced());
 		if (isPlaced())
@@ -101,7 +101,7 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 		else
 			this.setStyleName(UiConstants.CSS_CARD);
 	}
-	
+
 	public Label getCourse() {
 		return course;
 	}
@@ -110,11 +110,11 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 	public Label getTeacher() {
 		return teacher;
 	}
-	
+
 	public Label getGroup() {
 		return group;
 	}
-	
+
 	public Label getRoom() {
 		return room;
 	}
@@ -122,7 +122,7 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 
 	public CardWidget cloneWidget(boolean fromSelectionPanel) {
 		CardWidget clone = new CardWidget();
-		
+
 		clone.setFromSelectionPanel(fromSelectionPanel);
 		clone.getCourse().setText(getCourse().getText());
 		clone.getTeacher().setText(getTeacher().getText());
@@ -132,13 +132,13 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 		clone.setDragControler(getDragController());
 		clone.makeItDraggable();
 		clone.addMouseDownHandler(handler);
-		
+
 		return clone;
 	}
 
 	public void setFromSelectionPanel(boolean fromSelectionPanel) {
 		this.fromSelectionPanel = fromSelectionPanel;
-		
+
 	}
 
 
@@ -155,7 +155,7 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 
 	public void setDragControler(PickupDragController cardDragController) {
 		this.dragController = cardDragController;
-		
+
 	}
 
 
@@ -179,16 +179,16 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 		String groupsLabel = groups[0];
 		for (int i = 1; i < groups.length; i++)
 			groupsLabel +=  ", "+groups[i];
-		
-		
+
+
 		groupsId = Storage_access.getGroupsIdCard(c);
 		teacherId = Storage_access.getTeacherIdCard(c);
 		group.setText(groupsLabel);
 		teacher.setText(Storage_access.getTeacherCard(c));
 		course.setText(Storage_access.getCourseCardName(c));
-		
+
 		setCardId(myI);
-		
+
 	}
 
 
@@ -212,15 +212,18 @@ public class CardWidget extends Composite implements HasMouseDownHandlers {
 
 
 	public HandlerRegistration addMouseDownHandler(MouseDownHandler handler) {
-        this.handler = handler;
+		this.handler = handler;
 		return addDomHandler(handler, MouseDownEvent.getType());
-    }
+	}
 
 
 
 	public void setRoom(String roomId) {
 		this.roomId = roomId;
-		room.setText(Storage_access.getRoomName(roomId));
+		if (roomId.equals("-1"))
+			room.setText("");
+		else
+			room.setText(Storage_access.getRoomName(roomId));
 	}
 
 

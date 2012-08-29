@@ -402,7 +402,7 @@ public class Storage_access {
 	 * Called to remove a card from his slot in the local storage
 	 * @param cardID
 	 */
-	public static void revoveFromSlot(int cardID) {
+	public static void removeFromSlot(int cardID) {
 		String card = getCard(cardID);
 		if (card == null) {
 			// TODO: en cas d'erreur comme celle-ci, ca pourrait etre bien de recharger le Local Storage.

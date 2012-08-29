@@ -267,8 +267,8 @@ public class MainPresenter extends
 			}
 			else {
 			//	allCards.get(event.getCardID()).addStyleName("card");
-				Storage_access.revoveFromSlot(event.getCardID());
-				// faut aussi l'envoyer a la bdd, ou un truc du genre
+				Storage_access.removeFromSlot(event.getCardID());
+				allCards.get(""+event.getCardID()).setRoom("-1");
 			}
 		}
 	};
@@ -637,8 +637,10 @@ public class MainPresenter extends
 				for (int i=0; i< Storage_access.getNumberOfCard(); i++) {
 					String card = Storage_access.getCard(i);
 					ActivityState_dto a = result.getActivitiesState().get(""+Storage_access.getBddIdCard(card));
-					if (a == null || a.getDay() == 0 || a.getPeriod() == 0) 
-						Storage_access.revoveFromSlot(i);	
+					if (a == null || a.getDay() == 0 || a.getPeriod() == 0) {
+						Storage_access.removeFromSlot(i);
+						allCards.get(""+i).setRoom("-1");
+					}
 					else {
 						String rId = ""+r.indexOf(a.getRoom());
 						Storage_access.placeCard(i, a.getDay(), a.getPeriod(), rId);	
