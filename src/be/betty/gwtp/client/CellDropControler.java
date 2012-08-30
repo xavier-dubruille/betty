@@ -57,8 +57,9 @@ public class CellDropControler extends SimpleDropController {
 			int id = Integer.parseInt(w.getElement().getTitle()); //TODO faut un meilleur moyen!
 			// TODO si on fait un sorte de petit popup pour choisir grafiquement le local, c ici.
 			
-			//TODO faut voire si c'est la meilleur maniere, notement pour la methode static
-			String roomId = ClientSolver.findBestRoom(id, day, period); 
+			//TODO faut voire si "findBestRoom" est la meilleur maniere de faire..
+			String roomId = cardInView[0].isRoomView() ?
+					cardInView[0].getRoom() : ClientSolver.findBestRoom(id, day, period);
 			MainPresenter.allCards.get(""+id).setRoom(roomId);
 			((CardWidget)w).setRoom(roomId);
 			// faut aussi mettre le local sur le carton actuel i.e. w
