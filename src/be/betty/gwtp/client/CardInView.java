@@ -29,14 +29,9 @@ public class CardInView {
 	 * The purpose is decide if a card belong to that view
 	 * 
 	 * @param card the card to check
-	 * @param askingOrPrinting true if asking, false if printing
-	 * ==> to determine if we use the method in order to print the card (so if it is actualy belonging)
-	 * or to check if *it possibly can* belong to the view. (the difference is in the room section..)
-	 * 
-	 * 
 	 * @return if it belong to
 	 */
-	public boolean cardBelongToActualView(String card, boolean askingOrPrinting) {
+	public boolean cardBelongToActualView(String card) {
 		//System.out.println("Should we print this card ? =>"+card);
 		//System.out.println("Teacher = num "+Storage_access.getTeacherCard(card));
 		//System.out.println("Group   = num "+Storage_access.getGroupCard(card));
@@ -51,13 +46,7 @@ public class CardInView {
 
 			break;
 		case 1: // room
-			if (askingOrPrinting) // if asking
-				return true;
-			else {  //if printing
-				if (Storage_access.getRoomCard(card) == c2) 
-					return true;
-			}
-			
+			//if (Storage_access.getRoomCard(card) == c2) return true;
 			break;
 		case 2: // group
 			for (int i:Storage_access.getGroupsIdCard(card))
@@ -67,16 +56,6 @@ public class CardInView {
 		}
 		//System.out.println("==>no");
 		return false;
-	}
-
-	public String getRoom() {
-		String s = isRoomView() ? ""+combo_viewChoice2.getSelectedIndex() : "-1";
-		System.out.println("normalement on est ds la room view, et la roomId = "+s);
-		return s;
-	}
-
-	public boolean isRoomView() {
-		return combo_viewChoice1.getSelectedIndex() == 1;
 	}
 
 
