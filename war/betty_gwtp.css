@@ -37,7 +37,7 @@ body {
 	padding: 2px;
 	margin-bottom: 2px;
 	background-color: white;
-	color: #258;
+	color: black;
 	border-radius: 5px;
 }
 
@@ -128,11 +128,12 @@ body {
 .link a{
     color: white;
     text-decoration: none;
+    
 }
 
 .link a:hover{
 	color: white;
-	text-decoration: none;
+	text-decoration: underline;
 }
 
 .link a:visited{
@@ -306,7 +307,7 @@ body {
 	padding: 7px 2px 7px 2px;
 	margin-bottom: 2px;
 	font-size: 10px;
-	background-color: lightsteelblue;
+	background-color: #258;
 	border-radius: 5px;
 }
 .notif_error{
@@ -314,7 +315,7 @@ body {
 	padding: 7px 2px 7px 2px;
 	margin-bottom: 2px;
 	font-size: 10px;
-	background-color: #DB1702;
+	background-color: #850606;
 	border-radius: 5px;
 }
 

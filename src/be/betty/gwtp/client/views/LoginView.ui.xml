@@ -43,7 +43,7 @@
 				<w:TextButton text="Login" ui:field="buttonLogin">New button</w:TextButton>
 			</g:at>
 			<g:at left="10" top="195">
-				<g:Hyperlink text=" " targetHistoryToken="newHistoryToken" ui:field="cacheProject"/>
+				<g:Hyperlink text=" " targetHistoryToken="newHistoryToken" ui:field="cacheProject" width="480px" height="15px"/>
 			</g:at>
 		</g:AbsolutePanel>
 			</g:Dock>

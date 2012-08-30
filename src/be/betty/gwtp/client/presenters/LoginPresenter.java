@@ -148,7 +148,7 @@ public class LoginPresenter extends
     	
     	getView().getCacheProject().setText("");
     	if (Storage_access.getProjectName() != null) {
-    		getView().getCacheProject().setText("Vous avez un projet en cours, voulez vous le reprendre? "+Storage_access.getProjectName());
+    		getView().getCacheProject().setText("the project "+Storage_access.getProjectCurrent()+" is in progress, click here to resume");
     		getView().getCacheProject().setTargetHistoryToken("main;p="+Storage_access.getSavedProject()+";s="+Storage_access.getSemester());
     	}
     		//getView().getWrongPwd_label().setText("Vous avez un projet en cours, voulez vous le reprendre? "+Storage_access.getProjectName());
