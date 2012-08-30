@@ -154,13 +154,16 @@ public class ProjectsPresenter extends
 			projectsSorted.add(projects.get(i-1));
 		}
 		
+		setInSlot(SLOT_project, null);
 		for (int i = 0; i < projectsSorted.size(); i++) {
 			final int myI = i;
+			
 			projectFactory.get(new AsyncCallback<SingleProjectPresenter>() {
 
 				@Override
 				public void onSuccess(SingleProjectPresenter result) {
 					addToSlot(SLOT_project, result);
+					
 					result.init(projectsSorted.get(myI));
 				}
 
