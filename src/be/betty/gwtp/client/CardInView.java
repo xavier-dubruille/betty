@@ -29,20 +29,15 @@ public class CardInView {
 	 * The purpose is decide if a card belong to that view
 	 * 
 	 * @param card the card to check
-	 * @param askingOrPrinting true if asking, false if printing
-	 * ==> to determine if we use the method in order to print the card (so if it is actualy belonging)
-	 * or to check if *it possibly can* belong to the view. (the difference is in the room section..)
-	 * 
-	 * 
 	 * @return if it belong to
 	 */
-	public boolean cardBelongToActualView(String card, boolean askingOrPrinting) {
+	public boolean cardBelongToActualView(String card, boolean askOrPrint) {
 		//System.out.println("Should we print this card ? =>"+card);
 		//System.out.println("Teacher = num "+Storage_access.getTeacherCard(card));
 		//System.out.println("Group   = num "+Storage_access.getGroupCard(card));
 		//System.out.println("Teacher= "+Storage_access.getTeacher(Integer.parseInt(Storage_access.getTeacherCard(card) ) ));
 		//System.out.println("Group= "+Storage_access.getGroup(Integer.parseInt(Storage_access.getGroupCard(card))));
-		
+
 		int c2 = combo_viewChoice2.getSelectedIndex();
 		//System.out.println("   Selected choice = "+c2);
 		switch (combo_viewChoice1.getSelectedIndex()){
@@ -51,18 +46,16 @@ public class CardInView {
 
 			break;
 		case 1: // room
-			if (askingOrPrinting) // if asking
+			if(askOrPrint) { // asking if the card *can* go in this room
 				return true;
-			else {  //if printing
-				if (Storage_access.getRoomCard(card) == c2) 
-					return true;
-			}
+			}else // asking if the card *is* in this room
+				if (Storage_access.getRoomCard(card) == c2) return true;
 			
 			break;
 		case 2: // group
 			for (int i:Storage_access.getGroupsIdCard(card))
 				if ( i== c2) return true;
-			
+
 			break;
 		}
 		//System.out.println("==>no");
@@ -70,14 +63,15 @@ public class CardInView {
 	}
 
 	public String getRoom() {
-		String s = isRoomView() ? ""+combo_viewChoice2.getSelectedIndex() : "-1";
-		System.out.println("normalement on est ds la room view, et la roomId = "+s);
-		return s;
+		//String s = isRoomView() ? ""+combo_viewChoice2.getSelectedIndex() : "-1";
+		//System.out.println("normalement on est ds la room view, et la roomId = "+s);
+		return isRoomView() ? ""+combo_viewChoice2.getSelectedIndex() : "-1";
 	}
 
 	public boolean isRoomView() {
 		return combo_viewChoice1.getSelectedIndex() == 1;
 	}
+
 
 
 }

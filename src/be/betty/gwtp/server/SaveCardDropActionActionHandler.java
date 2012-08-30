@@ -37,7 +37,7 @@ public class SaveCardDropActionActionHandler implements
 		
 		System.out.println("droping card:"+action.getCardBddId()+ " in room:"+action.getRoom());
 		
-		Room room= (Room) s.get(Room.class, Integer.parseInt(action.getRoom()));
+		
 		Activity_entity activity = (Activity_entity) s.get(Activity_entity.class, action.getCardBddId());
 		System.out.println("**project instance="+action.getProjectInstance());
 		ProjectInstance pi = (ProjectInstance) s.get(ProjectInstance.class, action.getProjectInstance());
@@ -47,7 +47,9 @@ public class SaveCardDropActionActionHandler implements
 		as.setDay(action.getDay());
 		as.setPeriod(action.getPeriod());
 	
-		as.setRoom(room);
+		if (action.getRoom() != null && !action.getRoom().equals("-1"))
+			as.setRoom((Room) s.get(Room.class, Integer.parseInt(action.getRoom())));
+		
 		as.setProjectInstance(pi);
 		s.save(as);
 		pi.getActivitiesState().add(as);
