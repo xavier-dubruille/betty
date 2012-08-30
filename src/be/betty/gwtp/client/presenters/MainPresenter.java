@@ -45,6 +45,8 @@ import be.betty.gwtp.shared.dto.ActivityState_dto;
 import com.allen_sauer.gwt.dnd.client.PickupDragController;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -56,6 +58,7 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.widget.client.TextButton;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 import com.gwtplatform.common.client.IndirectProvider;
@@ -82,9 +85,11 @@ public class MainPresenter extends
 		void constructFlex(PickupDragController cardDragController);
 		ListBox getComboInstance();
 		Label getCurrentInstance();
+		Label getLabelNotif();
 		ListBox getCombo_viewChoice1();
 		ListBox getCombo_viewChoice2();
 		SimplePanel getBoardPanel();
+		TextButton getButtonNotifClear();
 		public VerticalPanel GetNotifBarVerticalPanel();
 	}
 
@@ -100,7 +105,7 @@ public class MainPresenter extends
 
 	public static Map<String,CardWidget> allCards;
 	private String sem;
-
+	private boolean notifState = true;
 
 	@ProxyCodeSplit
 	@NameToken(NameTokens.main)
@@ -323,6 +328,26 @@ public class MainPresenter extends
 				
 				reDrowStatusCard();
 			}});
+		
+		getView().getButtonNotifClear().addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				getView().GetNotifBarVerticalPanel().clear();
+				
+			}
+		});
+		
+		getView().getLabelNotif().addStyleName("clickable");
+		getView().getLabelNotif().addClickHandler(new ClickHandler() {
+			
+			@Override
+			public void onClick(ClickEvent event) {
+				// TODO Auto-generated method stub
+				if (notifState) notifState=false; else notifState=true;
+				getView().GetNotifBarVerticalPanel().setVisible(notifState);
+			}
+		});
 		
 		getView().getCombo_viewChoice1().addChangeHandler(new ChangeHandler() {
 			@Override public void onChange(ChangeEvent arg0) {

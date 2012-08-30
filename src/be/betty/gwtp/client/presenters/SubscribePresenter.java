@@ -193,6 +193,8 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 					getView().getPassSubErrorLabel().setText("");
 
 				}else{
+					
+					getView().getPasswordPicture().setVisible(false);
 					getView().getPassVerSubErrorLabel().setText("");
 					getView().getPasswordVerPicture().setVisible(false);
 				}

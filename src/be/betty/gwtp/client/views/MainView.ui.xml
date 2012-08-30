@@ -4,7 +4,7 @@
 	xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:a='urn:import:be.betty.gwtp.client.views.ourWidgets'
 	ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
 	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
-	ui:generateLocales='default'>
+	ui:generateLocales='default' xmlns:w="urn:import:com.google.gwt.widget.client">
 
 	<g:HTMLPanel>
 		<g:DockPanel width="100%" height="100%"
@@ -33,8 +33,11 @@
 								<g:at left="98" top="36">
 									<g:Image width="22px" height="21px" url="Plus_sign.png" />
 								</g:at>
-								<g:at left="10" top="122">
-									<g:Label text="Notifications" styleName="white"/>
+								<g:at left="3" top="106">
+									<g:Label ui:field="labelNotif" text="Notif" styleName="white" width="49px" height="18px" horizontalAlignment="ALIGN_CENTER"/>
+								</g:at>
+								<g:at left="81" top="102">
+									<w:TextButton text="clear" ui:field="buttonNotifClear">New button</w:TextButton>
 								</g:at>
 							</g:AbsolutePanel>
 						</g:SimplePanel>

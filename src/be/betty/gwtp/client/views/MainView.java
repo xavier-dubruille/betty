@@ -14,6 +14,7 @@ import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.google.gwt.user.client.ui.ListBox;
 import be.betty.gwtp.client.views.ourWidgets.ModifiedVerticalPanel;
+import com.google.gwt.widget.client.TextButton;
 
 public class MainView extends ViewImpl implements MainPresenter.MyView {
 
@@ -29,6 +30,8 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	@UiField ListBox combo_viewChoice2;
 	@UiField VerticalPanel notifBarVerticalPanel;
 	@UiField ModifiedVerticalPanel cards_panel;
+	@UiField Label labelNotif;
+	@UiField TextButton buttonNotifClear;
 	
 	public interface Binder extends UiBinder<Widget, MainView> {
 	}
@@ -154,5 +157,13 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 
 	public SimplePanel getBoardPanel() {
 		return board_panel;
+	}
+	
+	public Label getLabelNotif() {
+		return labelNotif;
+	}
+	
+	public TextButton getButtonNotifClear() {
+		return buttonNotifClear;
 	}
 }

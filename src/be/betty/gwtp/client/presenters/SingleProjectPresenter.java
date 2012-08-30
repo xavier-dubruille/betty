@@ -9,6 +9,12 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.MouseMoveEvent;
 import com.google.gwt.event.dom.client.MouseMoveHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
+import com.google.gwt.event.dom.client.MouseUpEvent;
+import com.google.gwt.event.dom.client.MouseUpHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Hyperlink;
@@ -37,6 +43,7 @@ public class SingleProjectPresenter extends
 	}
 
 	private Project_dto projectModel;
+	private String mouseState = "init";
 	
 	@Inject PlaceManager placeManager;
 
@@ -57,12 +64,26 @@ public class SingleProjectPresenter extends
 		getView().getImageDelete().setStyleName("clickable");
 		getView().getImageSettings().setStyleName("clickable");
 
-		getView().getImageDelete().addMouseMoveHandler(new MouseMoveHandler() {
+		getView().getImageDelete().addMouseOutHandler(new MouseOutHandler() {
 			
 			@Override
-			public void onMouseMove(MouseMoveEvent event) {
-				// TODO Auto-generated method stub
-				getView().getImageDelete().setTitle("mouseMoveHandler");
+			public void onMouseOut(MouseOutEvent event) {
+				if (!mouseState.equalsIgnoreCase("mouseOut")) {
+						System.out.println("mouseOut");
+						mouseState="mouseOut";
+				}
+			}
+		});
+		
+		getView().getImageDelete().addMouseOverHandler(new MouseOverHandler() {
+			
+			@Override
+			public void onMouseOver(MouseOverEvent event) {
+				if (!mouseState.equalsIgnoreCase("mouseOver")) {
+					System.out.println("mouseOver");
+					mouseState="mouseOver";
+			}
+				
 			}
 		});
 				

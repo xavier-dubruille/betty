@@ -33,8 +33,12 @@ public class ClientUtils {
 //		if (!rfc2822.matcher(email).matches()) {
 //			return false;
 //		}else{
+//			return true;
+		if (!email.contains("@") || !email.contains(".")) {
+			return false;
+		}else
 			return true;
-//		}
+		
 	}
 	
 	
