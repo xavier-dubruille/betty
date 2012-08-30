@@ -20,19 +20,28 @@ public class ClientSolver {
 	 */
 	public static String findBestRoom(int cardId, int day, int period) {
 		String[] possRooms = Storage_access.getPossibleRooms(cardId);
-//		ClientUtils.notifyUser("Possible room for card "+cardId+" ="+Arrays.toString(possRooms), 1, MainPresenter.eventBus);
-		System.out.println("Possible room for card "+cardId+" ="+Arrays.toString(possRooms));
-		if (possRooms.length >0) {
-			return possRooms[0];
-//			for (String i: Storage_access.getAllPlacedCard()) {
-//		
-//				
-//				String c = Storage_access.getCard(i);
-//				if (Storage_access.getDayCard(c) != day || Storage_access.getPeriodCard(c) != period) continue;
-//			}
-	}
-		else
-			return "-1";
+		//		ClientUtils.notifyUser("Possible room for card "+cardId+" ="+Arrays.toString(possRooms), 1, MainPresenter.eventBus);
+		//System.out.println("Possible room for card "+cardId+" ="+Arrays.toString(possRooms));
+		int startIndex = 0;
+		for (int i =0; i< possRooms.length; i++) {
+			for (String s: Storage_access.getAllPlacedCard()) {				
+
+				String c = Storage_access.getCard(i);
+				if (Storage_access.getDayCard(c) != day || Storage_access.getPeriodCard(c) != period) continue;
+			}
+
+		}
+		//		if (possRooms.length >0) {
+		//			return possRooms[0];
+		//			for (String i: Storage_access.getAllPlacedCard()) {
+		//		
+		//				
+		//				String c = Storage_access.getCard(i);
+		//				if (Storage_access.getDayCard(c) != day || Storage_access.getPeriodCard(c) != period) continue;
+		//			}
+		//	}
+		//		else
+		return "-1";
 	}
 
 	/**
@@ -45,8 +54,8 @@ public class ClientSolver {
 	 * @return
 	 */
 	public static CellState getCellState(String cardID, int period, int day) {
-		
-		
+
+
 		//int cId = Integer.parseInt(cardID);
 		int color = 0;
 
@@ -56,12 +65,12 @@ public class ClientSolver {
 		String[] g = Storage_access.getGroupCard(card);
 		//String[] r = Storage_access.get (card);
 
-		
+
 		// We'll go through all cards and see with are in conflict
 		for (String i: Storage_access.getAllPlacedCard()) {
-			
+
 			if (i.equals(cardID)) continue;
-			
+
 			String c = Storage_access.getCard(i);
 			if (Storage_access.getDayCard(c) != day || Storage_access.getPeriodCard(c) != period) continue;
 			// let's check if there is teacher conflict
@@ -70,9 +79,9 @@ public class ClientSolver {
 				cellState.setReason("Teacher conflict");
 				return cellState;
 			}
-			
+
 			// let's check if there is room conflict
-			
+
 			// let's check if there is groups conflict
 			for (String groupSource:g) 
 				for (String groupDest:Storage_access.getGroupCard(c))
@@ -81,16 +90,16 @@ public class ClientSolver {
 						cellState.setReason("Group conflict");
 						return cellState;
 					}
-			
+
 		}
-		
-	
-		
+
+
+
 		// let's check teacher and activity desiderata
-		
+
 		// let's check info from the server side solver
-		
-		
+
+
 		return cellState;
 	}	
 
