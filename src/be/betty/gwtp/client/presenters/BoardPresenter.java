@@ -11,8 +11,10 @@ import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.event.BoardViewChangedEvent;
 import be.betty.gwtp.client.event.DropCardEvent;
+import be.betty.gwtp.client.event.PaintAllRedEvent;
 import be.betty.gwtp.client.event.BoardViewChangedEvent.BoardViewChangedHandler;
 import be.betty.gwtp.client.event.DropCardEvent.DropCardHandler;
+import be.betty.gwtp.client.event.PaintAllRedEvent.PaintAllRedHandler;
 import be.betty.gwtp.client.event.PaintCssEvent;
 import be.betty.gwtp.client.event.PaintCssEvent.PaintCssHandler;
 
@@ -35,13 +37,25 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 	}
 
 
-	private CardInView[] cardInView;
+	// TODO: ok, donc faut faire qqch avec ce cardInView[]..
+	// au debut, il a ete mis dans un tableau (qui ne contiendra jms plus d'un element)
+	// de facon a passer ce tableau en parametre avant que l'objet cardInView ne soit cree,
+	// ( un peu comme un pointeur en somme )
+	// ensuite, dans le rush de la presentation, il est passe en static pour simplifier le brol,
+	// dans un but similaire.  Faut donc choisire une methode, et la meilleur :)
+	public static CardInView[] cardInView;
 	private CellState[][] cellState;
 
 	private DropCardHandler dropCardHandler = new DropCardHandler() {
 		@Override public void onDropCard(DropCardEvent event) {
 			clearSingleCardFromBoard(""+event.getCardID(), event.getDay(), event.getPeriod());
 		} 
+	};
+	
+	private PaintAllRedHandler paintAllRedHandler = new PaintAllRedHandler() {
+		@Override public void onPaintAllRed(PaintAllRedEvent event) {
+			paintAllRed();
+		}
 	};
 
 	private BoardViewChangedHandler boardHandler = new BoardViewChangedHandler() {
@@ -81,6 +95,9 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 
 		registerHandler(getEventBus().addHandler(
 				PaintCssEvent.getType(), paintCssHandler));
+
+		registerHandler(getEventBus().addHandler(
+				PaintAllRedEvent.getType(), paintAllRedHandler));
 
 	}
 
@@ -252,7 +269,41 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 			}
 		}
 	}
+	
+	/**
+	 *  Variant of paintSolver Css, but just paint all red
+	 */
+	private void paintAllRed() {
+		final int COLUMNS = Storage_access.getNbDays() + 1;
+		final int ROWS = Storage_access.getNbPeriods() +1 ;
 
+		assert COLUMNS == cellState.length +1;
+		assert ROWS == cellState[0].length +1;
+		
+		ClientUtils.notifyUser("This card can't go in this view :(", 1, getEventBus());
+		
+		for (int i = 1; i < COLUMNS; i++){
+			for (int j = 1; j < ROWS; j++){
+				Widget w = getView().getFlexTable().getWidget(j, i);;
+				w.setStyleName(UiConstants.getColorCss(8));
+				SimplePanel cell = ((SimplePanel)w);
+				cell.clear();
+				//cell.add(new Label("Wrong View"));
+
+			}
+		}
+		
+	}
+
+	/**
+	 * Pre : cellState has to be filled with correct info if "on_off" is true
+	 * 
+	 * This method will either "paint" the board with the right css (i.e. red, greed, etc.)
+	 * accordingly to the values in Array cellState.  
+	 * Or will remove the "painting".
+	 * 
+	 * @param on_off true to paint board, false to remove painting.
+	 */
 	public void paintSolverCss(boolean on_off) {
 
 		//ClientUtils.notifyUser("debug: paintCss "+on_off, 1, getEventBus());
