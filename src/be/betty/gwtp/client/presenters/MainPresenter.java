@@ -245,8 +245,10 @@ public class MainPresenter extends
 			int projectInstance = Storage_access.getCurrentProjectInstanceBDDID();
 			System.out.println("Actual project instance= "+projectInstance);
 			
+			String roomBddId = (event.getRoom() == null || event.getRoom().equals("-1")) ? null : Storage_access.getRoomBDDID(event.getRoom());
+
 			// "first", save to bdd (it's asynchronous, so instantaneous)
-			dispatcher.execute(new SaveCardDropAction(event.getDay(), event.getPeriod(), activity_bddId, event.getRoom(),
+			dispatcher.execute(new SaveCardDropAction(event.getDay(), event.getPeriod(), activity_bddId, roomBddId,
 					projectInstance, Storage_access.getSessId()), new AsyncCallback<SaveCardDropActionResult>() {
 						@Override public void onFailure(Throwable arg0) {
 							System.out.println("save 'dropped card' failed !!");
