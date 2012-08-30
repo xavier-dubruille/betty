@@ -189,7 +189,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 			if (slot != 0) {
 
 				//System.out.print(" "+i);
-				if (!cardInView[0].cardBelongToActualView(c)) continue;
+				if (!cardInView[0].cardBelongToActualView(c, false)) continue;
 				int col = ClientUtils.storageSlotToFlexCol(slot);
 				int row = ClientUtils.storageSlotToFlexRow(slot);
 				SimplePanel s = (SimplePanel) getView().getFlexTable().getWidget(row, col);
