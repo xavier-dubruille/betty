@@ -18,7 +18,7 @@
 							<g:AbsolutePanel width="130px" height="140px"
 								styleName="instancePanel">
 								<g:at left="0" top="0">
-									<g:Label text="Instance Courante" width="130px" height="13px"
+									<g:Label text="Current Instance" width="130px" height="13px"
 										styleName="simpleLabel" horizontalAlignment="ALIGN_CENTER" />
 								</g:at>
 								<g:at left="0" top="0">

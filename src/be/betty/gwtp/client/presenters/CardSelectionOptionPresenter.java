@@ -2,7 +2,9 @@ package be.betty.gwtp.client.presenters;
 
 import java.util.LinkedHashMap;
 
+import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.Storage_access;
+import be.betty.gwtp.client.UiConstants;
 
 import be.betty.gwtp.client.event.SetViewEvent;
 import be.betty.gwtp.client.event.ShowPlacedCardEvent;
@@ -37,7 +39,7 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 
 	private SelectItem selectItemMultiplePickList;
 
-
+	private String current = "init";
 
 	private DynamicForm multiSelectComboForm;
 	private DynamicForm selectComboForm;
@@ -147,7 +149,15 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 		try{
 			
 			checkBoxTab = selectItemMultiplePickList.getValues();
-			if (getView().getDoSwitchView().getValue()) myEventBus.fireEvent(new SetViewEvent(indexFirstComboBox,checkBoxTab[0]));
+			if (getView().getDoSwitchView().getValue()) {
+				myEventBus.fireEvent(new SetViewEvent(indexFirstComboBox,checkBoxTab[0]));
+				if (!current.equalsIgnoreCase(checkBoxTab[0])){
+					String[] text = selectItemMultiplePickList.getDisplayValue().split(",");
+					String notif = "The view of "+firstComboBox.getDisplayValue()+" "+text[0]+" is selected";
+					current = checkBoxTab[0];
+					ClientUtils.notifyUser(notif, UiConstants.getNotifCss(), getEventBus());
+				}
+			}
 			for(int i=0; i< checkBoxTab.length; i++){
 				String str = checkBoxTab[i];
 				for (int j = 0; j < MainPresenter.allCards.size(); j++){

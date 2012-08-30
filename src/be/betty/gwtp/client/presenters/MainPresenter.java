@@ -516,9 +516,9 @@ public class MainPresenter extends
 	 */
 	private void setStaticFirstComboView(ListBox box) {
 		box.clear();
-		box.addItem("Professeur");
-		box.addItem("Local");
-		box.addItem("Classe");
+		box.addItem("Professor");
+		box.addItem("Room");
+		box.addItem("Group");
 	
 	}
 	
