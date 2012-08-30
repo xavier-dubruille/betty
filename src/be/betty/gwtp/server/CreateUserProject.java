@@ -259,6 +259,7 @@ public class CreateUserProject {
 	}
 
 	/**
+	 * PRE: the project (with right user, instance, ..) has to be already in bdd
 	 *  Save the state of the object into the bdd
 	 */
 	public void saveStateToBdd() {
@@ -268,11 +269,11 @@ public class CreateUserProject {
 		Session s = HibernateUtils.getSession();
 		Transaction t = s.beginTransaction();
 
-		s.save(current_project);
+		s.update(current_project);
 
-		ProjectInstance pi = new ProjectInstance("Default instance", 0);
-		s.save(pi);
-		current_project.getProjectInstances().add(pi);
+		//ProjectInstance pi = new ProjectInstance("Default instance", 0);
+		//s.save(pi);
+		//current_project.getProjectInstances().add(pi);
 
 		for (Room r: rooms.values()) {
 			s.save(r);

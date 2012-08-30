@@ -37,7 +37,7 @@ public class FileUpServlet extends HttpServlet {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	// TODO: est-ce une  bonne idŽe de le mettre ds le tmp ?
+	// TODO: est-ce une  bonne idï¿½e de le mettre ds le tmp ?
 	private static final String UPLOAD_DIRECTORY = "/tmp/"; 
 	
 	
@@ -69,7 +69,7 @@ public class FileUpServlet extends HttpServlet {
 		// !! (or index.java ?)
 
 		// TODO: check user credentials !! (avec un cookie ou avec un champ
-		// cachŽ de le formulaire ?)
+		// cache de le formulaire ?)
 		// TODO: que faire si ce n'est pas une multipart requests ? ca pourrait
 		// arriver ?
 		// process only multipart requests
@@ -110,14 +110,14 @@ public class FileUpServlet extends HttpServlet {
 					"Request contents type is not supported by the servlet.");
 		}
 
-		saveProjectInBdd(project_attributes);
+		createAndSaveProject(project_attributes);
 	}
 
 	/**
 	 * @param projectToBeSaved
 	 * 
 	 */
-	private void saveProjectInBdd(HashMap<String, String> project_attributes) {
+	private void createAndSaveProject(HashMap<String, String> project_attributes) {
 
 		logger.trace("savin' project in bdd. projectName="
 				+ project_attributes.get(Constants.PROJECT_NAME) + ", and projectFile="
@@ -138,15 +138,13 @@ public class FileUpServlet extends HttpServlet {
 		// TODO: Faut verifier ici si le sess_id est tjs valide!
 
 		User user = sess_id.getUser_id();
-		// System.out.println("user======> "+user.getName());
+		System.out.println("user======> "+user.getName());
 
 		Project_entity projectToBeSaved = new Project_entity();
 
 		projectToBeSaved.setName(project_attributes.get(Constants.PROJECT_NAME));
-		projectToBeSaved.setRoom_file(UPLOAD_DIRECTORY
-				+project_attributes.get(Constants.FILE_ROOM));
-		projectToBeSaved.setCourse_file(UPLOAD_DIRECTORY
-				+ project_attributes.get(Constants.FILE_COURSE));
+		projectToBeSaved.setRoom_file(UPLOAD_DIRECTORY +project_attributes.get(Constants.FILE_ROOM));
+		projectToBeSaved.setCourse_file(UPLOAD_DIRECTORY + project_attributes.get(Constants.FILE_COURSE));
 		ProjectInstance pi = new ProjectInstance("Default", 0);
 		s.save(pi);
 		//pi.setParentProject(projectToBeSaved);
@@ -158,55 +156,45 @@ public class FileUpServlet extends HttpServlet {
 		s.save(projectToBeSaved);
 		System.out.println("****un****");
 		projectToBeSaved.getUsers().add(user);
+		s.save(projectToBeSaved);
+		
 		System.out.println("****deux****");
 		user.getProjects().add(projectToBeSaved);
 
-		s.save(projectToBeSaved);
+		
 		s.save(user);
-
+		System.out.println("****trois****");
 		t.commit();
 		s.close();
+		System.out.println("****quatre****");
 
 		// the "project entry" is now saved, we now have to create the rest of the project
 		CreateUserProject create = new CreateUserProject(projectToBeSaved);
 
-		// First, we create course, teachers, .. everything from the "courses file"
+		// We create everything (with the links, ..) from the files
 		try {
+			create.createStateFromRoomFile();
 			create.createStateFromCardFile();
+			create.setRoomToCourse();
+			System.out.println("****cinq****");
+			
+			
 		} catch (NoFileException e) {
-			logger.error("problems with files, project can't be created 1 ->"
-					+ e.getMessage());
+			logger.error("problems with files, project can't be created 1 ->" + e.getMessage());
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			logger.error("problems with files, project can't be created 2 ->"
-					+ e.getMessage());
+			logger.error("problems with files, project can't be created 2 ->" + e.getMessage());
 			e.printStackTrace();
 		} catch (IOException e) {
-			logger.error("problems with files, project can't be created 3 ->"
-					+ e.getMessage());
+			logger.error("problems with files, project can't be created 3 ->" + e.getMessage());
 			e.printStackTrace();
 		}
-		// TODO: gestion d'ereurs.. (et prevenir l'utilisateur de l'erreur..)
-		
-		// Second, we create the Rooms, and everything from the "room file"
-//		try {
-//			create.createStateFromRoomFile();
-//		} catch (NoFileException e) {
-//			logger.error("problems with files, project can't be created 1 ->"
-//					+ e.getMessage());
-//			e.printStackTrace();
-//		} catch (FileNotFoundException e) {
-//			logger.error("problems with files, project can't be created 2 ->"
-//					+ e.getMessage());
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			logger.error("problems with files, project can't be created 3 ->"
-//					+ e.getMessage());
-//			e.printStackTrace();
-//		}
-		
-		create.saveStateToBdd();
+		// TODO: gestion d'ereurs ! (et prevenir l'utilisateur de l'erreur !)
 
+		System.out.println("****six****");
+		// then save it to bdd
+		create.saveStateToBdd();
+		System.out.println("****sept****");
 	}
 
 	/*
@@ -217,7 +205,7 @@ public class FileUpServlet extends HttpServlet {
 			Exception {
 
 		logger.trace("about to process file named: " + fileItem.getName());
-		// TODO: est ce que le fileName peut tre null, et que faire dans ce cas
+		// TODO: est ce que le fileName peut ï¿½tre null, et que faire dans ce cas
 		// ?
 		assert fileItem.getName() != null && fileItem.getName().length() > 0;
 		
