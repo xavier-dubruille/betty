@@ -84,10 +84,24 @@ public class CellDropControler extends SimpleDropController {
 		String cardId = w.getElement().getTitle();
 		String card = Storage_access.getCard(cardId);
 		//CardWidget w2 = MainPresenter.allCards.get(cardId);
-		if ( dropTarget.getWidget() instanceof CardWidget || !cardInView[0].cardBelongToActualView(card, true)) {
-			ClientUtils.notifyUser("The Card \""+Storage_access.getCourseCardName(card)+"\"can't be placed there..", 1, eventBus);
+		if (!cardInView[0].cardBelongToActualView(card, true)) { // not good view
+			ClientUtils.notifyUser("The Card \""+Storage_access.getCourseCardName(card)+"\"can't be placed in this view", 1, eventBus);
 			throw new VetoDragException();
 		}
+		if (dropTarget.getWidget() instanceof CardWidget)  
+			throw new VetoDragException();
+		
+		CellState cellState = ClientSolver.getCellState(cardId, day, period);
+		
+		//ClientUtils.notifyUser("drop preview card "+cardId+": on cell "+day+"-"+period+" and color is "+cellState.getColor(), 0, eventBus);
+		
+		if (cellState.getColor() == 8) { // not good drop target
+			ClientUtils.notifyUser("The Card \""+Storage_access.getCourseCardName(card)+
+					"\"can't be placed here. "+cellState.getReason(), 1, eventBus);
+			throw new VetoDragException();
+		}
+		
+		
 		super.onPreviewDrop(context);
 	}
 }

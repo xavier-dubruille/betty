@@ -98,8 +98,11 @@ public class CardHandler implements DragHandler {
 		if (event.getSource() instanceof CardWidget ) {
 			CardWidget w1 = (CardWidget) event.getSource();
 			String cardId = w1.getElement().getTitle();
-			if (!BoardPresenter.cardInView[0].cardBelongToActualView(Storage_access.getCard(cardId), true))
-				eventBus.fireEvent(new PaintAllRedEvent());
+			if (!BoardPresenter.cardInView[0].cardBelongToActualView(Storage_access.getCard(cardId), true)) {
+				eventBus.fireEvent(new PaintAllRedEvent());	
+				ClientUtils.notifyUser("This card can't go in this view", 1, eventBus);
+			}
+				
 			else
 				eventBus.fireEvent(new PaintCssEvent(cardId, true));
 			System.out.println("done drag preview");

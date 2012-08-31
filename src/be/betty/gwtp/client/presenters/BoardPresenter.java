@@ -286,7 +286,6 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 		assert COLUMNS == cellState.length +1;
 		assert ROWS == cellState[0].length +1;
 
-		ClientUtils.notifyUser("This card can't go in this view :(", 1, getEventBus());
 
 		for (int i = 1; i < COLUMNS; i++){
 			for (int j = 1; j < ROWS; j++){

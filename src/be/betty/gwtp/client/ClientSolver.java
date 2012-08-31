@@ -119,19 +119,19 @@ public class ClientSolver {
 			cellState.setReason("Only ONE room left");
 			break;
 		case 2:
-			cellState.setColor(6);
-			cellState.setReason(roomLeft+" rooms left");
-			break;
-		case 3:
 			cellState.setColor(5);
 			cellState.setReason(roomLeft+" rooms left");
 			break;
-		case 4:
+		case 3:
 			cellState.setColor(4);
 			cellState.setReason(roomLeft+" rooms left");
 			break;
-		case 5:
+		case 4:
 			cellState.setColor(3);
+			cellState.setReason(roomLeft+" rooms left");
+			break;
+		case 5:
+			cellState.setColor(1);
 			cellState.setReason(roomLeft+" rooms left");
 			break;
 		}
