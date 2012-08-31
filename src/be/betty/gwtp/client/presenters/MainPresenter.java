@@ -276,6 +276,7 @@ public class MainPresenter extends
 			}
 			else {
 			//	allCards.get(event.getCardID()).addStyleName("card");
+				LocalOptimisation.removeCard(event.getCardID());
 				Storage_access.removeFromSlot(event.getCardID());
 				allCards.get(""+event.getCardID()).setRoom("-1");
 			}
