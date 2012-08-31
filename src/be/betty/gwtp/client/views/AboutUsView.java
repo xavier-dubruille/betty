@@ -5,7 +5,7 @@ import be.betty.gwtp.client.presenters.AboutUsPresenter;
 import com.gwtplatform.mvp.client.PopupViewImpl;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
@@ -21,6 +21,7 @@ public class AboutUsView extends PopupViewImpl implements
 
 	@UiField TextButton okButton;
 	@UiField TextButton closeWindowButton;
+	@UiField Label aboutUsLabel;
 	
 	@Inject
 	public AboutUsView(final EventBus eventBus, final Binder binder) {
@@ -39,6 +40,10 @@ public class AboutUsView extends PopupViewImpl implements
 	
 	public TextButton getCloseWindowButton() {
 		return closeWindowButton;
+	}
+	
+	public Label getAboutUsLabel() {
+		return aboutUsLabel;
 	}
 	
 }

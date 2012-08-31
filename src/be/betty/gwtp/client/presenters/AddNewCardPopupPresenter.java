@@ -132,7 +132,7 @@ public class AddNewCardPopupPresenter extends
 		groupComboBox.setValueMap(valueMapGroup);
 		getView().getGroupDynForm().setItems(groupComboBox);
 		
-		System.out.println("on populate la combobox");
+		//System.out.println("on populate la combobox");
 		for (int i = 0; i < Storage_access.getNumberOfTeacher(); i++) {
 			getView().getTeacherComboBox().addItem(Storage_access.getTeacher(i), ""+i);
 		}
