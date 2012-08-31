@@ -6,7 +6,7 @@ import com.google.inject.Inject;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.widget.client.TextButton;
 
 /**
@@ -19,6 +19,7 @@ public class AboutUsPresenter extends PresenterWidget<AboutUsPresenter.MyView> {
 		// TODO Put your view methods here
 		public TextButton getOkButton();
 		public TextButton getCloseWindowButton();
+		public Label getAboutUsLabel();
 	}
 
 	@Inject
@@ -43,6 +44,8 @@ public class AboutUsPresenter extends PresenterWidget<AboutUsPresenter.MyView> {
 				getView().hide();
 			}
 		});
+		
+		getView().getAboutUsLabel().setText("Copyright © 2012 Free Betty Software\nJACOBY Kevin - DUBRUILLE Xavier\n\nThis application is under GPL3 Licence");
 		
 	}
 }

@@ -23,7 +23,7 @@ public class UiConstants {
 	//TODO remplir le tableau avec les bon css
 	public static final String[] SOLVERCOLORCSS = {"lowgreen", "middlegreen", "highgreen", "loworange", "middleorange", "highorange", "lowred", "middlered", "highred"};
 	public static final String[] CAPTCHAPICTURENAME = {"Captcha1.png", "Captcha2.png", "Captcha3.png", "Captcha4.png", "Captcha5.png"};
-	public static final String[] CAPTCHACODE = {"B6A8","4R9B","7C5T","2V1Y","1F8H"};
+	public static final String[] CAPTCHACODE = {"8A6B","B9R4","T5C7","Y1V2","H8F1"};
 	
 	public static String getCaptchaPictureName(int index) {
 		return CAPTCHAPICTURENAME[index];

@@ -7,8 +7,6 @@ package be.betty.gwtp.client.presenters;
 
 import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.UiConstants;
-import be.betty.gwtp.client.action.LoginAction;
-import be.betty.gwtp.client.action.LoginActionResult;
 import be.betty.gwtp.client.action.SubscribeAction;
 import be.betty.gwtp.client.action.SubscribeActionResult;
 import be.betty.gwtp.client.action.SubscribeUserAction;
@@ -19,8 +17,6 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.KeyPressEvent;
-import com.google.gwt.event.dom.client.KeyPressHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -38,7 +34,6 @@ import com.gwtplatform.mvp.client.Presenter;
 import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
-import com.gwtplatform.mvp.client.proxy.PlaceRequest;
 import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.client.proxy.RevealRootContentEvent;
 
@@ -125,7 +120,7 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 		image.addStyleName("clickable");
 		getView().getHyperlinkLogin().setTitle("Login");
 		
-		getView().getCaptchaHelpPicture().setTitle("write the invers of the text\n ex: if 3P7T write T7P3");
+		getView().getCaptchaHelpPicture().setTitle("write the code");
 		getView().getCaptchaPicture().setUrl(UiConstants.getCaptchaPictureName(captchaNumber));
 		getView().getCaptchaPicture().setVisible(true);
 		getView().getCaptchaVerifPicture().setVisible(false);
@@ -170,21 +165,7 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 
 			@Override
 			public void onChange(ChangeEvent event) {
-				if(!getView().getEmailSubTextbox().getText().isEmpty()){
-					if (ClientUtils.CheckEmail(getView().getEmailSubTextbox().getText().toString())){
-						getView().getEmailSubErrorLabel().setText("");
-						getView().getEmailPicture().setUrl("ok.png");
-						getView().getEmailPicture().setVisible(true);
-
-					}else{
-						getView().getEmailSubErrorLabel().setText("not valid");
-						getView().getEmailPicture().setUrl("cancel.png");
-						getView().getEmailPicture().setVisible(true);
-					}
-				}else{
-					getView().getEmailSubErrorLabel().setText("");
-					getView().getEmailPicture().setVisible(false);
-				}
+				errorEmail();
 			}
 		});
 
@@ -268,6 +249,24 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 			}
 		}
 
+	}
+	
+	public void errorEmail() {
+		if(!getView().getEmailSubTextbox().getText().isEmpty()){
+			if (ClientUtils.CheckEmail(getView().getEmailSubTextbox().getText().toString())){
+				getView().getEmailSubErrorLabel().setText("");
+				getView().getEmailPicture().setUrl("ok.png");
+				getView().getEmailPicture().setVisible(true);
+
+			}else{
+				getView().getEmailSubErrorLabel().setText("not valid");
+				getView().getEmailPicture().setUrl("cancel.png");
+				getView().getEmailPicture().setVisible(true);
+			}
+		}else{
+			getView().getEmailSubErrorLabel().setText("");
+			getView().getEmailPicture().setVisible(false);
+		}
 	}
 
 	public void verifCaptcha(){
@@ -363,6 +362,7 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 									getView().getEmailSubErrorLabel(),
 									getView().getEmailPicture());
 				verifCaptcha();
+				errorEmail();
 				/*
 				errorSameStr(getView().getPassSubTextbox().getText(), getView().getPassVerSubTextbox().getText(), getView().getPassVerSubErrorLabel());
 				 */
