@@ -1,5 +1,6 @@
 package be.betty.gwtp.client;
 
+
 /**
  * 
  * This class will contain all the Constant involved in graphics
@@ -21,6 +22,20 @@ public class UiConstants {
 	public static final int PERIODE_NUMBER = 7;
 	//TODO remplir le tableau avec les bon css
 	public static final String[] SOLVERCOLORCSS = {"lowgreen", "middlegreen", "highgreen", "loworange", "middleorange", "highorange", "lowred", "middlered", "highred"};
+	public static final String[] CAPTCHAPICTURENAME = {"Captcha1.png", "Captcha2.png", "Captcha3.png", "Captcha4.png", "Captcha5.png"};
+	public static final String[] CAPTCHACODE = {"B6A8","4R9B","7C5T","2V1Y","1F8H"};
+	
+	public static String getCaptchaPictureName(int index) {
+		return CAPTCHAPICTURENAME[index];
+	}
+	
+	public static String getCaptchaCode(int index) {
+		return CAPTCHACODE[index];
+	}
+	
+	public static String[] getCaptchaPictureNameTab() {
+		return CAPTCHAPICTURENAME;
+	}
 	
 	public static int getCardWidth() {
 		return CARD_WIDTH;

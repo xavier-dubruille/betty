@@ -6,6 +6,7 @@ package be.betty.gwtp.client.presenters;
 
 
 import be.betty.gwtp.client.ClientUtils;
+import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.action.LoginAction;
 import be.betty.gwtp.client.action.LoginActionResult;
 import be.betty.gwtp.client.action.SubscribeAction;
@@ -18,6 +19,8 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.KeyPressEvent;
+import com.google.gwt.event.dom.client.KeyPressHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
@@ -76,11 +79,22 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 		public TextButton getButtonSubscribe();
 		
 		public Hyperlink getHyperlinkLogin();
+		
+		public TextBox getCaptchaTextbox();
+
+		public Image getCaptchaVerifPicture();
+
+		public Label getCaptchaSubLabel();
+
+		public Image getCaptchaPicture();
+
+		public Image getCaptchaHelpPicture();
 
 	}
 
 
-
+	private int captchaNumber = 0;
+	private int captchaError = 1; // 0 = no error, 1 = error
 
 	@ProxyCodeSplit
 	@NameToken(NameTokens.subscribe)
@@ -111,6 +125,10 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 		image.addStyleName("clickable");
 		getView().getHyperlinkLogin().setTitle("Login");
 		
+		getView().getCaptchaHelpPicture().setTitle("write the invers of the text\n ex: if 3P7T write T7P3");
+		getView().getCaptchaPicture().setUrl(UiConstants.getCaptchaPictureName(captchaNumber));
+		getView().getCaptchaPicture().setVisible(true);
+		getView().getCaptchaVerifPicture().setVisible(false);
 		getView().getUsernamePicture().setVisible(false);
 		getView().getPasswordVerPicture().setVisible(false);
 		getView().getPasswordPicture().setVisible(false);
@@ -224,6 +242,14 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 
 			}
 		});
+		
+		getView().getCaptchaTextbox().addChangeHandler(new ChangeHandler() {
+			
+			@Override
+			public void onChange(ChangeEvent event) {
+				verifCaptcha();
+			}
+		});
 
 	}
 
@@ -244,6 +270,26 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 
 	}
 
+	public void verifCaptcha(){
+		if (!getView().getCaptchaTextbox().getText().equalsIgnoreCase(UiConstants.getCaptchaCode(captchaNumber))) {
+			getView().getCaptchaVerifPicture().setUrl("cancel.png");
+			getView().getCaptchaVerifPicture().setVisible(true);
+			captchaError = 1; //error
+		} else {
+			getView().getCaptchaVerifPicture().setUrl("ok.png");
+			getView().getCaptchaVerifPicture().setVisible(true);
+			captchaError = 0; //no error
+		}
+	}
+	
+	public void refreshCaptcha(){
+		if (captchaNumber!=UiConstants.getCaptchaPictureNameTab().length-1)
+			captchaNumber = captchaNumber+1;
+		else
+			captchaNumber = 0;
+		getView().getCaptchaPicture().setUrl(UiConstants.getCaptchaPictureName(captchaNumber));
+			
+	}
 	
 	public void fireUsername(){
 		
@@ -316,6 +362,7 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 				errorCompleteField(	getView().getEmailSubTextbox().getText().isEmpty(), 
 									getView().getEmailSubErrorLabel(),
 									getView().getEmailPicture());
+				verifCaptcha();
 				/*
 				errorSameStr(getView().getPassSubTextbox().getText(), getView().getPassVerSubTextbox().getText(), getView().getPassVerSubErrorLabel());
 				 */
@@ -324,7 +371,8 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 						getView().getUserSubErrorLabel().getText().isEmpty() &&
 						getView().getPassSubErrorLabel().getText().isEmpty() &&
 						getView().getPassVerSubErrorLabel().getText().isEmpty() &&
-						getView().getEmailSubErrorLabel().getText().isEmpty() 
+						getView().getEmailSubErrorLabel().getText().isEmpty() &&
+						(captchaError!=1)
 						){
 
 					String login = getView().getUserSubTextbox().getText();
@@ -354,7 +402,10 @@ public class SubscribePresenter extends Presenter<SubscribePresenter.MyView, Sub
 
 
 				}else{
-					//System.out.println("encore des erreurs");
+					System.out.println("encore des erreurs");
+					if (captchaError!=0)
+						refreshCaptcha();
+					
 				}
 			}
 		});

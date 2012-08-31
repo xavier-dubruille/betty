@@ -68,7 +68,7 @@
 					<g:Image width="16px" height="16px" ui:field="captchaHelpPicture" url="info.png"/>
 				</g:at>
 				<g:at left="351" top="172">
-					<g:Image width="32px" height="32px" ui:field="capchaVerifPicture"/>
+					<g:Image width="32px" height="32px" ui:field="captchaVerifPicture"/>
 				</g:at>
 				<g:at left="390" top="172">
 					<g:Image width="70px" height="32px" ui:field="captchaPicture"/>
