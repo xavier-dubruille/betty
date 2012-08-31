@@ -37,6 +37,11 @@ public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView
 	@UiField Image emailPicture;
 	@UiField TextButton buttonSubscribe;
 	@UiField Hyperlink hyperlinkLogin;
+	@UiField TextBox captchaTextbox;
+	@UiField Image capchaVerifPicture;
+	@UiField Label captchaSubLabel;
+	@UiField Image captchaPicture;
+	@UiField Image captchaHelpPicture;
 	
 	
 	public interface Binder extends UiBinder<Widget, SubscribeView> {

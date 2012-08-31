@@ -22,6 +22,9 @@
 				<g:at left="135" top="147">
 					<g:Label text="Email" ui:field="emailSubLabel"/>
 				</g:at>
+				<g:at left="122" top="182">
+					<g:Label text="Captcha" ui:field="captchaSubLabel"/>
+				</g:at>
 				<g:at left="195" top="36">
 					<g:TextBox ui:field="userSubTextbox"/>
 				</g:at>
@@ -33,6 +36,9 @@
 				</g:at>
 				<g:at left="195" top="141">
 					<g:TextBox ui:field="emailSubTextbox"/>
+				</g:at>
+				<g:at left="195" top="176">
+					<g:TextBox ui:field="captchaTextbox"/>
 				</g:at>
 				<g:at left="385" top="42">
 					<g:Label ui:field="userSubErrorLabel" styleName="errorLabel"/>
@@ -58,7 +64,16 @@
 				<g:at left="351" top="137">
 					<g:Image width="32px" height="32px" ui:field="emailPicture"/>
 				</g:at>
-				<g:at left="215" top="191">
+				<g:at left="100" top="183">
+					<g:Image width="16px" height="16px" ui:field="captchaHelpPicture" url="info.png"/>
+				</g:at>
+				<g:at left="351" top="172">
+					<g:Image width="32px" height="32px" ui:field="capchaVerifPicture"/>
+				</g:at>
+				<g:at left="390" top="172">
+					<g:Image width="70px" height="32px" ui:field="captchaPicture"/>
+				</g:at>
+				<g:at left="215" top="212">
 					<w:TextButton text="Subscribe" ui:field="buttonSubscribe">New button</w:TextButton>
 				</g:at>
 				<g:at left="20" top="10">
