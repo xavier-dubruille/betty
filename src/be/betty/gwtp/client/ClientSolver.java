@@ -11,7 +11,7 @@ public class ClientSolver {
 
 	/**
 	 * This is called to find the best room for a specified card.
-	 * It's used when droping a card on a "non-room" view
+	 * It's used when dropping a card on a "non-room" view
 	 * 
 	 * @param cardId the card
 	 * @param day
@@ -19,7 +19,7 @@ public class ClientSolver {
 	 * @return
 	 */
 	public static String findBestRoom(int cardId, int day, int period) {
-		String[] possRooms = Storage_access.getPossibleRooms(cardId);
+		String[] possRooms = Storage_access.getPossibleRooms(""+cardId);
 		//		ClientUtils.notifyUser("Possible room for card "+cardId+" ="+Arrays.toString(possRooms), 1, MainPresenter.eventBus);
 		//System.out.println("Possible room for card "+cardId+" ="+Arrays.toString(possRooms));
 		int startIndex = 0;
@@ -61,6 +61,9 @@ public class ClientSolver {
 
 		CellState cellState = new CellState(0);
 		String card = Storage_access.getCard(cardID);
+
+		if(Storage_access.getDayCard(card) == day && Storage_access.getPeriodCard(card)== period) 
+			return cellState;
 		String t = Storage_access.getTeacherCard(card);
 		String[] g = Storage_access.getGroupCard(card);
 		//String[] r = Storage_access.get (card);
@@ -93,6 +96,11 @@ public class ClientSolver {
 
 		}
 
+
+
+
+		cellState.setColor(3);
+		cellState.setReason("Room Available left = "+LocalOptimisation.availableRoomForAt(cardID, day, period));
 
 
 		// let's check teacher and activity desiderata

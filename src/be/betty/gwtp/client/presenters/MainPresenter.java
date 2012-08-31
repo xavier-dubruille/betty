@@ -8,6 +8,7 @@ import be.betty.gwtp.client.CardHandler;
 import be.betty.gwtp.client.CardInView;
 import be.betty.gwtp.client.CardSelectionDropControler;
 import be.betty.gwtp.client.ClientUtils;
+import be.betty.gwtp.client.LocalOptimisation;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.action.DeleteCardAction;
@@ -268,9 +269,10 @@ public class MainPresenter extends
 						}
 					});
 
-			// Then save in local Storage
+			// Then save in local Storage and LocalOptimisation
 			if (event.getDay() != 0) {
 				Storage_access.placeCard(event.getCardID(), event.getDay(), event.getPeriod(), event.getRoom());
+				LocalOptimisation.placeCard(event.getCardID(), event.getDay(), event.getPeriod(), event.getRoom());
 			}
 			else {
 			//	allCards.get(event.getCardID()).addStyleName("card");
@@ -677,6 +679,8 @@ public class MainPresenter extends
 				}
 				
 				//Storage_access.printStorage();
+				
+				LocalOptimisation.initAvailableRoom();
 				
 				eventBus.fireEvent( 
 						new BoardViewChangedEvent(getView().getCombo_viewChoice1().getSelectedIndex(),
