@@ -37,6 +37,11 @@ public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView
 	@UiField Image emailPicture;
 	@UiField TextButton buttonSubscribe;
 	@UiField Hyperlink hyperlinkLogin;
+	@UiField TextBox captchaTextbox;
+	@UiField Image captchaVerifPicture;
+	@UiField Label captchaSubLabel;
+	@UiField Image captchaPicture;
+	@UiField Image captchaHelpPicture;
 	
 	
 	public interface Binder extends UiBinder<Widget, SubscribeView> {
@@ -94,7 +99,7 @@ public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView
 		return passVerSubErrorLabel;
 	}
 	
-	public Label getEmailSubErrorLabel(){
+	public Label getEmailSubErrorLabel() {
 		return emailSubErrorLabel;
 	}
 
@@ -114,12 +119,34 @@ public class SubscribeView extends ViewImpl implements SubscribePresenter.MyView
 		return emailPicture;
 	}
 	
-	public TextButton getButtonSubscribe(){
+	public TextButton getButtonSubscribe() {
 		return buttonSubscribe;
 	}
 	
-	public Hyperlink getHyperlinkLogin(){
+	public Hyperlink getHyperlinkLogin() {
 		return hyperlinkLogin;
 	}
+
+	public TextBox getCaptchaTextbox() {
+		return captchaTextbox;
+	}
+
+	public Image getCaptchaVerifPicture() {
+		return captchaVerifPicture;
+	}
+
+	public Label getCaptchaSubLabel() {
+		return captchaSubLabel;
+	}
+
+	public Image getCaptchaPicture() {
+		return captchaPicture;
+	}
+
+	public Image getCaptchaHelpPicture() {
+		return captchaHelpPicture;
+	}
+	
+	
 
 }
