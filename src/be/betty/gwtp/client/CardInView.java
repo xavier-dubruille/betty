@@ -31,7 +31,7 @@ public class CardInView {
 	 * @param card the card to check
 	 * @return if it belong to
 	 */
-	public boolean cardBelongToActualView(String card, boolean askOrPrint) {
+	public boolean cardBelongToActualView(String card, String cardId, boolean askOrPrint) {
 		//System.out.println("Should we print this card ? =>"+card);
 		//System.out.println("Teacher = num "+Storage_access.getTeacherCard(card));
 		//System.out.println("Group   = num "+Storage_access.getGroupCard(card));
@@ -47,7 +47,10 @@ public class CardInView {
 			break;
 		case 1: // room
 			if(askOrPrint) { // asking if the card *can* go in this room
-				return true;
+				for( String r: Storage_access.getPossibleRooms(cardId))
+					if (r.equals(""+c2)) return true;
+				
+				return false;
 			}else // asking if the card *is* in this room
 				if (Storage_access.getRoomCard(card) == c2) return true;
 			

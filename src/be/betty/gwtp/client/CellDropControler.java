@@ -84,7 +84,7 @@ public class CellDropControler extends SimpleDropController {
 		String cardId = w.getElement().getTitle();
 		String card = Storage_access.getCard(cardId);
 		//CardWidget w2 = MainPresenter.allCards.get(cardId);
-		if (!cardInView[0].cardBelongToActualView(card, true)) { // not good view
+		if (!cardInView[0].cardBelongToActualView(card, cardId, true)) { // not good view
 			ClientUtils.notifyUser("The Card \""+Storage_access.getCourseCardName(card)+"\"can't be placed in this view", 1, eventBus);
 			throw new VetoDragException();
 		}
