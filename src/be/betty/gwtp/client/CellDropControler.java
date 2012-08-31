@@ -84,7 +84,7 @@ public class CellDropControler extends SimpleDropController {
 		String cardId = w.getElement().getTitle();
 		String card = Storage_access.getCard(cardId);
 		//CardWidget w2 = MainPresenter.allCards.get(cardId);
-		if (dropTarget.getWidget() != null || !cardInView[0].cardBelongToActualView(card, true)) {
+		if ( dropTarget.getWidget() instanceof CardWidget || !cardInView[0].cardBelongToActualView(card, true)) {
 			ClientUtils.notifyUser("The Card \""+Storage_access.getCourseCardName(card)+"\"can't be placed there..", 1, eventBus);
 			throw new VetoDragException();
 		}

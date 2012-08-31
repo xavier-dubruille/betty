@@ -51,7 +51,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 			clearSingleCardFromBoard(""+event.getCardID(), event.getDay(), event.getPeriod());
 		} 
 	};
-	
+
 	private PaintAllRedHandler paintAllRedHandler = new PaintAllRedHandler() {
 		@Override public void onPaintAllRed(PaintAllRedEvent event) {
 			paintAllRed();
@@ -67,9 +67,15 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 	private PaintCssHandler paintCssHandler = new PaintCssHandler() {
 		@Override public void onPaintCss(PaintCssEvent event) {
 			System.out.println("ON dragggg !!");
+
 			if (event.getOnOff())
 				constructCellState(event.getCardId());
-			paintSolverCss(event.getOnOff());
+			
+			String c = Storage_access.getCard(event.getCardId());
+			if (c==null)
+				paintSolverCss(-1, -1, event.getOnOff());
+			else 
+				paintSolverCss(Storage_access.getDayCard(c), Storage_access.getPeriodCard(c), event.getOnOff());
 		}
 	};
 
@@ -269,7 +275,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 			}
 		}
 	}
-	
+
 	/**
 	 *  Variant of paintSolver Css, but just paint all red
 	 */
@@ -279,9 +285,9 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 
 		assert COLUMNS == cellState.length +1;
 		assert ROWS == cellState[0].length +1;
-		
+
 		ClientUtils.notifyUser("This card can't go in this view :(", 1, getEventBus());
-		
+
 		for (int i = 1; i < COLUMNS; i++){
 			for (int j = 1; j < ROWS; j++){
 				Widget w = getView().getFlexTable().getWidget(j, i);;
@@ -292,7 +298,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 
 			}
 		}
-		
+
 	}
 
 	/**
@@ -304,7 +310,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 	 * 
 	 * @param on_off true to paint board, false to remove painting.
 	 */
-	public void paintSolverCss(boolean on_off) {
+	public void paintSolverCss(int day, int period, boolean on_off) {
 
 		//ClientUtils.notifyUser("debug: paintCss "+on_off, 1, getEventBus());
 		final int COLUMNS = Storage_access.getNbDays() + 1;
@@ -324,7 +330,7 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 					CellState cs = cellState[i-1][j-1];
 					int color = cs.getColor();
 					w.setStyleName(UiConstants.getColorCss(color));
-					if (color !=0 ) {
+					if (color !=0 && !(i==day && j==period)) { //do we print an explation label..
 						SimplePanel cell = ((SimplePanel)w);
 						cell.clear();
 						cell.add(new Label(cs.getReason()));

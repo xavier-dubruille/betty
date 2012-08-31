@@ -114,7 +114,7 @@ public class Storage_access {
 	 * @param cardId
 	 * @return
 	 */
-	public static String[] getPossibleRooms(int cardId) {
+	public static String[] getPossibleRooms(String cardId) {
 		String[] course = getCourseCard(getCard(cardId)).split(STORAGE_SEPARATOR);
 		//		ClientUtils.notifyUser("the course card= "+Arrays.toString(course), 1, MainPresenter.eventBus);
 		int number = Integer.parseInt(course[CO_PR_SIZE_INDEX]);

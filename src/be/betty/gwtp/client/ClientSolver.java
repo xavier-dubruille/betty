@@ -11,7 +11,7 @@ public class ClientSolver {
 
 	/**
 	 * This is called to find the best room for a specified card.
-	 * It's used when droping a card on a "non-room" view
+	 * It's used when dropping a card on a "non-room" view
 	 * 
 	 * @param cardId the card
 	 * @param day
@@ -19,28 +19,38 @@ public class ClientSolver {
 	 * @return
 	 */
 	public static String findBestRoom(int cardId, int day, int period) {
-		String[] possRooms = Storage_access.getPossibleRooms(cardId);
+
+		boolean[] busyRoom = LocalOptimisation.busyRooms[period-1][day-1];
+
+		// if the room is already placed and the room is still availalbe, then take this one..
+		String c = Storage_access.getCard(cardId);
+
+		if (Storage_access.getDayCard(c)!=0 && !busyRoom[Storage_access.getRoomCard(c)])
+			return ""+Storage_access.getRoomCard(c);
+
+		// if an other card of with same course is placed, then try to take his room
+		String[] allPlacedCard = Storage_access.getAllPlacedCard();
+		String courseId = Storage_access.getCourseCard(c);
+		for (String s: allPlacedCard){
+			String card = Storage_access.getCard(s);
+			if( !s.equals(""+cardId) && Storage_access.getCourseCard(card).equals(courseId)) {
+				if (!busyRoom[Storage_access.getRoomCard(card)])
+					return ""+Storage_access.getRoomCard(card);
+			}
+		}
+
+		String[] possRooms = Storage_access.getPossibleRooms(""+cardId);
 		//		ClientUtils.notifyUser("Possible room for card "+cardId+" ="+Arrays.toString(possRooms), 1, MainPresenter.eventBus);
 		//System.out.println("Possible room for card "+cardId+" ="+Arrays.toString(possRooms));
-		int startIndex = 0;
+		int salt = allPlacedCard.length; // l'idée est de commencer à un autre index à chaque fois pour avoir une distribution uniforme des locaux
+
+
 		for (int i =0; i< possRooms.length; i++) {
-			for (String s: Storage_access.getAllPlacedCard()) {				
-
-				String c = Storage_access.getCard(i);
-				if (Storage_access.getDayCard(c) != day || Storage_access.getPeriodCard(c) != period) continue;
-			}
-
+			//if (!busyRoom[(i+salt)%possRooms.length]) return ""+i;
+			int j = (salt+i)%possRooms.length;
+			if (!busyRoom[Integer.parseInt(possRooms[j])]) return ""+possRooms[j];
 		}
-		//		if (possRooms.length >0) {
-		//			return possRooms[0];
-		//			for (String i: Storage_access.getAllPlacedCard()) {
-		//		
-		//				
-		//				String c = Storage_access.getCard(i);
-		//				if (Storage_access.getDayCard(c) != day || Storage_access.getPeriodCard(c) != period) continue;
-		//			}
-		//	}
-		//		else
+
 		return "-1";
 	}
 
@@ -61,6 +71,9 @@ public class ClientSolver {
 
 		CellState cellState = new CellState(0);
 		String card = Storage_access.getCard(cardID);
+
+		//if(Storage_access.getDayCard(card) == day && Storage_access.getPeriodCard(card)== period) return cellState;
+
 		String t = Storage_access.getTeacherCard(card);
 		String[] g = Storage_access.getGroupCard(card);
 		//String[] r = Storage_access.get (card);
@@ -93,6 +106,37 @@ public class ClientSolver {
 
 		}
 
+
+
+		int roomLeft = LocalOptimisation.availableRoomForAt(cardID, day, period);
+		switch (roomLeft) {
+		case 0 :
+			cellState.setColor(8);
+			cellState.setReason("No more rooms left");
+			return cellState;
+		case 1: 
+			cellState.setColor(7);
+			cellState.setReason("Only ONE room left");
+			break;
+		case 2:
+			cellState.setColor(6);
+			cellState.setReason(roomLeft+" rooms left");
+			break;
+		case 3:
+			cellState.setColor(5);
+			cellState.setReason(roomLeft+" rooms left");
+			break;
+		case 4:
+			cellState.setColor(4);
+			cellState.setReason(roomLeft+" rooms left");
+			break;
+		case 5:
+			cellState.setColor(3);
+			cellState.setReason(roomLeft+" rooms left");
+			break;
+		}
+		
+		
 
 
 		// let's check teacher and activity desiderata

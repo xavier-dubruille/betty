@@ -102,6 +102,7 @@ public class CardHandler implements DragHandler {
 				eventBus.fireEvent(new PaintAllRedEvent());
 			else
 				eventBus.fireEvent(new PaintCssEvent(cardId, true));
+			System.out.println("done drag preview");
 		}
 
 

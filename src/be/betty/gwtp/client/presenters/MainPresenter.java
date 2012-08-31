@@ -8,6 +8,7 @@ import be.betty.gwtp.client.CardHandler;
 import be.betty.gwtp.client.CardInView;
 import be.betty.gwtp.client.CardSelectionDropControler;
 import be.betty.gwtp.client.ClientUtils;
+import be.betty.gwtp.client.LocalOptimisation;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
 import be.betty.gwtp.client.action.DeleteCardAction;
@@ -268,12 +269,16 @@ public class MainPresenter extends
 						}
 					});
 
-			// Then save in local Storage
+			// Then save in LocalOptimisation and then in local Storage. It's SUPER important to keep this order!! 
+			// ( because the LocalOptimisation has to know the previous location of the card..)
 			if (event.getDay() != 0) {
+				
+				LocalOptimisation.placeCard(event.getCardID(), event.getDay(), event.getPeriod(), event.getRoom());
 				Storage_access.placeCard(event.getCardID(), event.getDay(), event.getPeriod(), event.getRoom());
 			}
 			else {
 			//	allCards.get(event.getCardID()).addStyleName("card");
+				LocalOptimisation.removeCard(event.getCardID());
 				Storage_access.removeFromSlot(event.getCardID());
 				allCards.get(""+event.getCardID()).setRoom("-1");
 			}
@@ -677,6 +682,8 @@ public class MainPresenter extends
 				}
 				
 				//Storage_access.printStorage();
+				
+				LocalOptimisation.initAvailableRoom();
 				
 				eventBus.fireEvent( 
 						new BoardViewChangedEvent(getView().getCombo_viewChoice1().getSelectedIndex(),
