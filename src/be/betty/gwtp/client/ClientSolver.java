@@ -108,9 +108,35 @@ public class ClientSolver {
 
 
 
-
-		cellState.setColor(3);
-		cellState.setReason(LocalOptimisation.availableRoomForAt(cardID, day, period)+" rooms left");
+		int roomLeft = LocalOptimisation.availableRoomForAt(cardID, day, period);
+		switch (roomLeft) {
+		case 0 :
+			cellState.setColor(8);
+			cellState.setReason("No more rooms left");
+			return cellState;
+		case 1: 
+			cellState.setColor(7);
+			cellState.setReason("Only ONE room left");
+			break;
+		case 2:
+			cellState.setColor(6);
+			cellState.setReason(roomLeft+" rooms left");
+			break;
+		case 3:
+			cellState.setColor(5);
+			cellState.setReason(roomLeft+" rooms left");
+			break;
+		case 4:
+			cellState.setColor(4);
+			cellState.setReason(roomLeft+" rooms left");
+			break;
+		case 5:
+			cellState.setColor(3);
+			cellState.setReason(roomLeft+" rooms left");
+			break;
+		}
+		
+		
 
 
 		// let's check teacher and activity desiderata
