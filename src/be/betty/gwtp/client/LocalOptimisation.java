@@ -23,6 +23,8 @@ public class LocalOptimisation {
 		}
 	}
 	public static void placeCard(int cardId, int day, int period, String room) {
+		removeCard(cardId); // mark previous room available..
+		
 		if (room != null && !room.equals("-1")) {
 			//	System.out.println("place card in local optimisation, array day size = "+ busyRooms.length);
 			//	System.out.println("place card in local optimisation, array rooms size= "+busyRooms[0][0].length);

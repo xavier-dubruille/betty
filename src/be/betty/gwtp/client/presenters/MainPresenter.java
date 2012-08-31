@@ -269,10 +269,12 @@ public class MainPresenter extends
 						}
 					});
 
-			// Then save in local Storage and LocalOptimisation
+			// Then save in LocalOptimisation and then in local Storage. It's SUPER important to keep this order!! 
+			// ( because the LocalOptimisation has to know the previous location of the card..)
 			if (event.getDay() != 0) {
-				Storage_access.placeCard(event.getCardID(), event.getDay(), event.getPeriod(), event.getRoom());
+				
 				LocalOptimisation.placeCard(event.getCardID(), event.getDay(), event.getPeriod(), event.getRoom());
+				Storage_access.placeCard(event.getCardID(), event.getDay(), event.getPeriod(), event.getRoom());
 			}
 			else {
 			//	allCards.get(event.getCardID()).addStyleName("card");
