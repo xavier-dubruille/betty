@@ -38,25 +38,6 @@ public class DeleteCardPopupPresenter extends
 	@Override
 	protected void onBind() {
 		super.onBind();
-		VerticalPanelDropController trash = new VerticalPanelDropController(getView().getDeleteVerticalPanel());
-		MainPresenter.cardDragController.registerDropController(trash);
-		
-		getView().getCloseButton().addClickHandler(new ClickHandler() {
-			
-			@Override
-			public void onClick(ClickEvent event) {
-				getView().hide();
-				
-			}
-		});
-		
-		getView().getWindowCloseButton().addClickHandler(new ClickHandler() {
-			
-			@Override
-			public void onClick(ClickEvent event) {
-				getView().hide();
-			}
-		});
 		
 	}
 	
