@@ -73,13 +73,26 @@ public class Storage_access {
 	// if one of the following constants come to change,
 	// then the method setCourse() HAS TO be changed also !!
 	private static final int CO_NAME_INDEX = 0;
-	private static final int CO_PR_SIZE_INDEX = 1; //e.g. if the instance has been deleted and have to be disabled
-	private static final int CO_PR_INDEX = 2;
+	private static final int CO_BDDID = 1;
+	private static final int CO_PR_SIZE_INDEX = 2; //e.g. if the instance has been deleted and have to be disabled
+	private static final int CO_PR_INDEX = 3;
+
 
 	// if one of the following constants come to change,
 	// then the method setRooms() HAS TO be changed also !!
 	private static final int ROOM_BDDID_INDEX = 0;
 	private static final int ROOM_CODE_INDEX = 1;
+
+	// if one of the following constants come to change,
+	// then the method setTeachers() HAS TO be changed also !!
+	private static final int TEACHER_BDDID_INDEX = 0;
+	private static final int TEACHER_NAME_INDEX = 1;
+
+	// if one of the following constants come to change,
+	// then the method setGroups() HAS TO be changed also !!
+	private static final int GROUP_BDDID_INDEX = 0;
+	private static final int GROUP_CODE_INDEX = 1;
+
 
 
 	static {
@@ -151,7 +164,7 @@ public class Storage_access {
 	public static String getProjectName() {
 		return stockStore.getItem(PROJECT_NAME_PREFIX);
 	}
-	
+
 	public static String getProjectCurrent() {
 		return stockStore.getItem(PROJECT_CURRENT);
 	}
@@ -163,14 +176,14 @@ public class Storage_access {
 	public static void setProjectName(String projectName) {
 		stockStore.setItem(PROJECT_NAME_PREFIX, projectName);
 	}
-	
+
 	public static void setProjectCurrent(String currentProject) {
 		stockStore.setItem(PROJECT_CURRENT, currentProject);
 	}
 
 	/**
 	 * 
-	 * @return the semester actualy loaded in the local storage
+	 * @return the semester actually loaded in the local storage
 	 */
 	public static String getSemester() {
 		return stockStore.getItem(SEMESTER_PREFIX);
@@ -227,7 +240,7 @@ public class Storage_access {
 		rooms_map.clear();
 		int i = 0;
 		for (Room_dto r: rooms) {
-			
+
 			// if the order change, some static constant HAVE to be changed also !!
 			stockStore.setItem(ROOM_PREFIX  + i,
 					r.getBddId()+ STORAGE_SEPARATOR+
@@ -276,9 +289,16 @@ public class Storage_access {
 	 */
 	private static void setTeachers(String projectID, ArrayList<Teacher_dto> teachers) {
 		teachers_map.clear();
+		String s = STORAGE_SEPARATOR;
 		int i = 0;
 		for (Teacher_dto t: teachers) {
-			stockStore.setItem(TEACHER_PREFIX  + i, t.getLastName()); // TODO: a completer..
+
+			// if the order change, some static constant HAVE to be changed also !!
+			stockStore.setItem(TEACHER_PREFIX  + i, 
+					t.getBddId() +s +
+					t.getLastName()); // TODO: a completer..
+
+
 			teachers_map.add(t.getBddId());
 			i++;
 		}
@@ -300,7 +320,9 @@ public class Storage_access {
 
 			// if this order come to change, then the corresponding
 			// Constants HAVE to change !!
-			stockStore.setItem(COURSE_PREFIX  + i, c.getName() + s+ 
+			stockStore.setItem(COURSE_PREFIX  + i, 
+					c.getName() + s+ 
+					c.getBddId() + s+
 					ps.size() + 
 					possRoom);
 			courses_map.add(c.getBddId());
@@ -312,9 +334,18 @@ public class Storage_access {
 
 	private static void setGroups(String project_num, ArrayList<Group_dto> groups) {
 		groups_map.clear();
+		String s = STORAGE_SEPARATOR;
+		
 		int i = 0;
 		for (Group_dto g : groups) {
-			stockStore.setItem(GROUP_PREFIX  + i, g.getCode());
+			
+			// if this order come to change, then the corresponding
+			// Constants HAVE to change !!
+			stockStore.setItem(GROUP_PREFIX  + i,
+					g.getBddId() +s +
+					g.getCode());
+			
+			
 			groups_map.add(g.getBddId());
 			i++;
 		}
@@ -476,7 +507,13 @@ public class Storage_access {
 	}
 
 	public static String getTeacher(int i) {
-		return stockStore.getItem(TEACHER_PREFIX+i);
+		String teacher =stockStore.getItem(TEACHER_PREFIX+i);
+		return teacher.split(STORAGE_SEPARATOR)[TEACHER_NAME_INDEX];
+	}
+	
+	public static String getTeacherBddId(int i) {
+		String teacher =stockStore.getItem(TEACHER_PREFIX+i);
+		return teacher.split(STORAGE_SEPARATOR)[TEACHER_BDDID_INDEX];
 	}
 
 	public static int getNumberOfTeacher() {
@@ -484,7 +521,13 @@ public class Storage_access {
 	}
 
 	public static String getGroup(int i) {
-		return stockStore.getItem(GROUP_PREFIX+i);
+		String group = stockStore.getItem(GROUP_PREFIX+i);
+		return group.split(STORAGE_SEPARATOR)[GROUP_CODE_INDEX];
+	}
+	
+	public static int getGroupBddID(int i) {
+		String group = stockStore.getItem(GROUP_PREFIX+i);
+		return Integer.parseInt(group.split(STORAGE_SEPARATOR)[GROUP_BDDID_INDEX]);
 	}
 
 	public static int getNumberOfGroup() {
@@ -494,6 +537,11 @@ public class Storage_access {
 	public static String getCourseName(String courseId) {
 		String course = stockStore.getItem(COURSE_PREFIX+courseId);
 		return course.split(STORAGE_SEPARATOR)[CO_NAME_INDEX];
+	}
+
+	public static String getCourseBDDID(String courseId) {
+		String course = stockStore.getItem(COURSE_PREFIX+courseId);
+		return course.split(STORAGE_SEPARATOR)[CO_BDDID];
 	}
 
 	public static int getNumberOfCourses() {
@@ -519,13 +567,13 @@ public class Storage_access {
 	public static String getRoomName(String roomId) {
 		return stockStore.getItem(ROOM_PREFIX+roomId).split(STORAGE_SEPARATOR)[ROOM_CODE_INDEX];
 	}
-	
+
 	public static String getRoomBDDID(String roomId) {
 		return stockStore.getItem(ROOM_PREFIX+roomId).split(STORAGE_SEPARATOR)[ROOM_BDDID_INDEX];
 	}
 
 
-	
+
 	/**
 	 * TODO: attention !!!  Pour etre pleinement base sur le local storage, 
 	 * cette fonction est probablement la seule qui posera probleme, car
@@ -580,7 +628,7 @@ public class Storage_access {
 		return getRoomName(roomId);
 	}
 
-	
+
 	// these folowing methods do not depend directly on local storage, but it's easer this way
 	public static String getCourseCard(String card) {
 		return getWholeCourse(Integer.parseInt(card.split(STORAGE_SEPARATOR)[COURSE_INDEX]));
@@ -619,14 +667,15 @@ public class Storage_access {
 			groupIds[i] = Integer.parseInt(c[GROUPS_INDEX + i]);
 		return groupIds;
 	}
+	
 	public static int getSlotCard(String card) {
 		return Integer.parseInt(card.split(STORAGE_SEPARATOR)[SLOT_INDEX]);
 	}
-	
+
 	public static int getRoomCard(String card) {
 		return Integer.parseInt(card.split(STORAGE_SEPARATOR)[ROOM_INDEX]);
 	}
-	
+
 	/**
 	 * Get the bdd id from a card
 	 * 

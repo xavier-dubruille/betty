@@ -75,13 +75,13 @@ public class AddNewCardPopupPresenter extends
 			@Override
 			public void onClick(ClickEvent event) {
 				// TODO Auto-generated method stub
-				int courseId = getView().getCourseComboBox().getSelectedIndex();
-				int teacherId = getView().getTeacherComboBox().getSelectedIndex();
+				String courseId = Storage_access.getCourseBDDID(""+getView().getCourseComboBox().getSelectedIndex());
+				String teacherId = Storage_access.getTeacherBddId(getView().getTeacherComboBox().getSelectedIndex());
 				String[] checkBoxTab = groupComboBox.getValues();
 				int[] GroupId = new int[checkBoxTab.length];
 				for (int i = 0; i < checkBoxTab.length; i++){
 					int id = Integer.parseInt(checkBoxTab[i]);
-					GroupId[i] = id;
+					GroupId[i] = Storage_access.getGroupBddID(id);
 				}
 	
 				CreateNewCardAction action = new CreateNewCardAction(teacherId, courseId, GroupId);

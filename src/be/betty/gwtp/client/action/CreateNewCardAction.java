@@ -9,8 +9,8 @@ import be.betty.gwtp.client.action.CreateNewCardActionResult;
  */
 public class CreateNewCardAction extends ActionImpl<CreateNewCardActionResult> {
 	
-	private int teacherId;
-	private int courseId;
+	private String teacherId;
+	private String courseId;
 	private int[] groupId;
 	
 	@Override
@@ -23,17 +23,17 @@ public class CreateNewCardAction extends ActionImpl<CreateNewCardActionResult> {
 		
 	}
 	
-	public CreateNewCardAction(int teacherId, int courseId, int[] groupId) {
+	public CreateNewCardAction(String teacherId, String courseId, int[] groupId) {
 		this.teacherId = teacherId;
 		this.courseId = courseId;
 		this.groupId = groupId;	
 	}
 
-	public int getTeacherId() {
+	public String getTeacherId() {
 		return teacherId;
 	}
 
-	public int getCourseId() {
+	public String getCourseId() {
 		return courseId;
 	}
 

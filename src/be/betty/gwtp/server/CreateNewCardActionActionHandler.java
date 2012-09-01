@@ -1,5 +1,7 @@
 package be.betty.gwtp.server;
 
+import java.util.Arrays;
+
 import com.gwtplatform.dispatch.server.actionhandler.ActionHandler;
 import be.betty.gwtp.client.action.CreateNewCardAction;
 import be.betty.gwtp.client.action.CreateNewCardActionResult;
@@ -17,6 +19,8 @@ public class CreateNewCardActionActionHandler implements
 	@Override
 	public CreateNewCardActionResult execute(CreateNewCardAction action,
 			ExecutionContext context) throws ActionException {
+		System.out.println("courseId="+action.getCourseId()+" , teacherId="+action.getTeacherId()+
+				" , groupId="+Arrays.toString(action.getGroupId()));
 		return null;
 	}
 
