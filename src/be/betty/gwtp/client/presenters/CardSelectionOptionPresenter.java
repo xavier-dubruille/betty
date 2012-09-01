@@ -102,9 +102,14 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 						}
 					} else {
 						//getView().getGroup_choice().setVisible(false);
-						for (int i = 0; i < MainPresenter.allCards.size(); i++) {
+						for (int i = 0; i < MainPresenter.allCards.size(); i++) 
 							MainPresenter.allCards.get(""+i).setVisible(true);
-						}
+						if(!showPlacedCard)
+							for (int k = 0; k < MainPresenter.allCards.size(); k++)
+								if (MainPresenter.allCards.get(""+k).isPlaced())
+									MainPresenter.allCards.get(""+k).setVisible(false);
+							
+						
 						multiSelectComboForm.hide();
 					}
 				} catch (Exception e) {
@@ -149,12 +154,14 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 		try{
 			
 			checkBoxTab = selectItemMultiplePickList.getValues();
+			if(checkBoxTab.length!=0){
 			if (getView().getDoSwitchView().getValue()) {
 				myEventBus.fireEvent(new SetViewEvent(indexFirstComboBox,checkBoxTab[0]));
 				if (!current.equalsIgnoreCase(checkBoxTab[0])){
 					String[] text = selectItemMultiplePickList.getDisplayValue().split(",");
 					String notif = "The view of "+firstComboBox.getDisplayValue()+" "+text[0]+" is selected";
 					current = checkBoxTab[0];
+					if(!current.equalsIgnoreCase("&nbsp;"));
 					ClientUtils.notifyUser(notif, UiConstants.getNotifCss(), getEventBus());
 				}
 			}
@@ -176,7 +183,7 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 				for (int k = 0; k < MainPresenter.allCards.size(); k++)
 					if (MainPresenter.allCards.get(""+k).isPlaced())
 						MainPresenter.allCards.get(""+k).setVisible(false);
-			
+			}
 		}catch (Exception E){
 			//ClientUtils.notifyUser("exeption (second combobox) ==> "+E, myEventBus);
 			System.out.println(E);

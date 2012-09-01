@@ -56,6 +56,7 @@ public class HeaderPresenter extends
 	@Inject AboutUsPresenter aboutUsPresenter;
 	@Inject SolveItPopupPresenter solveItPresenter;
 	@Inject AddNewCardPopupPresenter newCardPresenter;
+	@Inject DeleteCardPopupPresenter deleteCardPresenter;
 
 	private NewCardPopupHandler newCardPopupdHandler = new NewCardPopupHandler() {
 		@Override public void onNewCardPopup(NewCardPopupEvent event) {
@@ -97,6 +98,12 @@ public class HeaderPresenter extends
 	Command addCardCommand = new Command(){
 		public void execute(){
 			getEventBus().fireEvent(new NewCardPopupEvent());
+		}
+	};
+	
+	Command deleteCardCommand = new Command() {
+		public void execute() {
+			addToPopupSlot(deleteCardPresenter);
 		}
 	};
 
@@ -141,6 +148,7 @@ public class HeaderPresenter extends
 		getView().getCalculeMenu().setCommand(solveItCommand);
 		getView().getMenuItemNewProject().setCommand(newProjectCommand);
 		getView().getAddNewCard().setCommand(addCardCommand);
+		//getView().getRemoveCard().setCommand(deleteCardCommand);
 			
 	}
 	
