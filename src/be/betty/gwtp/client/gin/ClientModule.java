@@ -24,6 +24,7 @@ import be.betty.gwtp.client.views.AboutUsView;
 import be.betty.gwtp.client.views.AddNewCardPopupView;
 import be.betty.gwtp.client.views.BoardView;
 import be.betty.gwtp.client.views.CardSelectionOptionView;
+import be.betty.gwtp.client.views.DeleteCardPopupView;
 import be.betty.gwtp.client.views.DeleteProjectPopupView;
 import be.betty.gwtp.client.views.HeaderView;
 import be.betty.gwtp.client.views.LoginView;
@@ -40,6 +41,7 @@ import be.betty.gwtp.client.views.SubscribeView;
 
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 import com.gwtplatform.mvp.client.gin.DefaultModule;
+import be.betty.gwtp.client.presenters.DeleteCardPopupPresenter;
 
 public class ClientModule extends AbstractPresenterModule {
 
@@ -103,6 +105,10 @@ public class ClientModule extends AbstractPresenterModule {
 		bindPresenterWidget(PopupDeleteCardPresenter.class,
 				PopupDeleteCardPresenter.MyView.class,
 				PopupDeleteCardView.class);
+
+		bindPresenterWidget(DeleteCardPopupPresenter.class,
+				DeleteCardPopupPresenter.MyView.class,
+				DeleteCardPopupView.class);
 
 		bindPresenterWidget(SolveItPopupPresenter.class,
 				SolveItPopupPresenter.MyView.class, SolveItPopupView.class);
