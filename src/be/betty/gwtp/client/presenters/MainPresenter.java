@@ -269,7 +269,7 @@ public class MainPresenter extends
 						}
 					});
 
-			// Then save in LocalOptimisation and then in local Storage. It's SUPER important to keep this order!! 
+			// Save in LocalOptimisation *and then* in local Storage. It's SUPER important to keep this order!! 
 			// ( because the LocalOptimisation has to know the previous location of the card..)
 			if (event.getDay() != 0) {
 				
@@ -358,6 +358,12 @@ public class MainPresenter extends
 		getView().getCombo_viewChoice1().addChangeHandler(new ChangeHandler() {
 			@Override public void onChange(ChangeEvent arg0) {
 				printSecondComboBxView(getView().getCombo_viewChoice1().getSelectedIndex());
+				
+				reDrowStatusCard();
+				String txtCbBox1= getView().getCombo_viewChoice1().getItemText(getView().getCombo_viewChoice1().getSelectedIndex());
+				String txtCbBox2 = getView().getCombo_viewChoice2().getItemText(getView().getCombo_viewChoice2().getSelectedIndex());
+				String notif = "The view of "+txtCbBox1+" "+txtCbBox2+" is selected";
+				ClientUtils.notifyUser(notif, UiConstants.getNotifCss(), getEventBus());
 				
 			}
 
