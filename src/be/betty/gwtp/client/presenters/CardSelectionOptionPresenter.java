@@ -161,7 +161,7 @@ public class CardSelectionOptionPresenter extends PresenterWidget<CardSelectionO
 					String[] text = selectItemMultiplePickList.getDisplayValue().split(",");
 					String notif = "The view of "+firstComboBox.getDisplayValue()+" "+text[0]+" is selected";
 					current = checkBoxTab[0];
-					if(!current.equalsIgnoreCase("&nbsp"));
+					if(!current.equalsIgnoreCase("&nbsp;"));
 					ClientUtils.notifyUser(notif, UiConstants.getNotifCss(), getEventBus());
 				}
 			}
