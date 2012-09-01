@@ -1,5 +1,7 @@
 package be.betty.gwtp.client.presenters;
 
+import be.betty.gwtp.shared.Constants;
+
 import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.PopupView;
 import com.google.inject.Inject;
@@ -45,7 +47,7 @@ public class AboutUsPresenter extends PresenterWidget<AboutUsPresenter.MyView> {
 			}
 		});
 		
-		getView().getAboutUsLabel().setText("Copyright © 2012 Free Betty Software\nJACOBY Kevin - DUBRUILLE Xavier\n\nThis application is under GPL3 Licence");
+		getView().getAboutUsLabel().setText("Copyright © 2012 Free Betty Software\nJACOBY Kevin - DUBRUILLE Xavier\n\nVersion "+Constants.VERSION+"\nThis application is under GPL3 Licence");
 		
 	}
 }
