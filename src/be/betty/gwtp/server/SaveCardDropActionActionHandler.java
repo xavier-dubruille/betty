@@ -5,13 +5,11 @@ import org.hibernate.Transaction;
 
 import com.gwtplatform.dispatch.server.actionhandler.ActionHandler;
 
-import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.action.SaveCardDropAction;
 import be.betty.gwtp.client.action.SaveCardDropActionResult;
 import be.betty.gwtp.server.bdd.Activity_entity;
 import be.betty.gwtp.server.bdd.ActivityState;
 import be.betty.gwtp.server.bdd.ProjectInstance;
-import be.betty.gwtp.server.bdd.Project_entity;
 import be.betty.gwtp.server.bdd.Room;
 
 import com.google.inject.Inject;

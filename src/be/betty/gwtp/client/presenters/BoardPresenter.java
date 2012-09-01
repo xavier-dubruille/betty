@@ -332,7 +332,10 @@ public class BoardPresenter extends PresenterWidget<BoardPresenter.MyView> {
 					if (color !=0 && !(i==day && j==period)) { //do we print an explation label..
 						SimplePanel cell = ((SimplePanel)w);
 						cell.clear();
-						cell.add(new Label(cs.getReason()));
+						Label reason = new Label();
+						reason.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+						reason.setText(cs.getReason());
+						cell.add(reason);
 					}
 
 				}
