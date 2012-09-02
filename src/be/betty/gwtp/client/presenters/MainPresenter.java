@@ -461,7 +461,7 @@ public class MainPresenter extends
 			return;
 		}
 
-		Storage_access.setProjectName(project_num);
+		Storage_access.setProjectCurrentID(project_num);
 		Storage_access.setSemester(sem);
 		getView().getMainLabel().setText("Project Loading ...");//Project: "+Storage_access.getProjectName()+", semestre "+sem);
 
@@ -486,7 +486,7 @@ public class MainPresenter extends
 //						
 				print_da_page();
 //				// getView().getContent().setText(result.getActivities().toString());
-				getView().getMainLabel().setText(Storage_access.getProjectCurrent()+" semester "+sem);
+				getView().getMainLabel().setText(Storage_access.getProjectName()+" semester "+sem);
 
 			}
 

@@ -165,7 +165,7 @@ public class Storage_access {
 		return stockStore.getItem(PROJECT_NAME_PREFIX);
 	}
 
-	public static String getProjectCurrent() {
+	public static String getProjectCurrentID() {
 		return stockStore.getItem(PROJECT_CURRENT);
 	}
 
@@ -177,7 +177,7 @@ public class Storage_access {
 		stockStore.setItem(PROJECT_NAME_PREFIX, projectName);
 	}
 
-	public static void setProjectCurrent(String currentProject) {
+	public static void setProjectCurrentID(String currentProject) {
 		stockStore.setItem(PROJECT_CURRENT, currentProject);
 	}
 

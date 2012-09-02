@@ -40,6 +40,8 @@ public class AddNewCardPopupPresenter extends
  	private SelectItem groupComboBox;
  	private String[] checkBoxTab;
 
+ 	@Inject MainPresenter mainPresenter;
+ 	
 	@Inject
 	public AddNewCardPopupPresenter(final EventBus eventBus, final MyView view) {
 		super(eventBus, view);
@@ -78,13 +80,15 @@ public class AddNewCardPopupPresenter extends
 				String courseId = Storage_access.getCourseBDDID(""+getView().getCourseComboBox().getSelectedIndex());
 				String teacherId = Storage_access.getTeacherBddId(getView().getTeacherComboBox().getSelectedIndex());
 				String[] checkBoxTab = groupComboBox.getValues();
+				String projectId = Storage_access.getProjectCurrentID();
+				String sem = Storage_access.getSemester();
 				int[] GroupId = new int[checkBoxTab.length];
 				for (int i = 0; i < checkBoxTab.length; i++){
 					int id = Integer.parseInt(checkBoxTab[i]);
 					GroupId[i] = Storage_access.getGroupBddID(id);
 				}
 	
-				CreateNewCardAction action = new CreateNewCardAction(teacherId, courseId, GroupId);
+				CreateNewCardAction action = new CreateNewCardAction(teacherId, courseId, projectId, sem, GroupId);
 				dispacher.execute(action, newCardCallback);
 			}
 		});
@@ -99,6 +103,9 @@ public class AddNewCardPopupPresenter extends
 		@Override
 		public void onSuccess(CreateNewCardActionResult result) {
 			getView().hide();
+			mainPresenter.onReset();
+			
+			
 		}
 	};
 	

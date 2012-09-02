@@ -12,6 +12,8 @@ public class CreateNewCardAction extends ActionImpl<CreateNewCardActionResult> {
 	private String teacherId;
 	private String courseId;
 	private int[] groupId;
+	private String projectId;
+	private String semester;
 	
 	@Override
 	public boolean isSecured() {
@@ -23,10 +25,12 @@ public class CreateNewCardAction extends ActionImpl<CreateNewCardActionResult> {
 		
 	}
 	
-	public CreateNewCardAction(String teacherId, String courseId, int[] groupId) {
+	public CreateNewCardAction(String teacherId, String courseId, String projectId, String  semester, int[] groupId) {
 		this.teacherId = teacherId;
 		this.courseId = courseId;
 		this.groupId = groupId;	
+		this.projectId = projectId;
+		this.semester = semester;
 	}
 
 	public String getTeacherId() {
@@ -39,6 +43,15 @@ public class CreateNewCardAction extends ActionImpl<CreateNewCardActionResult> {
 
 	public int[] getGroupId() {
 		return groupId;
+	}
+
+	public int getProjectId() {
+		return Integer.parseInt(projectId);
+		
+	}
+	
+	public String getSemester() {
+		return semester;
 	}
 	
 	

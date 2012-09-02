@@ -57,7 +57,9 @@ public class Activity_entity {
 	}
 
 
-		
+	public void setClass(char classe){
+		this.classe=classe;
+	}
 	
 
 	public Integer getId() {

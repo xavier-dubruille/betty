@@ -139,7 +139,7 @@ public class SingleProjectPresenter extends
 	}
 
 	@SuppressWarnings("deprecation")
-	public void init(Project_dto project) {
+	public void init(final Project_dto project) {
 		this.projectModel = project;
 		final Project_dto proj = project;
 		final String nameproj = project.getName();
@@ -155,7 +155,7 @@ public class SingleProjectPresenter extends
 			@Override
 			public void onClick(ClickEvent arg0) {
 				
-				Storage_access.setProjectCurrent(proj.getName());
+				Storage_access.setProjectName(proj.getName());
 			}
 		});
 		
@@ -168,7 +168,8 @@ public class SingleProjectPresenter extends
 			@Override
 			public void onClick(ClickEvent arg0) {
 				
-				Storage_access.setProjectCurrent(proj.getName());				
+				Storage_access.setProjectName(proj.getName());
+				//Storage_access.setProjectCurrentID(""+project.getId());
 			}
 		});
 		
