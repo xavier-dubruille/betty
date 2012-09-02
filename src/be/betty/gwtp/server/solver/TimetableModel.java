@@ -154,7 +154,7 @@ public class TimetableModel extends Model<Activity, Location> {
 
 			m.addVariable(a);
 			a.init();
-			//System.out.println("ressourceGroupFrom activity n¡ "+ac.getId()+" = "+a.getResourceGroups());
+			//System.out.println("ressourceGroupFrom activity nï¿½ "+ac.getId()+" = "+a.getResourceGroups());
 
 
 		}

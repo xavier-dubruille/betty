@@ -11,6 +11,8 @@ import be.betty.gwtp.client.ClientUtils;
 import be.betty.gwtp.client.LocalOptimisation;
 import be.betty.gwtp.client.Storage_access;
 import be.betty.gwtp.client.UiConstants;
+import be.betty.gwtp.client.action.CreateProjectInstanceAction;
+import be.betty.gwtp.client.action.CreateProjectInstanceActionResult;
 import be.betty.gwtp.client.action.DeleteCardAction;
 import be.betty.gwtp.client.action.DeleteCardActionResult;
 import be.betty.gwtp.client.action.GetActivityStateAction;
@@ -48,12 +50,15 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.MouseDownEvent;
+import com.google.gwt.event.dom.client.MouseDownHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.storage.client.Storage;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment.HorizontalAlignmentConstant;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
@@ -92,6 +97,7 @@ public class MainPresenter extends
 		SimplePanel getBoardPanel();
 		TextButton getButtonNotifClear();
 		public VerticalPanel GetNotifBarVerticalPanel();
+		Image getNewInstance();
 	}
 
 	public static final Object SLOT_Card = new Object();
@@ -378,6 +384,18 @@ public class MainPresenter extends
 				ClientUtils.notifyUser(notif, UiConstants.getNotifCss(), getEventBus());
 			}
 
+		});
+		getView().getNewInstance().addStyleName("clickable");
+		getView().getNewInstance().addClickHandler(new ClickHandler() {
+			@Override public void onClick(ClickEvent event) {
+				//ClientUtils.notifyUser("onClick", 0, getEventBus());
+				dispatcher.execute(new CreateProjectInstanceAction(Storage_access.getProjectCurrentID()), new AsyncCallback<CreateProjectInstanceActionResult>() {
+					@Override public void onFailure(Throwable caught) {}
+					@Override public void onSuccess(CreateProjectInstanceActionResult result) {
+						getEventBus().fireEvent(new InstancesModifiedEvent());
+					}
+				});
+			}
 		});
 		
 		set_dnd();

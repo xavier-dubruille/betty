@@ -31,7 +31,7 @@
 										height="22px" />
 								</g:at>
 								<g:at left="98" top="36">
-									<g:Image width="22px" height="21px" url="Plus_sign.png" />
+									<g:Image width="22px" height="21px" url="Plus_sign.png" ui:field="newInstance" />
 								</g:at>
 								<g:at left="3" top="106">
 									<g:Label ui:field="labelNotif" text="Notif" styleName="white" width="49px" height="18px" horizontalAlignment="ALIGN_CENTER"/>

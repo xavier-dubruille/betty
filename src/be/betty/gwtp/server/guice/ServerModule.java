@@ -26,6 +26,8 @@ import be.betty.gwtp.client.action.CreateNewCardAction;
 import be.betty.gwtp.server.CreateNewCardActionActionHandler;
 import be.betty.gwtp.client.action.DeleteCardAction;
 import be.betty.gwtp.server.DeleteCardActionActionHandler;
+import be.betty.gwtp.client.action.CreateProjectInstanceAction;
+import be.betty.gwtp.server.CreateProjectInstanceActionActionHandler;
 
 public class ServerModule extends HandlerModule {
 
@@ -61,5 +63,8 @@ public class ServerModule extends HandlerModule {
 		bindHandler(SolveIt.class, SolveItActionHandler.class);
 
 		bindHandler(GetInstancesOnly.class, GetInstancesOnlyActionHandler.class);
+
+		bindHandler(CreateProjectInstanceAction.class,
+				CreateProjectInstanceActionActionHandler.class);
 }
 }

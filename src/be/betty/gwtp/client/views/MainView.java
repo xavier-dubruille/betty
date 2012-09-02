@@ -15,6 +15,7 @@ import com.gwtplatform.mvp.client.ViewImpl;
 import com.google.gwt.user.client.ui.ListBox;
 import be.betty.gwtp.client.views.ourWidgets.ModifiedVerticalPanel;
 import com.google.gwt.widget.client.TextButton;
+import com.google.gwt.user.client.ui.Image;
 
 public class MainView extends ViewImpl implements MainPresenter.MyView {
 
@@ -32,6 +33,7 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	@UiField ModifiedVerticalPanel cards_panel;
 	@UiField Label labelNotif;
 	@UiField TextButton buttonNotifClear;
+	@UiField Image newInstance;
 	
 	public interface Binder extends UiBinder<Widget, MainView> {
 	}
@@ -165,5 +167,9 @@ public class MainView extends ViewImpl implements MainPresenter.MyView {
 	
 	public TextButton getButtonNotifClear() {
 		return buttonNotifClear;
+	}
+
+	@Override public Image getNewInstance() {
+		return newInstance;
 	}
 }
